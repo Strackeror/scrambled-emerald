@@ -86,6 +86,22 @@ MauvilleCity_Gym_EventScript_Wattson::
 MauvilleCity_Gym_EventScript_WattsonDefeated::
 	message MauvilleCity_Gym_Text_ReceivedDynamoBadge
 	waitmessage
+	// PLOTLESS
+		setflag FLAG_HIDE_ROUTE_112_TEAM_MAGMA
+		setvar VAR_METEOR_FALLS_STATE, 1
+		setflag FLAG_HIDE_METEOR_FALLS_TEAM_AQUA
+		setflag FLAG_MET_PROF_COZMO
+		setflag FLAG_HIDE_MT_CHIMNEY_TEAM_AQUA
+		setflag FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
+		setflag FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY
+		clearflag FLAG_HIDE_FALLARBOR_HOUSE_PROF_COZMO
+		setflag FLAG_HIDE_METEOR_FALLS_1F_1R_COZMO
+	// PLOTLESS + EARLYSURF
+		setvar VAR_WEATHER_INSTITUTE_STATE, 2
+		setflag FLAG_HIDE_ROUTE_119_TEAM_AQUA
+		clearflag FLAG_HIDE_WEATHER_INSTITUTE_1F_WORKERS
+		setflag FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS
+
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox MauvilleCity_Gym_Text_ExplainDynamoBadgeTakeThis, MSGBOX_DEFAULT
 	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 3

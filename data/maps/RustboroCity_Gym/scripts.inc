@@ -26,6 +26,37 @@ RustboroCity_Gym_EventScript_RoxanneDefeated::
 	end
 
 RustboroCity_Gym_EventScript_GiveRockTomb::
+	// PLOTLESS
+		giveitem ITEM_LETTER
+		@ give pokenav
+		message RustboroCity_DevonCorp_3F_Text_ReceivedPokenav
+		waitfanfare
+		setflag FLAG_SYS_POKENAV_GET
+		setflag FLAG_RECEIVED_POKENAV
+		setflag FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT
+		setflag FLAG_HAS_MATCH_CALL
+		setflag FLAG_ADDED_MATCH_CALL_TO_POKENAV
+		@ complete the pokenav tutorial
+		setflag FLAG_HIDE_RUSTBORO_CITY_SCIENTIST
+		setvar VAR_RUSTBORO_CITY_STATE, 7
+		@ move plot events up to the museum
+		setflag FLAG_RETURNED_DEVON_GOODS
+		setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1
+		setvar VAR_RUSTBORO_CITY_STATE, 5 @ i forget why I initially set it to 7 then to 5...
+		setflag 2050 @ get rid of first roxanne rematch
+		setflag FLAG_RECEIVED_POKENAV
+		clearflag FLAG_DEVON_GOODS_STOLEN
+		setflag FLAG_RECOVERED_DEVON_GOODS
+		setvar VAR_BRINEY_HOUSE_STATE, 1
+		setflag FLAG_HIDE_ROUTE_116_WANDAS_BOYFRIEND
+		clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND
+		clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDA
+		clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY	
+		clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
+		setvar VAR_BRINEY_LOCATION, 1
+		clearflag FLAG_HIDE_RUSTBORO_CITY_RIVAL
+		setvar VAR_DEVON_CORP_3F_STATE, 1
+
 	giveitem ITEM_TM_ROCK_TOMB
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_TM_ROCK_TOMB

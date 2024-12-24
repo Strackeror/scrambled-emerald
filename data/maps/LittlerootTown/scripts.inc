@@ -166,6 +166,24 @@ LittlerootTown_EventScript_GoInsideWithMom::
 	waitdooranim
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_FAT_MAN
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
+
+		// PLOTLESS
+		setflag FLAG_HIDE_PETALBURG_WOODS_DEVON_EMPLOYEE
+		setflag FLAG_HIDE_PETALBURG_WOODS_AQUA_GRUNT
+		@ magma chamber fix
+		setvar VAR_JAGGED_PASS_STATE, 2
+		setflag FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+		setflag FLAG_HIDE_MAGMA_HIDEOUT_4F_GROUDON
+		setflag FLAG_HIDE_MAGMA_HIDEOUT_4F_GROUDON_ASLEEP
+		setflag FLAG_HIDE_JAGGED_PASS_MAGMA_GUARD
+		@ make old man disappear for sootopolis
+		setflag FLAG_HIDE_CAVE_OF_ORIGIN_B1F_WALLACE @ also hides the expert as a hack
+		@ skip wally tutorial
+		setflag FLAG_HIDE_PETALBURG_CITY_WALLY
+		setflag FLAG_HIDE_PETALBURG_CITY_WALLYS_MOM
+		setvar VAR_PETALBURG_CITY_STATE, 1
+		setvar VAR_PETALBURG_GYM_STATE, 2
+		setvar VAR_PETALBURG_WOODS_STATE, 1
 	return
 
 LittlerootTown_Movement_MomExitHouse:
