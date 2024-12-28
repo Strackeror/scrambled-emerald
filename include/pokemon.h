@@ -500,7 +500,7 @@ struct MoveInfo
     u32 strikeCount:4; // Max 15 hits. Defaults to 1 if not set. May apply its effect on each hit.
     u32 criticalHitStage:2;
     u32 alwaysCriticalHit:1;
-    u32 numAdditionalEffects:2; // limited to 3 - don't want to get too crazy
+    u32 numAdditionalEffects:3; 
     // 12 bits left to complete this word - continues into flags
 
     // Flags

@@ -160,6 +160,9 @@ extern const u8 BattleScript_MoveEffectToxic[];
 extern const u8 BattleScript_MoveEffectPayDay[];
 extern const u8 BattleScript_MoveEffectWrap[];
 extern const u8 BattleScript_MoveEffectConfusion[];
+extern const u8 BattleScript_MoveEffectCurse[];
+extern const u8 BattleScript_MoveEffectDrowsy[];
+extern const u8 BattleScript_MoveEffectPerishSong[];
 extern const u8 BattleScript_MoveEffectRecoil[];
 extern const u8 BattleScript_FaintAttackerForExplosion[];
 extern const u8 BattleScript_MaxHp50Recoil[];
@@ -852,5 +855,6 @@ extern const u8 BattleScript_EffectSpicyExtract[];
 extern const u8 BattleScript_DamageToQuarterTargetHP[];
 extern const u8 BattleScript_EffectFickleBeam[];
 extern const u8 BattleScript_FickleBeamDoubled[];
+extern const u8 BattleScript_EffectMortalSpin[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H

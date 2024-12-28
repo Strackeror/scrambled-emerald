@@ -551,21 +551,49 @@ void AnimTask_StatsChange(u8 taskId)
     case STAT_ANIM_MINUS1 + STAT_ACC:     goesDown = TRUE;  animStatId = STAT_ANIM_PAL_ACC;      break;
     case STAT_ANIM_MINUS1 + STAT_EVASION: goesDown = TRUE;  animStatId = STAT_ANIM_PAL_EVASION;  break;
 
-    case STAT_ANIM_PLUS2 + STAT_ATK:     goesDown = FALSE;  animStatId = STAT_ANIM_PAL_ATK;      sharply = TRUE;  break;
-    case STAT_ANIM_PLUS2 + STAT_DEF:     goesDown = FALSE;  animStatId = STAT_ANIM_PAL_DEF;      sharply = TRUE;  break;
-    case STAT_ANIM_PLUS2 + STAT_SPEED:   goesDown = FALSE;  animStatId = STAT_ANIM_PAL_SPEED;    sharply = TRUE;  break;
-    case STAT_ANIM_PLUS2 + STAT_SPATK:   goesDown = FALSE;  animStatId = STAT_ANIM_PAL_SPATK;    sharply = TRUE;  break;
-    case STAT_ANIM_PLUS2 + STAT_SPDEF:   goesDown = FALSE;  animStatId = STAT_ANIM_PAL_SPDEF;    sharply = TRUE;  break;
-    case STAT_ANIM_PLUS2 + STAT_ACC:     goesDown = FALSE;  animStatId = STAT_ANIM_PAL_ACC;      sharply = TRUE;  break;
-    case STAT_ANIM_PLUS2 + STAT_EVASION: goesDown = FALSE;  animStatId = STAT_ANIM_PAL_EVASION;  sharply = TRUE;  break;
+    case STAT_ANIM_PLUS2 + STAT_ATK:
+    case STAT_ANIM_PLUS3 + STAT_ATK:
+        goesDown = FALSE;  animStatId = STAT_ANIM_PAL_ATK;      sharply = TRUE;  break;
+    case STAT_ANIM_PLUS2 + STAT_DEF:
+    case STAT_ANIM_PLUS3 + STAT_DEF:
+        goesDown = FALSE;  animStatId = STAT_ANIM_PAL_DEF;      sharply = TRUE;  break;
+    case STAT_ANIM_PLUS2 + STAT_SPEED:
+    case STAT_ANIM_PLUS3 + STAT_SPEED:
+        goesDown = FALSE;  animStatId = STAT_ANIM_PAL_SPEED;    sharply = TRUE;  break;
+    case STAT_ANIM_PLUS2 + STAT_SPATK:
+    case STAT_ANIM_PLUS3 + STAT_SPATK:
+        goesDown = FALSE;  animStatId = STAT_ANIM_PAL_SPATK;    sharply = TRUE;  break;
+    case STAT_ANIM_PLUS2 + STAT_SPDEF:
+    case STAT_ANIM_PLUS3 + STAT_SPDEF:
+        goesDown = FALSE;  animStatId = STAT_ANIM_PAL_SPDEF;    sharply = TRUE;  break;
+    case STAT_ANIM_PLUS2 + STAT_ACC:
+    case STAT_ANIM_PLUS3 + STAT_ACC:
+        goesDown = FALSE;  animStatId = STAT_ANIM_PAL_ACC;      sharply = TRUE;  break;
+    case STAT_ANIM_PLUS2 + STAT_EVASION:
+    case STAT_ANIM_PLUS3 + STAT_EVASION:
+        goesDown = FALSE;  animStatId = STAT_ANIM_PAL_EVASION;  sharply = TRUE;  break;
 
-    case STAT_ANIM_MINUS2 + STAT_ATK:     goesDown = TRUE;  animStatId = STAT_ANIM_PAL_ATK;      sharply = TRUE;  break;
-    case STAT_ANIM_MINUS2 + STAT_DEF:     goesDown = TRUE;  animStatId = STAT_ANIM_PAL_DEF;      sharply = TRUE;  break;
-    case STAT_ANIM_MINUS2 + STAT_SPEED:   goesDown = TRUE;  animStatId = STAT_ANIM_PAL_SPEED;    sharply = TRUE;  break;
-    case STAT_ANIM_MINUS2 + STAT_SPATK:   goesDown = TRUE;  animStatId = STAT_ANIM_PAL_SPATK;    sharply = TRUE;  break;
-    case STAT_ANIM_MINUS2 + STAT_SPDEF:   goesDown = TRUE;  animStatId = STAT_ANIM_PAL_SPDEF;    sharply = TRUE;  break;
-    case STAT_ANIM_MINUS2 + STAT_ACC:     goesDown = TRUE;  animStatId = STAT_ANIM_PAL_ACC;      sharply = TRUE;  break;
-    case STAT_ANIM_MINUS2 + STAT_EVASION: goesDown = TRUE;  animStatId = STAT_ANIM_PAL_EVASION;  sharply = TRUE;  break;
+    case STAT_ANIM_MINUS2 + STAT_ATK:
+    case STAT_ANIM_MINUS3 + STAT_ATK:
+        goesDown = TRUE;  animStatId = STAT_ANIM_PAL_ATK;      sharply = TRUE;  break;
+    case STAT_ANIM_MINUS2 + STAT_DEF:
+    case STAT_ANIM_MINUS3 + STAT_DEF:
+        goesDown = TRUE;  animStatId = STAT_ANIM_PAL_DEF;      sharply = TRUE;  break;
+    case STAT_ANIM_MINUS2 + STAT_SPEED:
+    case STAT_ANIM_MINUS3 + STAT_SPEED:
+        goesDown = TRUE;  animStatId = STAT_ANIM_PAL_SPEED;    sharply = TRUE;  break;
+    case STAT_ANIM_MINUS2 + STAT_SPATK:
+    case STAT_ANIM_MINUS3 + STAT_SPATK:
+        goesDown = TRUE;  animStatId = STAT_ANIM_PAL_SPATK;    sharply = TRUE;  break;
+    case STAT_ANIM_MINUS2 + STAT_SPDEF:
+    case STAT_ANIM_MINUS3 + STAT_SPDEF:
+        goesDown = TRUE;  animStatId = STAT_ANIM_PAL_SPDEF;    sharply = TRUE;  break;
+    case STAT_ANIM_MINUS2 + STAT_ACC:
+    case STAT_ANIM_MINUS3 + STAT_ACC:
+        goesDown = TRUE;  animStatId = STAT_ANIM_PAL_ACC;      sharply = TRUE;  break;
+    case STAT_ANIM_MINUS2 + STAT_EVASION:
+    case STAT_ANIM_MINUS3 + STAT_EVASION:
+        goesDown = TRUE;  animStatId = STAT_ANIM_PAL_EVASION;  sharply = TRUE;  break;
 
     case STAT_ANIM_MULTIPLE_PLUS1:  goesDown = FALSE;  animStatId = STAT_ANIM_PAL_MULTIPLE;  sharply = FALSE;  break;
     case STAT_ANIM_MULTIPLE_PLUS2:  goesDown = FALSE;  animStatId = STAT_ANIM_PAL_MULTIPLE;  sharply = TRUE;   break;
