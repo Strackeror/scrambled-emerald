@@ -417,8 +417,26 @@
 #define MOVE_EFFECT_LIGHT_SCREEN        86
 #define MOVE_EFFECT_SALT_CURE           87
 #define MOVE_EFFECT_EERIE_SPELL         88
+#define MOVE_EFFECT_ATK_PLUS_3          89
+#define MOVE_EFFECT_DEF_PLUS_3          90
+#define MOVE_EFFECT_SPD_PLUS_3          91
+#define MOVE_EFFECT_SP_ATK_PLUS_3       92
+#define MOVE_EFFECT_SP_DEF_PLUS_3       93
+#define MOVE_EFFECT_ACC_PLUS_3          94
+#define MOVE_EFFECT_EVS_PLUS_3          95
+#define MOVE_EFFECT_ATK_MINUS_3         96
+#define MOVE_EFFECT_DEF_MINUS_3         97
+#define MOVE_EFFECT_SPD_MINUS_3         98
+#define MOVE_EFFECT_SP_ATK_MINUS_3      99
+#define MOVE_EFFECT_SP_DEF_MINUS_3      100
+#define MOVE_EFFECT_ACC_MINUS_3         101
+#define MOVE_EFFECT_EVS_MINUS_3         102
+#define MOVE_EFFECT_YAWN                103
+#define MOVE_EFFECT_CURSE               104
+#define MOVE_EFFECT_PERISH_SONG         105
+#define MOVE_EFFECT_ABSORB              106
 
-#define NUM_MOVE_EFFECTS                88
+#define NUM_MOVE_EFFECTS                106
 
 #define MOVE_EFFECT_AFFECTS_USER        0x2000
 #define MOVE_EFFECT_CERTAIN             0x4000
@@ -536,6 +554,10 @@
 
 // Constants for Torment
 #define PERMANENT_TORMENT   0xF
+
+// Dirty workaround for turn duration
+#define ARG_LONGER_STATUS 0x20000
+
 
 // Constants for B_VAR_STARTING_STATUS
 // Timer value controlled by B_VAR_STARTING_STATUS_TIMER

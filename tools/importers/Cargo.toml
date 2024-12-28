@@ -1,0 +1,17 @@
+[package]
+name = "importers"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "importer"
+path = "importer.rs"
+
+[dependencies]
+anyhow = "1.0.95"
+convert_case = "0.6.0"
+serde = { version = "1.0.216", features = ["derive"] }
+serde_json = { version = "1.0.134" }
+streaming-iterator = { version = "0.1.9", features = ["alloc"] }
+tree-sitter = "0.24.5"
+tree-sitter-cpp = "0.23.4"
