@@ -1,34 +1,26 @@
-use std::collections::BTreeMap;
-use std::fs::{read, read_to_string};
-use std::sync::OnceLock;
+use std::collections::{BTreeMap, HashMap};
+use std::fs::{read, read_to_string, write};
 use std::{env, fs};
 
 use anyhow::{Context, Result};
 use convert_case::{Case, Casing};
 use serde::Deserialize;
 use serde_json::Value;
-use tree_sitter::{Query, Range};
-use tree_utils::replace_range;
+use species::handle_species;
+use tree_sitter::{Node, Range, Tree};
+use tree_utils::{find_entries, replace_range};
 
 mod moves;
+mod species;
 mod tree_utils;
 
-const ENTRY_QUERY_STR: &str = "
-    (initializer_pair
-       designator: (subscript_designator (identifier) @id)
-       value: (initializer_list) @entry
-    )
-";
-
-static ENTRY_QUERY: OnceLock<Query> = OnceLock::new();
-
-const FIELD_QUERY_STR: &str = "
-    (initializer_pair
-        designator: (field_designator (field_identifier) @field)
-        value: (_) @value
-    )
-";
-static FIELD_QUERY: OnceLock<Query> = OnceLock::new();
+fn main() -> Result<()> {
+    if env::args().nth(1).unwrap_or_default() == "moves" {
+        moves()?;
+    }
+    species()?;
+    Ok(())
+}
 
 struct Edit {
     range: Range,
@@ -59,7 +51,8 @@ struct WazaArray {
     table: Vec<Move>,
 }
 
-fn main() -> Result<()> {
+fn moves() -> Result<()> {
+    const MOVE_INFO_PATH: &str = "../../src/data/moves_info.h";
     let modded: WazaArray = serde_json::from_str(&read_to_string("resources/waza_array.json")?)?;
     let vanilla: WazaArray =
         serde_json::from_str(&read_to_string("resources/waza_array_vanilla.json")?)?;
@@ -72,14 +65,15 @@ fn main() -> Result<()> {
     let mut parser = tree_sitter::Parser::new();
     parser.set_language(&language)?;
 
-    let move_info = env::args().nth(1).context("arg 1")?;
-    let mut move_info_text = read(move_info)?;
+    let mut move_info_text = read(MOVE_INFO_PATH)?;
     let mut tree = parser
         .parse(&move_info_text, None)
         .context("parsing tree")?;
     let mut edits = vec![];
     let mut fields: BTreeMap<String, Vec<String>> = Default::default();
-    let entries = tree_utils::find_entries(tree.root_node(), &move_info_text)?;
+    let entries = tree_utils::find_entries(tree.root_node(), &move_info_text)?
+        .into_iter()
+        .collect::<HashMap<_, _>>();
     for (((modded, vanilla), name), desc) in modded
         .table
         .into_iter()
@@ -118,21 +112,170 @@ fn main() -> Result<()> {
             (&name, &desc),
         )?);
     }
+    apply_edits(&mut move_info_text, &mut tree, edits)?;
+
+    println!("fields: {:#?}", fields.keys().collect::<Vec<_>>());
+    fs::write(MOVE_INFO_PATH, &move_info_text)?;
+    Ok(())
+}
+
+#[derive(Debug, Deserialize)]
+struct Species {
+    species: String,
+    form: usize,
+}
+
+#[allow(non_snake_case)]
+#[derive(Debug, Deserialize)]
+struct Stats {
+    HP: u16,
+    ATK: u16,
+    DEF: u16,
+    SPA: u16,
+    SPD: u16,
+    SPE: u16,
+}
+
+#[derive(Debug, Deserialize)]
+struct Personal {
+    species: Species,
+    is_present: bool,
+
+    type_1: String,
+    type_2: String,
+
+    ability_1: String,
+    ability_2: String,
+    ability_hidden: String,
+
+    base_stats: Stats,
+
+    #[serde(flatten)]
+    _fields: BTreeMap<String, Value>,
+}
+
+#[derive(Debug, Deserialize)]
+struct PersonalArray {
+    entry: Vec<Personal>,
+}
+
+const BLACKLIST: &[&str] = &[
+    "Vivillon", "Flabebe", "Floette", "Florges", "Minior", "Alcremie",
+];
+const RENAME: &[(&str, &str)] = &[
+    ("Porygon2", "SPECIES_PORYGON2"),
+    ("Jangmoo", "SPECIES_JANGMO_O"),
+    ("Hakamoo", "SPECIES_HAKAMO_O"),
+    ("Kommoo", "SPECIES_KOMMO_O"),
+];
+
+fn species() -> Result<()> {
+    let species_files = (1..=9)
+        .map(|n| format!("../../src/data/pokemon/species_info/gen_{n}_families.h"))
+        .map(|path| Ok((path.clone(), read(&path)?)))
+        .collect::<Result<Vec<_>>>()?;
+
+    let language = tree_sitter_cpp::LANGUAGE.into();
+    let mut parser = tree_sitter::Parser::new();
+    parser.set_language(&language)?;
+
+    let mut trees = species_files
+        .into_iter()
+        .map(|(path, text)| Some((parser.parse(&text, None)?, text, path)))
+        .collect::<Option<Vec<_>>>()
+        .context("Failed to parse")?;
+    //_dump_nodes(trees[1].1.root_node());
+
+    let entries = trees
+        .iter()
+        .map(|(tree, text, _)| Ok((text, tree, find_entries(tree.root_node(), text)?)))
+        .collect::<Result<Vec<_>>>()?
+        .into_iter()
+        .enumerate()
+        .flat_map(|(index, (text, tree, nodes))| {
+            nodes
+                .into_iter()
+                .map(|(id, node)| (id, (index, text, tree, node)))
+                .collect::<Vec<_>>()
+        })
+        .collect::<Vec<_>>();
+
+    let data_array: PersonalArray =
+        serde_json::from_slice(&read("resources/personal_array.json")?)?;
+    let mut edits: Vec<Vec<Edit>> = trees.iter().map(|_| vec![]).collect();
+    for personal in data_array.entry {
+        if personal.is_present == false {
+            continue;
+        }
+
+        if BLACKLIST.contains(&personal.species.species.as_str()) {
+            println!("Blacklisted species {:?}", personal.species);
+            continue;
+        }
+        let species_name = match RENAME.iter().find(|(a, _)| *a == &personal.species.species) {
+            Some((_, rename)) => rename.to_string(),
+            None => {
+                let cased = personal.species.species.to_case(Case::ScreamingSnake);
+                format!("SPECIES_{cased}")
+            }
+        };
+
+        let mut matching = entries
+            .iter()
+            .filter(|(id, _)| id == &species_name || id.starts_with(&(species_name.clone() + "_")));
+        let Some((_id, (index, text, _tree, node))) = matching.nth(personal.species.form) else {
+            println!("Could not find species {:?}", personal.species);
+            continue;
+        };
+
+        let species_edits = handle_species(*node, text, &personal)?;
+        edits[*index].extend(species_edits);
+    }
+    for ((tree, text, path), edits) in trees.iter_mut().zip(edits) {
+        apply_edits(text, tree, edits)?;
+        write(path, text)?;
+    }
+    Ok(())
+}
+
+fn apply_edits(text: &mut Vec<u8>, tree: &mut Tree, mut edits: Vec<Edit>) -> Result<()> {
     println!("applying {} edits", edits.len());
     edits.sort_by_key(|edit| (edit.range.start_byte, edit.range.end_byte));
     for edit in edits.iter().rev() {
-        tree.edit(&replace_range(
-            &mut move_info_text,
-            edit.range,
-            &edit.replace,
-        )?);
+        tree.edit(&replace_range(text, edit.range, &edit.replace)?);
     }
-
-    println!("fields: {:#?}", fields.keys().collect::<Vec<_>>());
-
-    let target = env::args()
-        .nth(2)
-        .unwrap_or_else(|| "target/output.h".into());
-    fs::write(target, &move_info_text)?;
     Ok(())
+}
+
+fn _dump_nodes(node: Node) {
+    let mut cursor = node.walk();
+    let mut spacing = String::new();
+    'cursor: loop {
+        println!(
+            "{spacing}{}: {}-{}",
+            cursor.node().grammar_name(),
+            cursor.node().start_position(),
+            cursor.node().end_position()
+        );
+        if cursor.goto_first_child() {
+            spacing += "  ";
+            continue;
+        }
+        if cursor.goto_next_sibling() {
+            continue;
+        }
+
+        loop {
+            if cursor.goto_parent() {
+                let len = spacing.len();
+                spacing.replace_range(len - 2..len, "");
+                if cursor.goto_next_sibling() {
+                    continue 'cursor;
+                }
+                continue;
+            }
+            break;
+        }
+        break;
+    }
 }

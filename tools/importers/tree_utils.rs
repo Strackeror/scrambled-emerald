@@ -1,24 +1,45 @@
 use super::Edit;
-use super::ENTRY_QUERY;
-use super::ENTRY_QUERY_STR;
-use super::FIELD_QUERY;
-use super::FIELD_QUERY_STR;
 
-use anyhow::Context;
-use anyhow::Result;
+use anyhow::{Context, Result};
 use serde::de::DeserializeOwned;
 use serde_json::Value;
 use streaming_iterator::StreamingIterator;
-use tree_sitter::InputEdit;
-use tree_sitter::Node;
-use tree_sitter::Point;
-use tree_sitter::QueryCursor;
-use tree_sitter::Range;
+use tree_sitter::{InputEdit, Node, Point, Query, QueryCursor, Range};
 
 use std::collections::BTreeMap;
-use std::collections::HashMap;
 use std::fmt::Display;
+use std::sync::OnceLock;
 
+const ENTRY_QUERY_STR: &str = "
+    (initializer_pair
+       designator: (subscript_designator (identifier) @id)
+       value: (initializer_list) @entry
+    )
+    
+    (assignment_expression
+        left: (subscript_expression indices: (
+            subscript_argument_list (identifier) @id))
+        right: (initializer_list) @entry
+    )
+    (init_declarator
+        declarator: (structured_binding_declarator (identifier) @id)
+        value: (initializer_list) @entry
+    )
+    (init_declarator
+        declarator: (array_declarator size: (identifier) @id)
+        value: (initializer_list) @entry
+    )
+";
+
+static ENTRY_QUERY: OnceLock<Query> = OnceLock::new();
+
+const FIELD_QUERY_STR: &str = "
+    (initializer_pair
+        designator: (field_designator (field_identifier) @field)
+        value: (_) @value
+    )
+";
+static FIELD_QUERY: OnceLock<Query> = OnceLock::new();
 pub trait GetFieldExt {
     fn get_field<T: DeserializeOwned>(&self, name: &str) -> Result<T>;
 }
@@ -33,7 +54,7 @@ impl GetFieldExt for BTreeMap<String, Value> {
 pub(crate) fn find_entries<'a>(
     root_node: Node<'a>,
     text: &[u8],
-) -> Result<HashMap<String, Node<'a>>> {
+) -> Result<Vec<(String, Node<'a>)>> {
     let query = ENTRY_QUERY.get_or_init(|| {
         tree_sitter::Query::new(&tree_sitter_cpp::LANGUAGE.into(), ENTRY_QUERY_STR).unwrap()
     });
@@ -109,6 +130,7 @@ pub(crate) fn edit_field<T: Display>(
 
 pub fn replace_range(target: &mut Vec<u8>, range: Range, replace: &str) -> Result<InputEdit> {
     target.splice(range.start_byte..range.end_byte, replace.bytes());
+
     let lines = replace.split('\n');
     let line_count = lines.clone().count();
     let last_line_len = lines.last().unwrap_or("").bytes().len();
