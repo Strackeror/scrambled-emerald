@@ -21,6 +21,7 @@ c_flags = [
     '-Woverride-init',
     '-include global.h',
     '-D__CLANGD__',
+    '-D__INTELLISENSE__',
 ]
 c_commands = [
     {
