@@ -137,6 +137,15 @@ struct Stats {
 }
 
 #[derive(Debug, Deserialize)]
+struct EvoData {
+    level: u8,
+    condition: String,
+    parameter: Value,
+    species: String,
+    form: usize,
+}
+
+#[derive(Debug, Deserialize)]
 struct Personal {
     species: Species,
     is_present: bool,
@@ -149,6 +158,7 @@ struct Personal {
     ability_hidden: String,
 
     base_stats: Stats,
+    evo_data: Vec<EvoData>,
 
     #[serde(flatten)]
     _fields: BTreeMap<String, Value>,
@@ -169,11 +179,24 @@ const RENAME: &[(&str, &str)] = &[
     ("Kommoo", "SPECIES_KOMMO_O"),
 ];
 
+fn species_match(name: &str, enum_name: &str) -> bool {
+    let species_name = match RENAME.iter().find(|(s, _)| *s == name) {
+        Some((_, rename)) => rename.to_string(),
+        None => {
+            let cased = name.to_case(Case::ScreamingSnake);
+            format!("SPECIES_{cased}")
+        }
+    };
+    enum_name == species_name || enum_name.starts_with(&(species_name + "_"))
+}
+
 fn species() -> Result<()> {
     let species_files = (1..=9)
         .map(|n| format!("../../src/data/pokemon/species_info/gen_{n}_families.h"))
         .map(|path| Ok((path.clone(), read(&path)?)))
         .collect::<Result<Vec<_>>>()?;
+    let moves: WazaArray = serde_json::from_str(&read_to_string("resources/waza_array.json")?)?;
+    let move_list: Vec<_> = moves.table.iter().map(|mov| mov.move_id.as_str()).collect();
 
     let language = tree_sitter_cpp::LANGUAGE.into();
     let mut parser = tree_sitter::Parser::new();
@@ -199,6 +222,7 @@ fn species() -> Result<()> {
                 .collect::<Vec<_>>()
         })
         .collect::<Vec<_>>();
+    let species_list: Vec<_> = entries.iter().map(|(id, _)| id.as_str()).collect();
 
     let data_array: PersonalArray =
         serde_json::from_slice(&read("resources/personal_array.json")?)?;
@@ -212,23 +236,16 @@ fn species() -> Result<()> {
             println!("Blacklisted species {:?}", personal.species);
             continue;
         }
-        let species_name = match RENAME.iter().find(|(a, _)| *a == &personal.species.species) {
-            Some((_, rename)) => rename.to_string(),
-            None => {
-                let cased = personal.species.species.to_case(Case::ScreamingSnake);
-                format!("SPECIES_{cased}")
-            }
-        };
 
         let mut matching = entries
             .iter()
-            .filter(|(id, _)| id == &species_name || id.starts_with(&(species_name.clone() + "_")));
+            .filter(|(id, _)| species_match(&personal.species.species, id));
         let Some((_id, (index, text, _tree, node))) = matching.nth(personal.species.form) else {
             println!("Could not find species {:?}", personal.species);
             continue;
         };
 
-        let species_edits = handle_species(*node, text, &personal)?;
+        let species_edits = handle_species(*node, text, &personal, &species_list, &move_list)?;
         edits[*index].extend(species_edits);
     }
     for ((tree, text, path), edits) in trees.iter_mut().zip(edits) {
