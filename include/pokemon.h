@@ -347,6 +347,7 @@ struct Evolution
     u16 method;
     u16 param;
     u16 targetSpecies;
+    u8 level;
 };
 
 struct SpeciesInfo /*0xC4*/
