@@ -1,11 +1,25 @@
 use std::cmp::min;
 
-use anyhow::Result;
+use anyhow::{Context, Result};
 use convert_case::{Case, Casing};
 use tree_sitter::Node;
 
-use crate::tree_utils::edit_field;
-use crate::{species_match, Edit, Personal};
+use crate::tree_utils::{edit_field, get_field_value};
+use crate::{species_matcher, Edit, Personal};
+
+fn learnset_name(entry: &Personal) -> String {
+    format!(
+        "s{}{}LevelUpLearnset",
+        entry.species.species, entry.species.form
+    )
+}
+
+fn teachable_name(entry: &Personal) -> String {
+    format!(
+        "s{}{}TeachableLearnset",
+        entry.species.species, entry.species.form
+    )
+}
 
 pub fn handle_species(
     node: Node,
@@ -19,7 +33,11 @@ pub fn handle_species(
         .chain(handle_types(node, text, entry)?)
         .chain(handle_base_stats(node, text, entry)?)
         .chain(handle_evos(node, text, entry, species, moves)?)
-        .chain([handle_abilities(node, text, entry)?])
+        .chain([
+            handle_abilities(node, text, entry)?,
+            edit_field(node, text, "levelUpLearnset", learnset_name(entry))?,
+            edit_field(node, text, "teachableLearnset", teachable_name(entry))?,
+        ])
         .collect();
     Ok(edits)
 }
@@ -127,10 +145,8 @@ fn handle_evos(
     let evos = (entry.evo_data)
         .iter()
         .map(|evo_data| {
-            let species = species
-                .iter()
-                .filter(|id| species_match(&evo_data.species, id))
-                .nth(evo_data.form)?;
+            let matcher = species_matcher(&evo_data.species);
+            let species = species.iter().filter(|id| matcher(id)).nth(evo_data.form)?;
 
             let param = || match &evo_data.parameter {
                 serde_json::Value::Number(num) => num.as_u64().map(|i| i as usize),
@@ -205,4 +221,70 @@ fn handle_evos(
         format!("EVOLUTION({})", evos.join(", "))
     };
     Ok(Some(edit_field(node, text, "evolutions", value)?))
+}
+
+fn build_learnset(entry: &Personal) -> Result<String> {
+    let lvl_name = learnset_name(entry);
+    let teach_name = teachable_name(entry);
+    let c_level = |lvlup: u8| match lvlup {
+        253 => 0,
+        n => n,
+    };
+
+    let mut move_entries = entry.levelup_moves.clone();
+    move_entries.sort_by_key(|lvl| c_level(lvl.level));
+
+    let lvlup = move_entries
+        .iter()
+        .map(|lvlup| {
+            format!(
+                "    {{.move = MOVE_{}, .level = {}}},\n",
+                lvlup.r#move.to_case(Case::ScreamingSnake),
+                c_level(lvlup.level)
+            )
+        })
+        .collect::<Vec<_>>()
+        .join("");
+
+    let tms = entry
+        .tm_moves
+        .iter()
+        .map(|tm| format!("    MOVE_{},\n", tm.to_case(Case::ScreamingSnake)))
+        .collect::<Vec<_>>()
+        .join("");
+    Ok(format!(
+        "
+static const struct LevelUpMove {lvl_name}[] = {{
+{lvlup}
+    {{.move = LEVEL_UP_MOVE_END, .level = 0}}
+}};
+
+static const u16 {teach_name}[] = {{
+{tms}
+    MOVE_UNAVAILABLE
+}};"
+    ))
+}
+
+pub fn build_learnsets(entries: &[Personal]) -> Result<String> {
+    let learnsets = entries
+        .iter()
+        .filter(|entry| entry.is_present)
+        .map(build_learnset)
+        .collect::<Result<Vec<_>>>()?
+        .join("");
+    Ok(format!(
+        "
+static const struct LevelUpMove sNoneLevelUpLearnset[] = {{
+    {{.move = MOVE_SYNTHESIS, .level = 1}},
+    {{.move = LEVEL_UP_MOVE_END, .level = 0}},
+}};
+
+static const u16 sNoneTeachableLearnset[] = {{
+    MOVE_UNAVAILABLE,
+}};
+
+{learnsets}
+    "
+    ))
 }

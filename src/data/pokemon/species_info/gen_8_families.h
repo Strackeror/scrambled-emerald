@@ -54,8 +54,8 @@
             gOverworldPalette_AlcremieStrawberryVanillaCream, /*Alcremie ##sweet##cream*/       \
             gShinyOverworldPalette_AlcremieStrawberryVanillaCream /*Alcremie ##sweet##cream*/   \
         )                                                                                       \
-        .levelUpLearnset = sAlcremieLevelUpLearnset,                                            \
-        .teachableLearnset = sAlcremieTeachableLearnset,                                        \
+        .levelUpLearnset = sNoneLevelUpLearnset,                                            \
+        .teachableLearnset = sNoneTeachableLearnset,                                        \
         .formSpeciesIdTable = sAlcremieFormSpeciesIdTable,                                      \
         .formChangeTable = sAlcremieFormChangeTable,                                            \
     }
@@ -122,8 +122,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Grookey,
             gShinyOverworldPalette_Grookey
         )
-        .levelUpLearnset = sGrookeyLevelUpLearnset,
-        .teachableLearnset = sGrookeyTeachableLearnset,
+        .levelUpLearnset = sGrookey0LevelUpLearnset,
+        .teachableLearnset = sGrookey0TeachableLearnset,
         .eggMoveLearnset = sGrookeyEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_THWACKEY}),
     },
@@ -184,8 +184,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Thwackey,
             gShinyOverworldPalette_Thwackey
         )
-        .levelUpLearnset = sThwackeyLevelUpLearnset,
-        .teachableLearnset = sThwackeyTeachableLearnset,
+        .levelUpLearnset = sThwackey0LevelUpLearnset,
+        .teachableLearnset = sThwackey0TeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_RILLABOOM}),
     },
 
@@ -245,8 +245,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Rillaboom,
             gShinyOverworldPalette_Rillaboom
         )
-        .levelUpLearnset = sRillaboomLevelUpLearnset,
-        .teachableLearnset = sRillaboomTeachableLearnset,
+        .levelUpLearnset = sRillaboom0LevelUpLearnset,
+        .teachableLearnset = sRillaboom0TeachableLearnset,
         .formSpeciesIdTable = sRillaboomFormSpeciesIdTable,
         .formChangeTable = sRillaboomFormChangeTable,
         .evolutions = NULL,
@@ -301,8 +301,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 8, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Rillaboom)
         .isGigantamax = TRUE,
-        .levelUpLearnset = sRillaboomLevelUpLearnset,
-        .teachableLearnset = sRillaboomTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .formSpeciesIdTable = sRillaboomFormSpeciesIdTable,
         .formChangeTable = sRillaboomFormChangeTable,
     },
@@ -364,8 +364,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Scorbunny,
             gShinyOverworldPalette_Scorbunny
         )
-        .levelUpLearnset = sScorbunnyLevelUpLearnset,
-        .teachableLearnset = sScorbunnyTeachableLearnset,
+        .levelUpLearnset = sScorbunny0LevelUpLearnset,
+        .teachableLearnset = sScorbunny0TeachableLearnset,
         .eggMoveLearnset = sScorbunnyEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_RABOOT}),
     },
@@ -426,8 +426,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Raboot,
             gShinyOverworldPalette_Raboot
         )
-        .levelUpLearnset = sRabootLevelUpLearnset,
-        .teachableLearnset = sRabootTeachableLearnset,
+        .levelUpLearnset = sRaboot0LevelUpLearnset,
+        .teachableLearnset = sRaboot0TeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_CINDERACE}),
     },
 
@@ -488,8 +488,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Cinderace,
             gShinyOverworldPalette_Cinderace
         )
-        .levelUpLearnset = sCinderaceLevelUpLearnset,
-        .teachableLearnset = sCinderaceTeachableLearnset,
+        .levelUpLearnset = sCinderace0LevelUpLearnset,
+        .teachableLearnset = sCinderace0TeachableLearnset,
         .formSpeciesIdTable = sCinderaceFormSpeciesIdTable,
         .formChangeTable = sCinderaceFormChangeTable,
         .evolutions = NULL,
@@ -545,8 +545,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-3, 13, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Cinderace)
         .isGigantamax = TRUE,
-        .levelUpLearnset = sCinderaceLevelUpLearnset,
-        .teachableLearnset = sCinderaceTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .formSpeciesIdTable = sCinderaceFormSpeciesIdTable,
         .formChangeTable = sCinderaceFormChangeTable,
     },
@@ -609,8 +609,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Sobble,
             gShinyOverworldPalette_Sobble
         )
-        .levelUpLearnset = sSobbleLevelUpLearnset,
-        .teachableLearnset = sSobbleTeachableLearnset,
+        .levelUpLearnset = sSobble0LevelUpLearnset,
+        .teachableLearnset = sSobble0TeachableLearnset,
         .eggMoveLearnset = sSobbleEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_DRIZZILE}),
     },
@@ -671,8 +671,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Drizzile,
             gShinyOverworldPalette_Drizzile
         )
-        .levelUpLearnset = sDrizzileLevelUpLearnset,
-        .teachableLearnset = sDrizzileTeachableLearnset,
+        .levelUpLearnset = sDrizzile0LevelUpLearnset,
+        .teachableLearnset = sDrizzile0TeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_INTELEON}),
     },
 
@@ -733,8 +733,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Inteleon,
             gShinyOverworldPalette_Inteleon
         )
-        .levelUpLearnset = sInteleonLevelUpLearnset,
-        .teachableLearnset = sInteleonTeachableLearnset,
+        .levelUpLearnset = sInteleon0LevelUpLearnset,
+        .teachableLearnset = sInteleon0TeachableLearnset,
         .formSpeciesIdTable = sInteleonFormSpeciesIdTable,
         .formChangeTable = sInteleonFormChangeTable,
         .evolutions = NULL,
@@ -790,8 +790,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-5, 12, SHADOW_SIZE_L)
         FOOTPRINT(Inteleon)
         .isGigantamax = TRUE,
-        .levelUpLearnset = sInteleonLevelUpLearnset,
-        .teachableLearnset = sInteleonTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .formSpeciesIdTable = sInteleonFormSpeciesIdTable,
         .formChangeTable = sInteleonFormChangeTable,
     },
@@ -853,8 +853,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Skwovet,
             gShinyOverworldPalette_Skwovet
         )
-        .levelUpLearnset = sSkwovetLevelUpLearnset,
-        .teachableLearnset = sSkwovetTeachableLearnset,
+        .levelUpLearnset = sSkwovet0LevelUpLearnset,
+        .teachableLearnset = sSkwovet0TeachableLearnset,
         .eggMoveLearnset = sSkwovetEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_GREEDENT}),
     },
@@ -917,8 +917,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Greedent,
             gShinyOverworldPalette_Greedent
         )
-        .levelUpLearnset = sGreedentLevelUpLearnset,
-        .teachableLearnset = sGreedentTeachableLearnset,
+        .levelUpLearnset = sGreedent0LevelUpLearnset,
+        .teachableLearnset = sGreedent0TeachableLearnset,
         .evolutions = NULL,
     },
 
@@ -979,8 +979,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Rookidee,
             gShinyOverworldPalette_Rookidee
         )
-        .levelUpLearnset = sRookideeLevelUpLearnset,
-        .teachableLearnset = sRookideeTeachableLearnset,
+        .levelUpLearnset = sRookidee0LevelUpLearnset,
+        .teachableLearnset = sRookidee0TeachableLearnset,
         .eggMoveLearnset = sRookideeEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 18, SPECIES_CORVISQUIRE}),
     },
@@ -1043,8 +1043,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Corvisquire,
             gShinyOverworldPalette_Corvisquire
         )
-        .levelUpLearnset = sCorvisquireLevelUpLearnset,
-        .teachableLearnset = sCorvisquireTeachableLearnset,
+        .levelUpLearnset = sCorvisquire0LevelUpLearnset,
+        .teachableLearnset = sCorvisquire0TeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_CORVIKNIGHT}),
     },
 
@@ -1105,8 +1105,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Corviknight,
             gShinyOverworldPalette_Corviknight
         )
-        .levelUpLearnset = sCorviknightLevelUpLearnset,
-        .teachableLearnset = sCorviknightTeachableLearnset,
+        .levelUpLearnset = sCorviknight0LevelUpLearnset,
+        .teachableLearnset = sCorviknight0TeachableLearnset,
         .formSpeciesIdTable = sCorviknightFormSpeciesIdTable,
         .formChangeTable = sCorviknightFormChangeTable,
         .evolutions = NULL,
@@ -1162,8 +1162,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(2, 8, SHADOW_SIZE_L)
         FOOTPRINT(Corviknight)
         .isGigantamax = TRUE,
-        .levelUpLearnset = sCorviknightLevelUpLearnset,
-        .teachableLearnset = sCorviknightTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .formSpeciesIdTable = sCorviknightFormSpeciesIdTable,
         .formChangeTable = sCorviknightFormChangeTable,
     },
@@ -1225,8 +1225,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gShinyOverworldPalette_Blipbug
         )
         .tmIlliterate = TRUE,
-        .levelUpLearnset = sBlipbugLevelUpLearnset,
-        .teachableLearnset = sBlipbugTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .eggMoveLearnset = sBlipbugEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_DOTTLER}),
     },
@@ -1289,8 +1289,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Dottler,
             gShinyOverworldPalette_Dottler
         )
-        .levelUpLearnset = sDottlerLevelUpLearnset,
-        .teachableLearnset = sDottlerTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_ORBEETLE}),
     },
 
@@ -1353,8 +1353,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Orbeetle,
             gShinyOverworldPalette_Orbeetle
         )
-        .levelUpLearnset = sOrbeetleLevelUpLearnset,
-        .teachableLearnset = sOrbeetleTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .formSpeciesIdTable = sOrbeetleFormSpeciesIdTable,
         .formChangeTable = sOrbeetleFormChangeTable,
     },
@@ -1410,8 +1410,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 12, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Orbeetle)
         .isGigantamax = TRUE,
-        .levelUpLearnset = sOrbeetleLevelUpLearnset,
-        .teachableLearnset = sOrbeetleTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .formSpeciesIdTable = sOrbeetleFormSpeciesIdTable,
         .formChangeTable = sOrbeetleFormChangeTable,
     },
@@ -1473,8 +1473,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Nickit,
             gShinyOverworldPalette_Nickit
         )
-        .levelUpLearnset = sNickitLevelUpLearnset,
-        .teachableLearnset = sNickitTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .eggMoveLearnset = sNickitEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 18, SPECIES_THIEVUL}),
     },
@@ -1536,8 +1536,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Thievul,
             gShinyOverworldPalette_Thievul
         )
-        .levelUpLearnset = sThievulLevelUpLearnset,
-        .teachableLearnset = sThievulTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
     },
 
     [SPECIES_GOSSIFLEUR] =
@@ -1597,8 +1597,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Gossifleur,
             gShinyOverworldPalette_Gossifleur
         )
-        .levelUpLearnset = sGossifleurLevelUpLearnset,
-        .teachableLearnset = sGossifleurTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .eggMoveLearnset = sGossifleurEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_ELDEGOSS}),
     },
@@ -1660,8 +1660,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Eldegoss,
             gShinyOverworldPalette_Eldegoss
         )
-        .levelUpLearnset = sEldegossLevelUpLearnset,
-        .teachableLearnset = sEldegossTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
     },
 
     [SPECIES_WOOLOO] =
@@ -1721,8 +1721,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Wooloo,
             gShinyOverworldPalette_Wooloo
         )
-        .levelUpLearnset = sWoolooLevelUpLearnset,
-        .teachableLearnset = sWoolooTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .eggMoveLearnset = sWoolooEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_DUBWOOL}),
     },
@@ -1784,8 +1784,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Dubwool,
             gShinyOverworldPalette_Dubwool
         )
-        .levelUpLearnset = sDubwoolLevelUpLearnset,
-        .teachableLearnset = sDubwoolTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
     },
 
     [SPECIES_CHEWTLE] =
@@ -1844,8 +1844,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Chewtle,
             gShinyOverworldPalette_Chewtle
         )
-        .levelUpLearnset = sChewtleLevelUpLearnset,
-        .teachableLearnset = sChewtleTeachableLearnset,
+        .levelUpLearnset = sChewtle0LevelUpLearnset,
+        .teachableLearnset = sChewtle0TeachableLearnset,
         .eggMoveLearnset = sChewtleEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_DREDNAW}),
     },
@@ -1906,8 +1906,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Drednaw,
             gShinyOverworldPalette_Drednaw
         )
-        .levelUpLearnset = sDrednawLevelUpLearnset,
-        .teachableLearnset = sDrednawTeachableLearnset,
+        .levelUpLearnset = sDrednaw0LevelUpLearnset,
+        .teachableLearnset = sDrednaw0TeachableLearnset,
         .formSpeciesIdTable = sDrednawFormSpeciesIdTable,
         .formChangeTable = sDrednawFormChangeTable,
         .evolutions = NULL,
@@ -1963,8 +1963,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(2, 12, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Drednaw)
         .isGigantamax = TRUE,
-        .levelUpLearnset = sDrednawLevelUpLearnset,
-        .teachableLearnset = sDrednawTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .formSpeciesIdTable = sDrednawFormSpeciesIdTable,
         .formChangeTable = sDrednawFormChangeTable,
     },
@@ -2026,8 +2026,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Yamper,
             gShinyOverworldPalette_Yamper
         )
-        .levelUpLearnset = sYamperLevelUpLearnset,
-        .teachableLearnset = sYamperTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .eggMoveLearnset = sYamperEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_BOLTUND}),
     },
@@ -2089,8 +2089,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Boltund,
             gShinyOverworldPalette_Boltund
         )
-        .levelUpLearnset = sBoltundLevelUpLearnset,
-        .teachableLearnset = sBoltundTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
     },
 
     [SPECIES_ROLYCOLY] =
@@ -2150,8 +2150,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Rolycoly,
             gShinyOverworldPalette_Rolycoly
         )
-        .levelUpLearnset = sRolycolyLevelUpLearnset,
-        .teachableLearnset = sRolycolyTeachableLearnset,
+        .levelUpLearnset = sRolycoly0LevelUpLearnset,
+        .teachableLearnset = sRolycoly0TeachableLearnset,
         .eggMoveLearnset = sRolycolyEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_MOVE, MOVE_CONTINENTAL_CRUSH, SPECIES_CARKOL, 25}),
     },
@@ -2212,8 +2212,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Carkol,
             gShinyOverworldPalette_Carkol
         )
-        .levelUpLearnset = sCarkolLevelUpLearnset,
-        .teachableLearnset = sCarkolTeachableLearnset,
+        .levelUpLearnset = sCarkol0LevelUpLearnset,
+        .teachableLearnset = sCarkol0TeachableLearnset,
         .evolutions = EVOLUTION({EVO_MOVE, MOVE_INFERNO_OVERDRIVE, SPECIES_COALOSSAL, 45}),
     },
 
@@ -2274,8 +2274,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Coalossal,
             gShinyOverworldPalette_Coalossal
         )
-        .levelUpLearnset = sCoalossalLevelUpLearnset,
-        .teachableLearnset = sCoalossalTeachableLearnset,
+        .levelUpLearnset = sCoalossal0LevelUpLearnset,
+        .teachableLearnset = sCoalossal0TeachableLearnset,
         .formSpeciesIdTable = sCoalossalFormSpeciesIdTable,
         .formChangeTable = sCoalossalFormChangeTable,
         .evolutions = NULL,
@@ -2331,8 +2331,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(1, 12, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Coalossal)
         .isGigantamax = TRUE,
-        .levelUpLearnset = sCoalossalLevelUpLearnset,
-        .teachableLearnset = sCoalossalTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .formSpeciesIdTable = sCoalossalFormSpeciesIdTable,
         .formChangeTable = sCoalossalFormChangeTable,
     },
@@ -2395,8 +2395,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gShinyOverworldPalette_Applin
         )
         .tmIlliterate = TRUE,
-        .levelUpLearnset = sApplinLevelUpLearnset,
-        .teachableLearnset = sApplinTeachableLearnset,
+        .levelUpLearnset = sApplin0LevelUpLearnset,
+        .teachableLearnset = sApplin0TeachableLearnset,
         .eggMoveLearnset = sApplinEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_MOVE, MOVE_SAVAGE_SPIN_OUT, SPECIES_DIPPLIN, 25}, {EVO_MOVE, MOVE_DEVASTATING_DRAKE, SPECIES_FLAPPLE, 30}, {EVO_MOVE, MOVE_BLOOM_DOOM, SPECIES_APPLETUN, 30}),
     },
@@ -2458,8 +2458,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Flapple,
             gShinyOverworldPalette_Flapple
         )
-        .levelUpLearnset = sFlappleLevelUpLearnset,
-        .teachableLearnset = sFlappleTeachableLearnset,
+        .levelUpLearnset = sFlapple0LevelUpLearnset,
+        .teachableLearnset = sFlapple0TeachableLearnset,
         .formSpeciesIdTable = sFlappleFormSpeciesIdTable,
         .formChangeTable = sFlappleFormChangeTable,
         .evolutions = NULL,
@@ -2515,8 +2515,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 10, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Flapple)
         .isGigantamax = TRUE,
-        .levelUpLearnset = sFlappleLevelUpLearnset,
-        .teachableLearnset = sFlappleTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .formSpeciesIdTable = sFlappleFormSpeciesIdTable,
         .formChangeTable = sFlappleFormChangeTable,
     },
@@ -2577,8 +2577,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Appletun,
             gShinyOverworldPalette_Appletun
         )
-        .levelUpLearnset = sAppletunLevelUpLearnset,
-        .teachableLearnset = sAppletunTeachableLearnset,
+        .levelUpLearnset = sAppletun0LevelUpLearnset,
+        .teachableLearnset = sAppletun0TeachableLearnset,
         .formSpeciesIdTable = sAppletunFormSpeciesIdTable,
         .formChangeTable = sAppletunFormChangeTable,
         .evolutions = NULL,
@@ -2634,8 +2634,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 10, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Appletun)
         .isGigantamax = TRUE,
-        .levelUpLearnset = sAppletunLevelUpLearnset,
-        .teachableLearnset = sAppletunTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .formSpeciesIdTable = sAppletunFormSpeciesIdTable,
         .formChangeTable = sAppletunFormChangeTable,
     },
@@ -2696,8 +2696,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Dipplin,
             gShinyOverworldPalette_Dipplin
         )
-        .levelUpLearnset = sDipplinLevelUpLearnset,
-        .teachableLearnset = sDipplinTeachableLearnset,
+        .levelUpLearnset = sDipplin0LevelUpLearnset,
+        .teachableLearnset = sDipplin0TeachableLearnset,
         .evolutions = EVOLUTION({EVO_MOVE, MOVE_DEVASTATING_DRAKE, SPECIES_HYDRAPPLE, 45}),
     },
 
@@ -2758,8 +2758,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Hydrapple,
             gShinyOverworldPalette_Hydrapple
         )
-        .levelUpLearnset = sHydrappleLevelUpLearnset,
-        .teachableLearnset = sHydrappleTeachableLearnset,
+        .levelUpLearnset = sHydrapple0LevelUpLearnset,
+        .teachableLearnset = sHydrapple0TeachableLearnset,
         .evolutions = NULL,
     },
 
@@ -2819,8 +2819,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Silicobra,
             gShinyOverworldPalette_Silicobra
         )
-        .levelUpLearnset = sSilicobraLevelUpLearnset,
-        .teachableLearnset = sSilicobraTeachableLearnset,
+        .levelUpLearnset = sSilicobra0LevelUpLearnset,
+        .teachableLearnset = sSilicobra0TeachableLearnset,
         .eggMoveLearnset = sSilicobraEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_SANDACONDA}),
     },
@@ -2882,8 +2882,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Sandaconda,
             gShinyOverworldPalette_Sandaconda
         )
-        .levelUpLearnset = sSandacondaLevelUpLearnset,
-        .teachableLearnset = sSandacondaTeachableLearnset,
+        .levelUpLearnset = sSandaconda0LevelUpLearnset,
+        .teachableLearnset = sSandaconda0TeachableLearnset,
         .formSpeciesIdTable = sSandacondaFormSpeciesIdTable,
         .formChangeTable = sSandacondaFormChangeTable,
         .evolutions = NULL,
@@ -2939,8 +2939,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 14, SHADOW_SIZE_M)
         FOOTPRINT(Sandaconda)
         .isGigantamax = TRUE,
-        .levelUpLearnset = sSandacondaLevelUpLearnset,
-        .teachableLearnset = sSandacondaTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .formSpeciesIdTable = sSandacondaFormSpeciesIdTable,
         .formChangeTable = sSandacondaFormChangeTable,
     },
@@ -3001,8 +3001,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Cramorant,
             gShinyOverworldPalette_Cramorant
         )
-        .levelUpLearnset = sCramorantLevelUpLearnset,
-        .teachableLearnset = sCramorantTeachableLearnset,
+        .levelUpLearnset = sCramorant0LevelUpLearnset,
+        .teachableLearnset = sCramorant0TeachableLearnset,
         .eggMoveLearnset = sCramorantEggMoveLearnset,
         .formSpeciesIdTable = sCramorantFormSpeciesIdTable,
         .formChangeTable = sCramorantFormChangeTable,
@@ -3058,8 +3058,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconPalIndex = 0,
         SHADOW(5, 14, SHADOW_SIZE_M)
         FOOTPRINT(Cramorant)
-        .levelUpLearnset = sCramorantLevelUpLearnset,
-        .teachableLearnset = sCramorantTeachableLearnset,
+        .levelUpLearnset = sCramorant1LevelUpLearnset,
+        .teachableLearnset = sCramorant1TeachableLearnset,
         .eggMoveLearnset = sCramorantEggMoveLearnset,
         .formSpeciesIdTable = sCramorantFormSpeciesIdTable,
         .formChangeTable = sCramorantFormChangeTable,
@@ -3115,8 +3115,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconPalIndex = 0,
         SHADOW(5, 14, SHADOW_SIZE_M)
         FOOTPRINT(Cramorant)
-        .levelUpLearnset = sCramorantLevelUpLearnset,
-        .teachableLearnset = sCramorantTeachableLearnset,
+        .levelUpLearnset = sCramorant2LevelUpLearnset,
+        .teachableLearnset = sCramorant2TeachableLearnset,
         .eggMoveLearnset = sCramorantEggMoveLearnset,
         .formSpeciesIdTable = sCramorantFormSpeciesIdTable,
         .formChangeTable = sCramorantFormChangeTable,
@@ -3180,8 +3180,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Arrokuda,
             gShinyOverworldPalette_Arrokuda
         )
-        .levelUpLearnset = sArrokudaLevelUpLearnset,
-        .teachableLearnset = sArrokudaTeachableLearnset,
+        .levelUpLearnset = sArrokuda0LevelUpLearnset,
+        .teachableLearnset = sArrokuda0TeachableLearnset,
         .eggMoveLearnset = sArrokudaEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_BARRASKEWDA}),
     },
@@ -3243,8 +3243,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Barraskewda,
             gShinyOverworldPalette_Barraskewda
         )
-        .levelUpLearnset = sBarraskewdaLevelUpLearnset,
-        .teachableLearnset = sBarraskewdaTeachableLearnset,
+        .levelUpLearnset = sBarraskewda0LevelUpLearnset,
+        .teachableLearnset = sBarraskewda0TeachableLearnset,
         .evolutions = NULL,
     },
 
@@ -3305,8 +3305,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Toxel,
             gShinyOverworldPalette_Toxel
         )
-        .levelUpLearnset = sToxelLevelUpLearnset,
-        .teachableLearnset = sToxelTeachableLearnset,
+        .levelUpLearnset = sToxel0LevelUpLearnset,
+        .teachableLearnset = sToxel0TeachableLearnset,
         .eggMoveLearnset = sToxelEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL_DAY, 24, SPECIES_TOXTRICITY_AMPED}, {EVO_LEVEL_NIGHT, 24, SPECIES_TOXTRICITY_AMPED_GMAX}),
     },
@@ -3368,8 +3368,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_ToxtricityAmped,
             gShinyOverworldPalette_ToxtricityAmped
         )
-        .levelUpLearnset = sToxtricityAmpedLevelUpLearnset,
-        .teachableLearnset = sToxtricityAmpedTeachableLearnset,
+        .levelUpLearnset = sToxtricity0LevelUpLearnset,
+        .teachableLearnset = sToxtricity0TeachableLearnset,
         .formSpeciesIdTable = sToxtricityFormSpeciesIdTable,
         .formChangeTable = sToxtricityAmpedFormChangeTable,
         .evolutions = NULL,
@@ -3421,8 +3421,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(1, 10, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Toxtricity)
         .isGigantamax = TRUE,
-        .levelUpLearnset = sToxtricityAmpedLevelUpLearnset,
-        .teachableLearnset = sToxtricityAmpedTeachableLearnset,
+        .levelUpLearnset = sToxtricity1LevelUpLearnset,
+        .teachableLearnset = sToxtricity1TeachableLearnset,
         .formSpeciesIdTable = sToxtricityFormSpeciesIdTable,
         .formChangeTable = sToxtricityAmpedFormChangeTable,
         .evolutions = NULL,
@@ -3484,8 +3484,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_ToxtricityLowKey,
             gShinyOverworldPalette_ToxtricityLowKey
         )
-        .levelUpLearnset = sToxtricityLowKeyLevelUpLearnset,
-        .teachableLearnset = sToxtricityLowKeyTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .formSpeciesIdTable = sToxtricityFormSpeciesIdTable,
         .formChangeTable = sToxtricityAmpedFormChangeTable,
     },
@@ -3536,8 +3536,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(1, 10, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Toxtricity)
         .isGigantamax = TRUE,
-        .levelUpLearnset = sToxtricityLowKeyLevelUpLearnset,
-        .teachableLearnset = sToxtricityLowKeyTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .formSpeciesIdTable = sToxtricityFormSpeciesIdTable,
         .formChangeTable = sToxtricityAmpedFormChangeTable,
     },
@@ -3598,8 +3598,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Sizzlipede,
             gShinyOverworldPalette_Sizzlipede
         )
-        .levelUpLearnset = sSizzlipedeLevelUpLearnset,
-        .teachableLearnset = sSizzlipedeTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .eggMoveLearnset = sSizzlipedeEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_CENTISKORCH}),
     },
@@ -3661,8 +3661,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Centiskorch,
             gShinyOverworldPalette_Centiskorch
         )
-        .levelUpLearnset = sCentiskorchLevelUpLearnset,
-        .teachableLearnset = sCentiskorchTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .formSpeciesIdTable = sCentiskorchFormSpeciesIdTable,
         .formChangeTable = sCentiskorchFormChangeTable,
     },
@@ -3717,8 +3717,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(6, 9, SHADOW_SIZE_L)
         FOOTPRINT(Centiskorch)
         .isGigantamax = TRUE,
-        .levelUpLearnset = sCentiskorchLevelUpLearnset,
-        .teachableLearnset = sCentiskorchTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .formSpeciesIdTable = sCentiskorchFormSpeciesIdTable,
         .formChangeTable = sCentiskorchFormChangeTable,
     },
@@ -3780,8 +3780,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Clobbopus,
             gShinyOverworldPalette_Clobbopus
         )
-        .levelUpLearnset = sClobbopusLevelUpLearnset,
-        .teachableLearnset = sClobbopusTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .eggMoveLearnset = sClobbopusEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_MOVE, MOVE_TAUNT, SPECIES_GRAPPLOCT}),
     },
@@ -3842,8 +3842,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Grapploct,
             gShinyOverworldPalette_Grapploct
         )
-        .levelUpLearnset = sGrapploctLevelUpLearnset,
-        .teachableLearnset = sGrapploctTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
     },
 
     [SPECIES_SINISTEA_PHONY] =
@@ -3903,8 +3903,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Sinistea,
             gShinyOverworldPalette_Sinistea
         )
-        .levelUpLearnset = sSinisteaLevelUpLearnset,
-        .teachableLearnset = sSinisteaTeachableLearnset,
+        .levelUpLearnset = sSinistea0LevelUpLearnset,
+        .teachableLearnset = sSinistea0TeachableLearnset,
         .formSpeciesIdTable = sSinisteaFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 27, SPECIES_POLTEAGEIST_PHONY}),
     },
@@ -3967,8 +3967,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Sinistea,
             gShinyOverworldPalette_Sinistea
         )
-        .levelUpLearnset = sSinisteaLevelUpLearnset,
-        .teachableLearnset = sSinisteaTeachableLearnset,
+        .levelUpLearnset = sSinistea1LevelUpLearnset,
+        .teachableLearnset = sSinistea1TeachableLearnset,
         .formSpeciesIdTable = sSinisteaFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 27, SPECIES_POLTEAGEIST_ANTIQUE}),
     },
@@ -4030,8 +4030,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Polteageist,
             gShinyOverworldPalette_Polteageist
         )
-        .levelUpLearnset = sPolteageistLevelUpLearnset,
-        .teachableLearnset = sPolteageistTeachableLearnset,
+        .levelUpLearnset = sPolteageist0LevelUpLearnset,
+        .teachableLearnset = sPolteageist0TeachableLearnset,
         .formSpeciesIdTable = sPolteageistFormSpeciesIdTable,
         .evolutions = NULL,
     },
@@ -4094,8 +4094,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Polteageist,
             gShinyOverworldPalette_Polteageist
         )
-        .levelUpLearnset = sPolteageistLevelUpLearnset,
-        .teachableLearnset = sPolteageistTeachableLearnset,
+        .levelUpLearnset = sPolteageist1LevelUpLearnset,
+        .teachableLearnset = sPolteageist1TeachableLearnset,
         .formSpeciesIdTable = sPolteageistFormSpeciesIdTable,
         .evolutions = NULL,
     },
@@ -4157,8 +4157,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Hatenna,
             gShinyOverworldPalette_Hatenna
         )
-        .levelUpLearnset = sHatennaLevelUpLearnset,
-        .teachableLearnset = sHatennaTeachableLearnset,
+        .levelUpLearnset = sHatenna0LevelUpLearnset,
+        .teachableLearnset = sHatenna0TeachableLearnset,
         .eggMoveLearnset = sHatennaEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_HATTREM}),
     },
@@ -4219,8 +4219,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Hattrem,
             gShinyOverworldPalette_Hattrem
         )
-        .levelUpLearnset = sHattremLevelUpLearnset,
-        .teachableLearnset = sHattremTeachableLearnset,
+        .levelUpLearnset = sHattrem0LevelUpLearnset,
+        .teachableLearnset = sHattrem0TeachableLearnset,
         .evolutions = EVOLUTION({EVO_MOVE, MOVE_TWINKLE_TACKLE, SPECIES_HATTERENE, 40}),
     },
 
@@ -4280,8 +4280,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Hatterene,
             gShinyOverworldPalette_Hatterene
         )
-        .levelUpLearnset = sHattereneLevelUpLearnset,
-        .teachableLearnset = sHattereneTeachableLearnset,
+        .levelUpLearnset = sHatterene0LevelUpLearnset,
+        .teachableLearnset = sHatterene0TeachableLearnset,
         .formSpeciesIdTable = sHattereneFormSpeciesIdTable,
         .formChangeTable = sHattereneFormChangeTable,
         .evolutions = NULL,
@@ -4337,8 +4337,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-3, 13, SHADOW_SIZE_S)
         FOOTPRINT(Hatterene)
         .isGigantamax = TRUE,
-        .levelUpLearnset = sHattereneLevelUpLearnset,
-        .teachableLearnset = sHattereneTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .formSpeciesIdTable = sHattereneFormSpeciesIdTable,
         .formChangeTable = sHattereneFormChangeTable,
     },
@@ -4400,8 +4400,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Impidimp,
             gShinyOverworldPalette_Impidimp
         )
-        .levelUpLearnset = sImpidimpLevelUpLearnset,
-        .teachableLearnset = sImpidimpTeachableLearnset,
+        .levelUpLearnset = sImpidimp0LevelUpLearnset,
+        .teachableLearnset = sImpidimp0TeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_MORGREM}),
     },
 
@@ -4462,8 +4462,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Morgrem,
             gShinyOverworldPalette_Morgrem
         )
-        .levelUpLearnset = sMorgremLevelUpLearnset,
-        .teachableLearnset = sMorgremTeachableLearnset,
+        .levelUpLearnset = sMorgrem0LevelUpLearnset,
+        .teachableLearnset = sMorgrem0TeachableLearnset,
         .evolutions = EVOLUTION({EVO_MOVE, MOVE_BLACK_HOLE_ECLIPSE, SPECIES_GRIMMSNARL, 40}),
     },
 
@@ -4524,8 +4524,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Grimmsnarl,
             gShinyOverworldPalette_Grimmsnarl
         )
-        .levelUpLearnset = sGrimmsnarlLevelUpLearnset,
-        .teachableLearnset = sGrimmsnarlTeachableLearnset,
+        .levelUpLearnset = sGrimmsnarl0LevelUpLearnset,
+        .teachableLearnset = sGrimmsnarl0TeachableLearnset,
         .formSpeciesIdTable = sGrimmsnarlFormSpeciesIdTable,
         .formChangeTable = sGrimmsnarlFormChangeTable,
         .evolutions = NULL,
@@ -4581,8 +4581,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 14, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Grimmsnarl)
         .isGigantamax = TRUE,
-        .levelUpLearnset = sGrimmsnarlLevelUpLearnset,
-        .teachableLearnset = sGrimmsnarlTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .formSpeciesIdTable = sGrimmsnarlFormSpeciesIdTable,
         .formChangeTable = sGrimmsnarlFormChangeTable,
     },
@@ -4644,8 +4644,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Milcery,
             gShinyOverworldPalette_Milcery
         )
-        .levelUpLearnset = sMilceryLevelUpLearnset,
-        .teachableLearnset = sMilceryTeachableLearnset,
+        .levelUpLearnset = sMilcery0LevelUpLearnset,
+        .teachableLearnset = sMilcery0TeachableLearnset,
         .eggMoveLearnset = sMilceryEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 0, SPECIES_ALCREMIE_STRAWBERRY_VANILLA_CREAM},
                                 {EVO_LEVEL, 0, SPECIES_ALCREMIE_STRAWBERRY_RUBY_CREAM},
@@ -4757,8 +4757,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 10, SHADOW_SIZE_L)
         FOOTPRINT(Alcremie)
         .isGigantamax = TRUE,
-        .levelUpLearnset = sAlcremieLevelUpLearnset,
-        .teachableLearnset = sAlcremieTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .formSpeciesIdTable = sAlcremieFormSpeciesIdTable,
         .formChangeTable = sAlcremieFormChangeTable,
     },
@@ -4819,8 +4819,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Falinks,
             gShinyOverworldPalette_Falinks
         )
-        .levelUpLearnset = sFalinksLevelUpLearnset,
-        .teachableLearnset = sFalinksTeachableLearnset,
+        .levelUpLearnset = sFalinks0LevelUpLearnset,
+        .teachableLearnset = sFalinks0TeachableLearnset,
         .evolutions = NULL,
     },
 
@@ -4880,8 +4880,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Pincurchin,
             gShinyOverworldPalette_Pincurchin
         )
-        .levelUpLearnset = sPincurchinLevelUpLearnset,
-        .teachableLearnset = sPincurchinTeachableLearnset,
+        .levelUpLearnset = sPincurchin0LevelUpLearnset,
+        .teachableLearnset = sPincurchin0TeachableLearnset,
         .eggMoveLearnset = sPincurchinEggMoveLearnset,
         .evolutions = NULL,
     },
@@ -4944,8 +4944,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Snom,
             gShinyOverworldPalette_Snom
         )
-        .levelUpLearnset = sSnomLevelUpLearnset,
-        .teachableLearnset = sSnomTeachableLearnset,
+        .levelUpLearnset = sSnom0LevelUpLearnset,
+        .teachableLearnset = sSnom0TeachableLearnset,
         .eggMoveLearnset = sSnomEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_FROSMOTH}),
     },
@@ -5008,8 +5008,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Frosmoth,
             gShinyOverworldPalette_Frosmoth
         )
-        .levelUpLearnset = sFrosmothLevelUpLearnset,
-        .teachableLearnset = sFrosmothTeachableLearnset,
+        .levelUpLearnset = sFrosmoth0LevelUpLearnset,
+        .teachableLearnset = sFrosmoth0TeachableLearnset,
         .evolutions = NULL,
     },
 
@@ -5070,8 +5070,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Stonjourner,
             gShinyOverworldPalette_Stonjourner
         )
-        .levelUpLearnset = sStonjournerLevelUpLearnset,
-        .teachableLearnset = sStonjournerTeachableLearnset,
+        .levelUpLearnset = sStonjourner0LevelUpLearnset,
+        .teachableLearnset = sStonjourner0TeachableLearnset,
         .eggMoveLearnset = sStonjournerEggMoveLearnset,
         .evolutions = NULL,
     },
@@ -5133,8 +5133,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_EiscueIce,
             gShinyOverworldPalette_EiscueIce
         )
-        .levelUpLearnset = sEiscueLevelUpLearnset,
-        .teachableLearnset = sEiscueTeachableLearnset,
+        .levelUpLearnset = sEiscue0LevelUpLearnset,
+        .teachableLearnset = sEiscue0TeachableLearnset,
         .eggMoveLearnset = sEiscueEggMoveLearnset,
         .formSpeciesIdTable = sEiscueFormSpeciesIdTable,
         .formChangeTable = sEiscueFormChangeTable,
@@ -5190,8 +5190,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconPalIndex = 0,
         SHADOW(-1, 13, SHADOW_SIZE_S)
         FOOTPRINT(Eiscue)
-        .levelUpLearnset = sEiscueLevelUpLearnset,
-        .teachableLearnset = sEiscueTeachableLearnset,
+        .levelUpLearnset = sEiscue1LevelUpLearnset,
+        .teachableLearnset = sEiscue1TeachableLearnset,
         .eggMoveLearnset = sEiscueEggMoveLearnset,
         .formSpeciesIdTable = sEiscueFormSpeciesIdTable,
         .formChangeTable = sEiscueFormChangeTable,
@@ -5255,8 +5255,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_IndeedeeM,
             gShinyOverworldPalette_IndeedeeM
         )
-        .levelUpLearnset = sIndeedeeMLevelUpLearnset,
-        .teachableLearnset = sIndeedeeMTeachableLearnset,
+        .levelUpLearnset = sIndeedee0LevelUpLearnset,
+        .teachableLearnset = sIndeedee0TeachableLearnset,
         .formSpeciesIdTable = sIndeedeeFormSpeciesIdTable,
         .evolutions = NULL,
     },
@@ -5318,8 +5318,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_IndeedeeF,
             gShinyOverworldPalette_IndeedeeF
         )
-        .levelUpLearnset = sIndeedeeFLevelUpLearnset,
-        .teachableLearnset = sIndeedeeFTeachableLearnset,
+        .levelUpLearnset = sIndeedee1LevelUpLearnset,
+        .teachableLearnset = sIndeedee1TeachableLearnset,
         .eggMoveLearnset = sIndeedeeFEggMoveLearnset,
         .formSpeciesIdTable = sIndeedeeFormSpeciesIdTable,
         .evolutions = NULL,
@@ -5382,8 +5382,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_MorpekoFullBelly,
             gShinyOverworldPalette_MorpekoFullBelly
         )
-        .levelUpLearnset = sMorpekoLevelUpLearnset,
-        .teachableLearnset = sMorpekoTeachableLearnset,
+        .levelUpLearnset = sMorpeko0LevelUpLearnset,
+        .teachableLearnset = sMorpeko0TeachableLearnset,
         .eggMoveLearnset = sMorpekoEggMoveLearnset,
         .formSpeciesIdTable = sMorpekoFormSpeciesIdTable,
         .formChangeTable = sMorpekoFormChangeTable,
@@ -5439,8 +5439,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconPalIndex = 2,
         SHADOW(0, 0, SHADOW_SIZE_S)
         FOOTPRINT(Morpeko)
-        .levelUpLearnset = sMorpekoLevelUpLearnset,
-        .teachableLearnset = sMorpekoTeachableLearnset,
+        .levelUpLearnset = sMorpeko1LevelUpLearnset,
+        .teachableLearnset = sMorpeko1TeachableLearnset,
         .eggMoveLearnset = sMorpekoEggMoveLearnset,
         .formSpeciesIdTable = sMorpekoFormSpeciesIdTable,
         .formChangeTable = sMorpekoFormChangeTable,
@@ -5505,8 +5505,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Cufant,
             gShinyOverworldPalette_Cufant
         )
-        .levelUpLearnset = sCufantLevelUpLearnset,
-        .teachableLearnset = sCufantTeachableLearnset,
+        .levelUpLearnset = sCufant0LevelUpLearnset,
+        .teachableLearnset = sCufant0TeachableLearnset,
         .eggMoveLearnset = sCufantEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_COPPERAJAH}),
     },
@@ -5568,8 +5568,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Copperajah,
             gShinyOverworldPalette_Copperajah
         )
-        .levelUpLearnset = sCopperajahLevelUpLearnset,
-        .teachableLearnset = sCopperajahTeachableLearnset,
+        .levelUpLearnset = sCopperajah0LevelUpLearnset,
+        .teachableLearnset = sCopperajah0TeachableLearnset,
         .formSpeciesIdTable = sCopperajahFormSpeciesIdTable,
         .formChangeTable = sCopperajahFormChangeTable,
         .evolutions = NULL,
@@ -5626,8 +5626,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 11, SHADOW_SIZE_L)
         FOOTPRINT(Copperajah)
         .isGigantamax = TRUE,
-        .levelUpLearnset = sCopperajahLevelUpLearnset,
-        .teachableLearnset = sCopperajahTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .formSpeciesIdTable = sCopperajahFormSpeciesIdTable,
         .formChangeTable = sCopperajahFormChangeTable,
     },
@@ -5689,8 +5689,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Dracozolt,
             gShinyOverworldPalette_Dracozolt
         )
-        .levelUpLearnset = sDracozoltLevelUpLearnset,
-        .teachableLearnset = sDracozoltTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
     },
 
     [SPECIES_ARCTOZOLT] =
@@ -5749,8 +5749,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Arctozolt,
             gShinyOverworldPalette_Arctozolt
         )
-        .levelUpLearnset = sArctozoltLevelUpLearnset,
-        .teachableLearnset = sArctozoltTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
     },
 
     [SPECIES_DRACOVISH] =
@@ -5810,8 +5810,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Dracovish,
             gShinyOverworldPalette_Dracovish
         )
-        .levelUpLearnset = sDracovishLevelUpLearnset,
-        .teachableLearnset = sDracovishTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
     },
 
     [SPECIES_ARCTOVISH] =
@@ -5871,8 +5871,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Arctovish,
             gShinyOverworldPalette_Arctovish
         )
-        .levelUpLearnset = sArctovishLevelUpLearnset,
-        .teachableLearnset = sArctovishTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
     },
 
     [SPECIES_DURALUDON] =
@@ -5931,8 +5931,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Duraludon,
             gShinyOverworldPalette_Duraludon
         )
-        .levelUpLearnset = sDuraludonLevelUpLearnset,
-        .teachableLearnset = sDuraludonTeachableLearnset,
+        .levelUpLearnset = sDuraludon0LevelUpLearnset,
+        .teachableLearnset = sDuraludon0TeachableLearnset,
         .eggMoveLearnset = sDuraludonEggMoveLearnset,
         .formSpeciesIdTable = sDuraludonFormSpeciesIdTable,
         .formChangeTable = sDuraludonFormChangeTable,
@@ -5989,8 +5989,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(3, 12, SHADOW_SIZE_L)
         FOOTPRINT(Duraludon)
         .isGigantamax = TRUE,
-        .levelUpLearnset = sDuraludonLevelUpLearnset,
-        .teachableLearnset = sDuraludonTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .eggMoveLearnset = sDuraludonEggMoveLearnset,
         .formSpeciesIdTable = sDuraludonFormSpeciesIdTable,
         .formChangeTable = sDuraludonFormChangeTable,
@@ -6053,8 +6053,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Archaludon,
             gShinyOverworldPalette_Archaludon
         )
-        .levelUpLearnset = sArchaludonLevelUpLearnset,
-        .teachableLearnset = sArchaludonTeachableLearnset,
+        .levelUpLearnset = sArchaludon0LevelUpLearnset,
+        .teachableLearnset = sArchaludon0TeachableLearnset,
         .evolutions = NULL,
     },
 
@@ -6116,8 +6116,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Dreepy,
             gShinyOverworldPalette_Dreepy
         )
-        .levelUpLearnset = sDreepyLevelUpLearnset,
-        .teachableLearnset = sDreepyTeachableLearnset,
+        .levelUpLearnset = sDreepy0LevelUpLearnset,
+        .teachableLearnset = sDreepy0TeachableLearnset,
         .eggMoveLearnset = sDreepyEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_DRAKLOAK}),
     },
@@ -6179,8 +6179,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Drakloak,
             gShinyOverworldPalette_Drakloak
         )
-        .levelUpLearnset = sDrakloakLevelUpLearnset,
-        .teachableLearnset = sDrakloakTeachableLearnset,
+        .levelUpLearnset = sDrakloak0LevelUpLearnset,
+        .teachableLearnset = sDrakloak0TeachableLearnset,
         .evolutions = EVOLUTION({EVO_MOVE, MOVE_NEVER_ENDING_NIGHTMARE, SPECIES_DRAGAPULT, 45}),
     },
 
@@ -6242,8 +6242,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             gOverworldPalette_Dragapult,
             gShinyOverworldPalette_Dragapult
         )
-        .levelUpLearnset = sDragapultLevelUpLearnset,
-        .teachableLearnset = sDragapultTeachableLearnset,
+        .levelUpLearnset = sDragapult0LevelUpLearnset,
+        .teachableLearnset = sDragapult0TeachableLearnset,
         .evolutions = NULL,
     },
 
@@ -6306,8 +6306,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .isLegendary = TRUE,
         .isFrontierBanned = TRUE,
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
-        .levelUpLearnset = sZacianLevelUpLearnset,
-        .teachableLearnset = sZacianTeachableLearnset,
+        .levelUpLearnset = sZacian0LevelUpLearnset,
+        .teachableLearnset = sZacian0TeachableLearnset,
         .formSpeciesIdTable = sZacianFormSpeciesIdTable,
         .formChangeTable = sZacianFormChangeTable,
         .evolutions = NULL,
@@ -6373,8 +6373,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .isLegendary = TRUE,
         .isFrontierBanned = TRUE,
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
-        .levelUpLearnset = sZacianLevelUpLearnset,
-        .teachableLearnset = sZacianTeachableLearnset,
+        .levelUpLearnset = sZacian1LevelUpLearnset,
+        .teachableLearnset = sZacian1TeachableLearnset,
         .formSpeciesIdTable = sZacianFormSpeciesIdTable,
         .formChangeTable = sZacianFormChangeTable,
         .evolutions = NULL,
@@ -6440,8 +6440,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .isLegendary = TRUE,
         .isFrontierBanned = TRUE,
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
-        .levelUpLearnset = sZamazentaLevelUpLearnset,
-        .teachableLearnset = sZamazentaTeachableLearnset,
+        .levelUpLearnset = sZamazenta0LevelUpLearnset,
+        .teachableLearnset = sZamazenta0TeachableLearnset,
         .formSpeciesIdTable = sZamazentaFormSpeciesIdTable,
         .formChangeTable = sZamazentaFormChangeTable,
         .evolutions = NULL,
@@ -6507,8 +6507,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .isLegendary = TRUE,
         .isFrontierBanned = TRUE,
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
-        .levelUpLearnset = sZamazentaLevelUpLearnset,
-        .teachableLearnset = sZamazentaTeachableLearnset,
+        .levelUpLearnset = sZamazenta1LevelUpLearnset,
+        .teachableLearnset = sZamazenta1TeachableLearnset,
         .formSpeciesIdTable = sZamazentaFormSpeciesIdTable,
         .formChangeTable = sZamazentaFormChangeTable,
         .evolutions = NULL,
@@ -6575,8 +6575,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .isLegendary = TRUE,
         .isFrontierBanned = TRUE,
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
-        .levelUpLearnset = sEternatusLevelUpLearnset,
-        .teachableLearnset = sEternatusTeachableLearnset,
+        .levelUpLearnset = sEternatus0LevelUpLearnset,
+        .teachableLearnset = sEternatus0TeachableLearnset,
         .formSpeciesIdTable = sEternatusFormSpeciesIdTable,
         .evolutions = NULL,
     },
@@ -6634,8 +6634,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .isLegendary = TRUE,
         .isFrontierBanned = TRUE,
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
-        .levelUpLearnset = sEternatusLevelUpLearnset,
-        .teachableLearnset = sEternatusTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .formSpeciesIdTable = sEternatusFormSpeciesIdTable,
     },
 
@@ -6697,8 +6697,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         )
         .isLegendary = TRUE,
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
-        .levelUpLearnset = sKubfuLevelUpLearnset,
-        .teachableLearnset = sKubfuTeachableLearnset,
+        .levelUpLearnset = sKubfu0LevelUpLearnset,
+        .teachableLearnset = sKubfu0TeachableLearnset,
         .evolutions = EVOLUTION({EVO_MOVE, MOVE_BLACK_HOLE_ECLIPSE, SPECIES_URSHIFU_SINGLE_STRIKE, 35}, {EVO_MOVE, MOVE_HYDRO_VORTEX, SPECIES_URSHIFU_SINGLE_STRIKE_GMAX, 35}),
     },
 
@@ -6761,8 +6761,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         )
         .isLegendary = TRUE,
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
-        .levelUpLearnset = sUrshifuSingleStrikeLevelUpLearnset,
-        .teachableLearnset = sUrshifuSingleStrikeTeachableLearnset,
+        .levelUpLearnset = sUrshifu0LevelUpLearnset,
+        .teachableLearnset = sUrshifu0TeachableLearnset,
         .formSpeciesIdTable = sUrshifuFormSpeciesIdTable,
         .formChangeTable = sUrshifuSingleStrikeFormChangeTable,
         .evolutions = NULL,
@@ -6820,8 +6820,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .isLegendary = TRUE,
         .isGigantamax = TRUE,
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
-        .levelUpLearnset = sUrshifuSingleStrikeLevelUpLearnset,
-        .teachableLearnset = sUrshifuSingleStrikeTeachableLearnset,
+        .levelUpLearnset = sUrshifu1LevelUpLearnset,
+        .teachableLearnset = sUrshifu1TeachableLearnset,
         .formSpeciesIdTable = sUrshifuFormSpeciesIdTable,
         .evolutions = NULL,
     },
@@ -6885,8 +6885,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         )
         .isLegendary = TRUE,
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
-        .levelUpLearnset = sUrshifuRapidStrikeLevelUpLearnset,
-        .teachableLearnset = sUrshifuRapidStrikeTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .formSpeciesIdTable = sUrshifuFormSpeciesIdTable,
         .formChangeTable = sUrshifuRapidStrikeFormChangeTable,
     },
@@ -6943,8 +6943,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .isLegendary = TRUE,
         .isGigantamax = TRUE,
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
-        .levelUpLearnset = sUrshifuRapidStrikeLevelUpLearnset,
-        .teachableLearnset = sUrshifuRapidStrikeTeachableLearnset,
+        .levelUpLearnset = sNoneLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
         .formSpeciesIdTable = sUrshifuFormSpeciesIdTable,
     },
 
@@ -7009,8 +7009,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .isMythical = TRUE,
         .isFrontierBanned = TRUE,
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
-        .levelUpLearnset = sZarudeLevelUpLearnset,
-        .teachableLearnset = sZarudeTeachableLearnset,
+        .levelUpLearnset = sZarude0LevelUpLearnset,
+        .teachableLearnset = sZarude0TeachableLearnset,
         .formSpeciesIdTable = sZarudeFormSpeciesIdTable,
         .evolutions = NULL,
     },
@@ -7066,8 +7066,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .isMythical = TRUE,
         .isFrontierBanned = TRUE,
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
-        .levelUpLearnset = sZarudeLevelUpLearnset,
-        .teachableLearnset = sZarudeTeachableLearnset,
+        .levelUpLearnset = sZarude1LevelUpLearnset,
+        .teachableLearnset = sZarude1TeachableLearnset,
         .formSpeciesIdTable = sZarudeFormSpeciesIdTable,
         .evolutions = NULL,
     },
@@ -7132,8 +7132,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         )
         .isLegendary = TRUE,
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
-        .levelUpLearnset = sRegielekiLevelUpLearnset,
-        .teachableLearnset = sRegielekiTeachableLearnset,
+        .levelUpLearnset = sRegieleki0LevelUpLearnset,
+        .teachableLearnset = sRegieleki0TeachableLearnset,
         .evolutions = NULL,
     },
 
@@ -7197,8 +7197,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         )
         .isLegendary = TRUE,
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
-        .levelUpLearnset = sRegidragoLevelUpLearnset,
-        .teachableLearnset = sRegidragoTeachableLearnset,
+        .levelUpLearnset = sRegidrago0LevelUpLearnset,
+        .teachableLearnset = sRegidrago0TeachableLearnset,
         .evolutions = NULL,
     },
 
@@ -7260,8 +7260,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         )
         .isLegendary = TRUE,
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
-        .levelUpLearnset = sGlastrierLevelUpLearnset,
-        .teachableLearnset = sGlastrierTeachableLearnset,
+        .levelUpLearnset = sGlastrier0LevelUpLearnset,
+        .teachableLearnset = sGlastrier0TeachableLearnset,
         .evolutions = NULL,
     },
 
@@ -7324,8 +7324,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         )
         .isLegendary = TRUE,
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
-        .levelUpLearnset = sSpectrierLevelUpLearnset,
-        .teachableLearnset = sSpectrierTeachableLearnset,
+        .levelUpLearnset = sSpectrier0LevelUpLearnset,
+        .teachableLearnset = sSpectrier0TeachableLearnset,
         .evolutions = NULL,
     },
 
@@ -7389,8 +7389,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .isLegendary = TRUE,
         .isFrontierBanned = TRUE,
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
-        .levelUpLearnset = sCalyrexLevelUpLearnset,
-        .teachableLearnset = sCalyrexTeachableLearnset,
+        .levelUpLearnset = sCalyrex0LevelUpLearnset,
+        .teachableLearnset = sCalyrex0TeachableLearnset,
         .formSpeciesIdTable = sCalyrexFormSpeciesIdTable,
         .evolutions = NULL,
     },
@@ -7456,8 +7456,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .cannotBeTraded = TRUE,
         .isFrontierBanned = TRUE,
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
-        .levelUpLearnset = sCalyrexIceLevelUpLearnset,
-        .teachableLearnset = sCalyrexIceTeachableLearnset,
+        .levelUpLearnset = sCalyrex1LevelUpLearnset,
+        .teachableLearnset = sCalyrex1TeachableLearnset,
         .formSpeciesIdTable = sCalyrexFormSpeciesIdTable,
         .evolutions = NULL,
     },
@@ -7523,8 +7523,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .cannotBeTraded = TRUE,
         .isFrontierBanned = TRUE,
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
-        .levelUpLearnset = sCalyrexShadowLevelUpLearnset,
-        .teachableLearnset = sCalyrexShadowTeachableLearnset,
+        .levelUpLearnset = sCalyrex2LevelUpLearnset,
+        .teachableLearnset = sCalyrex2TeachableLearnset,
         .formSpeciesIdTable = sCalyrexFormSpeciesIdTable,
         .evolutions = NULL,
     },
@@ -7589,8 +7589,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         )
         .isLegendary = TRUE,
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
-        .levelUpLearnset = sEnamorusLevelUpLearnset,
-        .teachableLearnset = sEnamorusTeachableLearnset,
+        .levelUpLearnset = sEnamorus0LevelUpLearnset,
+        .teachableLearnset = sEnamorus0TeachableLearnset,
         .formSpeciesIdTable = sEnamorusFormSpeciesIdTable,
         .evolutions = NULL,
     },
@@ -7654,8 +7654,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         )
         .isLegendary = TRUE,
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
-        .levelUpLearnset = sEnamorusLevelUpLearnset,
-        .teachableLearnset = sEnamorusTeachableLearnset,
+        .levelUpLearnset = sEnamorus1LevelUpLearnset,
+        .teachableLearnset = sEnamorus1TeachableLearnset,
         .formSpeciesIdTable = sEnamorusFormSpeciesIdTable,
         .evolutions = NULL,
     },

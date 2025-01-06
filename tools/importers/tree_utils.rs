@@ -38,6 +38,10 @@ const FIELD_QUERY_STR: &str = "
         designator: (field_designator (field_identifier) @field)
         value: (_) @value
     )
+    (assignment_expression
+        left: (field_expression
+            field: (field_identifier) @field)
+        right: (_) @value)
 ";
 static FIELD_QUERY: OnceLock<Query> = OnceLock::new();
 pub trait GetFieldExt {

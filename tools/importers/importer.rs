@@ -6,7 +6,7 @@ use anyhow::{Context, Result};
 use convert_case::{Case, Casing};
 use serde::Deserialize;
 use serde_json::Value;
-use species::handle_species;
+use species::{build_learnsets, handle_species};
 use tree_sitter::{Node, Range, Tree};
 use tree_utils::{find_entries, replace_range};
 
@@ -145,6 +145,12 @@ struct EvoData {
     form: usize,
 }
 
+#[derive(Debug, Clone, Deserialize)]
+struct LevelUpMove {
+    r#move: String,
+    level: u8,
+}
+
 #[derive(Debug, Deserialize)]
 struct Personal {
     species: Species,
@@ -159,6 +165,10 @@ struct Personal {
 
     base_stats: Stats,
     evo_data: Vec<EvoData>,
+
+    #[serde(default)]
+    tm_moves: Vec<String>,
+    levelup_moves: Vec<LevelUpMove>,
 
     #[serde(flatten)]
     _fields: BTreeMap<String, Value>,
@@ -179,7 +189,7 @@ const RENAME: &[(&str, &str)] = &[
     ("Kommoo", "SPECIES_KOMMO_O"),
 ];
 
-fn species_match(name: &str, enum_name: &str) -> bool {
+fn species_matcher(name: &str) -> impl Fn(&str) -> bool {
     let species_name = match RENAME.iter().find(|(s, _)| *s == name) {
         Some((_, rename)) => rename.to_string(),
         None => {
@@ -187,7 +197,9 @@ fn species_match(name: &str, enum_name: &str) -> bool {
             format!("SPECIES_{cased}")
         }
     };
-    enum_name == species_name || enum_name.starts_with(&(species_name + "_"))
+    move |enum_name| {
+        enum_name == species_name || enum_name.starts_with(&(species_name.clone() + "_"))
+    }
 }
 
 fn species() -> Result<()> {
@@ -227,7 +239,7 @@ fn species() -> Result<()> {
     let data_array: PersonalArray =
         serde_json::from_slice(&read("resources/personal_array.json")?)?;
     let mut edits: Vec<Vec<Edit>> = trees.iter().map(|_| vec![]).collect();
-    for personal in data_array.entry {
+    for personal in &data_array.entry {
         if personal.is_present == false {
             continue;
         }
@@ -237,9 +249,8 @@ fn species() -> Result<()> {
             continue;
         }
 
-        let mut matching = entries
-            .iter()
-            .filter(|(id, _)| species_match(&personal.species.species, id));
+        let matcher = species_matcher(&personal.species.species);
+        let mut matching = entries.iter().filter(|(id, _)| matcher(id));
         let Some((_id, (index, text, _tree, node))) = matching.nth(personal.species.form) else {
             println!("Could not find species {:?}", personal.species);
             continue;
@@ -252,6 +263,10 @@ fn species() -> Result<()> {
         apply_edits(text, tree, edits)?;
         write(path, text)?;
     }
+    write(
+        "../../src/data/pokemon/learnsets.h",
+        build_learnsets(&data_array.entry)?,
+    )?;
     Ok(())
 }
 
