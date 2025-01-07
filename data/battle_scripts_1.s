@@ -6120,6 +6120,20 @@ BattleScript_TargetItemStatRaise::
 BattleScript_TargetItemStatRaiseRemoveItemRet:
 	return
 
+BattleScript_LuminousMoss::
+	copybyte sBATTLER, gBattlerTarget
+	statbuffchange 0, BattleScript_LuminousMossRet
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_INCREASE, BattleScript_LuminousMossRet
+	playanimation BS_TARGET, B_ANIM_HELD_ITEM_EFFECT
+	waitanimation
+	setgraphicalstatchangevalues
+	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	waitanimation
+	printstring STRINGID_USINGITEMSTATOFPKMNROSE
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_LuminousMossRet:
+	return
+
 BattleScript_AttackerItemStatRaise::
 	copybyte sBATTLER, gBattlerAttacker
 	statbuffchange MOVE_EFFECT_AFFECTS_USER, BattleScript_AttackerItemStatRaiseRet
@@ -9304,6 +9318,7 @@ BattleScript_QuickClawActivation::
 	waitanimation
 	printstring STRINGID_CANACTFASTERTHANKSTO
 	waitmessage B_WAIT_TIME_LONG
+	removeitem BS_ATTACKER
 	end2
 
 BattleScript_QuickDrawActivation::

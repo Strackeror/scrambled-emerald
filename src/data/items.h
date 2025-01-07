@@ -7757,7 +7757,7 @@ const struct Item gItemsInfo[] =
         .pluralName = _("Silver Powder"),
         .price = (I_PRICE >= GEN_9) ? 3000 : ((I_PRICE >= GEN_7) ? 1000 : 100),
         .holdEffect = HOLD_EFFECT_BUG_POWER,
-        .holdEffectParam = TYPE_BOOST_PARAM,
+        .holdEffectParam = 30,
         .description = COMPOUND_STRING(
             "A hold item that\n"
             "raises the power of\n"
@@ -7808,7 +7808,7 @@ const struct Item gItemsInfo[] =
         .name = _("Dragon Fang"),
         .price = (I_PRICE >= GEN_9) ? 3000 : ((I_PRICE >= GEN_7) ? 1000 : 100),
         .holdEffect = HOLD_EFFECT_DRAGON_POWER,
-        .holdEffectParam = TYPE_BOOST_PARAM,
+        .holdEffectParam = 30,
         .description = COMPOUND_STRING(
             "A hold item that\n"
             "raises the power of\n"
@@ -8429,7 +8429,7 @@ const struct Item gItemsInfo[] =
         .name = _("Shell Bell"),
         .price = (I_PRICE >= GEN_9) ? 20000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_SHELL_BELL,
-        .holdEffectParam = 8,
+        .holdEffectParam = 4,
         .description = COMPOUND_STRING(
             "A hold item that\n"
             "restores HP upon\n"
@@ -8448,7 +8448,7 @@ const struct Item gItemsInfo[] =
         .pluralName = _("Wide Lenses"),
         .price = (I_PRICE >= GEN_9) ? 20000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_WIDE_LENS,
-        .holdEffectParam = 10,
+        .holdEffectParam = 25,
         .description = COMPOUND_STRING(
             "A magnifying lens\n"
             "that boosts the\n"
@@ -8503,7 +8503,7 @@ const struct Item gItemsInfo[] =
         .name = _("Expert Belt"),
         .price = (I_PRICE >= GEN_9) ? 30000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_EXPERT_BELT,
-        .holdEffectParam = 20,
+        .holdEffectParam = 25,
         .description = COMPOUND_STRING(
             "A belt that boosts\n"
             "the power of super\n"
@@ -8592,7 +8592,7 @@ const struct Item gItemsInfo[] =
         .pluralName = _("Zoom Lenses"),
         .price = (I_PRICE >= GEN_9) ? 10000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
         .holdEffect = HOLD_EFFECT_ZOOM_LENS,
-        .holdEffectParam = 20,
+        .holdEffectParam = 100,
         .description = COMPOUND_STRING(
             "If the holder moves\n"
             "after the foe, it'll\n"
