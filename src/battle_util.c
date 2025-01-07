@@ -2288,7 +2288,7 @@ enum
 s32 GetDrainedBigRootHp(u32 battler, s32 hp)
 {
     if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_BIG_ROOT)
-        hp = (hp * 1300) / 1000;
+        hp *= 2;
     if (hp == 0)
         hp = 1;
 
@@ -7783,7 +7783,17 @@ u32 ItemBattleEffects(enum ItemEffect caseID, u32 battler, bool32 moveTurn)
             case HOLD_EFFECT_BLACK_SLUDGE:
                 if (IS_BATTLER_OF_TYPE(battler, TYPE_POISON))
                 {
-                    goto LEFTOVERS;
+                    if (gBattleMons[battler].hp < gBattleMons[battler].maxHP && !moveTurn
+                      && (B_HEAL_BLOCKING < GEN_5 || !(gStatuses3[battler] & STATUS3_HEAL_BLOCK)))
+                    {
+                        gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 8;
+                        if (gBattleMoveDamage == 0)
+                            gBattleMoveDamage = 1;
+                        gBattleMoveDamage *= -1;
+                        BattleScriptExecute(BattleScript_ItemHealHP_End2);
+                        effect = ITEM_HP_CHANGE;
+                        RecordItemEffectBattle(battler, battlerHoldEffect);
+                    }
                 }
                 else if (GetBattlerAbility(battler) != ABILITY_MAGIC_GUARD && !moveTurn)
                 {
@@ -7797,7 +7807,6 @@ u32 ItemBattleEffects(enum ItemEffect caseID, u32 battler, bool32 moveTurn)
                 }
                 break;
             case HOLD_EFFECT_LEFTOVERS:
-            LEFTOVERS:
                 if (gBattleMons[battler].hp < gBattleMons[battler].maxHP && !moveTurn
                   && (B_HEAL_BLOCKING < GEN_5 || !(gStatuses3[battler] & STATUS3_HEAL_BLOCK)))
                 {
@@ -8159,7 +8168,7 @@ u32 ItemBattleEffects(enum ItemEffect caseID, u32 battler, bool32 moveTurn)
                 {
                     effect = ITEM_STATS_CHANGE;
                     BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_TargetItemStatRaise;
+                    gBattlescriptCurrInstr = BattleScript_LuminousMoss;
                     SET_STATCHANGER(STAT_SPDEF, 1, FALSE);
                 }
                 break;
@@ -8293,7 +8302,7 @@ u32 ItemBattleEffects(enum ItemEffect caseID, u32 battler, bool32 moveTurn)
         case HOLD_EFFECT_STICKY_BARB:   // Not an orb per se, but similar effect, and needs to NOT activate with pickpocket
             if (battlerAbility != ABILITY_MAGIC_GUARD)
             {
-                gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 8;
+                gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 4;
                 if (gBattleMoveDamage == 0)
                     gBattleMoveDamage = 1;
                 BattleScriptExecute(BattleScript_ItemHurtEnd2);
@@ -10175,7 +10184,7 @@ static inline uq4_12_t GetAttackerItemsModifier(u32 battlerAtk, uq4_12_t typeEff
         break;
     case HOLD_EFFECT_EXPERT_BELT:
         if (typeEffectivenessModifier >= UQ_4_12(2.0))
-            return UQ_4_12(1.2);
+            return UQ_4_12(1.25);
         break;
     case HOLD_EFFECT_LIFE_ORB:
         return UQ_4_12(1.3);
