@@ -1,11 +1,131 @@
 use std::cmp::min;
+use std::fs::{read, write};
 
-use anyhow::{Context, Result};
+use anyhow::{Context as _, Result};
 use convert_case::{Case, Casing};
 use tree_sitter::Node;
 
-use crate::tree_utils::{edit_field, get_field_value};
-use crate::{species_matcher, Edit, Personal};
+use crate::moves::WazaArray;
+use crate::tree_utils::{edit_field, find_entries};
+use crate::{apply_edits, Edit, Personal, PersonalArray};
+
+const BLACKLIST: &[&str] = &[
+    "Vivillon", "Flabebe", "Floette", "Florges", "Minior", "Alcremie",
+];
+const RENAME: &[(&str, &str)] = &[
+    ("Porygon2", "SPECIES_PORYGON2"),
+    ("Jangmoo", "SPECIES_JANGMO_O"),
+    ("Hakamoo", "SPECIES_HAKAMO_O"),
+    ("Kommoo", "SPECIES_KOMMO_O"),
+];
+
+pub fn species_matcher(name: &str) -> impl Fn(&str) -> bool {
+    let species_name = match RENAME.iter().find(|(s, _)| *s == name) {
+        Some((_, rename)) => rename.to_string(),
+        None => {
+            let cased = name.to_case(Case::ScreamingSnake);
+            format!("SPECIES_{cased}")
+        }
+    };
+    move |enum_name| {
+        enum_name == species_name || enum_name.starts_with(&(species_name.clone() + "_"))
+    }
+}
+
+pub fn species_list() -> Result<Vec<String>> {
+    let species_files = (1..=9)
+        .map(|n| format!("../../src/data/pokemon/species_info/gen_{n}_families.h"))
+        .map(|path| Ok(read(&path)?))
+        .collect::<Result<Vec<_>>>()?;
+
+    let language = tree_sitter_cpp::LANGUAGE.into();
+    let mut parser = tree_sitter::Parser::new();
+    parser.set_language(&language)?;
+
+    let trees = species_files
+        .into_iter()
+        .map(|text| Some((parser.parse(&text, None)?, text)))
+        .collect::<Option<Vec<_>>>()
+        .context("Failed to parse")?;
+
+    let ids = trees
+        .iter()
+        .map(|(tree, text)| find_entries(tree.root_node(), text))
+        .collect::<Result<Vec<_>>>()?
+        .into_iter()
+        .flatten()
+        .map(|(id, _)|id)
+        .collect();
+    Ok(ids)
+}
+
+pub fn species() -> Result<()> {
+    let species_files = (1..=9)
+        .map(|n| format!("../../src/data/pokemon/species_info/gen_{n}_families.h"))
+        .map(|path| Ok((path.clone(), read(&path)?)))
+        .collect::<Result<Vec<_>>>()?;
+    let moves: WazaArray = serde_json::from_slice(&read("resources/waza_array.json")?)?;
+    let move_list: Vec<_> = moves.table.iter().map(|mov| mov.move_id.as_str()).collect();
+
+    let language = tree_sitter_cpp::LANGUAGE.into();
+    let mut parser = tree_sitter::Parser::new();
+    parser.set_language(&language)?;
+
+    let mut trees = species_files
+        .into_iter()
+        .map(|(path, text)| Some((parser.parse(&text, None)?, text, path)))
+        .collect::<Option<Vec<_>>>()
+        .context("Failed to parse")?;
+    //_dump_nodes(trees[1].1.root_node());
+
+    let entries = trees
+        .iter()
+        .map(|(tree, text, _)| Ok((text, tree, find_entries(tree.root_node(), text)?)))
+        .collect::<Result<Vec<_>>>()?
+        .into_iter()
+        .enumerate()
+        .flat_map(|(index, (text, tree, nodes))| {
+            nodes
+                .into_iter()
+                .map(|(id, node)| (id, (index, text, tree, node)))
+                .collect::<Vec<_>>()
+        })
+        .collect::<Vec<_>>();
+    let species_list: Vec<_> = entries.iter().map(|(id, _)| id.as_str()).collect();
+
+    let data_array: PersonalArray =
+        serde_json::from_slice(&read("resources/personal_array.json")?)?;
+    let mut edits: Vec<Vec<Edit>> = trees.iter().map(|_| vec![]).collect();
+    for personal in &data_array.entry {
+        if personal.is_present == false {
+            continue;
+        }
+
+        if BLACKLIST.contains(&personal.species.species.as_str()) {
+            println!("Blacklisted species {:?}", personal.species);
+            continue;
+        }
+
+        let matcher = species_matcher(&personal.species.species);
+        let mut matching = entries.iter().filter(|(id, _)| matcher(id));
+        let Some((_id, (index, text, _tree, node))) = matching.nth(personal.species.form) else {
+            println!("Could not find species {:?}", personal.species);
+            continue;
+        };
+
+        let species_edits = handle_species(*node, text, &personal, &species_list, &move_list)?;
+        edits[*index].extend(species_edits);
+    }
+    for ((tree, text, path), edits) in trees.iter_mut().zip(edits) {
+        apply_edits(text, tree, edits)?;
+        write(path, text)?;
+    }
+    write(
+        "../../src/data/pokemon/learnsets.h",
+        build_learnsets(&data_array.entry)?,
+    )?;
+    Ok(())
+}
 
 fn learnset_name(entry: &Personal) -> String {
     format!(
