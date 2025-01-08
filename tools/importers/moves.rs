@@ -1,11 +1,107 @@
+use std::collections::{BTreeMap, HashMap};
 use std::fmt::Display;
+use std::fs::{read, read_to_string, write};
 
-use anyhow::{bail, Result};
+use anyhow::{bail, Context as _, Result};
+use convert_case::{Case, Casing as _};
 use serde::{de::DeserializeOwned, Deserialize};
+use serde_json::Value;
 use tree_sitter::Node;
 
-use super::{Edit, Move};
-use crate::tree_utils::{edit_field, get_field_value, GetFieldExt};
+use crate::tree_utils::{edit_field, find_entries, get_field_value, GetFieldExt};
+use crate::{apply_edits, Edit};
+
+#[derive(Debug, Clone, Deserialize)]
+pub struct Move {
+    pub move_id: String,
+    #[serde(flatten)]
+    pub fields: BTreeMap<String, Value>,
+}
+
+impl Move {
+    fn field_str(&self, field: &str) -> Result<String> {
+        if let Some(bool) = self.fields.get(field).and_then(|field| field.as_bool()) {
+            return Ok(bool.to_string().to_uppercase());
+        }
+        Ok(format!(
+            "{}",
+            self.fields.get(field).context("getting field")?
+        ))
+    }
+}
+
+#[derive(Deserialize)]
+pub struct WazaArray {
+    pub table: Vec<Move>,
+}
+
+pub fn moves() -> Result<()> {
+    const MOVE_INFO_PATH: &str = "../../src/data/moves_info.h";
+    let modded: WazaArray = serde_json::from_str(&read_to_string("resources/waza_array.json")?)?;
+    let vanilla: WazaArray =
+        serde_json::from_str(&read_to_string("resources/waza_array_vanilla.json")?)?;
+    let move_names: Vec<String> =
+        serde_json::from_str(&read_to_string("resources/move_names.json")?)?;
+    let move_descs: Vec<String> =
+        serde_json::from_str(&read_to_string("resources/move_descs.json")?)?;
+
+    let language = tree_sitter_cpp::LANGUAGE.into();
+    let mut parser = tree_sitter::Parser::new();
+    parser.set_language(&language)?;
+
+    let mut move_info_text = read(MOVE_INFO_PATH)?;
+    let mut tree = parser
+        .parse(&move_info_text, None)
+        .context("parsing tree")?;
+    let mut edits = vec![];
+    let mut fields: BTreeMap<String, Vec<String>> = Default::default();
+    let entries = find_entries(tree.root_node(), &move_info_text)?
+        .into_iter()
+        .collect::<HashMap<_, _>>();
+    for (((modded, vanilla), name), desc) in modded
+        .table
+        .into_iter()
+        .zip(vanilla.table.into_iter())
+        .zip(move_names)
+        .zip(move_descs)
+    {
+        if modded.move_id != vanilla.move_id {
+            panic!("desynced move_id {modded:?} {vanilla:?}")
+        }
+        let diff_keys = (modded.fields)
+            .keys()
+            .filter(|key| modded.fields.get(*key) != vanilla.fields.get(*key))
+            .map(|key| key.as_str())
+            .collect::<Vec<_>>();
+
+        for key in diff_keys.iter() {
+            fields
+                .entry(key.to_string())
+                .or_default()
+                .push(modded.move_id.clone());
+        }
+        let case = Case::ScreamingSnake;
+        let Some(&move_node) = entries.get(&format!("MOVE_{}", modded.move_id.to_case(case)))
+        else {
+            if !diff_keys.is_empty() {
+                println!("ERROR: Missing move: {}", modded.move_id);
+            }
+            continue;
+        };
+        edits.append(&mut handle_changes(
+            diff_keys,
+            &modded,
+            move_node,
+            &mut move_info_text,
+            (&name, &desc),
+        )?);
+    }
+    apply_edits(&mut move_info_text, &mut tree, edits)?;
+
+    println!("fields: {:#?}", fields.keys().collect::<Vec<_>>());
+    write(MOVE_INFO_PATH, &move_info_text)?;
+    Ok(())
+}
 
 #[derive(Clone, Copy)]
 struct Context<'a> {
@@ -329,7 +425,7 @@ fn handle_effects(context: Context) -> Result<Vec<Edit>> {
             ("chance".into(), format!("{flinch}")),
         ]);
     }
-    
+
     let InflictStatus {
         status,
         chance,
@@ -391,8 +487,6 @@ fn handle_effects(context: Context) -> Result<Vec<Edit>> {
         }
         effects.push(fields);
     }
-
-
 
     let mut edits = vec![];
     match quality.as_str() {

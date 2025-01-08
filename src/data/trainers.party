@@ -94,36 +94,6 @@ Geodude
 Level: 21
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-=== TRAINER_GRUNT_AQUA_HIDEOUT_1 ===
-Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt M
-Gender: Male
-Music: Aqua
-Double Battle: No
-AI: Check Bad Move
-
-Poochyena
-Level: 32
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_AQUA_HIDEOUT_2 ===
-Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt M
-Gender: Male
-Music: Aqua
-Double Battle: No
-AI: Check Bad Move
-
-Zubat
-Level: 31
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Carvanha
-Level: 31
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
 === TRAINER_GRUNT_AQUA_HIDEOUT_3 ===
 Name: GRUNT
 Class: Team Aqua
@@ -4584,546 +4554,6 @@ IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 - Odor Sleuth
 - Roar
 
-=== TRAINER_SIDNEY ===
-Name: SIDNEY
-Class: Elite Four
-Pic: Elite Four Sidney
-Gender: Male
-Music: Elite Four
-Items: Full Restore / Full Restore
-Double Battle: No
-AI: Basic Trainer / Force Setup First Turn
-Mugshot: Purple
-
-Mightyena
-Level: 46
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Roar
-- Double Edge
-- Sand Attack
-- Crunch
-
-Shiftry
-Level: 48
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Torment
-- Double Team
-- Swagger
-- Extrasensory
-
-Cacturne
-Level: 46
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Leech Seed
-- Feint Attack
-- Needle Arm
-- Cotton Spore
-
-Crawdaunt
-Level: 48
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Surf
-- Swords Dance
-- Strength
-- Facade
-
-Absol @ Sitrus Berry
-Level: 49
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Aerial Ace
-- Rock Slide
-- Swords Dance
-- Slash
-
-=== TRAINER_PHOEBE ===
-Name: PHOEBE
-Class: Elite Four
-Pic: Elite Four Phoebe
-Gender: Female
-Music: Elite Four
-Items: Full Restore / Full Restore
-Double Battle: No
-AI: Basic Trainer
-Mugshot: Green
-
-Dusclops
-Level: 48
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Shadow Punch
-- Confuse Ray
-- Curse
-- Protect
-
-Banette
-Level: 49
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Shadow Ball
-- Grudge
-- Will O Wisp
-- Feint Attack
-
-Sableye
-Level: 50
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Shadow Ball
-- Double Team
-- Night Shade
-- Feint Attack
-
-Banette
-Level: 49
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Shadow Ball
-- Psychic
-- Thunderbolt
-- Facade
-
-Dusclops @ Sitrus Berry
-Level: 51
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Shadow Ball
-- Ice Beam
-- Rock Slide
-- Earthquake
-
-=== TRAINER_GLACIA ===
-Name: GLACIA
-Class: Elite Four
-Pic: Elite Four Glacia
-Gender: Female
-Music: Elite Four
-Items: Full Restore / Full Restore
-Double Battle: No
-AI: Basic Trainer
-Mugshot: Pink
-
-Sealeo
-Level: 50
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Encore
-- Body Slam
-- Hail
-- Ice Ball
-
-Glalie
-Level: 50
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Light Screen
-- Crunch
-- Icy Wind
-- Ice Beam
-
-Sealeo
-Level: 52
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Attract
-- Double Edge
-- Hail
-- Blizzard
-
-Glalie
-Level: 52
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Shadow Ball
-- Explosion
-- Hail
-- Ice Beam
-
-Walrein @ Sitrus Berry
-Level: 53
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Surf
-- Body Slam
-- Ice Beam
-- Sheer Cold
-
-=== TRAINER_DRAKE ===
-Name: DRAKE
-Class: Elite Four
-Pic: Elite Four Drake
-Gender: Male
-Music: Elite Four
-Items: Full Restore / Full Restore
-Double Battle: No
-AI: Basic Trainer
-Mugshot: Blue
-
-Shelgon
-Level: 52
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Rock Tomb
-- Dragon Claw
-- Protect
-- Double Edge
-
-Altaria
-Level: 54
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Double Edge
-- Dragon Breath
-- Dragon Dance
-- Aerial Ace
-
-Kingdra
-Level: 53
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Smokescreen
-- Dragon Dance
-- Surf
-- Body Slam
-
-Flygon
-Level: 53
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Flamethrower
-- Crunch
-- Dragon Breath
-- Earthquake
-
-Salamence @ Sitrus Berry
-Level: 55
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Flamethrower
-- Dragon Claw
-- Rock Slide
-- Crunch
-
-=== TRAINER_ROXANNE_1 ===
-Name: ROXANNE
-Class: Leader
-Pic: Leader Roxanne
-Gender: Female
-Music: Female
-Items: Potion / Potion
-Double Battle: No
-AI: Basic Trainer
-
-Geodude
-Level: 12
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Tackle
-- Defense Curl
-- Rock Throw
-- Rock Tomb
-
-Geodude
-Level: 12
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Tackle
-- Defense Curl
-- Rock Throw
-- Rock Tomb
-
-Nosepass @ Oran Berry
-Level: 15
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Block
-- Harden
-- Tackle
-- Rock Tomb
-
-=== TRAINER_BRAWLY_1 ===
-Name: BRAWLY
-Class: Leader
-Pic: Leader Brawly
-Gender: Male
-Music: Male
-Items: Super Potion / Super Potion
-Double Battle: No
-AI: Basic Trainer
-
-Machop
-Level: 16
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Karate Chop
-- Low Kick
-- Seismic Toss
-- Bulk Up
-
-Meditite
-Level: 16
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Focus Punch
-- Light Screen
-- Reflect
-- Bulk Up
-
-Makuhita @ Sitrus Berry
-Level: 19
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Arm Thrust
-- Vital Throw
-- Reversal
-- Bulk Up
-
-=== TRAINER_WATTSON_1 ===
-Name: WATTSON
-Class: Leader
-Pic: Leader Wattson
-Gender: Male
-Music: Male
-Items: Super Potion / Super Potion
-Double Battle: No
-AI: Basic Trainer
-
-Voltorb
-Level: 20
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Rollout
-- Spark
-- Self Destruct
-- Shock Wave
-
-Electrike
-Level: 20
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Shock Wave
-- Leer
-- Quick Attack
-- Howl
-
-Magneton
-Level: 22
-IVs: 26 HP / 26 Atk / 26 Def / 26 SpA / 26 SpD / 26 Spe
-- Supersonic
-- Shock Wave
-- Thunder Wave
-- Sonic Boom
-
-Manectric @ Sitrus Berry
-Level: 24
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Quick Attack
-- Thunder Wave
-- Shock Wave
-- Howl
-
-=== TRAINER_FLANNERY_1 ===
-Name: FLANNERY
-Class: Leader
-Pic: Leader Flannery
-Gender: Female
-Music: Female
-Items: Hyper Potion / Hyper Potion
-Double Battle: No
-AI: Basic Trainer
-
-Numel
-Level: 24
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Overheat
-- Take Down
-- Magnitude
-- Sunny Day
-
-Slugma
-Level: 24
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Overheat
-- Smog
-- Light Screen
-- Sunny Day
-
-Camerupt
-Level: 26
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Overheat
-- Tackle
-- Sunny Day
-- Attract
-
-Torkoal @ White Herb
-Level: 29
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Overheat
-- Sunny Day
-- Body Slam
-- Attract
-
-=== TRAINER_NORMAN_1 ===
-Name: NORMAN
-Class: Leader
-Pic: Leader Norman
-Gender: Male
-Music: Male
-Items: Hyper Potion / Hyper Potion
-Double Battle: No
-AI: Basic Trainer
-
-Spinda
-Level: 27
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Teeter Dance
-- Psybeam
-- Facade
-- Encore
-
-Vigoroth
-Level: 27
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Slash
-- Facade
-- Encore
-- Feint Attack
-
-Linoone
-Level: 29
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Slash
-- Belly Drum
-- Facade
-- Headbutt
-
-Slaking @ Sitrus Berry
-Level: 31
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Counter
-- Yawn
-- Facade
-- Feint Attack
-
-=== TRAINER_WINONA_1 ===
-Name: WINONA
-Class: Leader
-Pic: Leader Winona
-Gender: Female
-Music: Female
-Items: Hyper Potion / Hyper Potion
-Double Battle: No
-AI: Basic Trainer / Risky
-
-Swablu
-Level: 29
-IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
-- Perish Song
-- Mirror Move
-- Safeguard
-- Aerial Ace
-
-Tropius
-Level: 29
-IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
-- Sunny Day
-- Aerial Ace
-- Solar Beam
-- Synthesis
-
-Pelipper
-Level: 30
-IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
-- Water Gun
-- Supersonic
-- Protect
-- Aerial Ace
-
-Skarmory
-Level: 31
-IVs: 26 HP / 26 Atk / 26 Def / 26 SpA / 26 SpD / 26 Spe
-- Sand Attack
-- Fury Attack
-- Steel Wing
-- Aerial Ace
-
-Altaria @ Oran Berry
-Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Earthquake
-- Dragon Breath
-- Dragon Dance
-- Aerial Ace
-
-=== TRAINER_TATE_AND_LIZA_1 ===
-Name: TATE&LIZA
-Class: Leader
-Pic: Leader Tate And Liza
-Gender: Male
-Music: Female
-Items: Hyper Potion / Hyper Potion / Hyper Potion / Hyper Potion
-Double Battle: Yes
-AI: Basic Trainer
-
-Claydol
-Level: 41
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Earthquake
-- Ancient Power
-- Psychic
-- Light Screen
-
-Xatu
-Level: 41
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Psychic
-- Sunny Day
-- Confuse Ray
-- Calm Mind
-
-Lunatone @ Sitrus Berry
-Level: 42
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Light Screen
-- Psychic
-- Hypnosis
-- Calm Mind
-
-Solrock @ Sitrus Berry
-Level: 42
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Sunny Day
-- Solar Beam
-- Psychic
-- Flamethrower
-
-=== TRAINER_JUAN_1 ===
-Name: JUAN
-Class: Leader
-Pic: Leader Juan
-Gender: Male
-Music: Male
-Items: Hyper Potion / Hyper Potion
-Double Battle: No
-AI: Basic Trainer
-
-Luvdisc
-Level: 41
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Water Pulse
-- Attract
-- Sweet Kiss
-- Flail
-
-Whiscash
-Level: 41
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Rain Dance
-- Water Pulse
-- Amnesia
-- Earthquake
-
-Sealeo
-Level: 43
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Encore
-- Body Slam
-- Aurora Beam
-- Water Pulse
-
-Crawdaunt
-Level: 43
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Water Pulse
-- Crabhammer
-- Taunt
-- Leer
-
-Kingdra @ Chesto Berry
-Level: 46
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Water Pulse
-- Double Team
-- Ice Beam
-- Rest
-
 === TRAINER_JERRY_1 ===
 Name: JERRY
 Class: School Kid
@@ -6240,64 +5670,6 @@ Electrike
 Level: 13
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-=== TRAINER_WALLACE ===
-Name: WALLACE
-Class: Champion
-Pic: Champion Wallace
-Gender: Male
-Music: Male
-Items: Full Restore / Full Restore / Full Restore / Full Restore
-Double Battle: No
-AI: Basic Trainer
-Mugshot: Yellow
-
-Wailord
-Level: 57
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Rain Dance
-- Water Spout
-- Double Edge
-- Blizzard
-
-Tentacruel
-Level: 55
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Toxic
-- Hydro Pump
-- Sludge Bomb
-- Ice Beam
-
-Ludicolo
-Level: 56
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Giga Drain
-- Surf
-- Leech Seed
-- Double Team
-
-Whiscash
-Level: 56
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Earthquake
-- Surf
-- Amnesia
-- Hyper Beam
-
-Gyarados
-Level: 56
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Dragon Dance
-- Earthquake
-- Hyper Beam
-- Surf
-
-Milotic @ Sitrus Berry
-Level: 58
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Recover
-- Surf
-- Ice Beam
-- Toxic
 
 === TRAINER_ANDREW ===
 Name: ANDREW
@@ -13267,246 +12639,6 @@ Electrike
 Level: 14
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-=== TRAINER_GRUNT_MAGMA_HIDEOUT_1 ===
-Name: GRUNT
-Class: Team Magma
-Pic: Magma Grunt M
-Gender: Male
-Music: Magma
-Double Battle: No
-AI: Check Bad Move
-
-Zubat
-Level: 29
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_MAGMA_HIDEOUT_2 ===
-Name: GRUNT
-Class: Team Magma
-Pic: Magma Grunt M
-Gender: Male
-Music: Magma
-Double Battle: No
-AI: Check Bad Move
-
-Poochyena
-Level: 29
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_MAGMA_HIDEOUT_3 ===
-Name: GRUNT
-Class: Team Magma
-Pic: Magma Grunt M
-Gender: Male
-Music: Magma
-Double Battle: No
-AI: Check Bad Move
-
-Numel
-Level: 29
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_MAGMA_HIDEOUT_4 ===
-Name: GRUNT
-Class: Team Magma
-Pic: Magma Grunt M
-Gender: Male
-Music: Magma
-Double Battle: No
-AI: Check Bad Move
-
-Baltoy
-Level: 28
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Zubat
-Level: 28
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_MAGMA_HIDEOUT_5 ===
-Name: GRUNT
-Class: Team Magma
-Pic: Magma Grunt M
-Gender: Male
-Music: Magma
-Double Battle: No
-AI: Check Bad Move
-
-Baltoy
-Level: 28
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Numel
-Level: 28
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_MAGMA_HIDEOUT_6 ===
-Name: GRUNT
-Class: Team Magma
-Pic: Magma Grunt M
-Gender: Male
-Music: Magma
-Double Battle: No
-AI: Check Bad Move
-
-Mightyena
-Level: 29
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_MAGMA_HIDEOUT_7 ===
-Name: GRUNT
-Class: Team Magma
-Pic: Magma Grunt M
-Gender: Male
-Music: Magma
-Double Battle: No
-AI: Check Bad Move
-
-Zubat
-Level: 29
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_MAGMA_HIDEOUT_8 ===
-Name: GRUNT
-Class: Team Magma
-Pic: Magma Grunt M
-Gender: Male
-Music: Magma
-Double Battle: No
-AI: Check Bad Move
-
-Poochyena
-Level: 29
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_MAGMA_HIDEOUT_9 ===
-Name: GRUNT
-Class: Team Magma
-Pic: Magma Grunt M
-Gender: Male
-Music: Magma
-Double Battle: No
-AI: Check Bad Move
-
-Zubat
-Level: 29
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_MAGMA_HIDEOUT_10 ===
-Name: GRUNT
-Class: Team Magma
-Pic: Magma Grunt M
-Gender: Male
-Music: Magma
-Double Battle: No
-AI: Check Bad Move
-
-Mightyena
-Level: 29
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_MAGMA_HIDEOUT_11 ===
-Name: GRUNT
-Class: Team Magma
-Pic: Magma Grunt M
-Gender: Male
-Music: Magma
-Double Battle: No
-AI: Check Bad Move
-
-Baltoy
-Level: 29
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_MAGMA_HIDEOUT_12 ===
-Name: GRUNT
-Class: Team Magma
-Pic: Magma Grunt M
-Gender: Male
-Music: Magma
-Double Battle: No
-AI: Check Bad Move
-
-Numel
-Level: 29
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_MAGMA_HIDEOUT_13 ===
-Name: GRUNT
-Class: Team Magma
-Pic: Magma Grunt M
-Gender: Male
-Music: Magma
-Double Battle: No
-AI: Check Bad Move
-
-Zubat
-Level: 29
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_MAGMA_HIDEOUT_14 ===
-Name: GRUNT
-Class: Team Magma
-Pic: Magma Grunt F
-Gender: Female
-Music: Magma
-Double Battle: No
-AI: Check Bad Move
-
-Mightyena
-Level: 29
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_MAGMA_HIDEOUT_15 ===
-Name: GRUNT
-Class: Team Magma
-Pic: Magma Grunt F
-Gender: Female
-Music: Magma
-Double Battle: No
-AI: Check Bad Move
-
-Numel
-Level: 29
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_MAGMA_HIDEOUT_16 ===
-Name: GRUNT
-Class: Team Magma
-Pic: Magma Grunt F
-Gender: Female
-Music: Magma
-Double Battle: No
-AI: Check Bad Move
-
-Baltoy
-Level: 29
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_TABITHA_MAGMA_HIDEOUT ===
-Name: TABITHA
-Class: Magma Admin
-Pic: Magma Admin
-Gender: Male
-Music: Magma
-Double Battle: No
-AI: Check Bad Move
-
-Numel
-Level: 26
-IVs: 9 HP / 9 Atk / 9 Def / 9 SpA / 9 SpD / 9 Spe
-
-Mightyena
-Level: 28
-IVs: 9 HP / 9 Atk / 9 Def / 9 SpA / 9 SpD / 9 Spe
-
-Zubat
-Level: 30
-IVs: 9 HP / 9 Atk / 9 Def / 9 SpA / 9 SpD / 9 Spe
-
-Camerupt
-Level: 33
-IVs: 9 HP / 9 Atk / 9 Def / 9 SpA / 9 SpD / 9 Spe
 
 === TRAINER_DARCY ===
 Name: DARCY
@@ -16873,3 +16005,2415 @@ Double Battle: No
 Kyogre
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+=== TRAINER_BOTAN_01 ===
+Name: PENNY
+Pic: Arena Tycoon Greta
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_JOLTEON @ ITEM_FOCUS_SASH
+Level: 65
+Ability: ABILITY_ELECTRIC_SURGE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Hasty
+- MOVE_RISING_VOLTAGE
+- MOVE_U_TURN
+- MOVE_TAUNT
+- MOVE_NUZZLE
+
+SPECIES_FLAREON @ ITEM_FOCUS_SASH
+Level: 65
+Ability: ABILITY_DROUGHT
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+- MOVE_INFERNO
+- MOVE_SCORCHING_SANDS
+- MOVE_ALLURING_VOICE
+- MOVE_TERRAIN_PULSE
+
+SPECIES_VAPOREON @ ITEM_FOCUS_SASH
+Level: 65
+Ability: ABILITY_DRIZZLE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+- MOVE_HYDRO_PUMP
+- MOVE_TERRAIN_PULSE
+- MOVE_BLIZZARD
+- MOVE_YAWN
+
+SPECIES_UMBREON @ ITEM_FOCUS_SASH
+Level: 65
+Ability: ABILITY_DARK_AURA
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+- MOVE_DARK_PULSE
+- MOVE_STORED_POWER
+- MOVE_AURA_SPHERE
+- MOVE_LUNAR_DANCE
+
+SPECIES_ESPEON @ ITEM_FOCUS_SASH
+Level: 65
+Ability: ABILITY_PSYCHIC_SURGE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+- MOVE_EXPANDING_FORCE
+- MOVE_SHADOW_BALL
+- MOVE_FOCUS_BLAST
+- MOVE_NASTY_PLOT
+
+SPECIES_EEVEE @ ITEM_NONE
+Level: 100
+Ability: ABILITY_ADAPTABILITY
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Fairy
+- MOVE_THRASH
+- MOVE_RETALIATE
+- MOVE_SWEET_KISS
+- MOVE_CELEBRATE
+
+
+=== TRAINER_CHAIRPERSON_01 ===
+Name: GEETA
+Pic: Champion Wallace
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_GHOLDENGO @ ITEM_FOCUS_SASH
+Level: 100
+Ability: ABILITY_GOOD_AS_GOLD
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Steel
+- MOVE_MAKE_IT_RAIN
+- MOVE_THUNDER_WAVE
+- MOVE_HAPPY_HOUR
+- MOVE_DESTINY_BOND
+
+SPECIES_CERULEDGE @ ITEM_RED_CARD
+Level: 100
+Ability: ABILITY_SHADOW_SHIELD
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Ghost
+- MOVE_SHADOW_CLAW
+- MOVE_BITTER_BLADE
+- MOVE_SACRED_SWORD
+- MOVE_SWORDS_DANCE
+
+SPECIES_ARMAROUGE @ ITEM_WEAKNESS_POLICY
+Level: 100
+Ability: ABILITY_SHADOW_SHIELD
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Modest
+Tera Type: Psychic
+- MOVE_INFERNO
+- MOVE_PSYSTRIKE
+- MOVE_ENERGY_BALL
+- MOVE_AGILITY
+
+SPECIES_PALAFIN_HERO @ ITEM_RINDO_BERRY
+Level: 100
+Ability: ABILITY_WATER_BUBBLE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Adamant
+Tera Type: Water
+- MOVE_SURGING_STRIKES
+- MOVE_TRIPLE_AXEL
+- MOVE_JET_PUNCH
+- MOVE_BULK_UP
+
+SPECIES_ESPATHRA @ ITEM_LEPPA_BERRY
+Level: 100
+Ability: ABILITY_SHADOW_SHIELD
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Hardy
+Tera Type: Psychic
+- MOVE_LANDS_WRATH
+- MOVE_MYSTICAL_POWER
+- MOVE_MYSTICAL_POWER
+- MOVE_MOONBLAST
+
+SPECIES_GLIMMORA @ ITEM_POWER_HERB
+Level: 100
+Ability: ABILITY_SHADOW_SHIELD
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Ice
+- MOVE_FREEZE_DRY
+- MOVE_EARTH_POWER
+- MOVE_METEOR_BEAM
+- MOVE_ROCK_POLISH
+
+
+=== TRAINER_CLAVEL_01_HONO ===
+Name: CLAVELL
+Pic: Gentleman
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_HYPNO @ ITEM_FOCUS_SASH
+Level: 63
+Ability: ABILITY_MAGIC_BOUNCE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 252 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Bold
+- MOVE_PSYBEAM
+- MOVE_PSYBEAM
+- MOVE_MEAN_LOOK
+- MOVE_PARTING_SHOT
+
+SPECIES_CONKELDURR @ ITEM_WEAKNESS_POLICY
+Level: 63
+Ability: ABILITY_SOLID_ROCK
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+- MOVE_STRENGTH
+- MOVE_DYNAMIC_PUNCH
+- MOVE_DARKEST_LARIAT
+- MOVE_ROCK_POLISH
+
+SPECIES_GOLDUCK @ ITEM_WEAKNESS_POLICY
+Level: 63
+Ability: ABILITY_SHADOW_SHIELD
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Modest
+- MOVE_HYDRO_PUMP
+- MOVE_PSYSTRIKE
+- MOVE_BLIZZARD
+- MOVE_AGILITY
+
+SPECIES_POLTEAGEIST_PHONY @ ITEM_WHITE_HERB
+Level: 63
+Ability: ABILITY_WATER_BUBBLE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Timid
+- MOVE_FLEUR_CANNON
+- MOVE_ASTRAL_BARRAGE
+- MOVE_HYDRO_PUMP
+- MOVE_SHELL_SMASH
+
+SPECIES_GOLURK @ ITEM_RED_CARD
+Level: 63
+Ability: ABILITY_SHADOW_SHIELD
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+- MOVE_CRUSH_GRIP
+- MOVE_SHADOW_PUNCH
+- MOVE_ICE_PUNCH
+- MOVE_ROCK_POLISH
+
+SPECIES_RABSCA @ ITEM_THROAT_SPRAY
+Level: 63
+Ability: ABILITY_SHADOW_SHIELD
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Quiet
+Tera Type: Bug
+- MOVE_BUG_BUZZ
+- MOVE_PSYCHIC_NOISE
+- MOVE_FOCUS_BLAST
+- MOVE_TRICK_ROOM
+
+
+=== TRAINER_DAN_AKU_BOSS_01 ===
+Name: MATT
+Pic: Aqua Admin M
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_LUXIO @ ITEM_MENTAL_HERB
+Level: 24
+Ability: ABILITY_SNIPER
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Hardy
+- MOVE_LASH_OUT
+- MOVE_SPARK
+- MOVE_GLARE
+- MOVE_PARTING_SHOT
+
+SPECIES_NOIBAT @ ITEM_SKY_PLATE
+Level: 24
+Ability: ABILITY_GALE_WINGS
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Modest
+- MOVE_AIR_SLASH
+- MOVE_HEAT_WAVE
+- MOVE_DRAGON_BREATH
+- MOVE_PARTING_SHOT
+
+SPECIES_LOKIX @ ITEM_SILVER_POWDER
+Level: 24
+Ability: ABILITY_TINTED_LENS
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Adamant
+- MOVE_FIRST_IMPRESSION
+- MOVE_LASH_OUT
+- MOVE_BUG_BITE
+- MOVE_PARTING_SHOT
+
+SPECIES_PAWNIARD @ ITEM_EXPERT_BELT
+Level: 24
+Ability: ABILITY_SHARPNESS
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+- MOVE_METAL_CLAW
+- MOVE_NIGHT_SLASH
+- MOVE_AQUA_CUTTER
+- MOVE_PSYCHO_CUT
+
+SPECIES_KROKOROK @ ITEM_CHOPLE_BERRY
+Level: 24
+Ability: ABILITY_INTIMIDATE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+- MOVE_STOMPING_TANTRUM
+- MOVE_CRUNCH
+- MOVE_POISON_FANG
+- MOVE_WORK_UP
+
+
+=== TRAINER_DAN_DOKU_BOSS_01 ===
+Name: SHELLY
+Pic: Aqua Admin F
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_VENOMOTH @ ITEM_COBA_BERRY
+Level: 38
+Ability: ABILITY_TOXIC_DEBRIS
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+- MOVE_U_TURN
+- MOVE_VENOSHOCK
+- MOVE_PSYCHIC_NOISE
+- MOVE_STUN_SPORE
+
+SPECIES_TOXICROAK @ ITEM_QUICK_CLAW
+Level: 38
+Ability: ABILITY_UNBURDEN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Adamant
+- MOVE_DIRE_CLAW
+- MOVE_CROSS_CHOP
+- MOVE_AQUA_CUTTER
+- MOVE_NIGHT_SLASH
+
+SPECIES_SEVIPER @ ITEM_SHELL_BELL
+Level: 38
+Ability: ABILITY_SHARPNESS
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Hardy
+- MOVE_CROSS_POISON
+- MOVE_NIGHT_SLASH
+- MOVE_LEAF_BLADE
+- MOVE_SWORDS_DANCE
+
+SPECIES_SNEASLER @ ITEM_AIR_BALLOON
+Level: 38
+Ability: ABILITY_ICE_SCALES
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+- MOVE_DIRE_CLAW
+- MOVE_ICE_PUNCH
+- MOVE_CROSS_CHOP
+- MOVE_SHADOW_CLAW
+
+SPECIES_GRENINJA @ ITEM_FOCUS_SASH
+Level: 38
+Ability: ABILITY_SUPER_LUCK
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+- MOVE_SURF
+- MOVE_DARK_PULSE
+- MOVE_SLUDGE_BOMB
+- MOVE_NASTY_PLOT
+
+
+=== TRAINER_DAN_FAIRY_BOSS_01 ===
+Name: ARCHIE
+Pic: Aqua Leader Archie
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_MORGREM @ ITEM_EVIOLITE
+Level: 56
+Ability: ABILITY_PRANKSTER
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 252 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Impish
+Tera Type: Fairy
+- MOVE_THRASH
+- MOVE_GLARE
+- MOVE_TAUNT
+- MOVE_PARTING_SHOT
+
+SPECIES_HATTERENE @ ITEM_QUICK_CLAW
+Level: 56
+Ability: ABILITY_SNIPER
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Modest
+- MOVE_MISTY_EXPLOSION
+- MOVE_SPACIAL_REND
+- MOVE_SWEET_KISS
+- MOVE_NUZZLE
+
+SPECIES_OINKOLOGNE_M @ ITEM_NONE
+Level: 56
+Ability: ABILITY_RIPEN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Fairy
+- MOVE_EARTHQUAKE
+- MOVE_PLAY_ROUGH
+- MOVE_WILD_CHARGE
+- MOVE_STUFF_CHEEKS
+
+SPECIES_CINCCINO @ ITEM_LIFE_ORB
+Level: 56
+Ability: ABILITY_TECHNICIAN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Fairy
+- MOVE_TAIL_SLAP
+- MOVE_TACKLE
+- MOVE_POUND
+- MOVE_FAKE_OUT
+
+SPECIES_DELIBIRD @ ITEM_FOCUS_SASH
+Level: 56
+Ability: ABILITY_TECHNICIAN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Ice
+- MOVE_TRIPLE_AXEL
+- MOVE_ROCK_BLAST
+- MOVE_POUND
+- MOVE_CELEBRATE
+
+
+=== TRAINER_DAN_HONO_BOSS_01 ===
+Name: TABITHA
+Pic: Magma Admin
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_MAGMAR @ ITEM_EVIOLITE
+Level: 30
+Ability: ABILITY_DROUGHT
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+- MOVE_LAVA_PLUME
+- MOVE_SCORCHING_SANDS
+- MOVE_TAUNT
+- MOVE_PARTING_SHOT
+
+SPECIES_HOUNDOOM @ ITEM_LIFE_ORB
+Level: 30
+Ability: ABILITY_CHLOROPHYLL
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Modest
+- MOVE_FLAMETHROWER
+- MOVE_DARK_PULSE
+- MOVE_SUNNY_DAY
+- MOVE_PARTING_SHOT
+
+SPECIES_SALAZZLE @ ITEM_CHARTI_BERRY
+Level: 30
+Ability: ABILITY_MULTISCALE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Modest
+- MOVE_SACRED_FIRE
+- MOVE_SLUDGE_BOMB
+- MOVE_SCORCHING_SANDS
+- MOVE_PARTING_SHOT
+
+SPECIES_PYROAR @ ITEM_AIR_BALLOON
+Level: 30
+Ability: ABILITY_DOWNLOAD
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Naive
+- MOVE_FIRE_PLEDGE
+- MOVE_SLASH
+- MOVE_YAWN
+- MOVE_PARTING_SHOT
+
+SPECIES_TSAREENA @ ITEM_FOCUS_SASH
+Level: 30
+Ability: ABILITY_QUEENLY_MAJESTY
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+- MOVE_TROP_KICK
+- MOVE_BRICK_BREAK
+- MOVE_STOMPING_TANTRUM
+- MOVE_PARTING_SHOT
+
+
+=== TRAINER_DAN_KAKUTOU_BOSS_01 ===
+Name: MAXIE
+Pic: Magma Leader Maxie
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_ANNIHILAPE @ ITEM_QUICK_CLAW
+Level: 60
+Ability: ABILITY_MOLD_BREAKER
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Fighting
+- MOVE_FINAL_GAMBIT
+- MOVE_DESTINY_BOND
+- MOVE_ROAR
+- MOVE_PARTING_SHOT
+
+SPECIES_ZAPDOS_GALAR @ ITEM_ROSELI_BERRY
+Level: 60
+Ability: ABILITY_RECKLESS
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+- MOVE_THUNDEROUS_KICK
+- MOVE_VOLT_TACKLE
+- MOVE_HIGH_JUMP_KICK
+- MOVE_PARTING_SHOT
+
+SPECIES_HAWLUCHA @ ITEM_POWER_HERB
+Level: 60
+Ability: ABILITY_UNBURDEN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Adamant
+Tera Type: Fighting
+- MOVE_SKY_ATTACK
+- MOVE_CROSS_CHOP
+- MOVE_ACROBATICS
+- MOVE_STONE_EDGE
+
+SPECIES_GRANBULL @ ITEM_TOXIC_ORB
+Level: 60
+Ability: ABILITY_QUICK_FEET
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Fighting
+- MOVE_THRASH
+- MOVE_DYNAMIC_PUNCH
+- MOVE_MEGA_PUNCH
+- MOVE_ROAR
+
+SPECIES_PASSIMIAN @ ITEM_SITRUS_BERRY
+Level: 60
+Ability: ABILITY_UNBURDEN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 252 SpD / 0 Spe
+Nature: Careful
+Tera Type: Fighting
+- MOVE_TAIL_SLAP
+- MOVE_POUND
+- MOVE_FURY_SWIPES
+- MOVE_BELLY_DRUM
+
+
+=== TRAINER_E4_DRAGON_01 ===
+Name: HASSEL
+Pic: Elite Four Drake
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_ARCHALUDON @ ITEM_QUICK_CLAW
+Level: 100
+Ability: ABILITY_MEGA_LAUNCHER
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 252 SpD / 0 Spe
+Nature: Calm
+Tera Type: Dragon
+- MOVE_STEEL_BEAM
+- MOVE_STEEL_BEAM
+- MOVE_ROAR_OF_TIME
+- MOVE_THUNDER_WAVE
+
+SPECIES_HAXORUS @ ITEM_RED_CARD
+Level: 100
+Ability: ABILITY_MULTISCALE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Dragon
+- MOVE_DRAGON_CLAW
+- MOVE_SACRED_SWORD
+- MOVE_POISON_JAB
+- MOVE_DRAGON_DANCE
+
+SPECIES_BAXCALIBUR @ ITEM_CHOPLE_BERRY
+Level: 100
+Ability: ABILITY_SNOW_WARNING
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Dragon
+- MOVE_OUTRAGE
+- MOVE_ICE_HAMMER
+- MOVE_EARTHQUAKE
+- MOVE_DRAGON_DANCE
+
+SPECIES_DRAGAPULT @ ITEM_FOCUS_SASH
+Level: 100
+Ability: ABILITY_MEGA_LAUNCHER
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Dragon
+- MOVE_SHADOW_BALL
+- MOVE_DRAGON_ENERGY
+- MOVE_DRAGON_PULSE
+- MOVE_DESTINY_BOND
+
+SPECIES_DRAGONITE @ ITEM_YACHE_BERRY
+Level: 100
+Ability: ABILITY_AERILATE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Adamant
+Tera Type: Dragon
+- MOVE_EXTREME_SPEED
+- MOVE_EARTHQUAKE
+- MOVE_STONE_EDGE
+- MOVE_BULK_UP
+
+SPECIES_HYDREIGON @ ITEM_ROSELI_BERRY
+Level: 100
+Ability: ABILITY_SHEER_FORCE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Dragon
+- MOVE_FICKLE_BEAM
+- MOVE_EARTH_POWER
+- MOVE_FIRE_BLAST
+- MOVE_SLUDGE_BOMB
+
+
+=== TRAINER_E4_HAGANE_01 ===
+Name: POPPY
+Pic: Elite Four Phoebe
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_BRONZONG @ ITEM_MENTAL_HERB
+Level: 100
+Ability: ABILITY_LEVITATE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 252 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Bold
+Tera Type: Steel
+- MOVE_STEEL_BEAM
+- MOVE_STEEL_BEAM
+- MOVE_THUNDER_WAVE
+- MOVE_HYPNOSIS
+
+SPECIES_BLASTOISE @ ITEM_FOCUS_SASH
+Level: 100
+Ability: ABILITY_MEGA_LAUNCHER
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Steel
+- MOVE_HYDRO_PUMP
+- MOVE_FLASH_CANNON
+- MOVE_FOCUS_BLAST
+- MOVE_SHELL_SMASH
+
+SPECIES_MAGMORTAR @ ITEM_QUICK_CLAW
+Level: 100
+Ability: ABILITY_MEGA_LAUNCHER
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Modest
+Tera Type: Steel
+- MOVE_SELF_DESTRUCT
+- MOVE_EXPLOSION
+- MOVE_SELF_DESTRUCT
+- MOVE_EXPLOSION
+
+SPECIES_PERRSERKER @ ITEM_WEAKNESS_POLICY
+Level: 100
+Ability: ABILITY_STEELY_SPIRIT
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Steel
+- MOVE_CROSS_CHOP
+- MOVE_METAL_CLAW
+- MOVE_CRUSH_CLAW
+- MOVE_VICTORY_DANCE
+
+SPECIES_CORVIKNIGHT @ ITEM_POWER_HERB
+Level: 100
+Ability: ABILITY_GALE_WINGS
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Adamant
+Tera Type: Steel
+- MOVE_SKY_ATTACK
+- MOVE_STEEL_WING
+- MOVE_ACROBATICS
+- MOVE_SACRED_SWORD
+
+SPECIES_TINKATON @ ITEM_CHOPLE_BERRY
+Level: 100
+Ability: ABILITY_STEELWORKER
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Steel
+- MOVE_GIGATON_HAMMER
+- MOVE_HOLD_BACK
+- MOVE_HOLD_BACK
+- MOVE_HOLD_BACK
+
+
+=== TRAINER_E4_HIKOU_01 ===
+Name: LARRY
+Pic: Elite Four Glacia
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_STARAPTOR @ ITEM_FOCUS_SASH
+Level: 100
+Ability: ABILITY_INTIMIDATE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Flying
+- MOVE_FINAL_GAMBIT
+- MOVE_ENDEAVOR
+- MOVE_PARTING_SHOT
+- MOVE_WHIRLWIND
+
+SPECIES_CHIMECHO @ ITEM_THROAT_SPRAY
+Level: 100
+Ability: ABILITY_PUNK_ROCK
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Flying
+- MOVE_AEROBLAST
+- MOVE_PSYCHIC_NOISE
+- MOVE_HEAT_WAVE
+- MOVE_SING
+
+SPECIES_DODRIO @ ITEM_LIECHI_BERRY
+Level: 100
+Ability: ABILITY_HUSTLE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Flying
+- MOVE_MEGA_KICK
+- MOVE_DRILL_PECK
+- MOVE_TEMPER_FLARE
+- MOVE_ENDURE
+
+SPECIES_BRAVIARY @ ITEM_POWER_HERB
+Level: 100
+Ability: ABILITY_GALE_WINGS
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Adamant
+Tera Type: Flying
+- MOVE_SKY_ATTACK
+- MOVE_DUAL_WINGBEAT
+- MOVE_POUND
+- MOVE_FURY_SWIPES
+
+SPECIES_TOUCANNON @ ITEM_LIFE_ORB
+Level: 100
+Ability: ABILITY_MEGA_LAUNCHER
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 252 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Relaxed
+Tera Type: Flying
+- MOVE_TRI_ATTACK
+- MOVE_PECK
+- MOVE_POUND
+- MOVE_LOCK_ON
+
+SPECIES_KOMALA @ ITEM_QUICK_CLAW
+Level: 100
+Ability: ABILITY_UNBURDEN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Flying
+- MOVE_BRANCH_POKE
+- MOVE_ACROBATICS
+- MOVE_DRAIN_PUNCH
+- MOVE_BELLY_DRUM
+
+
+=== TRAINER_E4_JIMEN_01 ===
+Name: RIKA
+Pic: Elite Four Sidney
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_EXCADRILL @ ITEM_FOCUS_SASH
+Level: 100
+Ability: ABILITY_SHARPNESS
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Ground
+- MOVE_METAL_CLAW
+- MOVE_DRILL_RUN
+- MOVE_CRUSH_CLAW
+- MOVE_TAUNT
+
+SPECIES_CAMERUPT @ ITEM_QUICK_CLAW
+Level: 100
+Ability: ABILITY_DROUGHT
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Modest
+Tera Type: Ground
+- MOVE_SELF_DESTRUCT
+- MOVE_EXPLOSION
+- MOVE_SELF_DESTRUCT
+- MOVE_EXPLOSION
+
+SPECIES_GARCHOMP @ ITEM_YACHE_BERRY
+Level: 100
+Ability: ABILITY_ROUGH_SKIN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Ground
+- MOVE_EARTHQUAKE
+- MOVE_DRAGON_CLAW
+- MOVE_TEMPER_FLARE
+- MOVE_DRACO_METEOR
+
+SPECIES_TORTERRA @ ITEM_WHITE_HERB
+Level: 100
+Ability: ABILITY_SHELL_ARMOR
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Ground
+- MOVE_WOOD_HAMMER
+- MOVE_MEGA_KICK
+- MOVE_STRENGTH
+- MOVE_SHELL_SMASH
+
+SPECIES_DONPHAN @ ITEM_EVIOLITE
+Level: 100
+Ability: ABILITY_SPEED_BOOST
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 252 SpD / 0 Spe
+Nature: Careful
+Tera Type: Ground
+- MOVE_FISSURE
+- MOVE_FISSURE
+- MOVE_FISSURE
+- MOVE_ROLLOUT
+
+SPECIES_GOLEM @ ITEM_RED_CARD
+Level: 100
+Ability: ABILITY_STURDY
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Adamant
+Tera Type: Ground
+- MOVE_MEGA_KICK
+- MOVE_ROCK_SLIDE
+- MOVE_FIRE_PUNCH
+- MOVE_SHELL_SMASH
+
+
+=== TRAINER_GYM_DENKI_LEADER_01 ===
+Name: WATTSON
+Pic: Leader Wattson
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_PACHIRISU @ ITEM_MENTAL_HERB
+Level: 27
+Ability: ABILITY_FUR_COAT
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Bold
+Tera Type: Electric
+- MOVE_RELIC_SONG
+- MOVE_VOLT_SWITCH
+- MOVE_NUZZLE
+- MOVE_TAUNT
+
+SPECIES_MINUN @ ITEM_AIR_BALLOON
+Level: 27
+Ability: ABILITY_SNOW_WARNING
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Electric
+- MOVE_FREEZE_DRY
+- MOVE_VOLT_SWITCH
+- MOVE_WATER_PULSE
+- MOVE_AURORA_VEIL
+
+SPECIES_PLUSLE @ ITEM_LIFE_ORB
+Level: 27
+Ability: ABILITY_DROUGHT
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Electric
+- MOVE_FIRE_PLEDGE
+- MOVE_VOLT_SWITCH
+- MOVE_ALLURING_VOICE
+- MOVE_MAGNET_RISE
+
+SPECIES_MAGNETON @ ITEM_ASSAULT_VEST
+Level: 27
+Ability: ABILITY_LEVITATE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Modest
+Tera Type: Electric
+- MOVE_FLASH_CANNON
+- MOVE_VOLT_SWITCH
+- MOVE_WEATHER_BALL
+- MOVE_DAZZLING_GLEAM
+
+SPECIES_ORICORIO_BAILE @ ITEM_CHARTI_BERRY
+Level: 27
+Ability: ABILITY_ADAPTABILITY
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Electric
+- MOVE_AIR_SLASH
+- MOVE_VOLT_SWITCH
+- MOVE_AURA_SPHERE
+- MOVE_WEATHER_BALL
+
+SPECIES_PORYGON @ ITEM_EVIOLITE
+Level: 27
+Ability: ABILITY_LEVITATE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Modest
+Tera Type: Electric
+- MOVE_PARABOLIC_CHARGE
+- MOVE_PSYCHIC_NOISE
+- MOVE_ICE_BEAM
+- MOVE_AURA_SPHERE
+
+
+=== TRAINER_GYM_ESPER_LEADER_01 ===
+Name: TATE&LIZA
+Pic: Leader Tate And Liza
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_DELPHOX @ ITEM_FOCUS_SASH
+Level: 52
+Ability: ABILITY_PSYCHIC_SURGE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Psychic
+- MOVE_FIRE_BLAST
+- MOVE_EXPANDING_FORCE
+- MOVE_TAUNT
+- MOVE_HYPNOSIS
+
+SPECIES_GOTHITELLE @ ITEM_BABIRI_BERRY
+Level: 52
+Ability: ABILITY_SHADOW_SHIELD
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Psychic
+- MOVE_MOONBLAST
+- MOVE_DARK_PULSE
+- MOVE_MYSTICAL_POWER
+- MOVE_LUNAR_DANCE
+
+SPECIES_MEOWSTIC_F @ ITEM_LIFE_ORB
+Level: 52
+Ability: ABILITY_SHEER_FORCE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Psychic
+- MOVE_HYPER_VOICE
+- MOVE_PSYCHIC
+- MOVE_FOCUS_BLAST
+- MOVE_FLEUR_CANNON
+
+SPECIES_INDEEDEE_F @ ITEM_QUICK_CLAW
+Level: 52
+Ability: ABILITY_PSYCHIC_SURGE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Psychic
+- MOVE_FLEUR_CANNON
+- MOVE_EXPANDING_FORCE
+- MOVE_SWEET_KISS
+- MOVE_MYSTICAL_FIRE
+
+SPECIES_MEDICHAM @ ITEM_WEAKNESS_POLICY
+Level: 52
+Ability: ABILITY_PSYCHIC_SURGE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+- MOVE_FOCUS_BLAST
+- MOVE_EXPANDING_FORCE
+- MOVE_SHADOW_BALL
+- MOVE_AGILITY
+
+SPECIES_ARTICUNO_GALAR @ ITEM_COLBUR_BERRY
+Level: 52
+Ability: ABILITY_SHADOW_SHIELD
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Psychic
+- MOVE_BLIZZARD
+- MOVE_PSYSTRIKE
+- MOVE_FOCUS_BLAST
+- MOVE_SHADOW_BALL
+
+
+=== TRAINER_GYM_GHOST_LEADER_01 ===
+Name: WINONA
+Pic: Leader Winona
+Gender: Male
+Music: Female
+Double Battle: Yes
+AI: Basic Trainer
+
+
+SPECIES_FROSLASS @ ITEM_QUICK_CLAW
+Level: 45
+Ability: ABILITY_SNOW_WARNING
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+- MOVE_BLIZZARD
+- MOVE_SHADOW_BALL
+- MOVE_SWEET_KISS
+- MOVE_AURORA_VEIL
+
+SPECIES_HOOPA_CONFINED @ ITEM_FOCUS_SASH
+Level: 45
+Ability: ABILITY_PSYCHIC_SURGE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+- MOVE_SHADOW_BALL
+- MOVE_PSYSHOCK
+- MOVE_DAZZLING_GLEAM
+- MOVE_FOCUS_BLAST
+
+SPECIES_MIMIKYU_DISGUISED @ ITEM_LIFE_ORB
+Level: 45
+Ability: ABILITY_DISGUISE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+- MOVE_PLAY_ROUGH
+- MOVE_SHADOW_CLAW
+- MOVE_PSYCHO_CUT
+- MOVE_X_SCISSOR
+
+SPECIES_SPIRITOMB @ ITEM_ROSELI_BERRY
+Level: 45
+Ability: ABILITY_SHADOW_SHIELD
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Modest
+- MOVE_FIERY_WRATH
+- MOVE_FOCUS_BLAST
+- MOVE_MOONBLAST
+- MOVE_PARTING_SHOT
+
+SPECIES_CHANDELURE @ ITEM_COLBUR_BERRY
+Level: 45
+Ability: ABILITY_LEVITATE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+- MOVE_HEAT_WAVE
+- MOVE_INFERNAL_PARADE
+- MOVE_ENERGY_BALL
+- MOVE_THUNDER
+
+SPECIES_HOUNDSTONE @ ITEM_ASSAULT_VEST
+Level: 45
+Ability: ABILITY_FUR_COAT
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 252 Def / 0 SpA / 252 SpD / 0 Spe
+Nature: Impish
+Tera Type: Ghost
+- MOVE_LAST_RESPECTS
+- MOVE_BONE_RUSH
+- MOVE_TACKLE
+- MOVE_POUND
+
+
+=== TRAINER_GYM_KOORI_LEADER_01 ===
+Name: JUAN
+Pic: Leader Juan
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_NINETALES_ALOLA @ ITEM_QUICK_CLAW
+Level: 54
+Ability: ABILITY_SNOW_WARNING
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Ice
+- MOVE_BLIZZARD
+- MOVE_MISTY_EXPLOSION
+- MOVE_SWEET_KISS
+- MOVE_AURORA_VEIL
+
+SPECIES_BEARTIC @ ITEM_BABIRI_BERRY
+Level: 54
+Ability: ABILITY_SLUSH_RUSH
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Ice
+- MOVE_ICE_HAMMER
+- MOVE_DYNAMIC_PUNCH
+- MOVE_STRENGTH
+- MOVE_DARKEST_LARIAT
+
+SPECIES_ARTICUNO @ ITEM_CHARTI_BERRY
+Level: 54
+Ability: ABILITY_SNOW_WARNING
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Ice
+- MOVE_BLIZZARD
+- MOVE_HURRICANE
+- MOVE_WHIRLWIND
+- MOVE_AURORA_VEIL
+
+SPECIES_MAMOSWINE @ ITEM_LIECHI_BERRY
+Level: 54
+Ability: ABILITY_SLUSH_RUSH
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Ice
+- MOVE_ICE_HAMMER
+- MOVE_MEGA_KICK
+- MOVE_STRENGTH
+- MOVE_STUFF_CHEEKS
+
+SPECIES_GLALIE @ ITEM_FOCUS_SASH
+Level: 54
+Ability: ABILITY_ANGER_SHELL
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Ice
+- MOVE_BLIZZARD
+- MOVE_POWER_GEM
+- MOVE_EARTH_POWER
+- MOVE_SHELL_SMASH
+
+SPECIES_ARCANINE @ ITEM_OCCA_BERRY
+Level: 54
+Ability: ABILITY_REFRIGERATE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Adamant
+Tera Type: Ice
+- MOVE_EXTREME_SPEED
+- MOVE_BLAZE_KICK
+- MOVE_FREEZE_DRY
+- MOVE_HOWL
+
+
+=== TRAINER_GYM_KUSA_LEADER_01 ===
+Name: BRAWLY
+Pic: Leader Brawly
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_GLOOM @ ITEM_BLACK_SLUDGE
+Level: 18
+Ability: ABILITY_TOXIC_DEBRIS
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 252 SpD / 0 Spe
+Nature: Sassy
+Tera Type: Grass
+- MOVE_VENOSHOCK
+- MOVE_MEGA_DRAIN
+- MOVE_TAUNT
+- MOVE_DRAIN_PUNCH
+
+SPECIES_SUNFLORA @ ITEM_ASSAULT_VEST
+Level: 18
+Ability: ABILITY_DRIZZLE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 252 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Modest
+Tera Type: Grass
+- MOVE_VOLT_SWITCH
+- MOVE_MEGA_DRAIN
+- MOVE_DAZZLING_GLEAM
+- MOVE_POLLEN_PUFF
+
+SPECIES_SMEARGLE @ ITEM_THROAT_SPRAY
+Level: 18
+Ability: ABILITY_PROTEAN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Hasty
+Tera Type: Grass
+- MOVE_GRASS_PLEDGE
+- MOVE_WATER_PLEDGE
+- MOVE_PSYCHIC_NOISE
+- MOVE_ALLURING_VOICE
+
+SPECIES_TOEDSCOOL @ ITEM_FLAME_ORB
+Level: 18
+Ability: ABILITY_QUICK_FEET
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Modest
+- MOVE_MUDDY_WATER
+- MOVE_GIGA_DRAIN
+- MOVE_VENOSHOCK
+- MOVE_HEX
+
+SPECIES_BRAMBLIN @ ITEM_RED_CARD
+Level: 18
+Ability: ABILITY_WIND_RIDER
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Adamant
+- MOVE_BRANCH_POKE
+- MOVE_SHADOW_SNEAK
+- MOVE_ROCK_TOMB
+- MOVE_LEECH_LIFE
+
+SPECIES_DARTRIX @ ITEM_SITRUS_BERRY
+Level: 18
+Ability: ABILITY_TECHNICIAN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Hasty
+Tera Type: Grass
+- MOVE_RAZOR_LEAF
+- MOVE_PLUCK
+- MOVE_WORK_UP
+- MOVE_VACUUM_WAVE
+
+
+=== TRAINER_GYM_MIZU_LEADER_01 ===
+Name: FLANNERY
+Pic: Leader Flannery
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_QWILFISH @ ITEM_MENTAL_HERB
+Level: 36
+Ability: ABILITY_TOXIC_DEBRIS
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 252 SpD / 0 Spe
+Nature: Careful
+Tera Type: Water
+- MOVE_FLIP_TURN
+- MOVE_BARB_BARRAGE
+- MOVE_TAUNT
+- MOVE_DESTINY_BOND
+
+SPECIES_VELUZA @ ITEM_LIFE_ORB
+Level: 36
+Ability: ABILITY_SHARPNESS
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Water
+- MOVE_AQUA_CUTTER
+- MOVE_PSYCHO_CUT
+- MOVE_CEASELESS_EDGE
+- MOVE_U_TURN
+
+SPECIES_WUGTRIO @ ITEM_RINDO_BERRY
+Level: 36
+Ability: ABILITY_PARENTAL_BOND
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Water
+- MOVE_TRIPLE_DIVE
+- MOVE_ROCK_SLIDE
+- MOVE_STOMPING_TANTRUM
+- MOVE_ZEN_HEADBUTT
+
+SPECIES_CRAWDAUNT @ ITEM_FOCUS_SASH
+Level: 36
+Ability: ABILITY_ANGER_SHELL
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Water
+- MOVE_AQUA_CUTTER
+- MOVE_NIGHT_SLASH
+- MOVE_CROSS_CHOP
+- MOVE_CROSS_POISON
+
+SPECIES_BARRASKEWDA @ ITEM_LIECHI_BERRY
+Level: 36
+Ability: ABILITY_ARMOR_TAIL
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Adamant
+Tera Type: Water
+- MOVE_LIQUIDATION
+- MOVE_HIGH_JUMP_KICK
+- MOVE_DRILL_RUN
+- MOVE_ENDURE
+
+
+=== TRAINER_GYM_MUSHI_LEADER_01 ===
+Name: ROXANNE
+Pic: Leader Roxanne
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_VOLBEAT @ ITEM_CLEAR_AMULET
+Level: 13
+Ability: ABILITY_PRANKSTER
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Timid
+- MOVE_STRUGGLE_BUG
+- MOVE_ELECTROWEB
+- MOVE_ICY_WIND
+- MOVE_NUZZLE
+
+SPECIES_CUTIEFLY @ ITEM_PETAYA_BERRY
+Level: 13
+Ability: ABILITY_ARMOR_TAIL
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Modest
+Tera Type: Bug
+- MOVE_DRAINING_KISS
+- MOVE_ABSORB
+- MOVE_EXTRASENSORY
+- MOVE_ENDURE
+
+SPECIES_COMBEE @ ITEM_QUICK_CLAW
+Level: 13
+Ability: ABILITY_HUSTLE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Serious
+- MOVE_ACROBATICS
+- MOVE_BUG_BITE
+- MOVE_MEGA_DRAIN
+- MOVE_TAILWIND
+
+SPECIES_LARVESTA @ ITEM_QUICK_CLAW
+Level: 13
+Ability: ABILITY_FLASH_FIRE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Modest
+- MOVE_FIRE_SPIN
+- MOVE_INFESTATION
+- MOVE_MEGA_DRAIN
+- MOVE_SAND_TOMB
+
+SPECIES_DEWPIDER @ ITEM_MYSTIC_WATER
+Level: 13
+Ability: ABILITY_WATER_BUBBLE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Modest
+- MOVE_BUBBLE_BEAM
+- MOVE_STRUGGLE_BUG
+- MOVE_ELECTROWEB
+- MOVE_ICY_WIND
+
+SPECIES_FIDOUGH @ ITEM_SITRUS_BERRY
+Level: 13
+Ability: ABILITY_HUSTLE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Bug
+- MOVE_COVET
+- MOVE_U_TURN
+- MOVE_STOMPING_TANTRUM
+- MOVE_SLACK_OFF
+
+
+=== TRAINER_GYM_NORMAL_LEADER_01 ===
+Name: NORMAN
+Pic: Leader Norman
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_STARAPTOR @ ITEM_FOCUS_SASH
+Level: 42
+Ability: ABILITY_GALE_WINGS
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Normal
+- MOVE_HIGH_JUMP_KICK
+- MOVE_SUCKER_PUNCH
+- MOVE_TAUNT
+- MOVE_PARTING_SHOT
+
+SPECIES_DUDUNSPARCE_TWO_SEGMENT @ ITEM_TOXIC_ORB
+Level: 42
+Ability: ABILITY_POISON_HEAL
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 252 SpD / 0 Spe
+Nature: Careful
+Tera Type: Normal
+- MOVE_DRILL_RUN
+- MOVE_FACADE
+- MOVE_AVALANCHE
+- MOVE_COIL
+
+SPECIES_SLAKING @ ITEM_CHOPLE_BERRY
+Level: 42
+Ability: ABILITY_ICE_SCALES
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 252 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Impish
+Tera Type: Normal
+- MOVE_AVALANCHE
+- MOVE_RETALIATE
+- MOVE_YAWN
+- MOVE_EARTHQUAKE
+
+SPECIES_KOMALA @ ITEM_QUICK_CLAW
+Level: 42
+Ability: ABILITY_UNBURDEN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Adamant
+Tera Type: Normal
+- MOVE_SEED_BOMB
+- MOVE_RETALIATE
+- MOVE_TAKE_DOWN
+- MOVE_FALSE_SURRENDER
+
+SPECIES_TOUCANNON @ ITEM_ASSAULT_VEST
+Level: 42
+Ability: ABILITY_MEGA_LAUNCHER
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Modest
+- MOVE_AEROBLAST
+- MOVE_BOOMBURST
+- MOVE_FOCUS_BLAST
+- MOVE_FIRE_BLAST
+
+SPECIES_CHIMECHO @ ITEM_THROAT_SPRAY
+Level: 42
+Ability: ABILITY_PUNK_ROCK
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Normal
+- MOVE_BOOMBURST
+- MOVE_PSYCHIC_NOISE
+- MOVE_AEROBLAST
+- MOVE_AURA_SPHERE
+
+
+=== TRAINER_PEPPER_01 ===
+Name: ARVEN
+Pic: Factory Head Noland
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_SCOVILLAIN @ ITEM_QUICK_CLAW
+Level: 63
+Ability: ABILITY_INTIMIDATE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Timid
+- MOVE_SELF_DESTRUCT
+- MOVE_ROAR
+- MOVE_PARTING_SHOT
+- MOVE_ROAR
+
+SPECIES_FLAPPLE @ ITEM_FOCUS_SASH
+Level: 63
+Ability: ABILITY_HUSTLE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+- MOVE_OUTRAGE
+- MOVE_SEED_BOMB
+- MOVE_GUNK_SHOT
+- MOVE_SHELL_SMASH
+
+SPECIES_BRELOOM @ ITEM_COBA_BERRY
+Level: 63
+Ability: ABILITY_TECHNICIAN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+- MOVE_BULLET_SEED
+- MOVE_POUND
+- MOVE_ROCK_BLAST
+- MOVE_SPORE
+
+SPECIES_GARGANACL @ ITEM_RINDO_BERRY
+Level: 63
+Ability: ABILITY_WATER_ABSORB
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 252 SpD / 0 Spe
+Nature: Careful
+- MOVE_STRENGTH
+- MOVE_FISSURE
+- MOVE_FISSURE
+- MOVE_FISSURE
+
+SPECIES_CLOYSTER @ ITEM_CHOPLE_BERRY
+Level: 63
+Ability: ABILITY_TRIAGE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 252 SpD / 0 Spe
+Nature: Careful
+- MOVE_HORN_ATTACK
+- MOVE_FURY_ATTACK
+- MOVE_ICICLE_SPEAR
+- MOVE_LOCK_ON
+
+SPECIES_MABOSSTIFF @ ITEM_ASSAULT_VEST
+Level: 63
+Ability: ABILITY_FUR_COAT
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Adamant
+Tera Type: Normal
+- MOVE_RETALIATE
+- MOVE_BRUTAL_SWING
+- MOVE_TAKE_DOWN
+- MOVE_STOMPING_TANTRUM
+
+
+=== TRAINER_RIVAL_02_HONO ===
+Name: MAY
+Pic: May
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_FUECOCO @ ITEM_NONE
+Level: 10
+Ability: ABILITY_RIPEN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Modest
+- MOVE_FIRE_SPIN
+- MOVE_SMOG
+- MOVE_YAWN
+- MOVE_SLACK_OFF
+
+SPECIES_QUAXLY @ ITEM_NONE
+Level: 10
+Ability: ABILITY_TORRENT
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Adamant
+- MOVE_AQUA_JET
+- MOVE_PECK
+- MOVE_POUND
+- MOVE_WORK_UP
+
+SPECIES_SPRIGATITO @ ITEM_NONE
+Level: 10
+Ability: ABILITY_PROTEAN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Lonely
+- MOVE_RAZOR_LEAF
+- MOVE_SNARL
+- MOVE_SKITTER_SMACK
+- MOVE_WORK_UP
+
+SPECIES_PAWMI @ ITEM_NONE
+Level: 10
+Ability: ABILITY_FLUFFY
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Bold
+Tera Type: Normal
+- MOVE_SHOCK_WAVE
+- MOVE_SWIFT
+- MOVE_DRAINING_KISS
+- MOVE_FORCE_PALM
+
+
+=== TRAINER_RIVAL_04_HONO ===
+Name: MAY
+Pic: May
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_QUAXWELL @ ITEM_QUICK_CLAW
+Level: 26
+Ability: ABILITY_TORRENT
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+- MOVE_FLIP_TURN
+- MOVE_DUAL_WINGBEAT
+- MOVE_STOMPING_TANTRUM
+- MOVE_TAUNT
+
+SPECIES_CROCALOR @ ITEM_PETAYA_BERRY
+Level: 26
+Ability: ABILITY_BLAZE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Modest
+- MOVE_FIRE_PLEDGE
+- MOVE_ALLURING_VOICE
+- MOVE_YAWN
+- MOVE_SUBSTITUTE
+
+SPECIES_PAWMO @ ITEM_ASSAULT_VEST
+Level: 26
+Ability: ABILITY_FLUFFY
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Jolly
+- MOVE_CIRCLE_THROW
+- MOVE_THUNDER_PUNCH
+- MOVE_ICE_PUNCH
+- MOVE_SEED_BOMB
+
+SPECIES_HAKAMO_O @ ITEM_DRAGON_FANG
+Level: 26
+Ability: ABILITY_MULTISCALE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+- MOVE_DRAGON_CLAW
+- MOVE_METAL_CLAW
+- MOVE_NIGHT_SLASH
+- MOVE_CROSS_CHOP
+
+SPECIES_LYCANROC_MIDDAY @ ITEM_AIR_BALLOON
+Level: 26
+Ability: ABILITY_INTIMIDATE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Adamant
+- MOVE_JAW_LOCK
+- MOVE_BODY_SLAM
+- MOVE_FIRE_FANG
+- MOVE_STOMPING_TANTRUM
+
+SPECIES_FLORAGATO @ ITEM_COBA_BERRY
+Level: 26
+Ability: ABILITY_PROTEAN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Fighting
+- MOVE_BULLET_SEED
+- MOVE_POUND
+- MOVE_TACKLE
+- MOVE_FURY_SWIPES
+
+
+=== TRAINER_RIVAL_05_HONO ===
+Name: MAY
+Pic: May
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_QUAQUAVAL @ ITEM_RINDO_BERRY
+Level: 42
+Ability: ABILITY_QUEENLY_MAJESTY
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+- MOVE_LIQUIDATION
+- MOVE_BRICK_BREAK
+- MOVE_BRAVE_BIRD
+- MOVE_U_TURN
+
+SPECIES_MEOWSCARADA @ ITEM_LIFE_ORB
+Level: 42
+Ability: ABILITY_PROTEAN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+- MOVE_FLOWER_TRICK
+- MOVE_KNOCK_OFF
+- MOVE_TACKLE
+- MOVE_PSYCHO_CUT
+
+SPECIES_SKELEDIRGE @ ITEM_SALAC_BERRY
+Level: 42
+Ability: ABILITY_ROUGH_SKIN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Poison
+- MOVE_BELCH
+- MOVE_TORCH_SONG
+- MOVE_SHADOW_BALL
+- MOVE_STUFF_CHEEKS
+
+SPECIES_EGG /* Egg */ @ ITEM_NONE
+Level: 1
+Ability: ABILITY_NONE
+IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Hardy
+Tera Type: Grass
+- MOVE_SLASH
+- MOVE_FLOWER_TRICK
+- MOVE_QUICK_ATTACK
+- MOVE_NONE
+
+
+=== TRAINER_BROTHER_01_01 ===
+Name: WALLY
+Pic: Wally
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_YANMA @ ITEM_RED_CARD
+Level: 12
+Ability: ABILITY_EMERGENCY_EXIT
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 252 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Modest
+- MOVE_INFESTATION
+- MOVE_GUST
+- MOVE_ANCIENT_POWER
+- MOVE_VACUUM_WAVE
+
+SPECIES_ROCKRUFF @ ITEM_LIECHI_BERRY
+Level: 12
+Ability: ABILITY_STURDY
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Adamant
+- MOVE_ACCELEROCK
+- MOVE_QUICK_ATTACK
+- MOVE_POPULATION_BOMB
+- MOVE_STEALTH_ROCK
+
+SPECIES_INKAY @ ITEM_QUICK_CLAW
+Level: 12
+Ability: ABILITY_WATER_BUBBLE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Modest
+- MOVE_SNARL
+- MOVE_CONFUSION
+- MOVE_CHILLING_WATER
+- MOVE_MEGA_DRAIN
+
+SPECIES_TEDDIURSA @ ITEM_SALAC_BERRY
+Level: 12
+Ability: ABILITY_RIPEN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Adamant
+- MOVE_HEADBUTT
+- MOVE_THIEF
+- MOVE_COVET
+- MOVE_WORK_UP
+
+SPECIES_APPLIN @ ITEM_LUM_BERRY
+Level: 12
+Ability: ABILITY_PRISM_ARMOR
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Modest
+- MOVE_MEGA_DRAIN
+- MOVE_DRAGON_BREATH
+- MOVE_SHELTER
+- MOVE_DEFENSE_CURL
+
+SPECIES_GLIGAR @ ITEM_SITRUS_BERRY
+Level: 12
+Ability: ABILITY_WIND_RIDER
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Ground
+- MOVE_BULLDOZE
+- MOVE_WRAP
+- MOVE_ROOST
+- MOVE_TOXIC
+
+
+=== TRAINER_BROTHER_01_02 ===
+Name: WALLY
+Pic: Wally
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_INKAY @ ITEM_TANGA_BERRY
+Level: 20
+Ability: ABILITY_WATER_BUBBLE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Modest
+- MOVE_EXTRASENSORY
+- MOVE_WATER_PULSE
+- MOVE_SNARL
+- MOVE_PARTING_SHOT
+
+SPECIES_YANMA @ ITEM_SILVER_POWDER
+Level: 20
+Ability: ABILITY_ARMOR_TAIL
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Naughty
+- MOVE_U_TURN
+- MOVE_HIGH_JUMP_KICK
+- MOVE_TAKE_DOWN
+- MOVE_PSYCHIC_NOISE
+
+SPECIES_TEDDIURSA @ ITEM_CHOPLE_BERRY
+Level: 20
+Ability: ABILITY_HUSTLE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Adamant
+Tera Type: Normal
+- MOVE_HEADBUTT
+- MOVE_STOMPING_TANTRUM
+- MOVE_COVET
+- MOVE_NIGHT_SLASH
+
+SPECIES_GLIGAR @ ITEM_EXPERT_BELT
+Level: 20
+Ability: ABILITY_TOUGH_CLAWS
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+- MOVE_POISON_JAB
+- MOVE_WING_ATTACK
+- MOVE_BRICK_BREAK
+- MOVE_CRUNCH
+
+SPECIES_ROCKRUFF @ ITEM_LIECHI_BERRY
+Level: 20
+Ability: ABILITY_STURDY
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Adamant
+- MOVE_SMACK_DOWN
+- MOVE_HEADBUTT
+- MOVE_WORK_UP
+- MOVE_STOMPING_TANTRUM
+
+SPECIES_DIPPLIN @ ITEM_BLACK_SLUDGE
+Level: 20
+Ability: ABILITY_PRISM_ARMOR
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Modest
+Tera Type: Poison
+- MOVE_POLLEN_PUFF
+- MOVE_DRAGON_BREATH
+- MOVE_WATER_PULSE
+- MOVE_GASTRO_ACID
+
+
+=== TRAINER_BROTHER_01_03 ===
+Name: WALLY
+Pic: Wally
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_GLISCOR @ ITEM_BLACK_SLUDGE
+Level: 35
+Ability: ABILITY_LEVITATE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 252 SpD / 0 Spe
+Nature: Careful
+- MOVE_DIRE_CLAW
+- MOVE_KNOCK_OFF
+- MOVE_TAUNT
+- MOVE_PARTING_SHOT
+
+SPECIES_URSARING @ ITEM_FLAME_ORB
+Level: 35
+Ability: ABILITY_GUTS
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+- MOVE_FACADE
+- MOVE_SHADOW_CLAW
+- MOVE_CROSS_CHOP
+- MOVE_PARTING_SHOT
+
+SPECIES_YANMEGA @ ITEM_SILVER_POWDER
+Level: 35
+Ability: ABILITY_TINTED_LENS
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Modest
+- MOVE_BUG_BUZZ
+- MOVE_BUG_BUZZ
+- MOVE_DRAGON_BREATH
+- MOVE_DRAGON_BREATH
+
+SPECIES_DIPPLIN @ ITEM_EVIOLITE
+Level: 35
+Ability: ABILITY_PRISM_ARMOR
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 252 SpD / 0 Spe
+Nature: Calm
+- MOVE_ABSORB
+- MOVE_MUD_SHOT
+- MOVE_IRON_DEFENSE
+- MOVE_GASTRO_ACID
+
+SPECIES_LYCANROC_MIDNIGHT @ ITEM_SALAC_BERRY
+Level: 35
+Ability: ABILITY_STURDY
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Adamant
+- MOVE_CRUSH_CLAW
+- MOVE_NIGHT_SLASH
+- MOVE_CROSS_CHOP
+- MOVE_ACROBATICS
+
+SPECIES_MALAMAR @ ITEM_ASSAULT_VEST
+Level: 35
+Ability: ABILITY_WATER_BUBBLE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Adamant
+Tera Type: Water
+- MOVE_AQUA_CUTTER
+- MOVE_PSYCHO_CUT
+- MOVE_LEAF_BLADE
+- MOVE_X_SCISSOR
+
+
+=== TRAINER_BROTHER_01_04 ===
+Name: WALLY
+Pic: Wally
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_HYDRAPPLE @ ITEM_FOCUS_SASH
+Level: 40
+Ability: ABILITY_BERSERK
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Modest
+- MOVE_FICKLE_BEAM
+- MOVE_EARTH_POWER
+- MOVE_SLUDGE_BOMB
+- MOVE_STICKY_WEB
+
+SPECIES_URSARING @ ITEM_EVIOLITE
+Level: 40
+Ability: ABILITY_INTIMIDATE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Adamant
+- MOVE_RETALIATE
+- MOVE_SHADOW_CLAW
+- MOVE_CROSS_CHOP
+- MOVE_PARTING_SHOT
+
+SPECIES_GLISCOR @ ITEM_ASSAULT_VEST
+Level: 40
+Ability: ABILITY_TOUGH_CLAWS
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+- MOVE_DIRE_CLAW
+- MOVE_LASH_OUT
+- MOVE_RAZOR_SHELL
+- MOVE_DRILL_RUN
+
+SPECIES_MALAMAR @ ITEM_TANGA_BERRY
+Level: 40
+Ability: ABILITY_CONTRARY
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+- MOVE_BLOOD_MOON
+- MOVE_PSYCHO_BOOST
+- MOVE_HYDRO_CANNON
+- MOVE_HYPNOSIS
+
+SPECIES_LYCANROC_MIDNIGHT @ ITEM_WEAKNESS_POLICY
+Level: 40
+Ability: ABILITY_STURDY
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+- MOVE_CRUSH_CLAW
+- MOVE_NIGHT_SLASH
+- MOVE_CROSS_CHOP
+- MOVE_METAL_CLAW
+
+SPECIES_YANMEGA @ ITEM_SILVER_POWDER
+Level: 40
+Ability: ABILITY_TINTED_LENS
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Modest
+Tera Type: Bug
+- MOVE_BUG_BUZZ
+- MOVE_DRAGON_PULSE
+- MOVE_SUBSTITUTE
+- MOVE_HYPNOSIS
+
+
+=== TRAINER_BROTHER_01_05 ===
+Name: WALLY
+Pic: Wally
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_GLISCOR @ ITEM_FOCUS_SASH
+Level: 50
+Ability: ABILITY_LEVITATE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+- MOVE_DIRE_CLAW
+- MOVE_KNOCK_OFF
+- MOVE_TAUNT
+- MOVE_PARTING_SHOT
+
+SPECIES_YANMEGA @ ITEM_THROAT_SPRAY
+Level: 50
+Ability: ABILITY_TINTED_LENS
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Dragon
+- MOVE_CLANGING_SCALES
+- MOVE_BUG_BUZZ
+- MOVE_SUBSTITUTE
+- MOVE_HYPNOSIS
+
+SPECIES_URSALUNA_BLOODMOON @ ITEM_QUICK_CLAW
+Level: 50
+Ability: ABILITY_DARK_AURA
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 252 SpD / 0 Spe
+Nature: Modest
+- MOVE_DOOM_DESIRE
+- MOVE_ROAR
+- MOVE_HYPNOSIS
+- MOVE_PARTING_SHOT
+
+SPECIES_MALAMAR @ ITEM_CHOICE_SCARF
+Level: 50
+Ability: ABILITY_CONTRARY
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Rock
+- MOVE_BLOOD_MOON
+- MOVE_BLOOD_MOON
+- MOVE_BLOOD_MOON
+- MOVE_BLOOD_MOON
+
+SPECIES_LYCANROC_MIDNIGHT @ ITEM_RED_CARD
+Level: 50
+Ability: ABILITY_STURDY
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+- MOVE_POWER_TRIP
+- MOVE_POWER_TRIP
+- MOVE_POWER_TRIP
+- MOVE_HOWL
+
+SPECIES_HYDRAPPLE @ ITEM_ASSAULT_VEST
+Level: 50
+Ability: ABILITY_SNIPER
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 252 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Bold
+Tera Type: Dragon
+- MOVE_FICKLE_BEAM
+- MOVE_BODY_PRESS
+- MOVE_EARTH_POWER
+- MOVE_SLUDGE_BOMB
+
+
+=== TRAINER_SISTER_01_01 ===
+Name: LEAF
+Pic: Leaf
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_DUCKLETT @ ITEM_RED_CARD
+Level: 11
+Ability: ABILITY_SWIFT_SWIM
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Modest
+- MOVE_CHILLING_WATER
+- MOVE_AIR_CUTTER
+- MOVE_MUD_SHOT
+- MOVE_RAIN_DANCE
+
+SPECIES_POLTCHAGEIST_COUNTERFEIT @ ITEM_MYSTIC_WATER
+Level: 11
+Ability: ABILITY_WATER_BUBBLE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Bold
+- MOVE_MAGICAL_LEAF
+- MOVE_ASTONISH
+- MOVE_CHILLING_WATER
+- MOVE_SWEET_SCENT
+
+SPECIES_POOCHYENA @ ITEM_QUICK_CLAW
+Level: 11
+Ability: ABILITY_INTIMIDATE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Adamant
+- MOVE_HEADBUTT
+- MOVE_THIEF
+- MOVE_COVET
+- MOVE_WORK_UP
+
+SPECIES_MIENFOO @ ITEM_PETAYA_BERRY
+Level: 11
+Ability: ABILITY_TECHNICIAN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Modest
+- MOVE_SWIFT
+- MOVE_VACUUM_WAVE
+- MOVE_SNARL
+- MOVE_WORK_UP
+
+SPECIES_VULPIX @ ITEM_HEAT_ROCK
+Level: 11
+Ability: ABILITY_DROUGHT
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+- MOVE_FIRE_SPIN
+- MOVE_DISARMING_VOICE
+- MOVE_EXTRASENSORY
+- MOVE_MORNING_SUN
+
+SPECIES_SEWADDLE @ ITEM_SITRUS_BERRY
+Level: 11
+Ability: ABILITY_HARVEST
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 252 SpD / 0 Spe
+Nature: Calm
+Tera Type: Bug
+- MOVE_INFESTATION
+- MOVE_MEGA_DRAIN
+- MOVE_LEECH_SEED
+- MOVE_SILK_TRAP
+
+
+=== TRAINER_SISTER_01_02 ===
+Name: LEAF
+Pic: Leaf
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_SINISTCHA_UNREMARKABLE @ ITEM_OCCA_BERRY
+Level: 32
+Ability: ABILITY_WATER_BUBBLE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 252 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Bold
+- MOVE_MATCHA_GOTCHA
+- MOVE_HEX
+- MOVE_TAUNT
+- MOVE_PARTING_SHOT
+
+SPECIES_SWANNA @ ITEM_ASSAULT_VEST
+Level: 32
+Ability: ABILITY_SERENE_GRACE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+- MOVE_AIR_SLASH
+- MOVE_WATER_PLEDGE
+- MOVE_ICE_BEAM
+- MOVE_MUDDY_WATER
+
+SPECIES_MIGHTYENA @ ITEM_TOXIC_ORB
+Level: 32
+Ability: ABILITY_QUICK_FEET
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Adamant
+- MOVE_FACADE
+- MOVE_LASH_OUT
+- MOVE_YAWN
+- MOVE_PARTING_SHOT
+
+SPECIES_MIENSHAO @ ITEM_FOCUS_SASH
+Level: 32
+Ability: ABILITY_TECHNICIAN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Naughty
+- MOVE_FORCE_PALM
+- MOVE_QUICK_ATTACK
+- MOVE_KNOCK_OFF
+- MOVE_FAKE_OUT
+
+SPECIES_LEAVANNY @ ITEM_LIFE_ORB
+Level: 32
+Ability: ABILITY_SHARPNESS
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+- MOVE_LEAF_BLADE
+- MOVE_X_SCISSOR
+- MOVE_CROSS_CHOP
+- MOVE_PSYCHO_CUT
+
+SPECIES_NINETALES @ ITEM_COLBUR_BERRY
+Level: 32
+Ability: ABILITY_DROUGHT
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Ghost
+- MOVE_SACRED_FIRE
+- MOVE_INFERNAL_PARADE
+- MOVE_DAZZLING_GLEAM
+- MOVE_HYPNOSIS
+
+
+=== TRAINER_SISTER_01_03 ===
+Name: LEAF
+Pic: Leaf
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_LEAVANNY @ ITEM_QUICK_CLAW
+Level: 50
+Ability: ABILITY_SHARPNESS
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+- MOVE_LEAF_BLADE
+- MOVE_PSYCHO_CUT
+- MOVE_CROSS_CHOP
+- MOVE_STICKY_WEB
+
+SPECIES_SWANNA @ ITEM_FOCUS_SASH
+Level: 50
+Ability: ABILITY_SERENE_GRACE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+- MOVE_AIR_SLASH
+- MOVE_REVELATION_DANCE
+- MOVE_ICE_BEAM
+- MOVE_WHIRLWIND
+
+SPECIES_NINETALES @ ITEM_AIR_BALLOON
+Level: 50
+Ability: ABILITY_DROUGHT
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+- MOVE_FIERY_DANCE
+- MOVE_REVELATION_DANCE
+- MOVE_SCORCHING_SANDS
+- MOVE_HYPNOSIS
+
+SPECIES_MIGHTYENA @ ITEM_FLAME_ORB
+Level: 50
+Ability: ABILITY_GUTS
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+- MOVE_FACADE
+- MOVE_LASH_OUT
+- MOVE_ROAR
+- MOVE_ROAR
+
+SPECIES_MIENSHAO @ ITEM_LIFE_ORB
+Level: 50
+Ability: ABILITY_TECHNICIAN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+- MOVE_POUND
+- MOVE_TAIL_SLAP
+- MOVE_FURY_SWIPES
+- MOVE_FAKE_OUT
+
+SPECIES_SINISTCHA_UNREMARKABLE @ ITEM_WHITE_HERB
+Level: 50
+Ability: ABILITY_WATER_BUBBLE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Water
+- MOVE_SEED_FLARE
+- MOVE_SHADOW_BALL
+- MOVE_HYDRO_PUMP
+- MOVE_SHELL_SMASH
+
