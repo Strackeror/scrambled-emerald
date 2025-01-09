@@ -22,6 +22,7 @@ RustboroCity_Gym_EventScript_RoxanneDefeated::
 	setvar VAR_0x8008, 1
 	call Common_EventScript_SetGymTrainers
 	call_if_eq VAR_PETALBURG_GYM_STATE, 6, Common_EventScript_ReadyPetalburgGymForBattle
+	setvar VAR_LEVEL_CAP 18
 	goto RustboroCity_Gym_EventScript_GiveRockTomb
 	end
 
@@ -56,11 +57,6 @@ RustboroCity_Gym_EventScript_GiveRockTomb::
 		setvar VAR_BRINEY_LOCATION, 1
 		clearflag FLAG_HIDE_RUSTBORO_CITY_RIVAL
 		setvar VAR_DEVON_CORP_3F_STATE, 1
-
-	giveitem ITEM_TM_ROCK_TOMB
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-	setflag FLAG_RECEIVED_TM_ROCK_TOMB
-	msgbox RustboroCity_Gym_Text_ExplainRockTomb, MSGBOX_DEFAULT
 	release
 	end
 

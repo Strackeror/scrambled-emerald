@@ -114,9 +114,7 @@ MauvilleCity_Gym_EventScript_WattsonDefeated::
 	call Common_EventScript_SetGymTrainers
 	special MauvilleGymDeactivatePuzzle
 	special DrawWholeMapView
-	playse SE_UNLOCK
-	call MauvilleCity_Gym_EventScript_GiveShockWave
-	closemessage
+	setvar VAR_LEVEL_CAP 30
 	delay 30
 	playfanfare MUS_REGISTER_MATCH_CALL
 	msgbox MauvilleCity_Gym_Text_RegisteredWattson, MSGBOX_DEFAULT

@@ -120,11 +120,12 @@ JaggedPass_EventScript_DianaRematch::
 	end
 
 JaggedPass_EventScript_Ethan::
-	trainerbattle_single TRAINER_ETHAN_1, JaggedPass_Text_EthanIntro, JaggedPass_Text_EthanDefeat, JaggedPass_EventScript_RegisterEthan
-	specialvar VAR_RESULT, ShouldTryRematchBattle
-	goto_if_eq VAR_RESULT, TRUE, JaggedPass_EventScript_EthanRematch
+	trainerbattle_single TRAINER_ETHAN_1, JaggedPass_Text_EthanIntro, JaggedPass_Text_EthanDefeat, JaggedPass_EventScript_Ethan_LevelCap
 	msgbox JaggedPass_Text_EthanPostBattle, MSGBOX_DEFAULT
-	release
+	end
+
+JaggedPass_EventScript_Ethan_LevelCap:
+	setvar VAR_LEVEL_CAP 36
 	end
 
 JaggedPass_EventScript_RegisterEthan::

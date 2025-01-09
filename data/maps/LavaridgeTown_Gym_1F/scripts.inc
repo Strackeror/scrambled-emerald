@@ -71,7 +71,7 @@ LavaridgeTown_Gym_1F_EventScript_FlanneryDefeated::
 	call Common_EventScript_SetGymTrainers
 	setflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLY
 	setvar VAR_LAVARIDGE_TOWN_STATE, 1
-	call LavaridgeTown_Gym_1F_EventScript_GiveOverheat
+	setvar VAR_LEVEL_CAP 38
 	closemessage
 	delay 30
 	playfanfare MUS_REGISTER_MATCH_CALL

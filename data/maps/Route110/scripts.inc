@@ -259,11 +259,12 @@ Route110_EventScript_AbigailRematch::
 	end
 
 Route110_EventScript_Isabel::
-	trainerbattle_single TRAINER_ISABEL_1, Route110_Text_IsabelIntro, Route110_Text_IsabelDefeated, Route110_EventScript_IsabelRegisterMatchCallAfterBattle
-	specialvar VAR_RESULT, ShouldTryRematchBattle
-	goto_if_eq VAR_RESULT, TRUE, Route110_EventScript_IsabelRematch
+	trainerbattle_single TRAINER_DAN_DOKU_BOSS_01, Route110_Text_IsabelIntro, Route110_Text_IsabelDefeated,Route110_EventScript_Isabel_Defeated 
 	msgbox Route110_Text_IsabelPostBattle, MSGBOX_DEFAULT
-	release
+	end
+
+Route110_EventScript_Isabel_Defeated::
+	setvar VAR_LEVEL_CAP 26
 	end
 
 Route110_EventScript_IsabelRegisterMatchCallAfterBattle::
@@ -404,26 +405,10 @@ Route110_EventScript_PlayBrendanMusic::
 
 Route110_EventScript_MayBattle::
 	msgbox Route110_Text_MayLetsBattle, MSGBOX_DEFAULT
-	switch VAR_STARTER_MON
-	case 0, Route110_EventScript_MayBattleTreecko
-	case 1, Route110_EventScript_MayBattleTorchic
-	case 2, Route110_EventScript_MayBattleMudkip
-	end
-
-Route110_EventScript_MayBattleTreecko::
-	trainerbattle_no_intro TRAINER_MAY_ROUTE_110_TREECKO, Route110_Text_MayDefeated
+	trainerbattle_no_intro TRAINER_RIVAL_04_HONO, Route110_Text_MayDefeated
 	goto Route110_EventScript_MayDefeated
 	end
 
-Route110_EventScript_MayBattleTorchic::
-	trainerbattle_no_intro TRAINER_MAY_ROUTE_110_TORCHIC, Route110_Text_MayDefeated
-	goto Route110_EventScript_MayDefeated
-	end
-
-Route110_EventScript_MayBattleMudkip::
-	trainerbattle_no_intro TRAINER_MAY_ROUTE_110_MUDKIP, Route110_Text_MayDefeated
-	goto Route110_EventScript_MayDefeated
-	end
 
 Route110_EventScript_MayDefeated::
 	msgbox Route110_Text_MayTakeThis, MSGBOX_DEFAULT
@@ -434,24 +419,7 @@ Route110_EventScript_MayDefeated::
 
 Route110_EventScript_BrendanBattle::
 	msgbox Route110_Text_BrendanLetsBattle, MSGBOX_DEFAULT
-	switch VAR_STARTER_MON
-	case 0, Route110_EventScript_BrendanBattleTreecko
-	case 1, Route110_EventScript_BrendanBattleTorchic
-	case 2, Route110_EventScript_BrendanBattleMudkip
-	end
-
-Route110_EventScript_BrendanBattleTreecko::
-	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_110_TREECKO, Route110_Text_BrendanDefeated
-	goto Route110_EventScript_BrendanDefeated
-	end
-
-Route110_EventScript_BrendanBattleTorchic::
-	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_110_TORCHIC, Route110_Text_BrendanDefeated
-	goto Route110_EventScript_BrendanDefeated
-	end
-
-Route110_EventScript_BrendanBattleMudkip::
-	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_110_MUDKIP, Route110_Text_BrendanDefeated
+	trainerbattle_no_intro TRAINER_RIVAL_04_HONO, Route110_Text_BrendanDefeated
 	goto Route110_EventScript_BrendanDefeated
 	end
 
@@ -468,6 +436,7 @@ Route110_EventScript_GiveItemfinder::
 
 Route110_EventScript_RivalExit::
 	closemessage
+	setvar VAR_LEVEL_CAP 27
 	call_if_eq VAR_0x8008, 1, Route110_EventScript_MoveRival1
 	call_if_eq VAR_0x8008, 2, Route110_EventScript_MoveRival2
 	call_if_eq VAR_0x8008, 3, Route110_EventScript_MoveRival3

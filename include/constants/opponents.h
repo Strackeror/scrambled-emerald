@@ -7,9 +7,9 @@
 #define TRAINER_SAWYER_1                      1
 #define TRAINER_CLAVEL_01_HONO                2
 #define TRAINER_BOTAN_01                      3
-#define TRAINER_GRUNT_AQUA_HIDEOUT_3          4
-#define TRAINER_GRUNT_AQUA_HIDEOUT_4          5
-#define TRAINER_GRUNT_SEAFLOOR_CAVERN_1       6
+#define TRAINER_RIVAL_06_HONO                 4
+#define TRAINER_PROFESSOR_A_01                5
+#define TRAINER_PROFESSOR_B_01                6
 #define TRAINER_GRUNT_SEAFLOOR_CAVERN_2       7
 #define TRAINER_GRUNT_SEAFLOOR_CAVERN_3       8
 #define TRAINER_GABRIELLE_1                   9

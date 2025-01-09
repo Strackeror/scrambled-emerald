@@ -33,11 +33,9 @@ FortreeCity_Gym_EventScript_WinonaDefeated::
 	msgbox FortreeCity_Gym_Text_ExplainFeatherBadgeTakeThis, MSGBOX_DEFAULT
 	setflag FLAG_DEFEATED_FORTREE_GYM
 	setflag FLAG_BADGE06_GET
+	setvar VAR_LEVEL_CAP 50
 	setvar VAR_0x8008, 6
 	call Common_EventScript_SetGymTrainers
-	call FortreeCity_Gym_EventScript_GiveAerialAce
-	closemessage
-	delay 30
 	playfanfare MUS_REGISTER_MATCH_CALL
 	msgbox FortreeCity_Gym_Text_RegisteredWinona, MSGBOX_DEFAULT
 	waitfanfare
@@ -258,9 +256,8 @@ FortreeCity_Gym_Text_ExplainFeatherBadgeTakeThis:
 	.string "to LV 70, even those received through\l"
 	.string "trades, will obey your every command.\p"
 	.string "You will also be able to use\n"
-	.string "the HM move FLY outside of battle.\p"
-	.string "And this…\n"
-	.string "This is a gift from me.$"
+	.string "the HM move FLY outside of battle.$"
+
 
 FortreeCity_Gym_Text_ExplainAerialAce:
 	.string "TM40 contains AERIAL ACE.\p"

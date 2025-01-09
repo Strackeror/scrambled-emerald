@@ -34,6 +34,7 @@ const TRAINER_LIST: &[(&str, &str, &str)] = &[
     ("brother_01_05", "Wally", "Wally"),
     // TITAN_OGERPONS
     ("sister_01_03", "Leaf", "Leaf"),
+    ("rival_06_hono", "May", "May"),
     ("gym_esper_leader_01", "Leader Tate And Liza", "Tate&Liza"),
     ("gym_koori_leader_01", "Leader Juan", "Juan"),
     ("dan_fairy_boss_01", "Aqua Leader Archie", "Archie"),
@@ -46,6 +47,8 @@ const TRAINER_LIST: &[(&str, &str, &str)] = &[
     ("e4_hikou_01", "Elite Four Glacia", "Larry"),
     ("e4_dragon_01", "Elite Four Drake", "Hassel"),
     ("chairperson_01", "Champion Wallace", "Geeta"),
+    ("professor_A_01", "Steven", "Steven"),
+    ("professor_B_01", "Steven", "Steven"),
 ];
 
 #[derive(Debug, Deserialize)]
@@ -113,7 +116,7 @@ fn pokemon(
     species_list: &[String],
     personal_data: &PersonalArray,
 ) -> Result<String> {
-    if data.level == 0 {
+    if &data.poke_id == "Egg" {
         return Ok(String::new());
     }
 

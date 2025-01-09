@@ -765,3 +765,14 @@ PetalburgCity_Text_ImLookingForTalentedTrainers:
 	.string "I'm roaming the land in search of\n"
 	.string "talented TRAINERS.\p"
 	.string "I'm sorry to have taken your time.$"
+
+
+Nemona_Fallback::
+	trainerbattle_no_intro TRAINER_RIVAL_05_HONO, PostFight_Nemona_LoseText
+	setvar VAR_LEVEL_CAP 45
+	setvar VAR_PETALBURG_CITY_STATE 5
+	fadescreen FADE_TO_BLACK
+	setflag FLAG_HIDE_PETALBURG_GYM_RIVAL_FIGHT
+	removeobject 10
+	fadescreen FADE_FROM_BLACK
+	end

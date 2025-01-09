@@ -420,8 +420,12 @@ RusturfTunnel_Movement_PeekoExit:
 	step_end
 
 RusturfTunnel_EventScript_Mike::
-	trainerbattle_single TRAINER_MIKE_2, RusturfTunnel_Text_MikeIntro, RusturfTunnel_Text_MikeDefeat
+	trainerbattle_single TRAINER_DAN_DOKU_BOSS_01, RusturfTunnel_Text_MikeIntro, RusturfTunnel_Text_MikeDefeat, RusturfTunnel_EventScript_Mike_Defeated
 	msgbox RusturfTunnel_Text_MikePostBattle, MSGBOX_AUTOCLOSE
+	end
+	
+RusturfTunnel_EventScript_Mike_Defeated::
+	setvar VAR_LEVEL_CAP 40
 	end
 
 RusturfTunnel_Text_ComeAndGetSome:

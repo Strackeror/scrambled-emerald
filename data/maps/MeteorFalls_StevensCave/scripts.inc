@@ -15,7 +15,21 @@ MeteorFalls_StevensCave_EventScript_Steven::
 	applymovement LOCALID_STEVEN, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox MeteorFalls_StevensCave_Text_ShouldKnowHowGoodIAmExpectWorst, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_STEVEN, MeteorFalls_StevensCave_Text_StevenDefeat
+	multichoice 21, 6, MULTI_AI_FIGHT_CHOICE, TRUE
+	switch VAR_RESULT
+	case 0, MeteorFalls_StevensCave_EventScript_Steven_Ancient
+	case 1, MeteorFalls_StevensCave_EventScript_Steven_Future
+	end
+
+MeteorFalls_StevensCave_EventScript_Steven_Ancient::
+	trainerbattle_no_intro TRAINER_PROFESSOR_A_01, MeteorFalls_StevensCave_Text_StevenDefeat
+	msgbox MeteorFalls_StevensCave_Text_MyPredictionCameTrue, MSGBOX_DEFAULT
+	setflag FLAG_DEFEATED_METEOR_FALLS_STEVEN
+	release
+	end
+
+MeteorFalls_StevensCave_EventScript_Steven_Future::
+	trainerbattle_no_intro TRAINER_PROFESSOR_B_01, MeteorFalls_StevensCave_Text_StevenDefeat
 	msgbox MeteorFalls_StevensCave_Text_MyPredictionCameTrue, MSGBOX_DEFAULT
 	setflag FLAG_DEFEATED_METEOR_FALLS_STEVEN
 	release

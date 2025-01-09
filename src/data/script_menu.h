@@ -1,4 +1,5 @@
 // multichoice lists
+#include "constants/script_menu.h"
 static const struct MenuAction MultichoiceList_BrineyOnDewford[] =
 {
     {gText_Petalburg},
@@ -778,6 +779,14 @@ static const struct MenuAction MultichoiceList_BerryPlot[] =
     {gText_Exit},
 };
 
+static const u8 textAncient[] = _("Ancient");
+static const u8 textFuture[] = _("Future");
+static const struct MenuAction MultichoiceList_AIFinal[] = 
+{
+    {textAncient},
+    {textFuture}
+};
+
 static const struct MenuAction MultichoiceList_Exit[] =
 {
     {gText_Exit},
@@ -906,6 +915,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_FALLARBOR_TENT_RULES]       = MULTICHOICE(MultichoiceList_FallarborTentRules),
     [MULTI_TAG_MATCH_TYPE]             = MULTICHOICE(MultichoiceList_TagMatchType),
     [MULTI_BERRY_PLOT]                 = MULTICHOICE(MultichoiceList_BerryPlot),
+    [MULTI_AI_FIGHT_CHOICE]            = MULTICHOICE(MultichoiceList_AIFinal),
 };
 
 const u8 *const gStdStrings[] =

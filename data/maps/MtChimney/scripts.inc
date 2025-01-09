@@ -532,8 +532,12 @@ MtChimney_EventScript_Sheila::
 	end
 
 MtChimney_EventScript_Shirley::
-	trainerbattle_single TRAINER_SHIRLEY, MtChimney_Text_ShirleyIntro, MtChimney_Text_ShirleyDefeat
+	trainerbattle_single TRAINER_SISTER_01_02, MtChimney_Text_ShirleyIntro, MtChimney_Text_ShirleyDefeat, MtChimney_EventScript_Shirley_LevelCap
 	msgbox MtChimney_Text_ShirleyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MtChimney_EventScript_Shirley_LevelCap::
+	setvar VAR_LEVEL_CAP 35
 	end
 
 MtChimney_EventScript_Grunt1::

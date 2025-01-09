@@ -94,71 +94,6 @@ Geodude
 Level: 21
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-=== TRAINER_GRUNT_AQUA_HIDEOUT_3 ===
-Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt M
-Gender: Male
-Music: Aqua
-Double Battle: No
-AI: Check Bad Move
-
-Zubat
-Level: 32
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_AQUA_HIDEOUT_4 ===
-Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt M
-Gender: Male
-Music: Aqua
-Double Battle: No
-AI: Check Bad Move
-
-Carvanha
-Level: 32
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_SEAFLOOR_CAVERN_1 ===
-Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt M
-Gender: Male
-Music: Aqua
-Double Battle: No
-AI: Check Bad Move
-
-Poochyena
-Level: 36
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_SEAFLOOR_CAVERN_2 ===
-Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt M
-Gender: Male
-Music: Aqua
-Double Battle: No
-AI: Check Bad Move
-
-Carvanha
-Level: 36
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_SEAFLOOR_CAVERN_3 ===
-Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt M
-Gender: Male
-Music: Aqua
-Double Battle: No
-AI: Check Bad Move
-
-Zubat
-Level: 36
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
 === TRAINER_GABRIELLE_1 ===
 Name: GABRIELLE
 Class: Pkmn Breeder
@@ -17374,6 +17309,18 @@ Tera Type: Water
 - MOVE_DRILL_RUN
 - MOVE_ENDURE
 
+SPECIES_CRABOMINABLE @ ITEM_ASSAULT_VEST
+Level: 0
+Ability: ABILITY_ICE_SCALES
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Adamant
+Tera Type: Water
+- MOVE_RAZOR_SHELL
+- MOVE_AVALANCHE
+- MOVE_CROSS_CHOP
+- MOVE_NIGHT_SLASH
+
 
 === TRAINER_GYM_MUSHI_LEADER_01 ===
 Name: ROXANNE
@@ -17611,6 +17558,169 @@ Tera Type: Normal
 - MOVE_STOMPING_TANTRUM
 
 
+=== TRAINER_PROFESSOR_A_01 ===
+Name: STEVEN
+Pic: Steven
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_SLITHER_WING @ ITEM_MENTAL_HERB
+Level: 100
+Ability: ABILITY_FLUFFY
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 252 SpD / 0 Spe
+Nature: Careful
+Tera Type: Bug
+- MOVE_U_TURN
+- MOVE_WHIRLWIND
+- MOVE_WILL_O_WISP
+- MOVE_STUN_SPORE
+
+SPECIES_ROARING_MOON @ ITEM_FOCUS_SASH
+Level: 100
+Ability: ABILITY_WIND_RIDER
+IVs: 31 HP / 25 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Adamant
+Tera Type: Dragon
+- MOVE_DRAGON_CLAW
+- MOVE_NIGHT_SLASH
+- MOVE_METAL_CLAW
+- MOVE_TAILWIND
+
+SPECIES_SCREAM_TAIL @ ITEM_THROAT_SPRAY
+Level: 100
+Ability: ABILITY_PIXILATE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Fairy
+- MOVE_BOOMBURST
+- MOVE_DARK_PULSE
+- MOVE_SING
+- MOVE_ROAR
+
+SPECIES_FLUTTER_MANE @ ITEM_BOOSTER_ENERGY
+Level: 100
+Ability: ABILITY_PROTOSYNTHESIS
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Ghost
+- MOVE_FLEUR_CANNON
+- MOVE_ASTRAL_BARRAGE
+- MOVE_DESTINY_BOND
+- MOVE_HYPNOSIS
+
+SPECIES_SANDY_SHOCKS @ ITEM_QUICK_CLAW
+Level: 100
+Ability: ABILITY_GALVANIZE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+- MOVE_EXPLOSION
+- MOVE_SELF_DESTRUCT
+- MOVE_FISSURE
+- MOVE_FISSURE
+
+SPECIES_KORAIDON @ ITEM_BOOSTER_ENERGY
+Level: 100
+Ability: ABILITY_ORICHALCUM_PULSE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Fire
+- MOVE_OUTRAGE
+- MOVE_COLLISION_COURSE
+- MOVE_RAGING_FURY
+- MOVE_VICTORY_DANCE
+
+
+=== TRAINER_PROFESSOR_B_01 ===
+Name: STEVEN
+Pic: Steven
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_IRON_VALIANT @ ITEM_FOCUS_SASH
+Level: 100
+Ability: ABILITY_SNIPER
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Fairy
+- MOVE_MISTY_EXPLOSION
+- MOVE_WILL_O_WISP
+- MOVE_HYPNOSIS
+- MOVE_DESTINY_BOND
+
+SPECIES_IRON_MOTH @ ITEM_AIR_BALLOON
+Level: 100
+Ability: ABILITY_SHADOW_SHIELD
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Fire
+- MOVE_FIERY_DANCE
+- MOVE_REVELATION_DANCE
+- MOVE_EARTH_POWER
+- MOVE_QUIVER_DANCE
+
+SPECIES_IRON_JUGULIS @ ITEM_NONE
+Level: 100
+Ability: ABILITY_LEVITATE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Steel
+- MOVE_STEEL_BEAM
+- MOVE_STEEL_BEAM
+- MOVE_DARK_PULSE
+- MOVE_AEROBLAST
+
+SPECIES_IRON_THORNS @ ITEM_RED_CARD
+Level: 100
+Ability: ABILITY_SHADOW_SHIELD
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Electric
+- MOVE_ZING_ZAP
+- MOVE_CRUNCH
+- MOVE_ICE_PUNCH
+- MOVE_DRAGON_DANCE
+
+SPECIES_IRON_HANDS @ ITEM_WEAKNESS_POLICY
+Level: 100
+Ability: ABILITY_FILTER
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Adamant
+Tera Type: Fighting
+- MOVE_VOLT_TACKLE
+- MOVE_CIRCLE_THROW
+- MOVE_ICE_PUNCH
+- MOVE_WHIRLWIND
+
+SPECIES_MIRAIDON @ ITEM_LIFE_ORB
+Level: 100
+Ability: ABILITY_HADRON_ENGINE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+Tera Type: Electric
+- MOVE_DOUBLE_SHOCK
+- MOVE_BLUE_FLARE
+- MOVE_ENERGY_BALL
+- MOVE_OVERHEAT
+
+
 === TRAINER_RIVAL_02_HONO ===
 Name: MAY
 Pic: May
@@ -17786,17 +17896,82 @@ Tera Type: Poison
 - MOVE_SHADOW_BALL
 - MOVE_STUFF_CHEEKS
 
-SPECIES_EGG /* Egg */ @ ITEM_NONE
-Level: 1
-Ability: ABILITY_NONE
-IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
-EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-Nature: Hardy
-Tera Type: Grass
-- MOVE_SLASH
-- MOVE_FLOWER_TRICK
-- MOVE_QUICK_ATTACK
-- MOVE_NONE
+
+=== TRAINER_RIVAL_06_HONO ===
+Name: MAY
+Pic: May
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_PAWMOT @ ITEM_QUICK_CLAW
+Level: 52
+Ability: ABILITY_FLUFFY
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 252 SpD / 0 Spe
+Nature: Calm
+- MOVE_FORCE_PALM
+- MOVE_VOLT_SWITCH
+- MOVE_SWEET_KISS
+- MOVE_NUZZLE
+
+SPECIES_MEOWSCARADA @ ITEM_LIFE_ORB
+Level: 52
+Ability: ABILITY_TECHNICIAN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+- MOVE_SEED_FLARE
+- MOVE_HYPNOSIS
+- MOVE_DARK_PULSE
+- MOVE_DAZZLING_GLEAM
+
+SPECIES_SKELEDIRGE @ ITEM_SALAC_BERRY
+Level: 52
+Ability: ABILITY_ROUGH_SKIN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+- MOVE_TORCH_SONG
+- MOVE_SHADOW_BALL
+- MOVE_FOCUS_BLAST
+- MOVE_STUFF_CHEEKS
+
+SPECIES_KOMMO_O @ ITEM_LUM_BERRY
+Level: 52
+Ability: ABILITY_BULLETPROOF
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Timid
+- MOVE_CLANGING_SCALES
+- MOVE_FLASH_CANNON
+- MOVE_FIRE_BLAST
+- MOVE_CLANGOROUS_SOUL
+
+SPECIES_LYCANROC_MIDDAY @ ITEM_FOCUS_SASH
+Level: 52
+Ability: ABILITY_HUSTLE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Adamant
+- MOVE_RETALIATE
+- MOVE_JAW_LOCK
+- MOVE_CLOSE_COMBAT
+- MOVE_YAWN
+
+SPECIES_QUAQUAVAL @ ITEM_CHOPLE_BERRY
+Level: 52
+Ability: ABILITY_QUEENLY_MAJESTY
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Jolly
+Tera Type: Ice
+- MOVE_AQUA_STEP
+- MOVE_BRICK_BREAK
+- MOVE_TERA_BLAST
+- MOVE_SWORDS_DANCE
 
 
 === TRAINER_BROTHER_01_01 ===

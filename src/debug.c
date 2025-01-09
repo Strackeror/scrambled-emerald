@@ -2063,7 +2063,7 @@ static void DebugAction_Util_Warp_SelectWarp(u8 taskId)
         if (JOY_NEW(DPAD_UP))
         {
             gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput > 10)
+            if (gTasks[taskId].tInput > 40)
                 gTasks[taskId].tInput = 10;
         }
         if (JOY_NEW(DPAD_DOWN))

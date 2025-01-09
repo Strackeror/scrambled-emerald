@@ -153,7 +153,7 @@ DewfordTown_Gym_EventScript_BrawlyDefeated::
 	call_if_eq VAR_PETALBURG_GYM_STATE, 6, Common_EventScript_ReadyPetalburgGymForBattle
 	setvar VAR_0x8008, 2
 	call Common_EventScript_SetGymTrainers
-	call DewfordTown_Gym_EventScript_GiveBulkUp
+	setvar VAR_LEVEL_CAP 20
 	closemessage
 	delay 30
 	playfanfare MUS_REGISTER_MATCH_CALL

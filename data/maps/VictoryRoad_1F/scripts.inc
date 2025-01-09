@@ -96,27 +96,43 @@ VictoryRoad_1F_EventScript_RematchWally::
 	end
 
 VictoryRoad_1F_EventScript_Edgar::
-	trainerbattle_single TRAINER_EDGAR, VictoryRoad_1F_Text_EdgarIntro, VictoryRoad_1F_Text_EdgarDefeat
+	trainerbattle_single TRAINER_BOTAN_01, VictoryRoad_1F_Text_EdgarIntro, VictoryRoad_1F_Text_EdgarDefeat, VictoryRoad_1F_EventScript_Edgar_Defeat
 	msgbox VictoryRoad_1F_Text_EdgarPostBattle, MSGBOX_AUTOCLOSE
+	end
+	
+VictoryRoad_1F_EventScript_Edgar_Defeat::
+	setvar VAR_LEVEL_CAP 100
 	end
 
 VictoryRoad_1F_EventScript_Albert::
-	trainerbattle_single TRAINER_ALBERT, VictoryRoad_1F_Text_AlbertIntro, VictoryRoad_1F_Text_AlbertDefeat
+	trainerbattle_single TRAINER_DAN_KAKUTOU_BOSS_01, VictoryRoad_1F_Text_AlbertIntro, VictoryRoad_1F_Text_AlbertDefeat, VictoryRoad_1F_EventScript_Albert_Defeat
 	msgbox VictoryRoad_1F_Text_AlbertPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+VictoryRoad_1F_EventScript_Albert_Defeat::
+	setvar VAR_LEVEL_CAP 63
+	end
+
 VictoryRoad_1F_EventScript_Hope::
-	trainerbattle_single TRAINER_HOPE, VictoryRoad_1F_Text_HopeIntro, VictoryRoad_1F_Text_HopeDefeat
+	trainerbattle_single TRAINER_DAN_FAIRY_BOSS_01, VictoryRoad_1F_Text_HopeIntro, VictoryRoad_1F_Text_HopeDefeat, VictoryRoad_1F_EventScript_Hope_Defeat
 	msgbox VictoryRoad_1F_Text_HopePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+VictoryRoad_1F_EventScript_Hope_Defeat::
+	setvar VAR_LEVEL_CAP 60
+	end
+
 VictoryRoad_1F_EventScript_Quincy::
-	trainerbattle_single TRAINER_QUINCY, VictoryRoad_1F_Text_QuincyIntro, VictoryRoad_1F_Text_QuincyDefeat
+	trainerbattle_single TRAINER_CLAVEL_01_HONO, VictoryRoad_1F_Text_QuincyIntro, VictoryRoad_1F_Text_QuincyDefeat, VictoryRoad_1F_EventScript_Quincy_Defeat
 	msgbox VictoryRoad_1F_Text_QuincyPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+VictoryRoad_1F_EventScript_Quincy_Defeat::
+	setvar VAR_LEVEL_CAP 65
+	end
+
 VictoryRoad_1F_EventScript_Katelynn::
-	trainerbattle_single TRAINER_KATELYNN, VictoryRoad_1F_Text_KatelynnIntro, VictoryRoad_1F_Text_KatelynnDefeat
+	trainerbattle_single TRAINER_PEPPER_01, VictoryRoad_1F_Text_KatelynnIntro, VictoryRoad_1F_Text_KatelynnDefeat
 	msgbox VictoryRoad_1F_Text_KatelynnPostBattle, MSGBOX_AUTOCLOSE
 	end
 

@@ -111,11 +111,12 @@ Route121_EventScript_Joy::
 	end
 
 Route121_EventScript_Jessica::
-	trainerbattle_single TRAINER_JESSICA_1, Route121_Text_JessicaIntro, Route121_Text_JessicaDefeat, Route121_EventScript_RegisterJessica
-	specialvar VAR_RESULT, ShouldTryRematchBattle
-	goto_if_eq VAR_RESULT, TRUE, Route121_EventScript_RematchJessica
+	trainerbattle_single TRAINER_SISTER_01_03, Route121_Text_JessicaDefeat, Route121_EventScript_Jessica_Defeated
 	msgbox Route121_Text_JessicaPostBattle, MSGBOX_DEFAULT
-	release
+	end
+
+Route121_EventScript_Jessica_Defeated::
+	setvar VAR_LEVEL_CAP 52
 	end
 
 Route121_EventScript_RegisterJessica::

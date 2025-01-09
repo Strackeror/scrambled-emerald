@@ -385,8 +385,12 @@ Route109_EventScript_Alice::
 	end
 
 Route109_EventScript_Huey::
-	trainerbattle_single TRAINER_HUEY, Route109_Text_HueyIntro, Route109_Text_HueyDefeated
+	trainerbattle_single TRAINER_BROTHER_01_02, Route109_Text_HueyIntro, Route109_Text_HueyDefeated, Route109_EventScript_Huey_Defeated
 	msgbox Route109_Text_HueyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route109_EventScript_Huey_Defeated::
+	setvar VAR_LEVEL_CAP 24
 	end
 
 Route109_EventScript_Edmond::

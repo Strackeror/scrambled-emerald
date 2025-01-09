@@ -847,8 +847,12 @@ Route104_Movement_BrineyExitBoat:
 	step_end
 
 Route104_EventScript_Ivan::
-	trainerbattle_single TRAINER_IVAN, Route104_Text_IvanIntro, Route104_Text_IvanDefeat
+	trainerbattle_single TRAINER_BROTHER_01_01, Route104_Text_IvanIntro, Route104_Text_IvanDefeat,Route104_EventScript_Ivan_Defeated
 	msgbox Route104_Text_IvanPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route104_EventScript_Ivan_Defeated::
+	setvar VAR_LEVEL_CAP 13
 	end
 
 Route104_EventScript_Billy::
@@ -939,14 +943,12 @@ Route104_EventScript_RematchWinston::
 	end
 
 Route104_EventScript_Cindy::
-	trainerbattle_single TRAINER_CINDY_1, Route104_Text_CindyIntro, Route104_Text_CindyDefeat, Route104_EventScript_TryRegisterCindyAfterBattle
-	specialvar VAR_RESULT, ShouldTryRematchBattle
-	goto_if_eq VAR_RESULT, TRUE, Route104_EventScript_RematchCindy
-	setvar VAR_0x8004, TRAINER_CINDY_1
-	specialvar VAR_RESULT, IsTrainerRegistered
-	goto_if_eq VAR_RESULT, FALSE, Route104_EventScript_TryRegisterCindy
+	trainerbattle_single TRAINER_SISTER_01_01, Route104_Text_CindyIntro, Route104_Text_CindyDefeat,Route104_EventScript_Cindy_Defeated
 	msgbox Route104_Text_CindyPostBattle, MSGBOX_DEFAULT
-	release
+	end
+
+Route104_EventScript_Cindy_Defeated::
+	setvar VAR_LEVEL_CAP 12
 	end
 
 Route104_EventScript_TryRegisterCindyAfterBattle::

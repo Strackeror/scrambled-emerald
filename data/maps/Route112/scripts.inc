@@ -64,7 +64,7 @@ Route112_EventScript_Hiker::
 	end
 
 Route112_EventScript_Brice::
-	trainerbattle_single TRAINER_BRICE, Route112_Text_BriceIntro, Route112_Text_BriceDefeat
+	trainerbattle_single TRAINER_DAN_HONO_BOSS_01, Route112_Text_BriceIntro, Route112_Text_BriceDefeat
 	msgbox Route112_Text_BricePostBattle, MSGBOX_AUTOCLOSE
 	end
 

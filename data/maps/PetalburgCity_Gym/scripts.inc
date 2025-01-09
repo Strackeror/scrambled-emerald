@@ -407,7 +407,6 @@ PetalburgCity_Gym_EventScript_NormanBattle::
 	clearflag FLAG_HIDE_DEWFORD_HALL_SLUDGE_BOMB_MAN
 	call PetalburgCity_Gym_EventScript_UnlockAllDoors
 	special DrawWholeMapView
-	call PetalburgCity_Gym_EventScript_GiveFacade
 	delay 30
 	msgbox PetalburgCity_Gym_Text_DadHappyAndSad, MSGBOX_DEFAULT
 	closemessage
@@ -460,16 +459,15 @@ PetalburgCity_Gym_EventScript_WallysDadArrives::
 	call_if_eq VAR_0x8008, 3, PetalburgCity_Gym_EventScript_WallysDadFaceNormanWest
 	msgbox PetalburgCity_Gym_Text_LetMeBorrowPlayer, MSGBOX_DEFAULT
 	closemessage
-	setflag FLAG_DONT_TRANSITION_MUSIC
-	playbgm MUS_FOLLOW_ME, FALSE
-	call_if_eq VAR_0x8008, 1, PetalburgCity_Gym_EventScript_ExitGymWithWallysDadNorth
-	call_if_eq VAR_0x8008, 2, PetalburgCity_Gym_EventScript_ExitGymWithWallysDadEast
-	call_if_eq VAR_0x8008, 3, PetalburgCity_Gym_EventScript_ExitGymWithWallysDadWest
+	special HealPlayerParty
+	clearflag FLAG_HIDE_PETALBURG_GYM_RIVAL_FIGHT
+	trainerbattle_no_intro TRAINER_RIVAL_05_HONO, PostFight_Nemona_LoseText
+	setvar VAR_LEVEL_CAP 45
+	setvar VAR_PETALBURG_CITY_STATE 5
+	fadescreen FADE_TO_BLACK
+	setflag FLAG_HIDE_PETALBURG_GYM_RIVAL_FIGHT
 	removeobject LOCALID_WALLYS_DAD
-	setvar VAR_PETALBURG_CITY_STATE, 4
-	clearflag FLAG_HIDE_PETALBURG_CITY_WALLYS_DAD
-	warp MAP_PETALBURG_CITY, 15, 8
-	waitstate
+	fadescreen FADE_FROM_BLACK
 	release
 	end
 
@@ -1303,9 +1301,7 @@ PetalburgCity_Gym_Text_ExplainBalanceBadgeTakeThis:
 	.string "DAD: With that BADGE, the DEFENSE\n"
 	.string "of all your POKéMON will increase.\p"
 	.string "POKéMON that know the HM move SURF\n"
-	.string "will be able to travel over water.\p"
-	.string "This is my gift to you. {PLAYER}, I'm\n"
-	.string "sure you can use it correctly.$"
+	.string "will be able to travel over water.$"
 
 PetalburgCity_Gym_Text_ExplainFacade:
 	.string "DAD: TM42 contains FACADE.\p"
@@ -1610,3 +1606,8 @@ PetalburgCity_Gym_Text_NormanRematchNeedTwoMons:
 	.string "Sorry, but you'll have to come back\n"
 	.string "with at least two POKéMON.$"
 
+PostFight_Nemona_Text:
+	.string "...$"
+
+PostFight_Nemona_LoseText:
+	.string "...$"

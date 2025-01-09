@@ -295,7 +295,7 @@ Route120_EventScript_RouteSign121::
 	end
 
 Route120_EventScript_Colin::
-	trainerbattle_single TRAINER_COLIN, Route120_Text_ColinIntro, Route120_Text_ColinDefeat
+	trainerbattle_single TRAINER_BROTHER_01_05, Route120_Text_ColinIntro, Route120_Text_ColinDefeat
 	msgbox Route120_Text_ColinPostBattle, MSGBOX_AUTOCLOSE
 	end
 
