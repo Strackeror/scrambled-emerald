@@ -2209,24 +2209,7 @@ static void PlayerHandleHealthBarUpdate(u32 battler)
 
 void PlayerHandleExpUpdate(u32 battler)
 {
-    u8 monId = gBattleResources->bufferA[battler][1];
-    s32 taskId, expPointsToGive;
-
-    if (GetMonData(&gPlayerParty[monId], MON_DATA_LEVEL) >= MAX_LEVEL)
-    {
-        PlayerBufferExecCompleted(battler);
-    }
-    else
-    {
-        LoadBattleBarGfx(1);
-        expPointsToGive = T1_READ_32(&gBattleResources->bufferA[battler][2]);
-        taskId = CreateTask(Task_GiveExpToMon, 10);
-        gTasks[taskId].tExpTask_monId = monId;
-        gTasks[taskId].tExpTask_gainedExp_1 = expPointsToGive;
-        gTasks[taskId].tExpTask_gainedExp_2 = expPointsToGive >> 16;
-        gTasks[taskId].tExpTask_battler = battler;
-        gBattlerControllerFuncs[battler] = BattleControllerDummy;
-    }
+    PlayerBufferExecCompleted(battler);
 }
 
 #undef tExpTask_monId

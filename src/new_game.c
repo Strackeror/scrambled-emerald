@@ -1,3 +1,4 @@
+#include "constants/vars.h"
 #include "global.h"
 #include "new_game.h"
 #include "random.h"
@@ -206,6 +207,7 @@ void NewGameInitData(void)
     ResetTrainerHillResults();
     ResetContestLinkResults();
     ResetItemFlags();
+    VarSet(VAR_LEVEL_CAP, 10);
 }
 
 static void ResetMiniGamesRecords(void)

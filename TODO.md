@@ -11,6 +11,7 @@
 - [ ] Trainers
     - [x] Sets
     - [ ] Placements
+    - [ ] Level Caps
     - [ ] Bring in sprites ?
 - [ ] Titans
 - [ ] Starmobiles
