@@ -3795,7 +3795,9 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
 
                 if (param == 0) // Rare Candy
                 {
-                    dataUnsigned = gExperienceTables[gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES, NULL)].growthRate][GetMonData(mon, MON_DATA_LEVEL, NULL) + 1];
+                    u32 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+                    u32 growthRate = gSpeciesInfo[species].growthRate;
+                    dataUnsigned = gExperienceTables[growthRate][GetCurrentLevelCap()];
                 }
                 else if (param - 1 < ARRAY_COUNT(sExpCandyExperienceTable)) // EXP Candies
                 {
