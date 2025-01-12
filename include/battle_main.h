@@ -25,6 +25,7 @@ struct MultiPartnerMenuPokemon
 
 enum {
     FIRST_TURN_EVENTS_START,
+    FIRST_TURN_TITAN_CHECK,
     FIRST_TURN_EVENTS_OVERWORLD_WEATHER,
     FIRST_TURN_EVENTS_TERRAIN,
     FIRST_TURN_EVENTS_STARTING_STATUS,
@@ -83,6 +84,7 @@ void SpecialStatusesClear(void);
 u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, u8 *ateBoost);
 void SetTypeBeforeUsingMove(u32 move, u32 battlerAtk);
 bool32 IsWildMonSmart(void);
+void CreatePokemonFromTrainerMon(struct Pokemon* pokemon, const struct TrainerMon* trainer);
 u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer *trainer, bool32 firstTrainer, u32 battleTypeFlags);
 void ModifyPersonalityForNature(u32 *personality, u32 newNature);
 u32 GeneratePersonalityForGender(u32 gender, u32 species);
@@ -105,5 +107,15 @@ extern const u8 gStatusConditionString_ConfusionJpn[8];
 extern const u8 gStatusConditionString_LoveJpn[8];
 
 extern const u8 *const gStatusConditionStringsTable[7][2];
+
+
+struct TitanBattleFlags {
+    u16 healthPercent;
+    u8 nextFillSlot:2;
+    u8 type:6;
+    bool8 smart:1;
+    bool8 midChecked:1;
+};
+extern struct TitanBattleFlags gTitanFlags;
 
 #endif // GUARD_BATTLE_MAIN_H

@@ -2173,12 +2173,32 @@ static void PlayerHandleChoosePokemon(u32 battler)
 {
     s32 i;
 
+    u8 action = gBattleResources->bufferA[battler][1] & 0xf;
+    if ((gBattleTypeFlags & BATTLE_TYPE_TITAN) && (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)) {
+        for (int i = 0; i < 3; i += 1) {
+            u8 nextFill = gTitanFlags.nextFillSlot;
+            if ((gBattlePartyCurrentOrder[0] >> 4) == i) continue;
+            DebugPrintfLevel(MGBA_LOG_WARN, "%d %d %d %d", i, gPlayerParty[i].hp, nextFill, gSaveBlock1Ptr->playerPartyCount);
+            if (gSaveBlock1Ptr->playerPartyCount <= 3 + nextFill) break;
+            if (gPlayerParty[i].hp > 0) continue;
+
+            DebugPrintfLevel(MGBA_LOG_WARN, "replacing index %d with savefile %d", i, 3 + nextFill);
+
+            gPlayerParty[i] = gSaveBlock1Ptr->playerParty[3 + nextFill];
+            u32 data;
+            data = gPlayerParty[i].maxHP - gPlayerParty[i].hp;
+            SetBoxMonData(&gPlayerParty[i].box, MON_DATA_HP_LOST, &data);
+            data = gPlayerParty[i].status;
+            SetBoxMonData(&gPlayerParty[i].box, MON_DATA_STATUS, &data);
+            CalculateMonStats(&gPlayerParty[i]);
+            gTitanFlags.nextFillSlot += 1;
+        }
+    }
+
     for (i = 0; i < ARRAY_COUNT(gBattlePartyCurrentOrder); i++)
         gBattlePartyCurrentOrder[i] = gBattleResources->bufferA[battler][4 + i];
 
-    if (gBattleTypeFlags & BATTLE_TYPE_ARENA && (gBattleResources->bufferA[battler][1] & 0xF) != PARTY_ACTION_CANT_SWITCH
-        && (gBattleResources->bufferA[battler][1] & 0xF) != PARTY_ACTION_CHOOSE_FAINTED_MON)
-    {
+    if (gBattleTypeFlags & BATTLE_TYPE_ARENA && action != PARTY_ACTION_CANT_SWITCH && action != PARTY_ACTION_CHOOSE_FAINTED_MON) {
         BtlController_EmitChosenMonReturnValue(battler, BUFFER_B, gBattlerPartyIndexes[battler] + 1, gBattlePartyCurrentOrder);
         PlayerBufferExecCompleted(battler);
     }

@@ -41,3 +41,151 @@ EVs: 252 Atk / 252 SpA / 6 SpD
 - Protect
 - Solar Beam
 - Dragon Claw
+
+=== PARTNER_PEPPER_NUSI_01 ===
+Name: STEVEN
+Pic: Steven
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_CAPSAKID @ ITEM_CHARTI_BERRY
+Level: 15
+Ability: ABILITY_PRANKSTER
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 252 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Bold
+- MOVE_FIRE_SPIN
+- MOVE_LEECH_SEED
+- MOVE_TORMENT
+- MOVE_PROTECT
+
+
+=== PARTNER_PEPPER_NUSI_02 ===
+Name: STEVEN
+Pic: Steven
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_FLAPPLE @ ITEM_SITRUS_BERRY
+Level: 33
+Ability: ABILITY_UNBURDEN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 252 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Bold
+- MOVE_INFESTATION
+- MOVE_ROOST
+- MOVE_SUBSTITUTE
+- MOVE_GRASSY_TERRAIN
+
+
+=== PARTNER_PEPPER_NUSI_03 ===
+Name: STEVEN
+Pic: Steven
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_SHELLDER @ ITEM_ROCKY_HELMET
+Level: 22
+Ability: ABILITY_SHELL_ARMOR
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 252 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Impish
+- MOVE_DIVE
+- MOVE_SPIKY_SHIELD
+- MOVE_FOLLOW_ME
+- MOVE_HYDRO_PUMP
+
+
+=== PARTNER_PEPPER_NUSI_04 ===
+Name: STEVEN
+Pic: Steven
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_BRELOOM @ ITEM_TOXIC_ORB
+Level: 47
+Ability: ABILITY_TOXIC_BOOST
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 252 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Impish
+- MOVE_DRAIN_PUNCH
+- MOVE_SEED_BOMB
+- MOVE_STRENGTH_SAP
+- MOVE_RAGE_POWDER
+
+
+=== PARTNER_PEPPER_NUSI_05 ===
+Name: STEVEN
+Pic: Steven
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_GARGANACL @ ITEM_SITRUS_BERRY
+Level: 58
+Ability: ABILITY_WATER_ABSORB
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 252 SpD / 0 Spe
+Nature: Careful
+- MOVE_ROCK_TOMB
+- MOVE_SHORE_UP
+- MOVE_RECOVER
+- MOVE_FOLLOW_ME
+
+
+=== PARTNER_SISTER_ONITAIZI ===
+Name: LEAF
+Pic: Leaf
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+
+SPECIES_NINETALES @ ITEM_FOCUS_SASH
+Level: 43
+Ability: ABILITY_MAGIC_GUARD
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
+Nature: Timid
+- MOVE_MYSTICAL_FIRE
+- MOVE_MISTY_TERRAIN
+- MOVE_DISABLE
+- MOVE_PROTECT
+
+SPECIES_MIENSHAO @ ITEM_EJECT_BUTTON
+Level: 43
+Ability: ABILITY_TECHNICIAN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Adamant
+- MOVE_DOUBLE_HIT
+- MOVE_PROTECT
+- MOVE_ENDURE
+- MOVE_FAKE_OUT
+
+SPECIES_SINISTCHA_UNREMARKABLE @ ITEM_LUM_BERRY
+Level: 43
+Ability: ABILITY_WATER_BUBBLE
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 252 SpD / 0 Spe
+Nature: Calm
+- MOVE_RAGE_POWDER
+- MOVE_LEECH_SEED
+- MOVE_STRENGTH_SAP
+- MOVE_LIFE_DEW
+

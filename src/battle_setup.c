@@ -4,6 +4,7 @@
 #include "battle_setup.h"
 #include "battle_transition.h"
 #include "main.h"
+#include "party_menu.h"
 #include "task.h"
 #include "safari_zone.h"
 #include "script.h"
@@ -506,6 +507,69 @@ void BattleSetup_StartRoamerBattle(void)
     TryUpdateGymLeaderRematchFromWild();
 }
 
+
+bool8 StartTitanBattle(struct ScriptContext *ctx)
+{
+    u16 titanId = ScriptReadByte(ctx);
+    BattleSetup_StartTitanBattle(titanId);
+    ScriptContext_Stop();
+    return TRUE;
+}
+
+void SetupTitan(u8 titanId)
+{
+    const struct Titan* titan = &gTitans[titanId];
+
+    gBattleTypeFlags = BATTLE_TYPE_TITAN;
+    if (titan->partnerId) {
+        gBattleTypeFlags |= BATTLE_TYPE_INGAME_PARTNER | BATTLE_TYPE_MULTI | BATTLE_TYPE_DOUBLE;
+
+        SavePlayerParty();
+        int selectedOrderIndex = 0;
+        int partyIndex = 0;
+        while (selectedOrderIndex < 3 && partyIndex < PARTY_SIZE) {
+            if (gPlayerParty[partyIndex].hp == 0) {
+                partyIndex += 1;
+                continue;
+            }
+            gSelectedOrderFromParty[selectedOrderIndex] = partyIndex + 1;
+            selectedOrderIndex++;
+            partyIndex++;
+        }
+        ReducePlayerPartyToSelectedMons();
+
+        gPartnerTrainerId = TRAINER_PARTNER(titan->partnerId);
+        CreateNPCTrainerPartyFromTrainer(&gPlayerParty[3], &gBattlePartners[titan->partnerId], FALSE, BATTLE_TYPE_TRAINER);
+    }
+    
+    ZeroEnemyPartyMons();
+    CreatePokemonFromTrainerMon(&gEnemyParty[0], &titan->titan);
+    if (titan->healthPercent) {
+        gEnemyParty[0].maxHP = (u16) ((u32)gEnemyParty[0].maxHP * titan->healthPercent / 100);
+        gEnemyParty[0].hp = gEnemyParty[0].maxHP;
+    }
+
+    gTitanFlags.healthPercent = titan->healthPercent ? titan->healthPercent : 100;
+    gTitanFlags.nextFillSlot = 0;
+    gTitanFlags.type = titan->type; 
+    gTitanFlags.midChecked = 0;
+    gTitanFlags.smart = titan->smart;
+}
+
+void BattleSetup_StartTitanBattle(u8 titanId)
+{
+    SetupTitan(titanId);
+    LockPlayerFieldControls();
+    FreezeObjectEvents();
+    StopPlayerAvatar();
+    gMain.savedCallback = CB2_EndScriptedWildBattle;
+    CreateBattleStartTask(GetWildBattleTransition(), 0);
+    IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
+    IncrementGameStat(GAME_STAT_WILD_BATTLES);
+    IncrementDailyWildBattles();
+    TryUpdateGymLeaderRematchFromWild();
+}
+
 static void DoSafariBattle(void)
 {
     LockPlayerFieldControls();
@@ -722,6 +786,11 @@ static void CB2_EndScriptedWildBattle(void)
 {
     CpuFill16(0, (void *)(BG_PLTT), BG_PLTT_SIZE);
     ResetOamRange(0, 128);
+
+    if ((gBattleTypeFlags & BATTLE_TYPE_TITAN) && (gBattleTypeFlags & BATTLE_TYPE_DOUBLE))
+    {
+        LoadPlayerParty();
+    }
 
     if (IsPlayerDefeated(gBattleOutcome) == TRUE)
     {

@@ -858,4 +858,7 @@ extern const u8 BattleScript_EffectFickleBeam[];
 extern const u8 BattleScript_FickleBeamDoubled[];
 extern const u8 BattleScript_EffectMortalSpin[];
 
+extern const u8 BattleScript_TitanBoost[];
+extern const u8 BattleScript_TitanBoostBothAllies[];
+
 #endif // GUARD_BATTLE_SCRIPTS_H

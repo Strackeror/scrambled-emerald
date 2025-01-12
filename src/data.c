@@ -225,10 +225,10 @@ const union AnimCmd *const sAnims_Trainer[] ={
     sAnim_GeneralFrame0,
 };
 
-#include "data/trainer_parties.h"
 
 const struct Trainer gTrainers[] =
 {
+#include "data/trainer_parties.h"
 #include "data/trainers.h"
 };
 

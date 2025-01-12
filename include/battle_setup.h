@@ -22,6 +22,8 @@ void BattleSetup_StartWildBattle(void);
 void BattleSetup_StartDoubleWildBattle(void);
 void BattleSetup_StartBattlePikeWildBattle(void);
 void BattleSetup_StartRoamerBattle(void);
+void BattleSetup_StartTitanBattlePhase1(u8 titanId);
+void BattleSetup_StartTitanBattle(u8 titanId);
 void StartWallyTutorialBattle(void);
 void BattleSetup_StartScriptedWildBattle(void);
 void BattleSetup_StartScriptedDoubleWildBattle(void);

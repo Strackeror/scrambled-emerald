@@ -2437,3 +2437,14 @@
 	.2byte \dest
 	.endm
 
+	.macro titanbattle titanId:req
+	callnative StartTitanBattle
+		.byte \titanId
+	goto_if_eq VAR_RESULT, B_OUTCOME_LOST, 1f
+	goto 2f
+	1:
+		fadescreen FADE_TO_BLACK
+		special SetCB2WhiteOut
+		waitstate
+	2:
+	.endm

@@ -120,7 +120,7 @@ JaggedPass_EventScript_DianaRematch::
 	end
 
 JaggedPass_EventScript_Ethan::
-	trainerbattle_single TRAINER_ETHAN_1, JaggedPass_Text_EthanIntro, JaggedPass_Text_EthanDefeat, JaggedPass_EventScript_Ethan_LevelCap
+	trainerbattle_single TRAINER_BROTHER_01_03, JaggedPass_Text_EthanIntro, JaggedPass_Text_EthanDefeat, JaggedPass_EventScript_Ethan_LevelCap
 	msgbox JaggedPass_Text_EthanPostBattle, MSGBOX_DEFAULT
 	end
 
@@ -149,6 +149,31 @@ JaggedPass_EventScript_Autumn::
 	trainerbattle_single TRAINER_AUTUMN, JaggedPass_Text_AutumnIntro, JaggedPass_Text_AutumnDefeat
 	msgbox JaggedPass_Text_AutumnPostBattle, MSGBOX_AUTOCLOSE
 	end
+
+JaggedPass_EventScript_TitanOrthworm_Trigger::
+	goto_if_unset FLAG_TITAN_ORTHWORM JaggedPass_EventScript_TitanOrthworm
+	release
+	end
+
+JaggedPass_EventScript_TitanOrthworm::
+	lock
+	faceplayer
+	msgbox JaggedPass_Text_Titan, MSGBOX_DEFAULT
+	titanbattle 5
+	waitstate
+	msgbox JaggedPass_Text_Titan, MSGBOX_DEFAULT
+	titanbattle 6
+	waitstate
+	release
+	fadescreen FADE_TO_BLACK
+	removeobject 8
+	setflag FLAG_TITAN_ORTHWORM
+	fadescreen FADE_FROM_BLACK
+	setvar VAR_LEVEL_CAP 35
+	end
+
+JaggedPass_Text_Titan::
+	.string "...$"
 
 JaggedPass_Text_EricIntro:
 	.string "MT. CHIMNEY's JAGGED PASS…\p"

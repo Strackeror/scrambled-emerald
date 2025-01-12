@@ -22,7 +22,7 @@ RustboroCity_Gym_EventScript_RoxanneDefeated::
 	setvar VAR_0x8008, 1
 	call Common_EventScript_SetGymTrainers
 	call_if_eq VAR_PETALBURG_GYM_STATE, 6, Common_EventScript_ReadyPetalburgGymForBattle
-	setvar VAR_LEVEL_CAP 18
+	setvar VAR_LEVEL_CAP 15
 	goto RustboroCity_Gym_EventScript_GiveRockTomb
 	end
 

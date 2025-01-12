@@ -17,6 +17,28 @@ GraniteCave_1F_EventScript_ReceivedFlash::
 	release
 	end
 
+GraniteCave_1F_EventScript_KlawfTitanFront::
+	goto_if_unset FLAG_TITAN_KLAWF GraniteCave_1F_EventScript_KlawfTitan
+	release
+	end
+
+GraniteCave_1F_EventScript_KlawfTitan::
+	lock
+	faceplayer
+	msgbox GraniteCave_1F_Text_Klawf, MSGBOX_DEFAULT
+	titanbattle 1
+	waitstate
+	msgbox GraniteCave_1F_Text_Klawf, MSGBOX_DEFAULT
+	titanbattle 2
+	waitstate
+	release
+	fadescreen FADE_TO_BLACK
+	removeobject 3
+	setflag FLAG_TITAN_KLAWF
+	fadescreen FADE_FROM_BLACK
+	setvar VAR_LEVEL_CAP 18
+	end
+
 GraniteCave_1F_Text_GetsDarkAheadHereYouGo:
 	.string "Hey, you.\n"
 	.string "It gets awfully dark ahead.\l"
@@ -37,3 +59,5 @@ GraniteCave_1F_Text_ExplainFlash:
 	.string "But, to use it, you need the GYM BADGE\n"
 	.string "from DEWFORD's POKéMON GYM.$"
 
+GraniteCave_1F_Text_Klawf:
+	.string "...$"

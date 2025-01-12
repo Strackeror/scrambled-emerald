@@ -537,7 +537,7 @@ MtChimney_EventScript_Shirley::
 	end
 
 MtChimney_EventScript_Shirley_LevelCap::
-	setvar VAR_LEVEL_CAP 35
+	setvar VAR_LEVEL_CAP 33
 	end
 
 MtChimney_EventScript_Grunt1::

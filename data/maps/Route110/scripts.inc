@@ -496,6 +496,28 @@ Route110_EventScript_MoveRival2::
 Route110_EventScript_MoveRival3::
 	setobjectxyperm LOCALID_RIVAL_ON_BIKE, 35, 55
 	return
+	
+Route110_EventScript_TitanBombirdier_Trigger::
+	goto_if_unset FLAG_TITAN_BOMBIRDIER Route110_EventScript_TitanBombirdier
+	release
+	end
+
+Route110_EventScript_TitanBombirdier::
+	lock
+	faceplayer
+	msgbox GraniteCave_1F_Text_Klawf, MSGBOX_DEFAULT
+	titanbattle 3
+	waitstate
+	msgbox GraniteCave_1F_Text_Klawf, MSGBOX_DEFAULT
+	titanbattle 4
+	waitstate
+	release
+	fadescreen FADE_TO_BLACK
+	removeobject 35
+	setflag FLAG_TITAN_BOMBIRDIER
+	fadescreen FADE_FROM_BLACK
+	setvar VAR_LEVEL_CAP 24
+	end
 
 Route110_Movement_RivalApproachPlayer1:
 	walk_down

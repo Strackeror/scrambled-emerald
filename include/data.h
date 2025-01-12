@@ -94,6 +94,27 @@ struct Trainer
     /*0x20*/ u8 partySize;
 };
 
+enum {
+    TITAN_TYPE_NONE,
+    TITAN_TYPE_FLEE_10,
+    TITAN_TYPE_BOOST_DEF,
+    TITAN_TYPE_BOOST_SPDEF,
+    TITAN_TYPE_BOOST_SPEED,
+};
+
+struct Titan
+{
+    const struct TrainerMon titan;
+    u16 healthPercent;
+    u8 encounterMusic;
+    u8 type;
+    bool8 smart;
+
+    u16 partnerId;
+};
+
+extern const struct Titan gTitans[];
+
 struct TrainerClass
 {
     u8 name[13];

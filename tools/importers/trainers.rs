@@ -21,8 +21,8 @@ const TRAINER_LIST: &[(&str, &str, &str)] = &[
     ("gym_denki_leader_01", "Leader Wattson", "Wattson"),
     ("dan_hono_boss_01", "Magma Admin", "Tabitha"),
     ("sister_01_02", "Leaf", "Leaf"),
-    ("brother_01_03", "Wally", "Wally"),
     // TITAN ORTHWORM
+    ("brother_01_03", "Wally", "Wally"),
     ("gym_mizu_leader_01", "Leader Flannery", "Flannery"),
     ("dan_doku_boss_01", "Aqua Admin F", "Shelly"),
     ("brother_01_04", "Wally", "Wally"),
@@ -49,6 +49,15 @@ const TRAINER_LIST: &[(&str, &str, &str)] = &[
     ("chairperson_01", "Champion Wallace", "Geeta"),
     ("professor_A_01", "Steven", "Steven"),
     ("professor_B_01", "Steven", "Steven"),
+];
+
+const PARTNER_LIST: &[(&str, &str, &str)] = &[
+    ("pepper_nusi_01", "Steven", "Steven"),
+    ("pepper_nusi_02", "Steven", "Steven"),
+    ("pepper_nusi_03", "Steven", "Steven"),
+    ("pepper_nusi_04", "Steven", "Steven"),
+    ("pepper_nusi_05", "Steven", "Steven"),
+    ("sister_onitaizi", "Leaf", "Leaf"),
 ];
 
 #[derive(Debug, Deserialize)]
@@ -180,6 +189,7 @@ fn trainer(
     name: &str,
     species_list: &[String],
     personal_data: &PersonalArray,
+    prefix: &str
 ) -> Result<String> {
     let id = data.tr_id.to_uppercase();
     let name = name.to_uppercase();
@@ -207,7 +217,7 @@ fn trainer(
     let pokes = pokes.join("");
     Ok(format!(
         "
-=== TRAINER_{id} ===
+=== {prefix}_{id} ===
 Name: {name}
 Pic: {pic}
 Gender: {gender}
@@ -224,6 +234,7 @@ pub fn trainers() -> Result<()> {
     let trainers: TrData = serde_json::from_slice(&read("resources/trdata_array.json")?)?;
     let personal: PersonalArray = serde_json::from_slice(&read("resources/personal_array.json")?)?;
     let base_parties = fs::read_to_string("../../src/data/trainers.base.party")?;
+    let base_partners = fs::read_to_string("../../src/data/battle_partners.base.party")?;
     let species = species_list()?;
 
     let new_parties = (trainers.table)
@@ -232,10 +243,21 @@ pub fn trainers() -> Result<()> {
         .collect::<Vec<_>>();
     let party_defs = new_parties
         .iter()
-        .map(|(tr, (_, pic, name))| trainer(tr, pic, name, &species, &personal))
+        .map(|(tr, (_, pic, name))| trainer(tr, pic, name, &species, &personal, "TRAINER"))
         .collect::<Result<Vec<_>>>()?
         .join("");
-
     write("../../src/data/trainers.party", base_parties + &party_defs)?;
+
+    let new_partners = (trainers.table).iter()
+        .filter_map(|tr| Some((tr, PARTNER_LIST.iter().find(|(id, ..)| *id == tr.tr_id)?)))
+        .collect::<Vec<_>>();
+    let partner_defs = new_partners
+        .iter()
+        .map(|(tr, (_, pic, name))| trainer(tr, pic, name, &species, &personal, "PARTNER"))
+        .collect::<Result<Vec<_>>>()?
+        .join("");
+    write("../../src/data/battle_partners.party", base_partners + &partner_defs)?;
+
+    
     Ok(())
 }

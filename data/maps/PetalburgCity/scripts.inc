@@ -769,7 +769,7 @@ PetalburgCity_Text_ImLookingForTalentedTrainers:
 
 Nemona_Fallback::
 	trainerbattle_no_intro TRAINER_RIVAL_05_HONO, PostFight_Nemona_LoseText
-	setvar VAR_LEVEL_CAP 45
+	setvar VAR_LEVEL_CAP 43
 	setvar VAR_PETALBURG_CITY_STATE 5
 	fadescreen FADE_TO_BLACK
 	setflag FLAG_HIDE_PETALBURG_GYM_RIVAL_FIGHT

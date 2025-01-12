@@ -1,3 +1,4 @@
+#include "constants/battle.h"
 #include "global.h"
 #include "battle.h"
 #include "battle_anim.h"
@@ -2124,6 +2125,11 @@ void BufferStringBattle(u16 stringID, u32 battler)
         {
             if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY)
                 stringPtr = sText_LegendaryPkmnAppeared;
+            else if (gBattleTypeFlags & BATTLE_TYPE_TITAN)
+            {
+              static const u8 str[] = _("You encountered a titanic {B_OPPONENT_MON1_NAME}!\p");
+              stringPtr = str;
+            }
             else if (IsDoubleBattle() && IsValidForBattle(&gEnemyParty[gBattlerPartyIndexes[GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT)]]))
                 stringPtr = sText_TwoWildPkmnAppeared;
             else if (gBattleTypeFlags & BATTLE_TYPE_WALLY_TUTORIAL)

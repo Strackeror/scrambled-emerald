@@ -4,5 +4,11 @@
 
 #define PARTNER_NONE                0
 #define PARTNER_STEVEN              1
+#define PARTNER_PEPPER_NUSI_01      2
+#define PARTNER_PEPPER_NUSI_02      3
+#define PARTNER_PEPPER_NUSI_03      4
+#define PARTNER_PEPPER_NUSI_04      5
+#define PARTNER_PEPPER_NUSI_05      6
+#define PARTNER_SISTER_ONITAIZI     7
 
 #endif  // GUARD_CONSTANTS_BATTLE_PARTNERS_H

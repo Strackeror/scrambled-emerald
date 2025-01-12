@@ -2189,6 +2189,15 @@ static void Cmd_adjustdamage(void)
 END:
     gBattlescriptCurrInstr = cmd->nextInstr;
 
+    if ((gBattleTypeFlags & BATTLE_TYPE_TITAN)
+        && gTitanFlags.type == TITAN_TYPE_FLEE_10
+        && GetBattlerSide(gBattlerTarget) == B_SIDE_OPPONENT) {
+        u16 min = gBattleMons[gBattlerTarget].maxHP / 10;
+        u16 maxDmg = gBattleMons[gBattlerTarget].hp - min;
+        if (gBattleMoveDamage > maxDmg) 
+            gBattleMoveDamage = maxDmg;
+    }
+
     if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) && gBattleMoveDamage >= 1)
         gSpecialStatuses[gBattlerAttacker].damagedMons |= (1 << (gBattlerTarget));
 
@@ -6784,6 +6793,39 @@ static void Cmd_moveend(void)
                             gBattlescriptCurrInstr = BattleScript_EmergencyExitWildNoPopUp;
                     }
                     return;
+                }
+            }
+            gBattleScripting.moveendState++;
+            break;
+        case MOVEEND_TITAN_EFFECTS:
+            if (!(gBattleTypeFlags & BATTLE_TYPE_TITAN)) {
+                gBattleScripting.moveendState++;
+                break;
+            }
+            for (i = 0; i < gBattlersCount; i++) {
+                if (GetBattlerPosition(i) == B_POSITION_OPPONENT_LEFT) {
+                    DebugPrintfLevel(2, "%d %d %d", gBattleMons[i].hp, gBattleMons[i].maxHP, gTitanFlags.type);
+                    if (gTitanFlags.type == TITAN_TYPE_FLEE_10 && gBattleMons[i].hp <= gBattleMons[i].maxHP / 10) {
+                        BattleScriptPushCursor();
+                        gBattlescriptCurrInstr = BattleScript_EmergencyExitWildNoPopUp;
+                        return;
+                    }
+                }
+                if (GetBattlerPosition(i) == B_POSITION_PLAYER_LEFT && !gTitanFlags.midChecked) {
+                    if (gBattleMons[i].hp <= gBattleMons[i].maxHP / 2) {
+                        gTitanFlags.midChecked = TRUE;
+                        u8 stat = 0;
+                        if (gTitanFlags.type == TITAN_TYPE_BOOST_DEF) stat = STAT_ATK;
+                        if (gTitanFlags.type == TITAN_TYPE_BOOST_SPDEF) stat = STAT_SPATK;
+                        if (gTitanFlags.type == TITAN_TYPE_BOOST_SPEED) stat = STAT_SPEED;
+                        if (stat) {
+                            gBattlerTarget = i;
+                            SET_STATCHANGER(stat, 1, FALSE);
+                            BattleScriptPushCursor();
+                            gBattlescriptCurrInstr = BattleScript_TitanBoostBothAllies;
+                            return;
+                        }
+                     }
                 }
             }
             gBattleScripting.moveendState++;
@@ -15309,7 +15351,7 @@ static void Cmd_handleballthrow(void)
 
     gBattlerTarget = GetCatchingBattler();
 
-    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+    if (gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_TITAN))
     {
         BtlController_EmitBallThrowAnim(gBattlerAttacker, BUFFER_A, BALL_TRAINER_BLOCK);
         MarkBattlerForControllerExec(gBattlerAttacker);

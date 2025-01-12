@@ -8,13 +8,14 @@
     - [ ] Weird Multiform Pokes: Vivillon Family, Alcremie, Minior
     - [ ] Bring in sprites for dooz formes
 - [x] Ability / Held Item Buffs
-- [ ] Trainers
+- [x] Trainers
     - [x] Sets
-    - [ ] Placements
-    - [ ] Level Caps
+    - [x] Placements
+    - [x] Level Caps
     - [ ] Bring in sprites ?
-- [ ] Titans
+- [x] Titans
 - [ ] Starmobiles
+- [ ] Ogerpon fight
 - [ ] Enable Tera
 - [ ] Shops / TMs
 - [ ] Eggs

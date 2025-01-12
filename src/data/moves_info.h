@@ -9047,7 +9047,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_AQUA_RING] =
     {
-        .name = COMPOUND_STRING("Aqua Ring"),
+        .name = COMPOUND_STRING("Rehydrate"),
         .description = COMPOUND_STRING("The user envelops itself in a veil made of water.\nThis recovers 50% of the user's max HP."),
         .effect = EFFECT_RESTORE_HP,
         .power = 0,

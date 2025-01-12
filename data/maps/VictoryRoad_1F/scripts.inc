@@ -119,7 +119,7 @@ VictoryRoad_1F_EventScript_Hope::
 	end
 
 VictoryRoad_1F_EventScript_Hope_Defeat::
-	setvar VAR_LEVEL_CAP 60
+	setvar VAR_LEVEL_CAP 58
 	end
 
 VictoryRoad_1F_EventScript_Quincy::
@@ -234,3 +234,28 @@ VictoryRoad_1F_Text_KatelynnDefeat:
 VictoryRoad_1F_Text_KatelynnPostBattle:
 	.string "Humph, go right on ahead.\n"
 	.string "See if I care.$"
+
+VictoryRoad_1F_EventScript_TitanDondozo_Trigger::
+	goto_if_unset FLAG_TITAN_DONDOZO VictoryRoad_1F_EventScript_TitanDondozo
+	release
+	end
+
+VictoryRoad_1F_EventScript_TitanDondozo::
+	lock
+	faceplayer
+	msgbox VictoryRoad_1F_Text_Titan, MSGBOX_DEFAULT
+	titanbattle 11
+	waitstate
+	msgbox VictoryRoad_1F_Text_Titan, MSGBOX_DEFAULT
+	titanbattle 12
+	waitstate
+	release
+	fadescreen FADE_TO_BLACK
+	removeobject 8
+	setflag FLAG_TITAN_DONDOZO
+	fadescreen FADE_FROM_BLACK
+	setvar VAR_LEVEL_CAP 60
+	end
+
+VictoryRoad_1F_Text_Titan::
+	.string "...$"

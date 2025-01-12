@@ -390,7 +390,7 @@ Route109_EventScript_Huey::
 	end
 
 Route109_EventScript_Huey_Defeated::
-	setvar VAR_LEVEL_CAP 24
+	setvar VAR_LEVEL_CAP 22
 	end
 
 Route109_EventScript_Edmond::

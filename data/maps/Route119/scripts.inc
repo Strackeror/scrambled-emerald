@@ -612,3 +612,69 @@ Route119_Text_TrainerTipsDecoration:
 	.string "Pick your favorite items and create\n"
 	.string "your very own SECRET BASE exactly the\l"
 	.string "way you want.$"
+
+Route119_EventScript_TitanOkidogi::
+	lock
+	goto_if_set FLAG_TITAN_OKIDOGI, Route119_EventScript_TitanOkidogi_Defeated
+	faceplayer
+	msgbox Route119_Text_Titan, MSGBOX_DEFAULT
+	titanbattle 13
+	waitstate
+	setflag FLAG_TITAN_OKIDOGI
+Route119_EventScript_TitanOkidogi_Defeated::
+	release
+	applymovement 44, Route119_Movement_TitanDefeated
+	waitmovement 0
+	goto Route119_EventScript_TryRemoveLoyal3
+	end
+
+Route119_EventScript_TitanMunkidori::
+	lock
+	goto_if_set FLAG_TITAN_MUNKIDORI, Route119_EventScript_TitanMunkidori_Defeated
+	faceplayer
+	msgbox Route119_Text_Titan, MSGBOX_DEFAULT
+	titanbattle 14
+	waitstate
+	setflag FLAG_TITAN_MUNKIDORI
+Route119_EventScript_TitanMunkidori_Defeated::
+	release
+	applymovement 45, Route119_Movement_TitanDefeated
+	waitmovement 0
+	goto Route119_EventScript_TryRemoveLoyal3
+	end
+
+Route119_EventScript_TitanFezandipiti::
+	lock
+	goto_if_set FLAG_TITAN_FEZANDIPITI, Route119_EventScript_TitanFezandipiti_Defeated
+	faceplayer
+	msgbox Route119_Text_Titan, MSGBOX_DEFAULT
+	titanbattle 15
+	waitstate
+	setflag FLAG_TITAN_FEZANDIPITI
+Route119_EventScript_TitanFezandipiti_Defeated::
+	release
+	applymovement 46, Route119_Movement_TitanDefeated
+	waitmovement 0
+	goto Route119_EventScript_TryRemoveLoyal3
+	end
+
+Route119_EventScript_TryRemoveLoyal3:
+	goto_if_unset FLAG_TITAN_OKIDOGI, Route119_EventScript_End
+	goto_if_unset FLAG_TITAN_MUNKIDORI, Route119_EventScript_End
+	goto_if_unset FLAG_TITAN_FEZANDIPITI, Route119_EventScript_End
+	setvar VAR_LEVEL_CAP 45
+	fadescreen FADE_TO_BLACK
+	removeobject 44
+	removeobject 45
+	removeobject 46
+	setflag FLAG_TITAN_LOYAL_THREE
+	fadescreen FADE_FROM_BLACK
+Route119_EventScript_End:
+	end
+
+Route119_Movement_TitanDefeated:
+	jump_in_place_up
+	step_end
+
+Route119_Text_Titan::
+	.string "...$"

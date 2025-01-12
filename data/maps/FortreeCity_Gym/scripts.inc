@@ -33,7 +33,7 @@ FortreeCity_Gym_EventScript_WinonaDefeated::
 	msgbox FortreeCity_Gym_Text_ExplainFeatherBadgeTakeThis, MSGBOX_DEFAULT
 	setflag FLAG_DEFEATED_FORTREE_GYM
 	setflag FLAG_BADGE06_GET
-	setvar VAR_LEVEL_CAP 50
+	setvar VAR_LEVEL_CAP 47
 	setvar VAR_0x8008, 6
 	call Common_EventScript_SetGymTrainers
 	playfanfare MUS_REGISTER_MATCH_CALL
