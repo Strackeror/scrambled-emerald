@@ -16,6 +16,7 @@
 #include "string_util.h"
 #include "util.h"
 #include "constants/abilities.h"
+#include "constants/battle.h"
 #include "constants/battle_move_effects.h"
 #include "constants/battle_string_ids.h"
 #include "constants/flags.h"
@@ -147,8 +148,11 @@ void ApplyDynamaxHPMultiplier(u32 battler, struct Pokemon* mon)
 // Returns the non-Dynamax HP of a Pokemon.
 u16 GetNonDynamaxHP(u32 battler)
 {
-    if (gBattleTypeFlags & BATTLE_TYPE_TITAN && GetBattlerPosition(battler)) {
+    if (gBattleTypeFlags & BATTLE_TYPE_TITAN && GetBattlerPosition(battler) == B_POSITION_OPPONENT_LEFT) {
         return (((u32)gBattleMons[battler].hp) * 100) / gTitanFlags.healthPercent;
+    }
+    if (gBattleTypeFlags & BATTLE_TYPE_OGERPON && GetBattlerPosition(battler) == B_POSITION_OPPONENT_LEFT) {
+        return (((u32)gBattleMons[battler].hp) * 100) / 170;
     }
 
     if (GetActiveGimmick(battler) != GIMMICK_DYNAMAX || gBattleMons[battler].species == SPECIES_SHEDINJA)
@@ -164,8 +168,11 @@ u16 GetNonDynamaxHP(u32 battler)
 // Returns the non-Dynamax Max HP of a Pokemon.
 u16 GetNonDynamaxMaxHP(u32 battler)
 {
-    if (gBattleTypeFlags & BATTLE_TYPE_TITAN && GetBattlerPosition(battler)) {
+    if (gBattleTypeFlags & BATTLE_TYPE_TITAN && GetBattlerPosition(battler) == B_POSITION_OPPONENT_LEFT) {
         return (((u32)gBattleMons[battler].maxHP) * 100) / gTitanFlags.healthPercent;
+    }
+    if (gBattleTypeFlags & BATTLE_TYPE_OGERPON && GetBattlerPosition(battler) == B_POSITION_OPPONENT_LEFT) {
+        return (((u32)gBattleMons[battler].maxHP) * 100) / 170;
     }
 
     if (GetActiveGimmick(battler) != GIMMICK_DYNAMAX || gBattleMons[battler].species == SPECIES_SHEDINJA)

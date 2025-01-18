@@ -58,6 +58,7 @@
 #include "wild_encounter.h"
 #include "window.h"
 #include "constants/abilities.h"
+#include "constants/battle.h"
 #include "constants/battle_ai.h"
 #include "constants/battle_move_effects.h"
 #include "constants/battle_string_ids.h"
@@ -65,6 +66,7 @@
 #include "constants/hold_effects.h"
 #include "constants/items.h"
 #include "constants/moves.h"
+#include "constants/opponents.h"
 #include "constants/party_menu.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
@@ -374,6 +376,7 @@ const struct TrainerClass gTrainerClasses[TRAINER_CLASS_COUNT] =
     [TRAINER_CLASS_PIKE_QUEEN] = { _("PIKE QUEEN") },
     [TRAINER_CLASS_PYRAMID_KING] = { _("PYRAMID KING") },
     [TRAINER_CLASS_RS_PROTAG] = { _("{PKMN} TRAINER") },
+    [TRAINER_CLASS_OGERPON] = { _("Pokémon") },
 };
 
 static void (* const sTurnActionsFuncsTable[])(void) =
@@ -526,6 +529,10 @@ static void CB2_InitBattleInternal(void)
                                                                         | BATTLE_TYPE_TRAINER_HILL)))
     {
         gBattleTypeFlags |= (IsTrainerDoubleBattle(gTrainerBattleOpponent_A) ? BATTLE_TYPE_DOUBLE : 0);
+    }
+
+    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && gTrainerBattleOpponent_A == TRAINER_OGERPON) {
+        gBattleTypeFlags |= BATTLE_TYPE_OGERPON;
     }
 
     InitBattleBgsVideo();
@@ -2037,6 +2044,11 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             {
                 u8 ball = gTrainerClasses[trainer->trainerClass].ball ?: ITEM_POKE_BALL;
                 SetMonData(&party[i], MON_DATA_POKEBALL, &ball);
+            }
+            if (gBattleTypeFlags & BATTLE_TYPE_OGERPON) {
+                u32 maxHP =  party[i].maxHP;
+                party[i].maxHP = maxHP * 170 / 100;
+                party[i].hp = maxHP * 170 / 100;
             }
         }
     }

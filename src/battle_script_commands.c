@@ -6798,6 +6798,13 @@ static void Cmd_moveend(void)
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_TITAN_EFFECTS:
+            if (gBattleTypeFlags & BATTLE_TYPE_OGERPON) {
+                u8 opponent = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+                if (!IsBattlerAlive(opponent)) {
+                    gBattleStruct->gimmick.activated[opponent][GIMMICK_TERA] = FALSE;
+                }
+            }
+
             if (!(gBattleTypeFlags & BATTLE_TYPE_TITAN)) {
                 gBattleScripting.moveendState++;
                 break;

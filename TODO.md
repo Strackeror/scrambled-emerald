@@ -15,7 +15,7 @@
     - [ ] Bring in sprites ?
 - [x] Titans
 - [ ] Starmobiles
-- [ ] Ogerpon fight
+- [x] Ogerpon fight
 - [ ] Enable Tera
 - [ ] Shops / TMs
 - [ ] Eggs
