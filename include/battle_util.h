@@ -318,5 +318,6 @@ bool8 CanMonParticipateInSkyBattle(struct Pokemon *mon);
 bool8 IsMonBannedFromSkyBattles(u16 species);
 void RemoveBattlerType(u32 battler, u8 type);
 u32 GetMoveType(u32 move);
+bool8 IsStarmobile(u32 battler);
 
 #endif // GUARD_BATTLE_UTIL_H

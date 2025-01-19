@@ -7,60 +7,8 @@ use serde::Deserialize;
 use crate::species::{species_list, species_matcher};
 use crate::PersonalArray;
 
-const TRAINER_LIST: &[(&str, &str, &str)] = &[
-    ("rival_02_hono", "May", "May"),
-    ("sister_01_01", "Leaf", "Leaf"),
-    ("brother_01_01", "Wally", "Wally"),
-    ("gym_mushi_leader_01", "Leader Roxanne", "Roxanne"),
-    // TITAN_KLAWF
-    ("gym_kusa_leader_01", "Leader Brawly", "Brawly"),
-    ("brother_01_02", "Wally", "Wally"),
-    // TITAN_BOMBIRDIER
-    ("dan_aku_boss_01", "Aqua Admin M", "Matt"),
-    ("rival_04_hono", "May", "May"),
-    ("gym_denki_leader_01", "Leader Wattson", "Wattson"),
-    ("dan_hono_boss_01", "Magma Admin", "Tabitha"),
-    ("sister_01_02", "Leaf", "Leaf"),
-    // TITAN ORTHWORM
-    ("brother_01_03", "Wally", "Wally"),
-    ("gym_mizu_leader_01", "Leader Flannery", "Flannery"),
-    ("dan_doku_boss_01", "Aqua Admin F", "Shelly"),
-    ("brother_01_04", "Wally", "Wally"),
-    ("gym_normal_leader_01", "Leader Norman", "Norman"),
-    ("rival_05_hono", "May", "May"),
-    // TITAN_LOYAL_3
-    ("gym_ghost_leader_01", "Leader Winona", "Winona"), // Special effects ?
-    // TITAN_WEIRD_DONFAN
-    ("brother_01_05", "Wally", "Wally"),
-    // TITAN_OGERPONS
-    ("sister_01_03", "Leaf", "Leaf"),
-    ("rival_06_hono", "May", "May"),
-    ("gym_esper_leader_01", "Leader Tate And Liza", "Tate&Liza"),
-    ("gym_koori_leader_01", "Leader Juan", "Juan"),
-    ("dan_fairy_boss_01", "Aqua Leader Archie", "Archie"),
-    ("dan_kakutou_boss_01", "Magma Leader Maxie", "Maxie"),
-    ("pepper_01", "Factory Head Noland", "Arven"),
-    ("clavel_01_hono", "Gentleman", "Clavell"),
-    ("botan_01", "Arena Tycoon Greta", "Penny"),
-    ("e4_jimen_01", "Elite Four Sidney", "Rika"),
-    ("e4_hagane_01", "Elite Four Phoebe", "Poppy"),
-    ("e4_hikou_01", "Elite Four Glacia", "Larry"),
-    ("e4_dragon_01", "Elite Four Drake", "Hassel"),
-    ("chairperson_01", "Champion Wallace", "Geeta"),
-    ("professor_A_01", "Steven", "Steven"),
-    ("professor_B_01", "Steven", "Steven"),
-];
-
-const PARTNER_LIST: &[(&str, &str, &str)] = &[
-    ("pepper_nusi_01", "Steven", "Steven"),
-    ("pepper_nusi_02", "Steven", "Steven"),
-    ("pepper_nusi_03", "Steven", "Steven"),
-    ("pepper_nusi_04", "Steven", "Steven"),
-    ("pepper_nusi_05", "Steven", "Steven"),
-    ("sister_onitaizi", "Leaf", "Leaf"),
-];
-
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Default)]
+#[serde(default)]
 struct Stats {
     hp: u16,
     atk: u16,
@@ -70,17 +18,26 @@ struct Stats {
     spe: u16,
 }
 
+fn max_ivs() -> Stats {
+    Stats {
+        hp: 31,
+        atk: 31,
+        def: 31,
+        spa: 31,
+        spd: 31,
+        spe: 31,
+    }
+}
+
 #[derive(Debug, Deserialize)]
 struct Move {
     move_id: String,
-    point_up: u8,
 }
 
 #[derive(Debug, Deserialize)]
 struct Pokemon {
     poke_id: String,
     form_id: usize,
-    sex: String,
     item: String,
     level: u16,
     nature: String,
@@ -90,6 +47,7 @@ struct Pokemon {
     move3: Move,
     move4: Move,
     ability: String,
+    #[serde(default = "max_ivs")]
     iv_values: Stats,
     effort_value: Stats,
 }
@@ -97,9 +55,8 @@ struct Pokemon {
 #[derive(Debug, Deserialize)]
 struct Trainer {
     tr_id: String,
-    trainer_type: String,
-    battle_type: String,
     change_gem: bool,
+    battle_type: String,
     poke1: Pokemon,
     poke2: Pokemon,
     poke3: Pokemon,
@@ -113,6 +70,21 @@ struct TrData {
     table: Vec<Trainer>,
 }
 
+#[derive(Debug, Deserialize)]
+struct TrainerEntry {
+    id: String,
+    pic: String,
+    name: String,
+    #[serde(default)]
+    pokemon_override: Vec<(usize, Pokemon)>,
+}
+
+#[derive(Debug, Deserialize)]
+struct TrainerList {
+    trainers: Vec<TrainerEntry>,
+    partners: Vec<TrainerEntry>,
+}
+
 fn stats_to_string(stats: &Stats) -> String {
     format!(
         "{} HP / {} Atk / {} Def / {} SpA / {} SpD / {} Spe",
@@ -120,10 +92,42 @@ fn stats_to_string(stats: &Stats) -> String {
     )
 }
 
+fn pokemon_override(data: &Pokemon) -> Result<String> {
+    let id = data.poke_id.to_case(Case::ScreamingSnake);
+    let level = data.level;
+    let item = data.item.to_case(Case::ScreamingSnake);
+    let ivs = stats_to_string(&data.iv_values);
+    let evs = stats_to_string(&data.effort_value);
+    let nature = &data.nature;
+    let tera_type = match data.gem_type.as_str() {
+        "Default" => String::new(),
+        other => format!("Tera Type: {}\n", other),
+    };
+    let ability = data.ability.to_case(Case::ScreamingSnake);
+
+    let moves = [&data.move1, &data.move2, &data.move3, &data.move4];
+    let moves = moves
+        .map(|mov| format!("- MOVE_{}", mov.move_id.to_case(Case::ScreamingSnake)))
+        .join("\n");
+
+    Ok(format!(
+        "
+SPECIES_{id} @ ITEM_{item}
+Level: {level}
+Ability: ABILITY_{ability}
+IVs: {ivs}
+EVs: {evs}
+Nature: {nature}
+{tera_type}{moves}
+"
+    ))
+}
+
 fn pokemon(
     data: &Pokemon,
     species_list: &[String],
     personal_data: &PersonalArray,
+    tera_trainer: bool
 ) -> Result<String> {
     if &data.poke_id == "Egg" {
         return Ok(String::new());
@@ -163,6 +167,7 @@ fn pokemon(
     let nature = &data.nature;
     let tera_type = match data.gem_type.as_str() {
         "Default" => String::new(),
+        _ if !tera_trainer => String::new(),
         other => format!("Tera Type: {}\n", other),
     };
 
@@ -185,14 +190,14 @@ Nature: {nature}
 
 fn trainer(
     data: &Trainer,
-    pic: &str,
-    name: &str,
+    entry: &TrainerEntry,
     species_list: &[String],
     personal_data: &PersonalArray,
-    prefix: &str
+    prefix: &str,
 ) -> Result<String> {
     let id = data.tr_id.to_uppercase();
-    let name = name.to_uppercase();
+    let name = entry.name.to_uppercase();
+    let pic = entry.pic.as_str();
     let gender = "Male";
     let double_battle = match data.battle_type.as_str() {
         "Single" => "No",
@@ -210,10 +215,13 @@ fn trainer(
         &data.poke6,
     ];
 
-    let pokes: Vec<String> = pokes
+    let mut pokes: Vec<String> = pokes
         .iter()
-        .map(|poke| pokemon(poke, species_list, personal_data))
+        .map(|poke| pokemon(poke, species_list, personal_data, data.change_gem))
         .collect::<Result<Vec<_>>>()?;
+    for (index, pokemon) in &entry.pokemon_override {
+        *pokes.get_mut(*index).context("override")? = pokemon_override(&pokemon)?;
+    }
     let pokes = pokes.join("");
     Ok(format!(
         "
@@ -223,7 +231,7 @@ Pic: {pic}
 Gender: {gender}
 Music: {music}
 Double Battle: {double_battle}
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 {pokes}
 "
@@ -233,31 +241,35 @@ AI: Basic Trainer
 pub fn trainers() -> Result<()> {
     let trainers: TrData = serde_json::from_slice(&read("resources/trdata_array.json")?)?;
     let personal: PersonalArray = serde_json::from_slice(&read("resources/personal_array.json")?)?;
+    let entries: TrainerList = serde_json::from_slice(&read("resources/trainer_list.json")?)?;
     let base_parties = fs::read_to_string("../../src/data/trainers.base.party")?;
     let base_partners = fs::read_to_string("../../src/data/battle_partners.base.party")?;
     let species = species_list()?;
 
     let new_parties = (trainers.table)
         .iter()
-        .filter_map(|tr| Some((tr, TRAINER_LIST.iter().find(|(id, ..)| *id == tr.tr_id)?)))
+        .filter_map(|tr| Some((tr, entries.trainers.iter().find(|t| t.id == tr.tr_id)?)))
         .collect::<Vec<_>>();
     let party_defs = new_parties
         .iter()
-        .map(|(tr, (_, pic, name))| trainer(tr, pic, name, &species, &personal, "TRAINER"))
+        .map(|(tr, entry)| trainer(tr, entry, &species, &personal, "TRAINER"))
         .collect::<Result<Vec<_>>>()?
         .join("");
     write("../../src/data/trainers.party", base_parties + &party_defs)?;
 
-    let new_partners = (trainers.table).iter()
-        .filter_map(|tr| Some((tr, PARTNER_LIST.iter().find(|(id, ..)| *id == tr.tr_id)?)))
+    let new_partners = (trainers.table)
+        .iter()
+        .filter_map(|tr| Some((tr, entries.partners.iter().find(|t| t.id == tr.tr_id)?)))
         .collect::<Vec<_>>();
     let partner_defs = new_partners
         .iter()
-        .map(|(tr, (_, pic, name))| trainer(tr, pic, name, &species, &personal, "PARTNER"))
+        .map(|(tr, entry)| trainer(tr, entry, &species, &personal, "PARTNER"))
         .collect::<Result<Vec<_>>>()?
         .join("");
-    write("../../src/data/battle_partners.party", base_partners + &partner_defs)?;
+    write(
+        "../../src/data/battle_partners.party",
+        base_partners + &partner_defs,
+    )?;
 
-    
     Ok(())
 }

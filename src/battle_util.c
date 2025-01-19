@@ -10197,7 +10197,8 @@ static inline s32 DoMoveDamageCalcVars(struct DamageCalculationData *damageCalcD
     DAMAGE_APPLY_MODIFIER(GetTargetDamageModifier(damageCalcData));
     DAMAGE_APPLY_MODIFIER(GetParentalBondModifier(battlerAtk));
     DAMAGE_APPLY_MODIFIER(GetWeatherDamageModifier(damageCalcData, holdEffectAtk, holdEffectDef, weather));
-    DAMAGE_APPLY_MODIFIER(GetCriticalModifier(damageCalcData->isCrit));
+    if (!IsStarmobile(battlerDef))
+        DAMAGE_APPLY_MODIFIER(GetCriticalModifier(damageCalcData->isCrit));
     DAMAGE_APPLY_MODIFIER(GetGlaiveRushModifier(battlerDef));
 
     if (damageCalcData->randomFactor)
@@ -10260,7 +10261,8 @@ static inline s32 DoFutureSightAttackDamageCalcVars(struct DamageCalculationData
     targetFinalDefense = CalcDefenseStat(damageCalcData, ABILITY_NONE, abilityDef, holdEffectDef, weather);
     dmg = CalculateBaseDamage(gBattleMovePower, userFinalAttack, partyMonLevel, targetFinalDefense);
 
-    DAMAGE_APPLY_MODIFIER(GetCriticalModifier(damageCalcData->isCrit));
+    if (!IsStarmobile(battlerDef))
+        DAMAGE_APPLY_MODIFIER(GetCriticalModifier(damageCalcData->isCrit));
 
     if (damageCalcData->randomFactor)
     {
@@ -11878,4 +11880,18 @@ u32 GetMoveType(u32 move)
           || move == MOVE_DOOM_DESIRE))
           return TYPE_MYSTERY;
     return gMovesInfo[move].type;
+}
+
+bool8 IsStarmobile(u32 battler) {
+    u16 species = gBattleMons[battler].species;
+    switch (species) {
+        case SPECIES_STARMOBILE_DARK:
+        case SPECIES_STARMOBILE_FIRE:
+        case SPECIES_STARMOBILE_POISON:
+        case SPECIES_STARMOBILE_FAIRY:
+        case SPECIES_STARMOBILE_FIGHTING:
+            return TRUE;
+        default:
+            return FALSE;
+    }
 }

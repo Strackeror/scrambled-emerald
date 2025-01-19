@@ -48,7 +48,7 @@ Pic: Steven
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_CAPSAKID @ ITEM_CHARTI_BERRY
@@ -69,7 +69,7 @@ Pic: Steven
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_FLAPPLE @ ITEM_SITRUS_BERRY
@@ -90,7 +90,7 @@ Pic: Steven
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_SHELLDER @ ITEM_ROCKY_HELMET
@@ -111,7 +111,7 @@ Pic: Steven
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_BRELOOM @ ITEM_TOXIC_ORB
@@ -132,7 +132,7 @@ Pic: Steven
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_GARGANACL @ ITEM_SITRUS_BERRY
@@ -153,7 +153,7 @@ Pic: Leaf
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_NINETALES @ ITEM_FOCUS_SASH

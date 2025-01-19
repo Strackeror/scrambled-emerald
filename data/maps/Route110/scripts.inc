@@ -259,7 +259,7 @@ Route110_EventScript_AbigailRematch::
 	end
 
 Route110_EventScript_Isabel::
-	trainerbattle_single TRAINER_DAN_DOKU_BOSS_01, Route110_Text_IsabelIntro, Route110_Text_IsabelDefeated,Route110_EventScript_Isabel_Defeated 
+	trainerbattle_single TRAINER_DAN_AKU_BOSS_01, Route110_Text_IsabelIntro, Route110_Text_IsabelDefeated,Route110_EventScript_Isabel_Defeated
 	msgbox Route110_Text_IsabelPostBattle, MSGBOX_DEFAULT
 	end
 

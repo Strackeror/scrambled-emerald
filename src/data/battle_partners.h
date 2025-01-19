@@ -116,7 +116,7 @@
 #line 50
         .doubleBattle = FALSE,
 #line 51
-        .aiFlags = AI_FLAG_BASIC_TRAINER,
+        .aiFlags = AI_FLAG_BASIC_TRAINER | AI_FLAG_ACE_POKEMON,
         .partySize = 1,
         .party = (const struct TrainerMon[])
         {
@@ -160,7 +160,7 @@
 #line 71
         .doubleBattle = FALSE,
 #line 72
-        .aiFlags = AI_FLAG_BASIC_TRAINER,
+        .aiFlags = AI_FLAG_BASIC_TRAINER | AI_FLAG_ACE_POKEMON,
         .partySize = 1,
         .party = (const struct TrainerMon[])
         {
@@ -204,7 +204,7 @@
 #line 92
         .doubleBattle = FALSE,
 #line 93
-        .aiFlags = AI_FLAG_BASIC_TRAINER,
+        .aiFlags = AI_FLAG_BASIC_TRAINER | AI_FLAG_ACE_POKEMON,
         .partySize = 1,
         .party = (const struct TrainerMon[])
         {
@@ -248,7 +248,7 @@
 #line 113
         .doubleBattle = FALSE,
 #line 114
-        .aiFlags = AI_FLAG_BASIC_TRAINER,
+        .aiFlags = AI_FLAG_BASIC_TRAINER | AI_FLAG_ACE_POKEMON,
         .partySize = 1,
         .party = (const struct TrainerMon[])
         {
@@ -292,7 +292,7 @@
 #line 134
         .doubleBattle = FALSE,
 #line 135
-        .aiFlags = AI_FLAG_BASIC_TRAINER,
+        .aiFlags = AI_FLAG_BASIC_TRAINER | AI_FLAG_ACE_POKEMON,
         .partySize = 1,
         .party = (const struct TrainerMon[])
         {
@@ -336,7 +336,7 @@
 #line 155
         .doubleBattle = FALSE,
 #line 156
-        .aiFlags = AI_FLAG_BASIC_TRAINER,
+        .aiFlags = AI_FLAG_BASIC_TRAINER | AI_FLAG_ACE_POKEMON,
         .partySize = 3,
         .party = (const struct TrainerMon[])
         {

@@ -127,6 +127,57 @@
 #define FLIP    0
 #define NO_FLIP 1
 
+#define STARMOBILE(hp, atk, def, spe, spa, spd, type, ability)                 \
+    {                                                                          \
+        .baseHP = hp,                                                          \
+        .baseAttack = atk,                                                     \
+        .baseDefense = def,                                                    \
+        .baseSpeed = spe,                                                      \
+        .baseSpAttack = spa,                                                   \
+        .baseSpDefense = spd,                                                  \
+        .types = MON_TYPES(type, TYPE_STEEL),                                  \
+        .expYield = 175,                                                       \
+        .genderRatio = PERCENT_FEMALE(50),                                     \
+        .eggCycles = 20,                                                       \
+        .friendship = STANDARD_FRIENDSHIP,                                     \
+        .growthRate = GROWTH_MEDIUM_FAST,                                      \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),                        \
+        .abilities = {ability, ability, ability},                              \
+        .bodyColor = BODY_COLOR_GRAY,                                          \
+        .speciesName = _("Starmobile"),                                        \
+        .cryId = CRY_REVAVROOM,                                                \
+        .categoryName = _("Multi-Cyl"),                                        \
+        .height = 18,                                                          \
+        .weight = 65535,                                                       \
+        .pokemonScale = 356,                                                   \
+        .pokemonOffset = 17,                                                   \
+        .trainerScale = 256,                                                   \
+        .trainerOffset = 0,                                                    \
+        .frontPic = gMonFrontPic_Revavroom,                                    \
+        .frontPicSize = MON_COORDS_SIZE(64, 64),                               \
+        .frontPicYOffset = 8,                                                  \
+        .frontAnimFrames = sAnims_Revavroom,                                   \
+        .backPic = gMonBackPic_Revavroom,                                      \
+        .backPicSize = MON_COORDS_SIZE(64, 64),                                \
+        .backPicYOffset = 16,                                                  \
+        .palette = gMonPalette_Revavroom,                                      \
+        .shinyPalette = gMonShinyPalette_Revavroom,                            \
+        .iconSprite = gMonIcon_Revavroom,                                      \
+        .iconPalIndex = 0,                                                     \
+        SHADOW(0, 7, SHADOW_SIZE_L)                                            \
+        FOOTPRINT(Revavroom)                                                   \
+        OVERWORLD(                                                             \
+                    sPicTable_Revavroom,                                       \
+                    SIZE_32x32,                                                \
+                    SHADOW_SIZE_M,                                             \
+                    TRACKS_NONE,                                               \
+                    gOverworldPalette_Revavroom,                               \
+                    gShinyOverworldPalette_Revavroom)                          \
+        .levelUpLearnset                                                       \
+        = sNoneLevelUpLearnset,                                                \
+        .teachableLearnset = sNoneTeachableLearnset,                           \
+    }
+
 const struct SpeciesInfo gSpeciesInfo[] =
 {
     [SPECIES_NONE] =
@@ -204,6 +255,12 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .iconSprite = gMonIcon_Egg,
         .iconPalIndex = 1,
     },
+
+    [SPECIES_STARMOBILE_DARK] = STARMOBILE(150, 100, 120, 1, 100, 100, TYPE_DARK, ABILITY_FILTER),
+    [SPECIES_STARMOBILE_FIRE] = STARMOBILE(175, 120, 120, 1, 120, 100, TYPE_FIRE, ABILITY_FILTER),
+    [SPECIES_STARMOBILE_POISON] = STARMOBILE(200, 120, 120, 1, 120, 100, TYPE_POISON, ABILITY_FILTER),
+    [SPECIES_STARMOBILE_FAIRY] = STARMOBILE(225, 120, 120, 1, 120, 100, TYPE_POISON, ABILITY_CONTRARY),
+    [SPECIES_STARMOBILE_FIGHTING] = STARMOBILE(250, 120, 120, 1, 120, 100, TYPE_FIGHTING, ABILITY_BATTLE_ARMOR),
 
     /* You may add any custom species below this point based on the following structure: */
 

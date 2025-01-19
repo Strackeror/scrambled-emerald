@@ -6,7 +6,7 @@
     - [x] Stats
     - [x] Learnsets
     - [ ] Weird Multiform Pokes: Vivillon Family, Alcremie, Minior
-    - [ ] Bring in sprites for dooz formes
+    - [x] Bring in sprites for dooz formes
 - [x] Ability / Held Item Buffs
 - [x] Trainers
     - [x] Sets
@@ -14,7 +14,7 @@
     - [x] Level Caps
     - [ ] Bring in sprites ?
 - [x] Titans
-- [ ] Starmobiles
+- [x] Starmobiles (will need testing)
 - [x] Ogerpon fight
 - [ ] Enable Tera
 - [ ] Shops / TMs

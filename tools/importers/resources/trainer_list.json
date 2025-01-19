@@ -1,0 +1,322 @@
+{
+    "trainers": [
+        {
+            "id": "rival_02_hono",
+            "pic": "May",
+            "name": "May"
+        },
+        {
+            "id": "sister_01_01",
+            "pic": "Leaf",
+            "name": "Leaf"
+        },
+        {
+            "id": "brother_01_01",
+            "pic": "Wally",
+            "name": "Wally"
+        },
+        {
+            "id": "gym_mushi_leader_01",
+            "pic": "Leader Roxanne",
+            "name": "Roxanne"
+        },
+        {
+            "id": "gym_kusa_leader_01",
+            "pic": "Leader Brawly",
+            "name": "Brawly"
+        },
+        {
+            "id": "brother_01_02",
+            "pic": "Wally",
+            "name": "Wally"
+        },
+        {
+            "id": "dan_aku_boss_01",
+            "pic": "Aqua Admin M",
+            "name": "Matt",
+            "pokemon_override": [
+                [
+                    5,
+                    {
+                        "poke_id": "StarmobileDark",
+                        "form_id": 0,
+                        "item": "None",
+                        "level": 24,
+                        "nature": "Serious",
+                        "ability": "Filter",
+                        "gem_type": "Default",
+                        "move1": {"move_id":"WickedTorque"},
+                        "move2": {"move_id":"IronHead"},
+                        "move3": {"move_id":"PsychicNoise"},
+                        "move4": {"move_id":"Overdrive"},
+                        "effort_value": {
+                            "atk": 252,
+                            "spa": 252
+                        }
+                    }
+                ]
+            ]
+        },
+        {
+            "id": "rival_04_hono",
+            "pic": "May",
+            "name": "May"
+        },
+        {
+            "id": "gym_denki_leader_01",
+            "pic": "Leader Wattson",
+            "name": "Wattson"
+        },
+        {
+            "id": "dan_hono_boss_01",
+            "pic": "Magma Admin",
+            "name": "Tabitha",
+            "pokemon_override": [
+                [
+                    5,
+                    {
+                        "poke_id": "StarmobileFire",
+                        "form_id": 0,
+                        "item": "None",
+                        "level": 38,
+                        "nature": "Serious",
+                        "ability": "Filter",
+                        "gem_type": "Default",
+                        "move1": {"move_id":"BlazingTorque"},
+                        "move2": {"move_id":"IronHead"},
+                        "move3": {"move_id":"PsychicNoise"},
+                        "move4": {"move_id":"Overdrive"},
+                        "effort_value": {
+                            "atk": 252,
+                            "spa": 252
+                        }
+                    }
+                ]
+            ]
+        },
+        {
+            "id": "sister_01_02",
+            "pic": "Leaf",
+            "name": "Leaf"
+        },
+        {
+            "id": "brother_01_03",
+            "pic": "Wally",
+            "name": "Wally"
+        },
+        {
+            "id": "gym_mizu_leader_01",
+            "pic": "Leader Flannery",
+            "name": "Flannery"
+        },
+        {
+            "id": "dan_doku_boss_01",
+            "pic": "Aqua Admin F",
+            "name": "Shelly",
+            "pokemon_override": [
+                [
+                    5,
+                    {
+                        "poke_id": "StarmobilePoison",
+                        "form_id": 0,
+                        "item": "None",
+                        "level": 30,
+                        "nature": "Serious",
+                        "ability": "Filter",
+                        "gem_type": "Default",
+                        "move1": {"move_id":"NoxiousTorque"},
+                        "move2": {"move_id":"FlashCannon"},
+                        "move3": {"move_id":"HeadlongRush"},
+                        "move4": {"move_id":"EnergyBall"},
+                        "effort_value": {
+                            "atk": 252,
+                            "spa": 252
+                        }
+                    }
+                ]
+            ]
+
+        },
+        {
+            "id": "brother_01_04",
+            "pic": "Wally",
+            "name": "Wally"
+        },
+        {
+            "id": "gym_normal_leader_01",
+            "pic": "Leader Norman",
+            "name": "Norman"
+        },
+        {
+            "id": "rival_05_hono",
+            "pic": "May",
+            "name": "May"
+        },
+        {
+            "id": "gym_ghost_leader_01",
+            "pic": "Leader Winona",
+            "name": "Winona"
+        },
+        {
+            "id": "brother_01_05",
+            "pic": "Wally",
+            "name": "Wally"
+        },
+        {
+            "id": "sister_01_03",
+            "pic": "Leaf",
+            "name": "Leaf"
+        },
+        {
+            "id": "rival_06_hono",
+            "pic": "May",
+            "name": "May"
+        },
+        {
+            "id": "gym_esper_leader_01",
+            "pic": "Leader Tate And Liza",
+            "name": "Tate&Liza"
+        },
+        {
+            "id": "gym_koori_leader_01",
+            "pic": "Leader Juan",
+            "name": "Juan"
+        },
+        {
+            "id": "dan_fairy_boss_01",
+            "pic": "Aqua Leader Archie",
+            "name": "Archie",
+            "pokemon_override": [
+                [
+                    5,
+                    {
+                        "poke_id": "StarmobileFairy",
+                        "form_id": 0,
+                        "item": "None",
+                        "level": 56,
+                        "nature": "Serious",
+                        "ability": "Contrary",
+                        "gem_type": "Default",
+                        "move1": {"move_id":"MagicalTorque"},
+                        "move2": {"move_id":"SpinOut"},
+                        "move3": {"move_id":"HeadlongRush"},
+                        "move4": {"move_id":"Overheat"},
+                        "effort_value": {
+                            "atk": 252,
+                            "spa": 252
+                        }
+                    }
+                ]
+            ]
+        },
+        {
+            "id": "dan_kakutou_boss_01",
+            "pic": "Magma Leader Maxie",
+            "name": "Maxie",
+            "pokemon_override": [
+                [
+                    5,
+                    {
+                        "poke_id": "StarmobileFighting",
+                        "form_id": 0,
+                        "item": "None",
+                        "level": 60,
+                        "nature": "Serious",
+                        "ability": "BattleArmor",
+                        "gem_type": "Default",
+                        "move1": {"move_id":"CombatTorque"},
+                        "move2": {"move_id":"HeavySlam"},
+                        "move3": {"move_id":"Strength"},
+                        "move4": {"move_id":"FusionBolt"},
+                        "effort_value": {
+                            "atk": 252,
+                            "spa": 252
+                        }
+                    }
+                ]
+            ]
+        },
+        {
+            "id": "pepper_01",
+            "pic": "Steven",
+            "name": "Steven"
+        },
+        {
+            "id": "clavel_01_hono",
+            "pic": "Gentleman",
+            "name": "Clavell"
+        },
+        {
+            "id": "botan_01",
+            "pic": "Arena Tycoon Greta",
+            "name": "Penny"
+        },
+        {
+            "id": "e4_jimen_01",
+            "pic": "Elite Four Sidney",
+            "name": "Rika"
+        },
+        {
+            "id": "e4_hagane_01",
+            "pic": "Elite Four Phoebe",
+            "name": "Poppy"
+        },
+        {
+            "id": "e4_hikou_01",
+            "pic": "Elite Four Glacia",
+            "name": "Larry"
+        },
+        {
+            "id": "e4_dragon_01",
+            "pic": "Elite Four Drake",
+            "name": "Hassel"
+        },
+        {
+            "id": "chairperson_01",
+            "pic": "Champion Wallace",
+            "name": "Geeta"
+        },
+        {
+            "id": "professor_A_01",
+            "pic": "Steven",
+            "name": "Steven"
+        },
+        {
+            "id": "professor_B_01",
+            "pic": "Steven",
+            "name": "Steven"
+        }
+    ],
+    "partners": [
+        {
+            "id": "pepper_nusi_01",
+            "pic": "Steven",
+            "name": "Steven"
+        },
+        {
+            "id": "pepper_nusi_02",
+            "pic": "Steven",
+            "name": "Steven"
+        },
+        {
+            "id": "pepper_nusi_03",
+            "pic": "Steven",
+            "name": "Steven"
+        },
+        {
+            "id": "pepper_nusi_04",
+            "pic": "Steven",
+            "name": "Steven"
+        },
+        {
+            "id": "pepper_nusi_05",
+            "pic": "Steven",
+            "name": "Steven"
+        },
+        {
+            "id": "sister_onitaizi",
+            "pic": "Leaf",
+            "name": "Leaf"
+        }
+    ]
+}

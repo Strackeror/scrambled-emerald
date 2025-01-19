@@ -15947,7 +15947,7 @@ Pic: Arena Tycoon Greta
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_JOLTEON @ ITEM_FOCUS_SASH
@@ -16024,7 +16024,7 @@ Pic: Champion Wallace
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_GHOLDENGO @ ITEM_FOCUS_SASH
@@ -16106,7 +16106,7 @@ Pic: Gentleman
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_HYPNO @ ITEM_FOCUS_SASH
@@ -16183,7 +16183,7 @@ Pic: Aqua Admin M
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_LUXIO @ ITEM_MENTAL_HERB
@@ -16241,6 +16241,17 @@ Nature: Jolly
 - MOVE_POISON_FANG
 - MOVE_WORK_UP
 
+SPECIES_STARMOBILE_DARK @ ITEM_NONE
+Level: 24
+Ability: ABILITY_FILTER
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Serious
+- MOVE_WICKED_TORQUE
+- MOVE_IRON_HEAD
+- MOVE_PSYCHIC_NOISE
+- MOVE_OVERDRIVE
+
 
 === TRAINER_DAN_DOKU_BOSS_01 ===
 Name: SHELLY
@@ -16248,7 +16259,7 @@ Pic: Aqua Admin F
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_VENOMOTH @ ITEM_COBA_BERRY
@@ -16306,6 +16317,17 @@ Nature: Timid
 - MOVE_SLUDGE_BOMB
 - MOVE_NASTY_PLOT
 
+SPECIES_STARMOBILE_POISON @ ITEM_NONE
+Level: 30
+Ability: ABILITY_FILTER
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Serious
+- MOVE_NOXIOUS_TORQUE
+- MOVE_FLASH_CANNON
+- MOVE_HEADLONG_RUSH
+- MOVE_ENERGY_BALL
+
 
 === TRAINER_DAN_FAIRY_BOSS_01 ===
 Name: ARCHIE
@@ -16313,7 +16335,7 @@ Pic: Aqua Leader Archie
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_MORGREM @ ITEM_EVIOLITE
@@ -16322,7 +16344,6 @@ Ability: ABILITY_PRANKSTER
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 0 Atk / 252 Def / 0 SpA / 0 SpD / 0 Spe
 Nature: Impish
-Tera Type: Fairy
 - MOVE_THRASH
 - MOVE_GLARE
 - MOVE_TAUNT
@@ -16345,7 +16366,6 @@ Ability: ABILITY_RIPEN
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Jolly
-Tera Type: Fairy
 - MOVE_EARTHQUAKE
 - MOVE_PLAY_ROUGH
 - MOVE_WILD_CHARGE
@@ -16357,7 +16377,6 @@ Ability: ABILITY_TECHNICIAN
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Jolly
-Tera Type: Fairy
 - MOVE_TAIL_SLAP
 - MOVE_TACKLE
 - MOVE_POUND
@@ -16369,11 +16388,21 @@ Ability: ABILITY_TECHNICIAN
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Jolly
-Tera Type: Ice
 - MOVE_TRIPLE_AXEL
 - MOVE_ROCK_BLAST
 - MOVE_POUND
 - MOVE_CELEBRATE
+
+SPECIES_STARMOBILE_FAIRY @ ITEM_NONE
+Level: 56
+Ability: ABILITY_CONTRARY
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Serious
+- MOVE_MAGICAL_TORQUE
+- MOVE_SPIN_OUT
+- MOVE_HEADLONG_RUSH
+- MOVE_OVERHEAT
 
 
 === TRAINER_DAN_HONO_BOSS_01 ===
@@ -16382,7 +16411,7 @@ Pic: Magma Admin
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_MAGMAR @ ITEM_EVIOLITE
@@ -16440,6 +16469,17 @@ Nature: Jolly
 - MOVE_STOMPING_TANTRUM
 - MOVE_PARTING_SHOT
 
+SPECIES_STARMOBILE_FIRE @ ITEM_NONE
+Level: 38
+Ability: ABILITY_FILTER
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Serious
+- MOVE_BLAZING_TORQUE
+- MOVE_IRON_HEAD
+- MOVE_PSYCHIC_NOISE
+- MOVE_OVERDRIVE
+
 
 === TRAINER_DAN_KAKUTOU_BOSS_01 ===
 Name: MAXIE
@@ -16447,7 +16487,7 @@ Pic: Magma Leader Maxie
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_ANNIHILAPE @ ITEM_QUICK_CLAW
@@ -16456,7 +16496,6 @@ Ability: ABILITY_MOLD_BREAKER
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Jolly
-Tera Type: Fighting
 - MOVE_FINAL_GAMBIT
 - MOVE_DESTINY_BOND
 - MOVE_ROAR
@@ -16479,7 +16518,6 @@ Ability: ABILITY_UNBURDEN
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Adamant
-Tera Type: Fighting
 - MOVE_SKY_ATTACK
 - MOVE_CROSS_CHOP
 - MOVE_ACROBATICS
@@ -16491,7 +16529,6 @@ Ability: ABILITY_QUICK_FEET
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Jolly
-Tera Type: Fighting
 - MOVE_THRASH
 - MOVE_DYNAMIC_PUNCH
 - MOVE_MEGA_PUNCH
@@ -16503,11 +16540,21 @@ Ability: ABILITY_UNBURDEN
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 252 SpD / 0 Spe
 Nature: Careful
-Tera Type: Fighting
 - MOVE_TAIL_SLAP
 - MOVE_POUND
 - MOVE_FURY_SWIPES
 - MOVE_BELLY_DRUM
+
+SPECIES_STARMOBILE_FIGHTING @ ITEM_NONE
+Level: 60
+Ability: ABILITY_BATTLE_ARMOR
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
+Nature: Serious
+- MOVE_COMBAT_TORQUE
+- MOVE_HEAVY_SLAM
+- MOVE_STRENGTH
+- MOVE_FUSION_BOLT
 
 
 === TRAINER_E4_DRAGON_01 ===
@@ -16516,7 +16563,7 @@ Pic: Elite Four Drake
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_ARCHALUDON @ ITEM_QUICK_CLAW
@@ -16598,7 +16645,7 @@ Pic: Elite Four Phoebe
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_BRONZONG @ ITEM_MENTAL_HERB
@@ -16680,7 +16727,7 @@ Pic: Elite Four Glacia
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_STARAPTOR @ ITEM_FOCUS_SASH
@@ -16762,7 +16809,7 @@ Pic: Elite Four Sidney
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_EXCADRILL @ ITEM_FOCUS_SASH
@@ -16844,7 +16891,7 @@ Pic: Leader Wattson
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_PACHIRISU @ ITEM_MENTAL_HERB
@@ -16926,7 +16973,7 @@ Pic: Leader Tate And Liza
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_DELPHOX @ ITEM_FOCUS_SASH
@@ -17007,7 +17054,7 @@ Pic: Leader Winona
 Gender: Male
 Music: Female
 Double Battle: Yes
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_FROSLASS @ ITEM_QUICK_CLAW
@@ -17084,7 +17131,7 @@ Pic: Leader Juan
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_NINETALES_ALOLA @ ITEM_QUICK_CLAW
@@ -17166,7 +17213,7 @@ Pic: Leader Brawly
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_GLOOM @ ITEM_BLACK_SLUDGE
@@ -17246,7 +17293,7 @@ Pic: Leader Flannery
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_QWILFISH @ ITEM_MENTAL_HERB
@@ -17328,7 +17375,7 @@ Pic: Leader Roxanne
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_VOLBEAT @ ITEM_CLEAR_AMULET
@@ -17406,7 +17453,7 @@ Pic: Leader Norman
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_STARAPTOR @ ITEM_FOCUS_SASH
@@ -17482,12 +17529,12 @@ Tera Type: Normal
 
 
 === TRAINER_PEPPER_01 ===
-Name: ARVEN
-Pic: Factory Head Noland
+Name: STEVEN
+Pic: Steven
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_SCOVILLAIN @ ITEM_QUICK_CLAW
@@ -17564,7 +17611,7 @@ Pic: Steven
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_SLITHER_WING @ ITEM_MENTAL_HERB
@@ -17645,7 +17692,7 @@ Pic: Steven
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_IRON_VALIANT @ ITEM_FOCUS_SASH
@@ -17727,7 +17774,7 @@ Pic: May
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_FUECOCO @ ITEM_NONE
@@ -17782,7 +17829,7 @@ Pic: May
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_QUAXWELL @ ITEM_QUICK_CLAW
@@ -17859,7 +17906,7 @@ Pic: May
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_QUAQUAVAL @ ITEM_RINDO_BERRY
@@ -17903,7 +17950,7 @@ Pic: May
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_PAWMOT @ ITEM_QUICK_CLAW
@@ -17980,7 +18027,7 @@ Pic: Wally
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_YANMA @ ITEM_RED_CARD
@@ -18057,7 +18104,7 @@ Pic: Wally
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_INKAY @ ITEM_TANGA_BERRY
@@ -18135,7 +18182,7 @@ Pic: Wally
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_GLISCOR @ ITEM_BLACK_SLUDGE
@@ -18212,7 +18259,7 @@ Pic: Wally
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_HYDRAPPLE @ ITEM_FOCUS_SASH
@@ -18289,7 +18336,7 @@ Pic: Wally
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_GLISCOR @ ITEM_FOCUS_SASH
@@ -18368,7 +18415,7 @@ Pic: Leaf
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_DUCKLETT @ ITEM_RED_CARD
@@ -18445,7 +18492,7 @@ Pic: Leaf
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_SINISTCHA_UNREMARKABLE @ ITEM_OCCA_BERRY
@@ -18522,7 +18569,7 @@ Pic: Leaf
 Gender: Male
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Ace Pokemon
 
 
 SPECIES_LEAVANNY @ ITEM_QUICK_CLAW

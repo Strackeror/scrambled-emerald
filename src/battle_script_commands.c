@@ -3022,6 +3022,24 @@ void SetMoveEffect(bool32 primary, bool32 certain)
     if (DoesSubstituteBlockMove(gBattlerAttacker, gEffectBattler, gCurrentMove) && affectsUser != MOVE_EFFECT_AFFECTS_USER)
         INCREMENT_RESET_RETURN
 
+    switch (gBattleScripting.moveEffect) {
+        case MOVE_EFFECT_FLINCH:
+        case MOVE_EFFECT_BURN:
+        case MOVE_EFFECT_FREEZE:
+        case MOVE_EFFECT_SLEEP:
+        case MOVE_EFFECT_PARALYSIS:
+        case MOVE_EFFECT_POISON:
+        case MOVE_EFFECT_TOXIC:
+        case MOVE_EFFECT_CONFUSION:
+        case MOVE_EFFECT_CURSE:
+        case MOVE_EFFECT_DIRE_CLAW:
+        case MOVE_EFFECT_NIGHTMARE:
+        case MOVE_EFFECT_YAWN:
+        case MOVE_EFFECT_PERISH_SONG:
+            if (IsStarmobile(gEffectBattler))
+                INCREMENT_RESET_RETURN
+    }
+
     if (gBattleScripting.moveEffect <= PRIMARY_STATUS_MOVE_EFFECT) // status change
     {
         const u8 *cancelMultiTurnMovesResult = NULL;
@@ -7123,6 +7141,10 @@ static void Cmd_switchinanim(void)
         BattleArena_InitPoints();
 }
 
+static inline bool8 IsSpeciesStarmobile(u16 species) {
+    return species >= SPECIES_STARMOBILE_DARK && species <= SPECIES_STARMOBILE_FIGHTING;
+}
+
 bool32 CanBattlerSwitch(u32 battler)
 {
     s32 i, lastMonId, battlerIn1, battlerIn2;
@@ -7254,8 +7276,10 @@ bool32 CanBattlerSwitch(u32 battler)
 
         for (i = 0; i < PARTY_SIZE; i++)
         {
+            u16 species = GetMonData(&party[i], MON_DATA_SPECIES);
+            if (IsSpeciesStarmobile(species)) continue;
+            if (species == SPECIES_NONE) continue;
             if (GetMonData(&party[i], MON_DATA_HP) != 0
-             && GetMonData(&party[i], MON_DATA_SPECIES) != SPECIES_NONE
              && !GetMonData(&party[i], MON_DATA_IS_EGG)
              && i != gBattlerPartyIndexes[battlerIn1] && i != gBattlerPartyIndexes[battlerIn2])
                 break;
@@ -7680,7 +7704,8 @@ static bool32 DoSwitchInEffectsForBattler(u32 battler)
                 && i != ABILITY_PURIFYING_SALT
                 && !IsAbilityOnSide(battler, ABILITY_PASTEL_VEIL)
                 && !(gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD)
-                && !(gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN))
+                && !(gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN)
+                && !IsStarmobile(battler))
             {
                 if (gSideTimers[GetBattlerSide(battler)].toxicSpikesAmount >= 2)
                     gBattleMons[battler].status1 |= STATUS1_TOXIC_POISON;
@@ -15179,8 +15204,9 @@ bool32 DoesDisguiseBlockMove(u32 battler, u32 move)
 static void Cmd_jumpifsubstituteblocks(void)
 {
     CMD_ARGS(const u8 *jumpInstr);
-
-    if (DoesSubstituteBlockMove(gBattlerAttacker, gBattlerTarget, gCurrentMove))
+    if (IsStarmobile(gBattlerTarget))
+        gBattlescriptCurrInstr = cmd->jumpInstr;
+    else if (DoesSubstituteBlockMove(gBattlerAttacker, gBattlerTarget, gCurrentMove))
         gBattlescriptCurrInstr = cmd->jumpInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
