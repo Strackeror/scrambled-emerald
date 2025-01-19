@@ -17,7 +17,8 @@
 - [x] Starmobiles (will need testing)
 - [x] Ogerpon fight
 - [ ] Enable Tera
-- [ ] Shops / TMs
+- [x] Shops
+- [ ] TMs
 - [ ] Eggs
 
 ## QoL

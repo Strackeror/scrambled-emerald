@@ -1097,6 +1097,147 @@ EventScript_VsSeekerChargingDone::
 	releaseall
 	end
 
+Common_EventScript_BadgeMart::
+	goto_if_set FLAG_BADGE07_GET, Common_EventScript_BadgeMart7
+	goto_if_set FLAG_BADGE05_GET, Common_EventScript_BadgeMart5
+	goto_if_set FLAG_BADGE04_GET, Common_EventScript_BadgeMart4
+	goto_if_set FLAG_BADGE03_GET, Common_EventScript_BadgeMart3
+	goto_if_set FLAG_BADGE02_GET, Common_EventScript_BadgeMart2
+	goto_if_set FLAG_BADGE01_GET, Common_EventScript_BadgeMart1
+	goto Common_EventScript_BadgeMart0
+
+Common_EventScript_BadgeMart7:
+	pokemart Common_EventScript_7Badge_ShopList
+	return
+Common_EventScript_BadgeMart5:
+	pokemart Common_EventScript_5Badge_ShopList
+	return
+Common_EventScript_BadgeMart4:
+	pokemart Common_EventScript_4Badge_ShopList
+	return
+Common_EventScript_BadgeMart3:
+	pokemart Common_EventScript_3Badge_ShopList
+	return
+Common_EventScript_BadgeMart2:
+	pokemart Common_EventScript_2Badge_ShopList
+	return
+Common_EventScript_BadgeMart1:
+	pokemart Common_EventScript_1Badge_ShopList
+	return
+Common_EventScript_BadgeMart0:
+	pokemart Common_EventScript_0Badge_ShopList
+	return
+	
+	.align 2
+Common_EventScript_7Badge_ShopList::
+	.2byte ITEM_BOOSTER_ENERGY
+	.2byte ITEM_THROAT_SPRAY
+
+Common_EventScript_5Badge_ShopList::
+	.2byte ITEM_WEAKNESS_POLICY
+
+Common_EventScript_4Badge_ShopList::
+	.2byte ITEM_CHOICE_BAND
+	.2byte ITEM_CHOICE_SPECS
+	.2byte ITEM_CHOICE_SCARF
+	.2byte ITEM_FOCUS_SASH
+
+Common_EventScript_3Badge_ShopList::
+	.2byte ITEM_BLACK_SLUDGE
+	.2byte ITEM_BIG_ROOT
+	.2byte ITEM_ASSAULT_VEST
+	.2byte ITEM_EVIOLITE
+	.2byte ITEM_LIFE_ORB
+	.2byte ITEM_LOADED_DICE
+
+Common_EventScript_2Badge_ShopList::
+	.2byte ITEM_EXPERT_BELT
+	.2byte ITEM_LIGHT_CLAY
+	.2byte ITEM_ROCKY_HELMET
+	.2byte ITEM_OCCA_BERRY
+	.2byte ITEM_PASSHO_BERRY
+	.2byte ITEM_WACAN_BERRY
+	.2byte ITEM_RINDO_BERRY
+	.2byte ITEM_YACHE_BERRY
+	.2byte ITEM_CHOPLE_BERRY
+	.2byte ITEM_KEBIA_BERRY
+	.2byte ITEM_SHUCA_BERRY
+	.2byte ITEM_COBA_BERRY
+	.2byte ITEM_PAYAPA_BERRY
+	.2byte ITEM_TANGA_BERRY
+	.2byte ITEM_CHARTI_BERRY
+	.2byte ITEM_KASIB_BERRY
+	.2byte ITEM_HABAN_BERRY
+	.2byte ITEM_COLBUR_BERRY
+	.2byte ITEM_BABIRI_BERRY
+	.2byte ITEM_ROSELI_BERRY
+
+Common_EventScript_1Badge_ShopList::
+	.2byte ITEM_SHELL_BELL
+	.2byte ITEM_LUMINOUS_MOSS
+	.2byte ITEM_ABSORB_BULB
+	.2byte ITEM_CELL_BATTERY
+	.2byte ITEM_SNOWBALL
+	.2byte ITEM_SILVER_POWDER
+	.2byte ITEM_DRAGON_FANG
+	.2byte ITEM_PIXIE_PLATE
+	.2byte ITEM_FLAME_PLATE
+	.2byte ITEM_SPLASH_PLATE
+	.2byte ITEM_ZAP_PLATE
+	.2byte ITEM_MEADOW_PLATE
+	.2byte ITEM_ICICLE_PLATE
+	.2byte ITEM_FIST_PLATE
+	.2byte ITEM_TOXIC_PLATE
+	.2byte ITEM_EARTH_PLATE
+	.2byte ITEM_SKY_PLATE
+	.2byte ITEM_MIND_PLATE
+	.2byte ITEM_STONE_PLATE
+	.2byte ITEM_SPOOKY_PLATE
+	.2byte ITEM_DREAD_PLATE
+	.2byte ITEM_IRON_PLATE
+	.2byte ITEM_PIXIE_PLATE
+
+Common_EventScript_0Badge_ShopList::
+	.2byte ITEM_QUICK_CLAW
+	.2byte ITEM_EJECT_BUTTON
+	.2byte ITEM_EJECT_PACK
+	.2byte ITEM_RED_CARD
+	.2byte ITEM_SCOPE_LENS
+	.2byte ITEM_WIDE_LENS
+	.2byte ITEM_ZOOM_LENS
+	.2byte ITEM_LEFTOVERS
+	.2byte ITEM_TOXIC_ORB
+	.2byte ITEM_FLAME_ORB
+	.2byte ITEM_CLEAR_AMULET
+	.2byte ITEM_COVERT_CLOAK
+	.2byte ITEM_UTILITY_UMBRELLA
+	.2byte ITEM_WHITE_HERB
+	.2byte ITEM_POWER_HERB
+	.2byte ITEM_AIR_BALLOON
+	.2byte ITEM_IRON_BALL
+	.2byte ITEM_STICKY_BARB
+	.2byte ITEM_NORMAL_GEM
+	.2byte ITEM_DAMP_ROCK
+	.2byte ITEM_HEAT_ROCK
+	.2byte ITEM_SMOOTH_ROCK
+	.2byte ITEM_ICY_ROCK
+	.2byte ITEM_TERRAIN_EXTENDER
+	.2byte ITEM_ELECTRIC_SEED
+	.2byte ITEM_PSYCHIC_SEED
+	.2byte ITEM_MISTY_SEED
+	.2byte ITEM_GRASSY_SEED
+	.2byte ITEM_ROOM_SERVICE
+	.2byte ITEM_SITRUS_BERRY
+	.2byte ITEM_LUM_BERRY
+	.2byte ITEM_KEE_BERRY
+	.2byte ITEM_MARANGA_BERRY
+	.2byte ITEM_LIECHI_BERRY
+	.2byte ITEM_PETAYA_BERRY
+	.2byte ITEM_SALAC_BERRY
+	.2byte ITEM_CUSTAP_BERRY
+	.2byte ITEM_CHILAN_BERRY
+	pokemartlistend
+
 	.include "data/scripts/pc_transfer.inc"
 	.include "data/scripts/questionnaire.inc"
 	.include "data/scripts/abnormal_weather.inc"

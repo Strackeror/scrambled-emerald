@@ -18,7 +18,7 @@ LilycoveCity_DepartmentStore_4F_EventScript_ClerkLeft::
 	faceplayer
 	message gText_HowMayIServeYou
 	waitmessage
-	pokemart LilycoveCity_DepartmentStore_4F_Pokemart_AttackTMs
+	call Common_EventScript_BadgeMart
 	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
@@ -36,7 +36,7 @@ LilycoveCity_DepartmentStore_4F_EventScript_ClerkRight::
 	faceplayer
 	message gText_HowMayIServeYou
 	waitmessage
-	pokemart LilycoveCity_DepartmentStore_4F_Pokemart_DefenseTMs
+	call Common_EventScript_BadgeMart
 	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end

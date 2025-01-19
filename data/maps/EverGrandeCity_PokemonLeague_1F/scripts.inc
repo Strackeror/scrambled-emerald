@@ -31,7 +31,7 @@ EverGrandeCity_PokemonLeague_1F_EventScript_Clerk::
 	faceplayer
 	message gText_HowMayIServeYou
 	waitmessage
-	pokemart EverGrandeCity_PokemonLeague_1F_Pokemart
+	call Common_EventScript_BadgeMart
 	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end

@@ -6,7 +6,7 @@ LavaridgeTown_HerbShop_EventScript_Clerk::
 	faceplayer
 	message LavaridgeTown_HerbShop_Text_WelcomeToHerbShop
 	waitmessage
-	pokemart LavaridgeTown_HerbShop_Pokemart
+	call Common_EventScript_BadgeMart
 	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
