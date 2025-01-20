@@ -436,7 +436,7 @@
 #define MOVE_EFFECT_PERISH_SONG         105
 #define MOVE_EFFECT_ABSORB              106
 
-#define NUM_MOVE_EFFECTS                106
+#define NUM_MOVE_EFFECTS                107
 
 #define MOVE_EFFECT_AFFECTS_USER        0x2000
 #define MOVE_EFFECT_CERTAIN             0x4000
