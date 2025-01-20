@@ -18,7 +18,7 @@
 - [x] Ogerpon fight
 - [x] Enable Tera
 - [x] Shops
-- [ ] TMs
+- [x] TMs
 - [ ] Eggs
 
 ## QoL

@@ -183,6 +183,7 @@ static EWRAM_DATA struct {
     u16 listOffset;
     u16 listRow;
     bool8 showContestInfo;
+    bool8 tmMoves;
 } sMoveRelearnerMenuSate = {0};
 
 EWRAM_DATA u8 gOriginSummaryScreenPage = 0; // indicates summary screen page that the move relearner was opened from (if opened from PSS)
@@ -392,8 +393,7 @@ static void Task_WaitForFadeOut(u8 taskId)
         DestroyTask(taskId);
     }
 }
-
-void CB2_InitLearnMove(void)
+void CB2_InitLearnMoveEither(void)
 {
     ResetSpriteData();
     FreeAllSpritePalettes();
@@ -419,6 +419,18 @@ void CB2_InitLearnMove(void)
     sMoveRelearnerStruct->moveListMenuTask = ListMenuInit(&gMultiuseListMenuTemplate, sMoveRelearnerMenuSate.listOffset, sMoveRelearnerMenuSate.listRow);
     SetBackdropFromColor(RGB_BLACK);
     SetMainCallback2(CB2_MoveRelearnerMain);
+}
+
+void CB2_InitLearnTM(void)
+{
+    sMoveRelearnerMenuSate.tmMoves = TRUE;
+    CB2_InitLearnMoveEither();
+}
+
+void CB2_InitLearnMove(void)
+{
+    sMoveRelearnerMenuSate.tmMoves = FALSE;
+    CB2_InitLearnMoveEither();
 }
 
 static void CB2_InitLearnMoveReturnFromSelectMove(void)
@@ -941,7 +953,10 @@ static void CreateLearnableMovesList(void)
     s32 i;
     u8 nickname[POKEMON_NAME_LENGTH + 1];
 
-    sMoveRelearnerStruct->numMenuChoices = GetMoveRelearnerMoves(&gPlayerParty[sMoveRelearnerStruct->partyMon], sMoveRelearnerStruct->movesToLearn);
+    if (sMoveRelearnerMenuSate.tmMoves)
+        sMoveRelearnerStruct->numMenuChoices = GetMoveRelearnerTmMoves(&gPlayerParty[sMoveRelearnerStruct->partyMon], sMoveRelearnerStruct->movesToLearn);
+    else
+        sMoveRelearnerStruct->numMenuChoices = GetMoveRelearnerMoves(&gPlayerParty[sMoveRelearnerStruct->partyMon], sMoveRelearnerStruct->movesToLearn);
 
     for (i = 0; i < sMoveRelearnerStruct->numMenuChoices; i++)
     {

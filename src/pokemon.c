@@ -5565,6 +5565,59 @@ u8 CanLearnTeachableMove(u16 species, u16 move)
     }
 }
 
+extern const u16 gBadge0MoveList[];
+extern const u16 gBadge1MoveList[];
+extern const u16 gBadge2MoveList[];
+extern const u16 gBadge3MoveList[];
+extern const u16 gBadge4MoveList[];
+extern const u16 gBadge5MoveList[];
+extern const u16 gBadge6MoveList[];
+extern const u16 gBadge7MoveList[];
+
+u8 GetMoveRelearnerTmMoves_(const u16 *learnset, const u16 *moveList, u16 *write)
+{
+    u8 numMoves = 0;
+    u8 learnsetIndex = 0;
+    while (learnset[learnsetIndex] != MOVE_UNAVAILABLE)
+    {
+        u16 learnsetMove = learnset[learnsetIndex];
+        u8 moveListIndex = 0;
+        while (moveList[moveListIndex] != MOVE_UNAVAILABLE)
+        {
+            if (moveList[moveListIndex] == learnsetMove)
+            {
+                write[numMoves++] = learnsetMove;
+                break;
+            }
+            moveListIndex += 1;
+        }
+        learnsetIndex += 1;
+    }
+    return numMoves;
+}
+
+u8 GetMoveRelearnerTmMoves(struct Pokemon *mon, u16 *moves)
+{
+    const u16 *learnset = gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES)].teachableLearnset;
+
+    u8 numMoves = GetMoveRelearnerTmMoves_(learnset, gBadge0MoveList, moves);
+    if (FlagGet(FLAG_BADGE01_GET))
+        numMoves += GetMoveRelearnerTmMoves_(learnset, gBadge1MoveList, &moves[numMoves]);
+    if (FlagGet(FLAG_BADGE02_GET))
+        numMoves += GetMoveRelearnerTmMoves_(learnset, gBadge2MoveList, &moves[numMoves]);
+    if (FlagGet(FLAG_BADGE03_GET))
+        numMoves += GetMoveRelearnerTmMoves_(learnset, gBadge3MoveList, &moves[numMoves]);
+    if (FlagGet(FLAG_BADGE04_GET))
+        numMoves += GetMoveRelearnerTmMoves_(learnset, gBadge4MoveList, &moves[numMoves]);
+    if (FlagGet(FLAG_BADGE05_GET))
+        numMoves += GetMoveRelearnerTmMoves_(learnset, gBadge5MoveList, &moves[numMoves]);
+    if (FlagGet(FLAG_BADGE06_GET))
+        numMoves += GetMoveRelearnerTmMoves_(learnset, gBadge6MoveList, &moves[numMoves]);
+    if (FlagGet(FLAG_BADGE07_GET))
+        numMoves += GetMoveRelearnerTmMoves_(learnset, gBadge7MoveList, &moves[numMoves]);
+    return numMoves;
+}
+
 u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves)
 {
     u16 learnedMoves[4];

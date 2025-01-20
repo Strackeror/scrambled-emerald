@@ -5,6 +5,7 @@ void TeachMoveRelearnerMove(void);
 void MoveRelearnerShowHideHearts(s32);
 void MoveRelearnerShowHideCategoryIcon(s32);
 void CB2_InitLearnMove(void);
+void CB2_InitLearnTM(void);
 
 extern u8 gOriginSummaryScreenPage;
 
