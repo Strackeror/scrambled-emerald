@@ -16,7 +16,7 @@
 - [x] Titans
 - [x] Starmobiles (will need testing)
 - [x] Ogerpon fight
-- [ ] Enable Tera
+- [x] Enable Tera
 - [x] Shops
 - [ ] TMs
 - [ ] Eggs
