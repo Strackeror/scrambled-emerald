@@ -27,8 +27,8 @@
     - [ ] Battles
 - [ ] HM Items
 - [ ] Bag Categories
-- [ ] Direct EV editing
-- [ ] Direct Ability switching
+- [X] Direct EV editing
+- [X] Direct Ability switching
 - [ ] AI Action visualizer
 - [ ] In-game calc
 - [ ] Improve move relearner interface

@@ -1,7 +1,7 @@
 BasedOnStyle: LLVM
 AllowShortFunctionsOnASingleLine: None
 BreakBeforeBraces: Allman
-ColumnLimit: 100
+ColumnLimit: 150
 UseTab: Never
 IndentWidth: 4
 TabWidth: 4

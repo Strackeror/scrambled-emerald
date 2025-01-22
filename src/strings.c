@@ -1568,4 +1568,4 @@ const u8 gText_PlantBerry[] = _("PLANT BERRY");
 const u8 gText_AM[] = _("AM");
 const u8 gText_PM[] = _("PM");
 const u8 gText_Relearn[] = _("{SELECT_BUTTON}TMs {START_BUTTON}Lvl"); // future note: don't decap this, because it mimics the summary screen BG graphics which will not get decapped
-const u8 gText_Rename[] = _("RENAME");
+const u8 gText_Rename[] = _("{A_BUTTON} Rename");
