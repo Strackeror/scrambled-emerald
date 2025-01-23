@@ -1097,6 +1097,17 @@ EventScript_VsSeekerChargingDone::
 	releaseall
 	end
 
+Common_EventScript_EggShop::
+	lock
+	faceplayer
+	message gText_HowMayIServeYou
+	waitmessage
+	callnative ScriptEggShop
+	waitstate
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
 Common_EventScript_BadgeMart::
 	goto_if_set FLAG_BADGE07_GET, Common_EventScript_BadgeMart7
 	goto_if_set FLAG_BADGE05_GET, Common_EventScript_BadgeMart5
@@ -1237,6 +1248,7 @@ Common_EventScript_0Badge_ShopList::
 	.2byte ITEM_CUSTAP_BERRY
 	.2byte ITEM_CHILAN_BERRY
 	pokemartlistend
+
 
 	.include "data/scripts/pc_transfer.inc"
 	.include "data/scripts/questionnaire.inc"

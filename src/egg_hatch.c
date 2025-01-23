@@ -393,6 +393,7 @@ static void AddHatchedMonToParty(u8 id)
 
     MonRestorePP(mon);
     CalculateMonStats(mon);
+    FlagSet(FLAG_SYS_POKEMON_GET);
 }
 
 void ScriptHatchMon(void)

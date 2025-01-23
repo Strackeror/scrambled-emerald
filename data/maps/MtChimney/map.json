@@ -367,14 +367,14 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_LEAF",
-      "x": 23,
-      "y": 38,
+      "x": 21,
+      "y": 39,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_SEE_ALL_DIRECTIONS",
-      "trainer_sight_or_berry_tree_id": "4",
+      "trainer_sight_or_berry_tree_id": "1",
       "script": "MtChimney_EventScript_Shirley",
       "flag": "FLAG_HIDE_MT_CHIMNEY_TRAINERS"
     },

@@ -160,7 +160,6 @@ LittlerootTown_EventScript_GoInsideWithMom::
 	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_Movement_PlayerEnterHouse
 	waitmovement 0
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE
-	setvar VAR_LITTLEROOT_INTRO_STATE, 3
 	hideobjectat OBJ_EVENT_ID_PLAYER, 0
 	closedoor VAR_0x8004, VAR_0x8005
 	waitdooranim
@@ -168,6 +167,12 @@ LittlerootTown_EventScript_GoInsideWithMom::
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
 
 		// PLOTLESS
+		@ faster intro
+		setvar VAR_LITTLEROOT_INTRO_STATE, 7
+		setflag FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_1
+		setflag FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_2
+		setvar VAR_LITTLEROOT_TOWN_STATE, 1
+
 		setflag FLAG_HIDE_PETALBURG_WOODS_DEVON_EMPLOYEE
 		setflag FLAG_HIDE_PETALBURG_WOODS_AQUA_GRUNT
 		@ magma chamber fix
@@ -397,17 +402,20 @@ LittlerootTown_Movement_TwinReturnRight:
 
 LittlerootTown_EventScript_GoSaveBirchTrigger::
 	lockall
+	goto_if_set FLAG_SYS_POKEMON_GET, LittlerootTown_EventScript_End
 	applymovement LOCALID_TWIN, Common_Movement_WalkInPlaceFasterRight
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
 	waitmovement 0
-	special GetPlayerBigGuyGirlString
 	msgbox LittlerootTown_Text_CanYouGoSeeWhatsHappening, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_TWIN, Common_Movement_FaceOriginalDirection
 	waitmovement 0
-	setvar VAR_LITTLEROOT_TOWN_STATE, 2
 	releaseall
+	end
+
+LittlerootTown_EventScript_End::
+	setvar VAR_LITTLEROOT_TOWN_STATE, 2
 	end
 
 LittlerootTown_EventScript_TownSign::
@@ -1000,10 +1008,10 @@ LittlerootTown_Text_CanYouGoSeeWhatsHappening:
 	.string "Um, hi!\p"
 	.string "There are scary POKéMON outside!\n"
 	.string "I can hear their cries!\p"
-	.string "I want to go see what's going on,\n"
-	.string "but I don't have any POKéMON…\p"
-	.string "Can you go see what's happening\n"
-	.string "for me?$"
+	.string "It's dangerous if you don't have\n"
+	.string "your own POKéMON.\p"
+	.string "Go buy some eggs from the clerk\n"
+	.string "here.$"
 
 LittlerootTown_Text_YouSavedBirch:
 	.string "You saved PROF. BIRCH!\n"
