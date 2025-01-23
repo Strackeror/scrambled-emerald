@@ -356,6 +356,9 @@ static void CreateHatchedMon(struct Pokemon *egg, struct Pokemon *temp)
     SetMonData(temp, MON_DATA_MODERN_FATEFUL_ENCOUNTER, &isModernFatefulEncounter);
     SetMonData(temp, MON_DATA_POKEBALL, &ball);
 
+    u8 tera = GetMonData(egg, MON_DATA_TERA_TYPE);
+    SetMonData(temp, MON_DATA_TERA_TYPE, &tera);
+
     *egg = *temp;
 }
 

@@ -17,9 +17,10 @@
 - [x] Starmobiles (will need testing)
 - [x] Ogerpon fight
 - [x] Enable Tera
+    - [ ] No STAB tera rule on evo
 - [x] Shops
 - [x] TMs
-- [ ] Eggs
+- [x] Eggs
 
 ## QoL
 - [ ] Faster animations
