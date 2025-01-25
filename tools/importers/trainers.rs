@@ -138,7 +138,7 @@ fn pokemon(
         .find(|personal| {
             personal.species.species == data.poke_id && personal.species.form == data.form_id
         })
-        .context("pokemon")?;
+        .with_context(|| format!("pokemon {}, {}", data.poke_id, data.form_id))?;
     let ability = match data.ability.as_str() {
         "Set_1" => &personal.ability_1,
         "Set_2" => &personal.ability_2,

@@ -62,7 +62,6 @@
     }
 
 #define MINIOR_MISC_INFO(color)                                             \
-        .types = MON_TYPES(TYPE_ROCK, TYPE_FLYING),                         \
         .catchRate = 30,                                                    \
         .expYield = 154,                                                    \
         .evYield_Defense = 1,                                               \
@@ -73,7 +72,6 @@
         .friendship = STANDARD_FRIENDSHIP,                                  \
         .growthRate = GROWTH_MEDIUM_SLOW,                                   \
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),                     \
-        .abilities = { ABILITY_SHIELDS_DOWN, ABILITY_NONE, ABILITY_NONE },  \
         .bodyColor = color,                                                 \
         .noFlip = TRUE,                                                     \
         .speciesName = _("Minior"),                                         \
@@ -86,18 +84,9 @@
         .trainerScale = 256,                                                \
         .trainerOffset = 0,                                                 \
         FOOTPRINT(Minior)                                                   \
-        .levelUpLearnset = sNoneLevelUpLearnset,                          \
-        .teachableLearnset = sNoneTeachableLearnset,                      \
         .formSpeciesIdTable = sMiniorFormSpeciesIdTable
 
 #define MINIOR_METEOR_SPECIES_INFO(Form)                    \
-    {                                                       \
-        .baseHP        = 60,                                \
-        .baseAttack    = 60,                                \
-        .baseDefense   = 100,                               \
-        .baseSpeed     = 60,                                \
-        .baseSpAttack  = 60,                                \
-        .baseSpDefense = 100,                               \
         .weight = 400,                                      \
         .description = gMiniorMeteorPokedexText,            \
         .frontPic = gMonFrontPic_MiniorMeteor,              \
@@ -114,7 +103,7 @@
         .shinyPalette = gMonShinyPalette_MiniorMeteor,      \
         .iconSprite = gMonIcon_MiniorMeteor,                \
         .iconPalIndex = 0,                                  \
-        SHADOW(0, 14, SHADOW_SIZE_S)                    \
+        SHADOW(0, 14, SHADOW_SIZE_S)                        \
         OVERWORLD(                                          \
             sPicTable_MiniorMeteor,                         \
             SIZE_32x32,                                     \
@@ -124,17 +113,9 @@
             gShinyOverworldPalette_MiniorMeteor             \
         )                                                   \
         .formChangeTable = sMinior ##Form##FormChangeTable, \
-        MINIOR_MISC_INFO(BODY_COLOR_BROWN),                 \
-    }
+        MINIOR_MISC_INFO(BODY_COLOR_BROWN)
 
 #define MINIOR_CORE_SPECIES_INFO(Form, color, iconPal)          \
-    {                                                           \
-        .baseHP        = 60,                                    \
-        .baseAttack    = 100,                                   \
-        .baseDefense   = 60,                                    \
-        .baseSpeed     = 120,                                   \
-        .baseSpAttack  = 100,                                   \
-        .baseSpDefense = 60,                                    \
         .weight = 3,                                            \
         .description = gMiniorCorePokedexText,                  \
         .frontPic = gMonFrontPic_MiniorCore,                    \
@@ -151,10 +132,9 @@
         .shinyPalette = gMonShinyPalette_MiniorCore,            \
         .iconSprite = gMonIcon_MiniorCore##Form,                \
         .iconPalIndex = iconPal,                                \
-        SHADOW(-2, 12, SHADOW_SIZE_S)                       \
+        SHADOW(-2, 12, SHADOW_SIZE_S)                           \
         .formChangeTable = sMinior ##Form##FormChangeTable,     \
-        MINIOR_MISC_INFO(color),                                \
-    }
+        MINIOR_MISC_INFO(color)                                
 
 #ifdef __INTELLISENSE__
 const struct SpeciesInfo gSpeciesInfoGen7[] =
@@ -4263,20 +4243,202 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
     [SPECIES_SILVALLY_FAIRY]    = SILVALLY_SPECIES_INFO(TYPE_FAIRY,    Fairy),
 
 
-    [SPECIES_MINIOR_METEOR_RED]    = MINIOR_METEOR_SPECIES_INFO(Red),
-    [SPECIES_MINIOR_METEOR_ORANGE] = MINIOR_METEOR_SPECIES_INFO(Orange),
-    [SPECIES_MINIOR_METEOR_YELLOW] = MINIOR_METEOR_SPECIES_INFO(Yellow),
-    [SPECIES_MINIOR_METEOR_GREEN]  = MINIOR_METEOR_SPECIES_INFO(Green),
-    [SPECIES_MINIOR_METEOR_BLUE]   = MINIOR_METEOR_SPECIES_INFO(Blue),
-    [SPECIES_MINIOR_METEOR_INDIGO] = MINIOR_METEOR_SPECIES_INFO(Indigo),
-    [SPECIES_MINIOR_METEOR_VIOLET] = MINIOR_METEOR_SPECIES_INFO(Violet),
-    [SPECIES_MINIOR_CORE_RED]      = MINIOR_CORE_SPECIES_INFO(Red,    BODY_COLOR_RED,    0),
-    [SPECIES_MINIOR_CORE_ORANGE]   = MINIOR_CORE_SPECIES_INFO(Orange, BODY_COLOR_RED,    0),
-    [SPECIES_MINIOR_CORE_YELLOW]   = MINIOR_CORE_SPECIES_INFO(Yellow, BODY_COLOR_YELLOW, 0),
-    [SPECIES_MINIOR_CORE_GREEN]    = MINIOR_CORE_SPECIES_INFO(Green,  BODY_COLOR_GREEN,  1),
-    [SPECIES_MINIOR_CORE_BLUE]     = MINIOR_CORE_SPECIES_INFO(Blue,   BODY_COLOR_BLUE,   0),
-    [SPECIES_MINIOR_CORE_INDIGO]   = MINIOR_CORE_SPECIES_INFO(Indigo, BODY_COLOR_BLUE,   0),
-    [SPECIES_MINIOR_CORE_VIOLET]   = MINIOR_CORE_SPECIES_INFO(Violet, BODY_COLOR_PURPLE, 2),
+    [SPECIES_MINIOR_METEOR_RED]    = { 
+        MINIOR_METEOR_SPECIES_INFO(Red), 
+        .types = MON_TYPES(TYPE_ROCK, TYPE_FLYING),
+        .baseHP = 50,
+        .baseAttack = 50,
+        .baseDefense = 150,
+        .baseSpeed = 50,
+        .baseSpAttack = 50,
+        .baseSpDefense = 150,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELDS_DOWN, ABILITY_NONE, ABILITY_NONE },
+        .levelUpLearnset = sMinior0LevelUpLearnset,
+        .teachableLearnset = sMinior0TeachableLearnset,
+    },
+    [SPECIES_MINIOR_METEOR_ORANGE] = { 
+        MINIOR_METEOR_SPECIES_INFO(Orange), 
+        .types = MON_TYPES(TYPE_ROCK, TYPE_FLYING),
+        .baseHP = 50,
+        .baseAttack = 50,
+        .baseDefense = 150,
+        .baseSpeed = 50,
+        .baseSpAttack = 50,
+        .baseSpDefense = 150,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELDS_DOWN, ABILITY_NONE, ABILITY_NONE },
+        .levelUpLearnset = sMinior1LevelUpLearnset,
+        .teachableLearnset = sMinior1TeachableLearnset,
+    },
+    [SPECIES_MINIOR_METEOR_YELLOW] = { 
+        MINIOR_METEOR_SPECIES_INFO(Yellow), 
+        .types = MON_TYPES(TYPE_ROCK, TYPE_FLYING),
+        .baseHP = 50,
+        .baseAttack = 50,
+        .baseDefense = 150,
+        .baseSpeed = 50,
+        .baseSpAttack = 50,
+        .baseSpDefense = 150,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELDS_DOWN, ABILITY_NONE, ABILITY_NONE },
+        .levelUpLearnset = sMinior2LevelUpLearnset,
+        .teachableLearnset = sMinior2TeachableLearnset,
+    },
+    [SPECIES_MINIOR_METEOR_GREEN]  = { 
+        MINIOR_METEOR_SPECIES_INFO(Green), 
+        .types = MON_TYPES(TYPE_ROCK, TYPE_FLYING),
+        .baseHP = 50,
+        .baseAttack = 50,
+        .baseDefense = 150,
+        .baseSpeed = 50,
+        .baseSpAttack = 50,
+        .baseSpDefense = 150,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELDS_DOWN, ABILITY_NONE, ABILITY_NONE },
+        .levelUpLearnset = sMinior3LevelUpLearnset,
+        .teachableLearnset = sMinior3TeachableLearnset,
+    },
+    [SPECIES_MINIOR_METEOR_BLUE]   = { 
+        MINIOR_METEOR_SPECIES_INFO(Blue), 
+        .types = MON_TYPES(TYPE_ROCK, TYPE_FLYING),
+        .baseHP = 50,
+        .baseAttack = 50,
+        .baseDefense = 150,
+        .baseSpeed = 50,
+        .baseSpAttack = 50,
+        .baseSpDefense = 150,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELDS_DOWN, ABILITY_NONE, ABILITY_NONE },
+        .levelUpLearnset = sMinior4LevelUpLearnset,
+        .teachableLearnset = sMinior4TeachableLearnset,
+    },
+    [SPECIES_MINIOR_METEOR_INDIGO] = { 
+        MINIOR_METEOR_SPECIES_INFO(Indigo), 
+        .types = MON_TYPES(TYPE_ROCK, TYPE_FLYING),
+        .baseHP = 50,
+        .baseAttack = 50,
+        .baseDefense = 150,
+        .baseSpeed = 50,
+        .baseSpAttack = 50,
+        .baseSpDefense = 150,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELDS_DOWN, ABILITY_NONE, ABILITY_NONE },
+        .levelUpLearnset = sMinior5LevelUpLearnset,
+        .teachableLearnset = sMinior5TeachableLearnset,
+    },
+    [SPECIES_MINIOR_METEOR_VIOLET] = { 
+        MINIOR_METEOR_SPECIES_INFO(Violet), 
+        .types = MON_TYPES(TYPE_ROCK, TYPE_FLYING),
+        .baseHP = 50,
+        .baseAttack = 50,
+        .baseDefense = 150,
+        .baseSpeed = 50,
+        .baseSpAttack = 50,
+        .baseSpDefense = 150,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELDS_DOWN, ABILITY_NONE, ABILITY_NONE },
+        .levelUpLearnset = sMinior6LevelUpLearnset,
+        .teachableLearnset = sMinior6TeachableLearnset,
+    },
+    [SPECIES_MINIOR_CORE_RED]      = { 
+        MINIOR_CORE_SPECIES_INFO(Red,    BODY_COLOR_RED,    0), 
+        .types = MON_TYPES(TYPE_ROCK, TYPE_FAIRY),
+        .baseHP = 50,
+        .baseAttack = 125,
+        .baseDefense = 50,
+        .baseSpeed = 150,
+        .baseSpAttack = 125,
+        .baseSpDefense = 50,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELDS_DOWN, ABILITY_NONE, ABILITY_NONE },
+        .levelUpLearnset = sMinior7LevelUpLearnset,
+        .teachableLearnset = sMinior7TeachableLearnset,
+    },
+    [SPECIES_MINIOR_CORE_ORANGE]   = { 
+        MINIOR_CORE_SPECIES_INFO(Orange, BODY_COLOR_RED,    0), 
+        .types = MON_TYPES(TYPE_ROCK, TYPE_FIRE),
+        .baseHP = 50,
+        .baseAttack = 125,
+        .baseDefense = 50,
+        .baseSpeed = 150,
+        .baseSpAttack = 125,
+        .baseSpDefense = 50,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELDS_DOWN, ABILITY_NONE, ABILITY_NONE },
+        .levelUpLearnset = sMinior8LevelUpLearnset,
+        .teachableLearnset = sMinior8TeachableLearnset,
+    },
+    [SPECIES_MINIOR_CORE_YELLOW]   = { 
+        MINIOR_CORE_SPECIES_INFO(Yellow, BODY_COLOR_YELLOW, 0), 
+        .types = MON_TYPES(TYPE_ROCK, TYPE_ELECTRIC),
+        .baseHP = 50,
+        .baseAttack = 125,
+        .baseDefense = 50,
+        .baseSpeed = 150,
+        .baseSpAttack = 125,
+        .baseSpDefense = 50,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELDS_DOWN, ABILITY_NONE, ABILITY_NONE },
+        .levelUpLearnset = sMinior9LevelUpLearnset,
+        .teachableLearnset = sMinior9TeachableLearnset,
+    },
+    [SPECIES_MINIOR_CORE_GREEN]    = { 
+        MINIOR_CORE_SPECIES_INFO(Green,  BODY_COLOR_GREEN,  1), 
+        .types = MON_TYPES(TYPE_ROCK, TYPE_GRASS),
+        .baseHP = 50,
+        .baseAttack = 125,
+        .baseDefense = 50,
+        .baseSpeed = 150,
+        .baseSpAttack = 125,
+        .baseSpDefense = 50,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELDS_DOWN, ABILITY_NONE, ABILITY_NONE },
+        .levelUpLearnset = sMinior10LevelUpLearnset,
+        .teachableLearnset = sMinior10TeachableLearnset,
+    },
+    [SPECIES_MINIOR_CORE_BLUE]     = { 
+        MINIOR_CORE_SPECIES_INFO(Blue,   BODY_COLOR_BLUE,   0), 
+        .types = MON_TYPES(TYPE_ROCK, TYPE_ICE),
+        .baseHP = 50,
+        .baseAttack = 125,
+        .baseDefense = 50,
+        .baseSpeed = 150,
+        .baseSpAttack = 125,
+        .baseSpDefense = 50,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELDS_DOWN, ABILITY_NONE, ABILITY_NONE },
+        .levelUpLearnset = sMinior11LevelUpLearnset,
+        .teachableLearnset = sMinior11TeachableLearnset,
+    },
+    [SPECIES_MINIOR_CORE_INDIGO]   = { 
+        MINIOR_CORE_SPECIES_INFO(Indigo, BODY_COLOR_BLUE,   0), 
+        .types = MON_TYPES(TYPE_ROCK, TYPE_WATER),
+        .baseHP = 50,
+        .baseAttack = 125,
+        .baseDefense = 50,
+        .baseSpeed = 150,
+        .baseSpAttack = 125,
+        .baseSpDefense = 50,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELDS_DOWN, ABILITY_NONE, ABILITY_NONE },
+        .levelUpLearnset = sMinior12LevelUpLearnset,
+        .teachableLearnset = sMinior12TeachableLearnset,
+    },
+    [SPECIES_MINIOR_CORE_VIOLET]   = { 
+        MINIOR_CORE_SPECIES_INFO(Violet, BODY_COLOR_PURPLE, 2), 
+        .types = MON_TYPES(TYPE_ROCK, TYPE_DRAGON),
+        .baseHP = 50,
+        .baseAttack = 125,
+        .baseDefense = 50,
+        .baseSpeed = 150,
+        .baseSpAttack = 125,
+        .baseSpDefense = 50,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELDS_DOWN, ABILITY_NONE, ABILITY_NONE },
+        .levelUpLearnset = sMinior13LevelUpLearnset,
+        .teachableLearnset = sMinior13TeachableLearnset,
+    },
 
     [SPECIES_KOMALA] =
     {
@@ -5008,8 +5170,8 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
             gOverworldPalette_JangmoO,
             gShinyOverworldPalette_JangmoO
         )
-        .levelUpLearnset = sJangmoo0LevelUpLearnset,
-        .teachableLearnset = sJangmoo0TeachableLearnset,
+        .levelUpLearnset = sJangmoO0LevelUpLearnset,
+        .teachableLearnset = sJangmoO0TeachableLearnset,
         .eggMoveLearnset = sJangmoOEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_HAKAMO_O}),
     },
@@ -5072,8 +5234,8 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
             gOverworldPalette_HakamoO,
             gShinyOverworldPalette_HakamoO
         )
-        .levelUpLearnset = sHakamoo0LevelUpLearnset,
-        .teachableLearnset = sHakamoo0TeachableLearnset,
+        .levelUpLearnset = sHakamoO0LevelUpLearnset,
+        .teachableLearnset = sHakamoO0TeachableLearnset,
         .evolutions = EVOLUTION({EVO_MOVE, MOVE_DEVASTATING_DRAKE, SPECIES_KOMMO_O, 45}),
     },
 
@@ -5131,8 +5293,8 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
             gOverworldPalette_KommoO,
             gShinyOverworldPalette_KommoO
         )
-        .levelUpLearnset = sKommoo0LevelUpLearnset,
-        .teachableLearnset = sKommoo0TeachableLearnset,
+        .levelUpLearnset = sKommoO0LevelUpLearnset,
+        .teachableLearnset = sKommoO0TeachableLearnset,
         .formSpeciesIdTable = sKommoOFormSpeciesIdTable,
         .evolutions = NULL,
     },
@@ -5519,7 +5681,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
         .levelUpLearnset = sCosmog0LevelUpLearnset,
         .teachableLearnset = sCosmog0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_SHATTERED_PSYCHE, SPECIES_COSMOEM, 35}),
+        .evolutions = EVOLUTION({EVO_MOVE, MOVE_SHATTERED_PSYCHE, SPECIES_COSMOEM, 30}),
     },
 
     [SPECIES_COSMOEM] =

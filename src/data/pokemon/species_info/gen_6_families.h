@@ -1,12 +1,4 @@
 #define SCATTERBUG_SPECIES_INFO(evolution)                                                  \
-    {                                                                                       \
-        .baseHP        = 38,                                                                \
-        .baseAttack    = 35,                                                                \
-        .baseDefense   = 40,                                                                \
-        .baseSpeed     = 35,                                                                \
-        .baseSpAttack  = 27,                                                                \
-        .baseSpDefense = 25,                                                                \
-        .types = MON_TYPES(TYPE_BUG),                                                       \
         .catchRate = 255,                                                                   \
         .expYield = 40,                                                                     \
         .evYield_Defense = 1,                                                               \
@@ -15,7 +7,6 @@
         .friendship = STANDARD_FRIENDSHIP,                                                  \
         .growthRate = GROWTH_MEDIUM_FAST,                                                   \
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),                                         \
-        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },  \
         .bodyColor = BODY_COLOR_BLACK,                                                      \
         .speciesName = _("Scatterbug"),                                                     \
         .cryId = CRY_SCATTERBUG,                                                            \
@@ -52,22 +43,10 @@
             gShinyOverworldPalette_Scatterbug                                               \
         )                                                                                   \
         .tmIlliterate = TRUE,                                                               \
-        .levelUpLearnset = sNoneLevelUpLearnset,                                      \
-        .teachableLearnset = sNoneTeachableLearnset,                                  \
         .eggMoveLearnset = sScatterbugEggMoveLearnset,                                      \
-        .formSpeciesIdTable = sScatterbugFormSpeciesIdTable,                                \
-        .evolutions = EVOLUTION({EVO_LEVEL, 9, SPECIES_SPEWPA_##evolution}),                \
-    }
+        .formSpeciesIdTable = sScatterbugFormSpeciesIdTable
 
 #define SPEWPA_SPECIES_INFO(evolution)                                          \
-    {                                                                           \
-        .baseHP        = 45,                                                    \
-        .baseAttack    = 22,                                                    \
-        .baseDefense   = 60,                                                    \
-        .baseSpeed     = 29,                                                    \
-        .baseSpAttack  = 27,                                                    \
-        .baseSpDefense = 30,                                                    \
-        .types = MON_TYPES(TYPE_BUG),                                           \
         .catchRate = 120,                                                       \
         .expYield = 75,                                                         \
         .evYield_Defense = 2,                                                   \
@@ -76,7 +55,6 @@
         .friendship = STANDARD_FRIENDSHIP,                                      \
         .growthRate = GROWTH_MEDIUM_FAST,                                       \
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),                             \
-        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_FRIEND_GUARD }, \
         .bodyColor = BODY_COLOR_BLACK,                                          \
         .speciesName = _("Spewpa"),                                             \
         .cryId = CRY_SPEWPA,                                                    \
@@ -113,23 +91,14 @@
             gShinyOverworldPalette_Spewpa                                       \
         )                                                                       \
         .tmIlliterate = TRUE,                                                   \
-        .levelUpLearnset = sNoneLevelUpLearnset,                              \
-        .teachableLearnset = sNoneTeachableLearnset,                          \
-        .formSpeciesIdTable = sSpewpaFormSpeciesIdTable,                        \
-        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_##evolution}), \
-    }
+        .formSpeciesIdTable = sSpewpaFormSpeciesIdTable
     
 #define VIVILLON_MISC_INFO(form, color, iconPal)                                            \
-        .baseHP        = 80,                                                                \
-        .baseAttack    = 52,                                                                \
-        .baseDefense   = 50,                                                                \
-        .baseSpeed     = 89,                                                                \
         .genderRatio = PERCENT_FEMALE(50),                                                  \
         .eggCycles = 15,                                                                    \
         .friendship = STANDARD_FRIENDSHIP,                                                  \
         .growthRate = GROWTH_MEDIUM_FAST,                                                   \
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),                                         \
-        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },  \
         .bodyColor = color,                                                                 \
         .speciesName = _("Vivillon"),                                                       \
         .cryId = CRY_VIVILLON,                                                              \
@@ -165,18 +134,9 @@
             gOverworldPalette_Vivillon ##form,                                              \
             gShinyOverworldPalette_Vivillon ##form                                          \
         )                                                                                   \
-        .levelUpLearnset = sNoneLevelUpLearnset,                                        \
-        .teachableLearnset = sNoneTeachableLearnset,                                    \
         .formSpeciesIdTable = sVivillonFormSpeciesIdTable
 
 #define FLABEBE_MISC_INFO(Form, FORM, iconPal)                                  \
-        .baseHP        = 44,                                                    \
-        .baseAttack    = 38,                                                    \
-        .baseDefense   = 39,                                                    \
-        .baseSpeed     = 42,                                                    \
-        .baseSpAttack  = 61,                                                    \
-        .baseSpDefense = 79,                                                    \
-        .types = MON_TYPES(TYPE_FAIRY),                                         \
         .catchRate = 225,                                                       \
         .expYield = 61,                                                         \
         .evYield_SpDefense = 1,                                                 \
@@ -185,7 +145,6 @@
         .friendship = STANDARD_FRIENDSHIP,                                      \
         .growthRate = GROWTH_MEDIUM_FAST,                                       \
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY),                           \
-        .abilities = { ABILITY_FLOWER_VEIL, ABILITY_NONE, ABILITY_SYMBIOSIS },  \
         .bodyColor = BODY_COLOR_WHITE,                                          \
         .speciesName = _("Flabébé"),                                            \
         .cryId = CRY_FLABEBE,                                                   \
@@ -221,21 +180,16 @@
             gOverworldPalette_Flabebe##Form,                                    \
             gShinyOverworldPalette_Flabebe##Form                                \
         )                                                                       \
-        .levelUpLearnset = sNoneLevelUpLearnset,                             \
-        .teachableLearnset = sNoneTeachableLearnset,                         \
         .eggMoveLearnset = sFlabebeEggMoveLearnset,                             \
-        .formSpeciesIdTable = sFlabebeFormSpeciesIdTable,                       \
-        .evolutions = EVOLUTION({EVO_LEVEL, 19, SPECIES_FLOETTE_ ##FORM})   
+        .formSpeciesIdTable = sFlabebeFormSpeciesIdTable
 
 #define FLOETTE_MISC_INFO(form, FORM, iconPal)                                  \
-        .types = MON_TYPES(TYPE_FAIRY),                                         \
         .catchRate = 120,                                                       \
         .evYield_SpDefense = 2,                                                 \
         .genderRatio = MON_FEMALE,                                              \
         .eggCycles = 20,                                                        \
         .friendship = STANDARD_FRIENDSHIP,                                      \
         .growthRate = GROWTH_MEDIUM_FAST,                                       \
-        .abilities = { ABILITY_FLOWER_VEIL, ABILITY_NONE, ABILITY_SYMBIOSIS },  \
         .bodyColor = BODY_COLOR_WHITE,                                          \
         .speciesName = _("Floette"),                                            \
         .natDexNum = NATIONAL_DEX_FLOETTE,                                      \
@@ -266,12 +220,6 @@
         .formSpeciesIdTable = sFloetteFormSpeciesIdTable
 
 #define FLOETTE_NORMAL_INFO(form, FORM, iconPal)                                                \
-        .baseHP        = 54,                                                                    \
-        .baseAttack    = 45,                                                                    \
-        .baseDefense   = 47,                                                                    \
-        .baseSpeed     = 52,                                                                    \
-        .baseSpAttack  = 75,                                                                    \
-        .baseSpDefense = 98,                                                                    \
         .expYield = 130,                                                                        \
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY),                                           \
         .cryId = CRY_FLOETTE,                                                                   \
@@ -282,19 +230,9 @@
         .backPic = gMonBackPic_Floette,                                                         \
         .backPicSize = MON_COORDS_SIZE(64, 64),                                                 \
         .backPicYOffset = 2,                                                                    \
-        .levelUpLearnset = sNoneLevelUpLearnset,                                             \
-        .teachableLearnset = sNoneTeachableLearnset,                                         \
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_SHINY_STONE, SPECIES_FLORGES_ ##FORM}),\
         FLOETTE_MISC_INFO(form, FORM, iconPal)
 
 #define FLORGES_MISC_INFO(Form, iconPal)                                        \
-        .baseHP        = 78,                                                    \
-        .baseAttack    = 65,                                                    \
-        .baseDefense   = 68,                                                    \
-        .baseSpeed     = 75,                                                    \
-        .baseSpAttack  = 112,                                                   \
-        .baseSpDefense = 154,                                                   \
-        .types = MON_TYPES(TYPE_FAIRY),                                         \
         .catchRate = 45,                                                        \
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 276 : 248,                \
         .evYield_SpDefense = 3,                                                 \
@@ -303,7 +241,6 @@
         .friendship = STANDARD_FRIENDSHIP,                                      \
         .growthRate = GROWTH_MEDIUM_FAST,                                       \
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY),                           \
-        .abilities = { ABILITY_FLOWER_VEIL, ABILITY_NONE, ABILITY_SYMBIOSIS },  \
         .bodyColor = BODY_COLOR_WHITE,                                          \
         .speciesName = _("Florges"),                                            \
         .cryId = CRY_FLORGES,                                                   \
@@ -338,8 +275,6 @@
             gOverworldPalette_Florges ##Form,                                   \
             gShinyOverworldPalette_Florges ##Form                               \
         )                                                                       \
-        .levelUpLearnset = sNoneLevelUpLearnset,                             \
-        .teachableLearnset = sNoneTeachableLearnset,                         \
         .formSpeciesIdTable = sFlorgesFormSpeciesIdTable
 
 #ifdef __INTELLISENSE__
@@ -1333,49 +1268,569 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
     },
 
 
-    [SPECIES_SCATTERBUG_ICY_SNOW]    = SCATTERBUG_SPECIES_INFO(ICY_SNOW),
-    [SPECIES_SCATTERBUG_POLAR]       = SCATTERBUG_SPECIES_INFO(POLAR),
-    [SPECIES_SCATTERBUG_TUNDRA]      = SCATTERBUG_SPECIES_INFO(TUNDRA),
-    [SPECIES_SCATTERBUG_CONTINENTAL] = SCATTERBUG_SPECIES_INFO(CONTINENTAL),
-    [SPECIES_SCATTERBUG_GARDEN]      = SCATTERBUG_SPECIES_INFO(GARDEN),
-    [SPECIES_SCATTERBUG_ELEGANT]     = SCATTERBUG_SPECIES_INFO(ELEGANT),
-    [SPECIES_SCATTERBUG_MEADOW]      = SCATTERBUG_SPECIES_INFO(MEADOW),
-    [SPECIES_SCATTERBUG_MODERN]      = SCATTERBUG_SPECIES_INFO(MODERN),
-    [SPECIES_SCATTERBUG_MARINE]      = SCATTERBUG_SPECIES_INFO(MARINE),
-    [SPECIES_SCATTERBUG_ARCHIPELAGO] = SCATTERBUG_SPECIES_INFO(ARCHIPELAGO),
-    [SPECIES_SCATTERBUG_HIGH_PLAINS] = SCATTERBUG_SPECIES_INFO(HIGH_PLAINS),
-    [SPECIES_SCATTERBUG_SANDSTORM]   = SCATTERBUG_SPECIES_INFO(SANDSTORM),
-    [SPECIES_SCATTERBUG_RIVER]       = SCATTERBUG_SPECIES_INFO(RIVER),
-    [SPECIES_SCATTERBUG_MONSOON]     = SCATTERBUG_SPECIES_INFO(MONSOON),
-    [SPECIES_SCATTERBUG_SAVANNA]     = SCATTERBUG_SPECIES_INFO(SAVANNA),
-    [SPECIES_SCATTERBUG_SUN]         = SCATTERBUG_SPECIES_INFO(SUN),
-    [SPECIES_SCATTERBUG_OCEAN]       = SCATTERBUG_SPECIES_INFO(OCEAN),
-    [SPECIES_SCATTERBUG_JUNGLE]      = SCATTERBUG_SPECIES_INFO(JUNGLE),
-    [SPECIES_SCATTERBUG_FANCY]       = SCATTERBUG_SPECIES_INFO(FANCY),
-    [SPECIES_SCATTERBUG_POKEBALL]   = SCATTERBUG_SPECIES_INFO(POKEBALL),
+    [SPECIES_SCATTERBUG_ICY_SNOW]    = {
+        SCATTERBUG_SPECIES_INFO(ICY_SNOW),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 35,
+        .baseAttack = 37,
+        .baseDefense = 40,
+        .baseSpeed = 39,
+        .baseSpAttack = 50,
+        .baseSpDefense = 74,
+        .evolutions = EVOLUTION({EVO_LEVEL, 15, SPECIES_SPEWPA_ICY_SNOW}),
+        .abilities = { ABILITY_RIPEN, ABILITY_SAP_SIPPER, ABILITY_ADAPTABILITY },
+        .levelUpLearnset = sScatterbug0LevelUpLearnset,
+        .teachableLearnset = sScatterbug0TeachableLearnset,
+    },
+    [SPECIES_SCATTERBUG_POLAR]       = {
+        SCATTERBUG_SPECIES_INFO(POLAR),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 38,
+        .baseAttack = 35,
+        .baseDefense = 40,
+        .baseSpeed = 35,
+        .baseSpAttack = 27,
+        .baseSpDefense = 25,
+        .evolutions = EVOLUTION({EVO_LEVEL, 9, SPECIES_SPEWPA_POLAR}),
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sScatterbug1LevelUpLearnset,
+        .teachableLearnset = sScatterbug1TeachableLearnset,
+    },
+    [SPECIES_SCATTERBUG_TUNDRA]      = {
+        SCATTERBUG_SPECIES_INFO(TUNDRA),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 38,
+        .baseAttack = 35,
+        .baseDefense = 40,
+        .baseSpeed = 35,
+        .baseSpAttack = 27,
+        .baseSpDefense = 25,
+        .evolutions = EVOLUTION({EVO_LEVEL, 9, SPECIES_SPEWPA_TUNDRA}),
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sScatterbug2LevelUpLearnset,
+        .teachableLearnset = sScatterbug2TeachableLearnset,
+    },
+    [SPECIES_SCATTERBUG_CONTINENTAL] = {
+        SCATTERBUG_SPECIES_INFO(CONTINENTAL),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 38,
+        .baseAttack = 35,
+        .baseDefense = 40,
+        .baseSpeed = 35,
+        .baseSpAttack = 27,
+        .baseSpDefense = 25,
+        .evolutions = EVOLUTION({EVO_LEVEL, 9, SPECIES_SPEWPA_CONTINENTAL}),
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sScatterbug3LevelUpLearnset,
+        .teachableLearnset = sScatterbug3TeachableLearnset,
+    },
+    [SPECIES_SCATTERBUG_GARDEN]      = {
+        SCATTERBUG_SPECIES_INFO(GARDEN),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 38,
+        .baseAttack = 35,
+        .baseDefense = 40,
+        .baseSpeed = 35,
+        .baseSpAttack = 27,
+        .baseSpDefense = 25,
+        .evolutions = EVOLUTION({EVO_LEVEL, 9, SPECIES_SPEWPA_GARDEN}),
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sScatterbug4LevelUpLearnset,
+        .teachableLearnset = sScatterbug4TeachableLearnset,
+    },
+    [SPECIES_SCATTERBUG_ELEGANT]     = {
+        SCATTERBUG_SPECIES_INFO(ELEGANT),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 38,
+        .baseAttack = 35,
+        .baseDefense = 40,
+        .baseSpeed = 35,
+        .baseSpAttack = 27,
+        .baseSpDefense = 25,
+        .evolutions = EVOLUTION({EVO_LEVEL, 9, SPECIES_SPEWPA_ELEGANT}),
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sScatterbug5LevelUpLearnset,
+        .teachableLearnset = sScatterbug5TeachableLearnset,
+    },
+    [SPECIES_SCATTERBUG_MEADOW]      = {
+        SCATTERBUG_SPECIES_INFO(MEADOW),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 38,
+        .baseAttack = 35,
+        .baseDefense = 40,
+        .baseSpeed = 35,
+        .baseSpAttack = 27,
+        .baseSpDefense = 25,
+        .evolutions = EVOLUTION({EVO_LEVEL, 9, SPECIES_SPEWPA_MEADOW}),
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sScatterbug6LevelUpLearnset,
+        .teachableLearnset = sScatterbug6TeachableLearnset,
+    },
+    [SPECIES_SCATTERBUG_MODERN]      = {
+        SCATTERBUG_SPECIES_INFO(MODERN),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 38,
+        .baseAttack = 35,
+        .baseDefense = 40,
+        .baseSpeed = 35,
+        .baseSpAttack = 27,
+        .baseSpDefense = 25,
+        .evolutions = EVOLUTION({EVO_LEVEL, 9, SPECIES_SPEWPA_MODERN}),
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sScatterbug7LevelUpLearnset,
+        .teachableLearnset = sScatterbug7TeachableLearnset,
+    },
+    [SPECIES_SCATTERBUG_MARINE]      = {
+        SCATTERBUG_SPECIES_INFO(MARINE),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 38,
+        .baseAttack = 35,
+        .baseDefense = 40,
+        .baseSpeed = 35,
+        .baseSpAttack = 27,
+        .baseSpDefense = 25,
+        .evolutions = EVOLUTION({EVO_LEVEL, 9, SPECIES_SPEWPA_MARINE}),
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sScatterbug8LevelUpLearnset,
+        .teachableLearnset = sScatterbug8TeachableLearnset,
+    },
+    [SPECIES_SCATTERBUG_ARCHIPELAGO] = {
+        SCATTERBUG_SPECIES_INFO(ARCHIPELAGO),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 38,
+        .baseAttack = 35,
+        .baseDefense = 40,
+        .baseSpeed = 35,
+        .baseSpAttack = 27,
+        .baseSpDefense = 25,
+        .evolutions = EVOLUTION({EVO_LEVEL, 9, SPECIES_SPEWPA_ARCHIPELAGO}),
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sScatterbug9LevelUpLearnset,
+        .teachableLearnset = sScatterbug9TeachableLearnset,
+    },
+    [SPECIES_SCATTERBUG_HIGH_PLAINS] = {
+        SCATTERBUG_SPECIES_INFO(HIGH_PLAINS),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 38,
+        .baseAttack = 35,
+        .baseDefense = 40,
+        .baseSpeed = 35,
+        .baseSpAttack = 27,
+        .baseSpDefense = 25,
+        .evolutions = EVOLUTION({EVO_LEVEL, 9, SPECIES_SPEWPA_HIGH_PLAINS}),
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sScatterbug10LevelUpLearnset,
+        .teachableLearnset = sScatterbug10TeachableLearnset,
+    },
+    [SPECIES_SCATTERBUG_SANDSTORM]   = {
+        SCATTERBUG_SPECIES_INFO(SANDSTORM),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 38,
+        .baseAttack = 35,
+        .baseDefense = 40,
+        .baseSpeed = 35,
+        .baseSpAttack = 27,
+        .baseSpDefense = 25,
+        .evolutions = EVOLUTION({EVO_LEVEL, 9, SPECIES_SPEWPA_SANDSTORM}),
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sScatterbug11LevelUpLearnset,
+        .teachableLearnset = sScatterbug11TeachableLearnset,
+    },
+    [SPECIES_SCATTERBUG_RIVER]       = {
+        SCATTERBUG_SPECIES_INFO(RIVER),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 38,
+        .baseAttack = 35,
+        .baseDefense = 40,
+        .baseSpeed = 35,
+        .baseSpAttack = 27,
+        .baseSpDefense = 25,
+        .evolutions = EVOLUTION({EVO_LEVEL, 9, SPECIES_SPEWPA_RIVER}),
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sScatterbug12LevelUpLearnset,
+        .teachableLearnset = sScatterbug12TeachableLearnset,
+    },
+    [SPECIES_SCATTERBUG_MONSOON]     = {
+        SCATTERBUG_SPECIES_INFO(MONSOON),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 38,
+        .baseAttack = 35,
+        .baseDefense = 40,
+        .baseSpeed = 35,
+        .baseSpAttack = 27,
+        .baseSpDefense = 25,
+        .evolutions = EVOLUTION({EVO_LEVEL, 9, SPECIES_SPEWPA_MONSOON}),
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sScatterbug13LevelUpLearnset,
+        .teachableLearnset = sScatterbug13TeachableLearnset,
+    },
+    [SPECIES_SCATTERBUG_SAVANNA]     = {
+        SCATTERBUG_SPECIES_INFO(SAVANNA),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 38,
+        .baseAttack = 35,
+        .baseDefense = 40,
+        .baseSpeed = 35,
+        .baseSpAttack = 27,
+        .baseSpDefense = 25,
+        .evolutions = EVOLUTION({EVO_LEVEL, 9, SPECIES_SPEWPA_SAVANNA}),
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sScatterbug14LevelUpLearnset,
+        .teachableLearnset = sScatterbug14TeachableLearnset,
+    },
+    [SPECIES_SCATTERBUG_SUN]         = {
+        SCATTERBUG_SPECIES_INFO(SUN),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 38,
+        .baseAttack = 35,
+        .baseDefense = 40,
+        .baseSpeed = 35,
+        .baseSpAttack = 27,
+        .baseSpDefense = 25,
+        .evolutions = EVOLUTION({EVO_LEVEL, 9, SPECIES_SPEWPA_SUN}),
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sScatterbug15LevelUpLearnset,
+        .teachableLearnset = sScatterbug15TeachableLearnset,
+    },
+    [SPECIES_SCATTERBUG_OCEAN]       = {
+        SCATTERBUG_SPECIES_INFO(OCEAN),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 38,
+        .baseAttack = 35,
+        .baseDefense = 40,
+        .baseSpeed = 35,
+        .baseSpAttack = 27,
+        .baseSpDefense = 25,
+        .evolutions = EVOLUTION({EVO_LEVEL, 9, SPECIES_SPEWPA_OCEAN}),
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sScatterbug16LevelUpLearnset,
+        .teachableLearnset = sScatterbug16TeachableLearnset,
+    },
+    [SPECIES_SCATTERBUG_JUNGLE]      = {
+        SCATTERBUG_SPECIES_INFO(JUNGLE),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 38,
+        .baseAttack = 35,
+        .baseDefense = 40,
+        .baseSpeed = 35,
+        .baseSpAttack = 27,
+        .baseSpDefense = 25,
+        .evolutions = EVOLUTION({EVO_LEVEL, 9, SPECIES_SPEWPA_JUNGLE}),
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sScatterbug17LevelUpLearnset,
+        .teachableLearnset = sScatterbug17TeachableLearnset,
+    },
+    [SPECIES_SCATTERBUG_FANCY]       = {
+        SCATTERBUG_SPECIES_INFO(FANCY),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 38,
+        .baseAttack = 35,
+        .baseDefense = 40,
+        .baseSpeed = 35,
+        .baseSpAttack = 27,
+        .baseSpDefense = 25,
+        .evolutions = EVOLUTION({EVO_LEVEL, 9, SPECIES_SPEWPA_FANCY}),
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sScatterbug18LevelUpLearnset,
+        .teachableLearnset = sScatterbug18TeachableLearnset,
+    },
+    [SPECIES_SCATTERBUG_POKEBALL]   = {
+        SCATTERBUG_SPECIES_INFO(POKEBALL),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 38,
+        .baseAttack = 35,
+        .baseDefense = 40,
+        .baseSpeed = 35,
+        .baseSpAttack = 27,
+        .baseSpDefense = 25,
+        .evolutions = EVOLUTION({EVO_LEVEL, 9, SPECIES_SPEWPA_POKEBALL}),
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sScatterbug19LevelUpLearnset,
+        .teachableLearnset = sScatterbug19TeachableLearnset,
+    },
 
 
 
-    [SPECIES_SPEWPA_ICY_SNOW]    = SPEWPA_SPECIES_INFO(ICY_SNOW),
-    [SPECIES_SPEWPA_POLAR]       = SPEWPA_SPECIES_INFO(POLAR),
-    [SPECIES_SPEWPA_TUNDRA]      = SPEWPA_SPECIES_INFO(TUNDRA),
-    [SPECIES_SPEWPA_CONTINENTAL] = SPEWPA_SPECIES_INFO(CONTINENTAL),
-    [SPECIES_SPEWPA_GARDEN]      = SPEWPA_SPECIES_INFO(GARDEN),
-    [SPECIES_SPEWPA_ELEGANT]     = SPEWPA_SPECIES_INFO(ELEGANT),
-    [SPECIES_SPEWPA_MEADOW]      = SPEWPA_SPECIES_INFO(MEADOW),
-    [SPECIES_SPEWPA_MODERN]      = SPEWPA_SPECIES_INFO(MODERN),
-    [SPECIES_SPEWPA_MARINE]      = SPEWPA_SPECIES_INFO(MARINE),
-    [SPECIES_SPEWPA_ARCHIPELAGO] = SPEWPA_SPECIES_INFO(ARCHIPELAGO),
-    [SPECIES_SPEWPA_HIGH_PLAINS] = SPEWPA_SPECIES_INFO(HIGH_PLAINS),
-    [SPECIES_SPEWPA_SANDSTORM]   = SPEWPA_SPECIES_INFO(SANDSTORM),
-    [SPECIES_SPEWPA_RIVER]       = SPEWPA_SPECIES_INFO(RIVER),
-    [SPECIES_SPEWPA_MONSOON]     = SPEWPA_SPECIES_INFO(MONSOON),
-    [SPECIES_SPEWPA_SAVANNA]     = SPEWPA_SPECIES_INFO(SAVANNA),
-    [SPECIES_SPEWPA_SUN]         = SPEWPA_SPECIES_INFO(SUN),
-    [SPECIES_SPEWPA_OCEAN]       = SPEWPA_SPECIES_INFO(OCEAN),
-    [SPECIES_SPEWPA_JUNGLE]      = SPEWPA_SPECIES_INFO(JUNGLE),
-    [SPECIES_SPEWPA_FANCY]       = SPEWPA_SPECIES_INFO(FANCY),
-    [SPECIES_SPEWPA_POKEBALL]   = SPEWPA_SPECIES_INFO(POKEBALL),
+    [SPECIES_SPEWPA_ICY_SNOW]    = {
+        SPEWPA_SPECIES_INFO(ICY_SNOW),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 45,
+        .baseAttack = 22,
+        .baseDefense = 65,
+        .baseSpeed = 29,
+        .baseSpAttack = 60,
+        .baseSpDefense = 104,
+        .evolutions = EVOLUTION({EVO_MOVE, MOVE_SUBZERO_SLAMMER, SPECIES_VIVILLON_TUNDRA, 25}, {EVO_MOVE, MOVE_HYDRO_VORTEX, SPECIES_VIVILLON_MARINE, 25}, {EVO_MOVE, MOVE_CONTINENTAL_CRUSH, SPECIES_VIVILLON_SANDSTORM, 25}, {EVO_MOVE, MOVE_INFERNO_OVERDRIVE, SPECIES_VIVILLON_SUN, 25}),
+        .abilities = { ABILITY_FUR_COAT, ABILITY_MULTISCALE, ABILITY_ADAPTABILITY },
+        .levelUpLearnset = sSpewpa0LevelUpLearnset,
+        .teachableLearnset = sSpewpa0TeachableLearnset,
+    },
+    [SPECIES_SPEWPA_POLAR]       = {
+        SPEWPA_SPECIES_INFO(POLAR),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 45,
+        .baseAttack = 22,
+        .baseDefense = 60,
+        .baseSpeed = 29,
+        .baseSpAttack = 27,
+        .baseSpDefense = 30,
+        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_POLAR}),
+        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sSpewpa1LevelUpLearnset,
+        .teachableLearnset = sSpewpa1TeachableLearnset,
+    },
+    [SPECIES_SPEWPA_TUNDRA]      = {
+        SPEWPA_SPECIES_INFO(TUNDRA),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 45,
+        .baseAttack = 22,
+        .baseDefense = 60,
+        .baseSpeed = 29,
+        .baseSpAttack = 27,
+        .baseSpDefense = 30,
+        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_TUNDRA}),
+        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sSpewpa2LevelUpLearnset,
+        .teachableLearnset = sSpewpa2TeachableLearnset,
+    },
+    [SPECIES_SPEWPA_CONTINENTAL] = {
+        SPEWPA_SPECIES_INFO(CONTINENTAL),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 45,
+        .baseAttack = 22,
+        .baseDefense = 60,
+        .baseSpeed = 29,
+        .baseSpAttack = 27,
+        .baseSpDefense = 30,
+        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_CONTINENTAL}),
+        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sSpewpa3LevelUpLearnset,
+        .teachableLearnset = sSpewpa3TeachableLearnset,
+    },
+    [SPECIES_SPEWPA_GARDEN]      = {
+        SPEWPA_SPECIES_INFO(GARDEN),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 45,
+        .baseAttack = 22,
+        .baseDefense = 60,
+        .baseSpeed = 29,
+        .baseSpAttack = 27,
+        .baseSpDefense = 30,
+        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_GARDEN}),
+        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sSpewpa4LevelUpLearnset,
+        .teachableLearnset = sSpewpa4TeachableLearnset,
+    },
+    [SPECIES_SPEWPA_ELEGANT]     = {
+        SPEWPA_SPECIES_INFO(ELEGANT),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 45,
+        .baseAttack = 22,
+        .baseDefense = 60,
+        .baseSpeed = 29,
+        .baseSpAttack = 27,
+        .baseSpDefense = 30,
+        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_ELEGANT}),
+        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sSpewpa5LevelUpLearnset,
+        .teachableLearnset = sSpewpa5TeachableLearnset,
+    },
+    [SPECIES_SPEWPA_MEADOW]      = {
+        SPEWPA_SPECIES_INFO(MEADOW),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 45,
+        .baseAttack = 22,
+        .baseDefense = 60,
+        .baseSpeed = 29,
+        .baseSpAttack = 27,
+        .baseSpDefense = 30,
+        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_MEADOW}),
+        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sSpewpa6LevelUpLearnset,
+        .teachableLearnset = sSpewpa6TeachableLearnset,
+    },
+    [SPECIES_SPEWPA_MODERN]      = {
+        SPEWPA_SPECIES_INFO(MODERN),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 45,
+        .baseAttack = 22,
+        .baseDefense = 60,
+        .baseSpeed = 29,
+        .baseSpAttack = 27,
+        .baseSpDefense = 30,
+        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_MODERN}),
+        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sSpewpa7LevelUpLearnset,
+        .teachableLearnset = sSpewpa7TeachableLearnset,
+    },
+    [SPECIES_SPEWPA_MARINE]      = {
+        SPEWPA_SPECIES_INFO(MARINE),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 45,
+        .baseAttack = 22,
+        .baseDefense = 60,
+        .baseSpeed = 29,
+        .baseSpAttack = 27,
+        .baseSpDefense = 30,
+        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_MARINE}),
+        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sSpewpa8LevelUpLearnset,
+        .teachableLearnset = sSpewpa8TeachableLearnset,
+    },
+    [SPECIES_SPEWPA_ARCHIPELAGO] = {
+        SPEWPA_SPECIES_INFO(ARCHIPELAGO),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 45,
+        .baseAttack = 22,
+        .baseDefense = 60,
+        .baseSpeed = 29,
+        .baseSpAttack = 27,
+        .baseSpDefense = 30,
+        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_ARCHIPELAGO}),
+        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sSpewpa9LevelUpLearnset,
+        .teachableLearnset = sSpewpa9TeachableLearnset,
+    },
+    [SPECIES_SPEWPA_HIGH_PLAINS] = {
+        SPEWPA_SPECIES_INFO(HIGH_PLAINS),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 45,
+        .baseAttack = 22,
+        .baseDefense = 60,
+        .baseSpeed = 29,
+        .baseSpAttack = 27,
+        .baseSpDefense = 30,
+        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_HIGH_PLAINS}),
+        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sSpewpa10LevelUpLearnset,
+        .teachableLearnset = sSpewpa10TeachableLearnset,
+    },
+    [SPECIES_SPEWPA_SANDSTORM]   = {
+        SPEWPA_SPECIES_INFO(SANDSTORM),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 45,
+        .baseAttack = 22,
+        .baseDefense = 60,
+        .baseSpeed = 29,
+        .baseSpAttack = 27,
+        .baseSpDefense = 30,
+        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_SANDSTORM}),
+        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sSpewpa11LevelUpLearnset,
+        .teachableLearnset = sSpewpa11TeachableLearnset,
+    },
+    [SPECIES_SPEWPA_RIVER]       = {
+        SPEWPA_SPECIES_INFO(RIVER),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 45,
+        .baseAttack = 22,
+        .baseDefense = 60,
+        .baseSpeed = 29,
+        .baseSpAttack = 27,
+        .baseSpDefense = 30,
+        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_RIVER}),
+        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sSpewpa12LevelUpLearnset,
+        .teachableLearnset = sSpewpa12TeachableLearnset,
+    },
+    [SPECIES_SPEWPA_MONSOON]     = {
+        SPEWPA_SPECIES_INFO(MONSOON),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 45,
+        .baseAttack = 22,
+        .baseDefense = 60,
+        .baseSpeed = 29,
+        .baseSpAttack = 27,
+        .baseSpDefense = 30,
+        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_MONSOON}),
+        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sSpewpa13LevelUpLearnset,
+        .teachableLearnset = sSpewpa13TeachableLearnset,
+    },
+    [SPECIES_SPEWPA_SAVANNA]     = {
+        SPEWPA_SPECIES_INFO(SAVANNA),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 45,
+        .baseAttack = 22,
+        .baseDefense = 60,
+        .baseSpeed = 29,
+        .baseSpAttack = 27,
+        .baseSpDefense = 30,
+        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_SAVANNA}),
+        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sSpewpa14LevelUpLearnset,
+        .teachableLearnset = sSpewpa14TeachableLearnset,
+    },
+    [SPECIES_SPEWPA_SUN]         = {
+        SPEWPA_SPECIES_INFO(SUN),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 45,
+        .baseAttack = 22,
+        .baseDefense = 60,
+        .baseSpeed = 29,
+        .baseSpAttack = 27,
+        .baseSpDefense = 30,
+        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_SUN}),
+        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sSpewpa15LevelUpLearnset,
+        .teachableLearnset = sSpewpa15TeachableLearnset,
+    },
+    [SPECIES_SPEWPA_OCEAN]       = {
+        SPEWPA_SPECIES_INFO(OCEAN),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 45,
+        .baseAttack = 22,
+        .baseDefense = 60,
+        .baseSpeed = 29,
+        .baseSpAttack = 27,
+        .baseSpDefense = 30,
+        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_OCEAN}),
+        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sSpewpa16LevelUpLearnset,
+        .teachableLearnset = sSpewpa16TeachableLearnset,
+    },
+    [SPECIES_SPEWPA_JUNGLE]      = {
+        SPEWPA_SPECIES_INFO(JUNGLE),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 45,
+        .baseAttack = 22,
+        .baseDefense = 60,
+        .baseSpeed = 29,
+        .baseSpAttack = 27,
+        .baseSpDefense = 30,
+        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_JUNGLE}),
+        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sSpewpa17LevelUpLearnset,
+        .teachableLearnset = sSpewpa17TeachableLearnset,
+    },
+    [SPECIES_SPEWPA_FANCY]       = {
+        SPEWPA_SPECIES_INFO(FANCY),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 45,
+        .baseAttack = 22,
+        .baseDefense = 60,
+        .baseSpeed = 29,
+        .baseSpAttack = 27,
+        .baseSpDefense = 30,
+        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_FANCY}),
+        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sSpewpa18LevelUpLearnset,
+        .teachableLearnset = sSpewpa18TeachableLearnset,
+    },
+    [SPECIES_SPEWPA_POKEBALL]   = {
+        SPEWPA_SPECIES_INFO(POKEBALL),
+        .types = MON_TYPES(TYPE_BUG),
+        .baseHP = 45,
+        .baseAttack = 22,
+        .baseDefense = 60,
+        .baseSpeed = 29,
+        .baseSpAttack = 27,
+        .baseSpDefense = 30,
+        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_POKEBALL}),
+        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sSpewpa19LevelUpLearnset,
+        .teachableLearnset = sSpewpa19TeachableLearnset,
+    },
 
     [SPECIES_VIVILLON_ICY_SNOW] =
     {
@@ -1385,6 +1840,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "topography of the land it was born in.\n"
             "This form is from frigid lands.\n"
             "It scatters toxic color scales in battle."),
+        .types = MON_TYPES(TYPE_BUG, TYPE_FLYING),
+        .baseHP = 80,
+        .baseAttack = 52,
+        .baseDefense = 50,
+        .baseSpeed = 89,
+        .baseSpAttack = 90,
+        .baseSpDefense = 50,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sVivillon0LevelUpLearnset,
+        .teachableLearnset = sVivillon0TeachableLearnset,
     },
     [SPECIES_VIVILLON_POLAR] =
     {
@@ -1394,6 +1860,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "topography of the land it was born in.\n"
             "This form is from snowy lands.\n"
             "It scatters toxic color scales in battle."),
+        .types = MON_TYPES(TYPE_BUG, TYPE_FLYING),
+        .baseHP = 80,
+        .baseAttack = 52,
+        .baseDefense = 50,
+        .baseSpeed = 89,
+        .baseSpAttack = 90,
+        .baseSpDefense = 50,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sVivillon1LevelUpLearnset,
+        .teachableLearnset = sVivillon1TeachableLearnset,
     },
     [SPECIES_VIVILLON_TUNDRA] =
     {
@@ -1403,6 +1880,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "topography of the land it was born in.\n"
             "This form is from lands of severe cold.\n"
             "It scatters toxic color scales in battle."),
+        .types = MON_TYPES(TYPE_ICE, TYPE_BUG),
+        .baseHP = 80,
+        .baseAttack = 52,
+        .baseDefense = 65,
+        .baseSpeed = 99,
+        .baseSpAttack = 105,
+        .baseSpDefense = 99,
+        .evolutions = NULL,
+        .abilities = { ABILITY_ADAPTABILITY, ABILITY_SNOW_WARNING, ABILITY_LEVITATE },
+        .levelUpLearnset = sVivillon2LevelUpLearnset,
+        .teachableLearnset = sVivillon2TeachableLearnset,
     },
     [SPECIES_VIVILLON_CONTINENTAL] =
     {
@@ -1412,6 +1900,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "topography of the land it was born in.\n"
             "This form is from lands of vast space.\n"
             "It scatters toxic color scales in battle."),
+        .types = MON_TYPES(TYPE_BUG, TYPE_FLYING),
+        .baseHP = 80,
+        .baseAttack = 52,
+        .baseDefense = 50,
+        .baseSpeed = 89,
+        .baseSpAttack = 90,
+        .baseSpDefense = 50,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sVivillon3LevelUpLearnset,
+        .teachableLearnset = sVivillon3TeachableLearnset,
     },
     [SPECIES_VIVILLON_GARDEN] =
     {
@@ -1421,6 +1920,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "topography of the land it was born in.\n"
             "This form is from verdant lands.\n"
             "It scatters toxic color scales in battle."),
+        .types = MON_TYPES(TYPE_BUG, TYPE_FLYING),
+        .baseHP = 80,
+        .baseAttack = 52,
+        .baseDefense = 50,
+        .baseSpeed = 89,
+        .baseSpAttack = 90,
+        .baseSpDefense = 50,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sVivillon4LevelUpLearnset,
+        .teachableLearnset = sVivillon4TeachableLearnset,
     },
     [SPECIES_VIVILLON_ELEGANT] =
     {
@@ -1430,6 +1940,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "topography of the land it was born in. This\n"
             "form is from lands with distinct seasons.\n"
             "It scatters toxic color scales in battle."),
+        .types = MON_TYPES(TYPE_BUG, TYPE_FLYING),
+        .baseHP = 80,
+        .baseAttack = 52,
+        .baseDefense = 50,
+        .baseSpeed = 89,
+        .baseSpAttack = 90,
+        .baseSpDefense = 50,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sVivillon5LevelUpLearnset,
+        .teachableLearnset = sVivillon5TeachableLearnset,
     },
     [SPECIES_VIVILLON_MEADOW] =
     {
@@ -1439,6 +1960,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "topography of the land it was born in. This\n"
             "form is from lands where flowers bloom.\n"
             "It scatters toxic color scales in battle."),
+        .types = MON_TYPES(TYPE_BUG, TYPE_FLYING),
+        .baseHP = 80,
+        .baseAttack = 52,
+        .baseDefense = 50,
+        .baseSpeed = 89,
+        .baseSpAttack = 90,
+        .baseSpDefense = 50,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sVivillon6LevelUpLearnset,
+        .teachableLearnset = sVivillon6TeachableLearnset,
     },
     [SPECIES_VIVILLON_MODERN] =
     {
@@ -1448,6 +1980,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "topography of the land it was born in.\n"
             "This form is from sun-drenched lands.\n"
             "It scatters toxic color scales in battle."),
+        .types = MON_TYPES(TYPE_BUG, TYPE_FLYING),
+        .baseHP = 80,
+        .baseAttack = 52,
+        .baseDefense = 50,
+        .baseSpeed = 89,
+        .baseSpAttack = 90,
+        .baseSpDefense = 50,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sVivillon7LevelUpLearnset,
+        .teachableLearnset = sVivillon7TeachableLearnset,
     },
     [SPECIES_VIVILLON_MARINE] =
     {
@@ -1457,6 +2000,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "topography of the land it was born in. This\n"
             "form is from lands with ocean breezes.\n"
             "It scatters toxic color scales in battle."),
+        .types = MON_TYPES(TYPE_WATER, TYPE_BUG),
+        .baseHP = 80,
+        .baseAttack = 52,
+        .baseDefense = 65,
+        .baseSpeed = 99,
+        .baseSpAttack = 105,
+        .baseSpDefense = 99,
+        .evolutions = NULL,
+        .abilities = { ABILITY_MULTISCALE, ABILITY_PRIMORDIAL_SEA, ABILITY_LEVITATE },
+        .levelUpLearnset = sVivillon8LevelUpLearnset,
+        .teachableLearnset = sVivillon8TeachableLearnset,
     },
     [SPECIES_VIVILLON_ARCHIPELAGO] =
     {
@@ -1466,6 +2020,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "topography of the land it was born in.\n"
             "This form is from places with many islands.\n"
             "It scatters toxic color scales in battle."),
+        .types = MON_TYPES(TYPE_BUG, TYPE_FLYING),
+        .baseHP = 80,
+        .baseAttack = 52,
+        .baseDefense = 50,
+        .baseSpeed = 89,
+        .baseSpAttack = 90,
+        .baseSpDefense = 50,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sVivillon9LevelUpLearnset,
+        .teachableLearnset = sVivillon9TeachableLearnset,
     },
     [SPECIES_VIVILLON_HIGH_PLAINS] =
     {
@@ -1475,6 +2040,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "topography of the land it was born in.\n"
             "This form is from lands with little rain.\n"
             "It scatters toxic color scales in battle."),
+        .types = MON_TYPES(TYPE_BUG, TYPE_FLYING),
+        .baseHP = 80,
+        .baseAttack = 52,
+        .baseDefense = 50,
+        .baseSpeed = 89,
+        .baseSpAttack = 90,
+        .baseSpDefense = 50,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sVivillon10LevelUpLearnset,
+        .teachableLearnset = sVivillon10TeachableLearnset,
     },
     [SPECIES_VIVILLON_SANDSTORM] =
     {
@@ -1484,6 +2060,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "topography of the land it was born in.\n"
             "This form is from parched lands.\n"
             "It scatters toxic color scales in battle."),
+        .types = MON_TYPES(TYPE_ROCK, TYPE_BUG),
+        .baseHP = 80,
+        .baseAttack = 52,
+        .baseDefense = 65,
+        .baseSpeed = 99,
+        .baseSpAttack = 105,
+        .baseSpDefense = 99,
+        .evolutions = NULL,
+        .abilities = { ABILITY_ADAPTABILITY, ABILITY_SAND_STREAM, ABILITY_LEVITATE },
+        .levelUpLearnset = sVivillon11LevelUpLearnset,
+        .teachableLearnset = sVivillon11TeachableLearnset,
     },
     [SPECIES_VIVILLON_RIVER] =
     {
@@ -1493,6 +2080,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "topography of the land it was born in. This\n"
             "form is from lands where large rivers flow.\n"
             "It scatters toxic color scales in battle."),
+        .types = MON_TYPES(TYPE_BUG, TYPE_FLYING),
+        .baseHP = 80,
+        .baseAttack = 52,
+        .baseDefense = 50,
+        .baseSpeed = 89,
+        .baseSpAttack = 90,
+        .baseSpDefense = 50,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sVivillon12LevelUpLearnset,
+        .teachableLearnset = sVivillon12TeachableLearnset,
     },
     [SPECIES_VIVILLON_MONSOON] =
     {
@@ -1502,6 +2100,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "topography of the land it was born in. This\n"
             "form is from lands with intense rainfall.\n"
             "It scatters toxic color scales in battle."),
+        .types = MON_TYPES(TYPE_BUG, TYPE_FLYING),
+        .baseHP = 80,
+        .baseAttack = 52,
+        .baseDefense = 50,
+        .baseSpeed = 89,
+        .baseSpAttack = 90,
+        .baseSpDefense = 50,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sVivillon13LevelUpLearnset,
+        .teachableLearnset = sVivillon13TeachableLearnset,
     },
     [SPECIES_VIVILLON_SAVANNA] =
     {
@@ -1511,6 +2120,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "topography of the land it was born in. This\n"
             "form is from lands with a tropical climate.\n"
             "It scatters toxic color scales in battle."),
+        .types = MON_TYPES(TYPE_BUG, TYPE_FLYING),
+        .baseHP = 80,
+        .baseAttack = 52,
+        .baseDefense = 50,
+        .baseSpeed = 89,
+        .baseSpAttack = 90,
+        .baseSpDefense = 50,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sVivillon14LevelUpLearnset,
+        .teachableLearnset = sVivillon14TeachableLearnset,
     },
     [SPECIES_VIVILLON_SUN] =
     {
@@ -1520,6 +2140,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "topography of the land it was born in.\n"
             "This form is from lands bathed in light.\n"
             "It scatters toxic color scales in battle."),
+        .types = MON_TYPES(TYPE_FIRE, TYPE_BUG),
+        .baseHP = 80,
+        .baseAttack = 52,
+        .baseDefense = 65,
+        .baseSpeed = 99,
+        .baseSpAttack = 105,
+        .baseSpDefense = 99,
+        .evolutions = NULL,
+        .abilities = { ABILITY_MULTISCALE, ABILITY_DESOLATE_LAND, ABILITY_LEVITATE },
+        .levelUpLearnset = sVivillon15LevelUpLearnset,
+        .teachableLearnset = sVivillon15TeachableLearnset,
     },
     [SPECIES_VIVILLON_OCEAN] =
     {
@@ -1529,6 +2160,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "topography of the land it was born in. This\n"
             "form is from lands of perpetual summer.\n"
             "It scatters toxic color scales in battle."),
+        .types = MON_TYPES(TYPE_BUG, TYPE_FLYING),
+        .baseHP = 80,
+        .baseAttack = 52,
+        .baseDefense = 50,
+        .baseSpeed = 89,
+        .baseSpAttack = 90,
+        .baseSpDefense = 50,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sVivillon16LevelUpLearnset,
+        .teachableLearnset = sVivillon16TeachableLearnset,
     },
     [SPECIES_VIVILLON_JUNGLE] =
     {
@@ -1538,6 +2180,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "topography of the land it was born in. This\n"
             "form is from lands of tropical rainforests.\n"
             "It scatters toxic color scales in battle."),
+        .types = MON_TYPES(TYPE_BUG, TYPE_FLYING),
+        .baseHP = 80,
+        .baseAttack = 52,
+        .baseDefense = 50,
+        .baseSpeed = 89,
+        .baseSpAttack = 90,
+        .baseSpDefense = 50,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sVivillon17LevelUpLearnset,
+        .teachableLearnset = sVivillon17TeachableLearnset,
     },
     [SPECIES_VIVILLON_FANCY] =
     {
@@ -1547,6 +2200,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "topography of the land it was born in.\n"
             "This form is from a mysterious land.\n"
             "It scatters toxic color scales in battle."),
+        .types = MON_TYPES(TYPE_BUG, TYPE_FLYING),
+        .baseHP = 80,
+        .baseAttack = 52,
+        .baseDefense = 50,
+        .baseSpeed = 89,
+        .baseSpAttack = 90,
+        .baseSpDefense = 50,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sVivillon18LevelUpLearnset,
+        .teachableLearnset = sVivillon18TeachableLearnset,
     },
     [SPECIES_VIVILLON_POKEBALL] =
     {
@@ -1556,6 +2220,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "topography of the land it was born in.\n"
             "This form is from a special land.\n"
             "It scatters toxic color scales in battle."),
+        .types = MON_TYPES(TYPE_BUG, TYPE_FLYING),
+        .baseHP = 80,
+        .baseAttack = 52,
+        .baseDefense = 50,
+        .baseSpeed = 89,
+        .baseSpAttack = 90,
+        .baseSpDefense = 50,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .levelUpLearnset = sVivillon19LevelUpLearnset,
+        .teachableLearnset = sVivillon19TeachableLearnset,
     },
 
     [SPECIES_LITLEO] =
@@ -1703,6 +2378,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "Immediately after birth, this Pokémon\n"
             "begins flying around in search of a\n"
             "flower it likes."),
+        .types = MON_TYPES(TYPE_FAIRY),
+        .baseHP = 43,
+        .baseAttack = 23,
+        .baseDefense = 43,
+        .baseSpeed = 55,
+        .baseSpAttack = 62,
+        .baseSpDefense = 104,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_FLOETTE_RED}),
+        .abilities = { ABILITY_GRASS_PELT, ABILITY_GRASSY_SURGE, ABILITY_HARVEST },
+        .levelUpLearnset = sFlabebe0LevelUpLearnset,
+        .teachableLearnset = sFlabebe0TeachableLearnset,
     },
     [SPECIES_FLABEBE_YELLOW] =
     {
@@ -1712,6 +2398,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "drawing forth the power hidden\n"
             "within flowers. This Pokémon is\n"
             "particularly fond of yellow flowers."),
+        .types = MON_TYPES(TYPE_FAIRY),
+        .baseHP = 43,
+        .baseAttack = 23,
+        .baseDefense = 43,
+        .baseSpeed = 55,
+        .baseSpAttack = 62,
+        .baseSpDefense = 104,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_FLOETTE_YELLOW}),
+        .abilities = { ABILITY_GRASS_PELT, ABILITY_GRASSY_SURGE, ABILITY_HARVEST },
+        .levelUpLearnset = sFlabebe1LevelUpLearnset,
+        .teachableLearnset = sFlabebe1TeachableLearnset,
     },
     [SPECIES_FLABEBE_ORANGE] =
     {
@@ -1721,6 +2418,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "and gives them some of its energy in\n"
             "return. This Pokémon likes orange\n"
             "flowers best of all."),
+        .types = MON_TYPES(TYPE_FAIRY),
+        .baseHP = 43,
+        .baseAttack = 23,
+        .baseDefense = 43,
+        .baseSpeed = 55,
+        .baseSpAttack = 62,
+        .baseSpDefense = 104,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_FLOETTE_ORANGE}),
+        .abilities = { ABILITY_GRASS_PELT, ABILITY_GRASSY_SURGE, ABILITY_HARVEST },
+        .levelUpLearnset = sFlabebe2LevelUpLearnset,
+        .teachableLearnset = sFlabebe2TeachableLearnset,
     },
     [SPECIES_FLABEBE_BLUE]   =
     {
@@ -1730,6 +2438,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "best of all. It floats upward using the\n"
             "power emanating from its flower\n"
             "and bobs along lightly through the air."),
+        .types = MON_TYPES(TYPE_FAIRY),
+        .baseHP = 43,
+        .baseAttack = 23,
+        .baseDefense = 43,
+        .baseSpeed = 55,
+        .baseSpAttack = 62,
+        .baseSpDefense = 104,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_FLOETTE_BLUE}),
+        .abilities = { ABILITY_GRASS_PELT, ABILITY_GRASSY_SURGE, ABILITY_HARVEST },
+        .levelUpLearnset = sFlabebe3LevelUpLearnset,
+        .teachableLearnset = sFlabebe3TeachableLearnset,
     },
     [SPECIES_FLABEBE_WHITE]  =
     {
@@ -1739,6 +2458,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "a place blooming with flowers of\n"
             "the same white color as itself, and\n"
             "then it goes to sleep."),
+        .types = MON_TYPES(TYPE_FAIRY),
+        .baseHP = 43,
+        .baseAttack = 23,
+        .baseDefense = 43,
+        .baseSpeed = 55,
+        .baseSpAttack = 62,
+        .baseSpDefense = 104,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_FLOETTE_WHITE}),
+        .abilities = { ABILITY_GRASS_PELT, ABILITY_GRASSY_SURGE, ABILITY_HARVEST },
+        .levelUpLearnset = sFlabebe4LevelUpLearnset,
+        .teachableLearnset = sFlabebe4TeachableLearnset,
     },
 
 
@@ -1751,6 +2481,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "into flowers and draw forth their\n"
             "latent potential."),
 
+        .types = MON_TYPES(TYPE_FAIRY),
+        .baseHP = 58,
+        .baseAttack = 38,
+        .baseDefense = 63,
+        .baseSpeed = 65,
+        .baseSpAttack = 82,
+        .baseSpDefense = 134,
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_FLORGES_RED}),
+        .abilities = { ABILITY_GRASS_PELT, ABILITY_GRASSY_SURGE, ABILITY_HARVEST },
+        .levelUpLearnset = sFloette0LevelUpLearnset,
+        .teachableLearnset = sFloette0TeachableLearnset,
     },
     [SPECIES_FLOETTE_YELLOW] =
     {
@@ -1760,6 +2501,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "power hidden within yellow flowers.\n"
             "This power then becomes the moves\n"
             "Floette uses to protect itself."),
+        .types = MON_TYPES(TYPE_FAIRY),
+        .baseHP = 58,
+        .baseAttack = 38,
+        .baseDefense = 63,
+        .baseSpeed = 65,
+        .baseSpAttack = 82,
+        .baseSpDefense = 134,
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_FLORGES_YELLOW}),
+        .abilities = { ABILITY_GRASS_PELT, ABILITY_GRASSY_SURGE, ABILITY_HARVEST },
+        .levelUpLearnset = sFloette1LevelUpLearnset,
+        .teachableLearnset = sFloette1TeachableLearnset,
     },
     [SPECIES_FLOETTE_ORANGE] =
     {
@@ -1769,6 +2521,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "most power when in sync with orange\n"
             "flowers, compared to flowers of other\n"
             "colors."),
+        .types = MON_TYPES(TYPE_FAIRY),
+        .baseHP = 58,
+        .baseAttack = 38,
+        .baseDefense = 63,
+        .baseSpeed = 65,
+        .baseSpAttack = 82,
+        .baseSpDefense = 134,
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_FLORGES_ORANGE}),
+        .abilities = { ABILITY_GRASS_PELT, ABILITY_GRASSY_SURGE, ABILITY_HARVEST },
+        .levelUpLearnset = sFloette2LevelUpLearnset,
+        .teachableLearnset = sFloette2TeachableLearnset,
     },
     [SPECIES_FLOETTE_BLUE] =
     {
@@ -1778,6 +2541,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "flowering plants that are withering, it\n"
             "will bring them back to its territory\n"
             "and care for them."),
+        .types = MON_TYPES(TYPE_FAIRY),
+        .baseHP = 58,
+        .baseAttack = 38,
+        .baseDefense = 63,
+        .baseSpeed = 65,
+        .baseSpAttack = 82,
+        .baseSpDefense = 134,
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_FLORGES_BLUE}),
+        .abilities = { ABILITY_GRASS_PELT, ABILITY_GRASSY_SURGE, ABILITY_HARVEST },
+        .levelUpLearnset = sFloette3LevelUpLearnset,
+        .teachableLearnset = sFloette3TeachableLearnset,
     },
     [SPECIES_FLOETTE_WHITE] =
     {
@@ -1787,6 +2561,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "flower bed, it will attack them\n"
             "without mercy. This Floette takes\n"
             "particularly good care of white flowers."),
+        .types = MON_TYPES(TYPE_FAIRY),
+        .baseHP = 58,
+        .baseAttack = 38,
+        .baseDefense = 63,
+        .baseSpeed = 65,
+        .baseSpAttack = 82,
+        .baseSpDefense = 134,
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_FLORGES_WHITE}),
+        .abilities = { ABILITY_GRASS_PELT, ABILITY_GRASSY_SURGE, ABILITY_HARVEST },
+        .levelUpLearnset = sFloette4LevelUpLearnset,
+        .teachableLearnset = sFloette4TeachableLearnset,
     },
     [SPECIES_FLOETTE_ETERNAL] =
     {
@@ -1824,6 +2609,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "flower garden in its territory. It\n"
             "draws forth the power of the red\n"
             "flowers around its neck."),
+        .types = MON_TYPES(TYPE_FAIRY),
+        .baseHP = 88,
+        .baseAttack = 53,
+        .baseDefense = 68,
+        .baseSpeed = 75,
+        .baseSpAttack = 112,
+        .baseSpDefense = 154,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SERENE_GRACE, ABILITY_GRASSY_SURGE, ABILITY_HARVEST },
+        .levelUpLearnset = sFlorges0LevelUpLearnset,
+        .teachableLearnset = sFlorges0TeachableLearnset,
     },
     [SPECIES_FLORGES_YELLOW] =
     {
@@ -1833,6 +2629,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "forth the power of yellow flowers. It\n"
             "ruthlessly punishes anyone who\n"
             "tramples on flowering plants."),
+        .types = MON_TYPES(TYPE_FAIRY),
+        .baseHP = 88,
+        .baseAttack = 53,
+        .baseDefense = 68,
+        .baseSpeed = 75,
+        .baseSpAttack = 112,
+        .baseSpDefense = 154,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SERENE_GRACE, ABILITY_GRASSY_SURGE, ABILITY_HARVEST },
+        .levelUpLearnset = sFlorges1LevelUpLearnset,
+        .teachableLearnset = sFlorges1TeachableLearnset,
     },
     [SPECIES_FLORGES_ORANGE] =
     {
@@ -1842,6 +2649,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "governors would lovingly raise Florges to\n"
             "care for their castles' exquisite\n"
             "gardens."),
+        .types = MON_TYPES(TYPE_FAIRY),
+        .baseHP = 88,
+        .baseAttack = 53,
+        .baseDefense = 68,
+        .baseSpeed = 75,
+        .baseSpAttack = 112,
+        .baseSpDefense = 154,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SERENE_GRACE, ABILITY_GRASSY_SURGE, ABILITY_HARVEST },
+        .levelUpLearnset = sFlorges2LevelUpLearnset,
+        .teachableLearnset = sFlorges2TeachableLearnset,
     },
     [SPECIES_FLORGES_BLUE] =
     {
@@ -1850,6 +2668,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "Blue pigments were tremendously\n"
             "expensive in the past, so paintings\n"
             "of blue Florges are highly valuable."),
+        .types = MON_TYPES(TYPE_FAIRY),
+        .baseHP = 88,
+        .baseAttack = 53,
+        .baseDefense = 68,
+        .baseSpeed = 75,
+        .baseSpAttack = 112,
+        .baseSpDefense = 154,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SERENE_GRACE, ABILITY_GRASSY_SURGE, ABILITY_HARVEST },
+        .levelUpLearnset = sFlorges3LevelUpLearnset,
+        .teachableLearnset = sFlorges3TeachableLearnset,
     },
     [SPECIES_FLORGES_WHITE] =
     {
@@ -1859,6 +2688,17 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "flowered Florges will be beautifully\n"
             "decorated with flowering plants of\n"
             "many different colors."),
+        .types = MON_TYPES(TYPE_FAIRY),
+        .baseHP = 88,
+        .baseAttack = 53,
+        .baseDefense = 68,
+        .baseSpeed = 75,
+        .baseSpAttack = 112,
+        .baseSpDefense = 154,
+        .evolutions = NULL,
+        .abilities = { ABILITY_SERENE_GRACE, ABILITY_GRASSY_SURGE, ABILITY_HARVEST },
+        .levelUpLearnset = sFlorges4LevelUpLearnset,
+        .teachableLearnset = sFlorges4TeachableLearnset,
     },
 
     [SPECIES_SKIDDO] =
@@ -4981,7 +5821,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = BERGMITE_EGG_GROUPS,
-        .abilities = { ABILITY_REGENERATOR, ABILITY_STURDY, ABILITY_WATER_ABSORB },
+        .abilities = { ABILITY_REGENERATOR, ABILITY_STURDY, ABILITY_PRISM_ARMOR },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Bergmite"),
         .cryId = CRY_BERGMITE,

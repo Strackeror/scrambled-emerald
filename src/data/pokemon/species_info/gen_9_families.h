@@ -1,12 +1,4 @@
 #define OGERPON_SPECIES_INFO(Form1, Form2, type, ability, color, frontYOffset, backYOffset, iconpalette, isTeraform)   \
-    {                                                                                                                  \
-        .baseHP        = 80,                                                                                           \
-        .baseAttack    = 120,                                                                                          \
-        .baseDefense   = 84,                                                                                           \
-        .baseSpeed     = 110,                                                                                          \
-        .baseSpAttack  = 60,                                                                                           \
-        .baseSpDefense = 96,                                                                                           \
-        .types = MON_TYPES(TYPE_GRASS, type),                                                                          \
         .forceTeraType = type,                                                                                         \
         .catchRate = 5,                                                                                                \
         .expYield = 275,                                                                                               \
@@ -16,7 +8,6 @@
         .friendship = STANDARD_FRIENDSHIP,                                                                             \
         .growthRate = GROWTH_SLOW,                                                                                     \
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),                                                     \
-        .abilities = { ability, ABILITY_NONE },                                                                        \
         .bodyColor = color,                                                                                            \
         .speciesName = _("Ogerpon"),                                                                                   \
         .cryId = CRY_OGERPON,                                                                                          \
@@ -52,14 +43,11 @@
             gOverworldPalette_Ogerpon##Form2,                                                                          \
             gShinyOverworldPalette_Ogerpon##Form2                                                                      \
         )                                                                                                              \
-        .levelUpLearnset = sNoneLevelUpLearnset,                                                                    \
-        .teachableLearnset = sNoneTeachableLearnset,                                                                \
         .formSpeciesIdTable = sOgerponFormSpeciesIdTable,                                                              \
         .formChangeTable = sOgerponFormChangeTable,                                                                    \
         .isLegendary = TRUE,                                                                                           \
         .isTeraForm = isTeraform,                                                                                      \
-        .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,                                                                  \
-    }
+        .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT
 
 #ifdef __INTELLISENSE__
 const struct SpeciesInfo gSpeciesInfoGen9[] =
@@ -83,7 +71,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_GRASS),
-        .abilities = { ABILITY_TECHNICIAN, ABILITY_PROTEAN, ABILITY_OVERGROW },
+        .abilities = { ABILITY_OVERGROW, ABILITY_TECHNICIAN, ABILITY_PROTEAN },
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Sprigatito"),
         .cryId = CRY_SPRIGATITO,
@@ -146,7 +134,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_GRASS),
-        .abilities = { ABILITY_TECHNICIAN, ABILITY_PROTEAN, ABILITY_OVERGROW },
+        .abilities = { ABILITY_OVERGROW, ABILITY_TECHNICIAN, ABILITY_PROTEAN },
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Floragato"),
         .cryId = CRY_FLORAGATO,
@@ -208,7 +196,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_GRASS),
-        .abilities = { ABILITY_TECHNICIAN, ABILITY_PROTEAN, ABILITY_OVERGROW },
+        .abilities = { ABILITY_DAZZLING, ABILITY_TECHNICIAN, ABILITY_PROTEAN },
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Meowscarada"),
         .cryId = CRY_MEOWSCARADA,
@@ -270,7 +258,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-        .abilities = { ABILITY_RIPEN, ABILITY_UNAWARE, ABILITY_BLAZE },
+        .abilities = { ABILITY_BLAZE, ABILITY_UNAWARE, ABILITY_RIPEN },
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Fuecoco"),
         .cryId = CRY_FUECOCO,
@@ -333,7 +321,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-        .abilities = { ABILITY_RIPEN, ABILITY_UNAWARE, ABILITY_BLAZE },
+        .abilities = { ABILITY_BLAZE, ABILITY_UNAWARE, ABILITY_RIPEN },
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Crocalor"),
         .cryId = CRY_CROCALOR,
@@ -395,7 +383,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-        .abilities = { ABILITY_RIPEN, ABILITY_UNAWARE, ABILITY_ROUGH_SKIN },
+        .abilities = { ABILITY_OBLIVIOUS, ABILITY_UNAWARE, ABILITY_RIPEN },
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Skeledirge"),
         .cryId = CRY_SKELEDIRGE,
@@ -2943,7 +2931,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .levelUpLearnset = sBramblin0LevelUpLearnset,
         .teachableLearnset = sBramblin0TeachableLearnset,
         .eggMoveLearnset = sBramblinEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_BRAMBLEGHAST}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_BRAMBLEGHAST}),
     },
 
     [SPECIES_BRAMBLEGHAST] =
@@ -6176,12 +6164,12 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 
     [SPECIES_GIMMIGHOUL_ROAMING] =
     {
-        .baseHP        = 45,
-        .baseAttack    = 30,
-        .baseDefense   = 25,
-        .baseSpeed     = 80,
-        .baseSpAttack  = 75,
-        .baseSpDefense = 45,
+        .baseHP        = 52,
+        .baseAttack    = 60,
+        .baseDefense   = 45,
+        .baseSpeed     = 114,
+        .baseSpAttack  = 93,
+        .baseSpDefense = 61,
         .types = MON_TYPES(TYPE_GHOST, TYPE_BUG),
         .catchRate = 45,
         .expYield = 60,
@@ -6246,7 +6234,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
-        .abilities = { ABILITY_GOOD_AS_GOLD, ABILITY_EMERGENCY_EXIT, ABILITY_STURDY },
+        .abilities = { ABILITY_MAGIC_BOUNCE, ABILITY_EMERGENCY_EXIT, ABILITY_STURDY },
         .bodyColor = BODY_COLOR_YELLOW,
         .speciesName = _("Gholdengo"),
         .cryId = CRY_GHOLDENGO,
@@ -6678,8 +6666,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 
     [SPECIES_KORAIDON] =
     {
-        .baseHP        = 100,
-        .baseAttack    = 135,
+        .baseHP        = 135,
+        .baseAttack    = 150,
         .baseDefense   = 115,
         .baseSpeed     = 135,
         .baseSpAttack  = 85,
@@ -6746,9 +6734,9 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .baseHP        = 100,
         .baseAttack    = 85,
         .baseDefense   = 100,
-        .baseSpeed     = 135,
-        .baseSpAttack  = 135,
-        .baseSpDefense = 115,
+        .baseSpeed     = 150,
+        .baseSpAttack  = 150,
+        .baseSpDefense = 135,
         .types = MON_TYPES(TYPE_ELECTRIC, TYPE_DRAGON),
         .catchRate = 3,
         .expYield = 335,
@@ -7375,14 +7363,118 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
     },
 
 
-    [SPECIES_OGERPON_TEAL]             = OGERPON_SPECIES_INFO(Teal,        Teal,            TYPE_GRASS, ABILITY_DEFIANT,                        BODY_COLOR_GREEN, 1, 7, 1, FALSE),
-    [SPECIES_OGERPON_WELLSPRING]       = OGERPON_SPECIES_INFO(Wellspring,  Wellspring,      TYPE_WATER, ABILITY_WATER_ABSORB,                   BODY_COLOR_BLUE,  1, 7, 0, FALSE),
-    [SPECIES_OGERPON_HEARTHFLAME]      = OGERPON_SPECIES_INFO(Hearthflame, Hearthflame,     TYPE_FIRE,  ABILITY_MOLD_BREAKER,                   BODY_COLOR_RED,   1, 7, 0, FALSE),
-    [SPECIES_OGERPON_CORNERSTONE]      = OGERPON_SPECIES_INFO(Cornerstone, Cornerstone,     TYPE_ROCK,  ABILITY_STURDY,                         BODY_COLOR_GRAY,  1, 7, 0, FALSE),
-    [SPECIES_OGERPON_TEAL_TERA]        = OGERPON_SPECIES_INFO(Teal,        TealTera,        TYPE_GRASS, ABILITY_EMBODY_ASPECT_TEAL_MASK,        BODY_COLOR_GREEN, 0, 0, 1, TRUE),
-    [SPECIES_OGERPON_WELLSPRING_TERA]  = OGERPON_SPECIES_INFO(Wellspring,  WellspringTera,  TYPE_WATER, ABILITY_EMBODY_ASPECT_WELLSPRING_MASK,  BODY_COLOR_BLUE,  0, 0, 0, TRUE),
-    [SPECIES_OGERPON_HEARTHFLAME_TERA] = OGERPON_SPECIES_INFO(Hearthflame, HearthflameTera, TYPE_FIRE,  ABILITY_EMBODY_ASPECT_HEARTHFLAME_MASK, BODY_COLOR_RED,   0, 0, 0, TRUE),
-    [SPECIES_OGERPON_CORNERSTONE_TERA] = OGERPON_SPECIES_INFO(Cornerstone, CornerstoneTera, TYPE_ROCK,  ABILITY_EMBODY_ASPECT_CORNERSTONE_MASK, BODY_COLOR_GRAY,  0, 0, 0, TRUE),
+    [SPECIES_OGERPON_TEAL]             = {
+        OGERPON_SPECIES_INFO(Teal,        Teal,            TYPE_GRASS, ABILITY_DEFIANT,                        BODY_COLOR_GREEN, 1, 7, 1, FALSE),
+        .types = MON_TYPES(TYPE_GRASS, TYPE_FAIRY),
+        .baseHP = 80,
+        .baseAttack = 120,
+        .baseDefense = 84,
+        .baseSpeed = 110,
+        .baseSpAttack = 60,
+        .baseSpDefense = 96,
+        .evolutions = NULL,
+        .abilities = { ABILITY_HUSTLE, ABILITY_DEFIANT, ABILITY_QUICK_FEET },
+        .levelUpLearnset = sOgerpon0LevelUpLearnset,
+        .teachableLearnset = sOgerpon0TeachableLearnset,
+    },
+    [SPECIES_OGERPON_WELLSPRING]       = {
+        OGERPON_SPECIES_INFO(Wellspring,  Wellspring,      TYPE_WATER, ABILITY_WATER_ABSORB,                   BODY_COLOR_BLUE,  1, 7, 0, FALSE),
+        .types = MON_TYPES(TYPE_GRASS, TYPE_WATER),
+        .baseHP = 80,
+        .baseAttack = 120,
+        .baseDefense = 84,
+        .baseSpeed = 110,
+        .baseSpAttack = 60,
+        .baseSpDefense = 96,
+        .evolutions = NULL,
+        .abilities = { ABILITY_WATER_COMPACTION, ABILITY_DEFIANT, ABILITY_QUEENLY_MAJESTY },
+        .levelUpLearnset = sOgerpon1LevelUpLearnset,
+        .teachableLearnset = sOgerpon1TeachableLearnset,
+    },
+    [SPECIES_OGERPON_HEARTHFLAME]      = {
+        OGERPON_SPECIES_INFO(Hearthflame, Hearthflame,     TYPE_FIRE,  ABILITY_MOLD_BREAKER,                   BODY_COLOR_RED,   1, 7, 0, FALSE),
+        .types = MON_TYPES(TYPE_GRASS, TYPE_FIRE),
+        .baseHP = 80,
+        .baseAttack = 130,
+        .baseDefense = 94,
+        .baseSpeed = 110,
+        .baseSpAttack = 60,
+        .baseSpDefense = 101,
+        .evolutions = NULL,
+        .abilities = { ABILITY_TURBOBLAZE, ABILITY_DEFIANT, ABILITY_FLASH_FIRE },
+        .levelUpLearnset = sOgerpon2LevelUpLearnset,
+        .teachableLearnset = sOgerpon2TeachableLearnset,
+    },
+    [SPECIES_OGERPON_CORNERSTONE]      = {
+        OGERPON_SPECIES_INFO(Cornerstone, Cornerstone,     TYPE_ROCK,  ABILITY_STURDY,                         BODY_COLOR_GRAY,  1, 7, 0, FALSE),
+        .types = MON_TYPES(TYPE_GRASS, TYPE_ROCK),
+        .baseHP = 80,
+        .baseAttack = 120,
+        .baseDefense = 109,
+        .baseSpeed = 110,
+        .baseSpAttack = 60,
+        .baseSpDefense = 96,
+        .evolutions = NULL,
+        .abilities = { ABILITY_DAUNTLESS_SHIELD, ABILITY_DEFIANT, ABILITY_STURDY },
+        .levelUpLearnset = sOgerpon3LevelUpLearnset,
+        .teachableLearnset = sOgerpon3TeachableLearnset,
+    },
+    [SPECIES_OGERPON_TEAL_TERA]        = {
+        OGERPON_SPECIES_INFO(Teal,        TealTera,        TYPE_GRASS, ABILITY_EMBODY_ASPECT_TEAL_MASK,        BODY_COLOR_GREEN, 0, 0, 1, TRUE),
+        .types = MON_TYPES(TYPE_GRASS, TYPE_FAIRY),
+        .baseHP = 80,
+        .baseAttack = 120,
+        .baseDefense = 84,
+        .baseSpeed = 110,
+        .baseSpAttack = 60,
+        .baseSpDefense = 96,
+        .evolutions = NULL,
+        .abilities = { ABILITY_EMBODY_ASPECT_TEAL_MASK, ABILITY_NONE, ABILITY_NONE },
+        .levelUpLearnset = sOgerpon4LevelUpLearnset,
+        .teachableLearnset = sOgerpon4TeachableLearnset,
+    },
+    [SPECIES_OGERPON_WELLSPRING_TERA]  = {
+        OGERPON_SPECIES_INFO(Wellspring,  WellspringTera,  TYPE_WATER, ABILITY_EMBODY_ASPECT_WELLSPRING_MASK,  BODY_COLOR_BLUE,  0, 0, 0, TRUE),
+        .types = MON_TYPES(TYPE_GRASS, TYPE_WATER),
+        .baseHP = 80,
+        .baseAttack = 120,
+        .baseDefense = 84,
+        .baseSpeed = 110,
+        .baseSpAttack = 60,
+        .baseSpDefense = 121,
+        .evolutions = NULL,
+        .abilities = { ABILITY_EMBODY_ASPECT_WELLSPRING_MASK, ABILITY_NONE, ABILITY_NONE },
+        .levelUpLearnset = sOgerpon5LevelUpLearnset,
+        .teachableLearnset = sOgerpon5TeachableLearnset,
+    },
+    [SPECIES_OGERPON_HEARTHFLAME_TERA] = {
+        OGERPON_SPECIES_INFO(Hearthflame, HearthflameTera, TYPE_FIRE,  ABILITY_EMBODY_ASPECT_HEARTHFLAME_MASK, BODY_COLOR_RED,   0, 0, 0, TRUE),
+        .types = MON_TYPES(TYPE_GRASS, TYPE_FIRE),
+        .baseHP = 80,
+        .baseAttack = 125,
+        .baseDefense = 94,
+        .baseSpeed = 110,
+        .baseSpAttack = 60,
+        .baseSpDefense = 101,
+        .evolutions = NULL,
+        .abilities = { ABILITY_EMBODY_ASPECT_HEARTHFLAME_MASK, ABILITY_NONE, ABILITY_NONE },
+        .levelUpLearnset = sOgerpon6LevelUpLearnset,
+        .teachableLearnset = sOgerpon6TeachableLearnset,
+    },
+    [SPECIES_OGERPON_CORNERSTONE_TERA] = {
+        OGERPON_SPECIES_INFO(Cornerstone, CornerstoneTera, TYPE_ROCK,  ABILITY_EMBODY_ASPECT_CORNERSTONE_MASK, BODY_COLOR_GRAY,  0, 0, 0, TRUE),
+        .types = MON_TYPES(TYPE_GRASS, TYPE_ROCK),
+        .baseHP = 80,
+        .baseAttack = 120,
+        .baseDefense = 109,
+        .baseSpeed = 110,
+        .baseSpAttack = 60,
+        .baseSpDefense = 96,
+        .evolutions = NULL,
+        .abilities = { ABILITY_EMBODY_ASPECT_CORNERSTONE_MASK, ABILITY_NONE, ABILITY_NONE },
+        .levelUpLearnset = sOgerpon7LevelUpLearnset,
+        .teachableLearnset = sOgerpon7TeachableLearnset,
+    },
 
 
     [SPECIES_GOUGING_FIRE] =

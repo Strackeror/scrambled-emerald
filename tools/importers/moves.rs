@@ -35,15 +35,23 @@ pub struct WazaArray {
     pub table: Vec<Move>,
 }
 
+fn fix_table(mut array: WazaArray, map: &HashMap<String, usize>) -> WazaArray {
+    array.table.sort_by_cached_key(|m| map.get(&m.move_id));
+    array.table.dedup_by_key(|m| map.get(&m.move_id));
+    array
+}
+
 pub fn moves() -> Result<()> {
     const MOVE_INFO_PATH: &str = "../../src/data/moves_info.h";
-    let modded: WazaArray = serde_json::from_str(&read_to_string("resources/waza_array.json")?)?;
-    let vanilla: WazaArray =
-        serde_json::from_str(&read_to_string("resources/waza_array_vanilla.json")?)?;
-    let move_names: Vec<String> =
-        serde_json::from_str(&read_to_string("resources/move_names.json")?)?;
-    let move_descs: Vec<String> =
-        serde_json::from_str(&read_to_string("resources/move_descs.json")?)?;
+    let modded: WazaArray = serde_json::from_slice(&read("resources/waza_array.json")?)?;
+    let vanilla: WazaArray = serde_json::from_slice(&read("resources/waza_array.previous.json")?)?;
+    let move_names: Vec<String> = serde_json::from_slice(&read("resources/move_names.json")?)?;
+    let move_descs: Vec<String> = serde_json::from_slice(&read("resources/move_descs.json")?)?;
+    let move_map: HashMap<String, usize> = serde_json::from_slice(&read("resources/vanilla_move_names.json")?)?;
+
+    let modded = fix_table(modded, &move_map);
+    let vanilla = fix_table(vanilla, &move_map);
+
 
     let language = tree_sitter_cpp::LANGUAGE.into();
     let mut parser = tree_sitter::Parser::new();
@@ -66,7 +74,7 @@ pub fn moves() -> Result<()> {
         .zip(move_descs)
     {
         if modded.move_id != vanilla.move_id {
-            panic!("desynced move_id {modded:?} {vanilla:?}")
+            panic!("desynced move_id {modded:?} \n {vanilla:?}")
         }
         let diff_keys = (modded.fields)
             .keys()
@@ -313,6 +321,7 @@ fn handle_target(context: Context) -> Result<Option<Edit>> {
         .as_str()
     {
         "One" => "MOVE_TARGET_SELECTED",
+        "All"  => "MOVE_TARGET_FOES_AND_ALLY",
         "AllFoes" => "MOVE_TARGET_BOTH",
         "Self" => "MOVE_TARGET_USER",
         other => bail!("Unhandled raw target: {other}"),
@@ -343,6 +352,10 @@ fn handle_move_category(context: Context) -> Result<Option<Edit>> {
                 "StatusSelf {} {:?}",
                 context.entry.move_id, context.diff_keys
             );
+            Ok(None)
+        }
+        "Attack" => {
+            println!("move_category: Attack: {}", context.entry.move_id);
             Ok(None)
         }
         move_cat => bail!(
@@ -442,6 +455,7 @@ fn handle_effects(context: Context) -> Result<Vec<Edit>> {
             "Freeze" => "MOVE_EFFECT_FREEZE",
             "Sleep" => &format!("MOVE_EFFECT_SLEEP /* {turn1} {turn2} {turn3} */",),
             "Confusion" => "MOVE_EFFECT_CONFUSION",
+            "Curse" => "MOVE_EFFECT_CURSE",
             "Bind" => "MOVE_EFFECT_WRAP",
             _ => {
                 println!(

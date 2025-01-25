@@ -1,11 +1,4 @@
 #define ALCREMIE_MISC_INFO(color)                                               \
-        .baseHP        = 65,                                                    \
-        .baseAttack    = 60,                                                    \
-        .baseDefense   = 75,                                                    \
-        .baseSpeed     = 64,                                                    \
-        .baseSpAttack  = 110,                                                   \
-        .baseSpDefense = 121,                                                   \
-        .types = MON_TYPES(TYPE_FAIRY),                                         \
         .catchRate = 100,                                                       \
         .expYield = 173,                                                        \
         .evYield_SpDefense = 2,                                                 \
@@ -14,11 +7,9 @@
         .friendship = STANDARD_FRIENDSHIP,                                      \
         .growthRate = GROWTH_MEDIUM_FAST,                                       \
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY, EGG_GROUP_AMORPHOUS),      \
-        .abilities = { ABILITY_SWEET_VEIL, ABILITY_NONE, ABILITY_AROMA_VEIL },  \
         .bodyColor = color
 
 #define ALCREMIE_REGULAR_SPECIES_INFO(sweet, cream, color)                                      \
-    {                                                                                           \
         ALCREMIE_MISC_INFO(color),                                                              \
         .speciesName = _("Alcremie"),                                                           \
         .cryId = CRY_ALCREMIE,                                                                  \
@@ -44,7 +35,7 @@
         .shinyPalette = gMonShinyPalette_Alcremie ##sweet,                                      \
         .iconSprite = gMonIcon_AlcremieStrawberryVanillaCream, /*AlcremieStrawberry##cream##*/  \
         .iconPalIndex = 1,                                                                      \
-        SHADOW(0, 5, SHADOW_SIZE_S)                                                                            \
+        SHADOW(0, 5, SHADOW_SIZE_S)                                                             \
         FOOTPRINT(Alcremie)                                                                     \
         OVERWORLD(                                                                              \
             sPicTable_AlcremieStrawberry, /*Alcremie ##sweet*/                                  \
@@ -54,11 +45,8 @@
             gOverworldPalette_AlcremieStrawberryVanillaCream, /*Alcremie ##sweet##cream*/       \
             gShinyOverworldPalette_AlcremieStrawberryVanillaCream /*Alcremie ##sweet##cream*/   \
         )                                                                                       \
-        .levelUpLearnset = sNoneLevelUpLearnset,                                            \
-        .teachableLearnset = sNoneTeachableLearnset,                                        \
         .formSpeciesIdTable = sAlcremieFormSpeciesIdTable,                                      \
-        .formChangeTable = sAlcremieFormChangeTable,                                            \
-    }
+        .formChangeTable = sAlcremieFormChangeTable
 
 #ifdef __INTELLISENSE__
 const struct SpeciesInfo gSpeciesInfoGen8[] =
@@ -4647,82 +4635,135 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .levelUpLearnset = sMilcery0LevelUpLearnset,
         .teachableLearnset = sMilcery0TeachableLearnset,
         .eggMoveLearnset = sMilceryEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 0, SPECIES_ALCREMIE_STRAWBERRY_VANILLA_CREAM},
-                                {EVO_LEVEL, 0, SPECIES_ALCREMIE_STRAWBERRY_RUBY_CREAM},
-                                {EVO_LEVEL, 0, SPECIES_ALCREMIE_STRAWBERRY_MATCHA_CREAM},
-                                {EVO_LEVEL, 0, SPECIES_ALCREMIE_STRAWBERRY_MINT_CREAM},
-                                {EVO_LEVEL, 0, SPECIES_ALCREMIE_STRAWBERRY_LEMON_CREAM},
-                                {EVO_LEVEL, 0, SPECIES_ALCREMIE_STRAWBERRY_SALTED_CREAM},
-                                {EVO_LEVEL, 0, SPECIES_ALCREMIE_STRAWBERRY_RUBY_SWIRL},
-                                {EVO_LEVEL, 0, SPECIES_ALCREMIE_STRAWBERRY_CARAMEL_SWIRL},
-                                {EVO_LEVEL, 0, SPECIES_ALCREMIE_STRAWBERRY_RAINBOW_SWIRL}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 0, SPECIES_ALCREMIE_STRAWBERRY_VANILLA_CREAM}, {EVO_LEVEL, 0, SPECIES_ALCREMIE_STRAWBERRY_RUBY_CREAM}, {EVO_LEVEL, 0, SPECIES_ALCREMIE_STRAWBERRY_MATCHA_CREAM}, {EVO_LEVEL, 0, SPECIES_ALCREMIE_STRAWBERRY_MINT_CREAM}, {EVO_LEVEL, 0, SPECIES_ALCREMIE_STRAWBERRY_LEMON_CREAM}, {EVO_LEVEL, 0, SPECIES_ALCREMIE_STRAWBERRY_SALTED_CREAM}, {EVO_LEVEL, 0, SPECIES_ALCREMIE_STRAWBERRY_RUBY_SWIRL}, {EVO_LEVEL, 0, SPECIES_ALCREMIE_STRAWBERRY_CARAMEL_SWIRL}, {EVO_LEVEL, 0, SPECIES_ALCREMIE_STRAWBERRY_RAINBOW_SWIRL}),
     },
 
-
-
-    [SPECIES_ALCREMIE_STRAWBERRY_VANILLA_CREAM] = ALCREMIE_REGULAR_SPECIES_INFO(Strawberry, VanillaCream, BODY_COLOR_WHITE),
-    [SPECIES_ALCREMIE_STRAWBERRY_RUBY_CREAM]    = ALCREMIE_REGULAR_SPECIES_INFO(Strawberry, RubyCream,    BODY_COLOR_PINK),
-    [SPECIES_ALCREMIE_STRAWBERRY_MATCHA_CREAM]  = ALCREMIE_REGULAR_SPECIES_INFO(Strawberry, MatchaCream,  BODY_COLOR_GREEN),
-    [SPECIES_ALCREMIE_STRAWBERRY_MINT_CREAM]    = ALCREMIE_REGULAR_SPECIES_INFO(Strawberry, MintCream,    BODY_COLOR_BLUE),
-    [SPECIES_ALCREMIE_STRAWBERRY_LEMON_CREAM]   = ALCREMIE_REGULAR_SPECIES_INFO(Strawberry, LemonCream,   BODY_COLOR_YELLOW),
-    [SPECIES_ALCREMIE_STRAWBERRY_SALTED_CREAM]  = ALCREMIE_REGULAR_SPECIES_INFO(Strawberry, SaltedCream,  BODY_COLOR_WHITE),
-    [SPECIES_ALCREMIE_STRAWBERRY_RUBY_SWIRL]    = ALCREMIE_REGULAR_SPECIES_INFO(Strawberry, RubySwirl,    BODY_COLOR_YELLOW),
-    [SPECIES_ALCREMIE_STRAWBERRY_CARAMEL_SWIRL] = ALCREMIE_REGULAR_SPECIES_INFO(Strawberry, CaramelSwirl, BODY_COLOR_BROWN),
-    [SPECIES_ALCREMIE_STRAWBERRY_RAINBOW_SWIRL] = ALCREMIE_REGULAR_SPECIES_INFO(Strawberry, RainbowSwirl, BODY_COLOR_YELLOW),
-    [SPECIES_ALCREMIE_BERRY_VANILLA_CREAM]      = ALCREMIE_REGULAR_SPECIES_INFO(Berry,      VanillaCream, BODY_COLOR_WHITE),
-    [SPECIES_ALCREMIE_BERRY_RUBY_CREAM]         = ALCREMIE_REGULAR_SPECIES_INFO(Berry,      RubyCream,    BODY_COLOR_PINK),
-    [SPECIES_ALCREMIE_BERRY_MATCHA_CREAM]       = ALCREMIE_REGULAR_SPECIES_INFO(Berry,      MatchaCream,  BODY_COLOR_GREEN),
-    [SPECIES_ALCREMIE_BERRY_MINT_CREAM]         = ALCREMIE_REGULAR_SPECIES_INFO(Berry,      MintCream,    BODY_COLOR_BLUE),
-    [SPECIES_ALCREMIE_BERRY_LEMON_CREAM]        = ALCREMIE_REGULAR_SPECIES_INFO(Berry,      LemonCream,   BODY_COLOR_YELLOW),
-    [SPECIES_ALCREMIE_BERRY_SALTED_CREAM]       = ALCREMIE_REGULAR_SPECIES_INFO(Berry,      SaltedCream,  BODY_COLOR_WHITE),
-    [SPECIES_ALCREMIE_BERRY_RUBY_SWIRL]         = ALCREMIE_REGULAR_SPECIES_INFO(Berry,      RubySwirl,    BODY_COLOR_YELLOW),
-    [SPECIES_ALCREMIE_BERRY_CARAMEL_SWIRL]      = ALCREMIE_REGULAR_SPECIES_INFO(Berry,      CaramelSwirl, BODY_COLOR_BROWN),
-    [SPECIES_ALCREMIE_BERRY_RAINBOW_SWIRL]      = ALCREMIE_REGULAR_SPECIES_INFO(Berry,      RainbowSwirl, BODY_COLOR_YELLOW),
-    [SPECIES_ALCREMIE_LOVE_VANILLA_CREAM]       = ALCREMIE_REGULAR_SPECIES_INFO(Love,       VanillaCream, BODY_COLOR_WHITE),
-    [SPECIES_ALCREMIE_LOVE_RUBY_CREAM]          = ALCREMIE_REGULAR_SPECIES_INFO(Love,       RubyCream,    BODY_COLOR_PINK),
-    [SPECIES_ALCREMIE_LOVE_MATCHA_CREAM]        = ALCREMIE_REGULAR_SPECIES_INFO(Love,       MatchaCream,  BODY_COLOR_GREEN),
-    [SPECIES_ALCREMIE_LOVE_MINT_CREAM]          = ALCREMIE_REGULAR_SPECIES_INFO(Love,       MintCream,    BODY_COLOR_BLUE),
-    [SPECIES_ALCREMIE_LOVE_LEMON_CREAM]         = ALCREMIE_REGULAR_SPECIES_INFO(Love,       LemonCream,   BODY_COLOR_YELLOW),
-    [SPECIES_ALCREMIE_LOVE_SALTED_CREAM]        = ALCREMIE_REGULAR_SPECIES_INFO(Love,       SaltedCream,  BODY_COLOR_WHITE),
-    [SPECIES_ALCREMIE_LOVE_RUBY_SWIRL]          = ALCREMIE_REGULAR_SPECIES_INFO(Love,       RubySwirl,    BODY_COLOR_YELLOW),
-    [SPECIES_ALCREMIE_LOVE_CARAMEL_SWIRL]       = ALCREMIE_REGULAR_SPECIES_INFO(Love,       CaramelSwirl, BODY_COLOR_BROWN),
-    [SPECIES_ALCREMIE_LOVE_RAINBOW_SWIRL]       = ALCREMIE_REGULAR_SPECIES_INFO(Love,       RainbowSwirl, BODY_COLOR_YELLOW),
-    [SPECIES_ALCREMIE_STAR_VANILLA_CREAM]       = ALCREMIE_REGULAR_SPECIES_INFO(Star,       VanillaCream, BODY_COLOR_WHITE),
-    [SPECIES_ALCREMIE_STAR_RUBY_CREAM]          = ALCREMIE_REGULAR_SPECIES_INFO(Star,       RubyCream,    BODY_COLOR_PINK),
-    [SPECIES_ALCREMIE_STAR_MATCHA_CREAM]        = ALCREMIE_REGULAR_SPECIES_INFO(Star,       MatchaCream,  BODY_COLOR_GREEN),
-    [SPECIES_ALCREMIE_STAR_MINT_CREAM]          = ALCREMIE_REGULAR_SPECIES_INFO(Star,       MintCream,    BODY_COLOR_BLUE),
-    [SPECIES_ALCREMIE_STAR_LEMON_CREAM]         = ALCREMIE_REGULAR_SPECIES_INFO(Star,       LemonCream,   BODY_COLOR_YELLOW),
-    [SPECIES_ALCREMIE_STAR_SALTED_CREAM]        = ALCREMIE_REGULAR_SPECIES_INFO(Star,       SaltedCream,  BODY_COLOR_WHITE),
-    [SPECIES_ALCREMIE_STAR_RUBY_SWIRL]          = ALCREMIE_REGULAR_SPECIES_INFO(Star,       RubySwirl,    BODY_COLOR_YELLOW),
-    [SPECIES_ALCREMIE_STAR_CARAMEL_SWIRL]       = ALCREMIE_REGULAR_SPECIES_INFO(Star,       CaramelSwirl, BODY_COLOR_BROWN),
-    [SPECIES_ALCREMIE_STAR_RAINBOW_SWIRL]       = ALCREMIE_REGULAR_SPECIES_INFO(Star,       RainbowSwirl, BODY_COLOR_YELLOW),
-    [SPECIES_ALCREMIE_CLOVER_VANILLA_CREAM]     = ALCREMIE_REGULAR_SPECIES_INFO(Clover,     VanillaCream, BODY_COLOR_WHITE),
-    [SPECIES_ALCREMIE_CLOVER_RUBY_CREAM]        = ALCREMIE_REGULAR_SPECIES_INFO(Clover,     RubyCream,    BODY_COLOR_PINK),
-    [SPECIES_ALCREMIE_CLOVER_MATCHA_CREAM]      = ALCREMIE_REGULAR_SPECIES_INFO(Clover,     MatchaCream,  BODY_COLOR_GREEN),
-    [SPECIES_ALCREMIE_CLOVER_MINT_CREAM]        = ALCREMIE_REGULAR_SPECIES_INFO(Clover,     MintCream,    BODY_COLOR_BLUE),
-    [SPECIES_ALCREMIE_CLOVER_LEMON_CREAM]       = ALCREMIE_REGULAR_SPECIES_INFO(Clover,     LemonCream,   BODY_COLOR_YELLOW),
-    [SPECIES_ALCREMIE_CLOVER_SALTED_CREAM]      = ALCREMIE_REGULAR_SPECIES_INFO(Clover,     SaltedCream,  BODY_COLOR_WHITE),
-    [SPECIES_ALCREMIE_CLOVER_RUBY_SWIRL]        = ALCREMIE_REGULAR_SPECIES_INFO(Clover,     RubySwirl,    BODY_COLOR_YELLOW),
-    [SPECIES_ALCREMIE_CLOVER_CARAMEL_SWIRL]     = ALCREMIE_REGULAR_SPECIES_INFO(Clover,     CaramelSwirl, BODY_COLOR_BROWN),
-    [SPECIES_ALCREMIE_CLOVER_RAINBOW_SWIRL]     = ALCREMIE_REGULAR_SPECIES_INFO(Clover,     RainbowSwirl, BODY_COLOR_YELLOW),
-    [SPECIES_ALCREMIE_FLOWER_VANILLA_CREAM]     = ALCREMIE_REGULAR_SPECIES_INFO(Flower,     VanillaCream, BODY_COLOR_WHITE),
-    [SPECIES_ALCREMIE_FLOWER_RUBY_CREAM]        = ALCREMIE_REGULAR_SPECIES_INFO(Flower,     RubyCream,    BODY_COLOR_PINK),
-    [SPECIES_ALCREMIE_FLOWER_MATCHA_CREAM]      = ALCREMIE_REGULAR_SPECIES_INFO(Flower,     MatchaCream,  BODY_COLOR_GREEN),
-    [SPECIES_ALCREMIE_FLOWER_MINT_CREAM]        = ALCREMIE_REGULAR_SPECIES_INFO(Flower,     MintCream,    BODY_COLOR_BLUE),
-    [SPECIES_ALCREMIE_FLOWER_LEMON_CREAM]       = ALCREMIE_REGULAR_SPECIES_INFO(Flower,     LemonCream,   BODY_COLOR_YELLOW),
-    [SPECIES_ALCREMIE_FLOWER_SALTED_CREAM]      = ALCREMIE_REGULAR_SPECIES_INFO(Flower,     SaltedCream,  BODY_COLOR_WHITE),
-    [SPECIES_ALCREMIE_FLOWER_RUBY_SWIRL]        = ALCREMIE_REGULAR_SPECIES_INFO(Flower,     RubySwirl,    BODY_COLOR_YELLOW),
-    [SPECIES_ALCREMIE_FLOWER_CARAMEL_SWIRL]     = ALCREMIE_REGULAR_SPECIES_INFO(Flower,     CaramelSwirl, BODY_COLOR_BROWN),
-    [SPECIES_ALCREMIE_FLOWER_RAINBOW_SWIRL]     = ALCREMIE_REGULAR_SPECIES_INFO(Flower,     RainbowSwirl, BODY_COLOR_YELLOW),
-    [SPECIES_ALCREMIE_RIBBON_VANILLA_CREAM]     = ALCREMIE_REGULAR_SPECIES_INFO(Ribbon,     VanillaCream, BODY_COLOR_WHITE),
-    [SPECIES_ALCREMIE_RIBBON_RUBY_CREAM]        = ALCREMIE_REGULAR_SPECIES_INFO(Ribbon,     RubyCream,    BODY_COLOR_PINK),
-    [SPECIES_ALCREMIE_RIBBON_MATCHA_CREAM]      = ALCREMIE_REGULAR_SPECIES_INFO(Ribbon,     MatchaCream,  BODY_COLOR_GREEN),
-    [SPECIES_ALCREMIE_RIBBON_MINT_CREAM]        = ALCREMIE_REGULAR_SPECIES_INFO(Ribbon,     MintCream,    BODY_COLOR_BLUE),
-    [SPECIES_ALCREMIE_RIBBON_LEMON_CREAM]       = ALCREMIE_REGULAR_SPECIES_INFO(Ribbon,     LemonCream,   BODY_COLOR_YELLOW),
-    [SPECIES_ALCREMIE_RIBBON_SALTED_CREAM]      = ALCREMIE_REGULAR_SPECIES_INFO(Ribbon,     SaltedCream,  BODY_COLOR_WHITE),
-    [SPECIES_ALCREMIE_RIBBON_RUBY_SWIRL]        = ALCREMIE_REGULAR_SPECIES_INFO(Ribbon,     RubySwirl,    BODY_COLOR_YELLOW),
-    [SPECIES_ALCREMIE_RIBBON_CARAMEL_SWIRL]     = ALCREMIE_REGULAR_SPECIES_INFO(Ribbon,     CaramelSwirl, BODY_COLOR_BROWN),
-    [SPECIES_ALCREMIE_RIBBON_RAINBOW_SWIRL]     = ALCREMIE_REGULAR_SPECIES_INFO(Ribbon,     RainbowSwirl, BODY_COLOR_YELLOW),
+    [SPECIES_ALCREMIE_STRAWBERRY_VANILLA_CREAM] = {
+        ALCREMIE_REGULAR_SPECIES_INFO(Strawberry, VanillaCream, BODY_COLOR_WHITE),
+        .types = MON_TYPES(TYPE_FAIRY),
+        .baseHP = 95,
+        .baseAttack = 60,
+        .baseDefense = 75,
+        .baseSpeed = 64,
+        .baseSpAttack = 110,
+        .baseSpDefense = 121,
+        .evolutions = NULL,
+        .abilities = { ABILITY_LINGERING_AROMA, ABILITY_WATER_ABSORB, ABILITY_GOOEY },
+        .levelUpLearnset = sAlcremie0LevelUpLearnset,
+        .teachableLearnset = sAlcremie0TeachableLearnset,
+    },
+    [SPECIES_ALCREMIE_STRAWBERRY_RUBY_CREAM]    = {
+        ALCREMIE_REGULAR_SPECIES_INFO(Strawberry, RubyCream,    BODY_COLOR_PINK),
+        .types = MON_TYPES(TYPE_FAIRY),
+        .baseHP = 95,
+        .baseAttack = 60,
+        .baseDefense = 75,
+        .baseSpeed = 64,
+        .baseSpAttack = 110,
+        .baseSpDefense = 121,
+        .evolutions = NULL,
+        .abilities = { ABILITY_LINGERING_AROMA, ABILITY_WATER_ABSORB, ABILITY_GOOEY },
+        .levelUpLearnset = sAlcremie1LevelUpLearnset,
+        .teachableLearnset = sAlcremie1TeachableLearnset,
+    },
+    [SPECIES_ALCREMIE_STRAWBERRY_MATCHA_CREAM]  = {
+        ALCREMIE_REGULAR_SPECIES_INFO(Strawberry, MatchaCream,  BODY_COLOR_GREEN),
+        .types = MON_TYPES(TYPE_FAIRY),
+        .baseHP = 95,
+        .baseAttack = 60,
+        .baseDefense = 75,
+        .baseSpeed = 64,
+        .baseSpAttack = 110,
+        .baseSpDefense = 121,
+        .evolutions = NULL,
+        .abilities = { ABILITY_LINGERING_AROMA, ABILITY_WATER_ABSORB, ABILITY_GOOEY },
+        .levelUpLearnset = sAlcremie2LevelUpLearnset,
+        .teachableLearnset = sAlcremie2TeachableLearnset,
+    },
+    [SPECIES_ALCREMIE_STRAWBERRY_MINT_CREAM]    = {
+        ALCREMIE_REGULAR_SPECIES_INFO(Strawberry, MintCream,    BODY_COLOR_BLUE),
+        .types = MON_TYPES(TYPE_FAIRY),
+        .baseHP = 95,
+        .baseAttack = 60,
+        .baseDefense = 75,
+        .baseSpeed = 64,
+        .baseSpAttack = 110,
+        .baseSpDefense = 121,
+        .evolutions = NULL,
+        .abilities = { ABILITY_LINGERING_AROMA, ABILITY_WATER_ABSORB, ABILITY_GOOEY },
+        .levelUpLearnset = sAlcremie3LevelUpLearnset,
+        .teachableLearnset = sAlcremie3TeachableLearnset,
+    },
+    [SPECIES_ALCREMIE_STRAWBERRY_LEMON_CREAM]   = {
+        ALCREMIE_REGULAR_SPECIES_INFO(Strawberry, LemonCream,   BODY_COLOR_YELLOW),
+        .types = MON_TYPES(TYPE_FAIRY),
+        .baseHP = 95,
+        .baseAttack = 60,
+        .baseDefense = 75,
+        .baseSpeed = 64,
+        .baseSpAttack = 110,
+        .baseSpDefense = 121,
+        .evolutions = NULL,
+        .abilities = { ABILITY_LINGERING_AROMA, ABILITY_WATER_ABSORB, ABILITY_GOOEY },
+        .levelUpLearnset = sAlcremie4LevelUpLearnset,
+        .teachableLearnset = sAlcremie4TeachableLearnset,
+    },
+    [SPECIES_ALCREMIE_STRAWBERRY_SALTED_CREAM]  = {
+        ALCREMIE_REGULAR_SPECIES_INFO(Strawberry, SaltedCream,  BODY_COLOR_WHITE),
+        .types = MON_TYPES(TYPE_FAIRY),
+        .baseHP = 95,
+        .baseAttack = 60,
+        .baseDefense = 75,
+        .baseSpeed = 64,
+        .baseSpAttack = 110,
+        .baseSpDefense = 121,
+        .evolutions = NULL,
+        .abilities = { ABILITY_LINGERING_AROMA, ABILITY_WATER_ABSORB, ABILITY_GOOEY },
+        .levelUpLearnset = sAlcremie5LevelUpLearnset,
+        .teachableLearnset = sAlcremie5TeachableLearnset,
+    },
+    [SPECIES_ALCREMIE_STRAWBERRY_RUBY_SWIRL]    = {
+        ALCREMIE_REGULAR_SPECIES_INFO(Strawberry, RubySwirl,    BODY_COLOR_YELLOW),
+        .types = MON_TYPES(TYPE_FAIRY),
+        .baseHP = 95,
+        .baseAttack = 60,
+        .baseDefense = 75,
+        .baseSpeed = 64,
+        .baseSpAttack = 110,
+        .baseSpDefense = 121,
+        .evolutions = NULL,
+        .abilities = { ABILITY_LINGERING_AROMA, ABILITY_WATER_ABSORB, ABILITY_GOOEY },
+        .levelUpLearnset = sAlcremie6LevelUpLearnset,
+        .teachableLearnset = sAlcremie6TeachableLearnset,
+    },
+    [SPECIES_ALCREMIE_STRAWBERRY_CARAMEL_SWIRL] = {
+        ALCREMIE_REGULAR_SPECIES_INFO(Strawberry, CaramelSwirl, BODY_COLOR_BROWN),
+        .types = MON_TYPES(TYPE_FAIRY),
+        .baseHP = 95,
+        .baseAttack = 60,
+        .baseDefense = 75,
+        .baseSpeed = 64,
+        .baseSpAttack = 110,
+        .baseSpDefense = 121,
+        .evolutions = NULL,
+        .abilities = { ABILITY_LINGERING_AROMA, ABILITY_WATER_ABSORB, ABILITY_GOOEY },
+        .levelUpLearnset = sAlcremie7LevelUpLearnset,
+        .teachableLearnset = sAlcremie7TeachableLearnset,
+    },
+    [SPECIES_ALCREMIE_STRAWBERRY_RAINBOW_SWIRL] = {
+        ALCREMIE_REGULAR_SPECIES_INFO(Strawberry, RainbowSwirl, BODY_COLOR_YELLOW),
+        .types = MON_TYPES(TYPE_FAIRY),
+        .baseHP = 95,
+        .baseAttack = 60,
+        .baseDefense = 75,
+        .baseSpeed = 64,
+        .baseSpAttack = 110,
+        .baseSpDefense = 121,
+        .evolutions = NULL,
+        .abilities = { ABILITY_LINGERING_AROMA, ABILITY_WATER_ABSORB, ABILITY_GOOEY },
+        .levelUpLearnset = sAlcremie8LevelUpLearnset,
+        .teachableLearnset = sAlcremie8TeachableLearnset,
+    },
     [SPECIES_ALCREMIE_GMAX] =
     {
         ALCREMIE_MISC_INFO(BODY_COLOR_YELLOW),

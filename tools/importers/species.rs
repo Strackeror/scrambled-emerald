@@ -1,4 +1,5 @@
 use std::cmp::min;
+use std::collections::HashMap;
 use std::fs::{read, write};
 
 use anyhow::{Context as _, Result};
@@ -9,9 +10,6 @@ use crate::moves::WazaArray;
 use crate::tree_utils::{edit_field, find_entries};
 use crate::{apply_edits, Edit, Personal, PersonalArray};
 
-const BLACKLIST: &[&str] = &[
-    "Vivillon", "Flabebe", "Floette", "Florges", "Minior", "Alcremie",
-];
 const RENAME: &[(&str, &str)] = &[
     ("Porygon2", "SPECIES_PORYGON2"),
     ("Jangmoo", "SPECIES_JANGMO_O"),
@@ -54,7 +52,7 @@ pub fn species_list() -> Result<Vec<String>> {
         .collect::<Result<Vec<_>>>()?
         .into_iter()
         .flatten()
-        .map(|(id, _)|id)
+        .map(|(id, _)| id)
         .collect();
     Ok(ids)
 }
@@ -64,7 +62,11 @@ pub fn species() -> Result<()> {
         .map(|n| format!("../../src/data/pokemon/species_info/gen_{n}_families.h"))
         .map(|path| Ok((path.clone(), read(&path)?)))
         .collect::<Result<Vec<_>>>()?;
-    let moves: WazaArray = serde_json::from_slice(&read("resources/waza_array.json")?)?;
+    let move_map: HashMap<String, usize> =
+        serde_json::from_slice(&read("resources/vanilla_move_names.json")?)?;
+    let mut moves: WazaArray = serde_json::from_slice(&read("resources/waza_array.json")?)?;
+    moves.table.sort_by_cached_key(|m| move_map.get(&m.move_id));
+    moves.table.dedup_by_key(|m| m.move_id.clone());
     let move_list: Vec<_> = moves.table.iter().map(|mov| mov.move_id.as_str()).collect();
 
     let language = tree_sitter_cpp::LANGUAGE.into();
@@ -100,12 +102,6 @@ pub fn species() -> Result<()> {
         if personal.is_present == false {
             continue;
         }
-
-        if BLACKLIST.contains(&personal.species.species.as_str()) {
-            println!("Blacklisted species {:?}", personal.species);
-            continue;
-        }
-
         let matcher = species_matcher(&personal.species.species);
         let mut matching = entries.iter().filter(|(id, _)| matcher(id));
         let Some((_id, (index, text, _tree, node))) = matching.nth(personal.species.form) else {
@@ -299,7 +295,7 @@ fn handle_evos(
                     "{{EVO_LEVEL_FAMILY_OF_FOUR, {}, {}}}",
                     evo_data.level, species
                 )),
-                "Spinning" => Some(format!("{{EVO_LEVEL, 0, {species}")),
+                "Spinning" => Some(format!("{{EVO_LEVEL, 0, {species}}}")),
                 "LevelUp_WithMove" => {
                     let move_name = moves.get(param()?)?.to_case(Case::ScreamingSnake);
                     Some(format!(
@@ -396,7 +392,7 @@ pub fn build_learnsets(entries: &[Personal]) -> Result<String> {
     Ok(format!(
         "
 static const struct LevelUpMove sNoneLevelUpLearnset[] = {{
-    {{.move = MOVE_SYNTHESIS, .level = 1}},
+    {{.move = MOVE_POUND, .level = 1}},
     {{.move = LEVEL_UP_MOVE_END, .level = 0}},
 }};
 

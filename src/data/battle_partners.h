@@ -122,16 +122,16 @@
         {
             {
 #line 54
-            .species = SPECIES_CAPSAKID,
+            .species = SPECIES_SHELLDER,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 54
-            .heldItem = ITEM_CHARTI_BERRY,
+            .heldItem = ITEM_LEFTOVERS,
 #line 58
             .ev = TRAINER_PARTY_EVS(252, 0, 252, 0, 0, 0),
 #line 57
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 56
-            .ability = ABILITY_PRANKSTER,
+            .ability = ABILITY_SHELL_ARMOR,
 #line 55
             .lvl = 15,
 #line 59
@@ -139,10 +139,10 @@
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
             .moves = {
 #line 60
-                MOVE_FIRE_SPIN,
-                MOVE_LEECH_SEED,
-                MOVE_TORMENT,
-                MOVE_PROTECT,
+                MOVE_AQUA_JET,
+                MOVE_AQUA_RING,
+                MOVE_FOLLOW_ME,
+                MOVE_SPIKY_SHIELD,
             },
             },
         },
@@ -166,16 +166,16 @@
         {
             {
 #line 75
-            .species = SPECIES_FLAPPLE,
+            .species = SPECIES_TOEDSCOOL,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 75
-            .heldItem = ITEM_SITRUS_BERRY,
+            .heldItem = ITEM_TOXIC_ORB,
 #line 79
             .ev = TRAINER_PARTY_EVS(252, 0, 252, 0, 0, 0),
 #line 78
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 77
-            .ability = ABILITY_UNBURDEN,
+            .ability = ABILITY_POISON_HEAL,
 #line 76
             .lvl = 33,
 #line 80
@@ -184,7 +184,7 @@
             .moves = {
 #line 81
                 MOVE_INFESTATION,
-                MOVE_ROOST,
+                MOVE_PROTECT,
                 MOVE_SUBSTITUTE,
                 MOVE_GRASSY_TERRAIN,
             },
@@ -210,7 +210,7 @@
         {
             {
 #line 96
-            .species = SPECIES_SHELLDER,
+            .species = SPECIES_NACLI,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 96
             .heldItem = ITEM_ROCKY_HELMET,
@@ -219,7 +219,7 @@
 #line 99
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 98
-            .ability = ABILITY_SHELL_ARMOR,
+            .ability = ABILITY_ROUGH_SKIN,
 #line 97
             .lvl = 22,
 #line 101
@@ -227,10 +227,10 @@
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
             .moves = {
 #line 102
-                MOVE_DIVE,
-                MOVE_SPIKY_SHIELD,
+                MOVE_PAIN_SPLIT,
+                MOVE_SUBSTITUTE,
                 MOVE_FOLLOW_ME,
-                MOVE_HYDRO_PUMP,
+                MOVE_SHORE_UP,
             },
             },
         },
@@ -254,16 +254,16 @@
         {
             {
 #line 117
-            .species = SPECIES_BRELOOM,
+            .species = SPECIES_SCOVILLAIN,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 117
-            .heldItem = ITEM_TOXIC_ORB,
+            .heldItem = ITEM_CHARTI_BERRY,
 #line 121
             .ev = TRAINER_PARTY_EVS(252, 0, 252, 0, 0, 0),
 #line 120
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 119
-            .ability = ABILITY_TOXIC_BOOST,
+            .ability = ABILITY_CHLOROPHYLL,
 #line 118
             .lvl = 47,
 #line 122
@@ -271,9 +271,9 @@
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
             .moves = {
 #line 123
-                MOVE_DRAIN_PUNCH,
-                MOVE_SEED_BOMB,
-                MOVE_STRENGTH_SAP,
+                MOVE_MEGA_DRAIN,
+                MOVE_FIRE_SPIN,
+                MOVE_LEECH_SEED,
                 MOVE_RAGE_POWDER,
             },
             },
@@ -298,7 +298,7 @@
         {
             {
 #line 138
-            .species = SPECIES_GARGANACL,
+            .species = SPECIES_GREEDENT,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 138
             .heldItem = ITEM_SITRUS_BERRY,
@@ -307,7 +307,7 @@
 #line 141
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 140
-            .ability = ABILITY_WATER_ABSORB,
+            .ability = ABILITY_UNAWARE,
 #line 139
             .lvl = 58,
 #line 143
@@ -316,8 +316,8 @@
             .moves = {
 #line 144
                 MOVE_ROCK_TOMB,
-                MOVE_SHORE_UP,
-                MOVE_RECOVER,
+                MOVE_SLACK_OFF,
+                MOVE_STUFF_CHEEKS,
                 MOVE_FOLLOW_ME,
             },
             },

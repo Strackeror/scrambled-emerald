@@ -3602,7 +3602,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
     {
         .baseHP        = 70,
         .baseAttack    = 50,
-        .baseDefense   = 75,
+        .baseDefense   = 85,
         .baseSpeed     = 90,
         .baseSpAttack  = 110,
         .baseSpDefense = 110,
@@ -3667,7 +3667,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
     {
         .baseHP        = 70,
         .baseAttack    = 110,
-        .baseDefense   = 75,
+        .baseDefense   = 85,
         .baseSpeed     = 110,
         .baseSpAttack  = 50,
         .baseSpDefense = 90,

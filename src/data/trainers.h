@@ -40146,7 +40146,7 @@ F_TRAINER_FEMALE |
 #line 16033
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 16032
-            .ability = ABILITY_GOOD_AS_GOLD,
+            .ability = ABILITY_MAGIC_BOUNCE,
 #line 16031
             .lvl = 100,
 #line 16035
@@ -40677,7 +40677,7 @@ F_TRAINER_FEMALE |
 #line 16271
                 MOVE_U_TURN,
                 MOVE_VENOSHOCK,
-                MOVE_PSYCHIC_NOISE,
+                MOVE_SLEEP_POWDER,
                 MOVE_STUN_SPORE,
             },
             },
@@ -40717,7 +40717,7 @@ F_TRAINER_FEMALE |
 #line 16290
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 16289
-            .ability = ABILITY_SHARPNESS,
+            .ability = ABILITY_MULTISCALE,
 #line 16288
             .lvl = 38,
 #line 16292
@@ -40775,7 +40775,7 @@ F_TRAINER_FEMALE |
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
             .moves = {
 #line 16315
-                MOVE_SURF,
+                MOVE_WATER_PLEDGE,
                 MOVE_DARK_PULSE,
                 MOVE_SLUDGE_BOMB,
                 MOVE_NASTY_PLOT,
@@ -41001,7 +41001,7 @@ F_TRAINER_FEMALE |
 #line 16417
             .heldItem = ITEM_EVIOLITE,
 #line 16421
-            .ev = TRAINER_PARTY_EVS(0, 0, 0, 252, 252, 0),
+            .ev = TRAINER_PARTY_EVS(252, 0, 0, 252, 0, 0),
 #line 16420
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 16419
@@ -41113,9 +41113,9 @@ F_TRAINER_FEMALE |
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
             .moves = {
 #line 16467
-                MOVE_TROP_KICK,
-                MOVE_BRICK_BREAK,
-                MOVE_STOMPING_TANTRUM,
+                MOVE_BULLET_SEED,
+                MOVE_POUND,
+                MOVE_TRIPLE_AXEL,
                 MOVE_PARTING_SHOT,
             },
             },
@@ -41174,7 +41174,7 @@ F_TRAINER_FEMALE |
 #line 16496
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 16495
-            .ability = ABILITY_MOLD_BREAKER,
+            .ability = ABILITY_SCRAPPY,
 #line 16494
             .lvl = 60,
 #line 16498
@@ -41605,7 +41605,7 @@ F_TRAINER_FEMALE |
 #line 16690
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 16689
-            .ability = ABILITY_STEELY_SPIRIT,
+            .ability = ABILITY_STURDY,
 #line 16688
             .lvl = 100,
 #line 16692
@@ -42166,7 +42166,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 16945
-            .species = SPECIES_ORICORIO_BAILE,
+            .species = SPECIES_ORICORIO_POM_POM,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 16945
             .heldItem = ITEM_CHARTI_BERRY,
@@ -42325,7 +42325,7 @@ F_TRAINER_FEMALE |
 #line 17015
             .heldItem = ITEM_QUICK_CLAW,
 #line 17019
-            .ev = TRAINER_PARTY_EVS(252, 0, 0, 252, 0, 0),
+            .ev = TRAINER_PARTY_EVS(0, 0, 0, 252, 252, 0),
 #line 17018
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 17017
@@ -42356,7 +42356,7 @@ F_TRAINER_FEMALE |
 #line 17030
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 17029
-            .ability = ABILITY_PSYCHIC_SURGE,
+            .ability = ABILITY_SHADOW_SHIELD,
 #line 17028
             .lvl = 52,
 #line 17032
@@ -42421,7 +42421,7 @@ F_TRAINER_FEMALE |
             .species = SPECIES_FROSLASS,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 17060
-            .heldItem = ITEM_QUICK_CLAW,
+            .heldItem = ITEM_MENTAL_HERB,
 #line 17064
             .ev = TRAINER_PARTY_EVS(0, 0, 0, 252, 252, 0),
 #line 17063
@@ -42452,7 +42452,7 @@ F_TRAINER_FEMALE |
 #line 17074
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 17073
-            .ability = ABILITY_PSYCHIC_SURGE,
+            .ability = ABILITY_PRANKSTER,
 #line 17072
             .lvl = 45,
 #line 17076
@@ -42462,7 +42462,7 @@ F_TRAINER_FEMALE |
 #line 17077
                 MOVE_SHADOW_BALL,
                 MOVE_PSYSHOCK,
-                MOVE_DAZZLING_GLEAM,
+                MOVE_MAGIC_POWDER,
                 MOVE_FOCUS_BLAST,
             },
             },
@@ -42496,7 +42496,7 @@ F_TRAINER_FEMALE |
             .species = SPECIES_SPIRITOMB,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 17093
-            .heldItem = ITEM_ROSELI_BERRY,
+            .heldItem = ITEM_WHITE_HERB,
 #line 17097
             .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
 #line 17096
@@ -42510,7 +42510,7 @@ F_TRAINER_FEMALE |
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
             .moves = {
 #line 17099
-                MOVE_FIERY_WRATH,
+                MOVE_BLOOD_MOON,
                 MOVE_FOCUS_BLAST,
                 MOVE_MOONBLAST,
                 MOVE_PARTING_SHOT,
@@ -42564,8 +42564,8 @@ F_TRAINER_FEMALE |
 #line 17122
                 MOVE_LAST_RESPECTS,
                 MOVE_BONE_RUSH,
-                MOVE_TACKLE,
-                MOVE_POUND,
+                MOVE_NONE,
+                MOVE_NONE,
             },
             },
         },
@@ -43093,7 +43093,7 @@ F_TRAINER_FEMALE |
 #line 17361
             .ability = ABILITY_ICE_SCALES,
 #line 17360
-            .lvl = 0,
+            .lvl = 36,
 #line 17364
             .nature = NATURE_ADAMANT,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
@@ -43198,7 +43198,7 @@ F_TRAINER_FEMALE |
             .moves = {
 #line 17410
                 MOVE_ACROBATICS,
-                MOVE_BUG_BITE,
+                MOVE_U_TURN,
                 MOVE_MEGA_DRAIN,
                 MOVE_TAILWIND,
             },
@@ -43208,7 +43208,7 @@ F_TRAINER_FEMALE |
             .species = SPECIES_LARVESTA,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 17415
-            .heldItem = ITEM_QUICK_CLAW,
+            .heldItem = ITEM_EXPERT_BELT,
 #line 17419
             .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
 #line 17418
@@ -43412,7 +43412,7 @@ F_TRAINER_FEMALE |
             .species = SPECIES_TOUCANNON,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 17507
-            .heldItem = ITEM_ASSAULT_VEST,
+            .heldItem = ITEM_YACHE_BERRY,
 #line 17511
             .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 252, 0),
 #line 17510
@@ -43625,7 +43625,7 @@ F_TRAINER_FEMALE |
             .moves = {
 #line 17602
                 MOVE_RETALIATE,
-                MOVE_BRUTAL_SWING,
+                MOVE_DARKEST_LARIAT,
                 MOVE_TAKE_DOWN,
                 MOVE_STOMPING_TANTRUM,
             },
@@ -44020,7 +44020,7 @@ F_TRAINER_FEMALE |
 #line 17783
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 17782
-            .ability = ABILITY_RIPEN,
+            .ability = ABILITY_BLAZE,
 #line 17781
             .lvl = 10,
 #line 17785
@@ -44054,9 +44054,9 @@ F_TRAINER_FEMALE |
             .moves = {
 #line 17797
                 MOVE_AQUA_JET,
-                MOVE_PECK,
-                MOVE_POUND,
-                MOVE_WORK_UP,
+                MOVE_PLUCK,
+                MOVE_ENCORE,
+                MOVE_ENDURE,
             },
             },
             {
@@ -44070,7 +44070,7 @@ F_TRAINER_FEMALE |
 #line 17805
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 17804
-            .ability = ABILITY_PROTEAN,
+            .ability = ABILITY_TECHNICIAN,
 #line 17803
             .lvl = 10,
 #line 17807
@@ -44166,7 +44166,7 @@ F_TRAINER_FEMALE |
 #line 17849
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 17848
-            .ability = ABILITY_BLAZE,
+            .ability = ABILITY_RIPEN,
 #line 17847
             .lvl = 26,
 #line 17851
@@ -44266,7 +44266,7 @@ F_TRAINER_FEMALE |
 #line 17893
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 17892
-            .ability = ABILITY_PROTEAN,
+            .ability = ABILITY_TECHNICIAN,
 #line 17891
             .lvl = 26,
 #line 17895
@@ -44337,7 +44337,7 @@ F_TRAINER_FEMALE |
 #line 17926
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 17925
-            .ability = ABILITY_PROTEAN,
+            .ability = ABILITY_TECHNICIAN,
 #line 17924
             .lvl = 42,
 #line 17928
@@ -44346,8 +44346,8 @@ F_TRAINER_FEMALE |
             .moves = {
 #line 17929
                 MOVE_FLOWER_TRICK,
-                MOVE_KNOCK_OFF,
-                MOVE_TACKLE,
+                MOVE_LASH_OUT,
+                MOVE_POPULATION_BOMB,
                 MOVE_PSYCHO_CUT,
             },
             },
@@ -44362,7 +44362,7 @@ F_TRAINER_FEMALE |
 #line 17937
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 17936
-            .ability = ABILITY_ROUGH_SKIN,
+            .ability = ABILITY_RIPEN,
 #line 17935
             .lvl = 42,
 #line 17939
@@ -44433,7 +44433,7 @@ F_TRAINER_FEMALE |
 #line 17970
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 17969
-            .ability = ABILITY_TECHNICIAN,
+            .ability = ABILITY_DAZZLING,
 #line 17968
             .lvl = 52,
 #line 17972
@@ -44458,7 +44458,7 @@ F_TRAINER_FEMALE |
 #line 17981
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 17980
-            .ability = ABILITY_ROUGH_SKIN,
+            .ability = ABILITY_RIPEN,
 #line 17979
             .lvl = 52,
 #line 17983
@@ -44689,7 +44689,7 @@ F_TRAINER_FEMALE |
 #line 18083
                 MOVE_MEGA_DRAIN,
                 MOVE_DRAGON_BREATH,
-                MOVE_SHELTER,
+                MOVE_RECOVER,
                 MOVE_DEFENSE_CURL,
             },
             },
@@ -44932,7 +44932,7 @@ F_TRAINER_FEMALE |
             .moves = {
 #line 18194
                 MOVE_DIRE_CLAW,
-                MOVE_KNOCK_OFF,
+                MOVE_GLARE,
                 MOVE_TAUNT,
                 MOVE_PARTING_SHOT,
             },
@@ -45144,7 +45144,7 @@ F_TRAINER_FEMALE |
 #line 18290
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 18289
-            .ability = ABILITY_TOUGH_CLAWS,
+            .ability = ABILITY_LEVITATE,
 #line 18288
             .lvl = 40,
 #line 18292
@@ -45153,7 +45153,7 @@ F_TRAINER_FEMALE |
             .moves = {
 #line 18293
                 MOVE_DIRE_CLAW,
-                MOVE_LASH_OUT,
+                MOVE_NIGHT_SLASH,
                 MOVE_RAZOR_SHELL,
                 MOVE_DRILL_RUN,
             },
@@ -45274,7 +45274,7 @@ F_TRAINER_FEMALE |
             .moves = {
 #line 18348
                 MOVE_DIRE_CLAW,
-                MOVE_KNOCK_OFF,
+                MOVE_LASH_OUT,
                 MOVE_TAUNT,
                 MOVE_PARTING_SHOT,
             },
@@ -45526,7 +45526,7 @@ F_TRAINER_FEMALE |
                 MOVE_SWIFT,
                 MOVE_VACUUM_WAVE,
                 MOVE_SNARL,
-                MOVE_WORK_UP,
+                MOVE_ENDURE,
             },
             },
             {
@@ -45561,7 +45561,7 @@ F_TRAINER_FEMALE |
 #line 18476
             .heldItem = ITEM_SITRUS_BERRY,
 #line 18480
-            .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 0, 252),
+            .ev = TRAINER_PARTY_EVS(252, 0, 252, 0, 0, 0),
 #line 18479
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 18478
@@ -45605,7 +45605,7 @@ F_TRAINER_FEMALE |
             .species = SPECIES_SINISTCHA_UNREMARKABLE,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 18498
-            .heldItem = ITEM_OCCA_BERRY,
+            .heldItem = ITEM_COBA_BERRY,
 #line 18502
             .ev = TRAINER_PARTY_EVS(252, 0, 252, 0, 0, 0),
 #line 18501
@@ -45696,7 +45696,7 @@ F_TRAINER_FEMALE |
 #line 18537
                 MOVE_FORCE_PALM,
                 MOVE_QUICK_ATTACK,
-                MOVE_KNOCK_OFF,
+                MOVE_FURY_SWIPES,
                 MOVE_FAKE_OUT,
             },
             },
@@ -45746,7 +45746,7 @@ F_TRAINER_FEMALE |
             .teraType = TYPE_GHOST,
             .moves = {
 #line 18560
-                MOVE_SACRED_FIRE,
+                MOVE_HEAT_WAVE,
                 MOVE_INFERNAL_PARADE,
                 MOVE_DAZZLING_GLEAM,
                 MOVE_HYPNOSIS,
@@ -45832,7 +45832,7 @@ F_TRAINER_FEMALE |
 #line 18600
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 18599
-            .ability = ABILITY_DROUGHT,
+            .ability = ABILITY_SERENE_GRACE,
 #line 18598
             .lvl = 50,
 #line 18602
