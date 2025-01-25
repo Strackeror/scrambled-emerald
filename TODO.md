@@ -22,7 +22,7 @@
 - [x] TMs
 - [x] Eggs
 - [x] HM Items
-    - [ ] Make npcs give them
+    - [x] Make npcs give them
     - [ ] Still need fly (?)
 - [X] Direct EV editing
 - [X] Direct Ability switching

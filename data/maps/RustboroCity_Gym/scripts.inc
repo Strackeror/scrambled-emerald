@@ -27,6 +27,7 @@ RustboroCity_Gym_EventScript_RoxanneDefeated::
 	end
 
 RustboroCity_Gym_EventScript_GiveRockTomb::
+	giveitem ITEM_AXE, 1
 	// PLOTLESS
 		giveitem ITEM_LETTER
 		@ give pokenav
