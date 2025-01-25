@@ -1002,10 +1002,12 @@
 #define ITEM_LANTERN 833
 #define ITEM_POWER_GLOVE 834
 
+#define ITEM_CANDY_JAR 835
+
 // HOPO BERRY
 // LEGEND PLATE
 
-#define ITEMS_COUNT 835
+#define ITEMS_COUNT 836
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations

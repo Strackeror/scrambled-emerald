@@ -1752,6 +1752,8 @@ extern const u32 gItemIcon_PowerGlove[];
 extern const u32 gItemIconPalette_PowerGlove[];
 extern const u32 gItemIcon_Lantern[];
 extern const u32 gItemIconPalette_Lantern[];
+extern const u32 gItemIcon_CandyJar[];
+extern const u32 gItemIconPalette_CandyJar[];
 
 extern const u32 gItemIcon_ReturnToFieldArrow[];
 extern const u32 gItemIconPalette_ReturnToFieldArrow[];

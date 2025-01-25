@@ -2,10 +2,10 @@
 
 ## Main Scrambled stuff
 - [x] Moves
-- [ ] Pokemons
+- [x] Pokemons
     - [x] Stats
     - [x] Learnsets
-    - [ ] Weird Multiform Pokes: Vivillon Family, Alcremie, Minior
+    - [x] Weird Multiform Pokes: Vivillon Family, Alcremie, Minior
     - [x] Bring in sprites for dooz formes
 - [x] Ability / Held Item Buffs
 - [x] Trainers
@@ -26,7 +26,8 @@
 - [ ] Faster animations
     - [ ] Overworld Movement
     - [ ] Battles
-- [ ] HM Items
+- [x] HM Items
+    - [ ] Still need fly (?)
 - [ ] Bag Categories
 - [X] Direct EV editing
 - [X] Direct Ability switching

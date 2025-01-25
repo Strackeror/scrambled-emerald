@@ -14190,5 +14190,22 @@ const struct Item gItemsInfo[] =
         .iconPic = gItemIcon_PowerGlove,
         .iconPalette = gItemIconPalette_PowerGlove,
     },
+
+    [ITEM_CANDY_JAR] =
+    {
+        .name = _("Candy Jar"),
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "Raises the level\n"
+            "of a Pokémon to\n"
+            "the current cap."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
+        .effect = gItemEffect_RareCandy,
+        .iconPic = gItemIcon_CandyJar,
+        .iconPalette = gItemIconPalette_CandyJar,
+    },
+
 };
 

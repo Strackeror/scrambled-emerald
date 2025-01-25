@@ -2117,3 +2117,6 @@ const u32 gItemIconPalette_PowerGlove[] = INCBIN_U32("graphics/items/extra/power
 
 const u32 gItemIcon_Lantern[] = INCBIN_U32("graphics/items/extra/lantern.4bpp.lz");
 const u32 gItemIconPalette_Lantern[] = INCBIN_U32("graphics/items/extra/lantern.gbapal.lz");
+
+const u32 gItemIcon_CandyJar[] = INCBIN_U32("graphics/items/extra/candy_jar.4bpp.lz");
+const u32 gItemIconPalette_CandyJar[] = INCBIN_U32("graphics/items/extra/candy_jar.gbapal.lz");
