@@ -14093,4 +14093,102 @@ const struct Item gItemsInfo[] =
         .iconPic = gItemIcon_PokeshiDoll,
         .iconPalette = gItemIconPalette_PokeshiDoll,
     },
+    
+     // HM Items
+    [ITEM_SURFBOARD] =
+    {
+        .name = _("Surfboard"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "This flat board\n"
+            "is shaped for\n"
+            "riding waves."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Surfboard,
+        .iconPic = gItemIcon_Surfboard,
+        .iconPalette = gItemIconPalette_Surfboard,
+    },
+
+    [ITEM_AXE] =
+    {
+        .name = _("Axe"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "A small cutting\n"
+            "instrument best for\n"
+            "clearing bushes."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Axe,
+        .iconPic = gItemIcon_Axe,
+        .iconPalette = gItemIconPalette_Axe,
+    },
+
+    [ITEM_PICKAXE] =
+    {
+        .name = _("Pickaxe"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "A small iron\n"
+            "pickaxe. It can\n"
+            "smash rocks."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Hammer,
+        .iconPic = gItemIcon_Pickaxe,
+        .iconPalette = gItemIconPalette_Pickaxe,
+    },
+
+    [ITEM_DIVING_SUIT] =
+    {
+        .name = _("Diving suit"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "Portable suit made\n"
+            "for diving from\n"
+            "the SURFBOARD."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_DivingSuit,
+        .iconPic = gItemIcon_ScubaGear,
+        .iconPalette = gItemIconPalette_ScubaGear,
+    },
+
+    [ITEM_LANTERN] =
+    {
+        .name = _("Lantern"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "A bright lantern\n"
+            "that can light dark\n"
+            "caves."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Lantern,
+        .iconPic = gItemIcon_Lantern,
+        .iconPalette = gItemIconPalette_Lantern,
+    },
+
+    [ITEM_POWER_GLOVE] =
+    {
+        .name = _("Power glove"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "A special glove\n"
+            "that makes moving\n"
+            "heavy rocks easy."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_PowerGlove,
+        .iconPic = gItemIcon_PowerGlove,
+        .iconPalette = gItemIconPalette_PowerGlove,
+    },
 };
+
