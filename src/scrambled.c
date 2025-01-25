@@ -8,7 +8,8 @@
 const struct EggPool gEggPools[] = {
     [SCRAMBLED_EGG_STARTER] = {
         .name = _("Starter Egg"),
-        .species = (const u16[] ) {
+        .description = COMPOUND_STRING("Contains a Grass, Fire, or Water-type starter Pokémon."),
+        .species = (const u16[]) {
             SPECIES_QUAXLY,
             SPECIES_SNIVY,
             SPECIES_CYNDAQUIL,
@@ -40,7 +41,8 @@ const struct EggPool gEggPools[] = {
         },
     },
     [SCRAMBLED_EGG_NORMAL] = {
-        .name = _("Normal Egg"),
+        .name = _("Everyday Egg"),
+        .description = COMPOUND_STRING("Holds a common Normal-type Pokémon."),
         .species = (const u16[]) {
             SPECIES_SMEARGLE,
             SPECIES_YUNGOOS,
@@ -60,7 +62,8 @@ const struct EggPool gEggPools[] = {
         },
     },
     [SCRAMBLED_EGG_BIRD] = {
-        .name = _("Bird Egg"),
+        .name = _("Skybound Egg"),
+        .description = COMPOUND_STRING("A Flying-type Pokémon awaits inside."),
         .species = (const u16[]) {
             SPECIES_ROOKIDEE,
             SPECIES_VULLABY,
@@ -78,7 +81,8 @@ const struct EggPool gEggPools[] = {
         },
     },
     [SCRAMBLED_EGG_BUG] = {
-        .name = _("Bug Egg"),
+        .name = _("Crawler Egg"),
+        .description = COMPOUND_STRING("Home to a Bug-type Pokémon."),
         .species = (const u16[]) {
             SPECIES_TAROUNTULA,
             SPECIES_GRUBBIN,
@@ -99,7 +103,8 @@ const struct EggPool gEggPools[] = {
         },
     },
     [SCRAMBLED_EGG_GRASS] = {
-        .name = _("Grassy Egg"),
+        .name = _("Verdant Egg"),
+        .description = COMPOUND_STRING("Contains a Grass-type Pokémon."),
         .species = (const u16[]) {
             SPECIES_LOTAD,
             SPECIES_APPLIN,
@@ -123,7 +128,8 @@ const struct EggPool gEggPools[] = {
         },
     },
     [SCRAMBLED_EGG_CITY] = {
-        .name = _("City Egg"),
+        .name = _("Urban Egg"),
+        .description = COMPOUND_STRING("Holds Poison, Dark, or Electric-type city Pokémon."),
         .species = (const u16[]) {
             SPECIES_TOXEL,
             SPECIES_PAWNIARD,
@@ -153,7 +159,8 @@ const struct EggPool gEggPools[] = {
         },
     },
     [SCRAMBLED_EGG_DESERT] = {
-        .name = _("Desert Egg"),
+        .name = _("Arid Egg"),
+        .description = COMPOUND_STRING("A Fire, Ground, or Rock-type desert Pokémon."),
         .species = (const u16[]) {
             SPECIES_BLITZLE,
             SPECIES_LITLEO,
@@ -177,7 +184,8 @@ const struct EggPool gEggPools[] = {
         },
     },
     [SCRAMBLED_EGG_ICY] = {
-        .name = _("Icy Egg"),
+        .name = _("Frosted Egg"),
+        .description = COMPOUND_STRING("Contains an Ice-type Pokémon."),
         .species = (const u16[]) {
             SPECIES_VULPIX_ALOLA,
             SPECIES_SNOVER,
@@ -197,7 +205,8 @@ const struct EggPool gEggPools[] = {
         },
     },
     [SCRAMBLED_EGG_CAVE] = {
-        .name = _("Cave Egg"),
+        .name = _("Rocky Egg"),
+        .description = COMPOUND_STRING("Holds Rock, Ground, or Fighting-type cave Pokémon."),
         .species = (const u16[]) {
             SPECIES_BONSLY,
             SPECIES_GOLETT,
@@ -232,6 +241,7 @@ const struct EggPool gEggPools[] = {
     },
     [SCRAMBLED_EGG_WATER] = {
         .name = _("Aquatic Egg"),
+        .description = COMPOUND_STRING("A Water-type Pokémon awaits."),
         .species = (const u16[]) {
             SPECIES_TENTACOOL,
             SPECIES_MAREANIE,
@@ -267,7 +277,8 @@ const struct EggPool gEggPools[] = {
         },
     },
     [SCRAMBLED_EGG_FAIRY] = {
-        .name = _("Mystic Egg"),
+        .name = _("Enchanted Egg"),
+        .description = COMPOUND_STRING("Contains a Fairy or Psychic-type Pokémon."),
         .species = (const u16[]) {
             SPECIES_CLEFFA,
             SPECIES_SPOINK,
@@ -294,7 +305,8 @@ const struct EggPool gEggPools[] = {
         },
     },
     [SCRAMBLED_EGG_GHOST] = {
-        .name = _("Ghost Egg"),
+        .name = _("Phantom Egg"),
+        .description = COMPOUND_STRING("Holds a Ghost or Dark-type Pokémon."),
         .species = (const u16[]) {
             SPECIES_DUSKULL,
             SPECIES_POLTCHAGEIST,
@@ -313,7 +325,8 @@ const struct EggPool gEggPools[] = {
         },
     },
     [SCRAMBLED_EGG_LV20] = {
-        .name = _("Dawn Egg"),
+        .name = _("Journey Egg"),
+        .description = COMPOUND_STRING("A mix of Pokémon for early-game trainers."),
         .species = (const u16[]) {
             SPECIES_SNEASEL_HISUI,
             SPECIES_GLIGAR,
@@ -360,7 +373,8 @@ const struct EggPool gEggPools[] = {
         },
     },
     [SCRAMBLED_EGG_LV30] = {
-        .name = _("Star Egg"),
+        .name = _("Explorer Egg"),
+        .description = COMPOUND_STRING("Stronger Pokémon for mid-game trainers."),
         .species = (const u16[]) {
             SPECIES_FALINKS,
             SPECIES_TAUROS_PALDEA_COMBAT,
@@ -386,7 +400,8 @@ const struct EggPool gEggPools[] = {
         },
     },
     [SCRAMBLED_EGG_LV35] = {
-        .name = _("Horizon Egg"),
+        .name = _("Apex Egg"),
+        .description = COMPOUND_STRING("Rare and powerful Pokémon for experienced trainers."),
         .species = (const u16[]) {
             SPECIES_KELDEO,
             SPECIES_STONJOURNER,
@@ -406,7 +421,8 @@ const struct EggPool gEggPools[] = {
         },
     },
     [SCRAMBLED_EGG_LV40] = {
-        .name = _("Aurora Egg"),
+        .name = _("Mystic Egg"),
+        .description = COMPOUND_STRING("Contains legendary or mythical Pokémon."),
         .species = (const u16[]) {
             SPECIES_SPECTRIER,
             SPECIES_GLASTRIER,
@@ -422,7 +438,8 @@ const struct EggPool gEggPools[] = {
         },
     },
     [SCRAMBLED_EGG_LV45] = {
-        .name = _("Eclipse Egg"),
+        .name = _("Legendary Egg"),
+        .description = COMPOUND_STRING("Holds legendary Pokémon of immense power."),
         .species = (const u16[]) {
             SPECIES_RAIKOU,
             SPECIES_WALKING_WAKE,
@@ -463,7 +480,8 @@ const struct EggPool gEggPools[] = {
         },
     },
     [SCRAMBLED_EGG_LV50] = {
-        .name = _("Eternal Egg"),
+        .name = _("Titan Egg"),
+        .description = COMPOUND_STRING("Contains the most powerful legendary Pokémon."),
         .species = (const u16[]) {
             SPECIES_ETERNATUS,
             SPECIES_MEWTWO,
@@ -476,7 +494,8 @@ const struct EggPool gEggPools[] = {
         },
     },
     [SCRAMBLED_EGG_RANDOM] = {
-        .name = _("Surprise Egg"),
+        .name = _("Mystery Egg"),
+        .description = COMPOUND_STRING("A random Pokémon-could be common or rare!"),
         .species = NULL
     }
 };
@@ -556,9 +575,9 @@ u8 GiveScrambledEgg(u8 poolId)
 
     while (TRUE)
     {
-        u8 type = TYPE_NORMAL + Random() % 18;
+        u8 type = TYPE_NORMAL + Random() % 19;
         const u8 *speciesTypes = gSpeciesInfo[species].types;
-        if (speciesTypes[0] != type && speciesTypes[1] != type)
+        if (speciesTypes[0] != type && speciesTypes[1] != type && type != TYPE_MYSTERY)
         {
             SetMonData(&mon, MON_DATA_TERA_TYPE, &type);
             break;

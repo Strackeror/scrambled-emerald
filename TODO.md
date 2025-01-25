@@ -21,16 +21,25 @@
 - [x] Shops
 - [x] TMs
 - [x] Eggs
+- [x] HM Items
+    - [ ] Make npcs give them
+    - [ ] Still need fly (?)
+- [X] Direct EV editing
+- [X] Direct Ability switching
+- [X] Set mode
 
 ## QoL
+- [ ] Improve options menu
 - [ ] Faster animations
     - [ ] Overworld Movement
     - [ ] Battles
-- [x] HM Items
-    - [ ] Still need fly (?)
 - [ ] Bag Categories
-- [X] Direct EV editing
-- [X] Direct Ability switching
 - [ ] AI Action visualizer
 - [ ] In-game calc
 - [ ] Improve move relearner interface
+
+
+## Small things to not forget
+- Give candy jar at the start
+- Give running shoes at the start
+- Fix move relearner for TMs at high level

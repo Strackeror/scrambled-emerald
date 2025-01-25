@@ -17,6 +17,7 @@
 #include "item.h"
 #include "item_icon.h"
 #include "item_menu.h"
+#include "line_break.h"
 #include "list_menu.h"
 #include "main.h"
 #include "malloc.h"
@@ -608,7 +609,7 @@ static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, s
         if (sMartInfo.martType == MART_TYPE_NORMAL)
             description = ItemId_GetDescription(item);
         else
-            description = gText_EmptyString2;
+            description = gEggPools[item].description;
     }
     else
     {
@@ -753,7 +754,9 @@ static void BuyMenuInitWindows(void)
 
 static void BuyMenuPrint(u8 windowId, const u8 *text, u8 x, u8 y, s8 speed, u8 colorSet)
 {
-    AddTextPrinterParameterized4(windowId, FONT_NORMAL, x, y, 0, 0, sShopBuyMenuTextColors[colorSet], speed, text);
+    StringCopy(gStringVar1, text);
+    BreakStringAutomatic(gStringVar1, 100, 3, FONT_SHORT_NARROW);
+    AddTextPrinterParameterized4(windowId, FONT_SHORT_NARROW, x, y, 0, 0, sShopBuyMenuTextColors[colorSet], speed, gStringVar1);
 }
 
 static void BuyMenuDisplayMessage(u8 taskId, const u8 *text, TaskFunc callback)

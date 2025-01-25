@@ -31,6 +31,7 @@ struct EggPool
 {
     const u16 *species;
     const u8 name[16];
+    const u8* description;
 };
 
 extern const struct EggPool gEggPools[];

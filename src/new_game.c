@@ -208,6 +208,7 @@ void NewGameInitData(void)
     ResetContestLinkResults();
     ResetItemFlags();
     VarSet(VAR_LEVEL_CAP, 10);
+    gSaveBlock2Ptr->optionsBattleStyle = 1;
 }
 
 static void ResetMiniGamesRecords(void)

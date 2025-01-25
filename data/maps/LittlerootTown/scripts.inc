@@ -118,6 +118,7 @@ LittlerootTown_EventScript_StepOffTruckMale::
 	setvar VAR_0x8005, 8
 	call LittlerootTown_EventScript_GoInsideWithMom
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_TRUCK
+	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 2
 	warpsilent MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F, 8, 8
 	waitstate
 	releaseall
@@ -129,6 +130,7 @@ LittlerootTown_EventScript_StepOffTruckFemale::
 	setvar VAR_0x8005, 8
 	call LittlerootTown_EventScript_GoInsideWithMom
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_TRUCK
+	setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 2
 	warpsilent MAP_LITTLEROOT_TOWN_MAYS_HOUSE_1F, 2, 8
 	waitstate
 	releaseall
@@ -149,6 +151,8 @@ LittlerootTown_EventScript_GoInsideWithMom::
 	delay 10
 	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachPlayerAtTruck
 	waitmovement 0
+	giveitem ITEM_CANDY_JAR, 1
+	setflag FLAG_SYS_B_DASH
 	msgbox LittlerootTown_Text_OurNewHomeLetsGoInside, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachDoor
@@ -189,6 +193,9 @@ LittlerootTown_EventScript_GoInsideWithMom::
 		setvar VAR_PETALBURG_CITY_STATE, 1
 		setvar VAR_PETALBURG_GYM_STATE, 2
 		setvar VAR_PETALBURG_WOODS_STATE, 1
+
+
+
 	return
 
 LittlerootTown_Movement_MomExitHouse:
@@ -411,11 +418,14 @@ LittlerootTown_EventScript_GoSaveBirchTrigger::
 	closemessage
 	applymovement LOCALID_TWIN, Common_Movement_FaceOriginalDirection
 	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_Movement_PushPlayerBackFromRoute
+	waitmovement 0
 	releaseall
 	end
 
 LittlerootTown_EventScript_End::
 	setvar VAR_LITTLEROOT_TOWN_STATE, 2
+	releaseall
 	end
 
 LittlerootTown_EventScript_TownSign::
