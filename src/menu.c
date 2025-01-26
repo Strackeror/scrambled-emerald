@@ -598,11 +598,15 @@ u32 GetPlayerTextSpeed(void)
 
 u8 GetPlayerTextSpeedDelay(void)
 {
-    u32 speed;
-    if (gSaveBlock2Ptr->optionsTextSpeed > OPTIONS_TEXT_SPEED_FAST)
-        gSaveBlock2Ptr->optionsTextSpeed = OPTIONS_TEXT_SPEED_MID;
-    speed = GetPlayerTextSpeed();
-    return sTextSpeedFrameDelays[speed];
+    switch (GetPlayerTextSpeed()) {
+        case OPTIONS_TEXT_SPEED_FAST:
+            return 4;
+        case OPTIONS_TEXT_SPEED_MID:
+            return 2;
+        case OPTIONS_TEXT_SPEED_SLOW:
+        default:
+            return 1;
+    }
 }
 
 u8 AddStartMenuWindow(u8 numActions)

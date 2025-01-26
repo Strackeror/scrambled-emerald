@@ -391,27 +391,28 @@ bool32 AddTextPrinter(struct TextPrinterTemplate *printerTemplate, u8 speed, voi
 
 void RunTextPrinters(void)
 {
-    int i;
-
-    if (!gDisableTextPrinters)
+    if (gDisableTextPrinters)
+        return;
+    for (int i = 0; i < WINDOWS_MAX; ++i)
     {
-        for (i = 0; i < WINDOWS_MAX; ++i)
-        {
-            if (sTextPrinters[i].active)
+        if (!sTextPrinters[i].active)
+            continue;
+
+        u16 repeatCount = max(1, sTextPrinters[i].textSpeed);
+        for (int repeat = 0; repeat < repeatCount; repeat++) {
+            u16 renderCmd = RenderFont(&sTextPrinters[i]);
+            switch (renderCmd)
             {
-                u16 renderCmd = RenderFont(&sTextPrinters[i]);
-                switch (renderCmd)
-                {
-                case RENDER_PRINT:
-                    CopyWindowToVram(sTextPrinters[i].printerTemplate.windowId, COPYWIN_GFX);
-                case RENDER_UPDATE:
-                    if (sTextPrinters[i].callback != NULL)
-                        sTextPrinters[i].callback(&sTextPrinters[i].printerTemplate, renderCmd);
-                    break;
-                case RENDER_FINISH:
-                    sTextPrinters[i].active = FALSE;
-                    break;
-                }
+            case RENDER_PRINT:
+                CopyWindowToVram(sTextPrinters[i].printerTemplate.windowId, COPYWIN_GFX);
+            case RENDER_UPDATE:
+                if (sTextPrinters[i].callback != NULL)
+                    sTextPrinters[i].callback(&sTextPrinters[i].printerTemplate, renderCmd);
+                break;
+            case RENDER_FINISH:
+                repeat = repeatCount;
+                sTextPrinters[i].active = FALSE;
+                break;
             }
         }
     }
@@ -1083,10 +1084,7 @@ static u16 RenderText(struct TextPrinter *textPrinter)
     switch (textPrinter->state)
     {
     case RENDER_STATE_HANDLE_CHAR:
-        if (JOY_HELD(A_BUTTON | B_BUTTON) && subStruct->hasPrintBeenSpedUp)
-            textPrinter->delayCounter = 0;
-
-        if (textPrinter->delayCounter && textPrinter->textSpeed)
+        if (textPrinter->delayCounter)
         {
             textPrinter->delayCounter--;
             if (gTextFlags.canABSpeedUpPrint && (JOY_NEW(A_BUTTON | B_BUTTON)))
@@ -1100,7 +1098,7 @@ static u16 RenderText(struct TextPrinter *textPrinter)
         if (!(gBattleTypeFlags & BATTLE_TYPE_RECORDED) && gTextFlags.autoScroll)
             textPrinter->delayCounter = 3;
         else
-            textPrinter->delayCounter = textPrinter->textSpeed;
+            textPrinter->delayCounter = 0;
 
         currChar = *textPrinter->printerTemplate.currentChar;
         textPrinter->printerTemplate.currentChar++;
