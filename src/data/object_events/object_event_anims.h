@@ -1,3 +1,8 @@
+#ifdef __INTELLISENSE__
+#include "global.h"
+#include "constants/event_object_movement.h"
+#endif
+
 static const union AnimCmd sAnim_StayStill[] =
 {
     ANIMCMD_FRAME(0, 8),
@@ -644,37 +649,37 @@ static const union AnimCmd sAnim_GoFastestEast[] =
 
 static const union AnimCmd sAnim_RunSouth[] =
 {
-    ANIMCMD_FRAME(12, 5),
-    ANIMCMD_FRAME(9, 3),
-    ANIMCMD_FRAME(13, 5),
-    ANIMCMD_FRAME(9, 3),
+    ANIMCMD_FRAME(12, 2),
+    ANIMCMD_FRAME(9, 2),
+    ANIMCMD_FRAME(13, 2),
+    ANIMCMD_FRAME(9, 2),
     ANIMCMD_JUMP(0),
 };
 
 static const union AnimCmd sAnim_RunNorth[] =
 {
-    ANIMCMD_FRAME(14, 5),
-    ANIMCMD_FRAME(10, 3),
-    ANIMCMD_FRAME(15, 5),
-    ANIMCMD_FRAME(10, 3),
+    ANIMCMD_FRAME(14, 2),
+    ANIMCMD_FRAME(10, 2),
+    ANIMCMD_FRAME(15, 2),
+    ANIMCMD_FRAME(10, 2),
     ANIMCMD_JUMP(0),
 };
 
 static const union AnimCmd sAnim_RunWest[] =
 {
-    ANIMCMD_FRAME(16, 5),
-    ANIMCMD_FRAME(11, 3),
-    ANIMCMD_FRAME(17, 5),
-    ANIMCMD_FRAME(11, 3),
+    ANIMCMD_FRAME(16, 2),
+    ANIMCMD_FRAME(11, 2),
+    ANIMCMD_FRAME(17, 2),
+    ANIMCMD_FRAME(11, 2),
     ANIMCMD_JUMP(0),
 };
 
 static const union AnimCmd sAnim_RunEast[] =
 {
-    ANIMCMD_FRAME(16, 5, .hFlip = TRUE),
-    ANIMCMD_FRAME(11, 3, .hFlip = TRUE),
-    ANIMCMD_FRAME(17, 5, .hFlip = TRUE),
-    ANIMCMD_FRAME(11, 3, .hFlip = TRUE),
+    ANIMCMD_FRAME(16, 2, .hFlip = TRUE),
+    ANIMCMD_FRAME(11, 2, .hFlip = TRUE),
+    ANIMCMD_FRAME(17, 2, .hFlip = TRUE),
+    ANIMCMD_FRAME(11, 2, .hFlip = TRUE),
     ANIMCMD_JUMP(0),
 };
 
@@ -1170,6 +1175,10 @@ const union AnimCmd *const sAnimTable_Following[] = {
     [ANIM_EXIT_POKEBALL_FAST_NORTH] = sAnim_ExitPokeballFastNorth,
     [ANIM_EXIT_POKEBALL_FAST_WEST] = sAnim_ExitPokeballFastWest,
     [ANIM_EXIT_POKEBALL_FAST_EAST] = sAnim_ExitPokeballFastEast,
+    [ANIM_RUN_SOUTH] = sAnim_GoFastSouth2F,
+    [ANIM_RUN_NORTH] = sAnim_GoFastNorth2F,
+    [ANIM_RUN_WEST] = sAnim_GoFastWest2F,
+    [ANIM_RUN_EAST] = sAnim_GoFastEast2F,
 };
 
 // Like the above, but has separate frames for facing right
@@ -1198,6 +1207,10 @@ const union AnimCmd *const sAnimTable_Following_Asym[] = {
     [ANIM_EXIT_POKEBALL_FAST_NORTH] = sAnim_ExitPokeballFastNorth,
     [ANIM_EXIT_POKEBALL_FAST_WEST] = sAnim_ExitPokeballFastWest,
     [ANIM_EXIT_POKEBALL_FAST_EAST] = sAnim_ExitPokeballFastEast_Asym,
+    [ANIM_RUN_SOUTH] = sAnim_GoFastSouth2F,
+    [ANIM_RUN_NORTH] = sAnim_GoFastNorth2F,
+    [ANIM_RUN_WEST] = sAnim_GoFastWest2F,
+    [ANIM_RUN_EAST] = sAnim_GoFastEast2F_Asym,
 };
 
 static const union AnimCmd *const sAnimTable_HoOh[] = {
