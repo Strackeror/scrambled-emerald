@@ -295,7 +295,7 @@ fn handle_evos(
                     "{{EVO_LEVEL_FAMILY_OF_FOUR, {}, {}}}",
                     evo_data.level, species
                 )),
-                "Spinning" => Some(format!("{{EVO_LEVEL, 0, {species}}}")),
+                "Spinning" => Some(format!("{{EVO_LEVEL, {}, {species}}}", evo_data.level)),
                 "LevelUp_WithMove" => {
                     let move_name = moves.get(param()?)?.to_case(Case::ScreamingSnake);
                     Some(format!(
@@ -344,6 +344,7 @@ fn build_learnset(entry: &Personal) -> Result<String> {
     let teach_name = teachable_name(entry);
     let c_level = |lvlup: u8| match lvlup {
         253 => 0,
+        2 => 1,
         n => n,
     };
 

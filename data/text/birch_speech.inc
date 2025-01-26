@@ -50,12 +50,11 @@ gText_Birch_YourePlayer::
 	.string "$"
 
 gText_Birch_AreYouReady::
-	.string "All right, are you ready?\p"
-	.string "Your very own adventure is about\n"
-	.string "to unfold.\p"
-	.string "Take courage, and leap into the\n"
-	.string "world of POKéMON where dreams,\l"
-	.string "adventure, and friendships await!\p"
+	.string "All right, one more thing.\p"
+	.string "This romhack is currently in\n"
+	.string "alpha.\p"
+	.string "Refer to the doozdex for\n"
+	.string "more info on trainers and eggs.\p"
 	.string "Well, I'll be expecting you later.\n"
 	.string "Come see me in my POKéMON LAB.\p"
 	.string "$"

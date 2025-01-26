@@ -6813,21 +6813,21 @@ static void InitSummaryScreenData(void)
         sStorage->summaryMon.mon = &sSavedMovingMon;
         sStorage->summaryStartPos = 0;
         sStorage->summaryMaxPos = 0;
-        sStorage->summaryScreenMode = SUMMARY_MODE_BOX_CURSOR;
+        sStorage->summaryScreenMode = BW_SUMMARY_MODE_BOX_CURSOR;
     }
     else if (sCursorArea == CURSOR_AREA_IN_PARTY)
     {
         sStorage->summaryMon.mon = gPlayerParty;
         sStorage->summaryStartPos = sCursorPosition;
         sStorage->summaryMaxPos = CountPartyMons() - 1;
-        sStorage->summaryScreenMode = SUMMARY_MODE_NORMAL;
+        sStorage->summaryScreenMode = BW_SUMMARY_MODE_NORMAL;
     }
     else
     {
         sStorage->summaryMon.box = GetBoxedMonPtr(StorageGetCurrentBox(), 0);
         sStorage->summaryStartPos = sCursorPosition;
         sStorage->summaryMaxPos = IN_BOX_COUNT - 1;
-        sStorage->summaryScreenMode = SUMMARY_MODE_BOX;
+        sStorage->summaryScreenMode = BW_SUMMARY_MODE_BOX;
     }
 }
 

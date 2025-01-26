@@ -42,7 +42,7 @@ const struct EggPool gEggPools[] = {
     },
     [SCRAMBLED_EGG_NORMAL] = {
         .name = _("Everyday Egg"),
-        .description = COMPOUND_STRING("Holds a common Normal-type Pokémon."),
+        .description = COMPOUND_STRING("Holds a Normal-type Pokémon."),
         .species = (const u16[]) {
             SPECIES_SMEARGLE,
             SPECIES_YUNGOOS,
@@ -63,7 +63,7 @@ const struct EggPool gEggPools[] = {
     },
     [SCRAMBLED_EGG_BIRD] = {
         .name = _("Skybound Egg"),
-        .description = COMPOUND_STRING("A Flying-type Pokémon awaits inside."),
+        .description = COMPOUND_STRING("Holds a Flying-type Pokémon."),
         .species = (const u16[]) {
             SPECIES_ROOKIDEE,
             SPECIES_VULLABY,
@@ -82,7 +82,7 @@ const struct EggPool gEggPools[] = {
     },
     [SCRAMBLED_EGG_BUG] = {
         .name = _("Crawler Egg"),
-        .description = COMPOUND_STRING("Home to a Bug-type Pokémon."),
+        .description = COMPOUND_STRING("Holds a Bug-type Pokémon."),
         .species = (const u16[]) {
             SPECIES_TAROUNTULA,
             SPECIES_GRUBBIN,
@@ -104,7 +104,7 @@ const struct EggPool gEggPools[] = {
     },
     [SCRAMBLED_EGG_GRASS] = {
         .name = _("Verdant Egg"),
-        .description = COMPOUND_STRING("Contains a Grass-type Pokémon."),
+        .description = COMPOUND_STRING("Holds a Grass-type Pokémon."),
         .species = (const u16[]) {
             SPECIES_LOTAD,
             SPECIES_APPLIN,
@@ -129,7 +129,7 @@ const struct EggPool gEggPools[] = {
     },
     [SCRAMBLED_EGG_CITY] = {
         .name = _("Urban Egg"),
-        .description = COMPOUND_STRING("Holds Poison, Dark, or Electric-type city Pokémon."),
+        .description = COMPOUND_STRING("Holds a city-dwelling Pokémon."),
         .species = (const u16[]) {
             SPECIES_TOXEL,
             SPECIES_PAWNIARD,
@@ -160,7 +160,7 @@ const struct EggPool gEggPools[] = {
     },
     [SCRAMBLED_EGG_DESERT] = {
         .name = _("Arid Egg"),
-        .description = COMPOUND_STRING("A Fire, Ground, or Rock-type desert Pokémon."),
+        .description = COMPOUND_STRING("Holds a desert-dwelling Pokémon."),
         .species = (const u16[]) {
             SPECIES_BLITZLE,
             SPECIES_LITLEO,
@@ -185,7 +185,7 @@ const struct EggPool gEggPools[] = {
     },
     [SCRAMBLED_EGG_ICY] = {
         .name = _("Frosted Egg"),
-        .description = COMPOUND_STRING("Contains an Ice-type Pokémon."),
+        .description = COMPOUND_STRING("Holds an Ice-type Pokémon."),
         .species = (const u16[]) {
             SPECIES_VULPIX_ALOLA,
             SPECIES_SNOVER,
@@ -206,7 +206,7 @@ const struct EggPool gEggPools[] = {
     },
     [SCRAMBLED_EGG_CAVE] = {
         .name = _("Rocky Egg"),
-        .description = COMPOUND_STRING("Holds Rock, Ground, or Fighting-type cave Pokémon."),
+        .description = COMPOUND_STRING("Holds a cave-dwelling Pokémon."),
         .species = (const u16[]) {
             SPECIES_BONSLY,
             SPECIES_GOLETT,
@@ -241,7 +241,7 @@ const struct EggPool gEggPools[] = {
     },
     [SCRAMBLED_EGG_WATER] = {
         .name = _("Aquatic Egg"),
-        .description = COMPOUND_STRING("A Water-type Pokémon awaits."),
+        .description = COMPOUND_STRING("Holds an aquatic"),
         .species = (const u16[]) {
             SPECIES_TENTACOOL,
             SPECIES_MAREANIE,
@@ -278,7 +278,7 @@ const struct EggPool gEggPools[] = {
     },
     [SCRAMBLED_EGG_FAIRY] = {
         .name = _("Enchanted Egg"),
-        .description = COMPOUND_STRING("Contains a Fairy or Psychic-type Pokémon."),
+        .description = COMPOUND_STRING("Holds a Fairy or Psychic-type Pokémon."),
         .species = (const u16[]) {
             SPECIES_CLEFFA,
             SPECIES_SPOINK,
@@ -306,7 +306,7 @@ const struct EggPool gEggPools[] = {
     },
     [SCRAMBLED_EGG_GHOST] = {
         .name = _("Phantom Egg"),
-        .description = COMPOUND_STRING("Holds a Ghost or Dark-type Pokémon."),
+        .description = COMPOUND_STRING("Holds a Ghost-type Pokémon."),
         .species = (const u16[]) {
             SPECIES_DUSKULL,
             SPECIES_POLTCHAGEIST,
