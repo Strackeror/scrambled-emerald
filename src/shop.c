@@ -53,6 +53,7 @@
 enum {
     WIN_BUY_SELL_QUIT,
     WIN_BUY_QUIT,
+    WIN_EGG_CHOOSE,
 };
 
 enum {
@@ -92,6 +93,7 @@ struct MartInfo
     const u16 *itemList;
     u16 itemCount;
     u8 windowId;
+    u8 detailWindowId;
     u8 martType;
 };
 
@@ -160,6 +162,8 @@ static void Task_HandleShopMenuSell(u8 taskId);
 static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, struct ListMenu *list);
 static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y);
 
+static void StartEggChoose(u8 taskId, u8 eggPool);
+
 static const struct YesNoFuncTable sShopPurchaseYesNoFuncs =
 {
     BuyMenuTryMakePurchase,
@@ -199,7 +203,8 @@ static const struct WindowTemplate sShopMenuWindowTemplates[] =
         .height = 4,
         .paletteNum = 15,
         .baseBlock = 0x0008,
-    }
+    },
+
 };
 
 static const struct ListMenuTemplate sShopBuyMenuListTemplate =
@@ -349,22 +354,11 @@ static u8 CreateShopMenu(u8 martType)
     LockPlayerFieldControls();
     sMartInfo.martType = martType;
 
-    if (martType == MART_TYPE_NORMAL)
-    {
-        struct WindowTemplate winTemplate = sShopMenuWindowTemplates[WIN_BUY_SELL_QUIT];
-        winTemplate.width = GetMaxWidthInMenuTable(sShopMenuActions_BuySellQuit, ARRAY_COUNT(sShopMenuActions_BuySellQuit));
-        sMartInfo.windowId = AddWindow(&winTemplate);
-        sMartInfo.menuActions = sShopMenuActions_BuySellQuit;
-        numMenuItems = ARRAY_COUNT(sShopMenuActions_BuySellQuit);
-    }
-    else
-    {
-        struct WindowTemplate winTemplate = sShopMenuWindowTemplates[WIN_BUY_QUIT];
-        winTemplate.width = GetMaxWidthInMenuTable(sShopMenuActions_BuyQuit, ARRAY_COUNT(sShopMenuActions_BuyQuit));
-        sMartInfo.windowId = AddWindow(&winTemplate);
-        sMartInfo.menuActions = sShopMenuActions_BuyQuit;
-        numMenuItems = ARRAY_COUNT(sShopMenuActions_BuyQuit);
-    }
+    struct WindowTemplate winTemplate = sShopMenuWindowTemplates[WIN_BUY_QUIT];
+    winTemplate.width = GetMaxWidthInMenuTable(sShopMenuActions_BuyQuit, ARRAY_COUNT(sShopMenuActions_BuyQuit));
+    sMartInfo.windowId = AddWindow(&winTemplate);
+    sMartInfo.menuActions = sShopMenuActions_BuyQuit;
+    numMenuItems = ARRAY_COUNT(sShopMenuActions_BuyQuit);
 
     SetStandardWindowBorderStyle(sMartInfo.windowId, FALSE);
     PrintMenuTable(sMartInfo.windowId, numMenuItems, sMartInfo.menuActions);
@@ -417,6 +411,7 @@ static void Task_ShopMenu(u8 taskId)
 #define tListTaskId data[7]
 #define tCallbackHi data[8]
 #define tCallbackLo data[9]
+#define tChooseTaskId data[10]
 
 static void Task_HandleShopMenuBuy(u8 taskId)
 {
@@ -581,7 +576,6 @@ static void BuyMenuBuildListMenuTemplate(void)
 
 static void BuyMenuSetListEntry(struct ListMenuItem *menuItem, u16 item, u8 *name)
 {
-    DebugPrintfLevel(2, "NAME %d", item);
     if (sMartInfo.martType == MART_TYPE_NORMAL)
         CopyItemName(item, name);
     else
@@ -1022,6 +1016,18 @@ static void Task_BuyMenu(u8 taskId)
                 }
             }
         }
+
+        itemId = sMartInfo.itemList[sShopData->selectedRow + sShopData->scrollOffset];
+        if (JOY_NEW(SELECT_BUTTON) && sMartInfo.martType == MART_TYPE_EGG && sShopData->selectedRow > 0 && itemId != 0)
+        {
+            if (!IsEnoughMoney(&gSaveBlock1Ptr->money, 1000))
+            {
+                BuyMenuDisplayMessage(taskId, gText_YouDontHaveMoney, BuyMenuReturnToItemList);
+                return;
+            }
+            PlaySE(SE_SELECT);
+            StartEggChoose(taskId, itemId);
+        }
     }
 }
 
@@ -1246,12 +1252,6 @@ static void RecordItemPurchase(u8 taskId)
     }
 }
 
-#undef tItemCount
-#undef tItemId
-#undef tListTaskId
-#undef tCallbackHi
-#undef tCallbackLo
-
 void CreatePokemartMenu(const u16 *itemsForSale)
 {
     CreateShopMenu(MART_TYPE_NORMAL);
@@ -1274,8 +1274,111 @@ void CreateEggMenu()
     SetShopMenuCallback(ScriptContext_Enable);
 }
 
-bool8 ScriptEggShop(struct ScriptContext* ctx) {
+bool8 ScriptEggShop(struct ScriptContext *ctx)
+{
     CreateEggMenu();
     ScriptContext_Stop();
     return TRUE;
 }
+
+static EWRAM_DATA struct ListMenuItem *sPokeItems = NULL;
+static EWRAM_DATA struct ListMenuTemplate sPokeChooseTemplate;
+
+static const struct WindowTemplate sChooseEggTemplate = {
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 1,
+    .width = 9,
+    .height = 15,
+    .paletteNum = 15,
+    .baseBlock = 0x020e,
+};
+
+static const struct ListMenuTemplate sChooseEggListTemplate = {
+    .items = NULL,
+    .moveCursorFunc = NULL,
+    .itemPrintFunc = NULL,
+    .totalItems = 0,
+    .maxShowed = 5,
+    .windowId = WIN_ITEM_LIST,
+    .header_X = 0,
+    .item_X = 8,
+    .cursor_X = 0,
+    .upText_Y = 1,
+    .cursorPal = 2,
+    .fillValue = 1,
+    .cursorShadowPal = 3,
+    .lettersSpacing = 0,
+    .itemVerticalPadding = 0,
+    .scrollMultiple = LIST_NO_MULTIPLE_SCROLL,
+    .fontId = FONT_NARROW,
+    .cursorKind = CURSOR_BLACK_ARROW,
+    .textNarrowWidth = 84,
+};
+
+static void BuildChooseEggListMenu(u8 eggPool, u8 windowId)
+{
+
+    u8 count = 0;
+    while (gEggPools[eggPool].species[count] != SPECIES_NONE)
+        count += 1;
+
+    sPokeItems = Alloc(count * sizeof(*sPokeItems));
+    for (int i = 0; i < count; i++)
+    {
+        u16 id = gEggPools[eggPool].species[i];
+        sPokeItems[i].id = id;
+        sPokeItems[i].name = gSpeciesInfo[id].speciesName;
+    }
+
+    sPokeChooseTemplate = sChooseEggListTemplate;
+    sPokeChooseTemplate.items = sPokeItems;
+    sPokeChooseTemplate.totalItems = count;
+    sPokeChooseTemplate.windowId = windowId;
+    sPokeChooseTemplate.maxShowed = 7;
+}
+static void ExitChooseEgg(u8 taskId)
+{
+    Free(sPokeItems);
+    DestroyListMenuTask(gTasks[taskId].tChooseTaskId, 0, 0);
+    ClearStdWindowAndFrameToTransparent(sMartInfo.detailWindowId, TRUE);
+    BuyMenuDrawGraphics();
+    PutWindowTilemap(WIN_ITEM_DESCRIPTION);
+    gTasks[taskId].func = Task_BuyMenu;
+}
+
+static void Task_HandleInput_EggChoose(u8 taskId)
+{
+    s32 chose = ListMenu_ProcessInput(gTasks[taskId].tChooseTaskId);
+    switch (chose)
+    {
+    case LIST_CANCEL:
+        ExitChooseEgg(taskId);
+        return;
+    case LIST_NOTHING_CHOSEN:
+        break;
+    default:
+        GiveSpecies(chose);
+        PlaySE(SE_SHOP);
+        RemoveMoney(&gSaveBlock1Ptr->money, 1000);
+        ExitChooseEgg(taskId);
+        return;
+    }
+}
+
+static void StartEggChoose(u8 taskId, u8 eggPool)
+{
+    sMartInfo.detailWindowId = AddWindow(&sChooseEggTemplate);
+    BuildChooseEggListMenu(eggPool, sMartInfo.detailWindowId);
+    gTasks[taskId].func = Task_HandleInput_EggChoose;
+    PutWindowTilemap(sMartInfo.detailWindowId);
+    DrawStdFrameWithCustomTileAndPalette(sMartInfo.detailWindowId, TRUE, 1, 13);
+    gTasks[taskId].tChooseTaskId = ListMenuInit(&sPokeChooseTemplate, 0, 0);
+}
+
+#undef tItemCount
+#undef tItemId
+#undef tListTaskId
+#undef tCallbackHi
+#undef tCallbackLo
+#undef tChooseTaskId

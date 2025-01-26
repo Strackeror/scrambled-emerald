@@ -38,5 +38,6 @@ extern const struct EggPool gEggPools[];
 
 u8 MaxEggPool();
 u8 GiveScrambledEgg(u8 poolId);
+u8 GiveSpecies(u16 species);
 
 #endif // SCRAMBLED_H

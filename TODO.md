@@ -38,5 +38,7 @@
 - [ ] In-game calc
 - [ ] Improve move relearner interface
 
-## Bugs
-- Crash when candy jar is registered
+## Requests
+- [x] Pick any starter
+- [ ] Make Tera shard work
+- [ ] Teach any move to a poke

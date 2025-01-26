@@ -559,13 +559,51 @@ static u16 GetRandomSpecies(u8 poolId)
     return choseableArray[Random() % added];
 }
 
-u8 GiveScrambledEgg(u8 poolId)
-{
-    u16 species = GetRandomSpecies(poolId);
-    if (species == SPECIES_NONE)
-        return MON_CANT_GIVE;
+static const u16 sMiniorFormes[] = {
+    SPECIES_MINIOR_METEOR_RED,
+    SPECIES_MINIOR_ORANGE,
+    SPECIES_MINIOR_YELLOW,
+    SPECIES_MINIOR_GREEN,
+    SPECIES_MINIOR_BLUE,
+    SPECIES_MINIOR_INDIGO,
+    SPECIES_MINIOR_VIOLET,
+    SPECIES_NONE,
+};
 
+static const u16 sTaurosFormes[] = {
+    SPECIES_TAUROS_PALDEA_COMBAT,
+    SPECIES_TAUROS_PALDEA_BLAZE,
+    SPECIES_TAUROS_PALDEA_AQUA,
+    SPECIES_NONE,
+};
+
+static const struct
+{
+    u16 species;
+    const u16 *formeList;
+} sSpeciesFormes[] = {
+    { .species = SPECIES_MINIOR, .formeList = sMiniorFormes },
+    { .species = SPECIES_TAUROS_PALDEA_COMBAT, .formeList = sTaurosFormes },
+};
+
+u8 GiveSpecies(u16 species)
+{
     struct Pokemon mon;
+    
+    for (int i = 0; i < ARRAY_COUNT(sSpeciesFormes); ++i) 
+    {
+        if (sSpeciesFormes[i].species != species)
+            continue;
+        u8 count = 0;
+        while (sSpeciesFormes[i].formeList[count] != SPECIES_NONE)
+            count += 1;
+
+        u8 forme = Random() % count;
+        species = sSpeciesFormes[i].formeList[forme];
+        break;
+    }
+
+
     CreateEgg(&mon, species, FALSE);
     u8 eggCycles = 0;
     SetMonData(&mon, MON_DATA_FRIENDSHIP, &eggCycles);
@@ -586,4 +624,12 @@ u8 GiveScrambledEgg(u8 poolId)
     u16 dexNo = SpeciesToNationalPokedexNum(species);
     GetSetPokedexFlag(dexNo, FLAG_SET_CAUGHT);
     return GiveMonToPlayer(&mon);
+}
+
+u8 GiveScrambledEgg(u8 poolId)
+{
+    u16 species = GetRandomSpecies(poolId);
+    if (species == SPECIES_NONE)
+        return MON_CANT_GIVE;
+    return GiveSpecies(species);
 }
