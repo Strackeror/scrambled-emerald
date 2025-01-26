@@ -127,7 +127,7 @@ fn pokemon(
     data: &Pokemon,
     species_list: &[String],
     personal_data: &PersonalArray,
-    tera_trainer: bool
+    tera_trainer: bool,
 ) -> Result<String> {
     if &data.poke_id == "Egg" {
         return Ok(String::new());
@@ -215,9 +215,17 @@ fn trainer(
         &data.poke6,
     ];
 
+    let (ace_id, _) = pokes
+        .iter()
+        .enumerate()
+        .filter(|(id, poke)| poke.poke_id != "Egg")
+        .last()
+        .context("last")?;
+
     let mut pokes: Vec<String> = pokes
         .iter()
-        .map(|poke| pokemon(poke, species_list, personal_data, data.change_gem))
+        .enumerate()
+        .map(|(id, poke)| pokemon(poke, species_list, personal_data, data.change_gem && id == ace_id))
         .collect::<Result<Vec<_>>>()?;
     for (index, pokemon) in &entry.pokemon_override {
         *pokes.get_mut(*index).context("override")? = pokemon_override(&pokemon)?;

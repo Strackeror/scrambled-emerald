@@ -38,8 +38,5 @@
 - [ ] In-game calc
 - [ ] Improve move relearner interface
 
-
-## Small things to not forget
-- Give candy jar at the start
-- Give running shoes at the start
-- Fix move relearner for TMs at high level
+## Bugs
+- Crash when candy jar is registered

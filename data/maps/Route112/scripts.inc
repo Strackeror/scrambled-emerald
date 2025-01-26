@@ -63,9 +63,13 @@ Route112_EventScript_Hiker::
 	msgbox Route112_Text_NotEasyToGetBackToLavaridge, MSGBOX_NPC
 	end
 
-Route112_EventScript_Brice::
-	trainerbattle_single TRAINER_DAN_HONO_BOSS_01, Route112_Text_BriceIntro, Route112_Text_BriceDefeat
+Route112_EventScript_HonoBoss01::
+	trainerbattle_single TRAINER_DAN_HONO_BOSS_01, Route112_Text_BriceIntro, Route112_Text_BriceDefeat, Route112_EventScript_HonoBoss01_Defeat
 	msgbox Route112_Text_BricePostBattle, MSGBOX_AUTOCLOSE
+	end
+	
+Route112_EventScript_HonoBoss01_Defeat::
+	setvar VAR_LEVEL_CAP 32
 	end
 
 Route112_EventScript_Trent::

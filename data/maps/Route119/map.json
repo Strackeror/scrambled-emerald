@@ -642,24 +642,6 @@
   ],
   "coord_events": [
     {
-      "type": "trigger",
-      "x": 25,
-      "y": 31,
-      "elevation": 0,
-      "var": "VAR_ROUTE119_STATE",
-      "var_value": "0",
-      "script": "Route119_EventScript_RivalTrigger1"
-    },
-    {
-      "type": "trigger",
-      "x": 26,
-      "y": 31,
-      "elevation": 0,
-      "var": "VAR_ROUTE119_STATE",
-      "var_value": "0",
-      "script": "Route119_EventScript_RivalTrigger2"
-    },
-    {
       "type": "weather",
       "x": 29,
       "y": 13,

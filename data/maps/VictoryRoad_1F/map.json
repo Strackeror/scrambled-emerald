@@ -32,11 +32,11 @@
       "x": 33,
       "y": 35,
       "elevation": 4,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_SEE_ALL_DIRECTIONS",
-      "trainer_sight_or_berry_tree_id": "4",
+      "trainer_sight_or_berry_tree_id": "1",
       "script": "VictoryRoad_1F_EventScript_Hope",
       "flag": "0"
     },
@@ -45,11 +45,11 @@
       "x": 26,
       "y": 17,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_SEE_ALL_DIRECTIONS",
-      "trainer_sight_or_berry_tree_id": "3",
+      "trainer_sight_or_berry_tree_id": "1",
       "script": "VictoryRoad_1F_EventScript_Albert",
       "flag": "0"
     },
@@ -80,7 +80,7 @@
       "flag": "FLAG_ITEM_VICTORY_ROAD_1F_PP_UP"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_NOLAND",
+      "graphics_id": "OBJ_EVENT_GFX_STEVEN",
       "x": 31,
       "y": 6,
       "elevation": 3,

@@ -16033,7 +16033,6 @@ Ability: ABILITY_MAGIC_BOUNCE
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
 Nature: Timid
-Tera Type: Steel
 - MOVE_MAKE_IT_RAIN
 - MOVE_THUNDER_WAVE
 - MOVE_HAPPY_HOUR
@@ -16045,7 +16044,6 @@ Ability: ABILITY_SHADOW_SHIELD
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Jolly
-Tera Type: Ghost
 - MOVE_SHADOW_CLAW
 - MOVE_BITTER_BLADE
 - MOVE_SACRED_SWORD
@@ -16057,7 +16055,6 @@ Ability: ABILITY_SHADOW_SHIELD
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
 Nature: Modest
-Tera Type: Psychic
 - MOVE_INFERNO
 - MOVE_PSYSTRIKE
 - MOVE_ENERGY_BALL
@@ -16069,7 +16066,6 @@ Ability: ABILITY_WATER_BUBBLE
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Nature: Adamant
-Tera Type: Water
 - MOVE_SURGING_STRIKES
 - MOVE_TRIPLE_AXEL
 - MOVE_JET_PUNCH
@@ -16081,7 +16077,6 @@ Ability: ABILITY_SHADOW_SHIELD
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
 Nature: Hardy
-Tera Type: Psychic
 - MOVE_LANDS_WRATH
 - MOVE_MYSTICAL_POWER
 - MOVE_MYSTICAL_POWER
@@ -16572,7 +16567,6 @@ Ability: ABILITY_MEGA_LAUNCHER
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 252 SpD / 0 Spe
 Nature: Calm
-Tera Type: Dragon
 - MOVE_STEEL_BEAM
 - MOVE_STEEL_BEAM
 - MOVE_ROAR_OF_TIME
@@ -16584,7 +16578,6 @@ Ability: ABILITY_MULTISCALE
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Jolly
-Tera Type: Dragon
 - MOVE_DRAGON_CLAW
 - MOVE_SACRED_SWORD
 - MOVE_POISON_JAB
@@ -16596,7 +16589,6 @@ Ability: ABILITY_SNOW_WARNING
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Jolly
-Tera Type: Dragon
 - MOVE_OUTRAGE
 - MOVE_ICE_HAMMER
 - MOVE_EARTHQUAKE
@@ -16608,7 +16600,6 @@ Ability: ABILITY_MEGA_LAUNCHER
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
 Nature: Timid
-Tera Type: Dragon
 - MOVE_SHADOW_BALL
 - MOVE_DRAGON_ENERGY
 - MOVE_DRAGON_PULSE
@@ -16620,7 +16611,6 @@ Ability: ABILITY_AERILATE
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Nature: Adamant
-Tera Type: Dragon
 - MOVE_EXTREME_SPEED
 - MOVE_EARTHQUAKE
 - MOVE_STONE_EDGE
@@ -16654,7 +16644,6 @@ Ability: ABILITY_LEVITATE
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 0 Atk / 252 Def / 0 SpA / 0 SpD / 0 Spe
 Nature: Bold
-Tera Type: Steel
 - MOVE_STEEL_BEAM
 - MOVE_STEEL_BEAM
 - MOVE_THUNDER_WAVE
@@ -16666,7 +16655,6 @@ Ability: ABILITY_MEGA_LAUNCHER
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
 Nature: Timid
-Tera Type: Steel
 - MOVE_HYDRO_PUMP
 - MOVE_FLASH_CANNON
 - MOVE_FOCUS_BLAST
@@ -16678,7 +16666,6 @@ Ability: ABILITY_MEGA_LAUNCHER
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
 Nature: Modest
-Tera Type: Steel
 - MOVE_SELF_DESTRUCT
 - MOVE_EXPLOSION
 - MOVE_SELF_DESTRUCT
@@ -16690,7 +16677,6 @@ Ability: ABILITY_STURDY
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Jolly
-Tera Type: Steel
 - MOVE_CROSS_CHOP
 - MOVE_METAL_CLAW
 - MOVE_CRUSH_CLAW
@@ -16702,7 +16688,6 @@ Ability: ABILITY_GALE_WINGS
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Nature: Adamant
-Tera Type: Steel
 - MOVE_SKY_ATTACK
 - MOVE_STEEL_WING
 - MOVE_ACROBATICS
@@ -16736,7 +16721,6 @@ Ability: ABILITY_INTIMIDATE
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Jolly
-Tera Type: Flying
 - MOVE_FINAL_GAMBIT
 - MOVE_ENDEAVOR
 - MOVE_PARTING_SHOT
@@ -16748,7 +16732,6 @@ Ability: ABILITY_PUNK_ROCK
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
 Nature: Timid
-Tera Type: Flying
 - MOVE_AEROBLAST
 - MOVE_PSYCHIC_NOISE
 - MOVE_HEAT_WAVE
@@ -16760,7 +16743,6 @@ Ability: ABILITY_HUSTLE
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Jolly
-Tera Type: Flying
 - MOVE_MEGA_KICK
 - MOVE_DRILL_PECK
 - MOVE_TEMPER_FLARE
@@ -16772,7 +16754,6 @@ Ability: ABILITY_GALE_WINGS
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Adamant
-Tera Type: Flying
 - MOVE_SKY_ATTACK
 - MOVE_DUAL_WINGBEAT
 - MOVE_POUND
@@ -16784,7 +16765,6 @@ Ability: ABILITY_MEGA_LAUNCHER
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 0 Atk / 252 Def / 0 SpA / 0 SpD / 0 Spe
 Nature: Relaxed
-Tera Type: Flying
 - MOVE_TRI_ATTACK
 - MOVE_PECK
 - MOVE_POUND
@@ -16818,7 +16798,6 @@ Ability: ABILITY_SHARPNESS
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Jolly
-Tera Type: Ground
 - MOVE_METAL_CLAW
 - MOVE_DRILL_RUN
 - MOVE_CRUSH_CLAW
@@ -16830,7 +16809,6 @@ Ability: ABILITY_DROUGHT
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
 Nature: Modest
-Tera Type: Ground
 - MOVE_SELF_DESTRUCT
 - MOVE_EXPLOSION
 - MOVE_SELF_DESTRUCT
@@ -16842,7 +16820,6 @@ Ability: ABILITY_ROUGH_SKIN
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Jolly
-Tera Type: Ground
 - MOVE_EARTHQUAKE
 - MOVE_DRAGON_CLAW
 - MOVE_TEMPER_FLARE
@@ -16854,7 +16831,6 @@ Ability: ABILITY_SHELL_ARMOR
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Jolly
-Tera Type: Ground
 - MOVE_WOOD_HAMMER
 - MOVE_MEGA_KICK
 - MOVE_STRENGTH
@@ -16866,7 +16842,6 @@ Ability: ABILITY_SPEED_BOOST
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 252 SpD / 0 Spe
 Nature: Careful
-Tera Type: Ground
 - MOVE_FISSURE
 - MOVE_FISSURE
 - MOVE_FISSURE
@@ -16900,7 +16875,6 @@ Ability: ABILITY_FUR_COAT
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Bold
-Tera Type: Electric
 - MOVE_RELIC_SONG
 - MOVE_VOLT_SWITCH
 - MOVE_NUZZLE
@@ -16912,7 +16886,6 @@ Ability: ABILITY_SNOW_WARNING
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
 Nature: Timid
-Tera Type: Electric
 - MOVE_FREEZE_DRY
 - MOVE_VOLT_SWITCH
 - MOVE_WATER_PULSE
@@ -16924,7 +16897,6 @@ Ability: ABILITY_DROUGHT
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
 Nature: Timid
-Tera Type: Electric
 - MOVE_FIRE_PLEDGE
 - MOVE_VOLT_SWITCH
 - MOVE_ALLURING_VOICE
@@ -16936,7 +16908,6 @@ Ability: ABILITY_LEVITATE
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
 Nature: Modest
-Tera Type: Electric
 - MOVE_FLASH_CANNON
 - MOVE_VOLT_SWITCH
 - MOVE_WEATHER_BALL
@@ -16948,7 +16919,6 @@ Ability: ABILITY_ADAPTABILITY
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
 Nature: Timid
-Tera Type: Electric
 - MOVE_AIR_SLASH
 - MOVE_VOLT_SWITCH
 - MOVE_AURA_SPHERE
@@ -16982,7 +16952,6 @@ Ability: ABILITY_PSYCHIC_SURGE
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
 Nature: Timid
-Tera Type: Psychic
 - MOVE_FIRE_BLAST
 - MOVE_EXPANDING_FORCE
 - MOVE_TAUNT
@@ -16994,7 +16963,6 @@ Ability: ABILITY_SHADOW_SHIELD
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
 Nature: Timid
-Tera Type: Psychic
 - MOVE_MOONBLAST
 - MOVE_DARK_PULSE
 - MOVE_MYSTICAL_POWER
@@ -17006,7 +16974,6 @@ Ability: ABILITY_SHEER_FORCE
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
 Nature: Timid
-Tera Type: Psychic
 - MOVE_HYPER_VOICE
 - MOVE_PSYCHIC
 - MOVE_FOCUS_BLAST
@@ -17018,7 +16985,6 @@ Ability: ABILITY_PSYCHIC_SURGE
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
 Nature: Timid
-Tera Type: Psychic
 - MOVE_FLEUR_CANNON
 - MOVE_EXPANDING_FORCE
 - MOVE_SWEET_KISS
@@ -17140,7 +17106,6 @@ Ability: ABILITY_SNOW_WARNING
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
 Nature: Timid
-Tera Type: Ice
 - MOVE_BLIZZARD
 - MOVE_MISTY_EXPLOSION
 - MOVE_SWEET_KISS
@@ -17152,7 +17117,6 @@ Ability: ABILITY_SLUSH_RUSH
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Jolly
-Tera Type: Ice
 - MOVE_ICE_HAMMER
 - MOVE_DYNAMIC_PUNCH
 - MOVE_STRENGTH
@@ -17164,7 +17128,6 @@ Ability: ABILITY_SNOW_WARNING
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
 Nature: Timid
-Tera Type: Ice
 - MOVE_BLIZZARD
 - MOVE_HURRICANE
 - MOVE_WHIRLWIND
@@ -17176,7 +17139,6 @@ Ability: ABILITY_SLUSH_RUSH
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Jolly
-Tera Type: Ice
 - MOVE_ICE_HAMMER
 - MOVE_MEGA_KICK
 - MOVE_STRENGTH
@@ -17188,7 +17150,6 @@ Ability: ABILITY_ANGER_SHELL
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
 Nature: Timid
-Tera Type: Ice
 - MOVE_BLIZZARD
 - MOVE_POWER_GEM
 - MOVE_EARTH_POWER
@@ -17222,7 +17183,6 @@ Ability: ABILITY_TOXIC_DEBRIS
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 252 SpD / 0 Spe
 Nature: Sassy
-Tera Type: Grass
 - MOVE_VENOSHOCK
 - MOVE_MEGA_DRAIN
 - MOVE_TAUNT
@@ -17234,7 +17194,6 @@ Ability: ABILITY_DRIZZLE
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 0 Atk / 252 Def / 0 SpA / 0 SpD / 0 Spe
 Nature: Modest
-Tera Type: Grass
 - MOVE_VOLT_SWITCH
 - MOVE_MEGA_DRAIN
 - MOVE_DAZZLING_GLEAM
@@ -17246,7 +17205,6 @@ Ability: ABILITY_PROTEAN
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
 Nature: Hasty
-Tera Type: Grass
 - MOVE_GRASS_PLEDGE
 - MOVE_WATER_PLEDGE
 - MOVE_PSYCHIC_NOISE
@@ -17302,7 +17260,6 @@ Ability: ABILITY_TOXIC_DEBRIS
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 252 SpD / 0 Spe
 Nature: Careful
-Tera Type: Water
 - MOVE_FLIP_TURN
 - MOVE_BARB_BARRAGE
 - MOVE_TAUNT
@@ -17314,7 +17271,6 @@ Ability: ABILITY_SHARPNESS
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Jolly
-Tera Type: Water
 - MOVE_AQUA_CUTTER
 - MOVE_PSYCHO_CUT
 - MOVE_CEASELESS_EDGE
@@ -17326,7 +17282,6 @@ Ability: ABILITY_PARENTAL_BOND
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Jolly
-Tera Type: Water
 - MOVE_TRIPLE_DIVE
 - MOVE_ROCK_SLIDE
 - MOVE_STOMPING_TANTRUM
@@ -17338,7 +17293,6 @@ Ability: ABILITY_ANGER_SHELL
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Jolly
-Tera Type: Water
 - MOVE_AQUA_CUTTER
 - MOVE_NIGHT_SLASH
 - MOVE_CROSS_CHOP
@@ -17350,7 +17304,6 @@ Ability: ABILITY_ARMOR_TAIL
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Adamant
-Tera Type: Water
 - MOVE_LIQUIDATION
 - MOVE_HIGH_JUMP_KICK
 - MOVE_DRILL_RUN
@@ -17395,7 +17348,6 @@ Ability: ABILITY_ARMOR_TAIL
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
 Nature: Modest
-Tera Type: Bug
 - MOVE_DRAINING_KISS
 - MOVE_ABSORB
 - MOVE_EXTRASENSORY
@@ -17462,7 +17414,6 @@ Ability: ABILITY_GALE_WINGS
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Jolly
-Tera Type: Normal
 - MOVE_HIGH_JUMP_KICK
 - MOVE_SUCKER_PUNCH
 - MOVE_TAUNT
@@ -17474,7 +17425,6 @@ Ability: ABILITY_POISON_HEAL
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 252 SpD / 0 Spe
 Nature: Careful
-Tera Type: Normal
 - MOVE_DRILL_RUN
 - MOVE_FACADE
 - MOVE_AVALANCHE
@@ -17486,7 +17436,6 @@ Ability: ABILITY_ICE_SCALES
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 0 Atk / 252 Def / 0 SpA / 0 SpD / 0 Spe
 Nature: Impish
-Tera Type: Normal
 - MOVE_AVALANCHE
 - MOVE_RETALIATE
 - MOVE_YAWN
@@ -17498,7 +17447,6 @@ Ability: ABILITY_UNBURDEN
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Adamant
-Tera Type: Normal
 - MOVE_SEED_BOMB
 - MOVE_RETALIATE
 - MOVE_TAKE_DOWN
@@ -17620,7 +17568,6 @@ Ability: ABILITY_FLUFFY
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 252 SpD / 0 Spe
 Nature: Careful
-Tera Type: Bug
 - MOVE_U_TURN
 - MOVE_WHIRLWIND
 - MOVE_WILL_O_WISP
@@ -17632,7 +17579,6 @@ Ability: ABILITY_WIND_RIDER
 IVs: 31 HP / 25 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Adamant
-Tera Type: Dragon
 - MOVE_DRAGON_CLAW
 - MOVE_NIGHT_SLASH
 - MOVE_METAL_CLAW
@@ -17644,7 +17590,6 @@ Ability: ABILITY_PIXILATE
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
 Nature: Timid
-Tera Type: Fairy
 - MOVE_BOOMBURST
 - MOVE_DARK_PULSE
 - MOVE_SING
@@ -17656,7 +17601,6 @@ Ability: ABILITY_PROTOSYNTHESIS
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
 Nature: Timid
-Tera Type: Ghost
 - MOVE_FLEUR_CANNON
 - MOVE_ASTRAL_BARRAGE
 - MOVE_DESTINY_BOND
@@ -17701,7 +17645,6 @@ Ability: ABILITY_SNIPER
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Timid
-Tera Type: Fairy
 - MOVE_MISTY_EXPLOSION
 - MOVE_WILL_O_WISP
 - MOVE_HYPNOSIS
@@ -17713,7 +17656,6 @@ Ability: ABILITY_SHADOW_SHIELD
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
 Nature: Timid
-Tera Type: Fire
 - MOVE_FIERY_DANCE
 - MOVE_REVELATION_DANCE
 - MOVE_EARTH_POWER
@@ -17725,7 +17667,6 @@ Ability: ABILITY_LEVITATE
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
 Nature: Timid
-Tera Type: Steel
 - MOVE_STEEL_BEAM
 - MOVE_STEEL_BEAM
 - MOVE_DARK_PULSE
@@ -17737,7 +17678,6 @@ Ability: ABILITY_SHADOW_SHIELD
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Jolly
-Tera Type: Electric
 - MOVE_ZING_ZAP
 - MOVE_CRUNCH
 - MOVE_ICE_PUNCH
@@ -17749,7 +17689,6 @@ Ability: ABILITY_FILTER
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Nature: Adamant
-Tera Type: Fighting
 - MOVE_VOLT_TACKLE
 - MOVE_CIRCLE_THROW
 - MOVE_ICE_PUNCH
@@ -18135,7 +18074,6 @@ Ability: ABILITY_HUSTLE
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Nature: Adamant
-Tera Type: Normal
 - MOVE_HEADBUTT
 - MOVE_STOMPING_TANTRUM
 - MOVE_COVET
@@ -18356,7 +18294,6 @@ Ability: ABILITY_TINTED_LENS
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
 Nature: Timid
-Tera Type: Dragon
 - MOVE_CLANGING_SCALES
 - MOVE_BUG_BUZZ
 - MOVE_SUBSTITUTE
@@ -18379,7 +18316,6 @@ Ability: ABILITY_CONTRARY
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
 Nature: Timid
-Tera Type: Rock
 - MOVE_BLOOD_MOON
 - MOVE_BLOOD_MOON
 - MOVE_BLOOD_MOON

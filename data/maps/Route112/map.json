@@ -53,7 +53,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_SEE_ALL_DIRECTIONS",
       "trainer_sight_or_berry_tree_id": "1",
-      "script": "Route112_EventScript_Brice",
+      "script": "Route112_EventScript_HonoBoss01",
       "flag": "0"
     },
     {

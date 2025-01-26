@@ -368,7 +368,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_LEAF",
       "x": 21,
-      "y": 39,
+      "y": 40,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -376,7 +376,7 @@
       "trainer_type": "TRAINER_TYPE_SEE_ALL_DIRECTIONS",
       "trainer_sight_or_berry_tree_id": "1",
       "script": "MtChimney_EventScript_Shirley",
-      "flag": "FLAG_HIDE_MT_CHIMNEY_TRAINERS"
+      "flag": "0"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MAGMA_MEMBER_F",

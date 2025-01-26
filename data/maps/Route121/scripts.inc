@@ -111,7 +111,7 @@ Route121_EventScript_Joy::
 	end
 
 Route121_EventScript_Jessica::
-	trainerbattle_single TRAINER_SISTER_01_03, Route121_Text_JessicaDefeat, Route121_EventScript_Jessica_Defeated
+	trainerbattle_single TRAINER_SISTER_01_03, Route121_Text_JessicaIntro, Route121_Text_JessicaDefeat, Route121_EventScript_Jessica_Defeated
 	msgbox Route121_Text_JessicaPostBattle, MSGBOX_DEFAULT
 	end
 

@@ -300,7 +300,6 @@ LittlerootTown_EventScript_GoSaveBirch::
 	closemessage
 	applymovement LOCALID_TWIN, Common_Movement_FaceOriginalDirection
 	waitmovement 0
-	setvar VAR_LITTLEROOT_TOWN_STATE, 2
 	release
 	end
 
@@ -425,6 +424,7 @@ LittlerootTown_EventScript_GoSaveBirchTrigger::
 
 LittlerootTown_EventScript_End::
 	setvar VAR_LITTLEROOT_TOWN_STATE, 2
+	setflag FLAG_RESCUED_BIRCH
 	releaseall
 	end
 
