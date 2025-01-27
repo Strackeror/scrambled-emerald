@@ -43,3 +43,4 @@ src/data/map_group_count.h
 tools/trainerproc/trainerproc
 compile_commands.json
 .cache
+/*.ups
