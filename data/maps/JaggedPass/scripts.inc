@@ -122,6 +122,7 @@ JaggedPass_EventScript_DianaRematch::
 JaggedPass_EventScript_Ethan::
 	trainerbattle_single TRAINER_BROTHER_01_03, JaggedPass_Text_EthanIntro, JaggedPass_Text_EthanDefeat, JaggedPass_EventScript_Ethan_LevelCap
 	msgbox JaggedPass_Text_EthanPostBattle, MSGBOX_DEFAULT
+	release
 	end
 
 JaggedPass_EventScript_Ethan_LevelCap:

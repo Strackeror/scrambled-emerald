@@ -945,6 +945,7 @@ Route104_EventScript_RematchWinston::
 Route104_EventScript_Cindy::
 	trainerbattle_single TRAINER_SISTER_01_01, Route104_Text_CindyIntro, Route104_Text_CindyDefeat,Route104_EventScript_Cindy_Defeated
 	msgbox Route104_Text_CindyPostBattle, MSGBOX_DEFAULT
+	release
 	end
 
 Route104_EventScript_Cindy_Defeated::

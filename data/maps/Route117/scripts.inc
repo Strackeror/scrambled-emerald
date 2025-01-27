@@ -57,6 +57,7 @@ Route117_EventScript_Woman::
 Route117_EventScript_DokuBoss::
 	trainerbattle_single TRAINER_DAN_DOKU_BOSS_01, Route117_Text_Placeholder, Route117_Text_Placeholder, Route117_EventScript_DokuBossDefeat
 	msgbox Route117_Text_Placeholder, MSGBOX_NPC
+	release
 	end
 	
 Route117_EventScript_DokuBossDefeat::
