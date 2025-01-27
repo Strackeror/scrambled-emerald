@@ -11,6 +11,7 @@
 #include "battle.h"
 #include "battle_setup.h"
 #include "berry.h"
+#include "bw_summary_screen.h"
 #include "clock.h"
 #include "coins.h"
 #include "credits.h"
@@ -125,6 +126,7 @@ enum GivePCBagFillDebugMenu
 enum PartyDebugMenu
 {
     DEBUG_PARTY_MENU_ITEM_MOVE_REMINDER,
+    DEBUG_PARTY_MENU_ITEM_TEACH_MOVE,
     DEBUG_PARTY_MENU_ITEM_HATCH_AN_EGG,
     DEBUG_PARTY_MENU_ITEM_HEAL_PARTY,
     DEBUG_PARTY_MENU_ITEM_INFLICT_STATUS1,
@@ -392,6 +394,7 @@ static void DebugAction_PCBag_ClearBag(u8 taskId);
 static void DebugAction_PCBag_ClearBoxes(u8 taskId);
 
 static void DebugAction_Party_MoveReminder(u8 taskId);
+static void DebugAction_Party_TeachMove_Setup(u8 taskId);
 static void DebugAction_Party_HatchAnEgg(u8 taskId);
 static void DebugAction_Party_HealParty(u8 taskId);
 static void DebugAction_Party_InflictStatus1(u8 taskId);
@@ -554,6 +557,7 @@ static const u8 sDebugText_PCBag_ClearBag[] =                _("Clear Bag");
 static const u8 sDebugText_PCBag_ClearBoxes[] =              _("Clear Storage Boxes");
 // Party/Boxes Menu
 static const u8 sDebugText_Party_MoveReminder[] =            _("Move Reminder");
+static const u8 sDebugText_Party_TeachMove[] =               _("Teach Move");
 static const u8 sDebugText_Party_HatchAnEgg[] =              _("Hatch an Egg");
 static const u8 sDebugText_Party_HealParty[] =               _("Heal party");
 static const u8 sDebugText_Party_InflictStatus1[] =          _("Inflict Status1");
@@ -754,6 +758,7 @@ static const struct ListMenuItem sDebugMenu_Items_PCBag_Fill[] =
 static const struct ListMenuItem sDebugMenu_Items_Party[] =
 {
     [DEBUG_PARTY_MENU_ITEM_MOVE_REMINDER]   = {sDebugText_Party_MoveReminder,   DEBUG_PARTY_MENU_ITEM_MOVE_REMINDER},
+    [DEBUG_PARTY_MENU_ITEM_TEACH_MOVE]   =    {sDebugText_Party_TeachMove,      DEBUG_PARTY_MENU_ITEM_TEACH_MOVE},
     [DEBUG_PARTY_MENU_ITEM_HATCH_AN_EGG]    = {sDebugText_Party_HatchAnEgg,     DEBUG_PARTY_MENU_ITEM_HATCH_AN_EGG},
     [DEBUG_PARTY_MENU_ITEM_HEAL_PARTY]      = {sDebugText_Party_HealParty,      DEBUG_PARTY_MENU_ITEM_HEAL_PARTY},
     [DEBUG_PARTY_MENU_ITEM_INFLICT_STATUS1] = {sDebugText_Party_InflictStatus1, DEBUG_PARTY_MENU_ITEM_INFLICT_STATUS1},
@@ -925,6 +930,7 @@ static void (*const sDebugMenu_Actions_PCBag_Fill[])(u8) =
 static void (*const sDebugMenu_Actions_Party[])(u8) =
 {
     [DEBUG_PARTY_MENU_ITEM_MOVE_REMINDER]   = DebugAction_Party_MoveReminder,
+    [DEBUG_PARTY_MENU_ITEM_TEACH_MOVE]      = DebugAction_Party_TeachMove_Setup,
     [DEBUG_PARTY_MENU_ITEM_HATCH_AN_EGG]    = DebugAction_Party_HatchAnEgg,
     [DEBUG_PARTY_MENU_ITEM_HEAL_PARTY]      = DebugAction_Party_HealParty,
     [DEBUG_PARTY_MENU_ITEM_INFLICT_STATUS1] = DebugAction_Party_InflictStatus1,
@@ -5108,6 +5114,97 @@ static void DebugAction_Party_HatchAnEgg(u8 taskId)
 {
     Debug_DestroyMenu_Full_Script(taskId, Debug_HatchAnEgg);
 }
+
+struct SelectIdState {
+    u16 taskId;
+    u16 windowId;
+    u16 subwindowId;
+    u16 digit;
+    s16 input;
+};
+
+static const u8 sTextTeachMove[] = _("Move: {STR_VAR_3}  {A_BUTTON} Replace Move1\n{STR_VAR_1}\n{STR_VAR_2}");
+extern const u8  MoveTutor_EventScript_OpenPartyMenu[];
+
+static void DebugAction_Print_TeachMove(struct SelectIdState* state)
+{
+        StringCopy(gStringVar2, gText_DigitIndicator[state->digit]);
+        StringCopyPadded(gStringVar1, gMovesInfo[state->input].name, CHAR_SPACE, 35);
+        ConvertIntToDecimalStringN(gStringVar3, state->input, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_ITEMS);
+        StringExpandPlaceholders(gStringVar4, sTextTeachMove);
+        AddTextPrinterParameterized(state->subwindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
+
+}
+
+static void DebugAction_Party_TeachMove_SelectId(u8 taskId)
+{
+    struct SelectIdState* state = (void*)&gTasks[taskId].data[0];
+
+    if (JOY_NEW(DPAD_ANY))
+    {
+        if (JOY_NEW(DPAD_UP))
+        {
+            state->input += sPowersOfTen[state->digit];
+            if (state->input >= MOVES_COUNT)
+                state->input = MOVES_COUNT - 1;
+        }
+        if (JOY_NEW(DPAD_DOWN))
+        {
+            state->input -= sPowersOfTen[state->digit];
+            if (state->input < MOVE_NONE)
+                state->input = MOVE_NONE;
+        }
+        if (JOY_NEW(DPAD_LEFT))
+        {
+            if (state->digit > 0)
+                state->digit -= 1;
+        }
+        if (JOY_NEW(DPAD_RIGHT))
+        {
+            if (state->digit < DEBUG_NUMBER_DIGITS_ITEMS - 1)
+                state->digit += 1;
+        }
+        DebugAction_Print_TeachMove(state);
+    }
+
+    if (JOY_NEW(A_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        u16 move = state->input;
+        SetMonData(&gPlayerParty[0], MON_DATA_MOVE1, &move);
+        Debug_DestroyMenu_Full(taskId);
+
+    }
+    else if (JOY_NEW(B_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        DebugAction_DestroyExtraWindow(taskId);
+    }
+}
+
+static void DebugAction_Party_TeachMove_Setup(u8 taskId)
+{
+    struct SelectIdState* state = (void*)gTasks[taskId].data;
+
+    ClearStdWindowAndFrame(state->windowId, TRUE);
+    RemoveWindow(state->windowId);
+
+    u8 windowId;
+    HideMapNamePopUpWindow();
+    LoadMessageBoxAndBorderGfx();
+    windowId = AddWindow(&sDebugMenuWindowTemplateSound);
+    DrawStdWindowFrame(windowId, FALSE);
+
+    CopyWindowToVram(windowId, COPYWIN_FULL);
+
+    gTasks[taskId].func = DebugAction_Party_TeachMove_SelectId;
+    state->subwindowId = windowId;
+    state->input = MOVE_NONE;
+    state->digit = 0;
+
+    DebugAction_Print_TeachMove(state);
+}
+
 
 static void DebugAction_Party_HealParty(u8 taskId)
 {
