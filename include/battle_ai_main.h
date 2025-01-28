@@ -31,7 +31,7 @@ typedef s32 (*AiScoreFunc)(u32, u32, u32, s32);
 #define STAT_CHANGE_ACC        10
 #define STAT_CHANGE_EVASION    11
 
-#define BEST_DAMAGE_MOVE         1  // Move with the most amount of hits with the best accuracy/effect
+#define BEST_DAMAGE_MOVE         2  // Move with the most amount of hits with the best accuracy/effect
 #define POWERFUL_STATUS_MOVE     10 // Moves with this score will be chosen over a move that faints target
 #define NO_DAMAGE_OR_FAILS      -20 // Move fails or does no damage
 
@@ -46,6 +46,7 @@ typedef s32 (*AiScoreFunc)(u32, u32, u32, s32);
 #define FAST_KILL      6 // AI is faster and faints target
 #define SLOW_KILL      4 // AI is slower and faints target
 #define LAST_CHANCE    2 // AI faints to target. It should try and do damage with a priority move
+#define TWO_HIT_KO     1 // Move can 2hitko
 
 // AI_Risky
 #define STRONG_RISKY_EFFECT     3

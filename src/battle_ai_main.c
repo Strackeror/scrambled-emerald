@@ -2621,6 +2621,10 @@ static s32 AI_TryToFaint(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     {
         ADJUST_SCORE(LAST_CHANCE);
     }
+    else if (GetNoOfHitsToKOBattler(battlerAtk, battlerDef, move) < 2)
+    {
+        ADJUST_SCORE(TWO_HIT_KO);
+    }
 
     return score;
 }
@@ -4417,8 +4421,10 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
     } // move effect checks
 
     // check move additional effects that are likely to happen
+    s32 maxAdditionalScore = 0;
     for (i = 0; i < gMovesInfo[move].numAdditionalEffects; i++)
     {
+        s32 score = 0;
         // Only consider effects with a guaranteed chance to happen
         if (!MoveEffectIsGuaranteed(battlerAtk, aiData->abilities[battlerAtk], &gMovesInfo[move].additionalEffects[i]))
             continue;
@@ -4539,6 +4545,17 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
                 case MOVE_EFFECT_POISON:
                     IncreasePoisonScore(battlerAtk, battlerDef, move, &score);
                     break;
+                case MOVE_EFFECT_BURN:
+                    IncreaseBurnScore(battlerAtk, battlerDef, move, &score);
+                    break;
+                case MOVE_EFFECT_SLEEP:
+                case MOVE_EFFECT_YAWN:
+                    IncreaseSleepScore(battlerAtk, battlerDef, move, &score);
+                    break;
+                case MOVE_EFFECT_PARALYSIS:
+                    IncreaseParalyzeScore(battlerAtk, battlerDef, move, &score);
+                    break;
+
                 case MOVE_EFFECT_CLEAR_SMOG:
                     score += AI_TryToClearStats(battlerAtk, battlerDef, FALSE);
                     break;
@@ -4662,10 +4679,19 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
                     if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_WATER) || IS_BATTLER_OF_TYPE(battlerDef, TYPE_STEEL))
                         ADJUST_SCORE(DECENT_EFFECT);
                     break;
+                case MOVE_EFFECT_CURSE:
+                case MOVE_EFFECT_PERISH_SONG:
+                    if (IsBattlerTrapped(battlerDef, FALSE)) 
+                        ADJUST_SCORE(GOOD_EFFECT);
+                    else
+                        ADJUST_SCORE(WEAK_EFFECT);
 
             }
         }
+        if (score < maxAdditionalScore)
+            maxAdditionalScore = score;
     }
+    ADJUST_SCORE(maxAdditionalScore);
 
     return score;
 }
