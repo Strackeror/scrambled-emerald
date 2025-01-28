@@ -741,7 +741,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_NO_GUARD] =
     {
-        .name = _("No Guard"),
+        .name = _("Royal Decree"),
         .description = COMPOUND_STRING("Ensures that all moves hit."),
         .aiRating = 8,
     },
@@ -1219,7 +1219,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_VICTORY_STAR] =
     {
-        .name = _("Victory Star"),
+        .name = _("Full House"),
         .description = COMPOUND_STRING("Raises party accuracy."),
         .aiRating = 6,
     },
@@ -1255,7 +1255,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_CHEEK_POUCH] =
     {
-        .name = _("Cheek Pouch"),
+        .name = _("Metabolism"),
         .description = COMPOUND_STRING("Eating Berries restores HP."),
         .aiRating = 4,
     },
@@ -1424,7 +1424,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_DESOLATE_LAND] =
     {
-        .name = _("Desolate Land"),
+        .name = _("Sweltering Sun"),
         .description = COMPOUND_STRING("Summons intense sunlight."),
         .aiRating = 10,
     },
