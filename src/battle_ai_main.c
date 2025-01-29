@@ -2622,7 +2622,7 @@ static s32 AI_TryToFaint(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     {
         ADJUST_SCORE(LAST_CHANCE);
     }
-    else if (GetNoOfHitsToKOBattler(battlerAtk, battlerDef, move) < 2)
+    else if (GetNoOfHitsToKOBattler(battlerAtk, battlerDef, movesetIndex) < 2)
     {
         ADJUST_SCORE(TWO_HIT_KO);
     }
@@ -3273,56 +3273,34 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
         ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_EVASION));
         break;
     case EFFECT_ATTACK_DOWN:
+        IncreaseStatDownScore(battlerAtk, battlerDef, STAT_CHANGE_ATK);
+        break;
     case EFFECT_ATTACK_DOWN_2:
-        if (!ShouldLowerAttack(battlerAtk, battlerDef, aiData->abilities[battlerDef]))
-            ADJUST_SCORE(-2);
-        if (gBattleMons[battlerDef].statStages[STAT_ATK] < DEFAULT_STAT_STAGE)
-            ADJUST_SCORE(-1);
-        else if (aiData->hpPercents[battlerAtk] <= 90)
-            ADJUST_SCORE(-1);
-        if (gBattleMons[battlerDef].statStages[STAT_ATK] > 3 && !AI_RandLessThan(50))
-            ADJUST_SCORE(-2);
-        else if (aiData->hpPercents[battlerDef] < 70)
-            ADJUST_SCORE(-2);
+        IncreaseStatDownScore(battlerAtk, battlerDef, STAT_CHANGE_ATK_2);
         break;
     case EFFECT_DEFENSE_DOWN:
+        IncreaseStatDownScore(battlerAtk, battlerDef, STAT_CHANGE_DEF);
+        break;
     case EFFECT_DEFENSE_DOWN_2:
-        if (!ShouldLowerDefense(battlerAtk, battlerDef, aiData->abilities[battlerDef]))
-            ADJUST_SCORE(-2);
-        if ((aiData->hpPercents[battlerAtk] < 70 && !AI_RandLessThan(50)) || (gBattleMons[battlerDef].statStages[STAT_DEF] <= 3 && !AI_RandLessThan(50)))
-            ADJUST_SCORE(-2);
-        if (aiData->hpPercents[battlerDef] <= 70)
-            ADJUST_SCORE(-2);
+        IncreaseStatDownScore(battlerAtk, battlerDef, STAT_CHANGE_DEF_2);
         break;
     case EFFECT_SPEED_DOWN:
-    case EFFECT_SPEED_DOWN_2:
-        if (AI_IsFaster(battlerAtk, battlerDef, move))
-            ADJUST_SCORE(-3);
-        else if (!AI_RandLessThan(70))
-            ADJUST_SCORE(DECENT_EFFECT);
+        IncreaseStatDownScore(battlerAtk, battlerDef, STAT_CHANGE_SPEED);
         break;
-    case EFFECT_SPECIAL_ATTACK_DOWN:
+    case EFFECT_SPEED_DOWN_2:
+        IncreaseStatDownScore(battlerAtk, battlerDef, STAT_CHANGE_SPEED_2);
+        break;
+        case EFFECT_SPECIAL_ATTACK_DOWN:
+        IncreaseStatDownScore(battlerAtk, battlerDef, STAT_CHANGE_SPATK);
+        break;
     case EFFECT_SPECIAL_ATTACK_DOWN_2:
-        if (!ShouldLowerSpAtk(battlerAtk, battlerDef, aiData->abilities[battlerDef]))
-            ADJUST_SCORE(-2);
-        if (gBattleMons[battlerDef].statStages[STAT_SPATK] < DEFAULT_STAT_STAGE)
-            ADJUST_SCORE(-1);
-        else if (aiData->hpPercents[battlerAtk] <= 90)
-            ADJUST_SCORE(-1);
-        if (gBattleMons[battlerDef].statStages[STAT_SPATK] > 3 && !AI_RandLessThan(50))
-            ADJUST_SCORE(-2);
-        else if (aiData->hpPercents[battlerDef] < 70)
-            ADJUST_SCORE(-2);
+        IncreaseStatDownScore(battlerAtk, battlerDef, STAT_CHANGE_SPATK_2);
         break;
     case EFFECT_SPECIAL_DEFENSE_DOWN:
+        IncreaseStatDownScore(battlerAtk, battlerDef, STAT_CHANGE_DEF);
+        break;
     case EFFECT_SPECIAL_DEFENSE_DOWN_2:
-        if (!ShouldLowerSpDef(battlerAtk, battlerDef, aiData->abilities[battlerDef]))
-            ADJUST_SCORE(-2);
-        if ((aiData->hpPercents[battlerAtk] < 70 && !AI_RandLessThan(50))
-          || (gBattleMons[battlerDef].statStages[STAT_SPDEF] <= 3 && !AI_RandLessThan(50)))
-            ADJUST_SCORE(-2);
-        if (aiData->hpPercents[battlerDef] <= 70)
-            ADJUST_SCORE(-2);
+        IncreaseStatDownScore(battlerAtk, battlerDef, STAT_CHANGE_DEF_2);
         break;
     case EFFECT_ACCURACY_DOWN:
     case EFFECT_ACCURACY_DOWN_2:
@@ -4421,6 +4399,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
         break;
     } // move effect checks
 
+    bool8 moveTargetSelf = gMovesInfo[move].target == MOVE_TARGET_USER;
     // check move additional effects that are likely to happen
     s32 maxAdditionalScore = 0;
     for (i = 0; i < gMovesInfo[move].numAdditionalEffects; i++)
@@ -4431,7 +4410,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
             continue;
 
         // Consider move effects that target self
-        if (gMovesInfo[move].additionalEffects[i].self)
+        if (gMovesInfo[move].additionalEffects[i].self || moveTargetSelf)
         {
             u32 StageStatId;
 
@@ -4452,11 +4431,21 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
                 case MOVE_EFFECT_SPD_PLUS_2:
                 case MOVE_EFFECT_SP_ATK_PLUS_2:
                 case MOVE_EFFECT_SP_DEF_PLUS_2:
-                    StageStatId = STAT_CHANGE_ATK_2 + gMovesInfo[move].additionalEffects[i].moveEffect - MOVE_EFFECT_ATK_PLUS_1;
+                    StageStatId = STAT_CHANGE_ATK_2 + gMovesInfo[move].additionalEffects[i].moveEffect - MOVE_EFFECT_ATK_PLUS_2;
                     ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, StageStatId));
                     break;
+                case MOVE_EFFECT_ATK_PLUS_ARG:
+                case MOVE_EFFECT_DEF_PLUS_ARG:
+                case MOVE_EFFECT_SPD_PLUS_ARG:
+                case MOVE_EFFECT_SP_ATK_PLUS_ARG:
+                case MOVE_EFFECT_SP_DEF_PLUS_ARG:
+                    StageStatId = STAT_CHANGE_ATK_2 + gMovesInfo[move].additionalEffects[i].moveEffect - MOVE_EFFECT_ATK_PLUS_ARG;
+                    ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, StageStatId));
+                    break;
+                    
                 case MOVE_EFFECT_ACC_PLUS_1:
                 case MOVE_EFFECT_ACC_PLUS_2:
+                case MOVE_EFFECT_ACC_PLUS_ARG:
                     ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_ACC));
                     break;
                 case MOVE_EFFECT_EVS_PLUS_1:
@@ -4466,6 +4455,10 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
                 case MOVE_EFFECT_RAPID_SPIN:
                     if ((gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_HAZARDS_ANY && CountUsablePartyMons(battlerAtk) != 0)
                     || (gStatuses3[battlerAtk] & STATUS3_LEECHSEED || gBattleMons[battlerAtk].status2 & STATUS2_WRAPPED))
+                        ADJUST_SCORE(GOOD_EFFECT);
+                    break;
+                case MOVE_EFFECT_ALL_STATS_UP:
+                    if (aiData->hpPercents[battlerAtk] > 70)
                         ADJUST_SCORE(GOOD_EFFECT);
                     break;
                 }
@@ -4490,7 +4483,14 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
                     StageStatId = STAT_CHANGE_ATK + gMovesInfo[move].additionalEffects[i].moveEffect - MOVE_EFFECT_ATK_MINUS_2;
                     ADJUST_SCORE(IncreaseStatUpScoreContrary(battlerAtk, battlerDef, StageStatId));
                     break;
-                case MOVE_EFFECT_ACC_MINUS_1:
+                case MOVE_EFFECT_ATK_MINUS_ARG:
+                case MOVE_EFFECT_DEF_MINUS_ARG:
+                case MOVE_EFFECT_SPD_MINUS_ARG:
+                case MOVE_EFFECT_SP_ATK_MINUS_ARG:
+                case MOVE_EFFECT_SP_DEF_MINUS_ARG:
+                    StageStatId = STAT_CHANGE_ATK + gMovesInfo[move].additionalEffects[i].moveEffect - MOVE_EFFECT_ATK_MINUS_ARG;
+                    ADJUST_SCORE(IncreaseStatUpScoreContrary(battlerAtk, battlerDef, StageStatId));
+                    break;                case MOVE_EFFECT_ACC_MINUS_1:
                 case MOVE_EFFECT_ACC_MINUS_2:
                     ADJUST_SCORE(IncreaseStatUpScoreContrary(battlerAtk, battlerDef, STAT_CHANGE_ACC));
                     break;
@@ -4522,27 +4522,35 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
                     score += ShouldTryToFlinch(battlerAtk, battlerDef, aiData->abilities[battlerAtk], aiData->abilities[battlerDef], move);
                     break;
                 case MOVE_EFFECT_SPD_MINUS_1:
-                case MOVE_EFFECT_SPD_MINUS_2:
-                    if (!ShouldLowerSpeed(battlerAtk, battlerDef, aiData->abilities[battlerDef]))
-                        break;
                 case MOVE_EFFECT_ATK_MINUS_1:
                 case MOVE_EFFECT_DEF_MINUS_1:
                 case MOVE_EFFECT_SP_ATK_MINUS_1:
                 case MOVE_EFFECT_SP_DEF_MINUS_1:
-                case MOVE_EFFECT_ACC_MINUS_1:
-                case MOVE_EFFECT_EVS_MINUS_1:
-                    if (aiData->abilities[battlerDef] != ABILITY_CONTRARY)
-                        ADJUST_SCORE(DECENT_EFFECT);
+                {
+                    u8 statID = STAT_CHANGE_ATK + MOVE_EFFECT_ATK_MINUS_1 - gMovesInfo[move].additionalEffects[i].moveEffect;
+                    ADJUST_SCORE(IncreaseStatDownScore(battlerAtk, battlerDef, statID));
                     break;
+                }
                 case MOVE_EFFECT_ATK_MINUS_2:
                 case MOVE_EFFECT_DEF_MINUS_2:
                 case MOVE_EFFECT_SP_ATK_MINUS_2:
                 case MOVE_EFFECT_SP_DEF_MINUS_2:
-                case MOVE_EFFECT_ACC_MINUS_2:
-                case MOVE_EFFECT_EVS_MINUS_2:
-                    if (aiData->abilities[battlerDef] != ABILITY_CONTRARY)
-                        ADJUST_SCORE(DECENT_EFFECT);
+                case MOVE_EFFECT_SPD_MINUS_2:
+                {
+                    u8 statID = STAT_CHANGE_ATK_2 + MOVE_EFFECT_ATK_MINUS_2 - gMovesInfo[move].additionalEffects[i].moveEffect;
+                    ADJUST_SCORE(IncreaseStatDownScore(battlerAtk, battlerDef, statID));
                     break;
+                }
+                case MOVE_EFFECT_ATK_MINUS_ARG:
+                case MOVE_EFFECT_DEF_MINUS_ARG:
+                case MOVE_EFFECT_SP_ATK_MINUS_ARG:
+                case MOVE_EFFECT_SP_DEF_MINUS_ARG:
+                case MOVE_EFFECT_SPD_MINUS_ARG:
+                {
+                    u8 statID = STAT_CHANGE_ATK_2 + MOVE_EFFECT_ATK_MINUS_ARG - gMovesInfo[move].additionalEffects[i].moveEffect;
+                    ADJUST_SCORE(IncreaseStatDownScore(battlerAtk, battlerDef, statID));
+                    break;
+                }
                 case MOVE_EFFECT_POISON:
                     IncreasePoisonScore(battlerAtk, battlerDef, move, &score);
                     break;
@@ -4556,7 +4564,9 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
                 case MOVE_EFFECT_PARALYSIS:
                     IncreaseParalyzeScore(battlerAtk, battlerDef, move, &score);
                     break;
-
+                case MOVE_EFFECT_CONFUSION:
+                    IncreaseConfusionScore(battlerAtk, battlerDef, move, &score);
+                    break;
                 case MOVE_EFFECT_CLEAR_SMOG:
                     score += AI_TryToClearStats(battlerAtk, battlerDef, FALSE);
                     break;
@@ -4689,8 +4699,8 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
 
             }
         }
-        if (score < maxAdditionalScore)
-            maxAdditionalScore = score;
+        
+        maxAdditionalScore = max(score, maxAdditionalScore);
     }
     ADJUST_SCORE(maxAdditionalScore);
 
@@ -4718,7 +4728,6 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
     }
 
     ADJUST_SCORE(AI_CalcMoveEffectScore(battlerAtk, battlerDef, move));
-
     return score;
 }
 

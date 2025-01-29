@@ -3696,8 +3696,8 @@ static u32 IncreaseStatUpScoreInternal(u32 battlerAtk, u32 battlerDef, u32 statI
     if (GetBattlerSecondaryDamage(battlerAtk) >= gBattleMons[battlerAtk].hp)
         return NO_INCREASE;
 
-    // Don't increase stats if opposing battler has Opportunist
-    if (AI_DATA->abilities[battlerDef] == ABILITY_OPPORTUNIST)
+    // Don't increase stats if opposing battler has Opportunist or Competitive
+    if (AI_DATA->abilities[battlerDef] == ABILITY_OPPORTUNIST || AI_DATA->abilities[battlerDef] == ABILITY_COMPETITIVE)
         return NO_INCREASE;
 
     switch (statId)
@@ -3785,6 +3785,46 @@ u32 IncreaseStatUpScore(u32 battlerAtk, u32 battlerDef, u32 statId)
 u32 IncreaseStatUpScoreContrary(u32 battlerAtk, u32 battlerDef, u32 statId)
 {
     return IncreaseStatUpScoreInternal(battlerAtk, battlerDef, statId, FALSE);
+}
+
+
+u32 IncreaseStatDownScore(u32 battlerAtk, u32 battlerDef, u32 statId)
+{
+    if (gBattleMons[battlerDef].statStages[statId] < 2)
+        return NO_INCREASE;
+
+    u16 ability = AI_DATA->abilities[battlerDef];
+    if (ability == ABILITY_CONTRARY || ability == ABILITY_COMPETITIVE)
+        return NO_INCREASE;
+
+    switch (statId)
+    {
+    case STAT_CHANGE_ATK:
+        return IncreaseStatUpScoreInternal(battlerAtk, battlerDef, STAT_CHANGE_DEF, FALSE);
+    case STAT_CHANGE_ATK_2:
+        return IncreaseStatUpScoreInternal(battlerAtk, battlerDef, STAT_CHANGE_DEF_2, FALSE);
+    case STAT_CHANGE_SPATK:
+        return IncreaseStatUpScoreInternal(battlerAtk, battlerDef, STAT_CHANGE_SPDEF, FALSE);
+    case STAT_CHANGE_SPATK_2:
+        return IncreaseStatUpScoreInternal(battlerAtk, battlerDef, STAT_CHANGE_SPDEF_2, FALSE);
+    case STAT_CHANGE_DEF:
+        return IncreaseStatUpScoreInternal(battlerAtk, battlerDef, STAT_CHANGE_ATK, FALSE);
+    case STAT_CHANGE_DEF_2:
+        return IncreaseStatUpScoreInternal(battlerAtk, battlerDef, STAT_CHANGE_ATK_2, FALSE);
+    case STAT_CHANGE_SPDEF:
+        return IncreaseStatUpScoreInternal(battlerAtk, battlerDef, STAT_CHANGE_SPATK, FALSE);
+    case STAT_CHANGE_SPDEF_2:
+        return IncreaseStatUpScoreInternal(battlerAtk, battlerDef, STAT_CHANGE_SPATK_2, FALSE);
+    case STAT_CHANGE_SPEED:
+        return IncreaseStatUpScoreInternal(battlerAtk, battlerDef, STAT_CHANGE_SPEED, FALSE);
+    case STAT_CHANGE_SPEED_2:
+        return IncreaseStatUpScoreInternal(battlerAtk, battlerDef, STAT_CHANGE_SPEED_2, FALSE);
+    case STAT_CHANGE_ACC:
+        return IncreaseStatUpScoreInternal(battlerAtk, battlerDef, STAT_CHANGE_EVASION, FALSE);
+    case STAT_CHANGE_EVASION:
+        return IncreaseStatUpScoreInternal(battlerAtk, battlerDef, STAT_CHANGE_ACC, FALSE);
+    }
+    return NO_INCREASE;
 }
 
 void IncreasePoisonScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
