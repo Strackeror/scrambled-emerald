@@ -205,6 +205,7 @@ struct Time
 
 struct SaveBlock3
 {
+    u8 test;
 #if OW_USE_FAKE_RTC
     struct Time fakeRTC;
 #endif

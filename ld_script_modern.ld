@@ -92,6 +92,7 @@ SECTIONS {
         *libgcc.a:*.o(.text*);
         *libc.a:*.o(.text*);
         *libnosys.a:*.o(.text*);
+        *lib*rs.a:*.o(.text*);
         src/libisagbprn.o(.text);
     } > ROM =0
 
@@ -123,6 +124,7 @@ SECTIONS {
         *libc.a:*.o(.rodata*);
         *libc.a:*.o(.data*);
         src/libisagbprn.o(.rodata);
+        *lib*rs.a:*.o(.rodata*);
     } > ROM =0
 
     multiboot_data :
