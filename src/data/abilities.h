@@ -1790,7 +1790,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_LIBERO] =
     {
-        .name = _("Libero"),
+        .name = _("Hammer Time"),
         .description = COMPOUND_STRING("Changes type to move's."),
     },
 
