@@ -1044,7 +1044,7 @@ BattleScript_EffectJungleHealing::
 	setbyte gBattleCommunication, 0
 JungleHealing_RestoreTargetHealth:
 	copybyte gBattlerAttacker, gBattlerTarget
-	tryhealquarterhealth BS_TARGET, BattleScript_JungleHealing_TryCureStatus
+	tryhealhalfhealth BattleScript_JungleHealing_TryCureStatus, BS_TARGET
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
 	healthbarupdate BS_TARGET
 	datahpupdate BS_TARGET

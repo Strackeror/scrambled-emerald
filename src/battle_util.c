@@ -2689,7 +2689,7 @@ u8 DoBattlerEndTurnEffects(void)
                     if (!(gBattleMons[battler].status2 & STATUS2_CONFUSION))
                     {
                         gBattleScripting.moveEffect = MOVE_EFFECT_CONFUSION | MOVE_EFFECT_AFFECTS_USER;
-                        SetMoveEffect(TRUE, FALSE);
+                        SetMoveEffect(TRUE, FALSE, 0);
                         if (gBattleMons[battler].status2 & STATUS2_CONFUSION)
                             BattleScriptExecute(BattleScript_ThrashConfuses);
                         effect++;
@@ -6160,7 +6160,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             {
                 gBattleScripting.moveEffect = MOVE_EFFECT_FLINCH;
                 BattleScriptPushCursor();
-                SetMoveEffect(FALSE, FALSE);
+                SetMoveEffect(FALSE, FALSE, 0);
                 BattleScriptPop();
                 effect++;
             }
@@ -8058,7 +8058,7 @@ u32 ItemBattleEffects(enum ItemEffect caseID, u32 battler, bool32 moveTurn)
                 {
                     gBattleScripting.moveEffect = MOVE_EFFECT_FLINCH;
                     BattleScriptPushCursor();
-                    SetMoveEffect(FALSE, FALSE);
+                    SetMoveEffect(FALSE, FALSE, 0);
                     BattleScriptPop();
                 }
             }

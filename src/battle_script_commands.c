@@ -2895,14 +2895,15 @@ void StealTargetItem(u8 battlerStealer, u8 battlerItem)
     return;                                     \
 }
 
-static bool8 TryAbsorb() {
+static bool8 TryAbsorb(u8 percent)
+{
     if (gStatuses3[gBattlerAttacker] & STATUS3_HEAL_BLOCK && gMovesInfo[gCurrentMove].healingMove)
         return FALSE;
     if (!IsBattlerAlive(gBattlerAttacker)) 
         return FALSE;
     if (gMoveResultFlags & MOVE_RESULT_NO_EFFECT) 
         return FALSE;
-    gBattleMoveDamage = max(1, (gHpDealt * gMovesInfo[gCurrentMove].argument / 100));
+    gBattleMoveDamage = max(1, (gHpDealt * percent / 100));
     gBattleMoveDamage = GetDrainedBigRootHp(gBattlerAttacker, gBattleMoveDamage);
     gHitMarker |= HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_IGNORE_DISGUISE;
     if (GetBattlerAbility(gBattlerTarget) == ABILITY_LIQUID_OOZE)
@@ -2922,7 +2923,7 @@ static bool8 TryAbsorb() {
 }
 
 
-void SetMoveEffect(bool32 primary, bool32 certain)
+void SetMoveEffect(bool32 primary, bool32 certain, u8 argument)
 {
     s32 i, affectsUser = 0;
     bool32 statusChanged = FALSE;
@@ -3262,11 +3263,8 @@ void SetMoveEffect(bool32 primary, bool32 certain)
 
             if (sStatusFlagsForMoveEffects[gBattleScripting.moveEffect] == STATUS1_SLEEP)
             {
-                if (gMovesInfo[gCurrentMove].argument & ARG_LONGER_STATUS) {
-                    gBattleMons[gEffectBattler].status1 |= STATUS1_SLEEP_TURN(3);
-                } else {
-                    gBattleMons[gEffectBattler].status1 |= STATUS1_SLEEP_TURN(2);
-                }
+                u8 count = argument ? argument : 1 + RandomUniform(RNG_SLEEP_TURNS, 1, 3);
+                gBattleMons[gEffectBattler].status1 |= STATUS1_SLEEP_TURN(count);
             }
             else
             {
@@ -3328,11 +3326,8 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 }
                 else
                 {
-                    if (gMovesInfo[gCurrentMove].argument & ARG_LONGER_STATUS)
-                        gBattleMons[gEffectBattler].status2 |= STATUS2_CONFUSION_TURN(5);
-                    else
-                        gBattleMons[gEffectBattler].status2 |= STATUS2_CONFUSION_TURN(3);
-
+                    u8 count = argument ? argument : ((Random()) % 4) + 2;
+                    gBattleMons[gEffectBattler].status2 |= STATUS2_CONFUSION_TURN(count); // 2-5 turns
                     // If the confusion is activating due to being released from Sky Drop, go to "confused due to fatigue" script.
                     // Otherwise, do normal confusion script.
                     if (gCurrentMove == MOVE_SKY_DROP)
@@ -3439,7 +3434,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                         MOVE_EFFECT_PARALYSIS
                     };
                     gBattleScripting.moveEffect = RandomElement(RNG_TRI_ATTACK, sTriAttackEffects);
-                    SetMoveEffect(primary, certain);
+                    SetMoveEffect(primary, certain, 0);
                 }
                 break;
             case MOVE_EFFECT_CHARGING:
@@ -3577,22 +3572,18 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                     gBattlescriptCurrInstr = BattleScript_StatDown;
                 }
                 break;
-            case MOVE_EFFECT_ATK_PLUS_3:
-            case MOVE_EFFECT_DEF_PLUS_3:
-            case MOVE_EFFECT_SPD_PLUS_3:
-            case MOVE_EFFECT_SP_ATK_PLUS_3:
-            case MOVE_EFFECT_SP_DEF_PLUS_3:
-            case MOVE_EFFECT_ACC_PLUS_3:
-            case MOVE_EFFECT_EVS_PLUS_3:
+            case MOVE_EFFECT_ATK_PLUS_ARG:
+            case MOVE_EFFECT_DEF_PLUS_ARG:
+            case MOVE_EFFECT_SPD_PLUS_ARG:
+            case MOVE_EFFECT_SP_ATK_PLUS_ARG:
+            case MOVE_EFFECT_SP_DEF_PLUS_ARG:
+            case MOVE_EFFECT_ACC_PLUS_ARG:
+            case MOVE_EFFECT_EVS_PLUS_ARG:
                 {
-                    u8 count = 3;
-                    u32 argument = gMovesInfo[gCurrentMove].argument & 0xFF;
-                    if (argument != 0) {
-                        count = argument;
-                    }
+                    u8 count = argument;
                     if (NoAliveMonsForEitherParty()
                       || ChangeStatBuffs(SET_STAT_BUFF_VALUE(count),
-                                        gBattleScripting.moveEffect - MOVE_EFFECT_ATK_PLUS_3 + 1,
+                                        gBattleScripting.moveEffect - MOVE_EFFECT_ATK_PLUS_ARG + 1,
                                         affectsUser | STAT_CHANGE_UPDATE_MOVE_EFFECT, 0) == STAT_CHANGE_DIDNT_WORK)
                     {
                         gBattlescriptCurrInstr++;
@@ -3606,26 +3597,22 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                     }
                     break;
                 }
-            case MOVE_EFFECT_ATK_MINUS_3:
-            case MOVE_EFFECT_DEF_MINUS_3:
-            case MOVE_EFFECT_SPD_MINUS_3:
-            case MOVE_EFFECT_SP_ATK_MINUS_3:
-            case MOVE_EFFECT_SP_DEF_MINUS_3:
-            case MOVE_EFFECT_ACC_MINUS_3:
-            case MOVE_EFFECT_EVS_MINUS_3:
+            case MOVE_EFFECT_ATK_MINUS_ARG:
+            case MOVE_EFFECT_DEF_MINUS_ARG:
+            case MOVE_EFFECT_SPD_MINUS_ARG:
+            case MOVE_EFFECT_SP_ATK_MINUS_ARG:
+            case MOVE_EFFECT_SP_DEF_MINUS_ARG:
+            case MOVE_EFFECT_ACC_MINUS_ARG:
+            case MOVE_EFFECT_EVS_MINUS_ARG:
                 if (affectsUser == MOVE_EFFECT_AFFECTS_USER)
                     flags = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN;
                 else
                     flags = 0;
                 if (mirrorArmorReflected && !affectsUser)
                     flags |= STAT_CHANGE_ALLOW_PTR;
-                u8 count = 3;
-                u32 argument = gMovesInfo[gCurrentMove].argument & 0xFF;
-                if (argument != 0) {
-                    count = argument;
-                }
+                u8 count = argument;
                 if (ChangeStatBuffs(SET_STAT_BUFF_VALUE(count) | STAT_BUFF_NEGATIVE,
-                                    gBattleScripting.moveEffect - MOVE_EFFECT_ATK_MINUS_3 + 1,
+                                    gBattleScripting.moveEffect - MOVE_EFFECT_ATK_MINUS_ARG + 1,
                                     flags | STAT_CHANGE_UPDATE_MOVE_EFFECT, gBattlescriptCurrInstr + 1) == STAT_CHANGE_DIDNT_WORK)
                 {
                     if (!mirrorArmorReflected)
@@ -3920,7 +3907,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 {
                     static const u8 sDireClawEffects[] = { MOVE_EFFECT_POISON, MOVE_EFFECT_PARALYSIS, MOVE_EFFECT_SLEEP };
                     gBattleScripting.moveEffect = RandomElement(RNG_DIRE_CLAW, sDireClawEffects);
-                    SetMoveEffect(primary, certain);
+                    SetMoveEffect(primary, certain, 0);
                 }
                 break;
             case MOVE_EFFECT_STEALTH_ROCK:
@@ -4037,7 +4024,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                         break;
                     }
                 }
-                SetMoveEffect(primary, certain);
+                SetMoveEffect(primary, certain, 0);
                 break;
             case MOVE_EFFECT_PSYCHIC_NOISE:
                 battlerAbility = IsAbilityOnSide(gEffectBattler, ABILITY_AROMA_VEIL);
@@ -4215,7 +4202,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 break;
               case MOVE_EFFECT_ABSORB:
                 gBattlescriptCurrInstr += 1;
-                TryAbsorb();
+                TryAbsorb(argument ? argument * 25 : 50);
                 break;
               case MOVE_EFFECT_CURSE:
                 if ((gBattleMons[gBattlerTarget].status2 & STATUS2_CURSED) == 0) {
@@ -4226,9 +4213,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 break;
             case MOVE_EFFECT_YAWN:
                 if ((gStatuses3[gBattlerTarget] & STATUS3_YAWN) == 0) {
-                    u8 turns = 3;
-                    if (gMovesInfo[gCurrentMove].argument & ARG_LONGER_STATUS)
-                        turns = 4;
+                    u8 turns = argument ? argument : 3;
                     gStatuses3[gBattlerTarget] |= STATUS3_YAWN_TURN(turns);
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
                     gBattlescriptCurrInstr = BattleScript_MoveEffectDrowsy;
@@ -4290,7 +4275,8 @@ static void Cmd_setadditionaleffects(void)
                     gBattleScripting.moveEffect = additionalEffect->moveEffect | (MOVE_EFFECT_AFFECTS_USER * (additionalEffect->self));
                     SetMoveEffect(
                         percentChance == 0, // a primary effect
-                        percentChance >= 100 // certain to happen
+                        percentChance >= 100, // certain to happen
+                        additionalEffect->argument
                     );
                 }
             }
@@ -4324,15 +4310,13 @@ static void Cmd_setadditionaleffects(void)
 static void Cmd_seteffectprimary(void)
 {
     CMD_ARGS();
-
-    SetMoveEffect(TRUE, FALSE);
+    SetMoveEffect(TRUE, FALSE, 0);
 }
 
 static void Cmd_seteffectsecondary(void)
 {
     CMD_ARGS();
-
-    SetMoveEffect(FALSE, FALSE);
+    SetMoveEffect(FALSE, FALSE, 0);
 }
 
 static void Cmd_clearstatusfromeffect(void)
@@ -5944,7 +5928,7 @@ static void Cmd_moveend(void)
             if (gMovesInfo[gCurrentMove].effect == EFFECT_ABSORB
                  && !(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
                  && TARGET_TURN_DAMAGED) {
-                effect = TryAbsorb();
+                effect = TryAbsorb(gMovesInfo[gCurrentMove].argument);
             }
             gBattleScripting.moveendState++;
             break;
@@ -11374,10 +11358,9 @@ static void Cmd_tryhealhalfhealth(void)
     if (cmd->battler == BS_ATTACKER)
         gBattlerTarget = gBattlerAttacker;
 
-    u8 ratio = gMovesInfo[gCurrentMove].argument & 0xff;
-    if (ratio == 0) {
+    u8 ratio = gMovesInfo[gCurrentMove].argument;
+    if (ratio == 0)
         ratio = 50;
-    }
 
     gBattleMoveDamage = ((u32)GetNonDynamaxMaxHP(gBattlerTarget)) * ratio / 100;
     if (gBattleMoveDamage == 0)
