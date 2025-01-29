@@ -2508,7 +2508,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Recover"),
         .description = COMPOUND_STRING("The user regenerates its cells, restoring its own HP by up\nto half its max HP."),
-            .pp = 5,
+        .pp = 5,
         .effect = EFFECT_RESTORE_HP,
         .power = 0,
         .type = TYPE_NORMAL,
@@ -3197,6 +3197,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .name = COMPOUND_STRING("Soft-Boiled"),
         .description = COMPOUND_STRING("The user consumes its held egg. This heals ALL\nHP, and has +4 priority."),
         .effect = EFFECT_SOFTBOILED,
+        .argument = 100,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 100,
@@ -12574,10 +12575,6 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_BOTH,
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
-        .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MOVE_EFFECT_SPD_MINUS_1,
-            .chance = 100,
-        }),
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -13836,7 +13833,10 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .contestComboStarterId = 0,
         .contestComboMoves = {0},
         .battleAnimScript = gBattleAnimMove_HappyHour,
-        .additionalEffects = ADDITIONAL_EFFECTS({.moveEffect = MOVE_EFFECT_PERISH_SONG})
+        .additionalEffects = ADDITIONAL_EFFECTS(
+            {.moveEffect = MOVE_EFFECT_PERISH_SONG},
+            {.moveEffect = MOVE_EFFECT_ALL_STATS_UP}
+        )
     },
 
     [MOVE_ELECTRIC_TERRAIN] =
