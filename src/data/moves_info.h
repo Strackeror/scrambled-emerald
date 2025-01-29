@@ -15499,8 +15499,9 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .contestComboStarterId = 0,
         .contestComboMoves = {0},
         .battleAnimScript = gBattleAnimMove_PhotonGeyser,
-        .recoil = -50,
         .criticalHitStage = 3,
+        .additionalEffects = ADDITIONAL_EFFECTS({.moveEffect = MOVE_EFFECT_ABSORB }),
+        .argument = 50,
     },
 
     [MOVE_ZIPPY_ZAP] =
@@ -15815,7 +15816,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Dynamax Cannon"),
         .description = COMPOUND_STRING("Eternatus releases a strange corrupted beam of energy.\nThis ALWAYS poisons, and heals 50% damage."),
-        .effect = EFFECT_DYNAMAX_DOUBLE_DMG,
+        .effect = EFFECT_ABSORB,
         .power = 100,
         .type = TYPE_DRAGON,
         .accuracy = 100,
@@ -15837,7 +15838,6 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .contestComboStarterId = 0,
         .contestComboMoves = {0},
         .battleAnimScript = gBattleAnimMove_DynamaxCannon,
-        .recoil = -50,
         .additionalEffects = ADDITIONAL_EFFECTS({.moveEffect = MOVE_EFFECT_POISON,.chance = 100,},),
     },
 
@@ -18525,7 +18525,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .makesContact = TRUE,
         .metronomeBanned = TRUE,
         .argument = TYPE_ELECTRIC,
-        .additionalEffects = ADDITIONAL_EFFECTS({.moveEffect = MOVE_EFFECT_PARALYSIS,.chance = 100,},),
+        .additionalEffects = ADDITIONAL_EFFECTS({.moveEffect = MOVE_EFFECT_PARALYSIS}, {.moveEffect = MOVE_EFFECT_REMOVE_ARG_TYPE, .self = TRUE}),
         .battleAnimScript = gBattleAnimMove_DoubleShock,
         .healingMove = TRUE,
     },
