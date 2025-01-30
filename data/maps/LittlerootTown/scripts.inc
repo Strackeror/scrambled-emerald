@@ -152,6 +152,7 @@ LittlerootTown_EventScript_GoInsideWithMom::
 	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachPlayerAtTruck
 	waitmovement 0
 	giveitem ITEM_CANDY_JAR, 1
+	giveitem ITEM_TERA_ORB, 1
 	setflag FLAG_SYS_B_DASH
 	msgbox LittlerootTown_Text_OurNewHomeLetsGoInside, MSGBOX_DEFAULT
 	closemessage
@@ -172,6 +173,7 @@ LittlerootTown_EventScript_GoInsideWithMom::
 
 		// PLOTLESS
 		@ faster intro
+		setflag FLAG_HIDE_ROUTE_103_RIVAL
 		setflag FLAG_DEFEATED_RIVAL_ROUTE103
 		setflag FLAG_ADVENTURE_STARTED
 		setvar VAR_LITTLEROOT_INTRO_STATE, 7

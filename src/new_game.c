@@ -207,7 +207,7 @@ void NewGameInitData(void)
     ResetTrainerHillResults();
     ResetContestLinkResults();
     ResetItemFlags();
-    VarSet(VAR_LEVEL_CAP, 10);
+    VarSet(VAR_LEVEL_CAP, 11);
     gSaveBlock2Ptr->optionsBattleStyle = 1;
 }
 

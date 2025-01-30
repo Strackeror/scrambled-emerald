@@ -3792,7 +3792,7 @@ static void Task_ChangeScreen(u8 taskId)
         maxMonIndex = sStorage->summaryMaxPos;
         mode = sStorage->summaryScreenMode;
         FreePokeStorageData();
-        if (mode == SUMMARY_MODE_NORMAL && boxMons == &sSavedMovingMon.box)
+        if (mode == BW_SUMMARY_MODE_NORMAL && boxMons == &sSavedMovingMon.box)
         {
             if (BW_SUMMARY_SCREEN)
                 ShowPokemonSummaryScreenHandleDeoxys_BW(mode, boxMons, monIndex, maxMonIndex, CB2_ReturnToPokeStorage);
