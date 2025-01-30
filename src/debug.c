@@ -557,7 +557,7 @@ static const u8 sDebugText_PCBag_ClearBag[] =                _("Clear Bag");
 static const u8 sDebugText_PCBag_ClearBoxes[] =              _("Clear Storage Boxes");
 // Party/Boxes Menu
 static const u8 sDebugText_Party_MoveReminder[] =            _("Move Reminder");
-static const u8 sDebugText_Party_TeachMove[] =               _("Teach Move");
+static const u8 sDebugText_Party_TeachMove[] =               _("Force Replace Move");
 static const u8 sDebugText_Party_HatchAnEgg[] =              _("Hatch an Egg");
 static const u8 sDebugText_Party_HealParty[] =               _("Heal party");
 static const u8 sDebugText_Party_InflictStatus1[] =          _("Inflict Status1");
