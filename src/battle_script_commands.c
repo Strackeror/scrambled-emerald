@@ -4212,13 +4212,19 @@ void SetMoveEffect(bool32 primary, bool32 certain, u8 argument)
                 }
                 break;
             case MOVE_EFFECT_YAWN:
-                if ((gStatuses3[gBattlerTarget] & STATUS3_YAWN) == 0) {
-                    u8 turns = argument ? argument : 3;
+            {
+                bool8 alreadyYawned = gStatuses3[gBattlerTarget] & STATUS3_YAWN;
+                bool8 alreadyStatused = gBattleMons[gBattlerTarget].status1 & STATUS1_ANY;
+                bool8 terrainPrevents = IsBattlerTerrainAffected(gBattlerTarget, STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_MISTY_TERRAIN);
+                if (!alreadyYawned && !alreadyStatused && !terrainPrevents)
+                {
+                    u8 turns = argument ? argument : 2;
                     gStatuses3[gBattlerTarget] |= STATUS3_YAWN_TURN(turns);
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
                     gBattlescriptCurrInstr = BattleScript_MoveEffectDrowsy;
                 }
                 break;
+            }
             case MOVE_EFFECT_PERISH_SONG:
                 if ((gStatuses3[gBattlerTarget] & STATUS3_PERISH_SONG) == 0) {
                     gStatuses3[gBattlerTarget] |= STATUS3_PERISH_SONG;
@@ -5928,7 +5934,8 @@ static void Cmd_moveend(void)
             if (gMovesInfo[gCurrentMove].effect == EFFECT_ABSORB
                  && !(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
                  && TARGET_TURN_DAMAGED) {
-                effect = TryAbsorb(gMovesInfo[gCurrentMove].argument);
+                u8 argument = gMovesInfo[gCurrentMove].argument;
+                effect = TryAbsorb(argument ? argument : 50);
             }
             gBattleScripting.moveendState++;
             break;
