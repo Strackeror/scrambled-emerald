@@ -979,7 +979,7 @@ static void Task_BuyMenu(u8 taskId)
         case LIST_CANCEL:
             PlaySE(SE_SELECT);
             ExitBuyMenu(taskId);
-            break;
+            return;
         default:
             PlaySE(SE_SELECT);
             tItemId = itemId;
@@ -1015,6 +1015,7 @@ static void Task_BuyMenu(u8 taskId)
 
                 }
             }
+            return;
         }
 
         itemId = sMartInfo.itemList[sShopData->selectedRow + sShopData->scrollOffset];
@@ -1068,10 +1069,6 @@ static void Task_BuyHowManyDialogueHandleInput(u8 taskId)
             ClearStdWindowAndFrameToTransparent(WIN_QUANTITY_IN_BAG, FALSE);
             ClearWindowTilemap(WIN_QUANTITY_PRICE);
             ClearWindowTilemap(WIN_QUANTITY_IN_BAG);
-            PutWindowTilemap(WIN_ITEM_LIST);
-            CopyItemName(tItemId, gStringVar1);
-            ConvertIntToDecimalStringN(gStringVar2, tItemCount, STR_CONV_MODE_LEFT_ALIGN, MAX_ITEM_DIGITS);
-            ConvertIntToDecimalStringN(gStringVar3, sShopData->totalCost, STR_CONV_MODE_LEFT_ALIGN, MAX_MONEY_DIGITS);
             BuyMenuTryMakePurchase(taskId);
         }
         else if (JOY_NEW(B_BUTTON))
@@ -1095,6 +1092,7 @@ static void BuyMenuTryMakePurchase(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
+    ScheduleBgCopyTilemapToVram(0);
     PutWindowTilemap(WIN_ITEM_LIST);
 
     if (sMartInfo.martType == MART_TYPE_NORMAL)
@@ -1113,7 +1111,7 @@ static void BuyMenuTryMakePurchase(u8 taskId)
     else
     {
         if (GiveScrambledEgg(tItemId) != MON_CANT_GIVE)
-            BuyMenuDisplayMessage(taskId, gText_ThankYouIllSendItHome, BuyMenuSubtractMoney);
+            BuyMenuDisplayMessage(taskId, gText_HereYouGoThankYou, BuyMenuSubtractMoney);
         else
             BuyMenuDisplayMessage(taskId, gText_ThatItemIsSoldOut, BuyMenuReturnToItemList);
     }
@@ -1132,7 +1130,7 @@ static void BuyMenuSubtractMoney(u8 taskId)
     if (sMartInfo.martType == MART_TYPE_NORMAL)
         gTasks[taskId].func = Task_ReturnToItemListAfterItemPurchase;
     else
-        gTasks[taskId].func = Task_ReturnToItemListAfterEggPurchase;
+        gTasks[taskId].func = Task_ReturnToItemListAfterItemPurchase;
 }
 
 static void Task_ReturnToItemListAfterItemPurchase(u8 taskId)
