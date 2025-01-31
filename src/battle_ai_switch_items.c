@@ -1164,22 +1164,26 @@ static u32 GetBestMonTypeMatchup(struct Pokemon *party, int firstId, int lastId,
             if (!((1u << i) & invalidMons) && !((1u << i) & bits))
             {
                 u16 species = GetMonData(&party[i], MON_DATA_SPECIES);
-                uq4_12_t typeEffectiveness = UQ_4_12(1.0);
 
                 u8 atkType1 = gBattleMons[opposingBattler].types[0];
                 u8 atkType2 = gBattleMons[opposingBattler].types[1];
                 u8 defType1 = gSpeciesInfo[species].types[0];
                 u8 defType2 = gSpeciesInfo[species].types[1];
 
+                uq4_12_t typeEffectiveness = UQ_4_12(1.0);
                 typeEffectiveness = uq4_12_multiply(typeEffectiveness, (GetTypeModifier(atkType1, defType1)));
-                if (atkType2 != atkType1)
-                    typeEffectiveness = uq4_12_multiply(typeEffectiveness, (GetTypeModifier(atkType2, defType1)));
                 if (defType2 != defType1)
-                {
                     typeEffectiveness = uq4_12_multiply(typeEffectiveness, (GetTypeModifier(atkType1, defType2)));
-                    if (atkType2 != atkType1)
-                        typeEffectiveness = uq4_12_multiply(typeEffectiveness, (GetTypeModifier(atkType2, defType2)));
+
+                if (atkType2 != atkType1)
+                {
+                    uq4_12_t typeEffectiveness2 = UQ_4_12(1.0);
+                    typeEffectiveness2 = uq4_12_multiply(typeEffectiveness2, (GetTypeModifier(atkType2, defType1)));
+                    if (defType2 != defType1)
+                        typeEffectiveness2 = uq4_12_multiply(typeEffectiveness2, (GetTypeModifier(atkType2, defType2)));
+                    typeEffectiveness = max(typeEffectiveness, typeEffectiveness2);
                 }
+    
                 if (typeEffectiveness < bestResist)
                 {
                     bestResist = typeEffectiveness;
