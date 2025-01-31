@@ -30,6 +30,7 @@
 #include "pokemon_summary_screen.h"
 #include "pokemon_storage_system.h"
 #include "script.h"
+#include "script_pokemon_util.h"
 #include "sound.h"
 #include "string_util.h"
 #include "strings.h"
@@ -69,6 +70,7 @@ enum {
     OPTION_WITHDRAW,
 #endif
     OPTION_MOVE_ITEMS,
+    OPTION_HEAL,
     OPTION_EXIT,
     OPTIONS_COUNT
 };
@@ -906,6 +908,7 @@ struct {
     [OPTION_DEPOSIT]    = {COMPOUND_STRING("DEPOSIT POKéMON"),  COMPOUND_STRING("Store POKéMON in your party in BOXES.")},
     [OPTION_MOVE_MONS]  = {COMPOUND_STRING("MOVE POKéMON"),     COMPOUND_STRING("Organize the POKéMON in BOXES and\nin your party.")},
     [OPTION_MOVE_ITEMS] = {COMPOUND_STRING("MOVE ITEMS"),       COMPOUND_STRING("Move items held by any POKéMON\nin a BOX or your party.")},
+    [OPTION_HEAL] =       {COMPOUND_STRING("HEAL PARTY"),       COMPOUND_STRING("Heal your Pokémon.")},
     [OPTION_EXIT]       = {COMPOUND_STRING("SEE YA!"),          COMPOUND_STRING("Return to the previous menu.")}
 };
 
@@ -915,7 +918,7 @@ static const struct WindowTemplate sWindowTemplate_MainMenu =
     .tilemapLeft = 1,
     .tilemapTop = 1,
     .width = 17,
-    .height = 10,
+    .height = 12,
     .paletteNum = 15,
     .baseBlock = 0x1,
 };
@@ -1617,6 +1620,14 @@ static void Task_PCMainMenu(u8 taskId)
                 // Can't deposit
                 FillWindowPixelBuffer(0, PIXEL_FILL(1));
                 AddTextPrinterParameterized2(0, FONT_NORMAL, gText_JustOnePkmn, 0, NULL, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
+                task->tState = STATE_ERROR_MSG;
+            }
+            else if (task->tInput == OPTION_HEAL)
+            {
+                PlaySE(SE_USE_ITEM);
+                HealPlayerParty();
+                FillWindowPixelBuffer(0, PIXEL_FILL(1));
+                AddTextPrinterParameterized2(0, FONT_NORMAL, COMPOUND_STRING("Party Healed."), 0, NULL, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
                 task->tState = STATE_ERROR_MSG;
             }
             else
