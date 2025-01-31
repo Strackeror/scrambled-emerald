@@ -14207,5 +14207,20 @@ const struct Item gItemsInfo[] =
         .iconPalette = gItemIconPalette_CandyJar,
     },
 
+    [ITEM_MUSIC_BOX] =
+    {
+        .name = _("Musical Flute"),
+        .importance = 1,
+        .description = COMPOUND_STRING( 
+            "Toggles music.\n"
+            "Applies next time\n"
+            "music changes."
+        ),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .iconPic = gItemIcon_PokeFlute,
+        .iconPalette = gItemIconPalette_PokeFlute,
+        .fieldUseFunc = ItemUseOutOfBattle_MusicBox,
+    }
 };
 

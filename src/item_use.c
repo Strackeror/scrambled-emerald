@@ -1463,6 +1463,19 @@ void ItemUseOutOfBattle_Honey(u8 taskId)
     Task_FadeAndCloseBagMenu(taskId);
 }
 
+void ItemUseOutOfBattle_MusicBox(u8 taskId)
+{
+    if (gTasks[taskId].tUsingRegisteredKeyItem)
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+
+    if (gSaveBlock1Ptr->musicOff)
+        DisplayItemMessage(taskId, FONT_NORMAL, COMPOUND_STRING("Toggled music on.{PAUSE_UNTIL_PRESS}"), CloseItemMessage);
+    else
+        DisplayItemMessage(taskId, FONT_NORMAL, COMPOUND_STRING("Toggled music off.{PAUSE_UNTIL_PRESS}"), CloseItemMessage);
+    gSaveBlock1Ptr->musicOff = !gSaveBlock1Ptr->musicOff;
+}
+
+
 void ItemUseOutOfBattle_CannotUse(u8 taskId)
 {
     DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
