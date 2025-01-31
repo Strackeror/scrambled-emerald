@@ -701,7 +701,8 @@ static void DoMoveRelearnerMain(void)
         }
         break;
     case MENU_STATE_FADE_FROM_SUMMARY_SCREEN:
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 16, RGB_BLACK);
+        if (sMoveRelearnerStruct->moveSlot != MAX_MON_MOVES)
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 16, RGB_BLACK);
         sMoveRelearnerStruct->state++;
         if (sMoveRelearnerMenuSate.showContestInfo == FALSE)
         {
