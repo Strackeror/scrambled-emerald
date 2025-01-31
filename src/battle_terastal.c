@@ -26,15 +26,6 @@ void ActivateTera(u32 battler)
     SetActiveGimmick(battler, GIMMICK_TERA);
     SetGimmickAsActivated(battler, GIMMICK_TERA);
 
-    // Remove Tera Orb charge.
-    if (B_FLAG_TERA_ORB_CHARGED != 0
-        && (B_FLAG_TERA_ORB_NO_COST == 0 || !FlagGet(B_FLAG_TERA_ORB_NO_COST))
-        && side == B_SIDE_PLAYER
-        && !(IsDoubleBattle() && !IsPartnerMonFromSameTrainer(battler)))
-    {
-        FlagClear(B_FLAG_TERA_ORB_CHARGED);
-    }
-
     // Execute battle script.
     PREPARE_TYPE_BUFFER(gBattleTextBuff1, GetBattlerTeraType(battler));
     if (TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_TERASTALLIZATION))
@@ -72,14 +63,6 @@ bool32 CanTerastallize(u32 battler)
         // Skip all other checks in this block, go to HasTrainerUsedGimmick
     }
     else if (!CheckBagHasItem(ITEM_TERA_ORB, 1))
-    {
-        return FALSE;
-    }
-    else if (FlagGet(B_FLAG_TERA_ORB_NO_COST))
-    {
-        // Tera Orb is not depleted, go to HasTrainerUsedGimmick
-    }
-    else if (!FlagGet(B_FLAG_TERA_ORB_CHARGED))
     {
         return FALSE;
     }
