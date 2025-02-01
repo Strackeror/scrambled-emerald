@@ -1763,7 +1763,7 @@ void BattleMainCB2(void)
     else
     {
         u32 s;
-        u32 fadeResult;
+        u32 fadeResult = 0;
 
         // Update select entries at higher speed
         // disable speed up during palette fades otherwise we run into issues with blending

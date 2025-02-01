@@ -4,7 +4,7 @@
 #define BERRY_NAME_LENGTH 6
 #define BERRY_ITEM_EFFECT_COUNT 18
 
-struct Berry
+struct PACKED Berry
 {
     const u8 name[BERRY_NAME_LENGTH + 1];
     u8 firmness:4;
@@ -29,7 +29,7 @@ struct Berry
 
 // with no const fields
 
-struct Berry2
+struct PACKED Berry2
 {
     u8 name[BERRY_NAME_LENGTH + 1];
     u8 firmness:4;
@@ -52,7 +52,7 @@ struct Berry2
     u8 drainRate;
 };
 
-struct EnigmaBerry
+struct PACKED EnigmaBerry
 {
     struct Berry2 berry;
     u8 itemEffect[BERRY_ITEM_EFFECT_COUNT];

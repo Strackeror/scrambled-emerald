@@ -1,6 +1,7 @@
-use std::env;
+use std::{env, io::Write as _, path::PathBuf};
 
 fn main() {
+    let output_path = PathBuf::from(env::var("OUT_DIR").unwrap());
     let base_path = env::current_dir()
         .unwrap()
         .join("..")
@@ -8,21 +9,24 @@ fn main() {
         .unwrap();
     let include_path = base_path.join("include");
     let include_path = include_path.to_str().unwrap();
-    let bindings = bindgen::Builder::default()
+    let builder = bindgen::Builder::default()
         .header("src/wrapper.h")
-        .clang_args(["-iquote", &format!("{include_path}")])
-        .clang_arg("--target=thumbv4t-none-eabi")
-        .clang_arg("-I/usr/arm-none-eabi/include")
-        .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
-        .use_core()
-        .opaque_type("PokemonSubstruct3")
-        .opaque_type("Berry")
-        .opaque_type("Berry2")
+        .clang_args([
+            "-I/usr/arm-none-eabi/include",
+            "-iquote",
+            &format!("{include_path}"),
+        ])
+        .clang_args([
+            "--target=thumbv4t-none-eabi",
+            "-mabi=apcs-gnu",
+        ])
+        .opaque_type("_reent.+")
         .opaque_type("ObjectEventTemplate")
-        .opaque_type("SaveBlock1")
-        .generate()
-        .expect("bindings");
+        .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
+        .use_core();
+
+    let bindings = builder.clone().generate().expect("bindings");
     bindings
-        .write_to_file("src/bindings.rs")
+        .write_to_file(output_path.join("bindings.rs"))
         .expect("Writing to file");
 }
