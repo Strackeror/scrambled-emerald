@@ -16313,7 +16313,7 @@ Nature: Timid
 - MOVE_NASTY_PLOT
 
 SPECIES_STARMOBILE_POISON @ ITEM_NONE
-Level: 30
+Level: 38
 Ability: ABILITY_FILTER
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe
@@ -16465,7 +16465,7 @@ Nature: Jolly
 - MOVE_PARTING_SHOT
 
 SPECIES_STARMOBILE_FIRE @ ITEM_NONE
-Level: 38
+Level: 30
 Ability: ABILITY_FILTER
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 252 SpA / 0 SpD / 0 Spe

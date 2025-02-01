@@ -40784,7 +40784,7 @@ F_TRAINER_FEMALE |
 #line 16317
             .ability = ABILITY_FILTER,
 #line 16316
-            .lvl = 30,
+            .lvl = 38,
 #line 16320
             .nature = NATURE_SERIOUS,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
@@ -41122,7 +41122,7 @@ F_TRAINER_FEMALE |
 #line 16469
             .ability = ABILITY_FILTER,
 #line 16468
-            .lvl = 38,
+            .lvl = 30,
 #line 16472
             .nature = NATURE_SERIOUS,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
