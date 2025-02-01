@@ -218,7 +218,7 @@ fn trainer(
     let (ace_id, _) = pokes
         .iter()
         .enumerate()
-        .filter(|(id, poke)| poke.poke_id != "Egg")
+        .filter(|(_, poke)| poke.poke_id != "Egg")
         .last()
         .context("last")?;
 

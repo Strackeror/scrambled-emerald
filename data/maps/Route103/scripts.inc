@@ -20,11 +20,17 @@ Route103_EventScript_OpenAlteringCave::
 	return
 
 Route103_EventScript_Rival::
-	lockall
-	checkplayergender
-	goto_if_eq VAR_RESULT, MALE, Route103_EventScript_RivalMay
-	goto_if_eq VAR_RESULT, FEMALE, Route103_EventScript_RivalBrendan
+	trainerbattle_single TRAINER_RIVAL_07_HONO, gText_PlaceHolder, Route103_Text_MayDefeated, Route103_EventScript_RivalDefeated
 	end
+
+Route103_EventScript_RivalDefeated::
+	fadescreen FADE_TO_BLACK
+	setflag FLAG_HIDE_ROUTE_103_RIVAL
+	removeobject LOCALID_RIVAL
+	fadescreen FADE_FROM_BLACK
+	release
+	end
+
 
 Route103_EventScript_RivalMay::
 	msgbox Route103_Text_MayRoute103Pokemon, MSGBOX_DEFAULT

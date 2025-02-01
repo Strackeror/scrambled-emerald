@@ -10,7 +10,7 @@
 #define TRAINER_RIVAL_06_HONO                 4
 #define TRAINER_PROFESSOR_A_01                5
 #define TRAINER_PROFESSOR_B_01                6
-#define TRAINER_GRUNT_SEAFLOOR_CAVERN_2       7
+#define TRAINER_RIVAL_07_HONO                 7
 #define TRAINER_GRUNT_SEAFLOOR_CAVERN_3       8
 #define TRAINER_GABRIELLE_1                   9
 #define TRAINER_GRUNT_PETALBURG_WOODS        10

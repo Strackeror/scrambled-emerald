@@ -1,6 +1,6 @@
 use std::collections::{BTreeMap, HashMap};
 use std::fmt::Display;
-use std::fs::{read, read_to_string, write};
+use std::fs::{read, write};
 
 use anyhow::{bail, Context as _, Result};
 use convert_case::{Case, Casing as _};
@@ -51,7 +51,6 @@ pub fn moves() -> Result<()> {
 
     let modded = fix_table(modded, &move_map);
     let vanilla = fix_table(vanilla, &move_map);
-
 
     let language = tree_sitter_cpp::LANGUAGE.into();
     let mut parser = tree_sitter::Parser::new();
