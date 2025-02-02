@@ -21,6 +21,7 @@
 #include "pokemon.h"
 #include "pokemon_summary_screen.h"
 #include "scanline_effect.h"
+#include "scrambled.h"
 #include "sound.h"
 #include "sprite.h"
 #include "string_util.h"
@@ -770,8 +771,12 @@ static void Task_EvolutionScene(u8 taskId)
             BattlePutTextOnWindow(gStringVar4, B_WIN_MSG);
             PlayBGM(MUS_EVOLVED);
             gTasks[taskId].tState++;
-            SetMonData(mon, MON_DATA_SPECIES, (void *)(&gTasks[taskId].tPostEvoSpecies));
+            u32 species = gTasks[taskId].tPostEvoSpecies;
+            SetMonData(mon, MON_DATA_SPECIES, &species);
             SetMonData(mon, MON_DATA_EVOLUTION_TRACKER, &zero);
+            u8 teraType = GetMonData(mon, MON_DATA_TERA_TYPE);
+            if (teraType == gSpeciesInfo[species].types[0] || teraType == gSpeciesInfo[species].types[1])
+                RollMonTeraType(mon, species);
             CalculateMonStats(mon);
             EvolutionRenameMon(mon, gTasks[taskId].tPreEvoSpecies, gTasks[taskId].tPostEvoSpecies);
             GetSetPokedexFlag(SpeciesToNationalPokedexNum(gTasks[taskId].tPostEvoSpecies), FLAG_SET_SEEN);

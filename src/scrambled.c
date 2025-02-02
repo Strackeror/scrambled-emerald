@@ -586,11 +586,25 @@ static const struct
     { .species = SPECIES_TAUROS_PALDEA_COMBAT, .formeList = sTaurosFormes },
 };
 
+void RollMonTeraType(struct Pokemon *mon, u16 species)
+{
+    while (TRUE)
+    {
+        u8 type = TYPE_NORMAL + Random() % 19;
+        const u8 *speciesTypes = gSpeciesInfo[species].types;
+        if (speciesTypes[0] != type && speciesTypes[1] != type && type != TYPE_MYSTERY)
+        {
+            SetMonData(mon, MON_DATA_TERA_TYPE, &type);
+            break;
+        }
+    }
+}
+
 u8 GiveSpecies(u16 species)
 {
     struct Pokemon mon;
-    
-    for (int i = 0; i < ARRAY_COUNT(sSpeciesFormes); ++i) 
+
+    for (int i = 0; i < ARRAY_COUNT(sSpeciesFormes); ++i)
     {
         if (sSpeciesFormes[i].species != species)
             continue;
@@ -603,24 +617,13 @@ u8 GiveSpecies(u16 species)
         break;
     }
 
-
     CreateEgg(&mon, species, FALSE);
     u8 eggCycles = 0;
     SetMonData(&mon, MON_DATA_FRIENDSHIP, &eggCycles);
     u8 iv = 20;
     for (u8 i = 0; i < NUM_STATS; ++i)
         SetMonData(&mon, MON_DATA_HP_IV + i, &iv);
-
-    while (TRUE)
-    {
-        u8 type = TYPE_NORMAL + Random() % 19;
-        const u8 *speciesTypes = gSpeciesInfo[species].types;
-        if (speciesTypes[0] != type && speciesTypes[1] != type && type != TYPE_MYSTERY)
-        {
-            SetMonData(&mon, MON_DATA_TERA_TYPE, &type);
-            break;
-        }
-    }
+    RollMonTeraType(&mon, species);
     u16 dexNo = SpeciesToNationalPokedexNum(species);
     GetSetPokedexFlag(dexNo, FLAG_SET_CAUGHT);
     return GiveMonToPlayer(&mon);
