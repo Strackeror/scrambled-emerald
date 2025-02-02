@@ -22,6 +22,7 @@ fn main() {
         ])
         .allowlist_file(".*/task.h")
         .allowlist_file(".*/malloc.h")
+        .allowlist_file(".*/window.h")
         .allowlist_item("MgbaPrintf")
         .allowlist_item("FONT_.+")
         .allowlist_item(".+TextPrinter.+")

@@ -1,4 +1,7 @@
-use core::ffi::CStr;
+use arrayvec::ArrayVec;
+
+struct Pkstr<'a>(&'a [u8]);
+struct ArrayPkstr<const CAP: usize>(ArrayVec<u8, CAP>);
 
 const fn map(char: u8) -> u8 {
     match char {
@@ -23,20 +26,81 @@ const fn map(char: u8) -> u8 {
         _ => 0xAE,
     }
 }
-#[macro_export]
-macro_rules! pokestr {
-    ($str:literal) => {
-        $crate::charmap::map_bytes::<{$str.len() + 1}>($str)
+
+const fn map_special(bytes: &[u8]) -> &'static [u8] {
+    match bytes {
+        b"PAUSE" => &[0xFC, 0x09],
+        b"PARAGRAPH" | b"P" => &[0xFB],
+        _ => panic!("Invalid special char"),
     }
 }
 
-pub const fn map_bytes<const T: usize>(bytes: &[u8]) -> [u8; T] {
-    let mut i = 0;
-    let mut ret = [0; T];
-    while i < T - 1 {
-        ret[i] = map(bytes[i]);
-        i += 1;
+#[macro_export]
+macro_rules! pokestr {
+    ($str:literal) => {{
+        const LEN: usize = $crate::charmap::pkstr_bytes_len($str);
+        $crate::charmap::pkstr_build::<LEN>($str)
+    }};
+}
+
+const fn index_of(input: &[u8], check: u8) -> usize {
+    let mut index = 0;
+    while index < input.len() {
+        if input[index] == check {
+            return index;
+        }
+        index += 1;
     }
-    ret[i] = 0xff;
+    panic!("Couldn't find char")
+}
+
+pub const fn pkstr_bytes_len(input: &[u8]) -> usize {
+    let mut index = 0;
+    let mut size = 0;
+    while index < input.len() {
+        if input[index] == b'{' {
+            let (_, remaining) = input.split_at(index + 1);
+            let content_len = index_of(remaining, b'}');
+            let (content, _) = remaining.split_at(content_len);
+            size += map_special(content).len();
+            index += content_len + 2;
+        } else {
+            size += 1;
+            index += 1;
+        }
+    }
+    size + 1
+}
+
+const fn pkstr_write(buf: &mut [u8], input: &[u8]) {
+    let mut index = 0;
+    let mut offset = 0;
+    while index < input.len() {
+        if input[index] == b'{' {
+            let (_, remaining) = input.split_at(index + 1);
+            let content_len = index_of(remaining, b'}');
+            let (content, _) = remaining.split_at(content_len);
+            index += content_len + 2;
+
+            let to_write = map_special(content);
+            let (_, write) = buf.split_at_mut(offset);
+            let mut write_index = 0;
+            while write_index < to_write.len() {
+                write[write_index] = to_write[write_index];
+                write_index += 1;
+                offset += 1;
+            }
+        } else {
+            buf[offset] = map(input[index]);
+            index += 1;
+            offset += 1;
+        }
+    }
+    buf[offset] = 0xFF;
+}
+
+pub const fn pkstr_build<const S: usize>(input: &[u8]) -> [u8; S] {
+    let mut ret = [0u8; S];
+    pkstr_write(&mut ret, input);
     ret
 }
