@@ -4,6 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+arrayvec.version = "0.7.6"
+arrayvec.default-features = false
 
 [lib]
 crate-type=["staticlib"]

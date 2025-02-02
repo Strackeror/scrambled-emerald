@@ -2,3 +2,4 @@
 #include "pokemon.h"
 #include "task.h"
 #include "menu.h"
+#include "malloc.h"

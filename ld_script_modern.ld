@@ -45,6 +45,7 @@ SECTIONS {
         data/*.o(.bss);
         *libc.a:*.o(.bss*);
         *libnosys.a:*.o(.bss*);
+        *lib*rs.a:*.o(.bss*);
 
         src/m4a.o(.bss.code);
 
