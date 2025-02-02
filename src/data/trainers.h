@@ -43777,7 +43777,7 @@ F_TRAINER_FEMALE |
 #line 17667
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 17666
-            .ability = ABILITY_LEVITATE,
+            .ability = ABILITY_MEGA_LAUNCHER,
 #line 17665
             .lvl = 100,
 #line 17669

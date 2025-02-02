@@ -241,7 +241,7 @@ const struct EggPool gEggPools[] = {
     },
     [SCRAMBLED_EGG_WATER] = {
         .name = _("Aquatic Egg"),
-        .description = COMPOUND_STRING("Holds an aquatic"),
+        .description = COMPOUND_STRING("Holds an aquatic Pokémon."),
         .species = (const u16[]) {
             SPECIES_TENTACOOL,
             SPECIES_MAREANIE,
@@ -326,7 +326,7 @@ const struct EggPool gEggPools[] = {
     },
     [SCRAMBLED_EGG_LV20] = {
         .name = _("Journey Egg"),
-        .description = COMPOUND_STRING("A mix of Pokémon for early-game trainers."),
+        .description = COMPOUND_STRING("Holds Pokémon that start a bit strong. Minimum Lv20"),
         .species = (const u16[]) {
             SPECIES_SNEASEL_HISUI,
             SPECIES_GLIGAR,
@@ -374,7 +374,7 @@ const struct EggPool gEggPools[] = {
     },
     [SCRAMBLED_EGG_LV30] = {
         .name = _("Explorer Egg"),
-        .description = COMPOUND_STRING("Stronger Pokémon for mid-game trainers."),
+        .description = COMPOUND_STRING("Holds Pokémon that start quite strong. Minimum Lv30"),
         .species = (const u16[]) {
             SPECIES_FALINKS,
             SPECIES_TAUROS_PALDEA_COMBAT,
@@ -401,7 +401,7 @@ const struct EggPool gEggPools[] = {
     },
     [SCRAMBLED_EGG_LV35] = {
         .name = _("Apex Egg"),
-        .description = COMPOUND_STRING("Rare and powerful Pokémon for experienced trainers."),
+        .description = COMPOUND_STRING("Holds Pokémon that are immediately powerful. Minimum Lv35"),
         .species = (const u16[]) {
             SPECIES_KELDEO,
             SPECIES_STONJOURNER,
@@ -422,7 +422,7 @@ const struct EggPool gEggPools[] = {
     },
     [SCRAMBLED_EGG_LV40] = {
         .name = _("Mystic Egg"),
-        .description = COMPOUND_STRING("Contains legendary or mythical Pokémon."),
+        .description = COMPOUND_STRING("Holds Legendary Pokémon. Minimum Lv40"),
         .species = (const u16[]) {
             SPECIES_SPECTRIER,
             SPECIES_GLASTRIER,
@@ -439,7 +439,7 @@ const struct EggPool gEggPools[] = {
     },
     [SCRAMBLED_EGG_LV45] = {
         .name = _("Legendary Egg"),
-        .description = COMPOUND_STRING("Holds legendary Pokémon of immense power."),
+        .description = COMPOUND_STRING("Holds stronger Legendary Pokémon. Minimum Lv45"),
         .species = (const u16[]) {
             SPECIES_RAIKOU,
             SPECIES_WALKING_WAKE,
@@ -481,7 +481,7 @@ const struct EggPool gEggPools[] = {
     },
     [SCRAMBLED_EGG_LV50] = {
         .name = _("Titan Egg"),
-        .description = COMPOUND_STRING("Contains the most powerful legendary Pokémon."),
+        .description = COMPOUND_STRING("Holds the most powerful Legendary Pokémon. Minimum LV50"),
         .species = (const u16[]) {
             SPECIES_ETERNATUS,
             SPECIES_MEWTWO,
@@ -495,7 +495,7 @@ const struct EggPool gEggPools[] = {
     },
     [SCRAMBLED_EGG_RANDOM] = {
         .name = _("Mystery Egg"),
-        .description = COMPOUND_STRING("A random Pokémon-could be common or rare!"),
+        .description = COMPOUND_STRING("Get a random Pokémon from all the available options."),
         .species = NULL
     }
 };
