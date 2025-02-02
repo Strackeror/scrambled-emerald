@@ -1,4 +1,4 @@
-use std::{env, io::Write as _, path::PathBuf};
+use std::{env, path::PathBuf};
 
 fn main() {
     let output_path = PathBuf::from(env::var("OUT_DIR").unwrap());
@@ -20,8 +20,11 @@ fn main() {
             "--target=thumbv4t-none-eabi",
             "-mabi=apcs-gnu",
         ])
-        .opaque_type("_reent.+")
-        .opaque_type("ObjectEventTemplate")
+        .allowlist_file(".*/task.h")
+        .allowlist_file(".*/malloc.h")
+        .allowlist_item("MgbaPrintf")
+        .allowlist_item("FONT_.+")
+        .allowlist_item(".+TextPrinter.+")
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
         .use_core();
 
