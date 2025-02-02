@@ -10,8 +10,8 @@ use core::{alloc::GlobalAlloc, pin::Pin};
 
 use arrayvec::ArrayVec;
 use pokeemerald::{
-    gTasks, AddTextPrinterParameterized, Alloc_, Free, IsTextPrinterActive, MgbaPrintf,
-    RunTextPrinters, Task, FONT_NORMAL,
+    gTasks, AddTextPrinterParameterized, Alloc_, ClearWindowTilemap, Free, IsTextPrinterActive,
+    MgbaPrintf, RunTextPrinters, Task, FONT_NORMAL,
 };
 use slice_write::Write as _;
 
@@ -61,8 +61,8 @@ impl Future for WaitForTextPrinter {
     fn poll(self: Pin<&mut Self>, _cx: &mut Context<'_>) -> Poll<Self::Output> {
         unsafe { RunTextPrinters() };
         match unsafe { IsTextPrinterActive(self.0) } {
-             0 => Poll::Ready(()),
-             _ => Poll::Pending,
+            0 => Poll::Ready(()),
+            _ => Poll::Pending,
         }
     }
 }
@@ -73,7 +73,7 @@ fn sleep(frames: usize) -> impl Future<Output = ()> {
         type Output = ();
         fn poll(mut self: Pin<&mut Self>, _cx: &mut Context<'_>) -> Poll<Self::Output> {
             if self.0 == 0 {
-                return Poll::Ready(())
+                return Poll::Ready(());
             }
             self.0 -= 1;
             Poll::Pending
@@ -82,17 +82,16 @@ fn sleep(frames: usize) -> impl Future<Output = ()> {
     WaitUntil(frames)
 }
 
-async fn print(window_id: u8, font: u8, text: &[u8]) {
+async fn print_text(window_id: u8, font: u32, text: &[u8]) {
     unsafe {
-        AddTextPrinterParameterized(window_id, font, text.as_ptr(), 0, 0, 1, None);
+        AddTextPrinterParameterized(window_id, font as _, text.as_ptr(), 0, 0, 1, None);
     };
     WaitForTextPrinter(window_id).await
 }
 
 async fn cool_rust_dialogue() {
-    print(0, FONT_NORMAL as _, &pokestr!(b"Hello from rust!")).await;
-    sleep(60).await;
-    print(0, FONT_NORMAL as _, &pokestr!(b"Hello from rust again!")).await;
+    print_text(0, FONT_NORMAL as _, &pokestr!(b"Hello from rust!{P}")).await;
+    print_text(0, FONT_NORMAL, &pokestr!(b"Hello from rust again!{P}")).await;
 }
 
 #[no_mangle]
