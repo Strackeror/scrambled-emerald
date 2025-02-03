@@ -6191,7 +6191,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 
     [SPECIES_GOTHITELLE] =
     {
-        .baseHP        = 70,
+        .baseHP        = 85,
         .baseAttack    = 55,
         .baseDefense   = 95,
         .baseSpeed     = 65,

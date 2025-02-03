@@ -1998,11 +1998,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
     [SPECIES_MARILL] =
     {
         .baseHP        = 70,
-        .baseAttack    = 20,
-        .baseDefense   = 50,
-        .baseSpeed     = 40,
-        .baseSpAttack  = 20,
-        .baseSpDefense = 50,
+        .baseAttack    = 30,
+        .baseDefense   = 65,
+        .baseSpeed     = 65,
+        .baseSpAttack  = 50,
+        .baseSpDefense = 70,
         .types = MON_TYPES(TYPE_WATER, TYPE_FAIRY),
         .catchRate = 190,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 88 : 58,
