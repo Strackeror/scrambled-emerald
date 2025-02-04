@@ -1,21 +1,15 @@
 #![no_std]
 extern crate alloc;
-use alloc::boxed::Box;
-use core::cell::UnsafeCell;
-use core::future::Future;
-use core::ops::Deref;
+use core::alloc::GlobalAlloc;
 use core::panic::PanicInfo;
-use core::task::{Context, Poll, RawWaker, RawWakerVTable, Waker};
-use core::{alloc::GlobalAlloc, pin::Pin};
 
 use arrayvec::ArrayVec;
-use pokeemerald::{
-    gTasks, AddTextPrinterParameterized, Alloc_, ClearWindowTilemap, Free, IsTextPrinterActive,
-    MgbaPrintf, RunTextPrinters, Task, FONT_NORMAL,
-};
+use pokeemerald::{gTasks, Alloc_, Free, MgbaPrintf, Task};
 use slice_write::Write as _;
 
 mod charmap;
+mod future;
+mod party_screen;
 mod slice_write;
 
 struct PokeAllocator;
@@ -31,122 +25,9 @@ unsafe impl GlobalAlloc for PokeAllocator {
 #[global_allocator]
 static GLOBAL: PokeAllocator = PokeAllocator;
 
-// Workarounds weeee
-#[repr(transparent)]
-pub struct UnsafeSyncCell<T: ?Sized>(UnsafeCell<T>);
-unsafe impl<T: ?Sized> Sync for UnsafeSyncCell<T> {}
-impl<T> UnsafeSyncCell<T> {
-    const fn new(arg: T) -> Self {
-        UnsafeSyncCell(UnsafeCell::new(arg))
-    }
-}
-impl<T> Deref for UnsafeSyncCell<T> {
-    type Target = UnsafeCell<T>;
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
-
-#[unsafe(link_section = ".ewram")]
-static EXECUTOR: UnsafeSyncCell<FuturePoll> = UnsafeSyncCell::new(FuturePoll { future: None });
-
 unsafe fn g_tasks(task_id: u8) -> *mut Task {
     #[allow(static_mut_refs)]
     gTasks.as_mut_ptr().add(task_id as usize)
-}
-
-struct WaitForTextPrinter(pub u8);
-impl Future for WaitForTextPrinter {
-    type Output = ();
-    fn poll(self: Pin<&mut Self>, _cx: &mut Context<'_>) -> Poll<Self::Output> {
-        unsafe { RunTextPrinters() };
-        match unsafe { IsTextPrinterActive(self.0) } {
-            0 => Poll::Ready(()),
-            _ => Poll::Pending,
-        }
-    }
-}
-
-fn sleep(frames: usize) -> impl Future<Output = ()> {
-    struct WaitUntil(usize);
-    impl Future for WaitUntil {
-        type Output = ();
-        fn poll(mut self: Pin<&mut Self>, _cx: &mut Context<'_>) -> Poll<Self::Output> {
-            if self.0 == 0 {
-                return Poll::Ready(());
-            }
-            self.0 -= 1;
-            Poll::Pending
-        }
-    }
-    WaitUntil(frames)
-}
-
-async fn print_text(window_id: u8, font: u32, text: &[u8]) {
-    unsafe {
-        AddTextPrinterParameterized(window_id, font as _, text.as_ptr(), 0, 0, 1, None);
-    };
-    WaitForTextPrinter(window_id).await
-}
-
-async fn cool_rust_dialogue() {
-    print_text(0, FONT_NORMAL as _, &pokestr!(b"Hello from rust!{P}")).await;
-    print_text(0, FONT_NORMAL, &pokestr!(b"Hello from rust again!{P}")).await;
-}
-
-#[no_mangle]
-pub extern "C" fn Task_HandleRust(task_id: u8) {
-    unsafe {
-        if g_tasks(task_id).as_ref().unwrap().data[15] == 0 {
-            MgbaPrintf(2, c"Set future".as_ptr());
-            *EXECUTOR.get() = FuturePoll::new(Box::pin(cool_rust_dialogue()));
-            g_tasks(task_id).as_mut().unwrap().data[15] = 1;
-            return;
-        }
-        (*EXECUTOR.get()).poll();
-    }
-}
-
-fn dummy_raw_waker() -> RawWaker {
-    static VTABLE: RawWakerVTable =
-        RawWakerVTable::new(|_| dummy_raw_waker(), |_| {}, |_| {}, |_| {});
-    RawWaker::new(core::ptr::null(), &VTABLE)
-}
-
-fn dummy_waker() -> Waker {
-    unsafe { Waker::from_raw(dummy_raw_waker()) }
-}
-
-struct FuturePoll {
-    future: Option<Pin<Box<dyn Future<Output = ()>>>>,
-}
-
-struct Done;
-
-impl FuturePoll {
-    fn new(obj: impl Future<Output = ()> + 'static) -> FuturePoll {
-        FuturePoll {
-            future: Some(Box::pin(obj)),
-        }
-    }
-
-    fn poll(&mut self) -> Option<Done> {
-        let Some(future) = self.future.as_mut() else {
-            return Some(Done);
-        };
-
-        let waker = dummy_waker();
-        let mut context = Context::from_waker(&waker);
-        match future.as_mut().poll(&mut context) {
-            Poll::Ready(()) => {
-                self.future = None;
-                return Some(Done);
-            }
-            Poll::Pending => {}
-        }
-
-        None
-    }
 }
 
 #[panic_handler]

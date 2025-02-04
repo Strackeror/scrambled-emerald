@@ -28,6 +28,9 @@ void AGBPrintf(const char *pBuf, ...);
 void AGBAssert(const char *pFile, int nLine, const char *pExpression, int nStopProgram);
 void AGBPrintInit(void);
 
+#define DebugPrintVar(fmt, variable) MgbaPrintf(2, __FILE__ ":%d " #variable "=" fmt, __LINE__, variable)
+
+
 #if (LOG_HANDLER == LOG_HANDLER_MGBA_PRINT)
 
 #define DebugPrintf(pBuf, ...) MgbaPrintf(MGBA_LOG_INFO, pBuf, ## __VA_ARGS__)
