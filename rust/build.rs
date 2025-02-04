@@ -1,4 +1,5 @@
-use std::{env, path::PathBuf};
+use std::env;
+use std::path::PathBuf;
 
 fn main() {
     let output_path = PathBuf::from(env::var("OUT_DIR").unwrap());
@@ -16,16 +17,20 @@ fn main() {
             "-iquote",
             &format!("{include_path}"),
         ])
-        .clang_args([
-            "--target=thumbv4t-none-eabi",
-            "-mabi=apcs-gnu",
-        ])
+        .clang_args(["--target=arm-none-eabi", "-mthumb", "-march=armv4t"])
         .allowlist_file(".*/task.h")
         .allowlist_file(".*/malloc.h")
         .allowlist_file(".*/window.h")
-        .allowlist_item("MgbaPrintf")
-        .allowlist_item("FONT_.+")
-        .allowlist_item(".+TextPrinter.+")
+        .allowlist_file(".*/main.h")
+        .allowlist_file(".*/menu.h")
+        .allowlist_file(".*/menu_helpers.h")
+        .allowlist_file(".*/bg.h")
+        .allowlist_file(".*/sprite.h")
+        .allowlist_file(".*/palette.h")
+        .allowlist_file(".*/decompress.h")
+        .allowlist_file(".*/syscall.h")
+        .allowlist_file(".*/isagbprint.h")
+        .derive_default(true)
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
         .use_core();
 
