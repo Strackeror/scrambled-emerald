@@ -2,8 +2,8 @@ use core::cmp::min;
 use core::fmt::{self, Arguments, Write as _};
 use core::{mem, usize};
 
-use arrayvec::ArrayVec;
 pub use arrayvec::ArrayString;
+use arrayvec::ArrayVec;
 
 pub(crate) trait Write {
     fn write(&mut self, buf: &[u8]) -> core::fmt::Result;
@@ -37,7 +37,6 @@ impl<const C: usize> Write for ArrayVec<u8, C> {
         self.try_extend_from_slice(&buf[0..remaining]).map_err(|_| fmt::Error)
     }
 }
-
 
 #[macro_export]
 macro_rules! aformat {

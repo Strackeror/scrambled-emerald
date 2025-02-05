@@ -25,9 +25,83 @@ unsafe impl GlobalAlloc for PokeAllocator {
 #[global_allocator]
 static GLOBAL: PokeAllocator = PokeAllocator;
 
-unsafe fn g_tasks(task_id: u8) -> *mut Task {
-    #[allow(static_mut_refs)]
-    gTasks.as_mut_ptr().add(task_id as usize)
+mod resources {
+    use alloc::boxed::Box;
+    use alloc::vec;
+    use core::ffi::c_void;
+
+    use crate::pokeemerald::LZ77UnCompWram;
+
+    pub enum Resource {
+        Compressed { len: usize, data: &'static [u8] },
+        Direct(&'static [u8]),
+    }
+
+    pub enum LoadedResource {
+        Compressed(Box<[u8]>),
+        Direct(&'static [u8]),
+    }
+
+    impl Resource {
+        pub const fn len(&self) -> usize {
+            match self {
+                Resource::Compressed { len, .. } => *len,
+                Resource::Direct(items) => items.len(),
+            }
+        }
+
+        pub fn buffer(&self) -> *const c_void {
+            match self {
+                Resource::Compressed { data, .. } => data.as_ptr() as *const _,
+                Resource::Direct(data) => data.as_ptr() as *const _,
+            }
+        }
+
+        pub fn load(&self) -> LoadedResource {
+            match self {
+                Resource::Compressed { len, data } => {
+                    let mut load = vec![0; *len];
+                    unsafe {
+                        LZ77UnCompWram(data.as_ptr() as *const _, load.as_mut_ptr() as *mut _)
+                    };
+                    LoadedResource::Compressed(load.into_boxed_slice())
+                }
+                Resource::Direct(data) => LoadedResource::Direct(data),
+            }
+        }
+    }
+
+    impl LoadedResource {
+        pub fn buffer(&self) -> *mut c_void {
+            match self {
+                LoadedResource::Compressed(items) => items.as_ptr() as *mut _,
+                LoadedResource::Direct(items) => items.as_ptr() as *mut _,
+            }
+        }
+
+        pub fn len(&self) -> usize {
+            match self {
+                LoadedResource::Compressed(items) => items.len(),
+                LoadedResource::Direct(items) => items.len(),
+            }
+        }
+    }
+
+    #[macro_export]
+    macro_rules! include_res_lz {
+        ($path:literal) => {
+            $crate::resources::Resource::Compressed {
+                len: include_bytes!($path).len(),
+                data: include_bytes!(concat!($path, ".lz")),
+            }
+        };
+    }
+    #[macro_export]
+    macro_rules! include_res {
+        ($path:literal) => {
+            $crate::resources::Resource::Direct(include_bytes($path))
+        };
+    }
 }
 
 #[panic_handler]
