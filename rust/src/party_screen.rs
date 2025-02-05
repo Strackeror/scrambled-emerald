@@ -7,16 +7,18 @@ use core::pin::Pin;
 use core::ptr::null;
 use core::task::{Context, Poll};
 
-use crate::aformat;
+use graphics::{Background, Palette, Tilemap, Tileset};
+
 use crate::future::Executor;
 use crate::pokeemerald::*;
+use crate::resources::Resource;
+use crate::{aformat, include_res_lz};
 static EXECUTOR: Executor = Executor::new();
 
 extern "C" fn main_cb() {
     unsafe {
         DoScheduledBgTilemapCopiesToVram();
         UpdatePaletteFade();
-        // MgbaPrintf(3, aformat!(10, "Poll\0").as_ptr());
     }
     EXECUTOR.poll();
 }
@@ -29,9 +31,113 @@ extern "C" fn vblank_cb() {
     }
 }
 
-static TILESET: &[u8] = include_bytes!("../../graphics/summary_screen/bw/tiles.4bpp.lz");
-static PAL: &[u8] = include_bytes!("../../graphics/summary_screen/bw/tiles.gbapal.lz");
-static BG_MAP: &[u8] = include_bytes!("../../graphics/summary_screen/bw/scroll_bg.bin.lz");
+mod graphics {
+    use core::marker::PhantomData;
+
+    use super::sleep;
+    use crate::pokeemerald::*;
+    use crate::resources::{LoadedResource, Resource};
+
+    pub struct Tileset<'a> {
+        char_base: u8,
+        offset: u16,
+        buffer: &'a LoadedResource,
+        loaded: bool,
+    }
+
+    impl<'a> Tileset<'a> {
+        pub const fn new(char_base: u8, offset: u16, buffer: &'a LoadedResource) -> Self {
+            Tileset { char_base, offset, buffer, loaded: false }
+        }
+
+        fn load(&mut self, bg_index: u8) {
+            if self.loaded {
+                return;
+            }
+            self.loaded = true;
+            unsafe {
+                LoadBgTiles(
+                    bg_index as _,
+                    self.buffer.buffer(),
+                    self.buffer.len() as _,
+                    self.offset,
+                );
+            }
+        }
+    }
+
+    pub struct Palette<'a> {
+        pub offset: usize,
+        pub buffer: &'a Resource,
+    }
+
+    impl<'a> Palette<'a> {
+        fn load(&mut self) {
+            unsafe {
+                LoadCompressedPalette(
+                    self.buffer.buffer() as *const _,
+                    self.offset as _,
+                    self.buffer.len() as u32,
+                );
+            }
+        }
+    }
+
+    pub struct Tilemap<'a> {
+        pub map: u8,
+        pub buffer: &'a LoadedResource,
+    }
+
+    pub struct Background<'a> {
+        bg_index: u8,
+        _phantom_data: PhantomData<&'a ()>,
+    }
+
+    impl<'a> Background<'a> {
+        pub async fn load(
+            index: u8,
+            priority: u8,
+            tileset: &mut Tileset<'a>,
+            tilemap: &mut Tilemap<'a>,
+            palette: &mut Palette<'a>,
+        ) -> Background<'a> {
+            let mut template: BgTemplate = BgTemplate::default();
+            template.set_bg(index as _);
+            template.set_charBaseIndex(tileset.char_base as _);
+            template.set_mapBaseIndex(tilemap.map as _);
+            template.set_baseTile(tileset.offset as _);
+            template.set_paletteMode(0);
+            template.set_priority(priority as _);
+            template.set_screenSize(0);
+
+            unsafe {
+                InitBgFromTemplate(&raw const template);
+                SetBgTilemapBuffer(index as _, tilemap.buffer.buffer());
+                LoadBgTilemap(index as _, tilemap.buffer.buffer(), tilemap.buffer.len() as _, 0);
+            };
+            sleep(1).await;
+
+            tileset.load(index);
+            sleep(1).await;
+
+            palette.load();
+            sleep(1).await;
+
+            Background { bg_index: index, _phantom_data: PhantomData }
+        }
+
+        pub fn show(&self) {
+            unsafe {
+                ShowBg(self.bg_index as _);
+            }
+        }
+    }
+}
+
+static TILESET: Resource = include_res_lz!("../../graphics/summary_screen/bw/tiles.4bpp");
+static PAL: Resource = include_res_lz!("../../graphics/summary_screen/bw/tiles.gbapal");
+static BG_MAP: Resource = include_res_lz!("../../graphics/summary_screen/bw/scroll_bg.bin");
+static FG_MAP: Resource = include_res_lz!("../../graphics/summary_screen/bw/page_info.bin");
 
 #[no_mangle]
 extern "C" fn Init_Full_Summary_Screen(back: MainCallback) {
@@ -43,7 +149,26 @@ extern "C" fn Init_Full_Summary_Screen(back: MainCallback) {
 }
 
 async fn summary_screen(back: MainCallback) {
-    let _bg = init().await;
+    clear_ui().await;
+
+    let tileset = TILESET.load();
+    sleep(1).await;
+    let bg_map = BG_MAP.load();
+    sleep(1).await;
+    let fg_map = FG_MAP.load();
+    sleep(1).await;
+
+    let mut palette = Palette { offset: 0, buffer: &PAL };
+    let mut tileset = Tileset::new(1, 0, &tileset);
+    let mut tilemap_bg = Tilemap { buffer: &bg_map, map: 0 };
+    let mut tilemap_fg = Tilemap { buffer: &fg_map, map: 1 };
+    let fg = Background::load(0, 0, &mut tileset, &mut tilemap_fg, &mut palette).await;
+    let bg = Background::load(1, 1, &mut tileset, &mut tilemap_bg, &mut palette).await;
+
+    fg.show();
+    bg.show();
+    unsafe { SetVBlankCallback(Some(vblank_cb)) };
+
     loop {
         if unsafe { gMain.newKeys } & 0x1 != 0 {
             break;
@@ -56,7 +181,7 @@ async fn summary_screen(back: MainCallback) {
     }
 }
 
-async fn init() -> BackgroundTilemap<0x800> {
+async fn clear_ui() {
     unsafe {
         SetVBlankHBlankCallbacksToNull();
         ResetVramOamAndBgCntRegs();
@@ -73,93 +198,7 @@ async fn init() -> BackgroundTilemap<0x800> {
         sleep(1).await;
 
         ResetBgsAndClearDma3BusyFlags(0);
-        SetBgMode(0);
-        let mut bg = init_bg();
-        sleep(1).await;
-
-        bg.load_tileset(&TILESET);
-        sleep(1).await;
-
-        bg.load_tilemap(&BG_MAP);
-        sleep(1).await;
-
-        bg.load_palette(&PAL, 8);
-        sleep(1).await;
-
-        SetVBlankCallback(Some(vblank_cb));
-        bg
     }
-}
-
-struct BackgroundTilemap<const C: usize> {
-    index: u8,
-    tile_buffer: *mut c_void,
-}
-
-impl<const C: usize> BackgroundTilemap<C> {
-    fn new(template: &BgTemplate) -> BackgroundTilemap<C> {
-        unsafe {
-            let tilemap = BackgroundTilemap::<C> {
-                index: template.bg() as u8,
-                tile_buffer: Alloc_(C as u32, null()),
-            };
-            InitBgFromTemplate(&raw const *template);
-            SetBgTilemapBuffer(tilemap.index as u32, tilemap.tile_buffer);
-            ScheduleBgCopyTilemapToVram(tilemap.index);
-            ShowBg(tilemap.index as _);
-            tilemap
-        }
-    }
-
-    fn load_tileset(&self, tileset: &[u8]) {
-        unsafe {
-            DecompressAndCopyTileDataToVram(self.index, tileset.as_ptr() as _, 0, 0, 0);
-        }
-    }
-
-    fn load_tilemap(&mut self, tilemap: &[u8]) {
-        unsafe {
-            LZ77UnCompWram(tilemap.as_ptr() as *const _, self.tile_buffer);
-            ScheduleBgCopyTilemapToVram(self.index);
-            // MgbaPrintf(2, aformat!(50, "{:x?}\0", &self.tile_buffer[0..2]).as_ptr());
-            // MgbaPrintf(2, aformat!(50, "{:x?}\0", self.tile_buffer.as_mut_ptr()).as_ptr());
-        }
-    }
-
-    fn load_palette(&self, palette: &[u8], size: usize) {
-        unsafe {
-            const PALETTE_ENTRY_SIZE: u32 = 16;
-            LoadCompressedPalette(
-                palette.as_ptr() as _,
-                BG_PLTT_OFFSET + self.index as u32 * PALETTE_ENTRY_SIZE,
-                size as u32 * 16 * size_of::<u16>() as u32,
-            );
-            MgbaPrintf(2, aformat!(20, "palette loaded: {size}\0").as_ptr());
-        }
-    }
-}
-
-impl<const C: usize> Drop for BackgroundTilemap<C> {
-    fn drop(&mut self) {
-        unsafe {
-            UnsetBgTilemapBuffer(self.index as _);
-            Free(self.tile_buffer);
-        }
-    }
-}
-
-fn init_bg() -> BackgroundTilemap<0x800> {
-    let mut template = BgTemplate::default();
-    unsafe {
-        MgbaPrintf(2, aformat!(100, "{template:?}").as_ptr());
-    }
-    template.set_bg(0);
-    template.set_charBaseIndex(1);
-    template.set_mapBaseIndex(0);
-    template.set_paletteMode(0);
-    template.set_priority(0);
-    template.set_baseTile(0);
-    BackgroundTilemap::new(&template)
 }
 
 fn sleep(frames: usize) -> impl Future<Output = ()> {

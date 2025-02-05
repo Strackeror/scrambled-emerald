@@ -21,9 +21,7 @@ pub(crate) struct FuturePoll {
 
 impl FuturePoll {
     fn new(obj: impl Future<Output = ()> + 'static) -> FuturePoll {
-        FuturePoll {
-            future: Some(Box::pin(obj)),
-        }
+        FuturePoll { future: Some(Box::pin(obj)) }
     }
 
     fn poll(&mut self) -> Option<Done> {
