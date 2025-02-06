@@ -73,6 +73,8 @@ def get_strings_from_file(path):
                             s[0] += "'"
                         case 0x2014:
                             s[0] += "-"
+                        case 0x22: # '"'
+                            s[0] += "'"
                         case _:
                             s[0] += chr(c[0])
         result[i] = s[0]

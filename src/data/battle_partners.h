@@ -183,10 +183,10 @@
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
             .moves = {
 #line 81
-                MOVE_INFESTATION,
-                MOVE_PROTECT,
-                MOVE_SUBSTITUTE,
-                MOVE_GRASSY_TERRAIN,
+                MOVE_MUD_SHOT,
+                MOVE_NONE,
+                MOVE_NONE,
+                MOVE_NONE,
             },
             },
         },
@@ -227,7 +227,7 @@
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
             .moves = {
 #line 102
-                MOVE_PAIN_SPLIT,
+                MOVE_PROTECT,
                 MOVE_SUBSTITUTE,
                 MOVE_FOLLOW_ME,
                 MOVE_SHORE_UP,
@@ -257,9 +257,9 @@
             .species = SPECIES_SCOVILLAIN,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 117
-            .heldItem = ITEM_CHARTI_BERRY,
+            .heldItem = ITEM_TOXIC_ORB,
 #line 121
-            .ev = TRAINER_PARTY_EVS(252, 0, 252, 0, 0, 0),
+            .ev = TRAINER_PARTY_EVS(0, 252, 0, 252, 0, 0),
 #line 120
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 119
@@ -267,14 +267,14 @@
 #line 118
             .lvl = 47,
 #line 122
-            .nature = NATURE_IMPISH,
+            .nature = NATURE_ADAMANT,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
             .moves = {
 #line 123
-                MOVE_MEGA_DRAIN,
-                MOVE_FIRE_SPIN,
-                MOVE_LEECH_SEED,
-                MOVE_RAGE_POWDER,
+                MOVE_THUNDER_FANG,
+                MOVE_THUNDER_FANG,
+                MOVE_THUNDER_FANG,
+                MOVE_THUNDER_FANG,
             },
             },
         },
@@ -315,7 +315,7 @@
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
             .moves = {
 #line 144
-                MOVE_ROCK_TOMB,
+                MOVE_PROTECT,
                 MOVE_SLACK_OFF,
                 MOVE_STUFF_CHEEKS,
                 MOVE_FOLLOW_ME,
@@ -347,7 +347,7 @@
 #line 159
             .heldItem = ITEM_FOCUS_SASH,
 #line 163
-            .ev = TRAINER_PARTY_EVS(0, 0, 0, 252, 252, 0),
+            .ev = TRAINER_PARTY_EVS(252, 0, 0, 252, 0, 0),
 #line 162
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 161
@@ -359,9 +359,9 @@
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
             .moves = {
 #line 165
-                MOVE_MYSTICAL_FIRE,
+                MOVE_WISH,
                 MOVE_MISTY_TERRAIN,
-                MOVE_DISABLE,
+                MOVE_ENDURE,
                 MOVE_PROTECT,
             },
             },
@@ -410,8 +410,8 @@
             .moves = {
 #line 187
                 MOVE_RAGE_POWDER,
-                MOVE_LEECH_SEED,
-                MOVE_STRENGTH_SAP,
+                MOVE_RAGE_POWDER,
+                MOVE_RAGE_POWDER,
                 MOVE_LIFE_DEW,
             },
             },

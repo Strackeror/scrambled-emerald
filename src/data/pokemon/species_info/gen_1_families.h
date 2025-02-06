@@ -9802,7 +9802,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
     [SPECIES_MUK] =
     {
-        .baseHP        = 105,
+        .baseHP        = 110,
         .baseAttack    = 105,
         .baseDefense   = 80,
         .baseSpeed     = 20,
