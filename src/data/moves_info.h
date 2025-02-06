@@ -12634,7 +12634,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FREEZE_SHOCK] =
     {
-        .name = COMPOUND_STRING("Cyro-Overload"),
+        .name = COMPOUND_STRING("Cryo-Overload"),
         .description = COMPOUND_STRING("Gathering energy for a turn, the user releases an icy blast\nwith a strange electric charge. This ALWAYS\nparalyzes & heals ALL damage dealt."),
         .effect = EFFECT_TWO_TURNS_ATTACK,
         .power = 150,

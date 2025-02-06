@@ -57,15 +57,15 @@ static const struct TrainerMon GREAT_TUSK = {
     .species = SPECIES_GREAT_TUSK,
     .lvl = 47,
     .ability = ABILITY_PRISM_ARMOR,
-    .heldItem = ITEM_ASSAULT_VEST,
+    .heldItem = ITEM_LUM_BERRY,
     .nature = NATURE_ADAMANT,
     .iv = MAX_IVS,
-    .ev = TRAINER_PARTY_EVS(0, 252, 0, 0, 0, 252),
+    .ev = TRAINER_PARTY_EVS(252, 252, 0, 0, 0, 0),
     .moves = {
         MOVE_BEHEMOTH_BASH,
         MOVE_PRECIPICE_BLADES,
         MOVE_CRUSH_CLAW,
-        MOVE_TEMPER_FLARE,
+        MOVE_DRAGON_DANCE,
     }
 };
 
@@ -73,7 +73,7 @@ static const struct TrainerMon IRON_TREADS = {
     .species = SPECIES_IRON_TREADS,
     .lvl = 47,
     .ability = ABILITY_FILTER,
-    .heldItem = ITEM_ASSAULT_VEST,
+    .heldItem = ITEM_LUM_BERRY,
     .nature = NATURE_ADAMANT,
     .iv = MAX_IVS,
     .ev = TRAINER_PARTY_EVS(252, 252, 0, 0, 0, 0),
@@ -81,23 +81,21 @@ static const struct TrainerMon IRON_TREADS = {
         MOVE_BEHEMOTH_BLADE,
         MOVE_PRECIPICE_BLADES,
         MOVE_CRUSH_CLAW,
-        MOVE_ZING_ZAP,
+        MOVE_SHIFT_GEAR,
     }
 };
 
 static const struct TrainerMon DONDOZO = {
     .species = SPECIES_DONDOZO,
     .lvl = 58,
-    .ability = ABILITY_RIPEN,
-    .heldItem = ITEM_APICOT_BERRY,
+    .ability = ABILITY_GORILLA_TACTICS,
+    .heldItem = ITEM_CHOICE_BAND,
     .nature = NATURE_ADAMANT,
     .iv = MAX_IVS,
     .ev = TRAINER_PARTY_EVS(252, 252, 0, 0, 0, 0),
     .moves = {
         MOVE_OUTRAGE,
-        MOVE_GUNK_SHOT,
-        MOVE_EARTHQUAKE,
-        MOVE_STUFF_CHEEKS,
+        MOVE_LIQUIDATION,
     }
 };
 
@@ -105,7 +103,7 @@ static const struct TrainerMon TATSUGIRI = {
     .species = SPECIES_TATSUGIRI,
     .lvl = 58,
     .ability = ABILITY_CONTRARY,
-    .heldItem = ITEM_ASSAULT_VEST,
+    .heldItem = ITEM_ABILITY_SHIELD,
     .nature = NATURE_BOLD,
     .iv = MAX_IVS,
     .ev = TRAINER_PARTY_EVS(252, 0, 252, 0, 0, 0),
