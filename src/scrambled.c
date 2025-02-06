@@ -476,6 +476,7 @@ const struct EggPool gEggPools[] = {
             SPECIES_WO_CHIEN,
             SPECIES_CHIEN_PAO,
             SPECIES_DARKRAI,
+            SPECIES_MAGEARNA,
             SPECIES_NONE,
         },
     },
