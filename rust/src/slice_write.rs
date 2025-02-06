@@ -34,7 +34,8 @@ impl Write for &mut [u8] {
 impl<const C: usize> Write for ArrayVec<u8, C> {
     fn write(&mut self, buf: &[u8]) -> core::fmt::Result {
         let remaining = C - self.len();
-        self.try_extend_from_slice(&buf[0..remaining]).map_err(|_| fmt::Error)
+        let end = min(buf.len(), remaining);
+        self.try_extend_from_slice(&buf[0..end]).map_err(|_| fmt::Error)
     }
 }
 
