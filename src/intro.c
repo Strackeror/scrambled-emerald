@@ -1125,6 +1125,7 @@ static u8 SetUpCopyrightScreen(void)
             break;
 #if EXPANSION_INTRO == TRUE
         SetMainCallback2(CB2_ExpansionIntro);
+        // Init_Full_Summary_Screen(CB2_ExpansionIntro);
         CreateTask(Task_HandleExpansionIntro, 0);
 #else
         CreateTask(Task_Scene1_Load, 0);
@@ -1153,21 +1154,19 @@ static u8 SetUpCopyrightScreen(void)
 
     return 1;
 }
-extern void Init_Full_Summary_Screen();
 void CB2_InitCopyrightScreenAfterBootup(void)
 {
-    Init_Full_Summary_Screen();
-    // if (!SetUpCopyrightScreen())
-    // {
-    //     SetSaveBlocksPointers(GetSaveBlocksPointersBaseOffset());
-    //     ResetMenuAndMonGlobals();
-    //     Save_ResetSaveCounters();
-    //     LoadGameSave(SAVE_NORMAL);
-    //     if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)
-    //         Sav2_ClearSetDefault();
-    //     SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
-    //     InitHeap(gHeap, HEAP_SIZE);
-    // }
+    if (!SetUpCopyrightScreen())
+    {
+        SetSaveBlocksPointers(GetSaveBlocksPointersBaseOffset());
+        ResetMenuAndMonGlobals();
+        Save_ResetSaveCounters();
+        LoadGameSave(SAVE_NORMAL);
+        if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)
+            Sav2_ClearSetDefault();
+        SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
+        InitHeap(gHeap, HEAP_SIZE);
+    }
 }
 
 void CB2_InitCopyrightScreenAfterTitleScreen(void)

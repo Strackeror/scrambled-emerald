@@ -25,6 +25,22 @@ unsafe impl GlobalAlloc for PokeAllocator {
 #[global_allocator]
 static GLOBAL: PokeAllocator = PokeAllocator;
 
+#[macro_export]
+macro_rules! mgba_print {
+    ($log_level:literal, $($tt:tt)*) => {
+        {
+        use $crate::slice_write::Write;
+        let mut text = arrayvec::ArrayVec::<u8, 0x400>::new();
+        _ = write!(text, $($tt)*);
+        match text.len() {
+            0x400.. => text[0x399] = 0,
+            _ => text.push(0)
+        }
+        unsafe { MgbaPrintf($log_level, text.as_ptr()); }
+    }
+    };
+}
+
 mod resources {
     use alloc::boxed::Box;
     use alloc::vec;

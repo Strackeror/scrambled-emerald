@@ -724,6 +724,7 @@ static bool8 StartMenuPokeNavCallback(void)
     return FALSE;
 }
 
+extern void Init_Full_Summary_Screen(MainCallback);
 static bool8 StartMenuPlayerNameCallback(void)
 {
     if (!gPaletteFade.active)
@@ -732,12 +733,13 @@ static bool8 StartMenuPlayerNameCallback(void)
         RemoveExtraStartMenuWindows();
         CleanupOverworldWindowsAndTilemaps();
 
-        if (IsOverworldLinkActive() || InUnionRoom())
-            ShowPlayerTrainerCard(CB2_ReturnToFieldWithOpenMenu); // Display trainer card
-        else if (FlagGet(FLAG_SYS_FRONTIER_PASS))
-            ShowFrontierPass(CB2_ReturnToFieldWithOpenMenu); // Display frontier pass
-        else
-            ShowPlayerTrainerCard(CB2_ReturnToFieldWithOpenMenu); // Display trainer card
+        Init_Full_Summary_Screen(CB2_ReturnToFieldWithOpenMenu);
+        // if (IsOverworldLinkActive() || InUnionRoom())
+        //     ShowPlayerTrainerCard(CB2_ReturnToFieldWithOpenMenu); // Display trainer card
+        // else if (FlagGet(FLAG_SYS_FRONTIER_PASS))
+        //     ShowFrontierPass(CB2_ReturnToFieldWithOpenMenu); // Display frontier pass
+        // else
+        //     ShowPlayerTrainerCard(CB2_ReturnToFieldWithOpenMenu); // Display trainer card
 
         return TRUE;
     }

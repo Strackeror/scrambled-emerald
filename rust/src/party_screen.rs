@@ -7,16 +7,18 @@ use core::pin::Pin;
 use core::ptr::null;
 use core::task::{Context, Poll};
 
-use graphics::{Background, Palette, Tilemap, Tileset};
+use graphics::{g_sprite, Background, Palette, Tilemap, Tileset};
 
 use crate::future::Executor;
 use crate::pokeemerald::*;
-use crate::resources::Resource;
-use crate::{aformat, include_res_lz};
+use crate::resources::{LoadedResource, Resource};
+use crate::{aformat, include_res_lz, mgba_print};
 static EXECUTOR: Executor = Executor::new();
 
 extern "C" fn main_cb() {
     unsafe {
+        AnimateSprites();
+        BuildOamBuffer();
         DoScheduledBgTilemapCopiesToVram();
         UpdatePaletteFade();
     }
@@ -25,119 +27,17 @@ extern "C" fn main_cb() {
 
 extern "C" fn vblank_cb() {
     unsafe {
-        ProcessSpriteCopyRequests();
         LoadOam();
+        ProcessSpriteCopyRequests();
         TransferPlttBuffer();
     }
 }
 
-mod graphics {
-    use core::marker::PhantomData;
+mod graphics;
 
-    use super::sleep;
-    use crate::pokeemerald::*;
-    use crate::resources::{LoadedResource, Resource};
-
-    pub struct Tileset<'a> {
-        char_base: u8,
-        offset: u16,
-        buffer: &'a LoadedResource,
-        loaded: bool,
-    }
-
-    impl<'a> Tileset<'a> {
-        pub const fn new(char_base: u8, offset: u16, buffer: &'a LoadedResource) -> Self {
-            Tileset { char_base, offset, buffer, loaded: false }
-        }
-
-        fn load(&mut self, bg_index: u8) {
-            if self.loaded {
-                return;
-            }
-            self.loaded = true;
-            unsafe {
-                LoadBgTiles(
-                    bg_index as _,
-                    self.buffer.buffer(),
-                    self.buffer.len() as _,
-                    self.offset,
-                );
-            }
-        }
-    }
-
-    pub struct Palette<'a> {
-        pub offset: usize,
-        pub buffer: &'a Resource,
-    }
-
-    impl<'a> Palette<'a> {
-        fn load(&mut self) {
-            unsafe {
-                LoadCompressedPalette(
-                    self.buffer.buffer() as *const _,
-                    self.offset as _,
-                    self.buffer.len() as u32,
-                );
-            }
-        }
-    }
-
-    pub struct Tilemap<'a> {
-        pub map: u8,
-        pub buffer: &'a LoadedResource,
-    }
-
-    pub struct Background<'a> {
-        bg_index: u8,
-        _phantom_data: PhantomData<&'a ()>,
-    }
-
-    impl<'a> Background<'a> {
-        pub async fn load(
-            index: u8,
-            priority: u8,
-            tileset: &mut Tileset<'a>,
-            tilemap: &mut Tilemap<'a>,
-            palette: &mut Palette<'a>,
-        ) -> Background<'a> {
-            let mut template: BgTemplate = BgTemplate::default();
-            template.set_bg(index as _);
-            template.set_charBaseIndex(tileset.char_base as _);
-            template.set_mapBaseIndex(tilemap.map as _);
-            template.set_baseTile(tileset.offset as _);
-            template.set_paletteMode(0);
-            template.set_priority(priority as _);
-            template.set_screenSize(0);
-
-            unsafe {
-                InitBgFromTemplate(&raw const template);
-                SetBgTilemapBuffer(index as _, tilemap.buffer.buffer());
-                LoadBgTilemap(index as _, tilemap.buffer.buffer(), tilemap.buffer.len() as _, 0);
-            };
-            sleep(1).await;
-
-            tileset.load(index);
-            sleep(1).await;
-
-            palette.load();
-            sleep(1).await;
-
-            Background { bg_index: index, _phantom_data: PhantomData }
-        }
-
-        pub fn show(&self) {
-            unsafe {
-                ShowBg(self.bg_index as _);
-            }
-        }
-    }
-}
-
-static TILESET: Resource = include_res_lz!("../../graphics/summary_screen/bw/tiles.4bpp");
-static PAL: Resource = include_res_lz!("../../graphics/summary_screen/bw/tiles.gbapal");
-static BG_MAP: Resource = include_res_lz!("../../graphics/summary_screen/bw/scroll_bg.bin");
-static FG_MAP: Resource = include_res_lz!("../../graphics/summary_screen/bw/page_info.bin");
+static TILESET: Resource = include_res_lz!("../../graphics/party_menu_full/tiles.4bpp");
+static PAL: Resource = include_res_lz!("../../graphics/party_menu_full/tiles.gbapal");
+static BG_MAP: Resource = include_res_lz!("../../graphics/party_menu_full/bg.bin");
 
 #[no_mangle]
 extern "C" fn Init_Full_Summary_Screen(back: MainCallback) {
@@ -155,19 +55,33 @@ async fn summary_screen(back: MainCallback) {
     sleep(1).await;
     let bg_map = BG_MAP.load();
     sleep(1).await;
-    let fg_map = FG_MAP.load();
-    sleep(1).await;
+
+    unsafe {
+        SetGpuReg(REG_OFFSET_DISPCNT as _, DISPCNT_OBJ_ON as u16 | DISPCNT_OBJ_1D_MAP as u16);
+        SetGpuReg(REG_OFFSET_BLDCNT as _, (BLDCNT_TGT1_BG1 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_ALL) as _);
+        SetGpuReg(REG_OFFSET_BLDY as _, 0);
+    }
 
     let mut palette = Palette { offset: 0, buffer: &PAL };
     let mut tileset = Tileset::new(1, 0, &tileset);
     let mut tilemap_bg = Tilemap { buffer: &bg_map, map: 0 };
-    let mut tilemap_fg = Tilemap { buffer: &fg_map, map: 1 };
-    let fg = Background::load(0, 0, &mut tileset, &mut tilemap_fg, &mut palette).await;
-    let bg = Background::load(1, 1, &mut tileset, &mut tilemap_bg, &mut palette).await;
-
-    fg.show();
+    let bg = Background::load(3, 3, &mut tileset, &mut tilemap_bg, &mut palette).await;
     bg.show();
-    unsafe { SetVBlankCallback(Some(vblank_cb)) };
+
+    let sprite_id =
+        unsafe { CreateMonPicSprite_Affine(3, 0, 0xff, MON_PIC_AFFINE_FRONT as _, 120, 40, 0, TAG_NONE as _) };
+    mgba_print!(2, "{sprite_id:?}");
+    let sprite_id =
+        unsafe { CreateMonPicSprite_Affine(4, 0, 0xff, MON_PIC_AFFINE_FRONT as _, 140, 40, 1, TAG_NONE as _) };
+    mgba_print!(2, "{sprite_id:?}");
+    unsafe {
+        (*g_sprite(sprite_id as _)).oam.set_priority(2);
+    }
+
+    unsafe {
+        SetVBlankCallback(Some(vblank_cb));
+        ShowBg(0);
+    };
 
     loop {
         if unsafe { gMain.newKeys } & 0x1 != 0 {
@@ -176,7 +90,7 @@ async fn summary_screen(back: MainCallback) {
         sleep(1).await;
     }
     unsafe {
-        FreeTempTileDataBuffersIfPossible();
+        FreeAndDestroyMonPicSprite(sprite_id);
         SetMainCallback2(back);
     }
 }

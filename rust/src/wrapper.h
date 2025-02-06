@@ -1,5 +1,6 @@
 #include "global.h"
 #include "bg.h"
+#include "gpu_regs.h"
 #include "main.h"
 #include "malloc.h"
 #include "menu.h"
@@ -8,3 +9,4 @@
 #include "pokemon.h"
 #include "sprite.h"
 #include "task.h"
+#include "trainer_pokemon_sprites.h"

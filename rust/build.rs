@@ -22,6 +22,9 @@ fn main() {
         .allowlist_file(".*/decompress.h")
         .allowlist_file(".*/syscall.h")
         .allowlist_file(".*/isagbprint.h")
+        .allowlist_file(".*/trainer_pokemon_sprites.h")
+        .allowlist_file(".*/gpu_regs.h")
+        .allowlist_file(".*/gba/.*.h")
         .derive_default(true)
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
         .use_core();
