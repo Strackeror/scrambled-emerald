@@ -1,18 +1,15 @@
-use alloc::boxed::Box;
-use core::ffi::c_void;
-use core::fmt::Write;
 use core::future::Future;
-use core::mem::size_of;
 use core::pin::Pin;
-use core::ptr::null;
 use core::task::{Context, Poll};
 
-use graphics::{g_sprite, Background, Palette, Tilemap, Tileset};
+use arrayvec::ArrayVec;
+use data::Pokemon;
+use graphics::{Background, Palette, PokemonSpritePic, Tilemap, Tileset};
 
 use crate::future::Executor;
+use crate::include_res_lz;
 use crate::pokeemerald::*;
-use crate::resources::{LoadedResource, Resource};
-use crate::{aformat, include_res_lz, mgba_print};
+use crate::resources::Resource;
 static EXECUTOR: Executor = Executor::new();
 
 extern "C" fn main_cb() {
@@ -33,6 +30,7 @@ extern "C" fn vblank_cb() {
     }
 }
 
+mod data;
 mod graphics;
 
 static TILESET: Resource = include_res_lz!("../../graphics/party_menu_full/tiles.4bpp");
@@ -58,7 +56,10 @@ async fn summary_screen(back: MainCallback) {
 
     unsafe {
         SetGpuReg(REG_OFFSET_DISPCNT as _, DISPCNT_OBJ_ON as u16 | DISPCNT_OBJ_1D_MAP as u16);
-        SetGpuReg(REG_OFFSET_BLDCNT as _, (BLDCNT_TGT1_BG1 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_ALL) as _);
+        SetGpuReg(
+            REG_OFFSET_BLDCNT as _,
+            (BLDCNT_TGT1_BG1 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_ALL) as _,
+        );
         SetGpuReg(REG_OFFSET_BLDY as _, 0);
     }
 
@@ -68,19 +69,15 @@ async fn summary_screen(back: MainCallback) {
     let bg = Background::load(3, 3, &mut tileset, &mut tilemap_bg, &mut palette).await;
     bg.show();
 
-    let sprite_id =
-        unsafe { CreateMonPicSprite_Affine(3, 0, 0xff, MON_PIC_AFFINE_FRONT as _, 120, 40, 0, TAG_NONE as _) };
-    mgba_print!(2, "{sprite_id:?}");
-    let sprite_id =
-        unsafe { CreateMonPicSprite_Affine(4, 0, 0xff, MON_PIC_AFFINE_FRONT as _, 140, 40, 1, TAG_NONE as _) };
-    mgba_print!(2, "{sprite_id:?}");
-    unsafe {
-        (*g_sprite(sprite_id as _)).oam.set_priority(2);
+    let pokes: ArrayVec<Pokemon, 6> = (0..6).filter_map(|i| Pokemon::get_player_party(i)).collect();
+    let mut poke_sprites: ArrayVec<PokemonSpritePic, 6> =
+        pokes.iter().enumerate().map(|(index, p)| PokemonSpritePic::new(p, index as _)).collect();
+    for (index, sprite) in poke_sprites.iter_mut().enumerate() {
+        sprite.sprite().set_pos(40 + 20 * index as i16, 120);
     }
 
     unsafe {
         SetVBlankCallback(Some(vblank_cb));
-        ShowBg(0);
     };
 
     loop {
@@ -90,7 +87,6 @@ async fn summary_screen(back: MainCallback) {
         sleep(1).await;
     }
     unsafe {
-        FreeAndDestroyMonPicSprite(sprite_id);
         SetMainCallback2(back);
     }
 }
