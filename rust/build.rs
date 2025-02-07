@@ -25,6 +25,8 @@ fn main() {
         .allowlist_file(".*/trainer_pokemon_sprites.h")
         .allowlist_file(".*/gpu_regs.h")
         .allowlist_file(".*/gba/.*.h")
+        .allowlist_file(".*/pokemon.h")
+        .opaque_type("PokemonSubstruct3")
         .derive_default(true)
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
         .use_core();

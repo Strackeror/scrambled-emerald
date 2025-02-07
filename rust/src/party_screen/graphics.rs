@@ -1,6 +1,7 @@
 use core::marker::PhantomData;
+use core::mem;
 
-use super::sleep;
+use super::{data, sleep};
 use crate::pokeemerald::{self, *};
 use crate::resources::{LoadedResource, Resource};
 
@@ -94,14 +95,56 @@ impl<'a> Background<'a> {
     }
 }
 
-pub struct Sprite {
-    sprite_index: u8,
+pub struct SpriteHandle {
+    sprite_index: u16,
 }
 pub unsafe fn g_sprite(id: u8) -> *mut pokeemerald::Sprite {
     (*(&raw mut gSprites)).as_mut_ptr().add(id as _)
 }
 
-impl Sprite {
+impl SpriteHandle {
+    pub fn set_pos(&mut self, x: i16, y: i16) {
+        unsafe {
+            let sprite = &mut *(g_sprite(self.sprite_index as _));
+            sprite.x = x;
+            sprite.y = y;
+        }
+    }
 }
 
+pub struct PokemonSpritePic {
+    sprite: SpriteHandle,
+}
 
+impl PokemonSpritePic {
+    pub fn new(poke: &data::Pokemon, slot: u8) -> PokemonSpritePic {
+        let species = poke.species();
+        let personality = poke.personality();
+        let shiny = poke.shiny();
+        unsafe {
+            let sprite_index = CreateMonPicSprite_Affine(
+                species,
+                shiny as _,
+                personality,
+                MON_PIC_AFFINE_FRONT as _,
+                0,
+                0,
+                slot,
+                TAG_NONE as _,
+            );
+            PokemonSpritePic { sprite: SpriteHandle { sprite_index } }
+        }
+    }
+
+    pub fn sprite(&mut self) -> &mut SpriteHandle {
+        &mut self.sprite
+    }
+}
+
+impl Drop for PokemonSpritePic {
+    fn drop(&mut self) {
+        unsafe {
+            FreeAndDestroyMonPicSprite(self.sprite.sprite_index);
+        }
+    }
+}

@@ -4,7 +4,7 @@ use core::alloc::GlobalAlloc;
 use core::panic::PanicInfo;
 
 use arrayvec::ArrayVec;
-use pokeemerald::{gTasks, Alloc_, Free, MgbaPrintf, Task};
+use pokeemerald::{Alloc_, Free, MgbaPrintf};
 use slice_write::Write as _;
 
 mod charmap;
