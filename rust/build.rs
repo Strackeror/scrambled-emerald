@@ -3,13 +3,25 @@ use std::path::PathBuf;
 
 fn main() {
     let output_path = PathBuf::from(env::var("OUT_DIR").unwrap());
-    let base_path = env::current_dir().unwrap().join("..").canonicalize().unwrap();
+    let base_path = env::current_dir()
+        .unwrap()
+        .join("..")
+        .canonicalize()
+        .unwrap();
     let include_path = base_path.join("include");
     let include_path = include_path.to_str().unwrap();
     let builder = bindgen::Builder::default()
         .header("src/wrapper.h")
-        .clang_args(["-I/usr/arm-none-eabi/include", "-iquote", &format!("{include_path}")])
+        .clang_args([
+            "-I/usr/arm-none-eabi/include",
+            "-iquote",
+            &format!("{include_path}"),
+        ])
         .clang_args(["--target=arm-none-eabi", "-mthumb", "-march=armv4t"])
+        .allowlist_file(".*/pokemon.h")
+        .allowlist_file(".*/item.h")
+        .allowlist_file(".*/item_icon.h")
+        .allowlist_file(".*/trainer_pokemon_sprites.h")
         .allowlist_file(".*/task.h")
         .allowlist_file(".*/malloc.h")
         .allowlist_file(".*/window.h")
@@ -22,15 +34,15 @@ fn main() {
         .allowlist_file(".*/decompress.h")
         .allowlist_file(".*/syscall.h")
         .allowlist_file(".*/isagbprint.h")
-        .allowlist_file(".*/trainer_pokemon_sprites.h")
         .allowlist_file(".*/gpu_regs.h")
         .allowlist_file(".*/gba/.*.h")
-        .allowlist_file(".*/pokemon.h")
         .opaque_type("PokemonSubstruct3")
         .derive_default(true)
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
         .use_core();
 
     let bindings = builder.clone().generate().expect("bindings");
-    bindings.write_to_file(output_path.join("bindings.rs")).expect("Writing to file");
+    bindings
+        .write_to_file(output_path.join("bindings.rs"))
+        .expect("Writing to file");
 }

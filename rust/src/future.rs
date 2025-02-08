@@ -1,5 +1,5 @@
 use alloc::boxed::Box;
-use core::cell::UnsafeCell;
+use core::cell::{RefCell, UnsafeCell};
 use core::future::Future;
 use core::ops::Deref;
 use core::pin::Pin;
@@ -20,8 +20,10 @@ pub(crate) struct FuturePoll {
 }
 
 impl FuturePoll {
-    fn new(obj: impl Future<Output = ()> + 'static) -> FuturePoll {
-        FuturePoll { future: Some(Box::pin(obj)) }
+    fn new(obj: Box<dyn Future<Output = ()>>) -> FuturePoll {
+        FuturePoll {
+            future: Some(Pin::from(obj)),
+        }
     }
 
     fn poll(&mut self) -> Option<Done> {
@@ -47,31 +49,31 @@ pub(crate) struct Done;
 
 // Workarounds weeee
 #[repr(transparent)]
-pub struct UnsafeSyncCell<T: ?Sized>(UnsafeCell<T>);
-unsafe impl<T: ?Sized> Sync for UnsafeSyncCell<T> {}
-impl<T> UnsafeSyncCell<T> {
-    const fn new(arg: T) -> Self {
-        UnsafeSyncCell(UnsafeCell::new(arg))
+pub struct RefCellSync<T: ?Sized>(RefCell<T>);
+unsafe impl<T: ?Sized> Sync for RefCellSync<T> {}
+impl<T> RefCellSync<T> {
+    pub const fn new(arg: T) -> Self {
+        RefCellSync(RefCell::new(arg))
     }
 }
-impl<T> Deref for UnsafeSyncCell<T> {
-    type Target = UnsafeCell<T>;
+impl<T> Deref for RefCellSync<T> {
+    type Target = RefCell<T>;
     fn deref(&self) -> &Self::Target {
         &self.0
     }
 }
-pub struct Executor(UnsafeSyncCell<FuturePoll>);
+pub struct Executor(RefCellSync<FuturePoll>);
 
 impl Executor {
     pub const fn new() -> Executor {
-        Executor(UnsafeSyncCell(UnsafeCell::new(FuturePoll { future: None })))
+        Executor(RefCellSync::new(FuturePoll { future: None }))
     }
 
-    pub fn set<T: Future<Output = ()> + 'static>(&self, future: T) {
-        unsafe { (*self.0.get()).future = Some(Box::pin(future)) }
+    pub fn set(&self, fut: Box<dyn Future<Output = ()>>) {
+        *self.0.borrow_mut() = FuturePoll::new(fut)
     }
 
     pub fn poll(&self) -> Option<Done> {
-        unsafe { (*self.0.get()).poll() }
+        self.0.borrow_mut().poll()
     }
 }

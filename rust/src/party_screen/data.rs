@@ -11,7 +11,9 @@ impl Pokemon {
                 return None;
             }
             let party_ptr = &raw mut gPlayerParty[0];
-            Some(Pokemon { ptr: party_ptr.add(index as usize) })
+            Some(Pokemon {
+                ptr: party_ptr.add(index as usize),
+            })
         }
     }
     pub fn get_mon_data(&self, data: u32) -> u32 {
@@ -27,4 +29,18 @@ impl Pokemon {
     pub fn shiny(&self) -> bool {
         self.get_mon_data(MON_DATA_IS_SHINY) != 0
     }
+    pub fn item(&self) -> Option<usize> {
+        match self.get_mon_data(MON_DATA_HELD_ITEM) {
+            0 => None,
+            n => Some(n as usize),
+        }
+    }
+}
+
+pub fn get_species(species: usize) -> &'static SpeciesInfo {
+    unsafe { gSpeciesInfo.as_ptr().add(species).as_ref().unwrap() }
+}
+
+pub fn get_item(index: usize) -> &'static Item {
+    unsafe { gItemsInfo.as_ptr().add(index).as_ref().unwrap() }
 }
