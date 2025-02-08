@@ -442,9 +442,12 @@ LD_SCRIPT_DEPS :=
 libagbsyscall:
 	@$(MAKE) -C libagbsyscall TOOLCHAIN=$(TOOLCHAIN) MODERN=1
 
+RUST_INC_FILES :=\
+	graphics/party_menu_full/bg.bin.lz\
+	graphics/party_menu_full/tiles.gbapal.lz\
+	graphics/party_menu_full/tiles.4bpp.lz
 
-LZ_RS_DATA_IN := $(wildcard graphics/party_menu_full/*.lz)
-librust: $(LZ_RS_DATA_IN)
+librust: $(RUST_INC_FILES)
 	cd rust && cargo build --release
 
 # Elf from object files

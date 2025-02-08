@@ -1,6 +1,8 @@
 #include "global.h"
 #include "bg.h"
 #include "gpu_regs.h"
+#include "item.h"
+#include "item_icon.h"
 #include "main.h"
 #include "malloc.h"
 #include "menu.h"
