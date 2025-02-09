@@ -3,14 +3,14 @@ use alloc::vec;
 use core::ffi::c_void;
 use core::future::Future;
 use core::pin::Pin;
-use core::ptr::addr_of;
+use core::ptr::{addr_of, null, null_mut};
 use core::task::{Context, Poll};
 
 use arrayvec::ArrayVec;
 use data::{get_item, Pokemon};
 use graphics::{
-    set_gpu_registers, Background, Palette, PokemonSpritePic, Sprite, SpriteImage, Tilemap,
-    Tileset, DUMMY_SPRITE_ANIMS,
+    set_gpu_registers, Background, Palette, PokemonSpritePic, Rect, Sprite, SpriteImage, Tilemap,
+    Tileset, Window, DUMMY_SPRITE_ANIMS,
 };
 
 use crate::future::Executor;
@@ -32,7 +32,7 @@ fn print_stack_addr() {
 #[no_mangle]
 extern "C" fn Init_Full_Summary_Screen(back: MainCallback) {
     let fut = Box::new(summary_screen(back));
-    
+
     unsafe { SetMainCallback2(Some(main_cb)) }
     EXECUTOR.set(fut);
 }
@@ -72,6 +72,7 @@ mod graphics;
 static TILESET: Resource = include_res_lz!("../../graphics/party_menu_full/tiles.4bpp");
 static PAL: Resource = include_res_lz!("../../graphics/party_menu_full/tiles.gbapal");
 static BG_MAP: Resource = include_res_lz!("../../graphics/party_menu_full/bg.bin");
+static MON_BG_MAP: Resource = include_res_lz!("../../graphics/party_menu_full/mon_bg.bin");
 
 async fn item_sprites(pokes: &[Pokemon]) -> ArrayVec<Option<Sprite>, 6> {
     let mut item_sprites: ArrayVec<Option<Sprite>, 6> = ArrayVec::new();
@@ -108,17 +109,14 @@ async fn item_sprites(pokes: &[Pokemon]) -> ArrayVec<Option<Sprite>, 6> {
 async fn summary_screen(back: MainCallback) {
     clear_ui().await;
 
-    let tileset = TILESET.load();
+    let tileset_data = TILESET.load();
     sleep(1).await;
     let bg_map = BG_MAP.load();
     sleep(1).await;
 
     set_gpu_registers(&[
         (REG_OFFSET_DISPCNT, &[DISPCNT_OBJ_ON, DISPCNT_OBJ_1D_MAP]),
-        (
-            REG_OFFSET_BLDCNT,
-            &[BLDCNT_TGT1_BG1, BLDCNT_EFFECT_BLEND, BLDCNT_TGT2_ALL],
-        ),
+        (REG_OFFSET_BLDCNT, &[]),
         (REG_OFFSET_BLDY, &[]),
     ]);
 
@@ -126,7 +124,7 @@ async fn summary_screen(back: MainCallback) {
         index: 0,
         buffer: (&PAL).into(),
     };
-    let mut tileset = Tileset::new(1, 0, &tileset);
+    let mut tileset = Tileset::new(1, 0, &tileset_data);
     let mut tilemap_bg = Tilemap {
         buffer: &bg_map,
         map: 0,
@@ -154,6 +152,21 @@ async fn summary_screen(back: MainCallback) {
         let (x, y) = MON_POS[index];
         sprite.handle().set_pos(x + 20, y + 20);
     }
+
+    let mut tileset2 = Tileset::new(1, 10, &tileset_data);
+    let tilemap_buffer = vec![0; bg_map.len()].into_boxed_slice();
+    let tilemap_buffer = LoadedResource::Compressed(tilemap_buffer);
+    let mut tilemap2 = Tilemap {
+        map: 1,
+        buffer: &tilemap_buffer,
+    };
+    let bg2 = Background::load(1, 1, &mut tileset2, &mut tilemap2, &mut palette).await;
+    bg2.fill(Rect::new(0, 0, 32, 20), 6, palette.index as _);
+    bg2.show();
+
+    let win = Window::create(&palette, 1, Rect::new(1, 1, 10, 10), 10);
+    win.fill(1 | (1 << 4));
+    win.display();
 
     unsafe { SetVBlankCallback(Some(vblank_cb)) };
     loop {

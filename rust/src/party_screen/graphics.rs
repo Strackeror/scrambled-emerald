@@ -1,10 +1,19 @@
 use alloc::boxed::Box;
 use core::marker::PhantomData;
-use core::ops::BitOr;
+use core::ops::{BitOr, Deref};
+use core::ptr::{null, null_mut};
 
 use super::{data, sleep};
+use crate::mgba_warn;
 use crate::pokeemerald::{self, *};
-use crate::resources::{self, LoadedResource, MayOwn, Resource, StaticWrapper};
+use crate::resources::{LoadedResource, MayOwn, Resource, StaticWrapper};
+
+pub fn set_gpu_registers(list: &[(u32, &[u32])]) {
+    for (offset, flags) in list {
+        let flag = flags.iter().fold(0u32, BitOr::bitor);
+        unsafe { SetGpuReg(*offset as _, flag as _) };
+    }
+}
 
 pub struct Tileset<'a> {
     char_base: u8,
@@ -69,7 +78,7 @@ impl<'a> Palette<'a> {
 }
 
 pub struct Tilemap<'a> {
-    pub map: u8,
+    pub map: u16,
     pub buffer: &'a LoadedResource,
 }
 
@@ -89,14 +98,14 @@ impl<'a> Background<'a> {
         let mut template: BgTemplate = BgTemplate::default();
         template.set_bg(index as _);
         template.set_charBaseIndex(tileset.char_base as _);
-        template.set_mapBaseIndex(tilemap.map as _);
+        template.set_mapBaseIndex(tilemap.map);
         template.set_baseTile(tileset.offset as _);
         template.set_paletteMode(0);
         template.set_priority(priority as _);
         template.set_screenSize(0);
 
+        unsafe { InitBgFromTemplate(&raw const template) };
         unsafe {
-            InitBgFromTemplate(&raw const template);
             SetBgTilemapBuffer(index as _, tilemap.buffer.as_ptr());
             LoadBgTilemap(
                 index as _,
@@ -104,7 +113,7 @@ impl<'a> Background<'a> {
                 tilemap.buffer.len() as _,
                 0,
             );
-        };
+        }
         sleep(1).await;
 
         tileset.load(index);
@@ -124,6 +133,21 @@ impl<'a> Background<'a> {
             ShowBg(self.bg_index as _);
         }
     }
+
+    pub fn fill(&self, rect: Rect<u8>, tile_index: u16, palette: u8) {
+        unsafe {
+            let bg = self.bg_index as u32;
+            FillBgTilemapBufferRect(
+                bg,
+                tile_index,
+                rect.x,
+                rect.y,
+                rect.width,
+                rect.height,
+                palette,
+            );
+        }
+    }
 }
 
 pub struct SpriteHandle {
@@ -131,7 +155,7 @@ pub struct SpriteHandle {
 }
 
 #[unsafe(link_section = ".ewram")]
-static G_SPRITES: resources::StaticWrapper<pokeemerald::Sprite> =
+static G_SPRITES: StaticWrapper<pokeemerald::Sprite> =
     StaticWrapper::new_from_arr(&raw mut gSprites);
 impl SpriteHandle {
     pub fn set_pos(&mut self, x: i16, y: i16) {
@@ -179,9 +203,13 @@ pub struct SpriteImage {
 }
 
 pub struct Sprite<'a> {
+    #[expect(unused)]
     palette: MayOwn<'a, Palette<'a>>,
+    #[expect(unused)]
     image: MayOwn<'a, SpriteImage>,
+    #[expect(unused)]
     frame: Box<SpriteFrameImage>,
+    #[expect(unused)]
     anims: &'a SpriteAnims,
     sprite: SpriteHandle,
 }
@@ -284,9 +312,124 @@ impl Drop for PokemonSpritePic {
     }
 }
 
-pub fn set_gpu_registers(list: &[(u32, &[u32])]) {
-    for (offset, flags) in list {
-        let flag = flags.iter().fold(0u32, BitOr::bitor);
-        unsafe { SetGpuReg(*offset as _, flag as _) };
+pub struct Rect<T> {
+    pub x: T,
+    pub y: T,
+    pub width: T,
+    pub height: T,
+}
+
+impl<T> Rect<T> {
+    pub fn new(x: T, y: T, width: T, height: T) -> Rect<T> {
+        Rect {
+            x,
+            y,
+            width,
+            height,
+        }
+    }
+}
+
+pub struct WindowHandle {
+    index: usize,
+}
+
+impl WindowHandle {
+    pub fn blit_bitmap(&self, pixels: &[u8], rect: Rect<u16>) {
+        unsafe {
+            BlitBitmapToWindow(
+                self.index as _,
+                pixels.as_ptr(),
+                rect.x,
+                rect.y,
+                rect.width,
+                rect.height,
+            )
+        };
+    }
+
+    pub fn fill(&self, fill: u8) {
+        unsafe { FillWindowPixelBuffer(self.index as _, fill) };
+    }
+
+    pub fn display(&self) {
+        unsafe {
+            CopyWindowToVram(self.index as _, COPYWIN_FULL);
+            PutWindowTilemap(self.index as _);
+        }
+    }
+}
+
+pub struct Window<'a> {
+    _own: MayOwn<'a, Palette<'a>>,
+    handle: WindowHandle,
+}
+
+impl<'a> Deref for Window<'_> {
+    type Target = WindowHandle;
+    fn deref(&self) -> &Self::Target {
+        &self.handle
+    }
+}
+
+impl<'a> Window<'a> {
+    pub fn create(
+        palette: impl Into<MayOwn<'a, Palette<'a>>>,
+        bg: u8,
+        rect: Rect<u8>,
+        base_block: u16,
+    ) -> Window<'a> {
+        let palette = palette.into();
+        let mut window_template = WindowTemplate::default();
+        window_template.baseBlock = base_block;
+        window_template.bg = bg;
+        window_template.paletteNum = palette.index as _;
+        window_template.tilemapLeft = rect.x;
+        window_template.tilemapTop = rect.y;
+        window_template.width = rect.width;
+        window_template.height = rect.height;
+        let index = unsafe { AddWindow(&raw const window_template) };
+        let handle = WindowHandle {
+            index: index as usize,
+        };
+        Window {
+            _own: palette,
+            handle,
+        }
+    }
+
+    pub fn create_with_tilemap(
+        bg: u8,
+        rect: Rect<u8>,
+        palette: impl Into<MayOwn<'a, Palette<'a>>>,
+        tileset: &Tileset<'a>,
+        tilemap: &Tilemap<'a>,
+    ) -> Window<'a> {
+        let palette = palette.into();
+        let mut window_template = WindowTemplate::default();
+        window_template.baseBlock = tileset.offset;
+        window_template.bg = bg;
+        window_template.paletteNum = palette.index as _;
+        window_template.tilemapLeft = rect.x;
+        window_template.tilemapTop = rect.y;
+        window_template.width = rect.width;
+        window_template.height = rect.height;
+
+        let index = unsafe { AddWindowWithoutTileMap(&raw const window_template) };
+        unsafe { SetWindowAttribute(index as _, WINDOW_TILE_DATA, tilemap.buffer.as_ptr() as u32) };
+
+        let handle = WindowHandle {
+            index: index as usize,
+        };
+        Window {
+            _own: palette,
+            handle,
+        }
+    }
+}
+
+impl Drop for Window<'_> {
+    fn drop(&mut self) {
+        unsafe { RemoveWindow(self.handle.index as _) };
     }
 }

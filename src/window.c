@@ -107,6 +107,7 @@ bool32 InitWindows(const struct WindowTemplate *templates)
 }
 
 u32 AddWindow(const struct WindowTemplate *template)
+
 {
     u32 win;
     u32 bgLayer;
@@ -138,7 +139,7 @@ u32 AddWindow(const struct WindowTemplate *template)
     if (gWindowBgTilemapBuffers[bgLayer] == NULL)
     {
         attrib = GetBgAttribute(bgLayer, BG_ATTR_METRIC);
-
+        DebugPrintVar("alloc %d", attrib);
         if (attrib != 0xFFFF)
         {
             allocatedTilemapBuffer = AllocZeroed(attrib);
