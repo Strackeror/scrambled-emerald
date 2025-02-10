@@ -53,7 +53,7 @@ macro_rules! mgba_print {
 #[macro_export]
 macro_rules! mgba_warn {
     ($($tt:tt)*) => {
-        $crate::mgba_print(2, format_args!($($tt)*))
+        $crate::mgba_print_format(2, format_args!($($tt)*))
     };
 }
 
