@@ -11002,7 +11002,10 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .damagesAirborne = TRUE,
         .skyBattleBanned = TRUE,
-        .additionalEffects = ADDITIONAL_EFFECTS({.moveEffect = MOVE_EFFECT_FLINCH,.chance = 30,},),
+        .additionalEffects = ADDITIONAL_EFFECTS(
+            {.moveEffect = MOVE_EFFECT_FLINCH,.chance = 30,},
+            {.moveEffect = MOVE_EFFECT_SMACK_DOWN},
+        ),
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
