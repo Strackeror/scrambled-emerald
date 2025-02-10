@@ -55702,56 +55702,88 @@
       ],
       "levelup_moves": [
         {
-          "move": "TailWhip",
+          "move": "Recover",
+          "level": 2
+        },
+        {
+          "move": "Toxic",
+          "level": 2
+        },
+        {
+          "move": "Protect",
+          "level": 2
+        },
+        {
+          "move": "Haze",
           "level": 2
         },
         {
           "move": "WaterGun",
-          "level": 2
+          "level": 5
         },
         {
-          "move": "RainDance",
-          "level": 4
-        },
-        {
-          "move": "MudShot",
+          "move": "Sludge",
           "level": 8
         },
         {
-          "move": "Mist",
-          "level": 12
+          "move": "AncientPower",
+          "level": 10
         },
         {
-          "move": "Haze",
-          "level": 12
+          "move": "Whirlpool",
+          "level": 13
         },
         {
-          "move": "Slam",
-          "level": 16
+          "move": "Dive",
+          "level": 15
+        },
+        {
+          "move": "ClearSmog",
+          "level": 18
+        },
+        {
+          "move": "PoisonTail",
+          "level": 23
         },
         {
           "move": "Yawn",
-          "level": 21
-        },
-        {
-          "move": "AquaTail",
-          "level": 24
-        },
-        {
-          "move": "MuddyWater",
           "level": 28
         },
         {
-          "move": "Amnesia",
-          "level": 32
+          "move": "Acid",
+          "level": 33
         },
         {
-          "move": "Toxic",
-          "level": 36
+          "move": "Counter",
+          "level": 38
         },
         {
-          "move": "Earthquake",
-          "level": 40
+          "move": "Stockpile",
+          "level": 43
+        },
+        {
+          "move": "Swallow",
+          "level": 43
+        },
+        {
+          "move": "SpitUp",
+          "level": 43
+        },
+        {
+          "move": "WaveCrash",
+          "level": 48
+        },
+        {
+          "move": "HydroCannon",
+          "level": 53
+        },
+        {
+          "move": "Waterfall",
+          "level": 58
+        },
+        {
+          "move": "AcidArmor",
+          "level": 60
         }
       ]
     },
