@@ -70,6 +70,7 @@ Route112_EventScript_HonoBoss01::
 	
 Route112_EventScript_HonoBoss01_Defeat::
 	setvar VAR_LEVEL_CAP 32
+	release
 	end
 
 Route112_EventScript_Trent::

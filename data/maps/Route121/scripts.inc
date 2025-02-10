@@ -118,6 +118,7 @@ Route121_EventScript_Jessica::
 
 Route121_EventScript_Jessica_Defeated::
 	setvar VAR_LEVEL_CAP 52
+	release
 	end
 
 Route121_EventScript_RegisterJessica::

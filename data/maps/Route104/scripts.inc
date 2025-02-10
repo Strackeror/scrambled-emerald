@@ -853,6 +853,7 @@ Route104_EventScript_Ivan::
 
 Route104_EventScript_Ivan_Defeated::
 	setvar VAR_LEVEL_CAP 13
+	release
 	end
 
 Route104_EventScript_Billy::
@@ -950,6 +951,7 @@ Route104_EventScript_Cindy::
 
 Route104_EventScript_Cindy_Defeated::
 	setvar VAR_LEVEL_CAP 12
+	release
 	end
 
 Route104_EventScript_TryRegisterCindyAfterBattle::

@@ -102,6 +102,7 @@ VictoryRoad_1F_EventScript_Edgar::
 	
 VictoryRoad_1F_EventScript_Edgar_Defeat::
 	setvar VAR_LEVEL_CAP 100
+	release
 	end
 
 VictoryRoad_1F_EventScript_Albert::
@@ -111,6 +112,7 @@ VictoryRoad_1F_EventScript_Albert::
 
 VictoryRoad_1F_EventScript_Albert_Defeat::
 	setvar VAR_LEVEL_CAP 63
+	release
 	end
 
 VictoryRoad_1F_EventScript_Hope::
@@ -120,6 +122,7 @@ VictoryRoad_1F_EventScript_Hope::
 
 VictoryRoad_1F_EventScript_Hope_Defeat::
 	setvar VAR_LEVEL_CAP 58
+	release
 	end
 
 VictoryRoad_1F_EventScript_Quincy::
@@ -129,6 +132,7 @@ VictoryRoad_1F_EventScript_Quincy::
 
 VictoryRoad_1F_EventScript_Quincy_Defeat::
 	setvar VAR_LEVEL_CAP 65
+	release
 	end
 
 VictoryRoad_1F_EventScript_Katelynn::
@@ -249,12 +253,12 @@ VictoryRoad_1F_EventScript_TitanDondozo::
 	msgbox VictoryRoad_1F_Text_Titan, MSGBOX_DEFAULT
 	titanbattle 12
 	waitstate
-	release
 	fadescreen FADE_TO_BLACK
 	removeobject 8
 	setflag FLAG_TITAN_DONDOZO
 	fadescreen FADE_FROM_BLACK
 	setvar VAR_LEVEL_CAP 60
+	release
 	end
 
 VictoryRoad_1F_Text_Titan::

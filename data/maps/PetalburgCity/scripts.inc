@@ -775,4 +775,5 @@ Nemona_Fallback::
 	setflag FLAG_HIDE_PETALBURG_GYM_RIVAL_FIGHT
 	removeobject 10
 	fadescreen FADE_FROM_BLACK
+	release
 	end

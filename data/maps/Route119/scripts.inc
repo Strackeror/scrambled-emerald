@@ -670,6 +670,7 @@ Route119_EventScript_TryRemoveLoyal3:
 	setflag FLAG_TITAN_LOYAL_THREE
 	fadescreen FADE_FROM_BLACK
 Route119_EventScript_End:
+	release
 	end
 
 Route119_Movement_TitanDefeated:

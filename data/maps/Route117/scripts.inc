@@ -62,6 +62,7 @@ Route117_EventScript_DokuBoss::
 	
 Route117_EventScript_DokuBossDefeat::
 	setvar VAR_LEVEL_CAP 40
+	release
 	end
 
 Route117_EventScript_Girl::

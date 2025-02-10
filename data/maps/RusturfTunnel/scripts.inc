@@ -426,6 +426,7 @@ RusturfTunnel_EventScript_Brother04::
 	
 RusturfTunnel_EventScript_Brother04_Defeat::
 	setvar VAR_LEVEL_CAP 42
+	release
 	end
 
 RusturfTunnel_Text_ComeAndGetSome:

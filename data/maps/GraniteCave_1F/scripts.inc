@@ -31,12 +31,12 @@ GraniteCave_1F_EventScript_KlawfTitan::
 	msgbox GraniteCave_1F_Text_Klawf, MSGBOX_DEFAULT
 	titanbattle 2
 	waitstate
-	release
 	fadescreen FADE_TO_BLACK
 	removeobject 3
 	setflag FLAG_TITAN_KLAWF
 	fadescreen FADE_FROM_BLACK
 	setvar VAR_LEVEL_CAP 18
+	release
 	end
 
 GraniteCave_1F_Text_GetsDarkAheadHereYouGo:

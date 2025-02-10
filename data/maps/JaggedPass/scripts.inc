@@ -127,6 +127,7 @@ JaggedPass_EventScript_Ethan::
 
 JaggedPass_EventScript_Ethan_LevelCap:
 	setvar VAR_LEVEL_CAP 36
+	release
 	end
 
 JaggedPass_EventScript_RegisterEthan::
@@ -165,12 +166,12 @@ JaggedPass_EventScript_TitanOrthworm::
 	msgbox JaggedPass_Text_Titan, MSGBOX_DEFAULT
 	titanbattle 6
 	waitstate
-	release
 	fadescreen FADE_TO_BLACK
 	removeobject 8
 	setflag FLAG_TITAN_ORTHWORM
 	fadescreen FADE_FROM_BLACK
 	setvar VAR_LEVEL_CAP 35
+	release
 	end
 
 JaggedPass_Text_Titan::

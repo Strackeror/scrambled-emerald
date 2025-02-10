@@ -266,6 +266,7 @@ Route110_EventScript_Isabel::
 
 Route110_EventScript_Isabel_Defeated::
 	setvar VAR_LEVEL_CAP 26
+	release
 	end
 
 Route110_EventScript_IsabelRegisterMatchCallAfterBattle::
@@ -512,12 +513,12 @@ Route110_EventScript_TitanBombirdier::
 	msgbox GraniteCave_1F_Text_Klawf, MSGBOX_DEFAULT
 	titanbattle 4
 	waitstate
-	release
 	fadescreen FADE_TO_BLACK
 	removeobject 35
 	setflag FLAG_TITAN_BOMBIRDIER
 	fadescreen FADE_FROM_BLACK
 	setvar VAR_LEVEL_CAP 24
+	release
 	end
 
 Route110_Movement_RivalApproachPlayer1:
