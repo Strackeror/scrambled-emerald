@@ -1,37 +1,30 @@
 use alloc::boxed::Box;
 use alloc::vec;
-use core::ffi::c_void;
 use core::future::Future;
 use core::pin::Pin;
-use core::ptr::{addr_of, null, null_mut, slice_from_raw_parts};
-use core::slice;
+use core::ptr::addr_of;
 use core::task::{Context, Poll};
 
 use arrayvec::ArrayVec;
 use data::{get_item, Pokemon};
-use graphics::{
-    set_gpu_registers, Background, Palette, PokemonSpritePic, Rect, Sprite, SpriteImage, Tilemap,
-    Tileset, Window, DUMMY_SPRITE_ANIMS,
-};
+use graphics::{Sprite, Window, *};
 
 use crate::future::Executor;
 use crate::pokeemerald::*;
-use crate::resources::{CheckPtrCast as _, CheckPtrCastMut as _, LoadedResource, Resource};
-use crate::{include_res_lz, mgba_print};
+use crate::resources::{lz_ptr_res, AllocBuf, Buffer};
+use crate::{include_res_lz, mgba_warn};
 static EXECUTOR: Executor = Executor::new();
-
-extern "C" {
-    static gAgbMainLoop_sp: *const c_void;
-}
-#[inline(never)]
-fn print_stack_addr() {
-    let mut offset = 0;
-    offset = unsafe { gAgbMainLoop_sp.offset_from(addr_of!(offset).cast()) };
-    mgba_print!(2, "size_of_stack: {:?}", offset);
-}
 
 #[no_mangle]
 extern "C" fn Init_Full_Summary_Screen(back: MainCallback) {
+    mgba_warn!(
+        "Heap: {:?} {:?} {:?} {:?} {:?}",
+        addr_of!(gHeap),
+        addr_of!(TILESET),
+        addr_of!(PAL),
+        addr_of!(SCROLL_BG_MAP),
+        addr_of!(MON_BG_MAP)
+    );
     let fut = Box::new(summary_screen(back));
     unsafe { SetMainCallback2(Some(main_cb)) }
     EXECUTOR.set(fut);
@@ -69,50 +62,41 @@ const MON_POS: [(i16, i16); 6] = [
 mod data;
 mod graphics;
 
-static TILESET: Resource = include_res_lz!("../../graphics/party_menu_full/tiles.4bpp");
-static PAL: Resource = include_res_lz!("../../graphics/party_menu_full/tiles.gbapal");
-static BG_MAP: Resource = include_res_lz!("../../graphics/party_menu_full/bg.bin");
-static MON_BG_MAP: Resource = include_res_lz!("../../graphics/party_menu_full/mon_bg.bin");
+include_res_lz!(TILESET, "../../graphics/party_menu_full/tiles.4bpp");
+include_res_lz!(PAL, "../../graphics/party_menu_full/tiles.gbapal");
+include_res_lz!(SCROLL_BG_MAP, "../../graphics/party_menu_full/bg.bin");
+include_res_lz!(MON_BG_MAP, "../../graphics/party_menu_full/mon_bg.bin");
 
-async fn item_sprites(pokes: &[Pokemon]) -> ArrayVec<Option<Sprite>, 6> {
-    let mut item_sprites: ArrayVec<Option<Sprite>, 6> = ArrayVec::new();
-    for (index, poke) in pokes.iter().enumerate() {
-        let Some(item) = poke.item() else {
-            item_sprites.push(None);
-            continue;
-        };
-        let item_info = get_item(item);
-        let palette = Palette {
-            buffer: Resource::from_lz_ptr(item_info.iconPalette.c_cast(), 32).into(),
-            index: 6 + index,
-        };
+type OwnedSprite = Sprite<AllocBuf<TileBitmap4bpp>>;
+async fn item_sprite(poke: &Pokemon, index: usize) -> Option<OwnedSprite> {
+    let Some(item) = poke.item() else {
+        return None;
+    };
+    let item_info = get_item(item);
+    let palette = lz_ptr_res::<{ 2 * 16 }>(item_info.iconPalette.cast());
+    let palette = load_obj_palette(6 + index as u8, &palette.load().get());
 
-        let base_icon = Resource::from_lz_ptr(item_info.iconPic.c_cast(), 24 * 24 / 2);
-        let mut buffer = vec![0; 32 * 32 / 2].into_boxed_slice();
-        unsafe {
-            CopyItemIconPicTo4x4Buffer(base_icon.load().as_ptr(), buffer.as_mut_ptr().c_cast_mut())
-        };
+    const ICON_SIZE: usize = size_of::<TileBitmap4bpp>() * 3 * 3;
+    const SPRITE_SIZE: usize = size_of::<TileBitmap4bpp>() * 4 * 4;
 
-        let image = SpriteImage {
-            resource: LoadedResource::Compressed(buffer),
-            size: SPRITE_SIZE_32x32,
-        };
-        sleep(1).await;
+    let icon: AllocBuf<TileBitmap4bpp> = lz_ptr_res::<ICON_SIZE>(item_info.iconPic.cast()).load();
+    let sprite_buffer = vec![0; SPRITE_SIZE].into_boxed_slice();
+    let sprite_buffer: AllocBuf<TileBitmap4bpp> = AllocBuf::new(sprite_buffer);
+    mgba_warn!("{} {}", icon.size_bytes(), sprite_buffer.size_bytes());
+    unsafe { CopyItemIconPicTo4x4Buffer(icon.as_ptr().cast(), sprite_buffer.as_mut_ptr().cast()) };
+    let image = SpriteImage {
+        buf: sprite_buffer,
+        size: SPRITE_SIZE_32x32,
+    };
+    sleep(1).await;
 
-        let sprite = Sprite::load(&DUMMY_SPRITE_ANIMS, image, palette).await;
-        item_sprites.push(Some(sprite));
-        sleep(1).await;
-    }
-    item_sprites
+    let sprite = Sprite::load(image, DUMMY_SPRITE_ANIMS, palette).await;
+    sprite.debug();
+    Some(sprite)
 }
 
 async fn summary_screen(back: MainCallback) {
     clear_ui().await;
-
-    let tileset_data = TILESET.load();
-    sleep(1).await;
-    let bg_map = BG_MAP.load();
-    sleep(1).await;
 
     set_gpu_registers(&[
         (REG_OFFSET_DISPCNT, &[DISPCNT_OBJ_ON, DISPCNT_OBJ_1D_MAP]),
@@ -120,17 +104,39 @@ async fn summary_screen(back: MainCallback) {
         (REG_OFFSET_BLDY, &[]),
     ]);
 
-    let mut palette = Palette {
-        index: 0,
-        buffer: (&PAL).into(),
+    let tileset_data = TILESET.load();
+    sleep(1).await;
+    let bg_map = SCROLL_BG_MAP.load();
+    sleep(1).await;
+    let palette = PAL.load();
+    sleep(1).await;
+
+    let palette = load_bg_palette(0, &palette.get());
+    sleep(1).await;
+
+    let tileset = Tileset {
+        char_base: 1,
+        offset: 0,
+        palette,
+        tiles: &tileset_data,
     };
-    let mut tileset = Tileset::new(1, 0, &tileset_data);
-    let mut tilemap_bg = Tilemap {
-        buffer: &bg_map,
+    let tilemap = Tilemap {
         map: 0,
+        buffer: &bg_map,
     };
-    let bg = Background::load(3, 3, &mut tileset, &mut tilemap_bg, &mut palette).await;
+    let bg = Background::load(BackgroundIndex::Background3, 3, tileset, tilemap).await;
     bg.show();
+
+    let empty_tilemap = AllocBuf::new(vec![0u8; bg_map.size_bytes()].into_boxed_slice());
+    let empty_tilemap = Tilemap {
+        map: 1,
+        buffer: empty_tilemap,
+    };
+
+    let bg2 = Background::load(BackgroundIndex::Background2, 2, tileset, empty_tilemap).await;
+    bg2.set_pos(0, 0);
+    bg2.fill(Rect::new(0, 0, 32, 20), 15, palette);
+    bg2.show();
 
     let pokes: ArrayVec<Pokemon, 6> = (0..6)
         .filter_map(|i| Pokemon::get_player_party(i))
@@ -144,32 +150,23 @@ async fn summary_screen(back: MainCallback) {
         let (x, y) = MON_POS[index];
         sprite.sprite().set_pos(x, y);
     }
-    let mut item_sprites = item_sprites(&pokes).await;
+
+    let mut item_sprites: ArrayVec<Option<OwnedSprite>, 6> = ArrayVec::new();
+    for (index, poke) in pokes.iter().enumerate() {
+        item_sprites.push(item_sprite(poke, index).await);
+    }
+
     for (index, sprite) in item_sprites.iter_mut().enumerate() {
-        let Some(sprite) = sprite else {
-            continue;
-        };
+        let Some(sprite) = sprite else { continue };
         let (x, y) = MON_POS[index];
         sprite.handle().set_pos(x + 20, y + 20);
     }
 
-    let tilemap_buffer = vec![0; bg_map.len()].into_boxed_slice();
-    let tilemap_buffer = LoadedResource::Compressed(tilemap_buffer);
-    let mut tilemap2 = Tilemap {
-        map: 1,
-        buffer: &tilemap_buffer,
-    };
-    let bg2 = Background::load(1, 1, &mut tileset, &mut tilemap2, &mut palette).await;
-    bg2.fill(Rect::new(0, 0, 32, 20), 15, palette.index as _);
-    bg2.set_pos(0, 0);
-    bg2.show();
+    let mon_bg: AllocBuf<TilePlain> = MON_BG_MAP.load();
+    sleep(1).await;
 
-    let mon_bg_map = Tilemap {
-        map: 0,
-        buffer: &MON_BG_MAP.load(),
-    };
-    let win = Window::create(1, Rect::new(1, 1, 10, 10), &palette, 0x100);
-    win.copy_tilemap(&tileset, &mon_bg_map, Rect::new(0, 0, 10, 10));
+    let win = Window::create(bg2.handle(), Rect::new(1, 1, 10, 10), palette, 0x100);
+    win.copy_tilemap(&tileset.tiles.get(), &mon_bg.get(), Rect::new(0, 0, 10, 10));
     win.display();
 
     unsafe { SetVBlankCallback(Some(vblank_cb)) };
@@ -179,7 +176,6 @@ async fn summary_screen(back: MainCallback) {
         }
         sleep(1).await;
     }
-
     unsafe { SetMainCallback2(back) };
 }
 

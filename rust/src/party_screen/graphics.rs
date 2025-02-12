@@ -5,7 +5,8 @@ use core::ops::{BitOr, Deref};
 
 use super::{data, sleep};
 use crate::pokeemerald::{self, *};
-use crate::resources::{LoadedResource, MayOwn, Resource, StaticWrapper};
+use crate::resources::{Buffer, StaticWrapper};
+use crate::{mgba_print, mgba_warn, stack_size};
 
 pub fn set_gpu_registers(list: &[(u32, &[u32])]) {
     for (offset, flags) in list {
@@ -14,135 +15,149 @@ pub fn set_gpu_registers(list: &[(u32, &[u32])]) {
     }
 }
 
-pub struct Tileset<'a> {
-    char_base: u8,
-    offset: u16,
-    buffer: &'a LoadedResource,
-    loaded: bool,
+#[derive(Clone, Copy, Debug)]
+pub struct BgPalette {
+    index: u8,
+}
+#[derive(Clone, Copy, Debug)]
+pub struct ObjPalette {
+    index: u8,
 }
 
-impl<'a> Tileset<'a> {
-    pub const fn new(char_base: u8, offset: u16, buffer: &'a LoadedResource) -> Self {
-        Tileset {
-            char_base,
-            offset,
-            buffer,
-            loaded: false,
-        }
-    }
-
-    fn load(&mut self, bg_index: u8) {
-        if self.loaded {
-            return;
-        }
-        self.loaded = true;
-        unsafe {
-            LoadBgTiles(
-                bg_index as _,
-                self.buffer.as_ptr(),
-                self.buffer.len() as _,
-                self.offset,
-            );
-        }
+pub fn load_bg_palette(index: u8, data: &[u16]) -> BgPalette {
+    unsafe {
+        let size = data.len() * size_of::<u16>();
+        let data = data.as_ptr().cast();
+        LoadPalette(data, BG_PLTT_OFFSET + index as u32 * 16, size as u32);
+        BgPalette { index }
     }
 }
 
-pub struct Palette<'a> {
-    pub buffer: MayOwn<'a, Resource>,
-    pub index: usize,
-}
-
-enum PaletteType {
-    Bg,
-    Obj,
-}
-
-impl<'a> Palette<'a> {
-    fn load(&self, palette_type: PaletteType) {
-        unsafe {
-            let offset = match palette_type {
-                PaletteType::Bg => BG_PLTT_OFFSET as usize + self.index * 16,
-                PaletteType::Obj => OBJ_PLTT_OFFSET as usize + self.index * 16,
-            };
-            match *self.buffer {
-                Resource::Compressed { len, data } => {
-                    LoadCompressedPalette(data.as_ptr().cast(), offset as _, len as _)
-                }
-                Resource::Direct(items) => {
-                    LoadPalette(items.as_ptr().cast(), offset as _, items.len() as _);
-                }
-            }
-        }
+pub fn load_obj_palette(index: u8, data: &[u16]) -> ObjPalette {
+    unsafe {
+        let size = data.len() * size_of::<u16>();
+        let data = data.as_ptr().cast();
+        LoadPalette(data, OBJ_PLTT_OFFSET + index as u32 * 16, size as u32);
+        ObjPalette { index }
     }
 }
 
-pub struct Tilemap<'a> {
+#[derive(Clone, Copy, Debug)]
+pub struct TileBitmap4bpp(pub [u8; 32]);
+#[derive(Clone, Copy, Debug)]
+pub struct Tile4bpp(pub u16);
+#[derive(Clone, Copy, Debug)]
+pub struct TilePlain(pub u8);
+
+#[derive(Clone, Copy, Debug)]
+pub struct Tileset<Buf: Buffer<TileBitmap4bpp>> {
+    pub char_base: u16,
+    pub offset: u16,
+    pub tiles: Buf,
+    pub palette: BgPalette,
+}
+
+pub struct Tilemap<Buf: Buffer<Tile4bpp>> {
     pub map: u16,
-    pub buffer: &'a LoadedResource,
+    pub buffer: Buf,
 }
 
-pub struct Background<'a> {
-    bg_index: u8,
-    _phantom_data: PhantomData<&'a ()>,
+#[derive(Debug, Clone, Copy)]
+pub enum BackgroundIndex {
+    Background0 = 0,
+    Background1 = 1,
+    Background2 = 2,
+    Background3 = 3,
 }
 
-impl<'a> Background<'a> {
+#[derive(Debug, Clone, Copy)]
+pub struct BgHandle<'a>(BackgroundIndex, PhantomData<&'a ()>);
+impl Deref for BgHandle<'_> {
+    type Target = BackgroundIndex;
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+
+pub struct Background<Set, Map>
+where
+    Set: Buffer<TileBitmap4bpp>,
+    Map: Buffer<Tile4bpp>,
+{
+    index: BackgroundIndex,
+    tileset_buffer: Set,
+    tilemap_buffer: Map,
+}
+
+impl<Set, Map> Background<Set, Map>
+where
+    Set: Buffer<TileBitmap4bpp>,
+    Map: Buffer<Tile4bpp>,
+{
     pub async fn load(
-        index: u8,
-        priority: u8,
-        tileset: &mut Tileset<'a>,
-        tilemap: &mut Tilemap<'a>,
-        palette: &mut Palette<'a>,
-    ) -> Background<'a> {
+        index: BackgroundIndex,
+        priority: u16,
+        tileset: Tileset<Set>,
+        tilemap: Tilemap<Map>,
+    ) -> Self {
         let mut template: BgTemplate = BgTemplate::default();
-        template.set_bg(index as _);
-        template.set_charBaseIndex(tileset.char_base as _);
+        template.set_bg(index as u16);
+        template.set_charBaseIndex(tileset.char_base);
         template.set_mapBaseIndex(tilemap.map);
-        template.set_baseTile(tileset.offset as _);
+        template.set_baseTile(tileset.offset);
         template.set_paletteMode(0);
-        template.set_priority(priority as _);
+        template.set_priority(priority);
         template.set_screenSize(0);
 
         unsafe { InitBgFromTemplate(&raw const template) };
+        let tiles = &tileset.tiles;
         unsafe {
-            SetBgTilemapBuffer(index as _, tilemap.buffer.as_ptr());
-            LoadBgTilemap(
-                index as _,
-                tilemap.buffer.as_ptr(),
-                tilemap.buffer.len() as _,
-                0,
-            );
-        }
-        sleep(1).await;
+            LoadBgTiles(
+                index as u32,
+                tiles.get().as_ptr().cast(),
+                tiles.size_bytes() as _,
+                tileset.offset,
+            )
+        };
 
-        tileset.load(index);
-        sleep(1).await;
-
-        palette.load(PaletteType::Bg);
+        let map = &tilemap.buffer;
+        unsafe { SetBgTilemapBuffer(index as _, map.as_ptr().cast_mut().cast()) };
+        unsafe { LoadBgTilemap(index as _, map.as_ptr().cast(), map.size_bytes() as _, 0) };
         sleep(1).await;
 
         Background {
-            bg_index: index,
-            _phantom_data: PhantomData,
+            index,
+            tileset_buffer: tileset.tiles,
+            tilemap_buffer: tilemap.buffer,
         }
+    }
+
+    pub fn handle(&self) -> BgHandle {
+        BgHandle(self.index, PhantomData)
     }
 
     pub fn show(&self) {
         unsafe {
-            ShowBg(self.bg_index as _);
+            ShowBg(self.index as _);
+        }
+    }
+
+    pub fn copy_tilemap_to_vram(&self) {
+        unsafe {
+            CopyBgTilemapBufferToVram(self.index as _);
         }
     }
 
     pub fn set_pos(&self, x: u8, y: u8) {
         unsafe {
-            ChangeBgX(self.bg_index as _, BG_COORD_SET as _, x);
-            ChangeBgY(self.bg_index as _, BG_COORD_SET as _, y);
+            ChangeBgX(self.index as _, BG_COORD_SET as _, x);
+            ChangeBgY(self.index as _, BG_COORD_SET as _, y);
         }
     }
 
-    pub fn fill(&self, rect: Rect<u8>, tile_index: u16, palette: u8) {
+    pub fn fill(&self, rect: Rect<u8>, tile_index: u16, palette: BgPalette) {
         unsafe {
-            let bg = self.bg_index as u32;
+            let bg = self.index as u32;
             FillBgTilemapBufferRect(
                 bg,
                 tile_index,
@@ -150,8 +165,9 @@ impl<'a> Background<'a> {
                 rect.y,
                 rect.width,
                 rect.height,
-                palette,
+                palette.index,
             );
+            ScheduleBgCopyTilemapToVram(self.index as _);
         }
     }
 }
@@ -191,6 +207,7 @@ impl SpriteHandle {
     }
 }
 
+#[derive(Clone, Copy)]
 pub struct SpriteAnims {
     anims: *const *const AnimCmd,
     affine_anims: *const *const AffineAnimCmd,
@@ -203,41 +220,27 @@ pub static DUMMY_SPRITE_ANIMS: SpriteAnims = unsafe {
     }
 };
 
-pub struct SpriteImage {
-    pub resource: LoadedResource,
+pub struct SpriteImage<Buf: Buffer<TileBitmap4bpp>> {
+    pub buf: Buf,
     pub size: u32,
 }
 
-pub struct Sprite<'a> {
-    #[expect(unused)]
-    palette: MayOwn<'a, Palette<'a>>,
-    #[expect(unused)]
-    image: MayOwn<'a, SpriteImage>,
-    #[expect(unused)]
-    frame: Box<SpriteFrameImage>,
-    #[expect(unused)]
-    anims: &'a SpriteAnims,
+pub struct Sprite<Img: Buffer<TileBitmap4bpp>> {
+    _own: (ObjPalette, Img, Box<SpriteFrameImage>),
     sprite: SpriteHandle,
 }
 
-impl<'a> Sprite<'a> {
-    pub async fn load(
-        anims: &'a SpriteAnims,
-        image: impl Into<MayOwn<'a, SpriteImage>>,
-        palette: impl Into<MayOwn<'a, Palette<'a>>>,
-    ) -> Self {
-        let palette: MayOwn<'a, Palette<'a>> = palette.into();
-        let image: MayOwn<'a, SpriteImage> = image.into();
-
+impl<Img: Buffer<TileBitmap4bpp>> Sprite<Img> {
+    pub async fn load(image: SpriteImage<Img>, anims: SpriteAnims, palette: ObjPalette) -> Self {
         let mut template = SpriteTemplate::default();
         template.affineAnims = anims.affine_anims;
         template.anims = anims.anims;
         template.callback = Some(SpriteCallbackDummy);
 
         let mut frame = SpriteFrameImage::default();
-        frame.data = image.resource.as_ptr();
+        frame.data = image.buf.as_ptr().cast();
         frame.relativeFrames = 0;
-        frame.size = (image.resource.len()) as u16;
+        frame.size = image.buf.size_bytes() as u16;
         let frame = Box::new(frame);
         template.images = &raw const *frame;
 
@@ -248,7 +251,6 @@ impl<'a> Sprite<'a> {
         template.oam = &raw const oam;
         template.tileTag = TAG_NONE as _;
         template.paletteTag = TAG_NONE as _;
-        palette.load(PaletteType::Obj);
 
         let sprite_index = unsafe { CreateSprite(&raw const template, 0, 0, 0) };
         let mut sprite = SpriteHandle {
@@ -257,19 +259,20 @@ impl<'a> Sprite<'a> {
         sprite.set_palette(palette.index as u16);
         sprite.request_copy();
         Sprite {
-            palette,
-            image,
-            anims,
+            _own: (palette, image.buf, frame),
             sprite,
-            frame,
         }
+    }
+
+    pub fn debug(&self) {
+        mgba_warn!("{:?} {:?}", self._own.1.as_ptr(), &raw const *self._own.2);
     }
 
     pub fn handle(&mut self) -> &mut SpriteHandle {
         &mut self.sprite
     }
 }
-impl<'a> Drop for Sprite<'a> {
+impl<T: Buffer<TileBitmap4bpp>> Drop for Sprite<T> {
     fn drop(&mut self) {
         unsafe {
             DestroySpriteAndFreeResources(
@@ -352,6 +355,17 @@ pub struct WindowHandle {
 }
 
 impl WindowHandle {
+    pub fn fill(&self, fill: u8) {
+        unsafe { FillWindowPixelBuffer(self.index as _, fill) };
+    }
+
+    pub fn display(&self) {
+        unsafe {
+            CopyWindowToVram(self.index, COPYWIN_FULL);
+            PutWindowTilemap(self.index);
+        }
+    }
+
     pub fn blit_bitmap(&self, pixels: &[u8], rect: Rect<u16>) {
         unsafe {
             BlitBitmapToWindow(
@@ -364,100 +378,50 @@ impl WindowHandle {
             )
         };
     }
-
-    pub fn fill(&self, fill: u8) {
-        unsafe { FillWindowPixelBuffer(self.index as _, fill) };
-    }
-
-    pub fn display(&self) {
-        unsafe {
-            CopyWindowToVram(self.index, COPYWIN_FULL);
-            PutWindowTilemap(self.index);
-        }
-    }
-    pub fn copy_tilemap(&self, tileset: &Tileset, tilemap: &Tilemap, rect: Rect<u8>) {
-        const SIZE_OF_TILE: usize = 32;
-        let mut buffer = Vec::with_capacity(rect.width as usize * rect.height as usize * 32);
+    pub fn copy_tilemap(&self, tileset: &[TileBitmap4bpp], tilemap: &[TilePlain], rect: Rect<u8>) {
+        let mut buffer = Vec::with_capacity(
+            rect.width as usize * rect.height as usize * size_of::<TileBitmap4bpp>(),
+        );
+        mgba_warn!("{:?}", tileset[0]);
         for y in 0..rect.height {
             for x in 0..rect.width {
-                let tilemap_index = x + rect.width * y;
-                let tile_index = tilemap.buffer.buffer()[tilemap_index as usize];
-                let pixel_offset = tile_index as usize * SIZE_OF_TILE;
-                let tile_data = &tileset.buffer.buffer()[pixel_offset..pixel_offset + SIZE_OF_TILE];
-                buffer.extend_from_slice(tile_data);
+                let offset = y * rect.width + x;
+                let tile = tilemap[offset as usize].0;
+                buffer.extend_from_slice(&tileset[tile as usize].0);
             }
         }
         self.blit_bitmap(&buffer, rect.tile_to_pixel());
     }
 }
 
-pub struct Window<'a> {
-    _own: MayOwn<'a, Palette<'a>>,
+pub struct Window {
     handle: WindowHandle,
 }
 
-impl<'a> Deref for Window<'_> {
+impl<'a> Deref for Window {
     type Target = WindowHandle;
     fn deref(&self) -> &Self::Target {
         &self.handle
     }
 }
 
-impl<'a> Window<'a> {
-    pub fn create(
-        bg: u8,
-        rect: Rect<u8>,
-        palette: impl Into<MayOwn<'a, Palette<'a>>>,
-        base_block: u16,
-    ) -> Window<'a> {
-        let palette = palette.into();
+impl Window {
+    pub fn create(bg: BgHandle<'_>, rect: Rect<u8>, palette: BgPalette, base_block: u16) -> Window {
         let mut window_template = WindowTemplate::default();
         window_template.baseBlock = base_block;
-        window_template.bg = bg;
-        window_template.paletteNum = palette.index as _;
+        window_template.bg = bg.0 as _;
+        window_template.paletteNum = palette.index;
         window_template.tilemapLeft = rect.x;
         window_template.tilemapTop = rect.y;
         window_template.width = rect.width;
         window_template.height = rect.height;
         let index = unsafe { AddWindow(&raw const window_template) };
         let handle = WindowHandle { index };
-        Window {
-            _own: palette,
-            handle,
-        }
-    }
-
-    pub fn create_with_tilemap(
-        bg: u8,
-        rect: Rect<u8>,
-        palette: impl Into<MayOwn<'a, Palette<'a>>>,
-        tilemap: &Tilemap<'a>,
-        base_block: u16,
-    ) -> Window<'a> {
-        let palette = palette.into();
-        let mut window_template = WindowTemplate::default();
-        window_template.baseBlock = base_block;
-        window_template.bg = bg;
-        window_template.paletteNum = palette.index as _;
-        window_template.tilemapLeft = rect.x;
-        window_template.tilemapTop = rect.y;
-        window_template.width = rect.width;
-        window_template.height = rect.height;
-
-        let index = unsafe { AddWindowWithoutTileMap(&raw const window_template) };
-        unsafe { SetWindowAttribute(index as _, WINDOW_TILE_DATA, tilemap.buffer.as_ptr() as u32) };
-
-        let handle = WindowHandle {
-            index: index as u32,
-        };
-        Window {
-            _own: palette,
-            handle,
-        }
+        Window { handle }
     }
 }
 
-impl Drop for Window<'_> {
+impl Drop for Window {
     fn drop(&mut self) {
         unsafe { RemoveWindow(self.handle.index as _) };
     }

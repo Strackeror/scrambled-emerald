@@ -1,6 +1,7 @@
 #![no_std]
 extern crate alloc;
 use core::alloc::GlobalAlloc;
+use core::ffi::c_void;
 use core::fmt::Arguments;
 use core::panic::PanicInfo;
 
@@ -21,13 +22,16 @@ unsafe impl GlobalAlloc for PokeAllocator {
         if ptr.is_null() {
             panic!("heap overflow")
         }
+        mgba_warn!("Alloc 0x{:x?}b : {ptr:?}", layout.size());
         ptr
     }
 
     unsafe fn dealloc(&self, ptr: *mut u8, _layout: core::alloc::Layout) {
+        mgba_warn!("Free: {:?}", ptr);
         Free(ptr as *mut _);
     }
 }
+
 #[global_allocator]
 static GLOBAL: PokeAllocator = PokeAllocator;
 
@@ -61,182 +65,99 @@ mod resources {
     use alloc::boxed::Box;
     use alloc::vec;
     use core::cell::{Ref, RefCell, RefMut};
-    use core::ffi::c_void;
+    use core::marker::PhantomData;
     use core::ops::Deref;
-    use core::slice;
 
     use crate::pokeemerald::LZ77UnCompWram;
 
-    pub enum Resource {
-        Compressed { len: usize, data: &'static [u8] },
-        Direct(&'static [u8]),
+    pub struct AllocBuf<T: Sized> {
+        data: RefCell<Box<[u8]>>,
+        _p: PhantomData<T>,
     }
 
-    pub enum LoadedResource {
-        Compressed(Box<[u8]>),
-        Direct(&'static [u8]),
-    }
-
-    impl Resource {
-        pub const fn from_lz_ptr(data: *const u8, len: usize) -> Resource {
-            unsafe {
-                Resource::Compressed {
-                    len: len,
-                    data: slice::from_raw_parts(data, len),
-                }
+    impl<T> AllocBuf<T> {
+        pub fn new(alloc: Box<[u8]>) -> Self {
+            AllocBuf {
+                data: RefCell::new(alloc),
+                _p: PhantomData,
             }
         }
 
-        pub const fn from_ptr(data: *const u8, len: usize) -> Resource {
-            unsafe { Resource::Direct(slice::from_raw_parts(data, len)) }
+        pub fn size_bytes(&self) -> usize {
+            self.data.borrow().len()
         }
 
-        pub const fn len(&self) -> usize {
-            match self {
-                Resource::Compressed { len, .. } => *len,
-                Resource::Direct(items) => items.len(),
-            }
-        }
-
-        pub fn buffer(&self) -> *const c_void {
-            match self {
-                Resource::Compressed { data, .. } => data.as_ptr() as *const _,
-                Resource::Direct(data) => data.as_ptr() as *const _,
-            }
-        }
-
-        pub fn load(&self) -> LoadedResource {
-            match self {
-                Resource::Compressed { len, data } => {
-                    let mut load = vec![0; *len];
-                    unsafe {
-                        LZ77UnCompWram(data.as_ptr() as *const _, load.as_mut_ptr() as *mut _)
-                    };
-                    LoadedResource::Compressed(load.into_boxed_slice())
-                }
-                Resource::Direct(data) => LoadedResource::Direct(data),
-            }
+        pub fn as_mut_ptr(&self) -> *mut T {
+            self.data.borrow_mut().as_mut_ptr().cast()
         }
     }
 
-    impl LoadedResource {
-        pub fn as_ptr(&self) -> *mut c_void {
-            match self {
-                LoadedResource::Compressed(items) => items.as_ptr() as *mut _,
-                LoadedResource::Direct(items) => items.as_ptr() as *mut _,
+    pub trait Buffer<T> {
+        fn get(&self) -> impl Deref<Target = [T]>;
+
+        fn size_bytes(&self) -> usize {
+            self.get().len() * size_of::<T>()
+        }
+        fn as_ptr(&self) -> *const u8 {
+            self.get().as_ptr().cast()
+        }
+    }
+
+    impl<T> Buffer<T> for AllocBuf<T> {
+        fn get(&self) -> impl Deref<Target = [T]> {
+            unsafe { Ref::map(self.data.borrow(), |rbox| (&**rbox).align_to().1) }
+        }
+    }
+    impl<T> Buffer<T> for &AllocBuf<T> {
+        fn get(&self) -> impl Deref<Target = [T]> {
+            (*self).get()
+        }
+    }
+    impl<T> Buffer<T> for [T] {
+        fn get(&self) -> impl Deref<Target = [T]> {
+            self
+        }
+    }
+
+    unsafe impl<const C: usize> Sync for CompressedResource<C> {}
+    pub struct CompressedResource<const SIZE: usize> {
+        data: *const u8,
+    }
+
+    pub const fn lz_ptr_res<const SIZE: usize>(data: *const u8) -> CompressedResource<SIZE> {
+        CompressedResource { data }
+    }
+
+    impl<const SIZE: usize> CompressedResource<SIZE> {
+        pub const fn from_ref(data: &'static [u8]) -> Self {
+            CompressedResource {
+                data: data.as_ptr(),
             }
         }
 
-        pub fn len(&self) -> usize {
-            match self {
-                LoadedResource::Compressed(items) => items.len(),
-                LoadedResource::Direct(items) => items.len(),
+        pub fn load<T: Sized>(&self) -> AllocBuf<T> {
+            const {
+                if SIZE % size_of::<T>() != 0 {
+                    panic!("Invalid length")
+                };
             }
-        }
 
-        pub fn buffer(&self) -> &[u8] {
-            match self {
-                LoadedResource::Compressed(items) => &items,
-                LoadedResource::Direct(items) => *items,
-            }
+            let mut load = vec![0u8; SIZE];
+            let dest = load.as_mut_ptr().cast();
+            unsafe { LZ77UnCompWram(self.data.cast(), dest) };
+            AllocBuf::new(load.into_boxed_slice())
         }
     }
 
     #[macro_export]
     macro_rules! include_res_lz {
-        ($path:literal) => {
-            $crate::resources::Resource::Compressed {
-                len: include_bytes!($path).len(),
-                data: include_bytes!(concat!($path, ".lz")),
-            }
+        ($name:ident, $path:literal) => {
+            static $name: $crate::resources::CompressedResource<{ include_bytes!($path).len() }> =
+                $crate::resources::CompressedResource::from_ref(include_bytes!(concat!(
+                    $path, ".lz"
+                )));
         };
     }
-    #[macro_export]
-    macro_rules! include_res {
-        ($path:literal) => {
-            $crate::resources::Resource::Direct(include_bytes($path))
-        };
-    }
-
-    #[derive(Debug)]
-    pub enum MayOwn<'a, T> {
-        Ref(&'a T),
-        Owned(T),
-    }
-
-    impl<T> From<T> for MayOwn<'_, T> {
-        fn from(value: T) -> Self {
-            MayOwn::Owned(value)
-        }
-    }
-    impl<'a, T> From<&'a T> for MayOwn<'a, T> {
-        fn from(value: &'a T) -> Self {
-            MayOwn::Ref(value)
-        }
-    }
-    impl<'a, T> Deref for MayOwn<'a, T> {
-        type Target = T;
-        fn deref(&self) -> &Self::Target {
-            match self {
-                MayOwn::Ref(r) => r,
-                MayOwn::Owned(o) => &o,
-            }
-        }
-    }
-
-    pub trait CheckPtrCast<T> {
-        fn c_cast(self) -> *const T;
-    }
-
-    pub trait CheckPtrCastMut<T> {
-        fn c_cast_mut(self) -> *mut T;
-    }
-
-    impl<T> CheckPtrCast<T> for *const c_void {
-        fn c_cast(self) -> *const T {
-            self as _
-        }
-    }
-    impl<T> CheckPtrCast<T> for *mut c_void {
-        fn c_cast(self) -> *const T {
-            self as _
-        }
-    }
-    impl<T> CheckPtrCastMut<T> for *mut c_void {
-        fn c_cast_mut(self) -> *mut T {
-            self as _
-        }
-    }
-
-    macro_rules! checked_cast {
-        ($src:ty, $dest:ty) => {
-            impl CheckPtrCast<$dest> for *const $src {
-                fn c_cast(self) -> *const $dest {
-                    self as _
-                }
-            }
-            impl CheckPtrCast<$dest> for *mut $src {
-                fn c_cast(self) -> *const $dest {
-                    self as _
-                }
-            }
-            impl CheckPtrCastMut<$dest> for *mut $src {
-                fn c_cast_mut(self) -> *mut $dest {
-                    self as _
-                }
-            }
-        };
-    }
-    checked_cast!(u32, u8);
-    checked_cast!(u32, u16);
-    checked_cast!(u16, u8);
-    checked_cast!(u32, c_void);
-    checked_cast!(u16, c_void);
-    checked_cast!(u8, c_void);
-    checked_cast!(i32, c_void);
-    checked_cast!(i16, c_void);
-    checked_cast!(i8, c_void);
-
     pub struct StaticWrapper<T>(RefCell<*mut T>);
     unsafe impl<T> Sync for StaticWrapper<T> {}
     impl<T> StaticWrapper<T> {
@@ -262,6 +183,17 @@ mod resources {
             }
         }
     }
+}
+
+#[allow(unused)]
+#[inline(never)]
+fn stack_size() -> isize {
+    extern "C" {
+        static gAgbMainLoop_sp: *const c_void;
+    }
+    let mut offset = 0;
+    offset = unsafe { (&raw const offset).offset_from(gAgbMainLoop_sp.cast()) };
+    offset
 }
 
 #[panic_handler]
