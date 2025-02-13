@@ -2602,6 +2602,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
 static s32 AI_TryToFaint(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
 {
     u32 movesetIndex = AI_THINKING_STRUCT->movesetIndex;
+    u32 noHits;
 
     if (IS_TARGETING_PARTNER(battlerAtk, battlerDef))
         return score;
@@ -2622,7 +2623,7 @@ static s32 AI_TryToFaint(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     {
         ADJUST_SCORE(LAST_CHANCE);
     }
-    else if (GetNoOfHitsToKOBattler(battlerAtk, battlerDef, movesetIndex) < 2)
+    else if (noHits = GetNoOfHitsToKOBattler(battlerAtk, battlerDef, movesetIndex), noHits != 0 && noHits < 2)
     {
         ADJUST_SCORE(TWO_HIT_KO);
     }
