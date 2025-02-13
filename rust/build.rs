@@ -26,6 +26,7 @@ fn main() {
         .allowlist_file(".*/malloc.h")
         .allowlist_file(".*/window.h")
         .allowlist_file(".*/main.h")
+        .allowlist_file(".*/text.h")
         .allowlist_file(".*/menu.h")
         .allowlist_file(".*/menu_helpers.h")
         .allowlist_file(".*/bg.h")

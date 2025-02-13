@@ -1,3 +1,4 @@
+use crate::charmap::ArrayPkstr;
 use crate::pokeemerald::{self, *};
 
 pub struct Pokemon {
@@ -20,8 +21,26 @@ impl Pokemon {
         unsafe { GetMonData2(self.ptr, data as i32) }
     }
 
+    pub fn level(&self) -> u8 {
+        self.get_mon_data(MON_DATA_LEVEL) as u8
+    }
+
+    pub fn hp(&self) -> u16 {
+        self.get_mon_data(MON_DATA_HP) as u16
+    }
+
+    pub fn max_hp(&self) -> u16 {
+        self.get_mon_data(MON_DATA_MAX_HP) as u16
+    }
+
+    pub fn name(&self) -> ArrayPkstr<12> {
+        let mut slice = [0u8; 12];
+        unsafe { GetMonData3(self.ptr, MON_DATA_NICKNAME as _, slice.as_mut_ptr()) };
+        unsafe { ArrayPkstr::from_slice(&slice) }
+    }
+
     pub fn species(&self) -> u16 {
-        self.get_mon_data(MON_DATA_SPECIES) as _
+        self.get_mon_data(MON_DATA_SPECIES_OR_EGG) as _
     }
     pub fn personality(&self) -> u32 {
         self.get_mon_data(MON_DATA_PERSONALITY)

@@ -448,7 +448,8 @@ RUST_INC_FILES :=\
 	graphics/party_menu_full/bg.bin.lz\
 	graphics/party_menu_full/tiles.gbapal.lz\
 	graphics/party_menu_full/tiles.4bpp.lz\
-	graphics/party_menu_full/mon_bg.bin.lz
+	graphics/party_menu_full/mon_bg.bin.lz\
+	graphics/party_menu_full/hp.plain.bin.lz
 
 librust: $(RUST_INC_FILES)
 	cd rust && cargo build --release

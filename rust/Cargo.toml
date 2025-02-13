@@ -6,9 +6,10 @@ edition = "2021"
 [dependencies]
 arrayvec.default-features = false
 arrayvec.version = "0.7.6"
+derive_more = { version = "2.0.1", default-features = false, features = ["add", "add_assign", "constructor", "mul", "mul_assign"] }
 
 [lib]
-crate-type=["staticlib"]
+crate-type = ["staticlib"]
 
 [build-dependencies]
 bindgen = "0.71.1"

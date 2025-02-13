@@ -22,12 +22,12 @@ unsafe impl GlobalAlloc for PokeAllocator {
         if ptr.is_null() {
             panic!("heap overflow")
         }
-        mgba_warn!("Alloc 0x{:x?}b : {ptr:?}", layout.size());
+        // mgba_warn!("Alloc 0x{:x?} : {ptr:?}", layout.size());
         ptr
     }
 
     unsafe fn dealloc(&self, ptr: *mut u8, _layout: core::alloc::Layout) {
-        mgba_warn!("Free: {:?}", ptr);
+        // mgba_warn!("Free: {:?}", ptr);
         Free(ptr as *mut _);
     }
 }

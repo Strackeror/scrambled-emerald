@@ -44,6 +44,7 @@ impl<const C: usize> Write for ArrayVec<u8, C> {
 macro_rules! aformat {
     ($size:literal, $($t:tt)*) => {
         {
+            use core::fmt::Write;
             let mut buf = $crate::slice_write::ArrayString::<$size>::new();
             write!(buf, $($t)*).expect("should have space");
             buf

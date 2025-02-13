@@ -1,17 +1,91 @@
+#![allow(unused)]
+
 use alloc::boxed::Box;
 use alloc::vec::Vec;
 use core::marker::PhantomData;
-use core::ops::{BitOr, Deref};
+use core::ops::{Add, BitOr, Deref, Mul};
+
+use derive_more::{Add, Constructor, Div, Mul, Sub};
 
 use super::{data, sleep};
+use crate::charmap::Pkstr;
+use crate::mgba_warn;
 use crate::pokeemerald::{self, *};
 use crate::resources::{Buffer, StaticWrapper};
-use crate::{mgba_print, mgba_warn, stack_size};
 
 pub fn set_gpu_registers(list: &[(u32, &[u32])]) {
     for (offset, flags) in list {
         let flag = flags.iter().fold(0u32, BitOr::bitor);
         unsafe { SetGpuReg(*offset as _, flag as _) };
+    }
+}
+
+#[derive(Debug, Clone, Copy, Add, Mul, Div, Sub, Constructor)]
+pub struct Vec2D<T> {
+    pub x: T,
+    pub y: T,
+}
+
+impl Vec2D<u8> {
+    pub const ZERO: Self = Vec2D::new(0, 0);
+    pub fn tile_to_pixel(self) -> Vec2D<i16> {
+        Vec2D {
+            x: self.x as i16 * 8,
+            y: self.y as i16 * 8,
+        }
+    }
+}
+impl Vec2D<u16> {
+    pub const ZERO: Self = Vec2D::new(0, 0);
+}
+
+impl<T: Mul + Copy> Vec2D<T> {
+    pub fn size(&self) -> T::Output {
+        self.x * self.y
+    }
+}
+
+#[derive(Debug, Clone, Copy, Add, Mul, Div, Sub, Constructor)]
+pub struct Rect<T> {
+    pub x: T,
+    pub y: T,
+    pub width: T,
+    pub height: T,
+}
+
+impl<T: Copy> Rect<T> {
+    pub const fn from_vecs(pos: Vec2D<T>, size: Vec2D<T>) -> Self {
+        Rect {
+            x: pos.x,
+            y: pos.y,
+            width: size.x,
+            height: size.y,
+        }
+    }
+
+    pub const fn dim(&self) -> Vec2D<T> {
+        Vec2D {
+            x: self.width,
+            y: self.height,
+        }
+    }
+
+    pub const fn pos(&self) -> Vec2D<T> {
+        Vec2D {
+            x: self.x,
+            y: self.y,
+        }
+    }
+}
+
+impl Rect<u8> {
+    pub fn tile_to_pixel(self) -> Rect<u16> {
+        Rect {
+            x: self.x as u16 * 8,
+            y: self.y as u16 * 8,
+            width: self.width as u16 * 8,
+            height: self.height as u16 * 8,
+        }
     }
 }
 
@@ -180,14 +254,18 @@ pub struct SpriteHandle {
 static G_SPRITES: StaticWrapper<pokeemerald::Sprite> =
     StaticWrapper::new_from_arr(&raw mut gSprites);
 impl SpriteHandle {
-    pub fn set_pos(&mut self, x: i16, y: i16) {
+    pub fn set_pos(&mut self, pos: Vec2D<i16>) {
         let mut sprite = G_SPRITES.index_mut(self.sprite_index as usize);
-        sprite.x = x;
-        sprite.y = y;
+        sprite.x = pos.x;
+        sprite.y = pos.y;
     }
     pub fn set_palette(&mut self, palette: u16) {
         let mut sprite = G_SPRITES.index_mut(self.sprite_index as usize);
         sprite.oam.set_paletteNum(palette);
+    }
+    pub fn set_priority(&self, priority: u8) {
+        let mut sprite = G_SPRITES.index_mut(self.sprite_index as usize);
+        sprite.oam.set_priority(priority as _);
     }
     pub fn set_invisible(&mut self, invisible: bool) {
         let mut sprite = G_SPRITES.index_mut(self.sprite_index as usize);
@@ -264,6 +342,7 @@ impl<Img: Buffer<TileBitmap4bpp>> Sprite<Img> {
         }
     }
 
+    #[allow(unused)]
     pub fn debug(&self) {
         mgba_warn!("{:?} {:?}", self._own.1.as_ptr(), &raw const *self._own.2);
     }
@@ -308,7 +387,7 @@ impl PokemonSpritePic {
         }
     }
 
-    pub fn sprite(&mut self) -> &mut SpriteHandle {
+    pub fn handle(&mut self) -> &mut SpriteHandle {
         &mut self.sprite
     }
 }
@@ -321,49 +400,87 @@ impl Drop for PokemonSpritePic {
     }
 }
 
-pub struct Rect<T> {
-    pub x: T,
-    pub y: T,
-    pub width: T,
-    pub height: T,
+#[derive(Clone, Copy)]
+pub struct TextPrinterParams {
+    pub font: u8,
+    pub speed: u8,
+    pub fg_color: u8,
+    pub bg_color: u8,
+    pub shadow_color: u8,
+    pub letter_spacing: u8,
+    pub line_spacing: u8,
 }
 
-impl<T> Rect<T> {
-    pub fn new(x: T, y: T, width: T, height: T) -> Rect<T> {
-        Rect {
-            x,
-            y,
-            width,
-            height,
-        }
-    }
-}
-
-impl Rect<u8> {
-    pub fn tile_to_pixel(self) -> Rect<u16> {
-        Rect {
-            x: self.x as u16 * 8,
-            y: self.y as u16 * 8,
-            width: self.width as u16 * 8,
-            height: self.height as u16 * 8,
+impl TextPrinterParams {
+    pub fn font(font_id: u8) -> Self {
+        let font_info = unsafe { &*gFonts.offset(font_id as _) };
+        TextPrinterParams {
+            font: font_id,
+            speed: 0,
+            fg_color: font_info.fgColor(),
+            bg_color: font_info.bgColor(),
+            shadow_color: font_info.shadowColor(),
+            line_spacing: font_info.lineSpacing,
+            letter_spacing: font_info.letterSpacing,
         }
     }
 }
 
 pub struct WindowHandle {
-    index: u32,
+    index: u8,
 }
 
 impl WindowHandle {
     pub fn fill(&self, fill: u8) {
-        unsafe { FillWindowPixelBuffer(self.index as _, fill) };
+        unsafe { FillWindowPixelBuffer(self.index.into(), fill) };
     }
 
-    pub fn display(&self) {
+    pub fn fill_rect(&self, fill: u8, rect: Rect<u16>) {
+        let Rect {
+            x,
+            y,
+            width,
+            height,
+        } = rect;
         unsafe {
-            CopyWindowToVram(self.index, COPYWIN_FULL);
-            PutWindowTilemap(self.index);
+            FillWindowPixelRect(self.index.into(), fill, x, y, width, height);
         }
+    }
+
+    pub fn clear(&self) {
+        unsafe { ClearWindowTilemap(self.index as _) }
+    }
+
+    pub fn put_tilemap(&self) {
+        unsafe { PutWindowTilemap(self.index.into()) }
+    }
+
+    pub fn copy_to_vram(&self) {
+        unsafe { CopyWindowToVram(self.index.into(), COPYWIN_FULL) };
+    }
+
+    pub fn print_text(&self, text: &Pkstr, pos: Vec2D<u8>, font: TextPrinterParams) {
+        let mut template = TextPrinterTemplate {
+            currentChar: text.as_ptr(),
+            windowId: self.index,
+            fontId: font.font,
+            x: pos.x,
+            y: pos.y,
+            currentX: pos.x,
+            currentY: pos.y,
+            letterSpacing: font.letter_spacing,
+            lineSpacing: font.line_spacing,
+            _bitfield_1: TextPrinterTemplate::new_bitfield_1(
+                0,
+                font.fg_color,
+                font.bg_color,
+                font.shadow_color,
+            ),
+            _bitfield_align_1: [],
+            __bindgen_padding_0: 0,
+        };
+
+        unsafe { AddTextPrinter(&raw mut template, font.speed, None) };
     }
 
     pub fn blit_bitmap(&self, pixels: &[u8], rect: Rect<u16>) {
@@ -382,7 +499,6 @@ impl WindowHandle {
         let mut buffer = Vec::with_capacity(
             rect.width as usize * rect.height as usize * size_of::<TileBitmap4bpp>(),
         );
-        mgba_warn!("{:?}", tileset[0]);
         for y in 0..rect.height {
             for x in 0..rect.width {
                 let offset = y * rect.width + x;
@@ -416,7 +532,7 @@ impl Window {
         window_template.width = rect.width;
         window_template.height = rect.height;
         let index = unsafe { AddWindow(&raw const window_template) };
-        let handle = WindowHandle { index };
+        let handle = WindowHandle { index: index as u8 };
         Window { handle }
     }
 }
