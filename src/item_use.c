@@ -1738,4 +1738,39 @@ static void ItemUseOnFieldCB_PowerGlove(u8 taskId)
     DestroyTask(taskId);
 }
 
+static void CB2_OpenFlyToolFromBag(void)
+{
+    CB2_OpenFlyMap();
+}
+
+static void Task_OpenRegisteredFlyTool(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        CleanupOverworldWindowsAndTilemaps();
+        SetMainCallback2(CB2_OpenFlyMap);
+        DestroyTask(taskId);
+    }
+}
+
+void ItemUseOutOfBattle_FlyTool(u8 taskId)
+{
+    if (MenuHelpers_IsLinkActive() == TRUE)
+    {
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    }
+    else if (gTasks[taskId].tUsingRegisteredKeyItem != TRUE)
+    {
+        gBagMenu->newScreenCallback = CB2_OpenFlyToolFromBag;
+        Task_FadeAndCloseBagMenu(taskId);
+    }
+    else
+    {
+        FadeScreen(FADE_TO_BLACK, 0);
+        gTasks[taskId].func = Task_OpenRegisteredFlyTool;
+    }
+}
+
+
+
 #undef tUsingRegisteredKeyItem

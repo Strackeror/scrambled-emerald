@@ -1363,7 +1363,7 @@ static void Task_UseFly(u8 taskId)
         if ((int)gFieldEffectArguments[0] > PARTY_SIZE - 1)
             gFieldEffectArguments[0] = 0;
 
-        FieldEffectStart(FLDEFF_USE_FLY);
+        // FieldEffectStart(FLDEFF_USE_FLY);
         task->data[0]++;
     }
     if (!FieldEffectActiveListContains(FLDEFF_USE_FLY))

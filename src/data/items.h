@@ -14211,6 +14211,22 @@ const struct Item gItemsInfo[] =
         .iconPalette = gItemIconPalette_PowerGlove,
     },
 
+    [ITEM_FLYING_TAXI_TICKET] =
+    {
+        .name = _("Fly Ticket"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "A ticket that\n"
+            "allows you to call\n"
+            "a flying taxi."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_FlyTool,
+        .iconPic = gItemIcon_MysticTicket,
+        .iconPalette = gItemIconPalette_MysticTicket,
+    },
+
     [ITEM_CANDY_JAR] =
     {
         .name = _("Candy Jar"),
