@@ -1472,7 +1472,10 @@ void ItemUseOutOfBattle_Honey(u8 taskId)
 void ItemUseOutOfBattle_MusicBox(u8 taskId)
 {
     if (gTasks[taskId].tUsingRegisteredKeyItem)
+    {
         DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+        return;
+    }
 
     if (gSaveBlock1Ptr->musicOff)
         DisplayItemMessage(taskId, FONT_NORMAL, COMPOUND_STRING("Toggled music on.{PAUSE_UNTIL_PRESS}"), CloseItemMessage);
