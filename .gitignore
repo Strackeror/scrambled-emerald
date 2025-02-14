@@ -34,6 +34,10 @@ prefabs.json
 .vscode/
 *.a
 .fuse_hidden*
+.ccls-cache/*
+.ropeproject/
+/overworld/
+/icons/
 *.sna
 *.diff
 *.sym
@@ -44,3 +48,5 @@ tools/trainerproc/trainerproc
 compile_commands.json
 .cache
 /*.ups
+agbcc/
+/*.zip

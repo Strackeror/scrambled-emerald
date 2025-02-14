@@ -7,3 +7,4 @@ Includes code/resources from
 - [NobodySociety's HM items branch](https://github.com/NobodySociety/pokeemerald/tree/HMItems)
 - [PokemonSanFran's QOL field moves](https://github.com/PokemonSanFran/pokeemerald/blob/qol_field_moves)
 - [Pawkkie and Cookie Softcore item icons](https://github.com/Pawkkie/Team-Aquas-Asset-Repo/tree/main/Items)
+- [merrp's Key item wheel](https://github.com/aarant/pokeemerald/tree/key-item-wheel)
