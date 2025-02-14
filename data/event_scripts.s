@@ -1111,6 +1111,10 @@ Common_EventScript_EggShop::
 	release
 	end
 
+Common_EventScript_EditItemShop::
+	pokemart Common_EventScript_EditItems_ShopList
+	return
+
 Common_EventScript_BadgeMart::
 	goto_if_set FLAG_BADGE07_GET, Common_EventScript_BadgeMart7
 	goto_if_set FLAG_BADGE05_GET, Common_EventScript_BadgeMart5
@@ -1251,6 +1255,50 @@ Common_EventScript_0Badge_ShopList::
 	.2byte ITEM_CUSTAP_BERRY
 	.2byte ITEM_CHILAN_BERRY
 	pokemartlistend
+
+Common_EventScript_EditItems_ShopList:
+	.2byte ITEM_LONELY_MINT
+	.2byte ITEM_ADAMANT_MINT
+	.2byte ITEM_NAUGHTY_MINT
+	.2byte ITEM_BRAVE_MINT
+	.2byte ITEM_BOLD_MINT
+	.2byte ITEM_IMPISH_MINT
+	.2byte ITEM_LAX_MINT
+	.2byte ITEM_RELAXED_MINT
+	.2byte ITEM_MODEST_MINT
+	.2byte ITEM_MILD_MINT
+	.2byte ITEM_RASH_MINT
+	.2byte ITEM_QUIET_MINT
+	.2byte ITEM_CALM_MINT
+	.2byte ITEM_GENTLE_MINT
+	.2byte ITEM_CAREFUL_MINT
+	.2byte ITEM_SASSY_MINT
+	.2byte ITEM_TIMID_MINT
+	.2byte ITEM_HASTY_MINT
+	.2byte ITEM_JOLLY_MINT
+	.2byte ITEM_NAIVE_MINT
+	.2byte ITEM_SERIOUS_MINT
+	.2byte ITEM_BUG_TERA_SHARD
+	.2byte ITEM_DARK_TERA_SHARD
+	.2byte ITEM_DRAGON_TERA_SHARD
+	.2byte ITEM_ELECTRIC_TERA_SHARD
+	.2byte ITEM_FAIRY_TERA_SHARD
+	.2byte ITEM_FIGHTING_TERA_SHARD
+	.2byte ITEM_FIRE_TERA_SHARD
+	.2byte ITEM_FLYING_TERA_SHARD
+	.2byte ITEM_GHOST_TERA_SHARD
+	.2byte ITEM_GRASS_TERA_SHARD
+	.2byte ITEM_GROUND_TERA_SHARD
+	.2byte ITEM_ICE_TERA_SHARD
+	.2byte ITEM_NORMAL_TERA_SHARD
+	.2byte ITEM_POISON_TERA_SHARD
+	.2byte ITEM_PSYCHIC_TERA_SHARD
+	.2byte ITEM_ROCK_TERA_SHARD
+	.2byte ITEM_STEEL_TERA_SHARD
+	.2byte ITEM_WATER_TERA_SHARD
+	.2byte ITEM_STELLAR_TERA_SHARD
+	pokemartlistend
+
 
 
 	.include "data/scripts/pc_transfer.inc"
