@@ -5,6 +5,7 @@ use alloc::vec::Vec;
 use core::array;
 use core::marker::PhantomData;
 use core::ops::{Add, BitOr, Deref, Mul};
+use core::ptr::{null, null_mut};
 
 use derive_more::{Add, Constructor, Div, Mul, Sub};
 
@@ -133,6 +134,29 @@ pub fn load_obj_palette(index: u8, data: &[u16]) -> ObjPalette {
     }
 }
 
+pub fn load_user_window_gfx(bg: BgHandle, offset: u16, pal: u8) -> TilesetHandle {
+    let char_base = unsafe { GetBgAttribute(bg.0 as _, BG_ATTR_CHARBASEINDEX) };
+    unsafe {
+        LoadUserWindowBorderGfxOnBg(bg.0 as u8, offset, pal * 16);
+    }
+    TilesetHandle {
+        char_base,
+        offset,
+        palette: BgPalette { index: pal },
+    }
+}
+
+pub fn load_msg_box_gfx(bg: BgHandle, offset: u16, pal: u8) -> TilesetHandle {
+    let char_base = unsafe { GetBgAttribute(bg.0 as _, BG_ATTR_CHARBASEINDEX) };
+    unsafe { LoadBgTiles(bg.0 as _, gMessageBox_Gfx.as_ptr().cast(), 0x1C0, offset) };
+    unsafe { LoadPalette(GetOverworldTextboxPalettePtr().cast(), pal as u32 * 16, 32) };
+    TilesetHandle {
+        char_base,
+        offset,
+        palette: BgPalette { index: pal },
+    }
+}
+
 #[derive(Clone, Copy, Debug)]
 pub struct TileBitmap4bpp(pub [u8; 32]);
 #[derive(Clone, Copy, Debug)]
@@ -145,6 +169,12 @@ pub struct Tileset<Buf: Buffer<TileBitmap4bpp>> {
     pub char_base: u16,
     pub offset: u16,
     pub tiles: Buf,
+    pub palette: BgPalette,
+}
+
+pub struct TilesetHandle {
+    pub char_base: u16,
+    pub offset: u16,
     pub palette: BgPalette,
 }
 
@@ -272,6 +302,11 @@ impl SpriteHandle {
         let mut sprite = G_SPRITES.index_mut(self.sprite_index as usize);
         sprite.x = pos.x;
         sprite.y = pos.y;
+    }
+
+    pub fn get_pos(&self) -> Vec2D<i16> {
+        let mut sprite = G_SPRITES.index_mut(self.sprite_index as usize);
+        Vec2D::new(sprite.x, sprite.y)
     }
     pub fn set_palette(&mut self, palette: u16) {
         let mut sprite = G_SPRITES.index_mut(self.sprite_index as usize);
@@ -463,12 +498,24 @@ impl WindowHandle {
         }
     }
 
+    pub fn draw_border(&self, tileset: TilesetHandle) {
+        unsafe {
+            DrawTextBorderOuter(self.index, tileset.offset, tileset.palette.index);
+        }
+    }
+
     pub fn set_palette(&self, palette: BgPalette) {
         unsafe { SetWindowAttribute(self.index.into(), WINDOW_PALETTE_NUM, palette.index.into()) };
     }
 
     pub fn clear(&self) {
         unsafe { ClearWindowTilemap(self.index as _) }
+    }
+
+    pub fn clear_with_border(&self) {
+        unsafe {
+            rbox_fill_rectangle(self.index as _);
+        }
     }
 
     pub fn put_tilemap(&self) {
@@ -560,5 +607,74 @@ impl Window {
 impl Drop for Window {
     fn drop(&mut self) {
         unsafe { RemoveWindow(self.handle.index as _) };
+    }
+}
+
+pub struct ListMenu<'a> {
+    index: u8,
+    _w: PhantomData<&'a ()>,
+}
+
+impl<'a> ListMenu<'a> {
+    pub fn create(
+        window: &'a Window,
+        items: &'a [ListMenuItem],
+        x_offset: u8,
+        shown: u8,
+        vertical_padding: u8,
+        bg_color: u8,
+        cursor_colors: (u8, u8),
+        font: u32,
+    ) -> Self {
+        let mut template = ListMenuTemplate {
+            items: items.as_ptr(),
+            moveCursorFunc: None,
+            itemPrintFunc: None,
+            _bitfield_align_1: [],
+            _bitfield_1: ListMenuTemplate::new_bitfield_1(items.len() as _, shown as u32, 0),
+            windowId: window.index,
+            header_X: 0,
+            item_X: x_offset,
+            cursor_X: 0,
+            _bitfield_align_2: [],
+            _bitfield_2: ListMenuTemplate::new_bitfield_2(
+                0,
+                cursor_colors.0,
+                bg_color,
+                cursor_colors.1,
+                0,
+                vertical_padding,
+                0,
+                font as _,
+                CURSOR_BLACK_ARROW as _,
+            ),
+        };
+        let index = unsafe { ListMenuInit(&raw mut template, 0, 0) };
+        ListMenu {
+            index: index as u8,
+            _w: PhantomData,
+        }
+    }
+
+    pub async fn wait_for_result(&self) -> Option<i32> {
+        loop {
+            sleep(1).await;
+            let result = unsafe { ListMenu_ProcessInput(self.index as _) };
+            if result == LIST_NOTHING_CHOSEN {
+                continue;
+            }
+            if result < 0 {
+                return None;
+            }
+            return Some(result);
+        }
+    }
+}
+
+impl<'a> Drop for ListMenu<'a> {
+    fn drop(&mut self) {
+        unsafe {
+            DestroyListMenuTask(self.index, null_mut(), null_mut());
+        }
     }
 }

@@ -1,25 +1,27 @@
 use alloc::boxed::Box;
 use alloc::vec;
 use core::cmp::min;
-use core::ffi::c_void;
 use core::future::Future;
+use core::mem::swap;
 use core::pin::Pin;
 use core::ptr::addr_of;
 use core::task::{Context, Poll};
 
 use arrayvec::ArrayVec;
 use data::{get_item, Pokemon};
-use graphics::{Sprite, Window, *};
+use derive_more::TryFrom;
+use graphics::{ListMenu, Sprite, Tileset, Window, *};
 
 use crate::charmap::ArrayPkstr;
 use crate::future::{Executor, RefCellSync};
 use crate::input::Button;
 use crate::pokeemerald::*;
 use crate::resources::{lz_ptr_res, AllocBuf, Buffer};
-use crate::{aformat, include_res_lz, mgba_warn};
+use crate::{aformat, include_res_lz, mgba_warn, pkstr};
 
 static EXECUTOR: Executor = Executor::new();
 static STORED_CALLBACK: RefCellSync<MainCallback> = RefCellSync::new(None);
+static SELECTED_POKE: RefCellSync<u8> = RefCellSync::new(0);
 
 #[no_mangle]
 extern "C" fn Init_Full_Summary_Screen(back: MainCallback) {
@@ -31,14 +33,31 @@ extern "C" fn Init_Full_Summary_Screen(back: MainCallback) {
         addr_of!(SCROLL_BG_MAP),
         addr_of!(MON_BG_MAP)
     );
-    let fut = Box::new(summary_screen(back));
+    let fut = Box::new(summary_screen(back, 0));
     unsafe { SetMainCallback2(Some(main_cb)) }
     *STORED_CALLBACK.borrow_mut() = back;
     EXECUTOR.set(fut);
 }
 
 extern "C" fn return_from_party_callback() {
-    let fut = Box::new(summary_screen(*STORED_CALLBACK.borrow()));
+
+    let index = unsafe { *(&raw mut gLastViewedMonIndex) };
+    let fut = Box::new(summary_screen(*STORED_CALLBACK.borrow(), index));
+    unsafe { SetMainCallback2(Some(main_cb)) }
+    EXECUTOR.set(fut);
+}
+
+extern "C" fn return_from_give_hold_item_callback() {
+    if let Some(poke) = Pokemon::get_player_party(*SELECTED_POKE.borrow() as u8) {
+        let item_to_give = unsafe { gSpecialVar_ItemId };
+        unsafe { RemoveBagItem(item_to_give, 1) };
+        if let Some(item) = poke.item() {
+            unsafe { AddBagItem(item as u16, 1) };
+        }
+        poke.set_item(item_to_give);
+    }
+
+    let fut = Box::new(summary_screen(*STORED_CALLBACK.borrow(), *SELECTED_POKE.borrow()));
     unsafe { SetMainCallback2(Some(main_cb)) }
     EXECUTOR.set(fut);
 }
@@ -103,7 +122,30 @@ async fn item_sprite(poke: &Pokemon, index: usize) -> Option<OwnedSprite> {
     Some(sprite)
 }
 
+enum BackgroundStyle {
+    Focused,
+    Unfocused,
+    SwitchFocused,
+    SwitchUnfocused,
+    KoFocused,
+    KoUnfocused,
+}
+
+impl BackgroundStyle {
+    fn palette_index(self) -> usize {
+        match self {
+            BackgroundStyle::Focused => 0,
+            BackgroundStyle::Unfocused => 1,
+            BackgroundStyle::SwitchFocused => 2,
+            BackgroundStyle::SwitchUnfocused => 3,
+            BackgroundStyle::KoFocused => 4,
+            BackgroundStyle::KoUnfocused => 5,
+        }
+    }
+}
+
 struct Entry {
+    index: u8,
     poke: Pokemon,
     sprite: PokemonSpritePic,
     item_sprite: Option<OwnedSprite>,
@@ -112,6 +154,9 @@ struct Entry {
 }
 
 impl Entry {
+    const POKE_SPRITE_OFFS: Vec2D<i16> = Vec2D::new(36, 32);
+    const ITEM_SPRITE_OFFS: Vec2D<i16> = Vec2D::new(60, 52);
+
     fn print_info(&self, tileset: &[TileBitmap4bpp], hp_tilemap: &[TilePlain]) {
         const HP_BAR_RECT: Rect<u8> = Rect::new(0, 7, 9, 1);
         const HP_FILL_RECT_1: Rect<u16> = Rect::new(16, 59, 48, 1);
@@ -160,83 +205,119 @@ impl Entry {
         fg.fill_rect(color2, rect2);
     }
 
-    fn update_bg(&self, selected: bool, palettes: &[BgPalette]) {
+    fn update_bg(&self, bg_type: BackgroundStyle, palettes: &[BgPalette]) {
         let bg = &self.bg_window;
         let ko = self.poke.hp() <= 0;
-        let palette = match () {
-            () if !ko && selected => 0,
-            () if !ko && !selected => 1,
-            () if ko && selected => 2,
-            () if ko && !selected => 3,
-            () => 1,
+        let bg_type = match bg_type {
+            BackgroundStyle::Focused if ko => BackgroundStyle::KoFocused,
+            BackgroundStyle::Unfocused if ko => BackgroundStyle::KoUnfocused,
+            style => style,
         };
-
-        bg.set_palette(palettes[palette]);
+        let pal_index = bg_type.palette_index();
+        bg.set_palette(palettes[pal_index]);
         bg.put_tilemap();
         bg.copy_to_vram();
     }
-}
 
-async fn create_entry(
-    poke: Pokemon,
-    bg: BgHandle<'_>,
-    fg: BgHandle<'_>,
-    tileset: Tileset<&AllocBuf<TileBitmap4bpp>>,
-    index: u8,
-) -> Entry {
-    const BG_DIM: Vec2D<u8> = Vec2D::new(9, 8);
-    const FG_DIM: Vec2D<u8> = Vec2D::new(9, 8);
-    const BASE_BLOCK: u16 = 0x20;
-    const BLOCK_SIZE: u16 = (BG_DIM.x * BG_DIM.y + FG_DIM.x * FG_DIM.y) as u16;
-    const POKE_SPRITE_OFFS: Vec2D<i16> = Vec2D::new(36, 32);
-    const ITEM_SPRITE_OFFS: Vec2D<i16> = Vec2D::new(60, 52);
+    async fn switch(&mut self, other: &mut Entry, frames: i16) {
+        self.fg_window.fill(0);
+        self.fg_window.copy_to_vram();
+        other.fg_window.fill(0);
+        other.fg_window.copy_to_vram();
+        sleep(1).await;
 
-    let (tile_x, tile_y) = MON_POS[index as usize];
-    let tile_pos = Vec2D::new(tile_x, tile_y);
+        let pos_self = MON_POS[self.index as usize];
+        let pos_self = Vec2D::new(pos_self.0, pos_self.1).tile_to_pixel();
+        let pos_other = MON_POS[other.index as usize];
+        let pos_other = Vec2D::new(pos_other.0, pos_other.1).tile_to_pixel();
+        for i in 1..=frames {
+            let fpos_self = pos_other * i / frames + pos_self * (frames - i) / frames;
+            let fpos_other = pos_self * i / frames + pos_other * (frames - i) / frames;
+            self.sprite
+                .handle()
+                .set_pos(fpos_self + Entry::POKE_SPRITE_OFFS);
+            other
+                .sprite
+                .handle()
+                .set_pos(fpos_other + Entry::POKE_SPRITE_OFFS);
+            if let Some(item_sprite) = &mut self.item_sprite {
+                item_sprite
+                    .handle()
+                    .set_pos(fpos_self + Entry::ITEM_SPRITE_OFFS);
+            }
+            if let Some(item_sprite) = &mut other.item_sprite {
+                item_sprite
+                    .handle()
+                    .set_pos(fpos_other + Entry::ITEM_SPRITE_OFFS);
+            }
+            sleep(1).await
+        }
 
-    let mut sprite = PokemonSpritePic::new(&poke, index);
-    sleep(1).await;
-    let handle = sprite.handle();
-    handle.set_pos(tile_pos.tile_to_pixel() + POKE_SPRITE_OFFS);
-    handle.set_priority(2);
-
-    let mut item_sprite = item_sprite(&poke, index.into()).await;
-    if let Some(item_sprite) = &mut item_sprite {
-        let handle = item_sprite.handle();
-        handle.set_pos(tile_pos.tile_to_pixel() + ITEM_SPRITE_OFFS);
-        handle.set_priority(2);
+        swap(&mut self.item_sprite, &mut other.item_sprite);
+        swap(&mut self.sprite, &mut other.sprite);
+        Pokemon::swap(&mut self.poke, &mut other.poke);
     }
 
-    let tiles = &tileset.tiles.get();
-    let block = BLOCK_SIZE * index as u16 + BASE_BLOCK;
+    async fn create(
+        poke: Pokemon,
+        bg: BgHandle<'_>,
+        fg: BgHandle<'_>,
+        tileset: Tileset<&AllocBuf<TileBitmap4bpp>>,
+        index: u8,
+    ) -> Entry {
+        const BG_DIM: Vec2D<u8> = Vec2D::new(9, 8);
+        const FG_DIM: Vec2D<u8> = Vec2D::new(9, 8);
+        const BASE_BLOCK: u16 = 0x20;
+        const BLOCK_SIZE: u16 = (BG_DIM.x * BG_DIM.y + FG_DIM.x * FG_DIM.y) as u16;
 
-    let rect = Rect::from_vecs(tile_pos, BG_DIM);
-    let bg_window = Window::create(bg, rect, tileset.palette, block);
-    sleep(1).await;
+        let (tile_x, tile_y) = MON_POS[index as usize];
+        let tile_pos = Vec2D::new(tile_x, tile_y);
 
-    let rect = Rect::from_vecs(tile_pos, FG_DIM);
-    let fg_window = Window::create(fg, rect, tileset.palette, block + BG_DIM.size() as u16);
-    fg_window.put_tilemap();
-    sleep(1).await;
+        let mut sprite = PokemonSpritePic::new(&poke, index);
+        sleep(1).await;
+        let handle = sprite.handle();
+        handle.set_pos(tile_pos.tile_to_pixel() + Entry::POKE_SPRITE_OFFS);
+        handle.set_priority(2);
 
-    let mon_bg_map = MON_BG_MAP.load();
-    let rect = Rect::from_vecs(Vec2D::new(0, 0), BG_DIM);
-    bg_window.copy_tilemap(tiles, &mon_bg_map.get(), rect);
-    bg_window.put_tilemap();
-    bg_window.copy_to_vram();
-    sleep(1).await;
+        let mut item_sprite = item_sprite(&poke, index.into()).await;
+        if let Some(item_sprite) = &mut item_sprite {
+            let handle = item_sprite.handle();
+            handle.set_pos(tile_pos.tile_to_pixel() + Entry::ITEM_SPRITE_OFFS);
+            handle.set_priority(2);
+        }
 
-    Entry {
-        poke,
-        sprite,
-        item_sprite,
-        bg_window,
-        fg_window,
+        let tiles = &tileset.tiles.get();
+        let block = BLOCK_SIZE * index as u16 + BASE_BLOCK;
+
+        let rect = Rect::from_vecs(tile_pos, BG_DIM);
+        let bg_window = Window::create(bg, rect, tileset.palette, block);
+        sleep(1).await;
+
+        let rect = Rect::from_vecs(tile_pos, FG_DIM);
+        let fg_window = Window::create(fg, rect, tileset.palette, block + BG_DIM.size() as u16);
+        fg_window.put_tilemap();
+        sleep(1).await;
+
+        let mon_bg_map = MON_BG_MAP.load();
+        let rect = Rect::from_vecs(Vec2D::new(0, 0), BG_DIM);
+        bg_window.copy_tilemap(tiles, &mon_bg_map.get(), rect);
+        bg_window.put_tilemap();
+        bg_window.copy_to_vram();
+        sleep(1).await;
+
+        Entry {
+            index,
+            poke,
+            sprite,
+            item_sprite,
+            bg_window,
+            fg_window,
+        }
     }
 }
 
 struct Menu<'a> {
-    palettes: &'a [BgPalette],
+    palettes: &'a [BgPalette; 6],
     tileset: &'a Tileset<&'a AllocBuf<TileBitmap4bpp>>,
     scroll_bg: BgHandle<'a>,
     fixed_bg: BgHandle<'a>,
@@ -250,59 +331,247 @@ struct Menu<'a> {
     exit_callback: Box<dyn Fn()>,
 }
 
+#[derive(TryFrom)]
+#[try_from(repr)]
+#[repr(i32)]
+enum PokeAction {
+    Summary = 1,
+    Switch = 2,
+    GiveItem = 3,
+    TakeItem = 4,
+}
+
+fn disjoint_borrow_mut<T>(indices: (usize, usize), slice: &mut [T]) -> (&mut T, &mut T) {
+    if indices.0 == indices.1 {
+        panic!()
+    }
+    if indices.0 >= slice.len() || indices.1 >= slice.len() {
+        panic!()
+    }
+    unsafe {
+        (
+            &mut *slice.as_mut_ptr().add(indices.0),
+            &mut *slice.as_mut_ptr().add(indices.1),
+        )
+    }
+}
+
 impl<'a> Menu<'a> {
-    fn change_focus(&mut self, delta: i8) {
+    fn index_updown(&self, base: u8, delta: i8) -> u8 {
         let max = self.entries.len() as i8;
-        let new = self.focused_entry as i8 + delta;
+        let new = base as i8 + delta;
         let new = new.rem_euclid(6);
         let new = min(max - 1, new);
+        new as u8
+    }
 
-        self.entries[self.focused_entry as usize].update_bg(false, &self.palettes);
-        self.entries[new as usize].update_bg(true, &self.palettes);
-        self.focused_entry = new as u8;
+    fn index_leftright(&self, base: u8, delta: i8) -> u8 {
+        (base as i8 + delta).rem_euclid(self.entries.len() as i8) as u8
+    }
+
+    fn update_index(&self, index: u8) -> u8 {
+        if Button::Right.pressed() {
+            return self.index_leftright(index, 1);
+        }
+        if Button::Left.pressed() {
+            return self.index_leftright(index, -1);
+        }
+        if Button::Up.pressed() || Button::Down.pressed() {
+            return self.index_updown(index, -3);
+        }
+        return index;
+    }
+
+    fn change_focus(&mut self, new_index: u8) {
+        use BackgroundStyle::*;
+        self.entries[self.focused_entry as usize].update_bg(Unfocused, self.palettes);
+        self.entries[new_index as usize].update_bg(Focused, self.palettes);
+        self.focused_entry = new_index;
+    }
+
+    fn open_summary_screen(&mut self) {
+        let focused_entry = self.focused_entry;
+        let max = self.entries.len() as u8 - 1;
+        self.exit_callback = Box::new(move || unsafe {
+            ShowPokemonSummaryScreen_BW(
+                PokemonSummaryScreenMode_BW_BW_SUMMARY_MODE_NORMAL as u8,
+                #[allow(static_mut_refs)]
+                gPlayerParty.as_mut_ptr().cast(),
+                focused_entry,
+                max,
+                Some(return_from_party_callback),
+            );
+        });
+    }
+
+    fn change_hold_item(&mut self) {
+        *SELECTED_POKE.borrow_mut() = self.focused_entry;
+        self.exit_callback = Box::new(move || unsafe {
+            GoToBagMenu(
+                ITEMMENULOCATION_PARTY as u8,
+                5,
+                Some(return_from_give_hold_item_callback),
+            );
+        })
+    }
+
+    fn take_hold_item(&mut self) {
+        let entry = &mut self.entries[self.focused_entry as usize];
+        if let Some(item) = entry.poke.item() {
+            unsafe {
+                AddBagItem(item as u16, 1);
+            }
+            entry.poke.set_item(0);
+            entry.item_sprite = None;
+        }
+    }
+
+    fn change_focus_switch(&mut self, switch_index: u8, new_index: u8) {
+        let previous = match switch_index == self.focused_entry {
+            true => BackgroundStyle::SwitchUnfocused,
+            false => BackgroundStyle::Unfocused,
+        };
+        self.entries[self.focused_entry as usize].update_bg(previous, self.palettes);
+        self.entries[new_index as usize].update_bg(BackgroundStyle::SwitchFocused, self.palettes);
+        self.focused_entry = new_index;
+    }
+
+    async fn choose_switch_mon(&mut self) -> Option<usize> {
+        let switching_index = self.focused_entry;
+        loop {
+            sleep(1).await;
+            if Button::B.pressed() {
+                self.entries[switching_index as usize]
+                    .update_bg(BackgroundStyle::Unfocused, self.palettes);
+                return None;
+            }
+            if Button::A.pressed() {
+                return Some(switching_index.into());
+            }
+
+            let new_index = self.update_index(self.focused_entry);
+            if new_index != self.focused_entry {
+                self.change_focus_switch(switching_index, new_index);
+            }
+        }
+    }
+
+    async fn switch_mon(&mut self) {
+        let focus = self.focused_entry as usize;
+        self.entries[focus].update_bg(BackgroundStyle::SwitchFocused, self.palettes);
+        if let Some(switch) = self.choose_switch_mon().await {
+            if switch != self.focused_entry as usize {
+                let indices = (self.focused_entry as usize, switch);
+                let (a, b) = disjoint_borrow_mut(indices, &mut self.entries);
+                a.switch(b, 20).await;
+                a.print_info(&self.tileset.tiles.get(), &self.hp_tilemap);
+                a.fg_window.copy_to_vram();
+                b.print_info(&self.tileset.tiles.get(), &self.hp_tilemap);
+                b.fg_window.copy_to_vram();
+                self.entries[switch].update_bg(BackgroundStyle::Unfocused, self.palettes);
+            }
+        }
+        let focus = self.focused_entry as usize;
+        self.entries[focus].update_bg(BackgroundStyle::Focused, self.palettes);
+    }
+
+    async fn select_action(&mut self) -> Option<PokeAction> {
+        let msg_box = load_msg_box_gfx(self.fg, 0x3B0, 14);
+        let win = Window::create(self.fg, Rect::new(18, 11, 8, 8), msg_box.palette, 0x380);
+        win.put_tilemap();
+        win.copy_to_vram();
+
+        let user_window = load_user_window_gfx(self.fg, 0x3D0, 15);
+        win.draw_border(user_window);
+
+        const LIST_ITEMS: &[ListMenuItem] = &[
+            ListMenuItem {
+                id: PokeAction::Switch as _,
+                name: pkstr!(b"Switch").as_ptr(),
+            },
+            ListMenuItem {
+                id: PokeAction::Summary as _,
+                name: pkstr!(b"Summary").as_ptr(),
+            },
+            ListMenuItem {
+                id: PokeAction::GiveItem as _,
+                name: pkstr!(b"Give Item").as_ptr(),
+            },
+            ListMenuItem {
+                id: PokeAction::TakeItem as _,
+                name: pkstr!(b"Take Item").as_ptr(),
+            },
+        ];
+
+        let item_list = match self.entries[self.focused_entry as usize].poke.is_egg() {
+            false => LIST_ITEMS,
+            true => &LIST_ITEMS[..2],
+        };
+
+        let list = ListMenu::create(&win, item_list, 8, 4, 0, 1, (2, 3), FONT_SMALL);
+        let ret = match list.wait_for_result().await {
+            Some(val) => val.try_into().ok(),
+            None => None,
+        };
+
+        win.clear_with_border();
+        win.copy_to_vram();
+
+        drop(list);
+        drop(win);
+
+        if let Some(entry) = self.entries.get(5) {
+            entry.fg_window.put_tilemap();
+        }
+        ret
     }
 
     async fn main_loop(&mut self) {
+        for (index, entry) in self.entries.iter().enumerate() {
+            if index as u8 == self.focused_entry {
+                entry.update_bg(BackgroundStyle::Focused, self.palettes);
+            } else {
+                entry.update_bg(BackgroundStyle::Unfocused, self.palettes);
+            }
+        }
         loop {
             sleep(1).await;
             if Button::B.pressed() {
                 break;
             }
-            if Button::Left.repeat() {
-                self.change_focus(-1);
+
+            let new_index = self.update_index(self.focused_entry);
+            if new_index != self.focused_entry {
+                self.change_focus(new_index);
                 continue;
             }
-            if Button::Right.repeat() {
-                self.change_focus(1);
-                continue;
-            }
-            if Button::Up.pressed() {
-                self.change_focus(-3);
-                continue;
-            }
-            if Button::Down.pressed() {
-                self.change_focus(3);
-                continue;
-            }
+
             if Button::A.pressed() {
-                let focused_entry = self.focused_entry;
-                let max = self.entries.len() as u8 - 1;
-                self.exit_callback = Box::new(move || unsafe {
-                    ShowPokemonSummaryScreen_BW(
-                        PokemonSummaryScreenMode_BW_BW_SUMMARY_MODE_NORMAL as u8,
-                        gPlayerParty.as_mut_ptr().cast(),
-                        focused_entry,
-                        max,
-                        Some(return_from_party_callback),
-                    );
-                });
-                break;
+                match self.select_action().await {
+                    Some(PokeAction::Summary) => {
+                        self.open_summary_screen();
+                        break;
+                    }
+                    Some(PokeAction::GiveItem) => {
+                        self.change_hold_item();
+                        break;
+                    }
+                    Some(PokeAction::TakeItem) => {
+                        self.take_hold_item();
+                        continue;
+                    }
+                    Some(PokeAction::Switch) => {
+                        self.switch_mon().await;
+                        continue;
+                    }
+                    None => continue,
+                }
             }
         }
     }
 }
 
-async fn summary_screen(back: MainCallback) {
+async fn summary_screen(back: MainCallback, index: u8) {
     clear_ui().await;
 
     set_gpu_registers(&[
@@ -322,7 +591,7 @@ async fn summary_screen(back: MainCallback) {
     let palette = PAL.load();
     sleep(1).await;
 
-    let palettes = load_bg_palettes::<4>(0, &palette.get());
+    let palettes = load_bg_palettes(0, &palette.get());
     let main_pal = palettes[0];
     sleep(1).await;
 
@@ -348,7 +617,6 @@ async fn summary_screen(back: MainCallback) {
     let fixed_bg = Background::load(BackgroundIndex::Background2, 2, tileset, empty_tilemap).await;
     let fixed_bg = fixed_bg.handle();
     fixed_bg.set_pos(0, 0);
-    fixed_bg.fill(Rect::new(0, 0, 32, 20), 15, main_pal);
     fixed_bg.show();
 
     let buffer_fg = AllocBuf::new(vec![0u8; bg_map.size_bytes()].into_boxed_slice());
@@ -358,7 +626,6 @@ async fn summary_screen(back: MainCallback) {
     };
     let fg = Background::load(BackgroundIndex::Background1, 1, tileset, empty_tilemap).await;
     let fg = fg.handle();
-    fg.fill(Rect::new(0, 0, 32, 20), 15, main_pal);
     fg.set_pos(0, 0);
     fg.show();
 
@@ -369,16 +636,13 @@ async fn summary_screen(back: MainCallback) {
         let Some(poke) = Pokemon::get_player_party(i) else {
             continue;
         };
-        entries.push(create_entry(poke, fixed_bg, fg, tileset, i).await);
+        entries.push(Entry::create(poke, fixed_bg, fg, tileset, i).await);
     }
     fg.copy_tilemap_to_vram();
 
     for entry in entries.iter() {
         sleep(1).await;
         entry.print_info(&tileset_data.get(), &hp_tilemap.get());
-    }
-    for (index, entry) in entries.iter().enumerate() {
-        entry.update_bg(index == 0, &palettes);
     }
     unsafe { SetVBlankCallback(Some(vblank_cb)) };
 
@@ -390,7 +654,7 @@ async fn summary_screen(back: MainCallback) {
         fg,
         hp_tilemap: &hp_tilemap.get(),
         entries,
-        focused_entry: 0,
+        focused_entry: index,
         exit_callback: Box::new(move || unsafe { SetMainCallback2(back) }),
     };
 

@@ -1,3 +1,5 @@
+use core::ffi::c_void;
+
 use crate::charmap::ArrayPkstr;
 use crate::pokeemerald::{self, *};
 
@@ -19,6 +21,10 @@ impl Pokemon {
     }
     pub fn get_mon_data(&self, data: u32) -> u32 {
         unsafe { GetMonData2(self.ptr, data as i32) }
+    }
+
+    pub fn set_mon_data(&self, data: u32, ptr: *const c_void) {
+        unsafe { SetMonData(self.ptr, data as i32, ptr) };
     }
 
     pub fn level(&self) -> u8 {
@@ -56,6 +62,15 @@ impl Pokemon {
         match self.get_mon_data(MON_DATA_HELD_ITEM) {
             0 => None,
             n => Some(n as usize),
+        }
+    }
+    pub fn set_item(&self, item: u16) {
+        self.set_mon_data(MON_DATA_HELD_ITEM, (&raw const item).cast());
+    }
+
+    pub fn swap(this: &mut Self, other: &mut Self) {
+        unsafe {
+            core::mem::swap(&mut *this.ptr, &mut *other.ptr);
         }
     }
 }

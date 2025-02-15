@@ -114,9 +114,9 @@ mod resources {
             (*self).get()
         }
     }
-    impl<T> Buffer<T> for [T] {
+    impl<T> Buffer<T> for &[T] {
         fn get(&self) -> impl Deref<Target = [T]> {
-            self
+            *self
         }
     }
 

@@ -10,7 +10,7 @@ impl Pkstr {
     pub unsafe fn from_ptr<'a>(ptr: *const u8, len: usize) -> &'a Pkstr {
         unsafe { pkstr_raw(&*slice_from_raw_parts(ptr, len)) }
     }
-    pub fn as_ptr(&self) -> *const u8 {
+    pub const fn as_ptr(&self) -> *const u8 {
         self.0.as_ptr()
     }
     pub fn len(&self) -> usize {
