@@ -2,6 +2,7 @@
 
 use alloc::boxed::Box;
 use alloc::vec::Vec;
+use core::array;
 use core::marker::PhantomData;
 use core::ops::{Add, BitOr, Deref, Mul};
 
@@ -107,6 +108,22 @@ pub fn load_bg_palette(index: u8, data: &[u16]) -> BgPalette {
     }
 }
 
+pub fn load_bg_palettes<const C: usize>(index: u8, data: &[u16]) -> [BgPalette; C] {
+    if data.len() / 16 < C - 1 {
+        panic!(
+            "Palette not big enough {} colors, {C} palettes expected",
+            data.len()
+        );
+    }
+
+    let size = data.len() * size_of::<u16>();
+    let src = data.as_ptr().cast();
+    unsafe { LoadPalette(src, BG_PLTT_OFFSET + index as u32 * 16, size as u32) };
+    array::from_fn(|i| BgPalette {
+        index: index + i as u8,
+    })
+}
+
 pub fn load_obj_palette(index: u8, data: &[u16]) -> ObjPalette {
     unsafe {
         let size = data.len() * size_of::<u16>();
@@ -152,12 +169,44 @@ impl Deref for BgHandle<'_> {
         &self.0
     }
 }
+impl BgHandle<'_> {
+    pub fn show(&self) {
+        unsafe {
+            ShowBg(self.0 as _);
+        }
+    }
 
-pub struct Background<Set, Map>
-where
-    Set: Buffer<TileBitmap4bpp>,
-    Map: Buffer<Tile4bpp>,
-{
+    pub fn copy_tilemap_to_vram(&self) {
+        unsafe {
+            CopyBgTilemapBufferToVram(self.0 as _);
+        }
+    }
+
+    pub fn set_pos(&self, x: u8, y: u8) {
+        unsafe {
+            ChangeBgX(self.0 as _, BG_COORD_SET as _, x);
+            ChangeBgY(self.0 as _, BG_COORD_SET as _, y);
+        }
+    }
+
+    pub fn fill(&self, rect: Rect<u8>, tile_index: u16, palette: BgPalette) {
+        unsafe {
+            let bg = self.0 as u32;
+            FillBgTilemapBufferRect(
+                bg,
+                tile_index,
+                rect.x,
+                rect.y,
+                rect.width,
+                rect.height,
+                palette.index,
+            );
+            ScheduleBgCopyTilemapToVram(self.0 as _);
+        }
+    }
+}
+
+pub struct Background<Set, Map> {
     index: BackgroundIndex,
     tileset_buffer: Set,
     tilemap_buffer: Map,
@@ -206,43 +255,8 @@ where
         }
     }
 
-    pub fn handle(&self) -> BgHandle {
+    pub fn handle<'a>(&'a self) -> BgHandle<'a> {
         BgHandle(self.index, PhantomData)
-    }
-
-    pub fn show(&self) {
-        unsafe {
-            ShowBg(self.index as _);
-        }
-    }
-
-    pub fn copy_tilemap_to_vram(&self) {
-        unsafe {
-            CopyBgTilemapBufferToVram(self.index as _);
-        }
-    }
-
-    pub fn set_pos(&self, x: u8, y: u8) {
-        unsafe {
-            ChangeBgX(self.index as _, BG_COORD_SET as _, x);
-            ChangeBgY(self.index as _, BG_COORD_SET as _, y);
-        }
-    }
-
-    pub fn fill(&self, rect: Rect<u8>, tile_index: u16, palette: BgPalette) {
-        unsafe {
-            let bg = self.index as u32;
-            FillBgTilemapBufferRect(
-                bg,
-                tile_index,
-                rect.x,
-                rect.y,
-                rect.width,
-                rect.height,
-                palette.index,
-            );
-            ScheduleBgCopyTilemapToVram(self.index as _);
-        }
     }
 }
 
@@ -401,9 +415,8 @@ impl Drop for PokemonSpritePic {
 }
 
 #[derive(Clone, Copy)]
-pub struct TextPrinterParams {
+pub struct Font {
     pub font: u8,
-    pub speed: u8,
     pub fg_color: u8,
     pub bg_color: u8,
     pub shadow_color: u8,
@@ -411,18 +424,21 @@ pub struct TextPrinterParams {
     pub line_spacing: u8,
 }
 
-impl TextPrinterParams {
-    pub fn font(font_id: u8) -> Self {
+impl Font {
+    pub fn new(font_id: u8) -> Self {
         let font_info = unsafe { &*gFonts.offset(font_id as _) };
-        TextPrinterParams {
+        Font {
             font: font_id,
-            speed: 0,
             fg_color: font_info.fgColor(),
             bg_color: font_info.bgColor(),
             shadow_color: font_info.shadowColor(),
             line_spacing: font_info.lineSpacing,
             letter_spacing: font_info.letterSpacing,
         }
+    }
+
+    pub fn width_for(&self, str: &Pkstr) -> u16 {
+        unsafe { GetStringWidth(self.font, str.as_ptr(), self.letter_spacing as i16) as u16 }
     }
 }
 
@@ -447,6 +463,10 @@ impl WindowHandle {
         }
     }
 
+    pub fn set_palette(&self, palette: BgPalette) {
+        unsafe { SetWindowAttribute(self.index.into(), WINDOW_PALETTE_NUM, palette.index.into()) };
+    }
+
     pub fn clear(&self) {
         unsafe { ClearWindowTilemap(self.index as _) }
     }
@@ -459,7 +479,7 @@ impl WindowHandle {
         unsafe { CopyWindowToVram(self.index.into(), COPYWIN_FULL) };
     }
 
-    pub fn print_text(&self, text: &Pkstr, pos: Vec2D<u8>, font: TextPrinterParams) {
+    pub fn print_text(&self, text: &Pkstr, pos: Vec2D<u8>, font: Font) {
         let mut template = TextPrinterTemplate {
             currentChar: text.as_ptr(),
             windowId: self.index,
@@ -480,7 +500,7 @@ impl WindowHandle {
             __bindgen_padding_0: 0,
         };
 
-        unsafe { AddTextPrinter(&raw mut template, font.speed, None) };
+        unsafe { AddTextPrinter(&raw mut template, 0, None) };
     }
 
     pub fn blit_bitmap(&self, pixels: &[u8], rect: Rect<u16>) {

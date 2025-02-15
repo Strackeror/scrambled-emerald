@@ -1,5 +1,6 @@
 #include "global.h"
 #include "bg.h"
+#include "bw_summary_screen.h"
 #include "gpu_regs.h"
 #include "item.h"
 #include "item_icon.h"

@@ -18,6 +18,7 @@ fn main() {
             &format!("{include_path}"),
         ])
         .clang_args(["--target=arm-none-eabi", "-mthumb", "-march=armv4t"])
+        .allowlist_file(".*/bw_summary_screen.h")
         .allowlist_file(".*/pokemon.h")
         .allowlist_file(".*/item.h")
         .allowlist_file(".*/item_icon.h")

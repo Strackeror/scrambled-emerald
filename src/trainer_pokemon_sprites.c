@@ -181,7 +181,8 @@ u16 CreateMonPicSprite_Affine(u16 species, bool8 isShiny, u32 personality, u8 fl
     u8 i;
     u8 spriteId;
     u8 type;
-    species = SanitizeSpeciesId(species);
+    if (species != SPECIES_EGG)
+        species = SanitizeSpeciesId(species);
 
     for (i = 0; i < PICS_COUNT; i++)
     {

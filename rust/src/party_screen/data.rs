@@ -42,6 +42,10 @@ impl Pokemon {
     pub fn species(&self) -> u16 {
         self.get_mon_data(MON_DATA_SPECIES_OR_EGG) as _
     }
+
+    pub fn is_egg(&self) -> bool {
+        self.get_mon_data(MON_DATA_IS_EGG) != 0
+    }
     pub fn personality(&self) -> u32 {
         self.get_mon_data(MON_DATA_PERSONALITY)
     }

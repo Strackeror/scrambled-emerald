@@ -1,5 +1,7 @@
 use alloc::boxed::Box;
 use alloc::vec;
+use core::cmp::min;
+use core::ffi::c_void;
 use core::future::Future;
 use core::pin::Pin;
 use core::ptr::addr_of;
@@ -10,11 +12,14 @@ use data::{get_item, Pokemon};
 use graphics::{Sprite, Window, *};
 
 use crate::charmap::ArrayPkstr;
-use crate::future::Executor;
+use crate::future::{Executor, RefCellSync};
+use crate::input::Button;
 use crate::pokeemerald::*;
 use crate::resources::{lz_ptr_res, AllocBuf, Buffer};
 use crate::{aformat, include_res_lz, mgba_warn};
+
 static EXECUTOR: Executor = Executor::new();
+static STORED_CALLBACK: RefCellSync<MainCallback> = RefCellSync::new(None);
 
 #[no_mangle]
 extern "C" fn Init_Full_Summary_Screen(back: MainCallback) {
@@ -27,6 +32,13 @@ extern "C" fn Init_Full_Summary_Screen(back: MainCallback) {
         addr_of!(MON_BG_MAP)
     );
     let fut = Box::new(summary_screen(back));
+    unsafe { SetMainCallback2(Some(main_cb)) }
+    *STORED_CALLBACK.borrow_mut() = back;
+    EXECUTOR.set(fut);
+}
+
+extern "C" fn return_from_party_callback() {
+    let fut = Box::new(summary_screen(*STORED_CALLBACK.borrow()));
     unsafe { SetMainCallback2(Some(main_cb)) }
     EXECUTOR.set(fut);
 }
@@ -101,37 +113,67 @@ struct Entry {
 
 impl Entry {
     fn print_info(&self, tileset: &[TileBitmap4bpp], hp_tilemap: &[TilePlain]) {
-        let fg = &self.fg_window;
         const HP_BAR_RECT: Rect<u8> = Rect::new(0, 7, 9, 1);
-        const HP_FILL_RECT: Rect<u16> = Rect::new(16, 59, 48, 3);
-        // fg.fill_rect(0, HP_BAR_RECT.tile_to_pixel());
-        fg.copy_tilemap(tileset, hp_tilemap, HP_BAR_RECT);
+        const HP_FILL_RECT_1: Rect<u16> = Rect::new(16, 59, 48, 1);
+        const HP_FILL_RECT_2: Rect<u16> = Rect::new(16, 60, 48, 2);
 
-        let printer_params = TextPrinterParams {
+        let fg = &self.fg_window;
+
+        let printer_params = Font {
             bg_color: 0,
-            ..TextPrinterParams::font(FONT_SMALL_NARROWER as _)
+            fg_color: 4,
+            shadow_color: 7,
+            ..Font::new(FONT_SMALL_NARROWER as _)
         };
 
         fg.print_text(&self.poke.name(), Vec2D::new(4, 0), printer_params);
+        if self.poke.is_egg() {
+            return;
+        }
 
         let lv = aformat!(5, "Lv{}", self.poke.level());
-        let lv = aformat!(6, "{:>6}", lv);
         let lv = ArrayPkstr::<7>::from_str(&lv);
-        fg.print_text(&lv, Vec2D::new(48, 0), printer_params);
+        let lv_pos = Vec2D::new(69 - printer_params.width_for(&lv) as u8, 0);
+        fg.print_text(&lv, lv_pos, printer_params);
+        fg.copy_tilemap(tileset, hp_tilemap, HP_BAR_RECT);
 
         let hp = aformat!(10, "{:<3}/{:<3}", self.poke.hp(), self.poke.max_hp());
         let hp = ArrayPkstr::<11>::from_str(&hp);
         fg.print_text(&hp, Vec2D { x: 3, y: 45 }, printer_params);
-        
-        let mut hp_fill_rect = HP_FILL_RECT;
-        hp_fill_rect.width = self.poke.hp() * HP_FILL_RECT.width / self.poke.max_hp();
-        let color = match hp_fill_rect.width {
-            0..12 => 15,
-            12..24 => 13,
-            _ => 14,
-        };
-        fg.fill_rect(color, hp_fill_rect);
 
+        let width = self.poke.hp() * HP_FILL_RECT_1.width / self.poke.max_hp();
+        let (color1, color2) = match width {
+            0..12 => (15, 14),
+            12..24 => (11, 10),
+            _ => (13, 12),
+        };
+        let rect1 = Rect {
+            width,
+            ..HP_FILL_RECT_1
+        };
+        fg.fill_rect(color1, rect1);
+
+        let rect2 = Rect {
+            width,
+            ..HP_FILL_RECT_2
+        };
+        fg.fill_rect(color2, rect2);
+    }
+
+    fn update_bg(&self, selected: bool, palettes: &[BgPalette]) {
+        let bg = &self.bg_window;
+        let ko = self.poke.hp() <= 0;
+        let palette = match () {
+            () if !ko && selected => 0,
+            () if !ko && !selected => 1,
+            () if ko && selected => 2,
+            () if ko && !selected => 3,
+            () => 1,
+        };
+
+        bg.set_palette(palettes[palette]);
+        bg.put_tilemap();
+        bg.copy_to_vram();
     }
 }
 
@@ -147,7 +189,7 @@ async fn create_entry(
     const BASE_BLOCK: u16 = 0x20;
     const BLOCK_SIZE: u16 = (BG_DIM.x * BG_DIM.y + FG_DIM.x * FG_DIM.y) as u16;
     const POKE_SPRITE_OFFS: Vec2D<i16> = Vec2D::new(36, 32);
-    const ITEM_SPRITE_OFFS: Vec2D<i16> = Vec2D::new(56, 48);
+    const ITEM_SPRITE_OFFS: Vec2D<i16> = Vec2D::new(60, 52);
 
     let (tile_x, tile_y) = MON_POS[index as usize];
     let tile_pos = Vec2D::new(tile_x, tile_y);
@@ -193,6 +235,73 @@ async fn create_entry(
     }
 }
 
+struct Menu<'a> {
+    palettes: &'a [BgPalette],
+    tileset: &'a Tileset<&'a AllocBuf<TileBitmap4bpp>>,
+    scroll_bg: BgHandle<'a>,
+    fixed_bg: BgHandle<'a>,
+    fg: BgHandle<'a>,
+
+    hp_tilemap: &'a [TilePlain],
+
+    entries: ArrayVec<Entry, 6>,
+    focused_entry: u8,
+
+    exit_callback: Box<dyn Fn()>,
+}
+
+impl<'a> Menu<'a> {
+    fn change_focus(&mut self, delta: i8) {
+        let max = self.entries.len() as i8;
+        let new = self.focused_entry as i8 + delta;
+        let new = new.rem_euclid(6);
+        let new = min(max - 1, new);
+
+        self.entries[self.focused_entry as usize].update_bg(false, &self.palettes);
+        self.entries[new as usize].update_bg(true, &self.palettes);
+        self.focused_entry = new as u8;
+    }
+
+    async fn main_loop(&mut self) {
+        loop {
+            sleep(1).await;
+            if Button::B.pressed() {
+                break;
+            }
+            if Button::Left.repeat() {
+                self.change_focus(-1);
+                continue;
+            }
+            if Button::Right.repeat() {
+                self.change_focus(1);
+                continue;
+            }
+            if Button::Up.pressed() {
+                self.change_focus(-3);
+                continue;
+            }
+            if Button::Down.pressed() {
+                self.change_focus(3);
+                continue;
+            }
+            if Button::A.pressed() {
+                let focused_entry = self.focused_entry;
+                let max = self.entries.len() as u8 - 1;
+                self.exit_callback = Box::new(move || unsafe {
+                    ShowPokemonSummaryScreen_BW(
+                        PokemonSummaryScreenMode_BW_BW_SUMMARY_MODE_NORMAL as u8,
+                        gPlayerParty.as_mut_ptr().cast(),
+                        focused_entry,
+                        max,
+                        Some(return_from_party_callback),
+                    );
+                });
+                break;
+            }
+        }
+    }
+}
+
 async fn summary_screen(back: MainCallback) {
     clear_ui().await;
 
@@ -213,13 +322,14 @@ async fn summary_screen(back: MainCallback) {
     let palette = PAL.load();
     sleep(1).await;
 
-    let palette = load_bg_palette(0, &palette.get());
+    let palettes = load_bg_palettes::<4>(0, &palette.get());
+    let main_pal = palettes[0];
     sleep(1).await;
 
     let tileset = Tileset {
         char_base: 1,
         offset: 0,
-        palette,
+        palette: main_pal,
         tiles: &tileset_data,
     };
     let tilemap = Tilemap {
@@ -227,6 +337,7 @@ async fn summary_screen(back: MainCallback) {
         buffer: &bg_map,
     };
     let scroll_bg = Background::load(BackgroundIndex::Background3, 3, tileset, tilemap).await;
+    let scroll_bg = scroll_bg.handle();
     scroll_bg.show();
 
     let empty_tilemap = AllocBuf::new(vec![0u8; bg_map.size_bytes()].into_boxed_slice());
@@ -235,8 +346,9 @@ async fn summary_screen(back: MainCallback) {
         buffer: empty_tilemap,
     };
     let fixed_bg = Background::load(BackgroundIndex::Background2, 2, tileset, empty_tilemap).await;
+    let fixed_bg = fixed_bg.handle();
     fixed_bg.set_pos(0, 0);
-    fixed_bg.fill(Rect::new(0, 0, 32, 20), 15, palette);
+    fixed_bg.fill(Rect::new(0, 0, 32, 20), 15, main_pal);
     fixed_bg.show();
 
     let buffer_fg = AllocBuf::new(vec![0u8; bg_map.size_bytes()].into_boxed_slice());
@@ -245,35 +357,45 @@ async fn summary_screen(back: MainCallback) {
         buffer: &buffer_fg,
     };
     let fg = Background::load(BackgroundIndex::Background1, 1, tileset, empty_tilemap).await;
-    fg.fill(Rect::new(0, 0, 32, 20), 15, palette);
+    let fg = fg.handle();
+    fg.fill(Rect::new(0, 0, 32, 20), 15, main_pal);
     fg.set_pos(0, 0);
     fg.show();
 
     let hp_tilemap = HP_MAP.load();
-
 
     let mut entries: ArrayVec<Entry, 6> = ArrayVec::new();
     for i in 0..6 {
         let Some(poke) = Pokemon::get_player_party(i) else {
             continue;
         };
-        entries.push(create_entry(poke, fixed_bg.handle(), fg.handle(), tileset, i).await);
+        entries.push(create_entry(poke, fixed_bg, fg, tileset, i).await);
     }
+    fg.copy_tilemap_to_vram();
 
     for entry in entries.iter() {
         sleep(1).await;
         entry.print_info(&tileset_data.get(), &hp_tilemap.get());
     }
-
-    unsafe { CopyBgTilemapBufferToVram(1) };
-    unsafe { SetVBlankCallback(Some(vblank_cb)) };
-    loop {
-        if unsafe { gMain.newKeys } & 0x1 != 0 {
-            break;
-        }
-        sleep(1).await;
+    for (index, entry) in entries.iter().enumerate() {
+        entry.update_bg(index == 0, &palettes);
     }
-    unsafe { SetMainCallback2(back) };
+    unsafe { SetVBlankCallback(Some(vblank_cb)) };
+
+    let mut menu = Menu {
+        palettes: &palettes,
+        tileset: &tileset,
+        scroll_bg,
+        fixed_bg,
+        fg,
+        hp_tilemap: &hp_tilemap.get(),
+        entries,
+        focused_entry: 0,
+        exit_callback: Box::new(move || unsafe { SetMainCallback2(back) }),
+    };
+
+    menu.main_loop().await;
+    (menu.exit_callback)();
 }
 
 async fn clear_ui() {

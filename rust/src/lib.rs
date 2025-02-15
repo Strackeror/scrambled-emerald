@@ -12,6 +12,7 @@ use slice_write::Write as _;
 
 mod charmap;
 mod future;
+mod input;
 mod party_screen;
 mod slice_write;
 

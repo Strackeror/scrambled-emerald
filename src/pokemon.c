@@ -5873,6 +5873,9 @@ const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, bool32 isShiny,
 
 const u32 *GetMonSpritePalFromSpecies(u16 species, bool32 isShiny, bool32 isFemale)
 {
+    if (species == SPECIES_EGG) {
+        return gSpeciesInfo[species].palette;
+    }
     species = SanitizeSpeciesId(species);
 
     if (isShiny)
