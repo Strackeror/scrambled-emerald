@@ -44,6 +44,7 @@ fn main() {
         .allowlist_file(".*/gba/.*.h")
         .allowlist_item("gMessageBox_Gfx")
         .allowlist_item("gLastViewedMonIndex")
+        .allowlist_item("gTypesInfo")
         .opaque_type("PokemonSubstruct3")
         .derive_default(true)
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))

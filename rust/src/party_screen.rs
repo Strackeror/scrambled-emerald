@@ -1,6 +1,7 @@
 use alloc::boxed::Box;
 use alloc::vec;
 use core::cmp::min;
+use core::default;
 use core::future::Future;
 use core::mem::swap;
 use core::pin::Pin;
@@ -10,7 +11,7 @@ use core::task::{Context, Poll};
 use arrayvec::ArrayVec;
 use data::{get_item, Pokemon};
 use derive_more::TryFrom;
-use graphics::{ListMenu, Sprite, Tileset, Window, *};
+use graphics::{ListMenu, Sprite, SpriteSheet, Tileset, Window, *};
 
 use crate::charmap::ArrayPkstr;
 use crate::future::{Executor, RefCellSync};
@@ -40,7 +41,6 @@ extern "C" fn Init_Full_Summary_Screen(back: MainCallback) {
 }
 
 extern "C" fn return_from_party_callback() {
-
     let index = unsafe { *(&raw mut gLastViewedMonIndex) };
     let fut = Box::new(summary_screen(*STORED_CALLBACK.borrow(), index));
     unsafe { SetMainCallback2(Some(main_cb)) }
@@ -57,7 +57,10 @@ extern "C" fn return_from_give_hold_item_callback() {
         poke.set_item(item_to_give);
     }
 
-    let fut = Box::new(summary_screen(*STORED_CALLBACK.borrow(), *SELECTED_POKE.borrow()));
+    let fut = Box::new(summary_screen(
+        *STORED_CALLBACK.borrow(),
+        *SELECTED_POKE.borrow(),
+    ));
     unsafe { SetMainCallback2(Some(main_cb)) }
     EXECUTOR.set(fut);
 }
@@ -93,6 +96,15 @@ include_res_lz!(SCROLL_BG_MAP, "../../graphics/party_menu_full/bg.bin");
 include_res_lz!(MON_BG_MAP, "../../graphics/party_menu_full/mon_bg.bin");
 include_res_lz!(HP_MAP, "../../graphics/party_menu_full/hp.plain.bin");
 
+include_res_lz!(
+    TERA_SPRITE,
+    "../../graphics/types_bw/tera/tera_types_bw.4bpp"
+);
+include_res_lz!(
+    TERA_SPRITE_PAL,
+    "../../graphics/types_bw/move_types_bw.gbapal"
+);
+
 type OwnedSprite = Sprite<AllocBuf<TileBitmap4bpp>>;
 async fn item_sprite(poke: &Pokemon, index: usize) -> Option<OwnedSprite> {
     let Some(item) = poke.item() else {
@@ -119,6 +131,33 @@ async fn item_sprite(poke: &Pokemon, index: usize) -> Option<OwnedSprite> {
     sleep(1).await;
 
     let sprite = Sprite::load(image, DUMMY_SPRITE_ANIMS, palette).await;
+    sprite.handle().set_priority(2);
+    Some(sprite)
+}
+
+fn type_palette(pktype: u16) -> ObjPalette {
+    unsafe { ObjPalette::raw(gTypesInfo[pktype as usize].palette) }
+}
+
+fn load_type_palettes() {
+    load_obj_palette(13, &TERA_SPRITE_PAL.load().get());
+}
+
+type TeraSprite<'a> = SheetSprite<'a>;
+async fn tera_sprite<'a>(poke: &Pokemon, sheet: &'a SpriteSheet) -> Option<TeraSprite<'a>> {
+    if poke.is_egg() {
+        return None;
+    }
+
+    let tera = poke.tera_type();
+    let anims = SpriteAnims {
+        anims: unsafe { gSpriteAnimTable_TeraType.as_ptr() },
+        ..DUMMY_SPRITE_ANIMS
+    };
+    let sprite = SheetSprite::load(sheet, anims, type_palette(tera)).await;
+    sprite.start_animation(tera as u8);
+    sprite.set_priority(2);
+    sprite.set_subpriority(1);
     Some(sprite)
 }
 
@@ -144,18 +183,20 @@ impl BackgroundStyle {
     }
 }
 
-struct Entry {
+struct Entry<'a> {
     index: u8,
     poke: Pokemon,
     sprite: PokemonSpritePic,
     item_sprite: Option<OwnedSprite>,
+    tera_sprite: Option<TeraSprite<'a>>,
     bg_window: Window,
     fg_window: Window,
 }
 
-impl Entry {
+impl<'a> Entry<'a> {
     const POKE_SPRITE_OFFS: Vec2D<i16> = Vec2D::new(36, 32);
     const ITEM_SPRITE_OFFS: Vec2D<i16> = Vec2D::new(60, 52);
+    const TERA_SPRITE_OFFS: Vec2D<i16> = Vec2D::new(62, 20);
 
     fn print_info(&self, tileset: &[TileBitmap4bpp], hp_tilemap: &[TilePlain]) {
         const HP_BAR_RECT: Rect<u8> = Rect::new(0, 7, 9, 1);
@@ -219,7 +260,17 @@ impl Entry {
         bg.copy_to_vram();
     }
 
-    async fn switch(&mut self, other: &mut Entry, frames: i16) {
+    fn update_pos(&mut self, pos: Vec2D<i16>) {
+        self.sprite.handle().set_pos(pos + Entry::POKE_SPRITE_OFFS);
+        if let Some(item_sprite) = &self.item_sprite {
+            item_sprite.handle().set_pos(pos + Entry::ITEM_SPRITE_OFFS);
+        }
+        if let Some(tera_sprite) = &self.tera_sprite {
+            tera_sprite.set_pos(pos + Entry::TERA_SPRITE_OFFS);
+        }
+    }
+
+    async fn switch(&mut self, other: &mut Entry<'_>, frames: i16) {
         self.fg_window.fill(0);
         self.fg_window.copy_to_vram();
         other.fg_window.fill(0);
@@ -233,23 +284,8 @@ impl Entry {
         for i in 1..=frames {
             let fpos_self = pos_other * i / frames + pos_self * (frames - i) / frames;
             let fpos_other = pos_self * i / frames + pos_other * (frames - i) / frames;
-            self.sprite
-                .handle()
-                .set_pos(fpos_self + Entry::POKE_SPRITE_OFFS);
-            other
-                .sprite
-                .handle()
-                .set_pos(fpos_other + Entry::POKE_SPRITE_OFFS);
-            if let Some(item_sprite) = &mut self.item_sprite {
-                item_sprite
-                    .handle()
-                    .set_pos(fpos_self + Entry::ITEM_SPRITE_OFFS);
-            }
-            if let Some(item_sprite) = &mut other.item_sprite {
-                item_sprite
-                    .handle()
-                    .set_pos(fpos_other + Entry::ITEM_SPRITE_OFFS);
-            }
+            self.update_pos(fpos_self);
+            other.update_pos(fpos_other);
             sleep(1).await
         }
 
@@ -263,8 +299,9 @@ impl Entry {
         bg: BgHandle<'_>,
         fg: BgHandle<'_>,
         tileset: Tileset<&AllocBuf<TileBitmap4bpp>>,
+        tera: &'a SpriteSheet,
         index: u8,
-    ) -> Entry {
+    ) -> Entry<'a> {
         const BG_DIM: Vec2D<u8> = Vec2D::new(9, 8);
         const FG_DIM: Vec2D<u8> = Vec2D::new(9, 8);
         const BASE_BLOCK: u16 = 0x20;
@@ -275,16 +312,9 @@ impl Entry {
 
         let mut sprite = PokemonSpritePic::new(&poke, index);
         sleep(1).await;
-        let handle = sprite.handle();
-        handle.set_pos(tile_pos.tile_to_pixel() + Entry::POKE_SPRITE_OFFS);
-        handle.set_priority(2);
-
-        let mut item_sprite = item_sprite(&poke, index.into()).await;
-        if let Some(item_sprite) = &mut item_sprite {
-            let handle = item_sprite.handle();
-            handle.set_pos(tile_pos.tile_to_pixel() + Entry::ITEM_SPRITE_OFFS);
-            handle.set_priority(2);
-        }
+        sprite.handle().set_priority(2);
+        let tera_sprite = tera_sprite(&poke, &tera).await;
+        let item_sprite = item_sprite(&poke, index.into()).await;
 
         let tiles = &tileset.tiles.get();
         let block = BLOCK_SIZE * index as u16 + BASE_BLOCK;
@@ -305,14 +335,17 @@ impl Entry {
         bg_window.copy_to_vram();
         sleep(1).await;
 
-        Entry {
+        let mut entry = Entry {
             index,
             poke,
             sprite,
             item_sprite,
+            tera_sprite,
             bg_window,
             fg_window,
-        }
+        };
+        entry.update_pos(tile_pos.tile_to_pixel());
+        entry
     }
 }
 
@@ -325,7 +358,7 @@ struct Menu<'a> {
 
     hp_tilemap: &'a [TilePlain],
 
-    entries: ArrayVec<Entry, 6>,
+    entries: ArrayVec<Entry<'a>, 6>,
     focused_entry: u8,
 
     exit_callback: Box<dyn Fn()>,
@@ -630,13 +663,16 @@ async fn summary_screen(back: MainCallback, index: u8) {
     fg.show();
 
     let hp_tilemap = HP_MAP.load();
+    let tera_tilemap = TERA_SPRITE.load();
+    let tera_sheet = graphics::SpriteSheet::load(tera_tilemap, 15000, SPRITE_SIZE_16x16 as u8);
+    load_type_palettes();
 
     let mut entries: ArrayVec<Entry, 6> = ArrayVec::new();
     for i in 0..6 {
         let Some(poke) = Pokemon::get_player_party(i) else {
             continue;
         };
-        entries.push(Entry::create(poke, fixed_bg, fg, tileset, i).await);
+        entries.push(Entry::create(poke, fixed_bg, fg, tileset, &tera_sheet, i).await);
     }
     fg.copy_tilemap_to_vram();
 

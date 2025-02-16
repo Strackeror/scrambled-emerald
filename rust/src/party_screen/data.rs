@@ -45,6 +45,10 @@ impl Pokemon {
         unsafe { ArrayPkstr::from_slice(&slice) }
     }
 
+    pub fn tera_type(&self) -> u16 {
+        self.get_mon_data(MON_DATA_TERA_TYPE) as u16
+    }
+
     pub fn species(&self) -> u16 {
         self.get_mon_data(MON_DATA_SPECIES_OR_EGG) as _
     }

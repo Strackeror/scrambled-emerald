@@ -99,6 +99,11 @@ pub struct BgPalette {
 pub struct ObjPalette {
     index: u8,
 }
+impl ObjPalette {
+    pub unsafe fn raw(index: u8) -> Self {
+        ObjPalette { index }
+    }
+}
 
 pub fn load_bg_palette(index: u8, data: &[u16]) -> BgPalette {
     unsafe {
@@ -298,7 +303,7 @@ pub struct SpriteHandle {
 static G_SPRITES: StaticWrapper<pokeemerald::Sprite> =
     StaticWrapper::new_from_arr(&raw mut gSprites);
 impl SpriteHandle {
-    pub fn set_pos(&mut self, pos: Vec2D<i16>) {
+    pub fn set_pos(&self, pos: Vec2D<i16>) {
         let mut sprite = G_SPRITES.index_mut(self.sprite_index as usize);
         sprite.x = pos.x;
         sprite.y = pos.y;
@@ -308,7 +313,7 @@ impl SpriteHandle {
         let mut sprite = G_SPRITES.index_mut(self.sprite_index as usize);
         Vec2D::new(sprite.x, sprite.y)
     }
-    pub fn set_palette(&mut self, palette: u16) {
+    pub fn set_palette(&self, palette: u16) {
         let mut sprite = G_SPRITES.index_mut(self.sprite_index as usize);
         sprite.oam.set_paletteNum(palette);
     }
@@ -316,14 +321,25 @@ impl SpriteHandle {
         let mut sprite = G_SPRITES.index_mut(self.sprite_index as usize);
         sprite.oam.set_priority(priority as _);
     }
-    pub fn set_invisible(&mut self, invisible: bool) {
+    pub fn set_subpriority(&self, priority: u8) {
+        let mut sprite = G_SPRITES.index_mut(self.sprite_index as usize);
+        sprite.subpriority = priority;
+    }
+    pub fn set_invisible(&self, invisible: bool) {
         let mut sprite = G_SPRITES.index_mut(self.sprite_index as usize);
         sprite.set_invisible(invisible.then_some(1).unwrap_or(0));
     }
-    pub fn animate(&mut self) {
+    pub fn animate(&self) {
         unsafe {
             let mut sprite = G_SPRITES.index_mut(self.sprite_index as usize);
             AnimateSprite(&raw mut *sprite);
+        }
+    }
+
+    pub fn start_animation(&self, index: u8) {
+        unsafe {
+            let mut sprite = G_SPRITES.index_mut(self.sprite_index as usize);
+            StartSpriteAnim(&raw mut *sprite, index);
         }
     }
     pub fn request_copy(&self) {
@@ -334,10 +350,38 @@ impl SpriteHandle {
     }
 }
 
+pub struct SpriteSheet {
+    tilestart: u16,
+    tag: u16,
+    size: u8,
+}
+
+impl SpriteSheet {
+    pub fn load(buffer: impl Buffer<TileBitmap4bpp>, tag: u16, size: u8) -> Self {
+        let sheet = pokeemerald::SpriteSheet {
+            data: buffer.as_ptr().cast(),
+            size: buffer.size_bytes() as u16,
+            tag,
+        };
+        let index = unsafe { LoadSpriteSheet(&raw const sheet) };
+        SpriteSheet {
+            tilestart: index,
+            tag,
+            size,
+        }
+    }
+}
+
+impl Drop for SpriteSheet {
+    fn drop(&mut self) {
+        unsafe { FreeSpriteTilesByTag(self.tag) };
+    }
+}
+
 #[derive(Clone, Copy)]
 pub struct SpriteAnims {
-    anims: *const *const AnimCmd,
-    affine_anims: *const *const AffineAnimCmd,
+    pub anims: *const *const AnimCmd,
+    pub affine_anims: *const *const AffineAnimCmd,
 }
 unsafe impl Sync for SpriteAnims {}
 pub static DUMMY_SPRITE_ANIMS: SpriteAnims = unsafe {
@@ -350,6 +394,53 @@ pub static DUMMY_SPRITE_ANIMS: SpriteAnims = unsafe {
 pub struct SpriteImage<Buf: Buffer<TileBitmap4bpp>> {
     pub buf: Buf,
     pub size: u32,
+}
+
+pub struct SheetSprite<'a> {
+    handle: SpriteHandle,
+    _own: PhantomData<&'a ()>,
+}
+
+impl<'a> SheetSprite<'a> {
+    pub async fn load(sheet: &'a SpriteSheet, anims: SpriteAnims, palette: ObjPalette) -> Self {
+        let mut template = SpriteTemplate::default();
+        template.affineAnims = anims.affine_anims;
+        template.anims = anims.anims;
+        template.callback = Some(SpriteCallbackDummy);
+
+        let size = sheet.size as u32;
+        let mut oam = OamData::default();
+        oam.set_size((size >> 2) & 0b11);
+        oam.set_shape(size & 0b11);
+        template.oam = &raw const oam;
+
+        template.paletteTag = TAG_NONE as _;
+        template.tileTag = sheet.tag;
+        let sprite_index = unsafe { CreateSprite(&raw const template, 0, 0, 0) };
+        let handle = SpriteHandle {
+            sprite_index: sprite_index as u16,
+        };
+        handle.set_palette(palette.index as u16);
+        SheetSprite {
+            handle,
+            _own: PhantomData,
+        }
+    }
+}
+
+impl Deref for SheetSprite<'_> {
+    type Target = SpriteHandle;
+    fn deref(&self) -> &Self::Target {
+        &self.handle
+    }
+}
+
+impl Drop for SheetSprite<'_> {
+    fn drop(&mut self) {
+        unsafe {
+            DestroySprite(&raw mut *G_SPRITES.index_mut(self.handle.sprite_index as usize));
+        }
+    }
 }
 
 pub struct Sprite<Img: Buffer<TileBitmap4bpp>> {
@@ -396,15 +487,16 @@ impl<Img: Buffer<TileBitmap4bpp>> Sprite<Img> {
         mgba_warn!("{:?} {:?}", self._own.1.as_ptr(), &raw const *self._own.2);
     }
 
-    pub fn handle(&mut self) -> &mut SpriteHandle {
-        &mut self.sprite
+    pub fn handle(&self) -> &SpriteHandle {
+        &self.sprite
     }
 }
+
 impl<T: Buffer<TileBitmap4bpp>> Drop for Sprite<T> {
     fn drop(&mut self) {
         unsafe {
             DestroySpriteAndFreeResources(
-                &raw mut *&mut *G_SPRITES.index_mut(self.sprite.sprite_index as _),
+                &raw mut *G_SPRITES.index_mut(self.sprite.sprite_index as _),
             );
         }
     }
