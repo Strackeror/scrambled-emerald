@@ -2,6 +2,7 @@
 
 use alloc::boxed::Box;
 use alloc::vec::Vec;
+use core::any::Any;
 use core::array;
 use core::marker::PhantomData;
 use core::ops::{Add, BitOr, Deref, Mul};
@@ -13,7 +14,7 @@ use super::{data, sleep};
 use crate::charmap::Pkstr;
 use crate::mgba_warn;
 use crate::pokeemerald::{self, *};
-use crate::resources::{Buffer, StaticWrapper};
+use crate::resources::{AllocBuf, Buffer, StaticWrapper};
 
 pub fn set_gpu_registers(list: &[(u32, &[u32])]) {
     for (offset, flags) in list {
@@ -350,14 +351,15 @@ impl SpriteHandle {
     }
 }
 
-pub struct SpriteSheet {
+pub struct SpriteSheet<B> {
+    _own: B,
     tilestart: u16,
     tag: u16,
     size: u8,
 }
 
-impl SpriteSheet {
-    pub fn load(buffer: impl Buffer<TileBitmap4bpp>, tag: u16, size: u8) -> Self {
+impl<B: Buffer<TileBitmap4bpp>> SpriteSheet<B> {
+    pub fn load(buffer: B, tag: u16, size: u8) -> Self {
         let sheet = pokeemerald::SpriteSheet {
             data: buffer.as_ptr().cast(),
             size: buffer.size_bytes() as u16,
@@ -365,6 +367,7 @@ impl SpriteSheet {
         };
         let index = unsafe { LoadSpriteSheet(&raw const sheet) };
         SpriteSheet {
+            _own: buffer,
             tilestart: index,
             tag,
             size,
@@ -372,7 +375,7 @@ impl SpriteSheet {
     }
 }
 
-impl Drop for SpriteSheet {
+impl<B> Drop for SpriteSheet<B> {
     fn drop(&mut self) {
         unsafe { FreeSpriteTilesByTag(self.tag) };
     }
@@ -402,7 +405,11 @@ pub struct SheetSprite<'a> {
 }
 
 impl<'a> SheetSprite<'a> {
-    pub async fn load(sheet: &'a SpriteSheet, anims: SpriteAnims, palette: ObjPalette) -> Self {
+    pub async fn load(
+        sheet: &'a SpriteSheet<impl Any>,
+        anims: SpriteAnims,
+        palette: ObjPalette,
+    ) -> Self {
         let mut template = SpriteTemplate::default();
         template.affineAnims = anims.affine_anims;
         template.anims = anims.anims;

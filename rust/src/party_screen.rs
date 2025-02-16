@@ -105,6 +105,16 @@ include_res_lz!(
     "../../graphics/types_bw/move_types_bw.gbapal"
 );
 
+include_res_lz!(
+    STATUS_SHEET,
+    "../../graphics/summary_screen/bw/status_icons.4bpp"
+);
+
+include_res_lz!(
+    STATUS_PAL,
+    "../../graphics/summary_screen/bw/status_icons.gbapal"
+);
+
 type OwnedSprite = Sprite<AllocBuf<TileBitmap4bpp>>;
 async fn item_sprite(poke: &Pokemon, index: usize) -> Option<OwnedSprite> {
     let Some(item) = poke.item() else {
@@ -144,7 +154,10 @@ fn load_type_palettes() {
 }
 
 type TeraSprite<'a> = SheetSprite<'a>;
-async fn tera_sprite<'a>(poke: &Pokemon, sheet: &'a SpriteSheet) -> Option<TeraSprite<'a>> {
+async fn tera_sprite<'a>(
+    poke: &Pokemon,
+    sheet: &'a SpriteSheet<AllocBuf<TileBitmap4bpp>>,
+) -> Option<TeraSprite<'a>> {
     if poke.is_egg() {
         return None;
     }
@@ -154,10 +167,30 @@ async fn tera_sprite<'a>(poke: &Pokemon, sheet: &'a SpriteSheet) -> Option<TeraS
         anims: unsafe { gSpriteAnimTable_TeraType.as_ptr() },
         ..DUMMY_SPRITE_ANIMS
     };
-    let sprite = SheetSprite::load(sheet, anims, type_palette(tera)).await;
+    let sprite = SheetSprite::load(&sheet, anims, type_palette(tera)).await;
     sprite.start_animation(tera as u8);
     sprite.set_priority(2);
     sprite.set_subpriority(1);
+    Some(sprite)
+}
+
+async fn status_sprite<'a>(
+    poke: &Pokemon,
+    sheet: &'a SpriteSheet<AllocBuf<TileBitmap4bpp>>,
+    pal: ObjPalette,
+) -> Option<SheetSprite<'a>> {
+    let status = poke.status();
+    if status == 0 {
+        return None;
+    }
+
+    let anims = SpriteAnims {
+        anims: unsafe { gSpriteAnimTable_StatusCondition.as_ptr() },
+        ..DUMMY_SPRITE_ANIMS
+    };
+    let sprite = SheetSprite::load(&sheet, anims, pal).await;
+    sprite.start_animation(poke.status() - 1);
+    sprite.set_priority(2);
     Some(sprite)
 }
 
@@ -189,16 +222,18 @@ struct Entry<'a> {
     sprite: PokemonSpritePic,
     item_sprite: Option<OwnedSprite>,
     tera_sprite: Option<TeraSprite<'a>>,
+    status_sprite: Option<SheetSprite<'a>>,
     bg_window: Window,
     fg_window: Window,
 }
 
 impl<'a> Entry<'a> {
     const POKE_SPRITE_OFFS: Vec2D<i16> = Vec2D::new(36, 32);
-    const ITEM_SPRITE_OFFS: Vec2D<i16> = Vec2D::new(60, 52);
+    const ITEM_SPRITE_OFFS: Vec2D<i16> = Vec2D::new(62, 52);
     const TERA_SPRITE_OFFS: Vec2D<i16> = Vec2D::new(62, 20);
+    const STATUS_SPRITE_OFFS: Vec2D<i16> = Vec2D::new(12, 44);
 
-    fn print_info(&self, tileset: &[TileBitmap4bpp], hp_tilemap: &[TilePlain]) {
+    fn print_info(&self, resource: &Resources) {
         const HP_BAR_RECT: Rect<u8> = Rect::new(0, 7, 9, 1);
         const HP_FILL_RECT_1: Rect<u16> = Rect::new(16, 59, 48, 1);
         const HP_FILL_RECT_2: Rect<u16> = Rect::new(16, 60, 48, 2);
@@ -218,10 +253,14 @@ impl<'a> Entry<'a> {
         }
 
         let lv = aformat!(5, "Lv{}", self.poke.level());
-        let lv = ArrayPkstr::<7>::from_str(&lv);
+        let lv = ArrayPkstr::<6>::from_str(&lv);
         let lv_pos = Vec2D::new(69 - printer_params.width_for(&lv) as u8, 0);
         fg.print_text(&lv, lv_pos, printer_params);
-        fg.copy_tilemap(tileset, hp_tilemap, HP_BAR_RECT);
+        fg.copy_tilemap(
+            &resource.tileset.get(),
+            &resource.hp_bar_map.get(),
+            HP_BAR_RECT,
+        );
 
         let hp = aformat!(10, "{:<3}/{:<3}", self.poke.hp(), self.poke.max_hp());
         let hp = ArrayPkstr::<11>::from_str(&hp);
@@ -268,9 +307,12 @@ impl<'a> Entry<'a> {
         if let Some(tera_sprite) = &self.tera_sprite {
             tera_sprite.set_pos(pos + Entry::TERA_SPRITE_OFFS);
         }
+        if let Some(status_sprite) = &self.status_sprite {
+            status_sprite.set_pos(pos + Entry::STATUS_SPRITE_OFFS);
+        }
     }
 
-    async fn switch(&mut self, other: &mut Entry<'_>, frames: i16) {
+    async fn switch(&mut self, other: &mut Entry<'a>, frames: i16) {
         self.fg_window.fill(0);
         self.fg_window.copy_to_vram();
         other.fg_window.fill(0);
@@ -289,6 +331,8 @@ impl<'a> Entry<'a> {
             sleep(1).await
         }
 
+        swap(&mut self.status_sprite, &mut other.status_sprite);
+        swap(&mut self.tera_sprite, &mut other.tera_sprite);
         swap(&mut self.item_sprite, &mut other.item_sprite);
         swap(&mut self.sprite, &mut other.sprite);
         Pokemon::swap(&mut self.poke, &mut other.poke);
@@ -296,10 +340,9 @@ impl<'a> Entry<'a> {
 
     async fn create(
         poke: Pokemon,
+        resources: &'a Resources,
         bg: BgHandle<'_>,
         fg: BgHandle<'_>,
-        tileset: Tileset<&AllocBuf<TileBitmap4bpp>>,
-        tera: &'a SpriteSheet,
         index: u8,
     ) -> Entry<'a> {
         const BG_DIM: Vec2D<u8> = Vec2D::new(9, 8);
@@ -313,18 +356,25 @@ impl<'a> Entry<'a> {
         let mut sprite = PokemonSpritePic::new(&poke, index);
         sleep(1).await;
         sprite.handle().set_priority(2);
-        let tera_sprite = tera_sprite(&poke, &tera).await;
+        let tera_sprite = tera_sprite(&poke, &resources.tera_sheet).await;
         let item_sprite = item_sprite(&poke, index.into()).await;
+        let status_sprite =
+            status_sprite(&poke, &resources.status_sheet, resources.status_pal).await;
 
-        let tiles = &tileset.tiles.get();
+        let tiles = &resources.tileset.get();
         let block = BLOCK_SIZE * index as u16 + BASE_BLOCK;
 
         let rect = Rect::from_vecs(tile_pos, BG_DIM);
-        let bg_window = Window::create(bg, rect, tileset.palette, block);
+        let bg_window = Window::create(bg, rect, resources.bg_palettes[0], block);
         sleep(1).await;
 
         let rect = Rect::from_vecs(tile_pos, FG_DIM);
-        let fg_window = Window::create(fg, rect, tileset.palette, block + BG_DIM.size() as u16);
+        let fg_window = Window::create(
+            fg,
+            rect,
+            resources.bg_palettes[0],
+            block + BG_DIM.size() as u16,
+        );
         fg_window.put_tilemap();
         sleep(1).await;
 
@@ -341,6 +391,7 @@ impl<'a> Entry<'a> {
             sprite,
             item_sprite,
             tera_sprite,
+            status_sprite,
             bg_window,
             fg_window,
         };
@@ -350,13 +401,10 @@ impl<'a> Entry<'a> {
 }
 
 struct Menu<'a> {
-    palettes: &'a [BgPalette; 6],
-    tileset: &'a Tileset<&'a AllocBuf<TileBitmap4bpp>>,
+    resources: &'a Resources,
     scroll_bg: BgHandle<'a>,
     fixed_bg: BgHandle<'a>,
     fg: BgHandle<'a>,
-
-    hp_tilemap: &'a [TilePlain],
 
     entries: ArrayVec<Entry<'a>, 6>,
     focused_entry: u8,
@@ -417,8 +465,8 @@ impl<'a> Menu<'a> {
 
     fn change_focus(&mut self, new_index: u8) {
         use BackgroundStyle::*;
-        self.entries[self.focused_entry as usize].update_bg(Unfocused, self.palettes);
-        self.entries[new_index as usize].update_bg(Focused, self.palettes);
+        self.entries[self.focused_entry as usize].update_bg(Unfocused, &self.resources.bg_palettes);
+        self.entries[new_index as usize].update_bg(Focused, &self.resources.bg_palettes);
         self.focused_entry = new_index;
     }
 
@@ -464,8 +512,9 @@ impl<'a> Menu<'a> {
             true => BackgroundStyle::SwitchUnfocused,
             false => BackgroundStyle::Unfocused,
         };
-        self.entries[self.focused_entry as usize].update_bg(previous, self.palettes);
-        self.entries[new_index as usize].update_bg(BackgroundStyle::SwitchFocused, self.palettes);
+        let palettes = &self.resources.bg_palettes;
+        self.entries[self.focused_entry as usize].update_bg(previous, palettes);
+        self.entries[new_index as usize].update_bg(BackgroundStyle::SwitchFocused, palettes);
         self.focused_entry = new_index;
     }
 
@@ -475,7 +524,7 @@ impl<'a> Menu<'a> {
             sleep(1).await;
             if Button::B.pressed() {
                 self.entries[switching_index as usize]
-                    .update_bg(BackgroundStyle::Unfocused, self.palettes);
+                    .update_bg(BackgroundStyle::Unfocused, &self.resources.bg_palettes);
                 return None;
             }
             if Button::A.pressed() {
@@ -491,26 +540,27 @@ impl<'a> Menu<'a> {
 
     async fn switch_mon(&mut self) {
         let focus = self.focused_entry as usize;
-        self.entries[focus].update_bg(BackgroundStyle::SwitchFocused, self.palettes);
+        let palettes = &self.resources.bg_palettes;
+        self.entries[focus].update_bg(BackgroundStyle::SwitchFocused, palettes);
         if let Some(switch) = self.choose_switch_mon().await {
             if switch != self.focused_entry as usize {
                 let indices = (self.focused_entry as usize, switch);
                 let (a, b) = disjoint_borrow_mut(indices, &mut self.entries);
                 a.switch(b, 20).await;
-                a.print_info(&self.tileset.tiles.get(), &self.hp_tilemap);
+                a.print_info(&self.resources);
                 a.fg_window.copy_to_vram();
-                b.print_info(&self.tileset.tiles.get(), &self.hp_tilemap);
+                b.print_info(&self.resources);
                 b.fg_window.copy_to_vram();
-                self.entries[switch].update_bg(BackgroundStyle::Unfocused, self.palettes);
+                self.entries[switch].update_bg(BackgroundStyle::Unfocused, palettes);
             }
         }
         let focus = self.focused_entry as usize;
-        self.entries[focus].update_bg(BackgroundStyle::Focused, self.palettes);
+        self.entries[focus].update_bg(BackgroundStyle::Focused, palettes);
     }
 
     async fn select_action(&mut self) -> Option<PokeAction> {
         let msg_box = load_msg_box_gfx(self.fg, 0x3B0, 14);
-        let win = Window::create(self.fg, Rect::new(18, 11, 8, 8), msg_box.palette, 0x380);
+        let win = Window::create(self.fg, Rect::new(21, 11, 8, 8), msg_box.palette, 0x380);
         win.put_tilemap();
         win.copy_to_vram();
 
@@ -519,12 +569,12 @@ impl<'a> Menu<'a> {
 
         const LIST_ITEMS: &[ListMenuItem] = &[
             ListMenuItem {
-                id: PokeAction::Switch as _,
-                name: pkstr!(b"Switch").as_ptr(),
-            },
-            ListMenuItem {
                 id: PokeAction::Summary as _,
                 name: pkstr!(b"Summary").as_ptr(),
+            },
+            ListMenuItem {
+                id: PokeAction::Switch as _,
+                name: pkstr!(b"Switch").as_ptr(),
             },
             ListMenuItem {
                 id: PokeAction::GiveItem as _,
@@ -562,9 +612,9 @@ impl<'a> Menu<'a> {
     async fn main_loop(&mut self) {
         for (index, entry) in self.entries.iter().enumerate() {
             if index as u8 == self.focused_entry {
-                entry.update_bg(BackgroundStyle::Focused, self.palettes);
+                entry.update_bg(BackgroundStyle::Focused, &self.resources.bg_palettes);
             } else {
-                entry.update_bg(BackgroundStyle::Unfocused, self.palettes);
+                entry.update_bg(BackgroundStyle::Unfocused, &self.resources.bg_palettes);
             }
         }
         loop {
@@ -604,6 +654,55 @@ impl<'a> Menu<'a> {
     }
 }
 
+struct Resources {
+    tileset: AllocBuf<TileBitmap4bpp>,
+    bg_map: AllocBuf<Tile4bpp>,
+    mon_slot_map: AllocBuf<TilePlain>,
+    bg_palettes: [BgPalette; 6],
+
+    hp_bar_map: AllocBuf<TilePlain>,
+
+    tera_sheet: SpriteSheet<AllocBuf<TileBitmap4bpp>>,
+    status_sheet: SpriteSheet<AllocBuf<TileBitmap4bpp>>,
+    status_pal: ObjPalette,
+}
+
+async fn load_resources() -> Resources {
+    let bg_palettes = load_bg_palettes(0, &PAL.load().get());
+    sleep(1).await;
+
+    let tileset = TILESET.load();
+    sleep(1).await;
+
+    let bg_map = SCROLL_BG_MAP.load();
+
+    sleep(1).await;
+
+    let mon_slot_map = MON_BG_MAP.load();
+    sleep(1).await;
+
+    let hp_bar_map = HP_MAP.load();
+
+    let tera_sheet = SpriteSheet::load(TERA_SPRITE.load(), 15000, SPRITE_SIZE_16x16 as u8);
+    sleep(1).await;
+
+    let status_sheet = SpriteSheet::load(STATUS_SHEET.load(), 15001, SPRITE_SIZE_32x8 as u8);
+    let status_pal = load_obj_palette(12, &STATUS_PAL.load().get());
+
+    load_type_palettes();
+
+    Resources {
+        tileset,
+        bg_map,
+        mon_slot_map,
+        bg_palettes,
+        hp_bar_map,
+        tera_sheet,
+        status_sheet,
+        status_pal,
+    }
+}
+
 async fn summary_screen(back: MainCallback, index: u8) {
     clear_ui().await;
 
@@ -617,32 +716,24 @@ async fn summary_screen(back: MainCallback, index: u8) {
         (REG_OFFSET_BLDY, &[]),
     ]);
 
-    let tileset_data = TILESET.load();
-    sleep(1).await;
-    let bg_map = SCROLL_BG_MAP.load();
-    sleep(1).await;
-    let palette = PAL.load();
-    sleep(1).await;
+    let resources = load_resources().await;
 
-    let palettes = load_bg_palettes(0, &palette.get());
-    let main_pal = palettes[0];
-    sleep(1).await;
-
+    let bg_map = Tilemap {
+        map: 0,
+        buffer: &resources.bg_map,
+    };
     let tileset = Tileset {
         char_base: 1,
         offset: 0,
-        palette: main_pal,
-        tiles: &tileset_data,
+        tiles: &resources.tileset,
+        palette: resources.bg_palettes[0],
     };
-    let tilemap = Tilemap {
-        map: 0,
-        buffer: &bg_map,
-    };
-    let scroll_bg = Background::load(BackgroundIndex::Background3, 3, tileset, tilemap).await;
+
+    let scroll_bg = Background::load(BackgroundIndex::Background3, 3, tileset, bg_map).await;
     let scroll_bg = scroll_bg.handle();
     scroll_bg.show();
 
-    let empty_tilemap = AllocBuf::new(vec![0u8; bg_map.size_bytes()].into_boxed_slice());
+    let empty_tilemap = AllocBuf::new(vec![0u8; resources.bg_map.size_bytes()].into_boxed_slice());
     let empty_tilemap = Tilemap {
         map: 2,
         buffer: empty_tilemap,
@@ -652,7 +743,7 @@ async fn summary_screen(back: MainCallback, index: u8) {
     fixed_bg.set_pos(0, 0);
     fixed_bg.show();
 
-    let buffer_fg = AllocBuf::new(vec![0u8; bg_map.size_bytes()].into_boxed_slice());
+    let buffer_fg = AllocBuf::new(vec![0u8; resources.bg_map.size_bytes()].into_boxed_slice());
     let empty_tilemap = Tilemap {
         map: 4,
         buffer: &buffer_fg,
@@ -662,33 +753,26 @@ async fn summary_screen(back: MainCallback, index: u8) {
     fg.set_pos(0, 0);
     fg.show();
 
-    let hp_tilemap = HP_MAP.load();
-    let tera_tilemap = TERA_SPRITE.load();
-    let tera_sheet = graphics::SpriteSheet::load(tera_tilemap, 15000, SPRITE_SIZE_16x16 as u8);
-    load_type_palettes();
-
     let mut entries: ArrayVec<Entry, 6> = ArrayVec::new();
     for i in 0..6 {
         let Some(poke) = Pokemon::get_player_party(i) else {
             continue;
         };
-        entries.push(Entry::create(poke, fixed_bg, fg, tileset, &tera_sheet, i).await);
+        entries.push(Entry::create(poke, &resources, fixed_bg, fg, i).await);
     }
     fg.copy_tilemap_to_vram();
 
     for entry in entries.iter() {
         sleep(1).await;
-        entry.print_info(&tileset_data.get(), &hp_tilemap.get());
+        entry.print_info(&resources);
     }
     unsafe { SetVBlankCallback(Some(vblank_cb)) };
 
     let mut menu = Menu {
-        palettes: &palettes,
-        tileset: &tileset,
+        resources: &resources,
         scroll_bg,
         fixed_bg,
         fg,
-        hp_tilemap: &hp_tilemap.get(),
         entries,
         focused_entry: index,
         exit_callback: Box::new(move || unsafe { SetMainCallback2(back) }),

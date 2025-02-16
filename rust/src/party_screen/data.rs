@@ -72,6 +72,13 @@ impl Pokemon {
         self.set_mon_data(MON_DATA_HELD_ITEM, (&raw const item).cast());
     }
 
+    pub fn status(&self) -> u8 {
+        if self.hp() == 0 {
+            return 7 // AILMENT_FNT
+        }
+        unsafe { GetAilmentFromStatus( self.get_mon_data(MON_DATA_STATUS) as u32) }
+    }
+
     pub fn swap(this: &mut Self, other: &mut Self) {
         unsafe {
             core::mem::swap(&mut *this.ptr, &mut *other.ptr);
