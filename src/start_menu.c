@@ -679,6 +679,7 @@ static bool8 StartMenuPokedexCallback(void)
     return FALSE;
 }
 
+extern void InitFullSummaryScreen(MainCallback, bool8, struct Pokemon*, u32);
 static bool8 StartMenuPokemonCallback(void)
 {
     if (!gPaletteFade.active)
@@ -686,7 +687,8 @@ static bool8 StartMenuPokemonCallback(void)
         PlayRainStoppingSoundEffect();
         RemoveExtraStartMenuWindows();
         CleanupOverworldWindowsAndTilemaps();
-        SetMainCallback2(CB2_PartyMenuFromStartMenu); // Display party menu
+        InitFullSummaryScreen(CB2_ReturnToFieldWithOpenMenu, FALSE, gPlayerParty, gPlayerPartyCount);
+        // SetMainCallback2(CB2_PartyMenuFromStartMenu); // Display party menu
 
         return TRUE;
     }
@@ -724,7 +726,6 @@ static bool8 StartMenuPokeNavCallback(void)
     return FALSE;
 }
 
-extern void Init_Full_Summary_Screen(MainCallback);
 static bool8 StartMenuPlayerNameCallback(void)
 {
     if (!gPaletteFade.active)
@@ -733,13 +734,12 @@ static bool8 StartMenuPlayerNameCallback(void)
         RemoveExtraStartMenuWindows();
         CleanupOverworldWindowsAndTilemaps();
 
-        Init_Full_Summary_Screen(CB2_ReturnToFieldWithOpenMenu);
-        // if (IsOverworldLinkActive() || InUnionRoom())
-        //     ShowPlayerTrainerCard(CB2_ReturnToFieldWithOpenMenu); // Display trainer card
-        // else if (FlagGet(FLAG_SYS_FRONTIER_PASS))
-        //     ShowFrontierPass(CB2_ReturnToFieldWithOpenMenu); // Display frontier pass
-        // else
-        //     ShowPlayerTrainerCard(CB2_ReturnToFieldWithOpenMenu); // Display trainer card
+        if (IsOverworldLinkActive() || InUnionRoom())
+            ShowPlayerTrainerCard(CB2_ReturnToFieldWithOpenMenu); // Display trainer card
+        else if (FlagGet(FLAG_SYS_FRONTIER_PASS))
+            ShowFrontierPass(CB2_ReturnToFieldWithOpenMenu); // Display frontier pass
+        else
+            ShowPlayerTrainerCard(CB2_ReturnToFieldWithOpenMenu); // Display trainer card
 
         return TRUE;
     }

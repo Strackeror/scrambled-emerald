@@ -8,6 +8,11 @@ pub struct Pokemon {
 }
 
 impl Pokemon {
+    pub fn from_ptr_and_index(ptr: *mut pokeemerald::Pokemon, index: usize) -> Self {
+        Pokemon {
+            ptr: unsafe { ptr.add(index) },
+        }
+    }
     pub fn get_player_party(index: u8) -> Option<Pokemon> {
         unsafe {
             if index >= gPlayerPartyCount {
@@ -74,9 +79,9 @@ impl Pokemon {
 
     pub fn status(&self) -> u8 {
         if self.hp() == 0 {
-            return 7 // AILMENT_FNT
+            return 7; // AILMENT_FNT
         }
-        unsafe { GetAilmentFromStatus( self.get_mon_data(MON_DATA_STATUS) as u32) }
+        unsafe { GetAilmentFromStatus(self.get_mon_data(MON_DATA_STATUS) as u32) }
     }
 
     pub fn swap(this: &mut Self, other: &mut Self) {

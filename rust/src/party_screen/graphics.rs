@@ -163,6 +163,26 @@ pub fn load_msg_box_gfx(bg: BgHandle, offset: u16, pal: u8) -> TilesetHandle {
     }
 }
 
+pub struct PaletteMask(u32);
+impl PaletteMask {
+    pub const ALL: PaletteMask = Self(0xFF_FF_FF_FF);
+    pub fn from_palettes(bg: &[BgPalette], obj: &[ObjPalette]) -> Self {
+        let mask = bg
+            .iter()
+            .map(|bg| 1 << bg.index)
+            .chain(obj.iter().map(|obj| 0x1_0000 << obj.index))
+            .fold(0, |a, b| a | b);
+        PaletteMask(mask)
+    }
+}
+
+pub async fn fade_palette(mask: PaletteMask, delay: i8, start: u8, target: u8, color: u32) {
+    unsafe { BeginNormalPaletteFade(mask.0, delay, start, target, color) };
+    while unsafe { (*&raw const gPaletteFade).active() != 0 } {
+        sleep(1).await
+    }
+}
+
 #[derive(Clone, Copy, Debug)]
 pub struct TileBitmap4bpp(pub [u8; 32]);
 #[derive(Clone, Copy, Debug)]
@@ -205,6 +225,7 @@ impl Deref for BgHandle<'_> {
         &self.0
     }
 }
+
 impl BgHandle<'_> {
     pub fn show(&self) {
         unsafe {
@@ -405,7 +426,7 @@ pub struct SheetSprite<'a> {
 }
 
 impl<'a> SheetSprite<'a> {
-    pub async fn load(
+    pub fn load(
         sheet: &'a SpriteSheet<impl Any>,
         anims: SpriteAnims,
         palette: ObjPalette,

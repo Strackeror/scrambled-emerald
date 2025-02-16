@@ -1,11 +1,9 @@
 use alloc::boxed::Box;
 use alloc::vec;
 use core::cmp::min;
-use core::default;
 use core::future::Future;
 use core::mem::swap;
 use core::pin::Pin;
-use core::ptr::addr_of;
 use core::task::{Context, Poll};
 
 use arrayvec::ArrayVec;
@@ -13,28 +11,33 @@ use data::{get_item, Pokemon};
 use derive_more::TryFrom;
 use graphics::{ListMenu, Sprite, SpriteSheet, Tileset, Window, *};
 
-use crate::charmap::ArrayPkstr;
+use crate::charmap::{ArrayPkstr, Pkstr};
 use crate::future::{Executor, RefCellSync};
 use crate::input::Button;
-use crate::pokeemerald::*;
+use crate::pokeemerald::{self, *};
 use crate::resources::{lz_ptr_res, AllocBuf, Buffer};
-use crate::{aformat, include_res_lz, mgba_warn, pkstr};
+use crate::{aformat, include_res_lz, pkstr};
 
 static EXECUTOR: Executor = Executor::new();
 static STORED_CALLBACK: RefCellSync<MainCallback> = RefCellSync::new(None);
 static SELECTED_POKE: RefCellSync<u8> = RefCellSync::new(0);
 
+#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(u8)]
+#[expect(unused, reason = "external")]
+pub enum Style {
+    Party = 0,
+    ReadOnly = 1,
+}
+
 #[no_mangle]
-extern "C" fn Init_Full_Summary_Screen(back: MainCallback) {
-    mgba_warn!(
-        "Heap: {:?} {:?} {:?} {:?} {:?}",
-        addr_of!(gHeap),
-        addr_of!(TILESET),
-        addr_of!(PAL),
-        addr_of!(SCROLL_BG_MAP),
-        addr_of!(MON_BG_MAP)
-    );
-    let fut = Box::new(summary_screen(back, 0));
+extern "C" fn InitFullSummaryScreen(
+    back: MainCallback,
+    style: Style,
+    pokemons: *mut pokeemerald::Pokemon,
+    count: usize,
+) {
+    let fut = Box::new(summary_screen(back, style, pokemons, count, 0));
     unsafe { SetMainCallback2(Some(main_cb)) }
     *STORED_CALLBACK.borrow_mut() = back;
     EXECUTOR.set(fut);
@@ -42,7 +45,16 @@ extern "C" fn Init_Full_Summary_Screen(back: MainCallback) {
 
 extern "C" fn return_from_party_callback() {
     let index = unsafe { *(&raw mut gLastViewedMonIndex) };
-    let fut = Box::new(summary_screen(*STORED_CALLBACK.borrow(), index));
+    let back = *STORED_CALLBACK.borrow();
+    let count = unsafe { gPlayerPartyCount };
+    let mons = &raw mut gPlayerParty;
+    let fut = Box::new(summary_screen(
+        back,
+        Style::Party,
+        mons.cast(),
+        count as usize,
+        index,
+    ));
     unsafe { SetMainCallback2(Some(main_cb)) }
     EXECUTOR.set(fut);
 }
@@ -56,23 +68,29 @@ extern "C" fn return_from_give_hold_item_callback() {
         }
         poke.set_item(item_to_give);
     }
-
+    let index = *SELECTED_POKE.borrow();
+    let back = *STORED_CALLBACK.borrow();
+    let count = unsafe { gPlayerPartyCount };
+    let mons = &raw mut gPlayerParty;
     let fut = Box::new(summary_screen(
-        *STORED_CALLBACK.borrow(),
-        *SELECTED_POKE.borrow(),
+        back,
+        Style::Party,
+        mons.cast(),
+        count as usize,
+        index,
     ));
     unsafe { SetMainCallback2(Some(main_cb)) }
     EXECUTOR.set(fut);
 }
 
 extern "C" fn main_cb() {
+    EXECUTOR.poll();
     unsafe {
         AnimateSprites();
         BuildOamBuffer();
         DoScheduledBgTilemapCopiesToVram();
         UpdatePaletteFade();
     }
-    EXECUTOR.poll();
 }
 
 extern "C" fn vblank_cb() {
@@ -123,7 +141,6 @@ async fn item_sprite(poke: &Pokemon, index: usize) -> Option<OwnedSprite> {
     let item_info = get_item(item);
     let palette = lz_ptr_res::<{ 2 * 16 }>(item_info.iconPalette.cast());
     let palette = load_obj_palette(6 + index as u8, &palette.load().get());
-    sleep(1).await;
 
     const ICON_SIZE: usize = size_of::<TileBitmap4bpp>() * 3 * 3;
     const SPRITE_SIZE: usize = size_of::<TileBitmap4bpp>() * 4 * 4;
@@ -154,7 +171,7 @@ fn load_type_palettes() {
 }
 
 type TeraSprite<'a> = SheetSprite<'a>;
-async fn tera_sprite<'a>(
+fn tera_sprite<'a>(
     poke: &Pokemon,
     sheet: &'a SpriteSheet<AllocBuf<TileBitmap4bpp>>,
 ) -> Option<TeraSprite<'a>> {
@@ -167,14 +184,14 @@ async fn tera_sprite<'a>(
         anims: unsafe { gSpriteAnimTable_TeraType.as_ptr() },
         ..DUMMY_SPRITE_ANIMS
     };
-    let sprite = SheetSprite::load(&sheet, anims, type_palette(tera)).await;
+    let sprite = SheetSprite::load(&sheet, anims, type_palette(tera));
     sprite.start_animation(tera as u8);
     sprite.set_priority(2);
     sprite.set_subpriority(1);
     Some(sprite)
 }
 
-async fn status_sprite<'a>(
+fn status_sprite<'a>(
     poke: &Pokemon,
     sheet: &'a SpriteSheet<AllocBuf<TileBitmap4bpp>>,
     pal: ObjPalette,
@@ -188,7 +205,7 @@ async fn status_sprite<'a>(
         anims: unsafe { gSpriteAnimTable_StatusCondition.as_ptr() },
         ..DUMMY_SPRITE_ANIMS
     };
-    let sprite = SheetSprite::load(&sheet, anims, pal).await;
+    let sprite = SheetSprite::load(&sheet, anims, pal);
     sprite.start_animation(poke.status() - 1);
     sprite.set_priority(2);
     Some(sprite)
@@ -283,6 +300,7 @@ impl<'a> Entry<'a> {
             ..HP_FILL_RECT_2
         };
         fg.fill_rect(color2, rect2);
+        fg.copy_to_vram();
     }
 
     fn update_bg(&self, bg_type: BackgroundStyle, palettes: &[BgPalette]) {
@@ -354,12 +372,12 @@ impl<'a> Entry<'a> {
         let tile_pos = Vec2D::new(tile_x, tile_y);
 
         let mut sprite = PokemonSpritePic::new(&poke, index);
-        sleep(1).await;
         sprite.handle().set_priority(2);
-        let tera_sprite = tera_sprite(&poke, &resources.tera_sheet).await;
+        sleep(1).await;
+        let tera_sprite = tera_sprite(&poke, &resources.tera_sheet);
         let item_sprite = item_sprite(&poke, index.into()).await;
         let status_sprite =
-            status_sprite(&poke, &resources.status_sheet, resources.status_pal).await;
+            status_sprite(&poke, &resources.status_sheet, resources.status_pal);
 
         let tiles = &resources.tileset.get();
         let block = BLOCK_SIZE * index as u16 + BASE_BLOCK;
@@ -378,9 +396,11 @@ impl<'a> Entry<'a> {
         fg_window.put_tilemap();
         sleep(1).await;
 
-        let mon_bg_map = MON_BG_MAP.load();
+        let mon_bg_map = &resources.mon_slot_map;
         let rect = Rect::from_vecs(Vec2D::new(0, 0), BG_DIM);
         bg_window.copy_tilemap(tiles, &mon_bg_map.get(), rect);
+        sleep(1).await;
+
         bg_window.put_tilemap();
         bg_window.copy_to_vram();
         sleep(1).await;
@@ -401,9 +421,8 @@ impl<'a> Entry<'a> {
 }
 
 struct Menu<'a> {
+    style: Style,
     resources: &'a Resources,
-    scroll_bg: BgHandle<'a>,
-    fixed_bg: BgHandle<'a>,
     fg: BgHandle<'a>,
 
     entries: ArrayVec<Entry<'a>, 6>,
@@ -412,7 +431,7 @@ struct Menu<'a> {
     exit_callback: Box<dyn Fn()>,
 }
 
-#[derive(TryFrom)]
+#[derive(TryFrom, Clone, Copy)]
 #[try_from(repr)]
 #[repr(i32)]
 enum PokeAction {
@@ -420,6 +439,26 @@ enum PokeAction {
     Switch = 2,
     GiveItem = 3,
     TakeItem = 4,
+}
+
+impl PokeAction {
+    fn name(self) -> &'static Pkstr {
+        match self {
+            PokeAction::Summary => pkstr!(b"Summary"),
+            PokeAction::Switch => pkstr!(b"Switch"),
+            PokeAction::GiveItem => pkstr!(b"Give Item"),
+            PokeAction::TakeItem => pkstr!(b"Take Item"),
+        }
+    }
+
+    fn is_available(self, style: Style, poke: &Pokemon) -> bool {
+        match self {
+            PokeAction::Summary => true,
+            PokeAction::Switch => style == Style::Party,
+            PokeAction::GiveItem => style == Style::Party && !poke.is_egg(),
+            PokeAction::TakeItem => style == Style::Party && poke.item().is_some(),
+        }
+    }
 }
 
 fn disjoint_borrow_mut<T>(indices: (usize, usize), slice: &mut [T]) -> (&mut T, &mut T) {
@@ -567,31 +606,23 @@ impl<'a> Menu<'a> {
         let user_window = load_user_window_gfx(self.fg, 0x3D0, 15);
         win.draw_border(user_window);
 
-        const LIST_ITEMS: &[ListMenuItem] = &[
-            ListMenuItem {
-                id: PokeAction::Summary as _,
-                name: pkstr!(b"Summary").as_ptr(),
-            },
-            ListMenuItem {
-                id: PokeAction::Switch as _,
-                name: pkstr!(b"Switch").as_ptr(),
-            },
-            ListMenuItem {
-                id: PokeAction::GiveItem as _,
-                name: pkstr!(b"Give Item").as_ptr(),
-            },
-            ListMenuItem {
-                id: PokeAction::TakeItem as _,
-                name: pkstr!(b"Take Item").as_ptr(),
-            },
-        ];
+        let entry = &self.entries[self.focused_entry as usize];
 
-        let item_list = match self.entries[self.focused_entry as usize].poke.is_egg() {
-            false => LIST_ITEMS,
-            true => &LIST_ITEMS[..2],
-        };
+        let list_items: ArrayVec<ListMenuItem, 6> = [
+            PokeAction::Summary,
+            PokeAction::Switch,
+            PokeAction::GiveItem,
+            PokeAction::TakeItem,
+        ]
+        .into_iter()
+        .filter(|act| act.is_available(self.style, &entry.poke))
+        .map(|act| ListMenuItem {
+            id: act as i32,
+            name: act.name().as_ptr(),
+        })
+        .collect();
 
-        let list = ListMenu::create(&win, item_list, 8, 4, 0, 1, (2, 3), FONT_SMALL);
+        let list = ListMenu::create(&win, &list_items, 8, 4, 0, 1, (2, 3), FONT_SMALL);
         let ret = match list.wait_for_result().await {
             Some(val) => val.try_into().ok(),
             None => None,
@@ -610,13 +641,6 @@ impl<'a> Menu<'a> {
     }
 
     async fn main_loop(&mut self) {
-        for (index, entry) in self.entries.iter().enumerate() {
-            if index as u8 == self.focused_entry {
-                entry.update_bg(BackgroundStyle::Focused, &self.resources.bg_palettes);
-            } else {
-                entry.update_bg(BackgroundStyle::Unfocused, &self.resources.bg_palettes);
-            }
-        }
         loop {
             sleep(1).await;
             if Button::B.pressed() {
@@ -703,7 +727,13 @@ async fn load_resources() -> Resources {
     }
 }
 
-async fn summary_screen(back: MainCallback, index: u8) {
+async fn summary_screen(
+    back: MainCallback,
+    style: Style,
+    pokemons: *mut pokeemerald::Pokemon,
+    count: usize,
+    index: u8,
+) {
     clear_ui().await;
 
     set_gpu_registers(&[
@@ -752,26 +782,31 @@ async fn summary_screen(back: MainCallback, index: u8) {
     let fg = fg.handle();
     fg.set_pos(0, 0);
     fg.show();
-
-    let mut entries: ArrayVec<Entry, 6> = ArrayVec::new();
-    for i in 0..6 {
-        let Some(poke) = Pokemon::get_player_party(i) else {
-            continue;
-        };
-        entries.push(Entry::create(poke, &resources, fixed_bg, fg, i).await);
-    }
     fg.copy_tilemap_to_vram();
-
-    for entry in entries.iter() {
-        sleep(1).await;
-        entry.print_info(&resources);
+    
+    let mut entries: ArrayVec<Entry, 6> = ArrayVec::new();
+    for i in 0..min(6, count) {
+        let poke = Pokemon::from_ptr_and_index(pokemons, i);
+        entries.push(Entry::create(poke, &resources, fixed_bg, fg, i as u8).await);
     }
+    for entry in entries.iter() {
+        entry.print_info(&resources);
+        sleep(1).await;
+    }
+    for (eindex, entry) in entries.iter().enumerate() {
+        let style = match eindex as u8 {
+            i if i == index => BackgroundStyle::Focused,
+            _ => BackgroundStyle::Unfocused,
+        };
+        entry.update_bg(style, &resources.bg_palettes);
+    }
+
     unsafe { SetVBlankCallback(Some(vblank_cb)) };
+    fade_palette(PaletteMask::ALL, 0, 16, 0, 0).await;
 
     let mut menu = Menu {
+        style,
         resources: &resources,
-        scroll_bg,
-        fixed_bg,
         fg,
         entries,
         focused_entry: index,
@@ -779,6 +814,7 @@ async fn summary_screen(back: MainCallback, index: u8) {
     };
 
     menu.main_loop().await;
+    fade_palette(PaletteMask::ALL, 0, 0, 16, 0).await;
     (menu.exit_callback)();
 }
 
