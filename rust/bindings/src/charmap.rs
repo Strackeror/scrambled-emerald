@@ -16,6 +16,9 @@ impl Pkstr {
     pub fn len(&self) -> usize {
         self.0.len()
     }
+    pub fn is_empty(&self) -> bool {
+        self.len() == 0
+    }
 }
 
 pub struct ArrayPkstr<const CAP: usize>(ArrayVec<u8, CAP>);
@@ -27,7 +30,7 @@ impl<const CAP: usize> ArrayPkstr<CAP> {
         a
     }
 
-    pub fn from_str(str: &str) -> Self {
+    pub fn new_str(str: &str) -> Self {
         let mut a = ArrayVec::<u8, CAP>::new();
         for char in str.chars() {
             a.push(map(char as u8));
@@ -150,5 +153,7 @@ pub const fn pkstr_build<const S: usize>(input: &[u8]) -> [u8; S] {
 }
 
 pub const unsafe fn pkstr_raw(src: &[u8]) -> &Pkstr {
-    &*(&raw const *src as *const Pkstr)
+    unsafe {
+        &*(&raw const *src as *const Pkstr)
+    }
 }

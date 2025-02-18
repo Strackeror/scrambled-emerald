@@ -8,10 +8,14 @@ pub struct Pokemon {
 }
 
 impl Pokemon {
-    pub fn from_ptr_and_index(ptr: *mut pokeemerald::Pokemon, index: usize) -> Self {
+    pub unsafe fn from_ptr_and_index(ptr: *mut pokeemerald::Pokemon, index: usize) -> Self {
         Pokemon {
             ptr: unsafe { ptr.add(index) },
         }
+    }
+
+    pub fn as_ptr(&self) -> *mut pokeemerald::Pokemon {
+        self.ptr
     }
     pub fn get_player_party(index: u8) -> Option<Pokemon> {
         unsafe {
@@ -28,7 +32,7 @@ impl Pokemon {
         unsafe { GetMonData2(self.ptr, data as i32) }
     }
 
-    pub fn set_mon_data(&self, data: u32, ptr: *const c_void) {
+    pub unsafe fn set_mon_data(&self, data: u32, ptr: *const c_void) {
         unsafe { SetMonData(self.ptr, data as i32, ptr) };
     }
 
@@ -44,8 +48,8 @@ impl Pokemon {
         self.get_mon_data(MON_DATA_MAX_HP) as u16
     }
 
-    pub fn name(&self) -> ArrayPkstr<12> {
-        let mut slice = [0u8; 12];
+    pub fn name(&self) -> ArrayPkstr<13> {
+        let mut slice = [0xFF; 13];
         unsafe { GetMonData3(self.ptr, MON_DATA_NICKNAME as _, slice.as_mut_ptr()) };
         unsafe { ArrayPkstr::from_slice(&slice) }
     }
@@ -74,19 +78,19 @@ impl Pokemon {
         }
     }
     pub fn set_item(&self, item: u16) {
-        self.set_mon_data(MON_DATA_HELD_ITEM, (&raw const item).cast());
+        unsafe { self.set_mon_data(MON_DATA_HELD_ITEM, (&raw const item).cast()); }
     }
 
     pub fn status(&self) -> u8 {
         if self.hp() == 0 {
             return 7; // AILMENT_FNT
         }
-        unsafe { GetAilmentFromStatus(self.get_mon_data(MON_DATA_STATUS) as u32) }
+        unsafe { GetAilmentFromStatus(self.get_mon_data(MON_DATA_STATUS)) }
     }
 
     pub fn swap(this: &mut Self, other: &mut Self) {
         unsafe {
-            core::mem::swap(&mut *this.ptr, &mut *other.ptr);
+            core::ptr::swap(this.ptr, other.ptr);
         }
     }
 }

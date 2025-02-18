@@ -1,0 +1,14 @@
+[package]
+name = "bindings"
+version = "0.1.0"
+edition = "2024"
+
+[build-dependencies]
+bindgen = "0.71.1"
+
+[dependencies]
+arrayvec = { version = "0.7.6", default-features = false}
+derive_more = { version = "2.0.1", default-features = false, features = ["add", "add_assign", "constructor", "mul", "mul_assign", "try_from"] }
+
+[features]
+debug = []

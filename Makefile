@@ -319,6 +319,7 @@ include map_data_rules.mk
 include spritesheet_rules.mk
 include json_data_rules.mk
 include audio_rules.mk
+include rust/rust.mk
 
 # NOTE: Tools must have been built prior (FIXME)
 # so you can't really call this rule directly
@@ -443,16 +444,6 @@ LD_SCRIPT_DEPS :=
 
 libagbsyscall:
 	@$(MAKE) -C libagbsyscall TOOLCHAIN=$(TOOLCHAIN) MODERN=1
-
-RUST_INC_FILES :=\
-	graphics/party_menu_full/bg.bin.lz\
-	graphics/party_menu_full/tiles.gbapal.lz\
-	graphics/party_menu_full/tiles.4bpp.lz\
-	graphics/party_menu_full/mon_bg.bin.lz\
-	graphics/party_menu_full/hp.plain.bin.lz
-
-librust: $(RUST_INC_FILES)
-	cd rust && cargo build --release
 
 # Elf from object files
 LDFLAGS = -Map ../../$(MAP)

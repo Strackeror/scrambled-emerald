@@ -5,6 +5,9 @@ build-std-features = ["compiler-builtins-mem"]
 [build]
 target = "thumbv4t-none-eabi"
 
+[profile.release]
+debug = true
+
 [target.thumbv4t-none-eabi]
 rustflags = [
     "-Clink-arg=-Tgba.ld",

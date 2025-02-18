@@ -1,15 +1,18 @@
 [package]
 name = "pokeemerald-rs"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
 
 [dependencies]
-arrayvec.default-features = false
-arrayvec.version = "0.7.6"
-derive_more = { version = "2.0.1", default-features = false, features = ["add", "add_assign", "constructor", "mul", "mul_assign", "try_from"] }
+arrayvec = { version = "0.7.6", default-features = false }
+bindings = { path = "bindings" , features = ["debug"]}
+derive_more = { version = "2.0.1", default-features = false, features = [
+    "try_from",
+] }
 
 [lib]
 crate-type = ["staticlib"]
 
-[build-dependencies]
-bindgen = "0.71.1"
+
+[workspace]
+members = ["bindings"]

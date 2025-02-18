@@ -1,6 +1,6 @@
 use core::cmp::min;
 use core::fmt::{self, Arguments, Write as _};
-use core::{mem, usize};
+use core::mem;
 
 pub use arrayvec::ArrayString;
 use arrayvec::ArrayVec;

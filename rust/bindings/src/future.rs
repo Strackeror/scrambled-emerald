@@ -1,5 +1,5 @@
 use alloc::boxed::Box;
-use core::cell::{RefCell, UnsafeCell};
+use core::cell::RefCell;
 use core::future::Future;
 use core::ops::Deref;
 use core::pin::Pin;
@@ -45,7 +45,22 @@ impl FuturePoll {
     }
 }
 
-pub(crate) struct Done;
+pub fn sleep(count: usize) -> impl Future<Output = ()> {
+    struct Count(usize);
+    impl Future for Count {
+        type Output = ();
+        fn poll(mut self: Pin<&mut Self>, _cx: &mut Context<'_>) -> Poll<Self::Output> {
+            if self.0 == 0 {
+                return Poll::Ready(());
+            }
+            self.0 -= 1;
+            Poll::Pending
+        }
+    }
+    Count(count)
+}
+
+pub struct Done;
 
 // Workarounds weeee
 #[repr(transparent)]
@@ -75,5 +90,11 @@ impl Executor {
 
     pub fn poll(&self) -> Option<Done> {
         self.0.borrow_mut().poll()
+    }
+}
+
+impl Default for Executor {
+    fn default() -> Self {
+        Self::new()
     }
 }

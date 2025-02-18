@@ -1,26 +1,59 @@
 use alloc::boxed::Box;
 use alloc::vec;
 use core::cmp::min;
-use core::future::Future;
 use core::mem::swap;
-use core::pin::Pin;
-use core::task::{Context, Poll};
 
 use arrayvec::ArrayVec;
-use data::{get_item, Pokemon};
+use bindings::charmap::{ArrayPkstr, Pkstr};
+use bindings::data::{Pokemon, get_item};
+use bindings::future::{sleep, Executor, RefCellSync};
+use bindings::graphics::{ListMenu, Sprite, SpriteSheet, Tileset, Window, *};
+use bindings::input::Button;
+use bindings::pokeemerald::{self, *};
+use bindings::resources::{AllocBuf, Buffer, lz_ptr_res, static_deref};
+use bindings::{aformat, include_res_lz, mgba_warn, pkstr};
 use derive_more::TryFrom;
-use graphics::{ListMenu, Sprite, SpriteSheet, Tileset, Window, *};
-
-use crate::charmap::{ArrayPkstr, Pkstr};
-use crate::future::{Executor, RefCellSync};
-use crate::input::Button;
-use crate::pokeemerald::{self, *};
-use crate::resources::{lz_ptr_res, AllocBuf, Buffer};
-use crate::{aformat, include_res_lz, pkstr};
 
 static EXECUTOR: Executor = Executor::new();
 static STORED_CALLBACK: RefCellSync<MainCallback> = RefCellSync::new(None);
 static SELECTED_POKE: RefCellSync<u8> = RefCellSync::new(0);
+
+const TYPE_ANIMS: &[*const AnimCmd] = &[
+    [anim_frame(0, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(4, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(8, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(12, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(16, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(20, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(24, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(28, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(32, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(36, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(40, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(44, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(48, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(52, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(56, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(60, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(64, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(68, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(72, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(76, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(80, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(84, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(88, 0, false, false), anim_end()].as_ptr(),
+];
+
+const STATUS_ANIMS: &[*const AnimCmd] = &[
+    [anim_frame(0, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(4, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(8, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(12, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(16, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(20, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(24, 0, false, false), anim_end()].as_ptr(),
+    [anim_frame(28, 0, false, false), anim_end()].as_ptr(),
+];
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(u8)]
@@ -30,7 +63,7 @@ pub enum Style {
     ReadOnly = 1,
 }
 
-#[no_mangle]
+#[unsafe(no_mangle)]
 extern "C" fn InitFullSummaryScreen(
     back: MainCallback,
     style: Style,
@@ -38,13 +71,20 @@ extern "C" fn InitFullSummaryScreen(
     count: usize,
 ) {
     let fut = Box::new(summary_screen(back, style, pokemons, count, 0));
+    mgba_warn!(
+        "heap: {:?} fut:{:?}-{:x?}",
+        &raw const gHeap,
+        &raw const *fut,
+        (&raw const *fut as usize) + size_of_val(&*fut)
+    );
+
     unsafe { SetMainCallback2(Some(main_cb)) }
     *STORED_CALLBACK.borrow_mut() = back;
     EXECUTOR.set(fut);
 }
 
 extern "C" fn return_from_party_callback() {
-    let index = unsafe { *(&raw mut gLastViewedMonIndex) };
+    let index = unsafe { *static_deref(&raw mut gPartyMenu.slotId) } as u8;
     let back = *STORED_CALLBACK.borrow();
     let count = unsafe { gPlayerPartyCount };
     let mons = &raw mut gPlayerParty;
@@ -60,7 +100,7 @@ extern "C" fn return_from_party_callback() {
 }
 
 extern "C" fn return_from_give_hold_item_callback() {
-    if let Some(poke) = Pokemon::get_player_party(*SELECTED_POKE.borrow() as u8) {
+    if let Some(poke) = Pokemon::get_player_party(*SELECTED_POKE.borrow()) {
         let item_to_give = unsafe { gSpecialVar_ItemId };
         unsafe { RemoveBagItem(item_to_give, 1) };
         if let Some(item) = poke.item() {
@@ -105,39 +145,34 @@ extern "C" fn vblank_cb() {
 
 const MON_POS: [(u8, u8); 6] = [(1, 1), (11, 1), (21, 1), (1, 10), (11, 10), (21, 10)];
 
-mod data;
-mod graphics;
-
-include_res_lz!(TILESET, "../../graphics/party_menu_full/tiles.4bpp");
-include_res_lz!(PAL, "../../graphics/party_menu_full/tiles.gbapal");
-include_res_lz!(SCROLL_BG_MAP, "../../graphics/party_menu_full/bg.bin");
-include_res_lz!(MON_BG_MAP, "../../graphics/party_menu_full/mon_bg.bin");
-include_res_lz!(HP_MAP, "../../graphics/party_menu_full/hp.plain.bin");
+include_res_lz!(TILESET, "../graphics/party_menu_full/tiles.4bpp");
+include_res_lz!(PAL, "../graphics/party_menu_full/tiles.gbapal");
+include_res_lz!(SCROLL_BG_MAP, "../graphics/party_menu_full/bg.bin");
+include_res_lz!(MON_BG_MAP, "../graphics/party_menu_full/mon_bg.bin");
+include_res_lz!(HP_MAP, "../graphics/party_menu_full/hp.plain.bin");
 
 include_res_lz!(
     TERA_SPRITE,
-    "../../graphics/types_bw/tera/tera_types_bw.4bpp"
+    "../graphics/party_menu_full/tera/tera_types.4bpp"
 );
 include_res_lz!(
     TERA_SPRITE_PAL,
-    "../../graphics/types_bw/move_types_bw.gbapal"
+    "../graphics/party_menu_full/tera/tera_types.gbapal"
 );
 
 include_res_lz!(
     STATUS_SHEET,
-    "../../graphics/summary_screen/bw/status_icons.4bpp"
+    "../graphics/party_menu_full/status_icons.4bpp"
 );
 
 include_res_lz!(
     STATUS_PAL,
-    "../../graphics/summary_screen/bw/status_icons.gbapal"
+    "../graphics/party_menu_full/status_icons.gbapal"
 );
 
 type OwnedSprite = Sprite<AllocBuf<TileBitmap4bpp>>;
 async fn item_sprite(poke: &Pokemon, index: usize) -> Option<OwnedSprite> {
-    let Some(item) = poke.item() else {
-        return None;
-    };
+    let item = poke.item()?;
     let item_info = get_item(item);
     let palette = lz_ptr_res::<{ 2 * 16 }>(item_info.iconPalette.cast());
     let palette = load_obj_palette(6 + index as u8, &palette.load().get());
@@ -181,10 +216,10 @@ fn tera_sprite<'a>(
 
     let tera = poke.tera_type();
     let anims = SpriteAnims {
-        anims: unsafe { gSpriteAnimTable_TeraType.as_ptr() },
+        anims: TYPE_ANIMS.as_ptr(),
         ..DUMMY_SPRITE_ANIMS
     };
-    let sprite = SheetSprite::load(&sheet, anims, type_palette(tera));
+    let sprite = SheetSprite::load(sheet, anims, type_palette(tera));
     sprite.start_animation(tera as u8);
     sprite.set_priority(2);
     sprite.set_subpriority(1);
@@ -202,10 +237,10 @@ fn status_sprite<'a>(
     }
 
     let anims = SpriteAnims {
-        anims: unsafe { gSpriteAnimTable_StatusCondition.as_ptr() },
+        anims: STATUS_ANIMS.as_ptr(),
         ..DUMMY_SPRITE_ANIMS
     };
-    let sprite = SheetSprite::load(&sheet, anims, pal);
+    let sprite = SheetSprite::load(sheet, anims, pal);
     sprite.start_animation(poke.status() - 1);
     sprite.set_priority(2);
     Some(sprite)
@@ -257,22 +292,22 @@ impl<'a> Entry<'a> {
 
         let fg = &self.fg_window;
 
-        let printer_params = Font {
+        let font = Font {
             bg_color: 0,
             fg_color: 4,
             shadow_color: 7,
             ..Font::new(FONT_SMALL_NARROWER as _)
         };
 
-        fg.print_text(&self.poke.name(), Vec2D::new(4, 0), printer_params);
+        fg.print_text(&self.poke.name(), Vec2D::new(4, 0), font);
         if self.poke.is_egg() {
             return;
         }
 
         let lv = aformat!(5, "Lv{}", self.poke.level());
-        let lv = ArrayPkstr::<6>::from_str(&lv);
-        let lv_pos = Vec2D::new(69 - printer_params.width_for(&lv) as u8, 0);
-        fg.print_text(&lv, lv_pos, printer_params);
+        let lv = ArrayPkstr::<6>::new_str(&lv);
+        let lv_pos = Vec2D::new(69 - font.width_for(&lv) as u8, 0);
+        fg.print_text(&lv, lv_pos, font);
         fg.copy_tilemap(
             &resource.tileset.get(),
             &resource.hp_bar_map.get(),
@@ -280,8 +315,8 @@ impl<'a> Entry<'a> {
         );
 
         let hp = aformat!(10, "{:<3}/{:<3}", self.poke.hp(), self.poke.max_hp());
-        let hp = ArrayPkstr::<11>::from_str(&hp);
-        fg.print_text(&hp, Vec2D { x: 3, y: 45 }, printer_params);
+        let hp = ArrayPkstr::<11>::new_str(&hp);
+        fg.print_text(&hp, Vec2D { x: 3, y: 45 }, font);
 
         let width = self.poke.hp() * HP_FILL_RECT_1.width / self.poke.max_hp();
         let (color1, color2) = match width {
@@ -305,7 +340,7 @@ impl<'a> Entry<'a> {
 
     fn update_bg(&self, bg_type: BackgroundStyle, palettes: &[BgPalette]) {
         let bg = &self.bg_window;
-        let ko = self.poke.hp() <= 0;
+        let ko = self.poke.hp() == 0;
         let bg_type = match bg_type {
             BackgroundStyle::Focused if ko => BackgroundStyle::KoFocused,
             BackgroundStyle::Unfocused if ko => BackgroundStyle::KoUnfocused,
@@ -376,8 +411,7 @@ impl<'a> Entry<'a> {
         sleep(1).await;
         let tera_sprite = tera_sprite(&poke, &resources.tera_sheet);
         let item_sprite = item_sprite(&poke, index.into()).await;
-        let status_sprite =
-            status_sprite(&poke, &resources.status_sheet, resources.status_pal);
+        let status_sprite = status_sprite(&poke, &resources.status_sheet, resources.status_pal);
 
         let tiles = &resources.tileset.get();
         let block = BLOCK_SIZE * index as u16 + BASE_BLOCK;
@@ -401,6 +435,8 @@ impl<'a> Entry<'a> {
         bg_window.copy_tilemap(tiles, &mon_bg_map.get(), rect);
         sleep(1).await;
 
+        mgba_warn!("{:?} {:?}", fg_window, bg_window);
+
         bg_window.put_tilemap();
         bg_window.copy_to_vram();
         sleep(1).await;
@@ -421,6 +457,8 @@ impl<'a> Entry<'a> {
 }
 
 struct Menu<'a> {
+    pokemons: *mut pokeemerald::Pokemon,
+
     style: Style,
     resources: &'a Resources,
     fg: BgHandle<'a>,
@@ -476,7 +514,7 @@ fn disjoint_borrow_mut<T>(indices: (usize, usize), slice: &mut [T]) -> (&mut T, 
     }
 }
 
-impl<'a> Menu<'a> {
+impl Menu<'_> {
     fn index_updown(&self, base: u8, delta: i8) -> u8 {
         let max = self.entries.len() as i8;
         let new = base as i8 + delta;
@@ -499,7 +537,7 @@ impl<'a> Menu<'a> {
         if Button::Up.pressed() || Button::Down.pressed() {
             return self.index_updown(index, -3);
         }
-        return index;
+        index
     }
 
     fn change_focus(&mut self, new_index: u8) {
@@ -512,11 +550,11 @@ impl<'a> Menu<'a> {
     fn open_summary_screen(&mut self) {
         let focused_entry = self.focused_entry;
         let max = self.entries.len() as u8 - 1;
+        let pokemons = self.pokemons;
         self.exit_callback = Box::new(move || unsafe {
-            ShowPokemonSummaryScreen_BW(
-                PokemonSummaryScreenMode_BW_BW_SUMMARY_MODE_NORMAL as u8,
-                #[allow(static_mut_refs)]
-                gPlayerParty.as_mut_ptr().cast(),
+            ShowPokemonSummaryScreen(
+                PokemonSummaryScreenMode::SUMMARY_MODE_NORMAL as u8,
+                pokemons.cast(),
                 focused_entry,
                 max,
                 Some(return_from_party_callback),
@@ -586,9 +624,9 @@ impl<'a> Menu<'a> {
                 let indices = (self.focused_entry as usize, switch);
                 let (a, b) = disjoint_borrow_mut(indices, &mut self.entries);
                 a.switch(b, 20).await;
-                a.print_info(&self.resources);
+                a.print_info(self.resources);
+                b.print_info(self.resources);
                 a.fg_window.copy_to_vram();
-                b.print_info(&self.resources);
                 b.fg_window.copy_to_vram();
                 self.entries[switch].update_bg(BackgroundStyle::Unfocused, palettes);
             }
@@ -622,7 +660,7 @@ impl<'a> Menu<'a> {
         })
         .collect();
 
-        let list = ListMenu::create(&win, &list_items, 8, 4, 0, 1, (2, 3), FONT_SMALL);
+        let list = ListMenu::create(&win, &list_items, 8, 4, 0, [2, 1, 3], FONT_SMALL);
         let ret = match list.wait_for_result().await {
             Some(val) => val.try_into().ok(),
             None => None,
@@ -783,12 +821,13 @@ async fn summary_screen(
     fg.set_pos(0, 0);
     fg.show();
     fg.copy_tilemap_to_vram();
-    
+
     let mut entries: ArrayVec<Entry, 6> = ArrayVec::new();
     for i in 0..min(6, count) {
-        let poke = Pokemon::from_ptr_and_index(pokemons, i);
+        let poke = unsafe { Pokemon::from_ptr_and_index(pokemons, i) };
         entries.push(Entry::create(poke, &resources, fixed_bg, fg, i as u8).await);
     }
+
     for entry in entries.iter() {
         entry.print_info(&resources);
         sleep(1).await;
@@ -805,6 +844,7 @@ async fn summary_screen(
     fade_palette(PaletteMask::ALL, 0, 16, 0, 0).await;
 
     let mut menu = Menu {
+        pokemons,
         style,
         resources: &resources,
         fg,
@@ -834,21 +874,10 @@ async fn clear_ui() {
         FreeAllSpritePalettes();
         sleep(1).await;
 
+        Window::clear_all();
+        sleep(1).await;
+
         ResetBgsAndClearDma3BusyFlags(0);
     }
 }
 
-fn sleep(frames: usize) -> impl Future<Output = ()> {
-    struct WaitUntil(usize);
-    impl Future for WaitUntil {
-        type Output = ();
-        fn poll(mut self: Pin<&mut Self>, _cx: &mut Context<'_>) -> Poll<Self::Output> {
-            if self.0 == 0 {
-                return Poll::Ready(());
-            }
-            self.0 -= 1;
-            Poll::Pending
-        }
-    }
-    WaitUntil(frames)
-}

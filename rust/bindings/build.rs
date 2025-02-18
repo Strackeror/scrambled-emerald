@@ -5,7 +5,7 @@ fn main() {
     let output_path = PathBuf::from(env::var("OUT_DIR").unwrap());
     let base_path = env::current_dir()
         .unwrap()
-        .join("..")
+        .join("../..")
         .canonicalize()
         .unwrap();
     let include_path = base_path.join("include");
@@ -15,10 +15,9 @@ fn main() {
         .clang_args([
             "-I/usr/arm-none-eabi/include",
             "-iquote",
-            &format!("{include_path}"),
+            include_path,
         ])
         .clang_args(["--target=arm-none-eabi", "-mthumb", "-march=armv4t"])
-        .allowlist_file(".*/bw_summary_screen.h")
         .allowlist_file(".*/list_menu.h")
         .allowlist_file(".*/pokemon.h")
         .allowlist_file(".*/item.h")
@@ -26,6 +25,7 @@ fn main() {
         .allowlist_file(".*/item_menu.h")
         .allowlist_file(".*/party_menu.h")
         .allowlist_file(".*/trainer_pokemon_sprites.h")
+        .allowlist_file(".*/pokemon_summary_screen.h")
         .allowlist_file(".*/task.h")
         .allowlist_file(".*/malloc.h")
         .allowlist_file(".*/window.h")
@@ -46,6 +46,7 @@ fn main() {
         .allowlist_item("gLastViewedMonIndex")
         .allowlist_item("gTypesInfo")
         .opaque_type("PokemonSubstruct3")
+        .rustified_enum("PokemonSummaryScreenMode")
         .derive_default(true)
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
         .use_core();
