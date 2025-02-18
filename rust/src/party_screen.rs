@@ -6,7 +6,7 @@ use core::mem::swap;
 use arrayvec::ArrayVec;
 use bindings::charmap::{ArrayPkstr, Pkstr};
 use bindings::data::{Pokemon, get_item};
-use bindings::future::{sleep, Executor, RefCellSync};
+use bindings::future::{Executor, RefCellSync, sleep};
 use bindings::graphics::{ListMenu, Sprite, SpriteSheet, Tileset, Window, *};
 use bindings::input::Button;
 use bindings::pokeemerald::{self, *};
@@ -84,7 +84,7 @@ extern "C" fn InitFullSummaryScreen(
 }
 
 extern "C" fn return_from_party_callback() {
-    let index = unsafe { *static_deref(&raw mut gPartyMenu.slotId) } as u8;
+    let index = unsafe { *static_deref(&raw mut gSelectedMonPartyId) } as u8;
     let back = *STORED_CALLBACK.borrow();
     let count = unsafe { gPlayerPartyCount };
     let mons = &raw mut gPlayerParty;
@@ -880,4 +880,3 @@ async fn clear_ui() {
         ResetBgsAndClearDma3BusyFlags(0);
     }
 }
-
