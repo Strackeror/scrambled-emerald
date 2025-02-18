@@ -1,5 +1,6 @@
 # scrambled-emerald
 Decomp project. Backport of Scrambled Scarlet
+Rust branch
 
 Includes code/resources from
 - [RH-Hideout's pokeemerald expansion](https://github.com/rh-hideout/pokeemerald-expansion)
