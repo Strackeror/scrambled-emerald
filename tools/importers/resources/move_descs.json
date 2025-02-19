@@ -851,7 +851,6 @@
     "The user summons power from the moon to heal itself\nand all allies to FULL HP, and has +4 priority.",
     "The user summons its mysterious power.\nThis gives +1 to ALL stats in addition to healing\nany status conditions. -1 Priority, drops Speed by 2 after.",
     "If the user has Terastallized, it unleashes energy of its\nTera Type. This move inflicts damage using Attack or\nSp. Atk-whichever's higher. 50/50 to drop Defenses.",
-    "Inflicts damage with the user's Attack or Sp. Atk stat-\nwhichever is higher. Super effective against Terastallized\ntargets. This lowers the user's Attack and Sp. Atk stats.",
     "The user spins a silken trap, protecting itself from\ndamage while lowering the Speed stat of any attacker\nthat makes direct contact.",
     "The use leaps high into the air and kicks from above.\nThis deals 50% of your own HP in recoil if this attack\nmisses or otherwise fails. Contact.",
     "The user attacks to avenge its allies.\nFor each time an ally has fainted, this gains 50 BP.\nOnly the AI has access to this move.",

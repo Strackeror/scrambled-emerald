@@ -42,6 +42,7 @@ fn fix_table(mut array: WazaArray, map: &HashMap<String, usize>) -> WazaArray {
 }
 
 pub fn moves() -> Result<()> {
+    println!("REMEMBER TO REMOVE TERA-BLAST DOUBLE DESC");
     const MOVE_INFO_PATH: &str = "../../src/data/moves_info.h";
     let modded: WazaArray = serde_json::from_slice(&read("resources/waza_array.json")?)?;
     let vanilla: WazaArray = serde_json::from_slice(&read("resources/waza_array.previous.json")?)?;
