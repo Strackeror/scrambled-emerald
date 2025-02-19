@@ -7955,7 +7955,10 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
         .assistBanned = TRUE,
-        .additionalEffects = ADDITIONAL_EFFECTS({.moveEffect = MOVE_EFFECT_FLINCH,.chance = 30,},),
+        .additionalEffects = ADDITIONAL_EFFECTS(
+            { .moveEffect = MOVE_EFFECT_FLINCH, .chance = 30, },
+            { .moveEffect = MOVE_EFFECT_STEAL_ITEM, }
+        ),
         .contestEffect = CONTEST_EFFECT_APPEAL_AS_GOOD_AS_PREV_ONES,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
