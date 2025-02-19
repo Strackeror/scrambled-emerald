@@ -37837,7 +37837,7 @@
         "fstat3_percent": 0
       },
       "move_category": "Attack",
-      "contact": true,
+      "contact": false,
       "flag_charge": false,
       "flag_rechargeg": false,
       "protect_flag": true,
@@ -76476,7 +76476,7 @@
       "flag_fail_mimic": false,
       "flag_fail_instruct": false,
       "flag_powder": false,
-      "mega_launcher_flag": false,
+      "mega_launcher_flag": true,
       "bulletproof_flag": false,
       "flag_no_multi_hit": false,
       "flag_no_effectiveness": false,

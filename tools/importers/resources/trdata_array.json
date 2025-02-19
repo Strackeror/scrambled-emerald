@@ -323,6 +323,3166 @@
       "is_strong": false,
       "battle_type": "Single",
       "data_type": 0,
+      "money_rate": 60,
+      "change_gem": false,
+      "poke1": {
+        "poke_id": "Pikachu",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 1,
+        "ball_id": 1,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "No",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke2": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke3": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke4": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke5": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke6": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "ai_basic": true,
+      "ai_high": true,
+      "ai_expert": true,
+      "ai_double": true,
+      "ai_raid": false,
+      "ai_weak": false,
+      "ai_item": false,
+      "ai_change": false,
+      "popup_label_normal1": "",
+      "popup_label_normal2": "",
+      "popup_label_pinch1": "",
+      "popup_label_pinch2": ""
+    },
+    {
+      "tr_id": "00_test_data",
+      "tr_name_label": "",
+      "trainer_type": "karate",
+      "is_strong": false,
+      "battle_type": "Single",
+      "data_type": 0,
+      "money_rate": 50,
+      "change_gem": false,
+      "poke1": {
+        "poke_id": "Pikachu",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 1,
+        "ball_id": 1,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "No",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke2": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke3": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke4": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke5": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke6": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "ai_basic": true,
+      "ai_high": true,
+      "ai_expert": true,
+      "ai_double": true,
+      "ai_raid": false,
+      "ai_weak": false,
+      "ai_item": false,
+      "ai_change": false,
+      "popup_label_normal1": "",
+      "popup_label_normal2": "",
+      "popup_label_pinch1": "",
+      "popup_label_pinch2": ""
+    },
+    {
+      "tr_id": "00_test_data",
+      "tr_name_label": "",
+      "trainer_type": "karate",
+      "is_strong": false,
+      "battle_type": "Single",
+      "data_type": 0,
+      "money_rate": 50,
+      "change_gem": true,
+      "poke1": {
+        "poke_id": "Pikachu",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 1,
+        "ball_id": 1,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "No",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke2": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke3": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke4": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke5": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke6": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "ai_basic": true,
+      "ai_high": true,
+      "ai_expert": true,
+      "ai_double": false,
+      "ai_raid": false,
+      "ai_weak": false,
+      "ai_item": false,
+      "ai_change": false,
+      "popup_label_normal1": "",
+      "popup_label_normal2": "",
+      "popup_label_pinch1": "",
+      "popup_label_pinch2": ""
+    },
+    {
+      "tr_id": "00_test_data",
+      "tr_name_label": "",
+      "trainer_type": "karate",
+      "is_strong": false,
+      "battle_type": "Single",
+      "data_type": 0,
+      "money_rate": 50,
+      "change_gem": true,
+      "poke1": {
+        "poke_id": "Pikachu",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 1,
+        "ball_id": 1,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "No",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke2": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke3": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke4": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke5": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke6": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "ai_basic": true,
+      "ai_high": true,
+      "ai_expert": true,
+      "ai_double": false,
+      "ai_raid": false,
+      "ai_weak": false,
+      "ai_item": false,
+      "ai_change": false,
+      "popup_label_normal1": "",
+      "popup_label_normal2": "",
+      "popup_label_pinch1": "",
+      "popup_label_pinch2": ""
+    },
+    {
+      "tr_id": "00_test_data",
+      "tr_name_label": "",
+      "trainer_type": "karate",
+      "is_strong": false,
+      "battle_type": "Single",
+      "data_type": 0,
+      "money_rate": 20,
+      "change_gem": true,
+      "poke1": {
+        "poke_id": "Pikachu",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 1,
+        "ball_id": 1,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "No",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke2": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke3": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke4": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke5": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke6": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "ai_basic": true,
+      "ai_high": true,
+      "ai_expert": true,
+      "ai_double": false,
+      "ai_raid": false,
+      "ai_weak": false,
+      "ai_item": false,
+      "ai_change": false,
+      "popup_label_normal1": "",
+      "popup_label_normal2": "",
+      "popup_label_pinch1": "",
+      "popup_label_pinch2": ""
+    },
+    {
+      "tr_id": "00_test_data",
+      "tr_name_label": "",
+      "trainer_type": "karate",
+      "is_strong": false,
+      "battle_type": "Single",
+      "data_type": 0,
+      "money_rate": 20,
+      "change_gem": true,
+      "poke1": {
+        "poke_id": "Pikachu",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 1,
+        "ball_id": 1,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "No",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke2": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke3": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke4": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke5": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke6": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "ai_basic": true,
+      "ai_high": true,
+      "ai_expert": true,
+      "ai_double": false,
+      "ai_raid": false,
+      "ai_weak": false,
+      "ai_item": false,
+      "ai_change": false,
+      "popup_label_normal1": "",
+      "popup_label_normal2": "",
+      "popup_label_pinch1": "",
+      "popup_label_pinch2": ""
+    },
+    {
+      "tr_id": "00_test_data",
+      "tr_name_label": "",
+      "trainer_type": "karate",
+      "is_strong": false,
+      "battle_type": "Single",
+      "data_type": 0,
+      "money_rate": 15,
+      "change_gem": true,
+      "poke1": {
+        "poke_id": "Pikachu",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 1,
+        "ball_id": 1,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "No",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke2": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke3": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke4": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke5": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke6": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "ai_basic": true,
+      "ai_high": true,
+      "ai_expert": true,
+      "ai_double": false,
+      "ai_raid": false,
+      "ai_weak": false,
+      "ai_item": false,
+      "ai_change": false,
+      "popup_label_normal1": "",
+      "popup_label_normal2": "",
+      "popup_label_pinch1": "",
+      "popup_label_pinch2": ""
+    },
+    {
+      "tr_id": "00_test_data",
+      "tr_name_label": "",
+      "trainer_type": "karate",
+      "is_strong": false,
+      "battle_type": "Single",
+      "data_type": 0,
+      "money_rate": 15,
+      "change_gem": true,
+      "poke1": {
+        "poke_id": "Pikachu",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 1,
+        "ball_id": 1,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "No",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke2": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke3": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke4": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke5": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke6": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "ai_basic": true,
+      "ai_high": true,
+      "ai_expert": true,
+      "ai_double": false,
+      "ai_raid": false,
+      "ai_weak": false,
+      "ai_item": false,
+      "ai_change": false,
+      "popup_label_normal1": "",
+      "popup_label_normal2": "",
+      "popup_label_pinch1": "",
+      "popup_label_pinch2": ""
+    },
+    {
+      "tr_id": "00_test_data",
+      "tr_name_label": "",
+      "trainer_type": "karate",
+      "is_strong": false,
+      "battle_type": "Single",
+      "data_type": 0,
+      "money_rate": 15,
+      "change_gem": true,
+      "poke1": {
+        "poke_id": "Pikachu",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 1,
+        "ball_id": 1,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "No",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke2": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke3": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke4": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke5": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke6": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "ai_basic": true,
+      "ai_high": true,
+      "ai_expert": true,
+      "ai_double": false,
+      "ai_raid": false,
+      "ai_weak": false,
+      "ai_item": false,
+      "ai_change": false,
+      "popup_label_normal1": "",
+      "popup_label_normal2": "",
+      "popup_label_pinch1": "",
+      "popup_label_pinch2": ""
+    },
+    {
+      "tr_id": "00_test_data",
+      "tr_name_label": "",
+      "trainer_type": "karate",
+      "is_strong": false,
+      "battle_type": "Single",
+      "data_type": 0,
+      "money_rate": 50,
+      "change_gem": true,
+      "poke1": {
+        "poke_id": "Pikachu",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 1,
+        "ball_id": 1,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "No",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke2": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke3": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke4": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke5": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke6": {
+        "poke_id": "Egg",
+        "form_id": 0,
+        "sex": "Default",
+        "item": "NONE",
+        "level": 0,
+        "ball_id": 0,
+        "waza_type": "Default",
+        "move1": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move2": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move3": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "NONE",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Default",
+        "ability": "Random_12",
+        "iv": "Random",
+        "iv_values": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 0
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "ai_basic": true,
+      "ai_high": true,
+      "ai_expert": true,
+      "ai_double": false,
+      "ai_raid": false,
+      "ai_weak": false,
+      "ai_item": false,
+      "ai_change": false,
+      "popup_label_normal1": "",
+      "popup_label_normal2": "",
+      "popup_label_pinch1": "",
+      "popup_label_pinch2": ""
+    },
+    {
+      "tr_id": "00_test_data",
+      "tr_name_label": "",
+      "trainer_type": "karate",
+      "is_strong": false,
+      "battle_type": "Single",
+      "data_type": 0,
       "money_rate": 50,
       "change_gem": true,
       "poke1": {
@@ -132479,7 +135639,7 @@
           "point_up": 3
         },
         "move3": {
-          "move_id": "AquaCutter",
+          "move_id": "BulkUp",
           "point_up": 3
         },
         "move4": {
@@ -135457,7 +138617,7 @@
         "poke_id": "Passimian",
         "form_id": 0,
         "sex": "Default",
-        "item": "SitrusBerry",
+        "item": "FocusSash",
         "level": 60,
         "ball_id": 14,
         "waza_type": "Manual",
@@ -137157,7 +140317,7 @@
         "poke_id": "Klefki",
         "form_id": 0,
         "sex": "Female",
-        "item": "MentalHerb",
+        "item": "LifeOrb",
         "level": 100,
         "ball_id": 20,
         "waza_type": "Manual",
@@ -137166,8 +140326,8 @@
           "point_up": 0
         },
         "move2": {
-          "move_id": "SteelBeam",
-          "point_up": 0
+          "move_id": "LusterPurge",
+          "point_up": 3
         },
         "move3": {
           "move_id": "ThunderWave",
@@ -137904,7 +141064,7 @@
           "point_up": 3
         },
         "move4": {
-          "move_id": "DracoMeteor",
+          "move_id": "DragonDance",
           "point_up": 0
         },
         "gem_type": "Ground",
@@ -139516,7 +142676,7 @@
         "poke_id": "Magneton",
         "form_id": 0,
         "sex": "Female",
-        "item": "AssaultVest",
+        "item": "ExpertBelt",
         "level": 27,
         "ball_id": 15,
         "waza_type": "Manual",
@@ -146014,15 +149174,15 @@
           "point_up": 3
         },
         "move2": {
-          "move_id": "Electroweb",
+          "move_id": "RisingVoltage",
           "point_up": 3
         },
         "move3": {
-          "move_id": "IcyWind",
+          "move_id": "MegaDrain",
           "point_up": 3
         },
         "move4": {
-          "move_id": "Nuzzle",
+          "move_id": "ThunderWave",
           "point_up": 3
         },
         "gem_type": "Default",
@@ -151061,7 +154221,7 @@
         "poke_id": "Toedscool",
         "form_id": 0,
         "sex": "Female",
-        "item": "ToxicOrb",
+        "item": "FocusSash",
         "level": 33,
         "ball_id": 4,
         "waza_type": "Manual",
@@ -152379,7 +155539,7 @@
         "ball_id": 1,
         "waza_type": "Manual",
         "move1": {
-          "move_id": "DragonClaw",
+          "move_id": "Outrage",
           "point_up": 3
         },
         "move2": {
@@ -152400,7 +155560,7 @@
         "iv": "Value",
         "iv_values": {
           "hp": 31,
-          "atk": 25,
+          "atk": 31,
           "def": 31,
           "spa": 31,
           "spd": 31,
@@ -152477,7 +155637,7 @@
         "ball_id": 1,
         "waza_type": "Manual",
         "move1": {
-          "move_id": "FleurCannon",
+          "move_id": "LusterPurge",
           "point_up": 0
         },
         "move2": {
@@ -153064,7 +156224,7 @@
           "point_up": 0
         },
         "move2": {
-          "move_id": "SteelBeam",
+          "move_id": "FlashCannon",
           "point_up": 0
         },
         "move3": {
@@ -153113,7 +156273,7 @@
           "point_up": 3
         },
         "move2": {
-          "move_id": "Crunch",
+          "move_id": "PowerTrip",
           "point_up": 3
         },
         "move3": {
@@ -177022,28 +180182,28 @@
         "poke_id": "Meowscarada",
         "form_id": 0,
         "sex": "Female",
-        "item": "LifeOrb",
+        "item": "LiechiBerry",
         "level": 52,
         "ball_id": 4,
         "waza_type": "Manual",
         "move1": {
-          "move_id": "SeedFlare",
+          "move_id": "FlowerTrick",
           "point_up": 3
         },
         "move2": {
-          "move_id": "Hypnosis",
+          "move_id": "LashOut",
           "point_up": 3
         },
         "move3": {
-          "move_id": "DarkPulse",
+          "move_id": "Covet",
           "point_up": 3
         },
         "move4": {
-          "move_id": "DazzlingGleam",
-          "point_up": 3
+          "move_id": "Endure",
+          "point_up": 0
         },
         "gem_type": "Default",
-        "nature": "Timid",
+        "nature": "Jolly",
         "ability": "Set_1",
         "iv": "Value",
         "iv_values": {
@@ -177057,9 +180217,9 @@
         "iv_vnum": 0,
         "effort_value": {
           "hp": 0,
-          "atk": 0,
+          "atk": 252,
           "def": 0,
-          "spa": 252,
+          "spa": 0,
           "spd": 0,
           "spe": 252
         },
@@ -177174,19 +180334,19 @@
         "ball_id": 0,
         "waza_type": "Manual",
         "move1": {
-          "move_id": "Retaliate",
-          "point_up": 0
+          "move_id": "ExtremeSpeed",
+          "point_up": 3
         },
         "move2": {
-          "move_id": "JawLock",
-          "point_up": 0
+          "move_id": "NightSlash",
+          "point_up": 3
         },
         "move3": {
-          "move_id": "CloseCombat",
-          "point_up": 0
+          "move_id": "DrillRun",
+          "point_up": 3
         },
         "move4": {
-          "move_id": "Yawn",
+          "move_id": "Howl",
           "point_up": 0
         },
         "gem_type": "Default",
@@ -177338,28 +180498,28 @@
         "poke_id": "Meowscarada",
         "form_id": 0,
         "sex": "Female",
-        "item": "LifeOrb",
+        "item": "LiechiBerry",
         "level": 52,
         "ball_id": 4,
         "waza_type": "Manual",
         "move1": {
-          "move_id": "SeedFlare",
-          "point_up": 0
+          "move_id": "FlowerTrick",
+          "point_up": 3
         },
         "move2": {
-          "move_id": "DarkPulse",
-          "point_up": 0
+          "move_id": "LashOut",
+          "point_up": 3
         },
         "move3": {
-          "move_id": "Hypnosis",
-          "point_up": 0
+          "move_id": "Covet",
+          "point_up": 3
         },
         "move4": {
-          "move_id": "DazzlingGleam",
+          "move_id": "Endure",
           "point_up": 0
         },
         "gem_type": "Default",
-        "nature": "Timid",
+        "nature": "Jolly",
         "ability": "Set_1",
         "iv": "Value",
         "iv_values": {
@@ -177373,9 +180533,9 @@
         "iv_vnum": 0,
         "effort_value": {
           "hp": 0,
-          "atk": 0,
+          "atk": 252,
           "def": 0,
-          "spa": 252,
+          "spa": 0,
           "spd": 0,
           "spe": 252
         },
@@ -177490,19 +180650,19 @@
         "ball_id": 0,
         "waza_type": "Manual",
         "move1": {
-          "move_id": "Retaliate",
-          "point_up": 0
+          "move_id": "ExtremeSpeed",
+          "point_up": 3
         },
         "move2": {
-          "move_id": "JawLock",
-          "point_up": 0
+          "move_id": "NightSlash",
+          "point_up": 3
         },
         "move3": {
-          "move_id": "CloseCombat",
-          "point_up": 0
+          "move_id": "DrillRun",
+          "point_up": 3
         },
         "move4": {
-          "move_id": "Yawn",
+          "move_id": "Howl",
           "point_up": 0
         },
         "gem_type": "Default",
@@ -177654,28 +180814,28 @@
         "poke_id": "Meowscarada",
         "form_id": 0,
         "sex": "Female",
-        "item": "LifeOrb",
+        "item": "LiechiBerry",
         "level": 52,
         "ball_id": 4,
         "waza_type": "Manual",
         "move1": {
-          "move_id": "SeedFlare",
+          "move_id": "FlowerTrick",
           "point_up": 3
         },
         "move2": {
-          "move_id": "DarkPulse",
+          "move_id": "LashOut",
           "point_up": 3
         },
         "move3": {
-          "move_id": "Hypnosis",
+          "move_id": "Covet",
           "point_up": 3
         },
         "move4": {
-          "move_id": "DazzlingGleam",
-          "point_up": 3
+          "move_id": "Endure",
+          "point_up": 0
         },
         "gem_type": "Default",
-        "nature": "Timid",
+        "nature": "Jolly",
         "ability": "Set_1",
         "iv": "Value",
         "iv_values": {
@@ -177689,9 +180849,9 @@
         "iv_vnum": 0,
         "effort_value": {
           "hp": 0,
-          "atk": 0,
+          "atk": 252,
           "def": 0,
-          "spa": 252,
+          "spa": 0,
           "spd": 0,
           "spe": 252
         },
@@ -177806,19 +180966,19 @@
         "ball_id": 0,
         "waza_type": "Manual",
         "move1": {
-          "move_id": "Retaliate",
-          "point_up": 0
+          "move_id": "ExtremeSpeed",
+          "point_up": 3
         },
         "move2": {
-          "move_id": "JawLock",
-          "point_up": 0
+          "move_id": "NightSlash",
+          "point_up": 3
         },
         "move3": {
-          "move_id": "CloseCombat",
-          "point_up": 0
+          "move_id": "DrillRun",
+          "point_up": 3
         },
         "move4": {
-          "move_id": "Yawn",
+          "move_id": "Howl",
           "point_up": 0
         },
         "gem_type": "Default",
@@ -177970,12 +181130,12 @@
         "poke_id": "Meowscarada",
         "form_id": 0,
         "sex": "Female",
-        "item": "LeppaBerry",
+        "item": "TangaBerry",
         "level": 100,
         "ball_id": 4,
         "waza_type": "Manual",
         "move1": {
-          "move_id": "Chloroblast",
+          "move_id": "SeedFlare",
           "point_up": 3
         },
         "move2": {
@@ -177983,11 +181143,11 @@
           "point_up": 3
         },
         "move3": {
-          "move_id": "GrassPledge",
+          "move_id": "Hypnosis",
           "point_up": 3
         },
         "move4": {
-          "move_id": "DazzlingGleam",
+          "move_id": "NastyPlot",
           "point_up": 3
         },
         "gem_type": "Default",
@@ -178065,129 +181225,31 @@
         "scale_value": 128
       },
       "poke4": {
-        "poke_id": "Pawmot",
-        "form_id": 0,
+        "poke_id": "Minior",
+        "form_id": 7,
         "sex": "Female",
-        "item": "AirBalloon",
+        "item": "LifeOrb",
         "level": 100,
         "ball_id": 4,
         "waza_type": "Manual",
         "move1": {
-          "move_id": "Retaliate",
+          "move_id": "LusterPurge",
           "point_up": 3
         },
         "move2": {
-          "move_id": "BehemothBash",
+          "move_id": "PowerGem",
           "point_up": 3
         },
         "move3": {
-          "move_id": "IcePunch",
+          "move_id": "EarthPower",
           "point_up": 3
         },
         "move4": {
-          "move_id": "ArmThrust",
+          "move_id": "Hypnosis",
           "point_up": 0
         },
         "gem_type": "Default",
         "nature": "Jolly",
-        "ability": "Set_1",
-        "iv": "Value",
-        "iv_values": {
-          "hp": 31,
-          "atk": 31,
-          "def": 31,
-          "spa": 31,
-          "spd": 31,
-          "spe": 31
-        },
-        "iv_vnum": 0,
-        "effort_value": {
-          "hp": 0,
-          "atk": 252,
-          "def": 0,
-          "spa": 0,
-          "spd": 0,
-          "spe": 252
-        },
-        "shiny": "Default",
-        "scale_type": "Value",
-        "scale_value": 128
-      },
-      "poke5": {
-        "poke_id": "KommoO",
-        "form_id": 0,
-        "sex": "Male",
-        "item": "RedCard",
-        "level": 100,
-        "ball_id": 4,
-        "waza_type": "Manual",
-        "move1": {
-          "move_id": "Bite",
-          "point_up": 3
-        },
-        "move2": {
-          "move_id": "IronTail",
-          "point_up": 3
-        },
-        "move3": {
-          "move_id": "BlazeKick",
-          "point_up": 3
-        },
-        "move4": {
-          "move_id": "DragonDance",
-          "point_up": 0
-        },
-        "gem_type": "Default",
-        "nature": "Hardy",
-        "ability": "Set_1",
-        "iv": "Value",
-        "iv_values": {
-          "hp": 31,
-          "atk": 31,
-          "def": 31,
-          "spa": 31,
-          "spd": 31,
-          "spe": 31
-        },
-        "iv_vnum": 0,
-        "effort_value": {
-          "hp": 0,
-          "atk": 252,
-          "def": 0,
-          "spa": 0,
-          "spd": 0,
-          "spe": 252
-        },
-        "shiny": "Default",
-        "scale_type": "Value",
-        "scale_value": 128
-      },
-      "poke6": {
-        "poke_id": "Lycanroc",
-        "form_id": 0,
-        "sex": "Male",
-        "item": "SilkScarf",
-        "level": 100,
-        "ball_id": 4,
-        "waza_type": "Manual",
-        "move1": {
-          "move_id": "ExtremeSpeed",
-          "point_up": 0
-        },
-        "move2": {
-          "move_id": "NightSlash",
-          "point_up": 0
-        },
-        "move3": {
-          "move_id": "DrillRun",
-          "point_up": 0
-        },
-        "move4": {
-          "move_id": "Howl",
-          "point_up": 0
-        },
-        "gem_type": "Normal",
-        "nature": "Adamant",
         "ability": "Set_3",
         "iv": "Value",
         "iv_values": {
@@ -178201,7 +181263,105 @@
         "iv_vnum": 0,
         "effort_value": {
           "hp": 0,
-          "atk": 252,
+          "atk": 0,
+          "def": 0,
+          "spa": 252,
+          "spd": 0,
+          "spe": 252
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke5": {
+        "poke_id": "Azelf",
+        "form_id": 0,
+        "sex": "Male",
+        "item": "RoseliBerry",
+        "level": 100,
+        "ball_id": 4,
+        "waza_type": "Manual",
+        "move1": {
+          "move_id": "FocusBlast",
+          "point_up": 3
+        },
+        "move2": {
+          "move_id": "Psystrike",
+          "point_up": 3
+        },
+        "move3": {
+          "move_id": "CosmicPower",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "Hypnosis",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Timid",
+        "ability": "Set_2",
+        "iv": "Value",
+        "iv_values": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 252,
+          "spd": 0,
+          "spe": 252
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke6": {
+        "poke_id": "KommoO",
+        "form_id": 0,
+        "sex": "Male",
+        "item": "RedCard",
+        "level": 100,
+        "ball_id": 4,
+        "waza_type": "Manual",
+        "move1": {
+          "move_id": "Outrage",
+          "point_up": 3
+        },
+        "move2": {
+          "move_id": "IronTail",
+          "point_up": 3
+        },
+        "move3": {
+          "move_id": "Roar",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "DragonDance",
+          "point_up": 0
+        },
+        "gem_type": "Dragon",
+        "nature": "Jolly",
+        "ability": "Set_1",
+        "iv": "Value",
+        "iv_values": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 252,
+          "atk": 0,
           "def": 0,
           "spa": 0,
           "spd": 0,
@@ -178286,24 +181446,24 @@
         "poke_id": "Meowscarada",
         "form_id": 0,
         "sex": "Female",
-        "item": "LeppaBerry",
+        "item": "TangaBerry",
         "level": 100,
         "ball_id": 4,
         "waza_type": "Manual",
         "move1": {
-          "move_id": "Chloroblast",
-          "point_up": 0
+          "move_id": "DarkPulse",
+          "point_up": 3
         },
         "move2": {
-          "move_id": "DarkPulse",
-          "point_up": 0
+          "move_id": "SeedFlare",
+          "point_up": 3
         },
         "move3": {
-          "move_id": "GrassPledge",
+          "move_id": "Hypnosis",
           "point_up": 0
         },
         "move4": {
-          "move_id": "DazzlingGleam",
+          "move_id": "NastyPlot",
           "point_up": 0
         },
         "gem_type": "Default",
@@ -178381,32 +181541,32 @@
         "scale_value": 128
       },
       "poke4": {
-        "poke_id": "Pawmot",
-        "form_id": 0,
+        "poke_id": "Minior",
+        "form_id": 7,
         "sex": "Male",
-        "item": "AirBalloon",
+        "item": "LifeOrb",
         "level": 100,
         "ball_id": 4,
         "waza_type": "Manual",
         "move1": {
-          "move_id": "Retaliate",
+          "move_id": "LusterPurge",
           "point_up": 3
         },
         "move2": {
-          "move_id": "BehemothBash",
+          "move_id": "PowerGem",
           "point_up": 3
         },
         "move3": {
-          "move_id": "IcePunch",
-          "point_up": 3
+          "move_id": "EarthPower",
+          "point_up": 0
         },
         "move4": {
-          "move_id": "ArmThrust",
+          "move_id": "Hypnosis",
           "point_up": 0
         },
         "gem_type": "Default",
-        "nature": "Jolly",
-        "ability": "Set_1",
+        "nature": "Timid",
+        "ability": "Set_3",
         "iv": "Value",
         "iv_values": {
           "hp": 31,
@@ -178419,9 +181579,9 @@
         "iv_vnum": 0,
         "effort_value": {
           "hp": 0,
-          "atk": 252,
+          "atk": 0,
           "def": 0,
-          "spa": 0,
+          "spa": 252,
           "spd": 0,
           "spe": 252
         },
@@ -178430,32 +181590,32 @@
         "scale_value": 128
       },
       "poke5": {
-        "poke_id": "KommoO",
+        "poke_id": "Azelf",
         "form_id": 0,
         "sex": "Male",
-        "item": "RedCard",
+        "item": "RoseliBerry",
         "level": 100,
         "ball_id": 4,
         "waza_type": "Manual",
         "move1": {
-          "move_id": "Bite",
+          "move_id": "FocusBlast",
           "point_up": 3
         },
         "move2": {
-          "move_id": "IronTail",
+          "move_id": "Psystrike",
           "point_up": 3
         },
         "move3": {
-          "move_id": "BlazeKick",
-          "point_up": 3
+          "move_id": "CosmicPower",
+          "point_up": 0
         },
         "move4": {
-          "move_id": "DragonDance",
+          "move_id": "Hypnosis",
           "point_up": 0
         },
         "gem_type": "Default",
-        "nature": "Jolly",
-        "ability": "Set_1",
+        "nature": "Timid",
+        "ability": "Set_2",
         "iv": "Value",
         "iv_values": {
           "hp": 31,
@@ -178468,9 +181628,9 @@
         "iv_vnum": 0,
         "effort_value": {
           "hp": 0,
-          "atk": 252,
+          "atk": 0,
           "def": 0,
-          "spa": 0,
+          "spa": 252,
           "spd": 0,
           "spe": 252
         },
@@ -178479,32 +181639,32 @@
         "scale_value": 128
       },
       "poke6": {
-        "poke_id": "Lycanroc",
+        "poke_id": "KommoO",
         "form_id": 0,
         "sex": "Male",
-        "item": "SilkScarf",
+        "item": "RedCard",
         "level": 100,
         "ball_id": 4,
         "waza_type": "Manual",
         "move1": {
-          "move_id": "ExtremeSpeed",
+          "move_id": "Outrage",
           "point_up": 3
         },
         "move2": {
-          "move_id": "NightSlash",
+          "move_id": "IronTail",
           "point_up": 3
         },
         "move3": {
-          "move_id": "DrillRun",
-          "point_up": 3
+          "move_id": "Roar",
+          "point_up": 0
         },
         "move4": {
-          "move_id": "Howl",
+          "move_id": "DragonDance",
           "point_up": 0
         },
         "gem_type": "Normal",
-        "nature": "Adamant",
-        "ability": "Set_3",
+        "nature": "Jolly",
+        "ability": "Set_1",
         "iv": "Value",
         "iv_values": {
           "hp": 31,
@@ -178516,8 +181676,8 @@
         },
         "iv_vnum": 0,
         "effort_value": {
-          "hp": 0,
-          "atk": 252,
+          "hp": 252,
+          "atk": 0,
           "def": 0,
           "spa": 0,
           "spd": 0,
@@ -178602,12 +181762,12 @@
         "poke_id": "Meowscarada",
         "form_id": 0,
         "sex": "Female",
-        "item": "LeppaBerry",
+        "item": "TangaBerry",
         "level": 100,
         "ball_id": 4,
         "waza_type": "Manual",
         "move1": {
-          "move_id": "Chloroblast",
+          "move_id": "SeedFlare",
           "point_up": 3
         },
         "move2": {
@@ -178615,11 +181775,11 @@
           "point_up": 3
         },
         "move3": {
-          "move_id": "GrassPledge",
+          "move_id": "NastyPlot",
           "point_up": 3
         },
         "move4": {
-          "move_id": "DazzlingGleam",
+          "move_id": "Hypnosis",
           "point_up": 3
         },
         "gem_type": "Default",
@@ -178697,129 +181857,31 @@
         "scale_value": 128
       },
       "poke4": {
-        "poke_id": "Pawmot",
-        "form_id": 0,
+        "poke_id": "Minior",
+        "form_id": 7,
         "sex": "Male",
-        "item": "AirBalloon",
+        "item": "LifeOrb",
         "level": 100,
         "ball_id": 4,
         "waza_type": "Manual",
         "move1": {
-          "move_id": "Retaliate",
+          "move_id": "LusterPurge",
           "point_up": 0
         },
         "move2": {
-          "move_id": "BehemothBash",
+          "move_id": "PowerGem",
           "point_up": 0
         },
         "move3": {
-          "move_id": "IcePunch",
+          "move_id": "EarthPower",
           "point_up": 0
         },
         "move4": {
-          "move_id": "SmellingSalts",
+          "move_id": "Hypnosis",
           "point_up": 0
         },
         "gem_type": "Default",
-        "nature": "Jolly",
-        "ability": "Set_1",
-        "iv": "Value",
-        "iv_values": {
-          "hp": 31,
-          "atk": 31,
-          "def": 31,
-          "spa": 31,
-          "spd": 31,
-          "spe": 31
-        },
-        "iv_vnum": 0,
-        "effort_value": {
-          "hp": 0,
-          "atk": 252,
-          "def": 0,
-          "spa": 0,
-          "spd": 0,
-          "spe": 252
-        },
-        "shiny": "Default",
-        "scale_type": "Value",
-        "scale_value": 128
-      },
-      "poke5": {
-        "poke_id": "KommoO",
-        "form_id": 0,
-        "sex": "Male",
-        "item": "RedCard",
-        "level": 100,
-        "ball_id": 4,
-        "waza_type": "Manual",
-        "move1": {
-          "move_id": "Bite",
-          "point_up": 3
-        },
-        "move2": {
-          "move_id": "IronTail",
-          "point_up": 3
-        },
-        "move3": {
-          "move_id": "BlazeKick",
-          "point_up": 3
-        },
-        "move4": {
-          "move_id": "DragonDance",
-          "point_up": 0
-        },
-        "gem_type": "Default",
-        "nature": "Jolly",
-        "ability": "Set_1",
-        "iv": "Value",
-        "iv_values": {
-          "hp": 31,
-          "atk": 31,
-          "def": 31,
-          "spa": 31,
-          "spd": 31,
-          "spe": 31
-        },
-        "iv_vnum": 0,
-        "effort_value": {
-          "hp": 0,
-          "atk": 252,
-          "def": 0,
-          "spa": 0,
-          "spd": 0,
-          "spe": 252
-        },
-        "shiny": "Default",
-        "scale_type": "Value",
-        "scale_value": 128
-      },
-      "poke6": {
-        "poke_id": "Lycanroc",
-        "form_id": 0,
-        "sex": "Male",
-        "item": "SilkScarf",
-        "level": 100,
-        "ball_id": 4,
-        "waza_type": "Manual",
-        "move1": {
-          "move_id": "ExtremeSpeed",
-          "point_up": 3
-        },
-        "move2": {
-          "move_id": "NightSlash",
-          "point_up": 3
-        },
-        "move3": {
-          "move_id": "DrillRun",
-          "point_up": 3
-        },
-        "move4": {
-          "move_id": "Howl",
-          "point_up": 0
-        },
-        "gem_type": "Normal",
-        "nature": "Adamant",
+        "nature": "Timid",
         "ability": "Set_3",
         "iv": "Value",
         "iv_values": {
@@ -178833,7 +181895,105 @@
         "iv_vnum": 0,
         "effort_value": {
           "hp": 0,
-          "atk": 252,
+          "atk": 0,
+          "def": 0,
+          "spa": 252,
+          "spd": 0,
+          "spe": 252
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke5": {
+        "poke_id": "Azelf",
+        "form_id": 0,
+        "sex": "Male",
+        "item": "RoseliBerry",
+        "level": 100,
+        "ball_id": 4,
+        "waza_type": "Manual",
+        "move1": {
+          "move_id": "FocusBlast",
+          "point_up": 3
+        },
+        "move2": {
+          "move_id": "Psystrike",
+          "point_up": 3
+        },
+        "move3": {
+          "move_id": "CosmicPower",
+          "point_up": 3
+        },
+        "move4": {
+          "move_id": "Hypnosis",
+          "point_up": 0
+        },
+        "gem_type": "Default",
+        "nature": "Timid",
+        "ability": "Set_2",
+        "iv": "Value",
+        "iv_values": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 0,
+          "atk": 0,
+          "def": 0,
+          "spa": 252,
+          "spd": 0,
+          "spe": 252
+        },
+        "shiny": "Default",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke6": {
+        "poke_id": "KommoO",
+        "form_id": 0,
+        "sex": "Male",
+        "item": "RedCard",
+        "level": 100,
+        "ball_id": 4,
+        "waza_type": "Manual",
+        "move1": {
+          "move_id": "Outrage",
+          "point_up": 3
+        },
+        "move2": {
+          "move_id": "IronTail",
+          "point_up": 3
+        },
+        "move3": {
+          "move_id": "Roar",
+          "point_up": 0
+        },
+        "move4": {
+          "move_id": "DragonDance",
+          "point_up": 0
+        },
+        "gem_type": "Dragon",
+        "nature": "Adamant",
+        "ability": "Set_1",
+        "iv": "Value",
+        "iv_values": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 252,
+          "atk": 0,
           "def": 0,
           "spa": 0,
           "spd": 0,
@@ -203830,10 +206990,59 @@
       "money_rate": 14,
       "change_gem": true,
       "poke1": {
+        "poke_id": "Morpeko",
+        "form_id": 1,
+        "sex": "Female",
+        "item": "Leftovers",
+        "level": 11,
+        "ball_id": 11,
+        "waza_type": "Manual",
+        "move1": {
+          "move_id": "RisingVoltage",
+          "point_up": 3
+        },
+        "move2": {
+          "move_id": "Snarl",
+          "point_up": 3
+        },
+        "move3": {
+          "move_id": "SlackOff",
+          "point_up": 3
+        },
+        "move4": {
+          "move_id": "Snarl",
+          "point_up": 3
+        },
+        "gem_type": "Default",
+        "nature": "Jolly",
+        "ability": "Set_2",
+        "iv": "Value",
+        "iv_values": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "iv_vnum": 0,
+        "effort_value": {
+          "hp": 252,
+          "atk": 0,
+          "def": 0,
+          "spa": 0,
+          "spd": 0,
+          "spe": 252
+        },
+        "shiny": "No",
+        "scale_type": "Value",
+        "scale_value": 128
+      },
+      "poke2": {
         "poke_id": "Ducklett",
         "form_id": 0,
         "sex": "Female",
-        "item": "RedCard",
+        "item": "DampRock",
         "level": 11,
         "ball_id": 4,
         "waza_type": "Manual",
@@ -203878,10 +207087,10 @@
         "scale_type": "Value",
         "scale_value": 128
       },
-      "poke2": {
+      "poke3": {
         "poke_id": "Poltchageist",
         "form_id": 0,
-        "sex": "Female",
+        "sex": "Default",
         "item": "MysticWater",
         "level": 11,
         "ball_id": 4,
@@ -203922,55 +207131,6 @@
           "spa": 252,
           "spd": 0,
           "spe": 0
-        },
-        "shiny": "No",
-        "scale_type": "Value",
-        "scale_value": 128
-      },
-      "poke3": {
-        "poke_id": "Poochyena",
-        "form_id": 0,
-        "sex": "Default",
-        "item": "QuickClaw",
-        "level": 11,
-        "ball_id": 4,
-        "waza_type": "Manual",
-        "move1": {
-          "move_id": "Headbutt",
-          "point_up": 3
-        },
-        "move2": {
-          "move_id": "Thief",
-          "point_up": 3
-        },
-        "move3": {
-          "move_id": "Covet",
-          "point_up": 3
-        },
-        "move4": {
-          "move_id": "WorkUp",
-          "point_up": 0
-        },
-        "gem_type": "Default",
-        "nature": "Adamant",
-        "ability": "Set_1",
-        "iv": "Value",
-        "iv_values": {
-          "hp": 31,
-          "atk": 31,
-          "def": 31,
-          "spa": 31,
-          "spd": 31,
-          "spe": 31
-        },
-        "iv_vnum": 0,
-        "effort_value": {
-          "hp": 0,
-          "atk": 252,
-          "def": 0,
-          "spa": 0,
-          "spd": 0,
-          "spe": 252
         },
         "shiny": "No",
         "scale_type": "Value",
@@ -204514,7 +207674,7 @@
         "poke_id": "Swanna",
         "form_id": 0,
         "sex": "Female",
-        "item": "AssaultVest",
+        "item": "ChartiBerry",
         "level": 32,
         "ball_id": 4,
         "waza_type": "Manual",
@@ -204560,32 +207720,32 @@
         "scale_value": 128
       },
       "poke3": {
-        "poke_id": "Mightyena",
+        "poke_id": "Morpeko",
         "form_id": 0,
         "sex": "Female",
-        "item": "ToxicOrb",
+        "item": "LiechiBerry",
         "level": 32,
         "ball_id": 4,
         "waza_type": "Manual",
         "move1": {
-          "move_id": "Facade",
+          "move_id": "AuraWheel",
           "point_up": 3
         },
         "move2": {
-          "move_id": "LashOut",
+          "move_id": "ZingZap",
           "point_up": 3
         },
         "move3": {
-          "move_id": "Yawn",
+          "move_id": "IceFang",
           "point_up": 3
         },
         "move4": {
-          "move_id": "PartingShot",
+          "move_id": "Endure",
           "point_up": 3
         },
         "gem_type": "Default",
-        "nature": "Adamant",
-        "ability": "Set_2",
+        "nature": "Jolly",
+        "ability": "Set_1",
         "iv": "Value",
         "iv_values": {
           "hp": 31,
@@ -204612,7 +207772,7 @@
         "poke_id": "Mienshao",
         "form_id": 0,
         "sex": "Default",
-        "item": "FocusSash",
+        "item": "LifeOrb",
         "level": 32,
         "ball_id": 4,
         "waza_type": "Manual",
@@ -204661,7 +207821,7 @@
         "poke_id": "Leavanny",
         "form_id": 0,
         "sex": "Default",
-        "item": "LifeOrb",
+        "item": "FocusSash",
         "level": 32,
         "ball_id": 0,
         "waza_type": "Manual",
@@ -205241,28 +208401,28 @@
         "scale_value": 128
       },
       "poke4": {
-        "poke_id": "Mightyena",
-        "form_id": 0,
+        "poke_id": "Morpeko",
+        "form_id": 1,
         "sex": "Female",
-        "item": "FlameOrb",
+        "item": "StarfBerry",
         "level": 50,
         "ball_id": 4,
         "waza_type": "Manual",
         "move1": {
-          "move_id": "Facade",
+          "move_id": "PowerTrip",
           "point_up": 3
         },
         "move2": {
-          "move_id": "LashOut",
+          "move_id": "StuffCheeks",
           "point_up": 3
         },
         "move3": {
-          "move_id": "Roar",
+          "move_id": "Protect",
           "point_up": 0
         },
         "move4": {
-          "move_id": "Roar",
-          "point_up": 0
+          "move_id": "PowerTrip",
+          "point_up": 3
         },
         "gem_type": "Default",
         "nature": "Jolly",
@@ -205278,8 +208438,8 @@
         },
         "iv_vnum": 0,
         "effort_value": {
-          "hp": 0,
-          "atk": 252,
+          "hp": 252,
+          "atk": 0,
           "def": 0,
           "spa": 0,
           "spd": 0,
@@ -206407,13 +209567,13 @@
         "scale_value": 128
       },
       "poke2": {
-        "poke_id": "Mienshao",
+        "poke_id": "Egg",
         "form_id": 0,
         "sex": "Female",
         "item": "EjectButton",
-        "level": 43,
+        "level": 1,
         "ball_id": 4,
-        "waza_type": "Manual",
+        "waza_type": "Default",
         "move1": {
           "move_id": "DoubleHit",
           "point_up": 3
@@ -206433,7 +209593,7 @@
         "gem_type": "Default",
         "nature": "Adamant",
         "ability": "Set_1",
-        "iv": "Value",
+        "iv": "Random",
         "iv_values": {
           "hp": 31,
           "atk": 31,
@@ -206456,13 +209616,13 @@
         "scale_value": 128
       },
       "poke3": {
-        "poke_id": "Sinistcha",
+        "poke_id": "Egg",
         "form_id": 0,
         "sex": "Female",
         "item": "LumBerry",
-        "level": 43,
+        "level": 1,
         "ball_id": 4,
-        "waza_type": "Manual",
+        "waza_type": "Default",
         "move1": {
           "move_id": "RagePowder",
           "point_up": 3
@@ -206482,7 +209642,7 @@
         "gem_type": "Default",
         "nature": "Calm",
         "ability": "Set_2",
-        "iv": "Value",
+        "iv": "Random",
         "iv_values": {
           "hp": 31,
           "atk": 31,

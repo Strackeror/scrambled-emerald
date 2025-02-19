@@ -37143,7 +37143,6 @@
         "BrickBreak",
         "KnockOff",
         "Roost",
-        "RockTomb",
         "AerialAce",
         "Tailwind",
         "UTurn",
@@ -37153,7 +37152,6 @@
         "VacuumWave",
         "FocusBlast",
         "GigaImpact",
-        "FlashCannon",
         "LeafBlade",
         "BugBite",
         "PsychoCut",
@@ -44297,7 +44295,6 @@
         "TakeDown",
         "IronTail",
         "WorkUp",
-        "Flamethrower",
         "HydroPump",
         "Surf",
         "IceBeam",
@@ -44327,9 +44324,7 @@
         "SunnyDay",
         "AquaTail",
         "TerrainPulse",
-        "HeatWave",
         "Facade",
-        "Roost",
         "HyperVoice",
         "WeatherBall",
         "MuddyWater",
@@ -44539,7 +44534,6 @@
         "TakeDown",
         "IronTail",
         "WorkUp",
-        "Flamethrower",
         "HydroPump",
         "Surf",
         "IceBeam",
@@ -44569,9 +44563,7 @@
         "SunnyDay",
         "AquaTail",
         "TerrainPulse",
-        "HeatWave",
         "Facade",
-        "Roost",
         "HyperVoice",
         "WeatherBall",
         "MuddyWater",
@@ -44809,6 +44801,7 @@
         "TerrainPulse",
         "HeatWave",
         "Facade",
+        "FocusPunch",
         "BrickBreak",
         "Roost",
         "HyperVoice",
@@ -55632,63 +55625,56 @@
         }
       ],
       "tm_moves": [
-        "Slam",
-        "DoubleKick",
         "BodySlam",
         "TakeDown",
-        "DoubleEdge",
-        "TailWhip",
-        "Mist",
-        "WaterGun",
+        "IronTail",
+        "WorkUp",
         "HydroPump",
         "Surf",
         "IceBeam",
         "Blizzard",
-        "Counter",
-        "Earthquake",
+        "HyperBeam",
         "Dig",
-        "Toxic",
-        "Recover",
-        "Haze",
-        "Waterfall",
+        "Belch",
         "Amnesia",
         "Rest",
         "RockSlide",
         "Substitute",
-        "Curse",
-        "Protect",
         "SludgeBomb",
         "MudSlap",
-        "Spikes",
         "IcyWind",
         "Sandstorm",
         "Endure",
         "SleepTalk",
         "Encore",
         "RainDance",
-        "AncientPower",
-        "Whirlpool",
-        "Stockpile",
-        "SpitUp",
-        "Swallow",
+        "AquaTail",
+        "TerrainPulse",
         "Facade",
-        "HelpingHand",
-        "Yawn",
+        "WeatherBall",
         "RockTomb",
+        "Snore",
         "MuddyWater",
         "MudShot",
+        "CalmMind",
+        "RockBlast",
         "WaterPulse",
-        "AquaTail",
+        "DrainPunch",
         "EarthPower",
+        "GigaImpact",
         "Avalanche",
+        "ZenHeadbutt",
+        "GunkShot",
+        "IronHead",
         "StoneEdge",
-        "StealthRock",
         "SludgeWave",
-        "AcidSpray",
-        "AfterYou",
+        "GastroAcid",
+        "WaterPledge",
         "Bulldoze",
         "StompingTantrum",
         "Liquidation",
+        "BodyPress",
+        "FlipTurn",
         "TeraBlast",
         "Snowscape",
         "Trailblaze",
@@ -56562,6 +56548,7 @@
         "Facade",
         "Taunt",
         "KnockOff",
+        "SkillSwap",
         "WeatherBall",
         "PartingShot",
         "Snore",
@@ -56587,6 +56574,7 @@
         "MeteorBeam",
         "SkitterSmack",
         "BurningJealousy",
+        "LashOut",
         "TeraBlast",
         "Pounce",
         "Trailblaze",
@@ -65320,6 +65308,7 @@
         "BrickBreak",
         "KnockOff",
         "RockTomb",
+        "Snore",
         "SandTomb",
         "IcicleSpear",
         "MudShot",
@@ -65533,6 +65522,7 @@
         "BrickBreak",
         "KnockOff",
         "RockTomb",
+        "Snore",
         "SandTomb",
         "IcicleSpear",
         "MudShot",
@@ -132458,7 +132448,7 @@
       "type_1": "Psychic",
       "type_2": "Fighting",
       "ability_1": "CompoundEyes",
-      "ability_2": "BeastBoost",
+      "ability_2": "SpeedBoost",
       "ability_hidden": "Levitate",
       "xp_growth": 5,
       "catch_rate": 3,
@@ -217569,8 +217559,8 @@
       "is_present": true,
       "kitakami_dex": 17,
       "blueberry_dex": 0,
-      "type_1": "Bug",
-      "type_2": "Fairy",
+      "type_1": "Fairy",
+      "type_2": "Bug",
       "ability_1": "FairyAura",
       "ability_2": "GrassySurge",
       "ability_hidden": "SereneGrace",
@@ -230802,7 +230792,7 @@
       "type_2": "Fairy",
       "ability_1": "ShieldsDown",
       "ability_2": "ShieldsDown",
-      "ability_hidden": "ShieldsDown",
+      "ability_hidden": "PsychicSurge",
       "xp_growth": 5,
       "catch_rate": 255,
       "gender": {
@@ -247726,7 +247716,7 @@
       "type_1": "Ground",
       "type_2": "Dragon",
       "ability_1": "SandStream",
-      "ability_2": "SheerForce",
+      "ability_2": "MegaLauncher",
       "ability_hidden": "Ripen",
       "xp_growth": 5,
       "catch_rate": 120,
@@ -247771,6 +247761,7 @@
         "TakeDown",
         "IronTail",
         "WorkUp",
+        "Flamethrower",
         "HyperBeam",
         "SolarBeam",
         "Earthquake",
@@ -247838,6 +247829,10 @@
           "level": 253
         },
         {
+          "move": "Hurricane",
+          "level": 253
+        },
+        {
           "move": "ShoreUp",
           "level": 2
         },
@@ -247891,15 +247886,23 @@
         },
         {
           "move": "Stockpile",
-          "level": 35
+          "level": 32
         },
         {
           "move": "Swallow",
-          "level": 35
+          "level": 32
         },
         {
           "move": "SpitUp",
+          "level": 32
+        },
+        {
+          "move": "Minimize",
           "level": 35
+        },
+        {
+          "move": "BlueFlare",
+          "level": 37
         },
         {
           "move": "DragonPulse",
@@ -247910,28 +247913,20 @@
           "level": 42
         },
         {
-          "move": "BlueFlare",
+          "move": "SandsearStorm",
           "level": 45
         },
         {
-          "move": "Minimize",
-          "level": 47
-        },
-        {
-          "move": "SandsearStorm",
+          "move": "DracoMeteor",
           "level": 50
         },
         {
-          "move": "DracoMeteor",
-          "level": 52
-        },
-        {
           "move": "StuffCheeks",
-          "level": 55
+          "level": 50
         },
         {
           "move": "RoarOfTime",
-          "level": 60
+          "level": 55
         }
       ]
     },
@@ -258496,8 +258491,8 @@
       "type_1": "Electric",
       "type_2": "Dark",
       "ability_1": "Hustle",
-      "ability_2": "HungerSwitch",
-      "ability_hidden": "HungerSwitch",
+      "ability_2": "Berserk",
+      "ability_hidden": "Moody",
       "xp_growth": 5,
       "catch_rate": 180,
       "gender": {
@@ -271656,7 +271651,7 @@
       "type_1": "Bug",
       "type_2": "Ground",
       "ability_1": "Technician",
-      "ability_2": "Regenerator",
+      "ability_2": "PoisonHeal",
       "ability_hidden": "SpeedBoost",
       "xp_growth": 5,
       "catch_rate": 190,
@@ -271848,7 +271843,7 @@
       "type_1": "Bug",
       "type_2": "Psychic",
       "ability_1": "ShadowShield",
-      "ability_2": "Regenerator",
+      "ability_2": "Neuroforce",
       "ability_hidden": "MagicBounce",
       "xp_growth": 5,
       "catch_rate": 45,
@@ -276772,15 +276767,15 @@
           "level": 11
         },
         {
-          "move": "Toxic",
+          "move": "FlameWheel",
           "level": 13
+        },
+        {
+          "move": "Toxic",
+          "level": 15
         },
         {
           "move": "Venoshock",
-          "level": 13
-        },
-        {
-          "move": "FlameWheel",
           "level": 15
         },
         {
@@ -276800,10 +276795,6 @@
           "level": 25
         },
         {
-          "move": "MetalSound",
-          "level": 25
-        },
-        {
           "move": "MetalBurst",
           "level": 27
         },
@@ -276813,7 +276804,15 @@
         },
         {
           "move": "SteelRoller",
-          "level": 35
+          "level": 34
+        },
+        {
+          "move": "NoxiousTorque",
+          "level": 36
+        },
+        {
+          "move": "FlareBlitz",
+          "level": 38
         },
         {
           "move": "RockWrecker",
@@ -276824,20 +276823,20 @@
           "level": 45
         },
         {
-          "move": "MetalSound",
+          "move": "HeadlongRush",
           "level": 50
         },
         {
           "move": "HeadSmash",
-          "level": 55
+          "level": 52
         },
         {
           "move": "SpinOut",
-          "level": 60
+          "level": 55
         },
         {
           "move": "ShiftGear",
-          "level": 100
+          "level": 60
         }
       ]
     },
@@ -277044,16 +277043,24 @@
           "level": 25
         },
         {
-          "move": "MetalSound",
-          "level": 25
-        },
-        {
           "move": "MetalBurst",
           "level": 27
         },
         {
           "move": "DoubleEdge",
-          "level": 35
+          "level": 32
+        },
+        {
+          "move": "SteelRoller",
+          "level": 34
+        },
+        {
+          "move": "NoxiousTorque",
+          "level": 36
+        },
+        {
+          "move": "FlareBlitz",
+          "level": 38
         },
         {
           "move": "RockWrecker",
@@ -277064,20 +277071,20 @@
           "level": 45
         },
         {
-          "move": "MetalSound",
+          "move": "HeadlongRush",
           "level": 50
         },
         {
           "move": "HeadSmash",
-          "level": 55
+          "level": 52
         },
         {
           "move": "SpinOut",
-          "level": 60
+          "level": 55
         },
         {
           "move": "ShiftGear",
-          "level": 100
+          "level": 60
         }
       ]
     },
@@ -290440,6 +290447,7 @@
         "ChargeBeam",
         "FoulPlay",
         "Acrobatics",
+        "WaterPledge",
         "VoltSwitch",
         "DrillRun",
         "DisarmingVoice",
@@ -290457,8 +290465,7 @@
         "Snowscape",
         "Pounce",
         "Trailblaze",
-        "ChillingWater",
-        "AlluringVoice"
+        "ChillingWater"
       ],
       "egg_moves": [
 
@@ -297966,7 +297973,7 @@
       },
       "base_stats": {
         "HP": 80,
-        "ATK": 125,
+        "ATK": 130,
         "DEF": 94,
         "SPA": 60,
         "SPD": 101,
@@ -300210,7 +300217,6 @@
         "Retaliate",
         "Substitute",
         "ScaryFace",
-        "GigaDrain",
         "Endure",
         "SleepTalk",
         "MetalClaw",
@@ -300670,9 +300676,9 @@
       "blueberry_dex": 240,
       "type_1": "Normal",
       "type_2": "Normal",
-      "ability_1": "TeraShift",
-      "ability_2": "Dazzling",
-      "ability_hidden": "TeraShell",
+      "ability_1": "TeraShell",
+      "ability_2": "ShadowShield",
+      "ability_hidden": "Dazzling",
       "xp_growth": 5,
       "catch_rate": 255,
       "gender": {

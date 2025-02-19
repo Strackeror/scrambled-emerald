@@ -9648,7 +9648,6 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = -4,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .makesContact = TRUE,
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_LATER,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -17700,6 +17699,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({.moveEffect = MOVE_EFFECT_FLINCH,.chance = 100,},{.moveEffect = MOVE_EFFECT_BURN,.chance = 100,},),
         .battleAnimScript = gBattleAnimMove_SandsearStorm,
         .thawsUser = TRUE,
+        .pulseMove = TRUE,
     },
 
     [MOVE_LUNAR_BLESSING] =
