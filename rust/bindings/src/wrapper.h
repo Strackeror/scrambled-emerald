@@ -1,6 +1,7 @@
 #include "global.h"
-#include "bg.h"
 #include "battle_main.h"
+#include "bg.h"
+#include "bw_summary_screen.h"
 #include "gpu_regs.h"
 #include "graphics.h"
 #include "item.h"

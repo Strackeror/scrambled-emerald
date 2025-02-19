@@ -84,7 +84,7 @@ extern "C" fn InitFullSummaryScreen(
 }
 
 extern "C" fn return_from_party_callback() {
-    let index = unsafe { *static_deref(&raw mut gSelectedMonPartyId) } as u8;
+    let index = unsafe { *static_deref(&raw mut gLastViewedMonIndex) } ;
     let back = *STORED_CALLBACK.borrow();
     let count = unsafe { gPlayerPartyCount };
     let mons = &raw mut gPlayerParty;
@@ -551,9 +551,10 @@ impl Menu<'_> {
         let focused_entry = self.focused_entry;
         let max = self.entries.len() as u8 - 1;
         let pokemons = self.pokemons;
+        let mode = PokemonSummaryScreenMode_BW::BW_SUMMARY_MODE_NORMAL;
         self.exit_callback = Box::new(move || unsafe {
-            ShowPokemonSummaryScreen(
-                PokemonSummaryScreenMode::SUMMARY_MODE_NORMAL as u8,
+            ShowPokemonSummaryScreen_BW(
+                mode.0 as u8,
                 pokemons.cast(),
                 focused_entry,
                 max,

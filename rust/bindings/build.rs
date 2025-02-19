@@ -26,6 +26,7 @@ fn main() {
         .allowlist_file(".*/party_menu.h")
         .allowlist_file(".*/trainer_pokemon_sprites.h")
         .allowlist_file(".*/pokemon_summary_screen.h")
+        .allowlist_file(".*/bw_summary_screen.h")
         .allowlist_file(".*/task.h")
         .allowlist_file(".*/malloc.h")
         .allowlist_file(".*/window.h")
@@ -46,7 +47,8 @@ fn main() {
         .allowlist_item("gLastViewedMonIndex")
         .allowlist_item("gTypesInfo")
         .opaque_type("PokemonSubstruct3")
-        .rustified_enum("PokemonSummaryScreenMode")
+        .newtype_enum("PokemonSummaryScreenMode")
+        .newtype_enum("PokemonSummaryScreenMode_BW")
         .derive_default(true)
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
         .use_core();
