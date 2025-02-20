@@ -78,7 +78,9 @@ impl Pokemon {
         }
     }
     pub fn set_item(&self, item: u16) {
-        unsafe { self.set_mon_data(MON_DATA_HELD_ITEM, (&raw const item).cast()); }
+        unsafe {
+            self.set_mon_data(MON_DATA_HELD_ITEM, (&raw const item).cast());
+        }
     }
 
     pub fn status(&self) -> u8 {

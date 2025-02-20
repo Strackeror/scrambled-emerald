@@ -1,5 +1,6 @@
 RUST_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
 PARTY_GRAPHICS := $(RUST_DIR)/graphics/party_menu_full
+CPPFLAGS += -iquote $(RUST_DIR)/include
 
 $(PARTY_GRAPHICS)/tera/tera_types.gbapal:\
 		$(PARTY_GRAPHICS)/tera/tera_types_1.gbapal\

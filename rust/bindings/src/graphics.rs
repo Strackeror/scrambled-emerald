@@ -237,10 +237,42 @@ impl BgHandle<'_> {
         }
     }
 
+    pub fn schedule_copy_tilemap(&self) {
+        unsafe {
+            ScheduleBgCopyTilemapToVram(self.0 as u8);
+        }
+    }
+
     pub fn set_pos(&self, x: u8, y: u8) {
         unsafe {
             ChangeBgX(self.0 as _, BG_COORD_SET as _, x);
             ChangeBgY(self.0 as _, BG_COORD_SET as _, y);
+        }
+    }
+
+    pub fn copy_tile_rect(
+        &self,
+        buffer: &[Tile4bpp],
+        src_rect: Rect<u8>,
+        dest_rect: Rect<u8>,
+        palette: Option<BgPalette>,
+    ) {
+        unsafe {
+            CopyRectToBgTilemapBufferRect(
+                self.0 as u32,
+                buffer.as_ptr().cast(),
+                src_rect.x,
+                src_rect.y,
+                src_rect.width,
+                src_rect.height,
+                dest_rect.x,
+                dest_rect.y,
+                dest_rect.width,
+                dest_rect.height,
+                palette.map_or(16, |bg| bg.index),
+                0,
+                0,
+            );
         }
     }
 
@@ -384,6 +416,9 @@ impl<B: Buffer<TileBitmap4bpp>> SpriteSheet<B> {
             tag,
         };
         let index = unsafe { LoadSpriteSheet(&raw const sheet) };
+        if index == 0xFFFF {
+            panic!("Couldn't load sprite")
+        }
         SpriteSheet {
             _own: buffer,
             _tilestart: index,

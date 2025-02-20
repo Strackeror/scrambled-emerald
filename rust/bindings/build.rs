@@ -12,14 +12,11 @@ fn main() {
     let include_path = include_path.to_str().unwrap();
     let builder = bindgen::Builder::default()
         .header("src/wrapper.h")
-        .clang_args([
-            "-I/usr/arm-none-eabi/include",
-            "-iquote",
-            include_path,
-        ])
+        .clang_args(["-I/usr/arm-none-eabi/include", "-iquote", include_path])
         .clang_args(["--target=arm-none-eabi", "-mthumb", "-march=armv4t"])
         .allowlist_file(".*/list_menu.h")
         .allowlist_file(".*/pokemon.h")
+        .allowlist_file(".*/battle.h")
         .allowlist_file(".*/item.h")
         .allowlist_file(".*/item_icon.h")
         .allowlist_file(".*/item_menu.h")
@@ -43,6 +40,7 @@ fn main() {
         .allowlist_file(".*/isagbprint.h")
         .allowlist_file(".*/gpu_regs.h")
         .allowlist_file(".*/gba/.*.h")
+        .allowlist_item("BATTLE_TYPE_.*")
         .allowlist_item("gMessageBox_Gfx")
         .allowlist_item("gLastViewedMonIndex")
         .allowlist_item("gTypesInfo")

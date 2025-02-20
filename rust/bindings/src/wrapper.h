@@ -1,4 +1,6 @@
 #include "global.h"
+#include "bg.h"
+#include "battle.h"
 #include "battle_main.h"
 #include "bg.h"
 #include "bw_summary_screen.h"

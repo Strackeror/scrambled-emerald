@@ -153,7 +153,5 @@ pub const fn pkstr_build<const S: usize>(input: &[u8]) -> [u8; S] {
 }
 
 pub const unsafe fn pkstr_raw(src: &[u8]) -> &Pkstr {
-    unsafe {
-        &*(&raw const *src as *const Pkstr)
-    }
+    unsafe { &*(&raw const *src as *const Pkstr) }
 }

@@ -70,7 +70,7 @@ extern "C" fn InitFullSummaryScreen(
     pokemons: *mut pokeemerald::Pokemon,
     count: usize,
 ) {
-    let fut = Box::new(summary_screen(back, style, pokemons, count, 0));
+    let fut = Box::new(party_screen(back, style, pokemons, count, 0));
     mgba_warn!(
         "heap: {:?} fut:{:?}-{:x?}",
         &raw const gHeap,
@@ -88,7 +88,7 @@ extern "C" fn return_from_party_callback() {
     let back = *STORED_CALLBACK.borrow();
     let count = unsafe { gPlayerPartyCount };
     let mons = &raw mut gPlayerParty;
-    let fut = Box::new(summary_screen(
+    let fut = Box::new(party_screen(
         back,
         Style::Party,
         mons.cast(),
@@ -112,7 +112,7 @@ extern "C" fn return_from_give_hold_item_callback() {
     let back = *STORED_CALLBACK.borrow();
     let count = unsafe { gPlayerPartyCount };
     let mons = &raw mut gPlayerParty;
-    let fut = Box::new(summary_screen(
+    let fut = Box::new(party_screen(
         back,
         Style::Party,
         mons.cast(),
@@ -275,8 +275,9 @@ struct Entry<'a> {
     item_sprite: Option<OwnedSprite>,
     tera_sprite: Option<TeraSprite<'a>>,
     status_sprite: Option<SheetSprite<'a>>,
-    bg_window: Window,
-    fg_window: Window,
+    fg_title_window: Window,
+    fg_hp_window: Window,
+    bg_rect: Rect<u8>,
 }
 
 impl<'a> Entry<'a> {
@@ -285,12 +286,15 @@ impl<'a> Entry<'a> {
     const TERA_SPRITE_OFFS: Vec2D<i16> = Vec2D::new(62, 20);
     const STATUS_SPRITE_OFFS: Vec2D<i16> = Vec2D::new(12, 44);
 
-    fn print_info(&self, resource: &Resources) {
-        const HP_BAR_RECT: Rect<u8> = Rect::new(0, 7, 9, 1);
-        const HP_FILL_RECT_1: Rect<u16> = Rect::new(16, 59, 48, 1);
-        const HP_FILL_RECT_2: Rect<u16> = Rect::new(16, 60, 48, 2);
+    const BG_DIM: Vec2D<u8> = Vec2D::new(9, 8);
 
-        let fg = &self.fg_window;
+    fn print_info(&self, resource: &Resources) {
+        const HP_BAR_RECT: Rect<u8> = Rect::new(0, 3, 9, 1);
+        const HP_FILL_RECT_1: Rect<u16> = Rect::new(16, 27, 48, 1);
+        const HP_FILL_RECT_2: Rect<u16> = Rect::new(16, 28, 48, 2);
+
+        let fg_title = &self.fg_title_window;
+        let fg_hp = &self.fg_hp_window;
 
         let font = Font {
             bg_color: 0,
@@ -299,7 +303,7 @@ impl<'a> Entry<'a> {
             ..Font::new(FONT_SMALL_NARROWER as _)
         };
 
-        fg.print_text(&self.poke.name(), Vec2D::new(4, 0), font);
+        fg_title.print_text(&self.poke.name(), Vec2D::new(4, 0), font);
         if self.poke.is_egg() {
             return;
         }
@@ -307,16 +311,16 @@ impl<'a> Entry<'a> {
         let lv = aformat!(5, "Lv{}", self.poke.level());
         let lv = ArrayPkstr::<6>::new_str(&lv);
         let lv_pos = Vec2D::new(69 - font.width_for(&lv) as u8, 0);
-        fg.print_text(&lv, lv_pos, font);
-        fg.copy_tilemap(
+        fg_title.print_text(&lv, lv_pos, font);
+
+        fg_hp.copy_tilemap(
             &resource.tileset.get(),
             &resource.hp_bar_map.get(),
             HP_BAR_RECT,
         );
-
         let hp = aformat!(10, "{:<3}/{:<3}", self.poke.hp(), self.poke.max_hp());
         let hp = ArrayPkstr::<11>::new_str(&hp);
-        fg.print_text(&hp, Vec2D { x: 3, y: 45 }, font);
+        fg_hp.print_text(&hp, Vec2D { x: 3, y: 13 }, font);
 
         let width = self.poke.hp() * HP_FILL_RECT_1.width / self.poke.max_hp();
         let (color1, color2) = match width {
@@ -328,18 +332,17 @@ impl<'a> Entry<'a> {
             width,
             ..HP_FILL_RECT_1
         };
-        fg.fill_rect(color1, rect1);
+        fg_hp.fill_rect(color1, rect1);
 
         let rect2 = Rect {
             width,
             ..HP_FILL_RECT_2
         };
-        fg.fill_rect(color2, rect2);
-        fg.copy_to_vram();
+        fg_hp.fill_rect(color2, rect2);
+        fg_hp.copy_to_vram();
     }
 
-    fn update_bg(&self, bg_type: BackgroundStyle, palettes: &[BgPalette]) {
-        let bg = &self.bg_window;
+    fn update_bg(&self, resources: &Resources, bg: BgHandle<'_>, bg_type: BackgroundStyle) {
         let ko = self.poke.hp() == 0;
         let bg_type = match bg_type {
             BackgroundStyle::Focused if ko => BackgroundStyle::KoFocused,
@@ -347,9 +350,12 @@ impl<'a> Entry<'a> {
             style => style,
         };
         let pal_index = bg_type.palette_index();
-        bg.set_palette(palettes[pal_index]);
-        bg.put_tilemap();
-        bg.copy_to_vram();
+        let bg_palette = resources.bg_palettes[pal_index];
+        mgba_warn!("update bg pal: {:?}", bg_palette);
+        let tiles = &resources.mon_slot_map.get();
+        let src_rect = Rect::from_vecs(Vec2D::new(0, 0), Self::BG_DIM);
+        bg.copy_tile_rect(tiles, src_rect, self.bg_rect, Some(bg_palette));
+        bg.schedule_copy_tilemap();
     }
 
     fn update_pos(&mut self, pos: Vec2D<i16>) {
@@ -366,10 +372,14 @@ impl<'a> Entry<'a> {
     }
 
     async fn switch(&mut self, other: &mut Entry<'a>, frames: i16) {
-        self.fg_window.fill(0);
-        self.fg_window.copy_to_vram();
-        other.fg_window.fill(0);
-        other.fg_window.copy_to_vram();
+        self.fg_title_window.fill(0);
+        self.fg_title_window.copy_to_vram();
+        self.fg_hp_window.fill(0);
+        self.fg_hp_window.copy_to_vram();
+        other.fg_title_window.fill(0);
+        other.fg_title_window.copy_to_vram();
+        other.fg_hp_window.fill(0);
+        other.fg_hp_window.copy_to_vram();
         sleep(1).await;
 
         let pos_self = MON_POS[self.index as usize];
@@ -398,10 +408,12 @@ impl<'a> Entry<'a> {
         fg: BgHandle<'_>,
         index: u8,
     ) -> Entry<'a> {
-        const BG_DIM: Vec2D<u8> = Vec2D::new(9, 8);
-        const FG_DIM: Vec2D<u8> = Vec2D::new(9, 8);
+        const FG_TITLE_DIM: Vec2D<u8> = Vec2D::new(9, 2);
+        const FG_HP_DIM: Vec2D<u8> = Vec2D::new(9, 4);
+        const FG_HP_POS: Vec2D<u8> = Vec2D::new(0, 4);
         const BASE_BLOCK: u16 = 0x20;
-        const BLOCK_SIZE: u16 = (BG_DIM.x * BG_DIM.y + FG_DIM.x * FG_DIM.y) as u16;
+        const BLOCK_SIZE: u16 =
+            (FG_TITLE_DIM.x * FG_TITLE_DIM.y + FG_HP_DIM.x * FG_HP_DIM.y) as u16;
 
         let (tile_x, tile_y) = MON_POS[index as usize];
         let tile_pos = Vec2D::new(tile_x, tile_y);
@@ -413,32 +425,19 @@ impl<'a> Entry<'a> {
         let item_sprite = item_sprite(&poke, index.into()).await;
         let status_sprite = status_sprite(&poke, &resources.status_sheet, resources.status_pal);
 
-        let tiles = &resources.tileset.get();
         let block = BLOCK_SIZE * index as u16 + BASE_BLOCK;
+        let rect = Rect::from_vecs(tile_pos, FG_TITLE_DIM);
+        let fg_title_window = Window::create(fg, rect, resources.bg_palettes[0], block);
+        fg_title_window.put_tilemap();
 
-        let rect = Rect::from_vecs(tile_pos, BG_DIM);
-        let bg_window = Window::create(bg, rect, resources.bg_palettes[0], block);
-        sleep(1).await;
+        let block = block + FG_TITLE_DIM.size() as u16;
+        let rect = Rect::from_vecs(tile_pos + FG_HP_POS, FG_HP_DIM);
+        let fg_hp_window = Window::create(fg, rect, resources.bg_palettes[0], block);
+        fg_hp_window.put_tilemap();
 
-        let rect = Rect::from_vecs(tile_pos, FG_DIM);
-        let fg_window = Window::create(
-            fg,
-            rect,
-            resources.bg_palettes[0],
-            block + BG_DIM.size() as u16,
-        );
-        fg_window.put_tilemap();
-        sleep(1).await;
-
-        let mon_bg_map = &resources.mon_slot_map;
-        let rect = Rect::from_vecs(Vec2D::new(0, 0), BG_DIM);
-        bg_window.copy_tilemap(tiles, &mon_bg_map.get(), rect);
-        sleep(1).await;
-
-        mgba_warn!("{:?} {:?}", fg_window, bg_window);
-
-        bg_window.put_tilemap();
-        bg_window.copy_to_vram();
+        let src_rect = Rect::from_vecs(Vec2D::new(0, 0), Self::BG_DIM);
+        let bg_rect = Rect::from_vecs(tile_pos, Self::BG_DIM);
+        bg.copy_tile_rect(&resources.mon_slot_map.get(), src_rect, bg_rect, None);
         sleep(1).await;
 
         let mut entry = Entry {
@@ -448,8 +447,9 @@ impl<'a> Entry<'a> {
             item_sprite,
             tera_sprite,
             status_sprite,
-            bg_window,
-            fg_window,
+            bg_rect,
+            fg_title_window,
+            fg_hp_window,
         };
         entry.update_pos(tile_pos.tile_to_pixel());
         entry
@@ -462,6 +462,7 @@ struct Menu<'a> {
     style: Style,
     resources: &'a Resources,
     fg: BgHandle<'a>,
+    fixed_bg: BgHandle<'a>,
 
     entries: ArrayVec<Entry<'a>, 6>,
     focused_entry: u8,
@@ -486,15 +487,6 @@ impl PokeAction {
             PokeAction::Switch => pkstr!(b"Switch"),
             PokeAction::GiveItem => pkstr!(b"Give Item"),
             PokeAction::TakeItem => pkstr!(b"Take Item"),
-        }
-    }
-
-    fn is_available(self, style: Style, poke: &Pokemon) -> bool {
-        match self {
-            PokeAction::Summary => true,
-            PokeAction::Switch => style == Style::Party,
-            PokeAction::GiveItem => style == Style::Party && !poke.is_egg(),
-            PokeAction::TakeItem => style == Style::Party && poke.item().is_some(),
         }
     }
 }
@@ -540,10 +532,16 @@ impl Menu<'_> {
         index
     }
 
+    fn update_entry_bg(&mut self, entry: u8, style: BackgroundStyle) {
+        let bg = self.fixed_bg;
+        let entry = &self.entries[entry as usize];
+        entry.update_bg(self.resources, bg, style);
+    }
+
     fn change_focus(&mut self, new_index: u8) {
         use BackgroundStyle::*;
-        self.entries[self.focused_entry as usize].update_bg(Unfocused, &self.resources.bg_palettes);
-        self.entries[new_index as usize].update_bg(Focused, &self.resources.bg_palettes);
+        self.update_entry_bg(self.focused_entry, Unfocused);
+        self.update_entry_bg(new_index, Focused);
         self.focused_entry = new_index;
     }
 
@@ -586,27 +584,27 @@ impl Menu<'_> {
     }
 
     fn change_focus_switch(&mut self, switch_index: u8, new_index: u8) {
+        use BackgroundStyle::*;
         let previous = match switch_index == self.focused_entry {
-            true => BackgroundStyle::SwitchUnfocused,
-            false => BackgroundStyle::Unfocused,
+            true => SwitchUnfocused,
+            false => Unfocused,
         };
-        let palettes = &self.resources.bg_palettes;
-        self.entries[self.focused_entry as usize].update_bg(previous, palettes);
-        self.entries[new_index as usize].update_bg(BackgroundStyle::SwitchFocused, palettes);
+
+        self.update_entry_bg(self.focused_entry, previous);
+        self.update_entry_bg(new_index, SwitchFocused);
         self.focused_entry = new_index;
     }
 
-    async fn choose_switch_mon(&mut self) -> Option<usize> {
+    async fn choose_switch_mon(&mut self) -> Option<u8> {
         let switching_index = self.focused_entry;
         loop {
             sleep(1).await;
             if Button::B.pressed() {
-                self.entries[switching_index as usize]
-                    .update_bg(BackgroundStyle::Unfocused, &self.resources.bg_palettes);
+                self.update_entry_bg(switching_index, BackgroundStyle::Unfocused);
                 return None;
             }
             if Button::A.pressed() {
-                return Some(switching_index.into());
+                return Some(switching_index);
             }
 
             let new_index = self.update_index(self.focused_entry);
@@ -617,23 +615,30 @@ impl Menu<'_> {
     }
 
     async fn switch_mon(&mut self) {
-        let focus = self.focused_entry as usize;
-        let palettes = &self.resources.bg_palettes;
-        self.entries[focus].update_bg(BackgroundStyle::SwitchFocused, palettes);
+        let focus = self.focused_entry;
+        self.update_entry_bg(focus, BackgroundStyle::SwitchFocused);
         if let Some(switch) = self.choose_switch_mon().await {
-            if switch != self.focused_entry as usize {
-                let indices = (self.focused_entry as usize, switch);
+            if switch != self.focused_entry {
+                let indices = (self.focused_entry as usize, switch as usize);
                 let (a, b) = disjoint_borrow_mut(indices, &mut self.entries);
                 a.switch(b, 20).await;
                 a.print_info(self.resources);
                 b.print_info(self.resources);
-                a.fg_window.copy_to_vram();
-                b.fg_window.copy_to_vram();
-                self.entries[switch].update_bg(BackgroundStyle::Unfocused, palettes);
+                a.fg_title_window.copy_to_vram();
+                b.fg_title_window.copy_to_vram();
+                self.update_entry_bg(switch, BackgroundStyle::Unfocused);
             }
         }
-        let focus = self.focused_entry as usize;
-        self.entries[focus].update_bg(BackgroundStyle::Focused, palettes);
+        self.update_entry_bg(self.focused_entry, BackgroundStyle::Focused);
+    }
+
+    fn action_available(&self, action: PokeAction, entry: &Entry) -> bool {
+        match action {
+            PokeAction::Summary => true,
+            PokeAction::Switch => self.style == Style::Party,
+            PokeAction::GiveItem => self.style == Style::Party,
+            PokeAction::TakeItem => self.style == Style::Party && entry.poke.item().is_some(),
+        }
     }
 
     async fn select_action(&mut self) -> Option<PokeAction> {
@@ -654,7 +659,7 @@ impl Menu<'_> {
             PokeAction::TakeItem,
         ]
         .into_iter()
-        .filter(|act| act.is_available(self.style, &entry.poke))
+        .filter(|act| self.action_available(*act, entry))
         .map(|act| ListMenuItem {
             id: act as i32,
             name: act.name().as_ptr(),
@@ -674,7 +679,8 @@ impl Menu<'_> {
         drop(win);
 
         if let Some(entry) = self.entries.get(5) {
-            entry.fg_window.put_tilemap();
+            entry.fg_hp_window.put_tilemap();
+            entry.fg_title_window.put_tilemap();
         }
         ret
     }
@@ -720,7 +726,7 @@ impl Menu<'_> {
 struct Resources {
     tileset: AllocBuf<TileBitmap4bpp>,
     bg_map: AllocBuf<Tile4bpp>,
-    mon_slot_map: AllocBuf<TilePlain>,
+    mon_slot_map: AllocBuf<Tile4bpp>,
     bg_palettes: [BgPalette; 6],
 
     hp_bar_map: AllocBuf<TilePlain>,
@@ -766,7 +772,7 @@ async fn load_resources() -> Resources {
     }
 }
 
-async fn summary_screen(
+async fn party_screen(
     back: MainCallback,
     style: Style,
     pokemons: *mut pokeemerald::Pokemon,
@@ -838,7 +844,7 @@ async fn summary_screen(
             i if i == index => BackgroundStyle::Focused,
             _ => BackgroundStyle::Unfocused,
         };
-        entry.update_bg(style, &resources.bg_palettes);
+        entry.update_bg(&resources, fixed_bg, style);
     }
 
     unsafe { SetVBlankCallback(Some(vblank_cb)) };
@@ -849,6 +855,7 @@ async fn summary_screen(
         style,
         resources: &resources,
         fg,
+        fixed_bg,
         entries,
         focused_entry: index,
         exit_callback: Box::new(move || unsafe { SetMainCallback2(back) }),
