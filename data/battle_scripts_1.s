@@ -976,13 +976,7 @@ BattleScript_EffectStuffCheeks::
 	bicword gHitMarker, HITMARKER_DISABLE_ANIMATION
 	setbyte sBERRY_OVERRIDE, 0
 	removeitem BS_ATTACKER
-	setstatchanger STAT_DEF, 2, FALSE
-	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_CHANGE_ALLOW_PTR, BattleScript_StuffCheeksEnd
-	setgraphicalstatchangevalues
-	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_INCREASE, BattleScript_StuffCheeksEnd @ cant raise def
-	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
-	printfromtable gStatUpStringIds
-	waitmessage B_WAIT_TIME_LONG
+	setadditionaleffects
 BattleScript_StuffCheeksEnd:
 	goto BattleScript_MoveEnd
 

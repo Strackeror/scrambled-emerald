@@ -1,13 +1,13 @@
-#include "battle_dynamax.h"
 #include "battle_anim_scripts.h"
+#include "battle_dynamax.h"
 #include "constants/battle.h"
 #include "constants/battle_move_effects.h"
 #include "constants/battle_script_commands.h"
 #include "constants/battle_string_ids.h"
 #include "constants/battle_z_move_effects.h"
+#include "constants/contest.h"
 #include "constants/hold_effects.h"
 #include "constants/moves.h"
-#include "constants/contest.h"
 #include "metaprogram.h"
 #include "pokemon.h"
 
@@ -26,91 +26,70 @@ EFFECT_TWO_TURNS_ATTACK/EFFECT_SOLAR_BEAM: weather in which to skip charge turn 
 
 // Shared Move Description entries
 
-const u8 gNotDoneYetDescription[] = _(
-    "This move can't be used. Its\n"
-    "effect is in development.");
+const u8 gNotDoneYetDescription[] = _("This move can't be used. Its\n"
+                                      "effect is in development.");
 
 static const u8 sNullDescription[] = _("");
 
-static const u8 sMegaDrainDescription[] = _(
-    "An attack that absorbs\n"
-    "half the damage inflicted.");
+static const u8 sMegaDrainDescription[] = _("An attack that absorbs\n"
+                                            "half the damage inflicted.");
 
-static const u8 sHyperBeamDescription[] = _(
-    "Powerful, but leaves the\n"
-    "user immobile the next turn.");
+static const u8 sHyperBeamDescription[] = _("Powerful, but leaves the\n"
+                                            "user immobile the next turn.");
 
-static const u8 sRevengeDescription[] = _(
-    "An attack that gains power\n"
-    "if injured by the foe.");
+static const u8 sRevengeDescription[] = _("An attack that gains power\n"
+                                          "if injured by the foe.");
 
-static const u8 sPluckDescription[] = _(
-    "Eats the foe's held Berry\n"
-    "gaining its effect.");
+static const u8 sPluckDescription[] = _("Eats the foe's held Berry\n"
+                                        "gaining its effect.");
 
-static const u8 sHealingWishDescription[] = _(
-    "The user faints to heal up\n"
-    "the recipient.");
+static const u8 sHealingWishDescription[] = _("The user faints to heal up\n"
+                                              "the recipient.");
 
-static const u8 sWringOutDescription[] = _(
-    "The higher the foe's HP\n"
-    "the more damage caused.");
+static const u8 sWringOutDescription[] = _("The higher the foe's HP\n"
+                                           "the more damage caused.");
 
-static const u8 sUTurnDescription[] = _(
-    "Does damage then switches\n"
-    "out the user.");
+static const u8 sUTurnDescription[] = _("Does damage then switches\n"
+                                        "out the user.");
 
-static const u8 sStormThrowDescription[] = _(
-    "This attack always results\n"
-    "in a critical hit.");
+static const u8 sStormThrowDescription[] = _("This attack always results\n"
+                                             "in a critical hit.");
 
-static const u8 sCircleThrowDescription[] = _(
-    "Knocks the foe away to end\n"
-    "the battle.");
+static const u8 sCircleThrowDescription[] = _("Knocks the foe away to end\n"
+                                              "the battle.");
 
-static const u8 sChipAwayDescription[] = _(
-    "Strikes through the foe's\n"
-    "stat changes.");
+static const u8 sChipAwayDescription[] = _("Strikes through the foe's\n"
+                                           "stat changes.");
 
-static const u8 sHeavySlamDescription[] = _(
-    "Does more damage if the\n"
-    "user outweighs the foe.");
+static const u8 sHeavySlamDescription[] = _("Does more damage if the\n"
+                                            "user outweighs the foe.");
 
-static const u8 sPsyshockDescription[] = _(
-    "Attacks with a psychic wave\n"
-    "that does physical damage.");
+static const u8 sPsyshockDescription[] = _("Attacks with a psychic wave\n"
+                                           "that does physical damage.");
 
-static const u8 sLavaPlumeDescription[] = _(
-    "Scarlet flames torch\n"
-    "everything around the user.");
+static const u8 sLavaPlumeDescription[] = _("Scarlet flames torch\n"
+                                            "everything around the user.");
 
-static const u8 sShadowForceDescription[] = _(
-    "Vanishes on the first turn\n"
-    "then strikes the next turn.");
+static const u8 sShadowForceDescription[] = _("Vanishes on the first turn\n"
+                                              "then strikes the next turn.");
 
-static const u8 sFalseSwipeDescription[] = _(
-    "An attack that leaves the\n"
-    "foe with at least 1 HP.");
+static const u8 sFalseSwipeDescription[] = _("An attack that leaves the\n"
+                                             "foe with at least 1 HP.");
 
-static const u8 sDrainingKissDescription[] = _(
-    "An attack that absorbs over\n"
-    "half the damage inflicted.");
+static const u8 sDrainingKissDescription[] = _("An attack that absorbs over\n"
+                                               "half the damage inflicted.");
 
-static const u8 sCloseCombatDescription[] = _(
-    "A strong attack but lowers\n"
-    "the defensive stats.");
+static const u8 sCloseCombatDescription[] = _("A strong attack but lowers\n"
+                                              "the defensive stats.");
 
-static const u8 sHyperspaceHoleDescription[] = _(
-    "Uses a warp hole to attack.\n"
-    "Can't be evaded.");
+static const u8 sHyperspaceHoleDescription[] = _("Uses a warp hole to attack.\n"
+                                                 "Can't be evaded.");
 
-static const u8 sSuckerPunchDescription[] = _(
-    "Strikes first if the foe\n"
-    "is preparing an attack.");
+static const u8 sSuckerPunchDescription[] = _("Strikes first if the foe\n"
+                                              "is preparing an attack.");
 
-static const u8 sFeintDescription[] = _(
-    "An attack that hits foes\n"
-    "using moves like Protect.");
+static const u8 sFeintDescription[] = _("An attack that hits foes\n"
+                                        "using moves like Protect.");
 
 const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
 {
@@ -4685,7 +4664,11 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .contestComboMoves = {0},
         .battleAnimScript = gBattleAnimMove_LockOn,
         .healingMove = TRUE,
-        .additionalEffects = ADDITIONAL_EFFECTS({.moveEffect = MOVE_EFFECT_ATK_PLUS_ARG,},{.moveEffect = MOVE_EFFECT_SP_ATK_PLUS_ARG,},{.moveEffect = MOVE_EFFECT_ACC_PLUS_ARG,.chance = 100,},)
+        .additionalEffects = ADDITIONAL_EFFECTS(
+            {.moveEffect = MOVE_EFFECT_ATK_PLUS_ARG, .argument = 3,},
+            {.moveEffect = MOVE_EFFECT_SP_ATK_PLUS_ARG, .argument = 3,},
+            {.moveEffect = MOVE_EFFECT_ACC_PLUS_ARG, .argument = 3,},
+        )
     },
 
     [MOVE_OUTRAGE] =
@@ -12329,10 +12312,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
-        .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MOVE_EFFECT_ACC_MINUS_1,
-            .chance = 40,
-        }),
+        .additionalEffects = ADDITIONAL_EFFECTS({ .moveEffect = MOVE_EFFECT_NIGHTMARE, .chance = 100, }),
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -15865,7 +15845,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Engorge"),
         .description = COMPOUND_STRING("The user eats its held Berry on command.\nThis boosts both defensive stats by 1,\nin addition to the Berry's actual effect."),
-        .effect = EFFECT_DO_NOTHING,
+        .effect = EFFECT_STUFF_CHEEKS,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
