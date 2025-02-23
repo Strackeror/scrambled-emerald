@@ -2107,7 +2107,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_ROCKY_PAYLOAD] =
     {
-        .name = _("Rocky Payload"),
+        .name = _("Stonemason"),
         .description = COMPOUND_STRING("Powers up Rock moves."),
         .aiRating = 6,
     },
