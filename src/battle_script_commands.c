@@ -4634,19 +4634,20 @@ FEATURE_FLAG_ASSERT(I_EXP_SHARE_FLAG, YouNeedToSetTheExpShareFlagToAnUnusedFlag)
 
 static bool32 BattleTypeAllowsExp(void)
 {
-    if (RECORDED_WILD_BATTLE)
-        return TRUE;
-    else if (gBattleTypeFlags &
-              ( BATTLE_TYPE_LINK
-              | BATTLE_TYPE_RECORDED_LINK
-              | BATTLE_TYPE_TRAINER_HILL
-              | BATTLE_TYPE_FRONTIER
-              | BATTLE_TYPE_SAFARI
-              | BATTLE_TYPE_BATTLE_TOWER
-              | BATTLE_TYPE_EREADER_TRAINER))
-        return FALSE;
-    else
-        return TRUE;
+    return FALSE;
+    // if (RECORDED_WILD_BATTLE)
+    //     return TRUE;
+    // else if (gBattleTypeFlags &
+    //           ( BATTLE_TYPE_LINK
+    //           | BATTLE_TYPE_RECORDED_LINK
+    //           | BATTLE_TYPE_TRAINER_HILL
+    //           | BATTLE_TYPE_FRONTIER
+    //           | BATTLE_TYPE_SAFARI
+    //           | BATTLE_TYPE_BATTLE_TOWER
+    //           | BATTLE_TYPE_EREADER_TRAINER))
+    //     return FALSE;
+    // else
+    //     return TRUE;
 }
 
 static u32 GetMonHoldEffect(struct Pokemon *mon)
