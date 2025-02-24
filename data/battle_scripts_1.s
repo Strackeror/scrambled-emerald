@@ -1273,6 +1273,7 @@ BattleScript_EffectPartingShot::
 	attackcanceler
 	attackstring
 	ppreduce
+	jumpifholdeffect BS_TARGET, HOLD_EFFECT_CLEAR_AMULET, BattleScript_EffectPartingShotBlocked
 	jumpifstat BS_TARGET, CMP_GREATER_THAN, STAT_ATK, MIN_STAT_STAGE, BattleScript_EffectPartingShotTryAtk
 	jumpifstat BS_TARGET, CMP_EQUAL, STAT_SPATK, MIN_STAT_STAGE, BattleScript_CantLowerMultipleStats
 BattleScript_EffectPartingShotTryAtk:
@@ -1295,6 +1296,9 @@ BattleScript_EffectPartingShotTrySpAtk:
 BattleScript_EffectPartingShotSwitch:
 	moveendall
 	goto BattleScript_MoveSwitch
+BattleScript_EffectPartingShotBlocked:
+	call BattleScript_ItemNoStatLoss
+	goto BattleScript_MoveEnd
 
 BattleScript_EffectPowder::
 	attackcanceler
