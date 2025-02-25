@@ -15,7 +15,7 @@
         .trainerClass = TRAINER_CLASS_PKMN_TRAINER_1,
 #line 4
         .trainerPic = TRAINER_BACK_PIC_BRENDAN,
-        .encounterMusic_gender = 
+        .encounterMusic_gender =
 #line 6
             TRAINER_ENCOUNTER_MUSIC_MALE,
         .partySize = 0,
@@ -32,7 +32,7 @@
         .trainerClass = TRAINER_CLASS_RIVAL,
 #line 11
         .trainerPic = TRAINER_BACK_PIC_STEVEN,
-        .encounterMusic_gender = 
+        .encounterMusic_gender =
 #line 13
             TRAINER_ENCOUNTER_MUSIC_MALE,
         .partySize = 3,
@@ -110,7 +110,7 @@
         .trainerName = _("STEVEN"),
 #line 47
         .trainerPic = TRAINER_BACK_PIC_STEVEN,
-        .encounterMusic_gender = 
+        .encounterMusic_gender =
 #line 49
             TRAINER_ENCOUNTER_MUSIC_FEMALE,
 #line 50
@@ -154,7 +154,7 @@
         .trainerName = _("STEVEN"),
 #line 68
         .trainerPic = TRAINER_BACK_PIC_STEVEN,
-        .encounterMusic_gender = 
+        .encounterMusic_gender =
 #line 70
             TRAINER_ENCOUNTER_MUSIC_FEMALE,
 #line 71
@@ -169,7 +169,7 @@
             .species = SPECIES_TOEDSCOOL,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 75
-            .heldItem = ITEM_TOXIC_ORB,
+            .heldItem = ITEM_FOCUS_SASH,
 #line 79
             .ev = TRAINER_PARTY_EVS(252, 0, 252, 0, 0, 0),
 #line 78
@@ -198,7 +198,7 @@
         .trainerName = _("STEVEN"),
 #line 89
         .trainerPic = TRAINER_BACK_PIC_STEVEN,
-        .encounterMusic_gender = 
+        .encounterMusic_gender =
 #line 91
             TRAINER_ENCOUNTER_MUSIC_FEMALE,
 #line 92
@@ -242,7 +242,7 @@
         .trainerName = _("STEVEN"),
 #line 110
         .trainerPic = TRAINER_BACK_PIC_STEVEN,
-        .encounterMusic_gender = 
+        .encounterMusic_gender =
 #line 112
             TRAINER_ENCOUNTER_MUSIC_FEMALE,
 #line 113
@@ -286,7 +286,7 @@
         .trainerName = _("STEVEN"),
 #line 131
         .trainerPic = TRAINER_BACK_PIC_STEVEN,
-        .encounterMusic_gender = 
+        .encounterMusic_gender =
 #line 133
             TRAINER_ENCOUNTER_MUSIC_FEMALE,
 #line 134
@@ -330,14 +330,14 @@
         .trainerName = _("LEAF"),
 #line 152
         .trainerPic = TRAINER_BACK_PIC_LEAF,
-        .encounterMusic_gender = 
+        .encounterMusic_gender =
 #line 154
             TRAINER_ENCOUNTER_MUSIC_FEMALE,
 #line 155
         .doubleBattle = FALSE,
 #line 156
         .aiFlags = AI_FLAG_BASIC_TRAINER | AI_FLAG_ACE_POKEMON,
-        .partySize = 3,
+        .partySize = 1,
         .party = (const struct TrainerMon[])
         {
             {
@@ -363,56 +363,6 @@
                 MOVE_MISTY_TERRAIN,
                 MOVE_ENDURE,
                 MOVE_PROTECT,
-            },
-            },
-            {
-#line 170
-            .species = SPECIES_MIENSHAO,
-            .gender = TRAINER_MON_RANDOM_GENDER,
-#line 170
-            .heldItem = ITEM_EJECT_BUTTON,
-#line 174
-            .ev = TRAINER_PARTY_EVS(252, 252, 0, 0, 0, 0),
-#line 173
-            .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-#line 172
-            .ability = ABILITY_TECHNICIAN,
-#line 171
-            .lvl = 43,
-#line 175
-            .nature = NATURE_ADAMANT,
-            .dynamaxLevel = MAX_DYNAMAX_LEVEL,
-            .moves = {
-#line 176
-                MOVE_DOUBLE_HIT,
-                MOVE_PROTECT,
-                MOVE_ENDURE,
-                MOVE_FAKE_OUT,
-            },
-            },
-            {
-#line 181
-            .species = SPECIES_SINISTCHA_UNREMARKABLE,
-            .gender = TRAINER_MON_RANDOM_GENDER,
-#line 181
-            .heldItem = ITEM_LUM_BERRY,
-#line 185
-            .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 0, 252),
-#line 184
-            .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-#line 183
-            .ability = ABILITY_WATER_BUBBLE,
-#line 182
-            .lvl = 43,
-#line 186
-            .nature = NATURE_CALM,
-            .dynamaxLevel = MAX_DYNAMAX_LEVEL,
-            .moves = {
-#line 187
-                MOVE_RAGE_POWDER,
-                MOVE_RAGE_POWDER,
-                MOVE_RAGE_POWDER,
-                MOVE_LIFE_DEW,
             },
             },
         },

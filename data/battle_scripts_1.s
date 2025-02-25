@@ -976,13 +976,7 @@ BattleScript_EffectStuffCheeks::
 	bicword gHitMarker, HITMARKER_DISABLE_ANIMATION
 	setbyte sBERRY_OVERRIDE, 0
 	removeitem BS_ATTACKER
-	setstatchanger STAT_DEF, 2, FALSE
-	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_CHANGE_ALLOW_PTR, BattleScript_StuffCheeksEnd
-	setgraphicalstatchangevalues
-	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_INCREASE, BattleScript_StuffCheeksEnd @ cant raise def
-	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
-	printfromtable gStatUpStringIds
-	waitmessage B_WAIT_TIME_LONG
+	setadditionaleffects
 BattleScript_StuffCheeksEnd:
 	goto BattleScript_MoveEnd
 
@@ -1279,6 +1273,7 @@ BattleScript_EffectPartingShot::
 	attackcanceler
 	attackstring
 	ppreduce
+	jumpifholdeffect BS_TARGET, HOLD_EFFECT_CLEAR_AMULET, BattleScript_EffectPartingShotBlocked
 	jumpifstat BS_TARGET, CMP_GREATER_THAN, STAT_ATK, MIN_STAT_STAGE, BattleScript_EffectPartingShotTryAtk
 	jumpifstat BS_TARGET, CMP_EQUAL, STAT_SPATK, MIN_STAT_STAGE, BattleScript_CantLowerMultipleStats
 BattleScript_EffectPartingShotTryAtk:
@@ -1301,6 +1296,9 @@ BattleScript_EffectPartingShotTrySpAtk:
 BattleScript_EffectPartingShotSwitch:
 	moveendall
 	goto BattleScript_MoveSwitch
+BattleScript_EffectPartingShotBlocked:
+	call BattleScript_ItemNoStatLoss
+	goto BattleScript_MoveEnd
 
 BattleScript_EffectPowder::
 	attackcanceler
