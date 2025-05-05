@@ -40254,7 +40254,7 @@ F_TRAINER_FEMALE |
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
             .moves = {
 #line 16080
-                MOVE_LANDS_WRATH,
+                MOVE_MAGMA_STORM,
                 MOVE_MYSTICAL_POWER,
                 MOVE_MYSTICAL_POWER,
                 MOVE_LUSTER_PURGE,
@@ -41289,7 +41289,7 @@ F_TRAINER_FEMALE |
 #line 16546
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 16545
-            .ability = ABILITY_BATTLE_ARMOR,
+            .ability = ABILITY_SCRAPPY,
 #line 16544
             .lvl = 60,
 #line 16548
@@ -44023,7 +44023,7 @@ F_TRAINER_FEMALE |
 #line 17775
             .lvl = 26,
 #line 17779
-            .nature = NATURE_JOLLY,
+            .nature = NATURE_ADAMANT,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
             .moves = {
 #line 17780
@@ -45645,7 +45645,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 18511
-            .species = SPECIES_MORPEKO_FULL_BELLY,
+            .species = SPECIES_MORPEKO_HANGRY,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 18511
             .heldItem = ITEM_LIECHI_BERRY,
@@ -45654,7 +45654,7 @@ F_TRAINER_FEMALE |
 #line 18514
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
 #line 18513
-            .ability = ABILITY_HUNGER_SWITCH,
+            .ability = ABILITY_HUSTLE,
 #line 18512
             .lvl = 32,
 #line 18516
