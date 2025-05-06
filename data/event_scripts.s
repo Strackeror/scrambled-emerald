@@ -1117,6 +1117,7 @@ Common_EventScript_EditItemShop::
 	return
 
 Common_EventScript_BadgeMart::
+	goto_if_ge VAR_LEVEL_CAP, 40, Common_EventScript_LevelMart40
 	goto_if_set FLAG_BADGE07_GET, Common_EventScript_BadgeMart7
 	goto_if_set FLAG_BADGE05_GET, Common_EventScript_BadgeMart5
 	goto_if_set FLAG_BADGE04_GET, Common_EventScript_BadgeMart4
@@ -1125,6 +1126,9 @@ Common_EventScript_BadgeMart::
 	goto_if_set FLAG_BADGE01_GET, Common_EventScript_BadgeMart1
 	goto Common_EventScript_BadgeMart0
 
+Common_EventScript_LevelMart40:
+	pokemart Common_EventScript_Porygon_ShopList
+	return
 Common_EventScript_BadgeMart7:
 	pokemart Common_EventScript_7Badge_ShopList
 	return
@@ -1148,6 +1152,10 @@ Common_EventScript_BadgeMart0:
 	return
 	
 	.align 2
+Common_EventScript_Porygon_ShopList::
+	.2byte ITEM_DUBIOUS_DISC
+	.2byte ITEM_UPGRADE
+
 Common_EventScript_7Badge_ShopList::
 	.2byte ITEM_THROAT_SPRAY
 
