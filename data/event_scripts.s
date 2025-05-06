@@ -1149,11 +1149,11 @@ Common_EventScript_BadgeMart0:
 	
 	.align 2
 Common_EventScript_7Badge_ShopList::
-	.2byte ITEM_BOOSTER_ENERGY
 	.2byte ITEM_THROAT_SPRAY
 
 Common_EventScript_5Badge_ShopList::
 	.2byte ITEM_WEAKNESS_POLICY
+	.2byte ITEM_BOOSTER_ENERGY
 
 Common_EventScript_4Badge_ShopList::
 	.2byte ITEM_CHOICE_BAND
@@ -1199,7 +1199,7 @@ Common_EventScript_1Badge_ShopList::
 	.2byte ITEM_SNOWBALL
 	.2byte ITEM_SILVER_POWDER
 	.2byte ITEM_DRAGON_FANG
-	.2byte ITEM_PIXIE_PLATE
+	.2byte ITEM_SILK_SCARF
 	.2byte ITEM_FLAME_PLATE
 	.2byte ITEM_SPLASH_PLATE
 	.2byte ITEM_ZAP_PLATE
