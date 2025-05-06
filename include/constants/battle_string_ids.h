@@ -724,8 +724,10 @@
 #define STRINGID_ELECTRICCURRENTISRUNNING             722
 #define STRINGID_SEEMSWEIRD                           723
 #define STRINGID_WAGGLINGAFINGER                      724
+#define STRINGID_PKMNJAWLOCKED                        725
+#define STRINGID_PKMNVISEGRIPPED                      726
 
-#define BATTLESTRINGS_COUNT                           725
+#define BATTLESTRINGS_COUNT                           727
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,
@@ -1023,7 +1025,9 @@
 #define B_MSG_WRAPPED_INFESTATION  7
 #define B_MSG_WRAPPED_SNAP_TRAP    8
 #define B_MSG_WRAPPED_THUNDER_CAGE 9
-#define NUM_TRAPPING_MOVES         10
+#define B_MSG_WRAPPED_JAW_LOCK     10
+#define B_MSG_WRAPPED_VISE_GRIP    11
+#define NUM_TRAPPING_MOVES         12
 
 // z effects
 #define B_MSG_Z_RESET_STATS   0

@@ -629,6 +629,8 @@
 #define TRAP_ANIM_INFESTATION 6
 #define TRAP_ANIM_SNAP_TRAP 7
 #define TRAP_ANIM_THUNDER_CAGE 8
+#define TRAP_ANIM_JAW_LOCK 9
+#define TRAP_ANIM_VISE_GRIP 10
 
 // Weather defines for battle animation scripts.
 #define ANIM_WEATHER_NONE 0

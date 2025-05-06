@@ -28078,6 +28078,8 @@ gBattleAnimGeneral_TurnTrap::
 	jumpargeq 0, TRAP_ANIM_INFESTATION, Status_Infestation
 	jumpargeq 0, TRAP_ANIM_SNAP_TRAP, Status_Snap_Trap
 	jumpargeq 0, TRAP_ANIM_THUNDER_CAGE, Status_Thunder_Cage
+	jumpargeq 0, TRAP_ANIM_JAW_LOCK, gBattleAnimMove_JawLock
+	jumpargeq 0, TRAP_ANIM_VISE_GRIP, gBattleAnimMove_ViseGrip
 	goto Status_BindWrap
 Status_BindWrap:
 	loadspritegfx ANIM_TAG_TENDRILS
