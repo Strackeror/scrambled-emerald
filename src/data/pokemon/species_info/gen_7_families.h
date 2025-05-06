@@ -206,10 +206,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
 
     [SPECIES_DARTRIX] =
     {
-        .baseHP        = 73,
+        .baseHP        = 68,
         .baseAttack    = 77,
         .baseDefense   = 65,
-        .baseSpeed     = 98,
+        .baseSpeed     = 78,
         .baseSpAttack  = 77,
         .baseSpDefense = 75,
         .types = MON_TYPES(TYPE_GRASS, TYPE_FLYING),
