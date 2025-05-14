@@ -276,7 +276,7 @@ Text_CantWaterfall:
 	.string "a mighty roar.$"
 
 Text_PlayerUsedWaterfall:
-	.string "{PLAYER} climbed the watefall!$"
+	.string "{PLAYER} climbed the waterfall!$"
 	
 EventScript_DiveSpot::
 	lockall
