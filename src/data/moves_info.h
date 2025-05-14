@@ -368,7 +368,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .contestComboStarterId = COMBO_STARTER_VICE_GRIP,
         .contestComboMoves = {0},
         .battleAnimScript = gBattleAnimMove_ViseGrip,
-        .additionalEffects = ADDITIONAL_EFFECTS({.moveEffect = MOVE_EFFECT_WRAP},),
+        .additionalEffects = ADDITIONAL_EFFECTS({.moveEffect = MOVE_EFFECT_WRAP,},),
     },
 
     [MOVE_GUILLOTINE] =
@@ -4321,7 +4321,12 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .contestComboStarterId = COMBO_STARTER_SCARY_FACE,
         .contestComboMoves = {COMBO_STARTER_LEER, COMBO_STARTER_RAGE},
         .battleAnimScript = gBattleAnimMove_ScaryFace,
-        .additionalEffects = ADDITIONAL_EFFECTS({.moveEffect = MOVE_EFFECT_SPD_MINUS_2,},{.moveEffect = MOVE_EFFECT_DEF_MINUS_1,},{.moveEffect = MOVE_EFFECT_SP_DEF_MINUS_1,},)
+        .additionalEffects = ADDITIONAL_EFFECTS(
+            {.moveEffect = MOVE_EFFECT_SPD_MINUS_2,},
+            {.moveEffect = MOVE_EFFECT_DEF_MINUS_1,},
+            {.moveEffect = MOVE_EFFECT_SP_DEF_MINUS_1,},
+            {.moveEffect = MOVE_EFFECT_NIGHTMARE,},
+        )
     },
 
     [MOVE_FEINT_ATTACK] =
@@ -5204,7 +5209,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .punchingMove = FALSE,
-        .additionalEffects = ADDITIONAL_EFFECTS({ .moveEffect = MOVE_EFFECT_YAWN, .argument = 2}),
+        .additionalEffects = ADDITIONAL_EFFECTS({ .moveEffect = MOVE_EFFECT_YAWN, .argument = 2, .chance = 100,}),
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -6853,7 +6858,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
         .additionalEffects = ADDITIONAL_EFFECTS(
-            {.moveEffect = MOVE_EFFECT_SP_ATK_PLUS_1,.chance = 100,},
+            {.moveEffect = MOVE_EFFECT_SP_ATK_PLUS_1,.chance = 100,.self = TRUE,},
         ),
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MON,
         .contestCategory = CONTEST_CATEGORY_SMART,
@@ -9193,7 +9198,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
         .pulseMove = TRUE,
-        .additionalEffects = ADDITIONAL_EFFECTS({.moveEffect = MOVE_EFFECT_FLINCH,.chance = 30,},),
+        .additionalEffects = ADDITIONAL_EFFECTS({.moveEffect = MOVE_EFFECT_FLINCH,.chance = 30,},{.moveEffect = MOVE_EFFECT_NIGHTMARE,.chance=100},),
         .contestEffect = CONTEST_EFFECT_BETTER_IF_LAST,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -10495,7 +10500,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     [MOVE_DOUBLE_HIT] =
     {
         .name = COMPOUND_STRING("Double Hit"),
-        .description = COMPOUND_STRING("The user strikes the target twice in quick succession.\nContact."),
+        .description = COMPOUND_STRING("The user strikes the target twice in quick succession.\nHits twice, each hit has a 15% flinch chance.\nTotal of 27% chance.\nContact."),
         .effect = EFFECT_HIT,
         .power = 35,
         .type = TYPE_NORMAL,
@@ -12490,7 +12495,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
         .soundMove = TRUE,
         .metronomeBanned = TRUE,
-        .additionalEffects = ADDITIONAL_EFFECTS({ .moveEffect = MOVE_EFFECT_YAWN, .argument = 2}),
+        .additionalEffects = ADDITIONAL_EFFECTS({ .moveEffect = MOVE_EFFECT_YAWN, .argument = 2, .chance = 100,}),
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -13934,6 +13939,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_STATUS,
         .makesContact = TRUE,
         .additionalEffects = ADDITIONAL_EFFECTS({.moveEffect = MOVE_EFFECT_PARALYSIS,.chance = 100,},{.moveEffect = MOVE_EFFECT_ATK_MINUS_1,.chance = 100,},{.moveEffect = MOVE_EFFECT_SP_ATK_MINUS_1,.chance = 100,},),
+        .magicCoatAffected = TRUE,
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -15832,7 +15838,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .bitingMove = TRUE,
-        .additionalEffects = ADDITIONAL_EFFECTS({.moveEffect = MOVE_EFFECT_WRAP,.chance = 100,},),
+        .additionalEffects = ADDITIONAL_EFFECTS({.moveEffect = MOVE_EFFECT_WRAP,},),
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -18021,6 +18027,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             { .moveEffect = MOVE_EFFECT_SPD_MINUS_1 },
             { .moveEffect = MOVE_EFFECT_RAPID_SPIN },
         ),
+        .magicCoatAffected = TRUE,
         .battleAnimScript = gBattleAnimMove_MortalSpin,
     },
 
@@ -18601,7 +18608,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     [MOVE_NOXIOUS_TORQUE] =
     {
         .name = COMPOUND_STRING("Noxious Torque"),
-        .description = COMPOUND_STRING("-\n-\n-"),
+        .description = COMPOUND_STRING("Attacks with -1 priority. Always crits and poisons."),
         .effect = EFFECT_HIT,
         .power = 85,
         .type = TYPE_POISON,

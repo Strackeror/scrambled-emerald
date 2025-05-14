@@ -14082,7 +14082,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_HUMAN_LIKE),
-        .abilities = { ABILITY_ELECTRIC_SURGE, ABILITY_IRON_FIST, ABILITY_SURGE_SURFER },
+        .abilities = { ABILITY_ELECTRIC_SURGE, ABILITY_MOTOR_DRIVE, ABILITY_SURGE_SURFER },
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = TRUE,
         .speciesName = _("Electabuzz"),
@@ -15911,7 +15911,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         )
         .levelUpLearnset = sPorygon0LevelUpLearnset,
         .teachableLearnset = sPorygon0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_UPGRADE, SPECIES_PORYGON2, 0}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_PORYGON2}),
     },
 
     [SPECIES_PORYGON2] =
@@ -15974,7 +15974,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         )
         .levelUpLearnset = sPorygon20LevelUpLearnset,
         .teachableLearnset = sPorygon20TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_DUBIOUS_DISC, SPECIES_PORYGON_Z, 0}),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_DUBIOUS_DISC, SPECIES_PORYGON_Z}),
     },
 
     [SPECIES_PORYGON_Z] =
@@ -16037,7 +16037,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         )
         .levelUpLearnset = sPorygonZ0LevelUpLearnset,
         .teachableLearnset = sPorygonZ0TeachableLearnset,
-        .evolutions = NULL,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_UPGRADE, SPECIES_PORYGON2}),
     },
 
     [SPECIES_OMANYTE] =

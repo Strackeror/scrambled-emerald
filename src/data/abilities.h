@@ -1143,7 +1143,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_MUMMY] =
     {
-        .name = _("Mummy"),
+        .name = _("Debug"),
         .description = COMPOUND_STRING("Spreads with contact."),
         .aiRating = 5,
     },
@@ -1270,7 +1270,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_FUR_COAT] =
     {
         .name = _("Fur Coat"),
-        .description = COMPOUND_STRING("Raises Defense."),
+        .description = COMPOUND_STRING("Halves physical damage."),
         .aiRating = 7,
         .breakable = TRUE,
     },
@@ -1922,7 +1922,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_PERISH_BODY] =
     {
-        .name = _("Perish Body"),
+        .name = _("Spirit Guide"),
         .description = COMPOUND_STRING("Foe faints in 3 turns if hit."),
         .aiRating = -1,
     },
