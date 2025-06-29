@@ -24250,6 +24250,7 @@ static const u16 sPlusle0TeachableLearnset[] = {
     MOVE_TRAILBLAZE,
     MOVE_ALLURING_VOICE,
     MOVE_SUPERCELL_SLAM,
+    MOVE_MAGNET_RISE,
 
     MOVE_UNAVAILABLE
 };
@@ -24336,6 +24337,7 @@ static const u16 sMinun0TeachableLearnset[] = {
     MOVE_CHILLING_WATER,
     MOVE_ALLURING_VOICE,
     MOVE_SUPERCELL_SLAM,
+    MOVE_MAGNET_RISE,
 
     MOVE_UNAVAILABLE
 };
@@ -31622,6 +31624,7 @@ static const u16 sShellos0TeachableLearnset[] = {
     MOVE_TERA_BLAST,
     MOVE_SNOWSCAPE,
     MOVE_CHILLING_WATER,
+    MOVE_MUD_SLAP,
 
     MOVE_UNAVAILABLE
 };
@@ -31705,6 +31708,7 @@ static const u16 sShellos1TeachableLearnset[] = {
     MOVE_TERA_BLAST,
     MOVE_SNOWSCAPE,
     MOVE_CHILLING_WATER,
+    MOVE_MUD_SLAP,
 
     MOVE_UNAVAILABLE
 };
@@ -31788,6 +31792,7 @@ static const u16 sGastrodon0TeachableLearnset[] = {
     MOVE_TERA_BLAST,
     MOVE_SNOWSCAPE,
     MOVE_CHILLING_WATER,
+    MOVE_MUD_SLAP,
 
     MOVE_UNAVAILABLE
 };
@@ -31871,6 +31876,7 @@ static const u16 sGastrodon1TeachableLearnset[] = {
     MOVE_TERA_BLAST,
     MOVE_SNOWSCAPE,
     MOVE_CHILLING_WATER,
+    MOVE_MUD_SLAP,
 
     MOVE_UNAVAILABLE
 };
@@ -41708,6 +41714,7 @@ static const u16 sBlitzle0TeachableLearnset[] = {
     MOVE_TRAILBLAZE,
     MOVE_TEMPER_FLARE,
     MOVE_SUPERCELL_SLAM,
+    MOVE_THUNDERBOLT,
 
     MOVE_UNAVAILABLE
 };
@@ -41799,6 +41806,7 @@ static const u16 sZebstrika0TeachableLearnset[] = {
     MOVE_TRAILBLAZE,
     MOVE_TEMPER_FLARE,
     MOVE_SUPERCELL_SLAM,
+    MOVE_THUNDERBOLT,
 
     MOVE_UNAVAILABLE
 };
@@ -47563,6 +47571,7 @@ static const struct LevelUpMove sGolett0LevelUpLearnset[] = {
     {.move = MOVE_POUND, .level = 10},
     {.move = MOVE_TACKLE, .level = 10},
     {.move = MOVE_SHADOW_SNEAK, .level = 15},
+    {.move = MOVE_ASTONISH, .level = 15},
     {.move = MOVE_ROCK_SMASH, .level = 20},
     {.move = MOVE_NIGHT_SHADE, .level = 25},
     {.move = MOVE_DYNAMIC_PUNCH, .level = 30},
@@ -47682,7 +47691,8 @@ static const struct LevelUpMove sGolurk0LevelUpLearnset[] = {
     {.move = MOVE_SHADOW_SNEAK, .level = 5},
     {.move = MOVE_POUND, .level = 10},
     {.move = MOVE_TACKLE, .level = 10},
-    {.move = MOVE_NIGHT_SHADE, .level = 15},
+    {.move = MOVE_SHADOW_SNEAK, .level = 15},
+    {.move = MOVE_ASTONISH, .level = 15},
     {.move = MOVE_ROCK_SMASH, .level = 20},
     {.move = MOVE_DYNAMIC_PUNCH, .level = 30},
     {.move = MOVE_STRENGTH, .level = 35},
@@ -82677,6 +82687,7 @@ static const u16 sSandyShocks0TeachableLearnset[] = {
     MOVE_TERA_BLAST,
     MOVE_SUPERCELL_SLAM,
     MOVE_PSYCHIC_NOISE,
+    MOVE_MUD_SLAP,
 
     MOVE_UNAVAILABLE
 };
