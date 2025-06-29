@@ -210,6 +210,7 @@ const struct Titan gTitans[]
           },
           [11] = {
               .titan = DONDOZO,
+              .healthPercent = 150,
               .type = TITAN_TYPE_FLEE_10,
           },
           [12] = {
