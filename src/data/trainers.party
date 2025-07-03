@@ -17601,7 +17601,6 @@ Ability: ABILITY_ORICHALCUM_PULSE
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 Nature: Jolly
-Tera Type: Fire
 - MOVE_OUTRAGE
 - MOVE_COLLISION_COURSE
 - MOVE_RAGING_FURY
@@ -17678,7 +17677,6 @@ Ability: ABILITY_HADRON_ENGINE
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 0 SpD / 252 Spe
 Nature: Timid
-Tera Type: Electric
 - MOVE_THUNDER
 - MOVE_BLUE_FLARE
 - MOVE_ENERGY_BALL

@@ -43637,8 +43637,6 @@ F_TRAINER_FEMALE |
 #line 17603
             .nature = NATURE_JOLLY,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
-#line 17604
-            .teraType = TYPE_FIRE,
             .moves = {
 #line 17605
                 MOVE_OUTRAGE,
@@ -43808,8 +43806,6 @@ F_TRAINER_FEMALE |
 #line 17680
             .nature = NATURE_TIMID,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
-#line 17681
-            .teraType = TYPE_ELECTRIC,
             .moves = {
 #line 17682
                 MOVE_THUNDER,
