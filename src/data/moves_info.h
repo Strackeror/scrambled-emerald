@@ -1697,7 +1697,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     [MOVE_STRENGTH] =
     {
         .name = COMPOUND_STRING("Strength"),
-        .description = COMPOUND_STRING("The user batters the foe with its hard body with enough\nforce to move a boulder. Contact.\nThis deals 33% recoil to the user."),
+        .description = COMPOUND_STRING("The user batters the foe with its hard body with enough\nforce to move a boulder. Contact.\nThis has a 30% chance to flinch, and deals 33% recoil to the user."),
         .effect = EFFECT_HIT,
         .power = 120,
         .type = TYPE_ROCK,
@@ -1707,6 +1707,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
+        .additionalEffects = ADDITIONAL_EFFECTS({ .moveEffect = MOVE_EFFECT_FLINCH, .chance = 30, }),
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -4909,7 +4910,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Fury Cutter"),
         .description = COMPOUND_STRING("The user furiously slashes, building more rage with\neach slash. This ALWAYS crits, gives +1 Attack, and\ndoubles in power each time, maxing at 160. AI Only."),
-            .power = 40,
+        .power = 60,
         .effect = EFFECT_FURY_CUTTER,
         .type = TYPE_BUG,
         .accuracy = 0,
@@ -16639,7 +16640,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .name = COMPOUND_STRING("Scale Shot"),
         .description = COMPOUND_STRING("The user attacks by shooting scales two to five times\nin a row. This move boosts the user's Speed stat but\nlowers its Defense stat."),
         .effect = EFFECT_MULTI_HIT,
-        .power = 15,
+        .power = 25,
         .type = TYPE_DRAGON,
         .accuracy = 100,
         .pp = 20,
