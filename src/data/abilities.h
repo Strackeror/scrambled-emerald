@@ -164,8 +164,8 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_SUCTION_CUPS] =
     {
-        .name = _("Suction Cups"),
-        .description = COMPOUND_STRING("Firmly anchors the body."),
+        .name = _("Endurance"),
+        .description = COMPOUND_STRING("Prevents forced switching out."),
         .aiRating = 2,
         .breakable = TRUE,
     },
