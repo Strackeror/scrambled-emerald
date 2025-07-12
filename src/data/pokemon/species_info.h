@@ -127,7 +127,7 @@
 #define FLIP    0
 #define NO_FLIP 1
 
-#define STARMOBILE(hp, atk, def, spe, spa, spd, type, ability)                 \
+#define STARMOBILE(hp, atk, def, spe, spa, spd, type, ability, name)           \
     {                                                                          \
         .baseHP = hp,                                                          \
         .baseAttack = atk,                                                     \
@@ -144,7 +144,7 @@
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),                        \
         .abilities = {ability, ability, ability},                              \
         .bodyColor = BODY_COLOR_GRAY,                                          \
-        .speciesName = _("Starmobile"),                                        \
+        .speciesName = name,                                                   \
         .cryId = CRY_REVAVROOM,                                                \
         .categoryName = _("Multi-Cyl"),                                        \
         .height = 18,                                                          \
@@ -256,11 +256,17 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .iconPalIndex = 1,
     },
 
-    [SPECIES_STARMOBILE_DARK] = STARMOBILE(150, 100, 120, 1, 100, 100, TYPE_DARK, ABILITY_FILTER),
-    [SPECIES_STARMOBILE_FIRE] = STARMOBILE(175, 120, 120, 1, 120, 100, TYPE_FIRE, ABILITY_FILTER),
-    [SPECIES_STARMOBILE_POISON] = STARMOBILE(200, 120, 120, 1, 120, 100, TYPE_POISON, ABILITY_FILTER),
-    [SPECIES_STARMOBILE_FAIRY] = STARMOBILE(225, 120, 120, 1, 120, 100, TYPE_FAIRY, ABILITY_CONTRARY),
-    [SPECIES_STARMOBILE_FIGHTING] = STARMOBILE(250, 120, 120, 1, 120, 100, TYPE_FIGHTING, ABILITY_BATTLE_ARMOR),
+    [SPECIES_STARMOBILE_DARK] = STARMOBILE(150, 100, 120, 1, 100, 100, TYPE_DARK, ABILITY_FILTER, _("Segin")),
+    [SPECIES_STARMOBILE_FIRE] = STARMOBILE(175, 120, 120, 1, 120, 100, TYPE_FIRE, ABILITY_FILTER, _("Schedar")),
+    [SPECIES_STARMOBILE_POISON] = STARMOBILE(200, 120, 120, 1, 120, 100, TYPE_POISON, ABILITY_FILTER, _("Navi")),
+    [SPECIES_STARMOBILE_FAIRY] = STARMOBILE(225, 120, 120, 1, 120, 100, TYPE_FAIRY, ABILITY_CONTRARY, _("Ruchbah")),
+    [SPECIES_STARMOBILE_FIGHTING] = STARMOBILE(250, 120, 120, 1, 120, 100, TYPE_FIGHTING, ABILITY_BATTLE_ARMOR, _("Caph")),
+
+    // Reverse Path
+    [SPECIES_STARMOBILE_FIGHTING_REVERSE] = STARMOBILE(150, 120, 120, 1, 80, 80, TYPE_FIGHTING, ABILITY_ROCK_HEAD, _("Caph")),
+    [SPECIES_STARMOBILE_FAIRY_REVERSE] = STARMOBILE(175, 120, 120, 1, 120, 100, TYPE_FAIRY, ABILITY_TRANSISTOR, _("Ruchbah")),
+    [SPECIES_STARMOBILE_FIRE_REVERSE] = STARMOBILE(200, 120, 120, 1, 120, 100, TYPE_FIRE, ABILITY_FILTER, _("Schedar")),
+    [SPECIES_STARMOBILE_DARK_REVERSE] = STARMOBILE(225, 120, 120, 1, 100, 100, TYPE_DARK, ABILITY_FILTER, _("Segin")),
 
     /* You may add any custom species below this point based on the following structure: */
 
