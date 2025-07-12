@@ -151,11 +151,6 @@ LittlerootTown_EventScript_GoInsideWithMom::
 	delay 10
 	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachPlayerAtTruck
 	waitmovement 0
-	giveitem ITEM_CANDY_JAR, 1
-	giveitem ITEM_TERA_ORB, 1
-	giveitem ITEM_MUSIC_BOX, 1
-	giveitem ITEM_POKEMON_BOX_LINK, 1
-	setflag FLAG_SYS_B_DASH
 	msgbox LittlerootTown_Text_OurNewHomeLetsGoInside, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachDoor
