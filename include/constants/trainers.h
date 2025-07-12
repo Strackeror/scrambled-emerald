@@ -108,8 +108,29 @@
 #define TRAINER_PIC_LEAF                  90
 #define TRAINER_PIC_RS_BRENDAN            91
 #define TRAINER_PIC_RS_MAY                92
+
+// Scrambled
 #define TRAINER_PIC_OGERPON               93
-#define TRAINER_PIC_COUNT                 94
+// Gym Leaders
+#define TRAINER_PIC_LEADER_KATY           94
+#define TRAINER_PIC_LEADER_BRASSIUS       95
+#define TRAINER_PIC_LEADER_IONO           96
+#define TRAINER_PIC_LEADER_KOFU           97
+#define TRAINER_PIC_LEADER_LARRY          98
+#define TRAINER_PIC_LEADER_RYME           99
+#define TRAINER_PIC_LEADER_TULIP         100
+#define TRAINER_PIC_LEADER_GRUSHA        101
+// Starfall Street
+#define TRAINER_PIC_STAR_BOSS_GIACOMO    102
+#define TRAINER_PIC_STAR_BOSS_MELA       103
+#define TRAINER_PIC_STAR_BOSS_ATTICUS    104
+#define TRAINER_PIC_STAR_BOSS_ORTEGA     105
+#define TRAINER_PIC_STAR_BOSS_ERI        106
+// "Rivals"
+#define TRAINER_PIC_NEMONA               107
+#define TRAINER_PIC_PENNY                108
+
+#define TRAINER_PIC_COUNT                109
 
 // The player back pics are assumed to alternate according to the gender values (MALE/FEMALE)
 #define TRAINER_BACK_PIC_BRENDAN                0
@@ -353,7 +374,9 @@
 #define TRAINER_CLASS_PYRAMID_KING   0x40
 #define TRAINER_CLASS_RS_PROTAG      0x41
 #define TRAINER_CLASS_OGERPON        0x42
-#define TRAINER_CLASS_COUNT          0x43
+#define TRAINER_CLASS_AI_PROFESSOR   0x43
+
+#define TRAINER_CLASS_COUNT          0x44
 
 #define TRAINER_ENCOUNTER_MUSIC_MALE         0 // standard male encounter music
 #define TRAINER_ENCOUNTER_MUSIC_FEMALE       1 // standard female encounter music
