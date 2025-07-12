@@ -4845,9 +4845,9 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .power = 0,
         .type = TYPE_DARK,
         .accuracy = 100,
-        .pp = 2,
+        .pp = 50,
         .target = MOVE_TARGET_SELECTED,
-        .priority = 0,
+        .priority = 5,
         .category = DAMAGE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_RESET_STATS },
         .magicCoatAffected = TRUE,
@@ -16993,7 +16993,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     [MOVE_SCORCHING_SANDS] =
     {
         .name = COMPOUND_STRING("Scorching Sands"),
-        .description = COMPOUND_STRING("The user envelops the foe in burning-hot sand.\nThis has a 30% flinch chance."),
+        .description = COMPOUND_STRING("The user envelops the foe in burning-hot sand.\nThis has a 30% burn chance."),
         .effect = EFFECT_HIT,
         .power = 75,
         .type = TYPE_GROUND,
