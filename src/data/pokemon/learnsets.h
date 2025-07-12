@@ -31327,6 +31327,7 @@ static const u16 sPachirisu0TeachableLearnset[] = {
     MOVE_TRAILBLAZE,
     MOVE_ALLURING_VOICE,
     MOVE_SUPERCELL_SLAM,
+    MOVE_THUNDERBOLT,
 
     MOVE_UNAVAILABLE
 };
@@ -33201,6 +33202,7 @@ static const struct LevelUpMove sGabite0LevelUpLearnset[] = {
     {.move = MOVE_DRAGON_CLAW, .level = 30},
     {.move = MOVE_NOBLE_ROAR, .level = 35},
     {.move = MOVE_DRAGON_RUSH, .level = 40},
+    {.move = MOVE_DEVASTATING_DRAKE, .level = 45},
     {.move = MOVE_SUPERPOWER, .level = 48},
     {.move = MOVE_DRAGON_HAMMER, .level = 50},
     {.move = MOVE_HEAD_SMASH, .level = 53},
