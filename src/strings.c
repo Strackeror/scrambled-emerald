@@ -983,6 +983,9 @@ const u8 gText_TrainerCardIDNo[] = _("IDNo.");
 const u8 gText_TrainerCardMoney[] = _("MONEY");
 const u8 gText_PokeDollar[] = _("¥"); // Unused
 const u8 gText_TrainerCardPokedex[] = _("POKéDEX");
+const u8 gText_TrainerCardPath[] = _("PATH");
+const u8 gText_TrainerCardPathVanilla[] = _("Vanilla");
+const u8 gText_TrainerCardPathReverse[] = _("Reverse");
 const u8 gText_EmptyString6[] = _("");
 const u8 gText_Colon2[] = _(":");
 const u8 gText_Points[] = _(" points"); // Unused
@@ -1407,6 +1410,11 @@ const u8 gText_F700Players[] = _("{DYNAMIC 0} players");
 const u8 gText_F701Players[] = _("{DYNAMIC 1} players");
 const u8 gText_F702Players[] = _("{DYNAMIC 2} players");
 const u8 gText_F703Players[] = _("{DYNAMIC 3} players");
+
+const u8 gText_SavingPath[] = _("PATH");
+const u8 gText_PathVanilla[] = _("Vanilla");
+const u8 gText_PathReverse[] = _("Reverse");
+
 
 const u8 *const gTextTable_Players[] = {
     gText_F700Players,
