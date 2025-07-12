@@ -246,6 +246,10 @@ extern const u8 gText_SavingBadges[];
 extern const u8 gText_SavingPokedex[];
 extern const u8 gText_SavingTime[];
 
+extern const u8 gText_SavingPath[];
+extern const u8 gText_PathVanilla[];
+extern const u8 gText_PathReverse[];
+
 // Battle pyramid menu texts
 extern const u8 gText_BattlePyramidConfirmRest[];
 extern const u8 gText_BattlePyramidConfirmRetire[];
@@ -2248,6 +2252,9 @@ extern const u8 gText_TrainerCardMoney[];
 extern const u8 gText_PokedollarVar1[];
 extern const u8 gText_EmptyString6[];
 extern const u8 gText_TrainerCardPokedex[];
+extern const u8 gText_TrainerCardPath[];
+extern const u8 gText_TrainerCardPathVanilla[];
+extern const u8 gText_TrainerCardPathReverse[];
 extern const u8 gText_TrainerCardTime[];
 extern const u8 gText_Colon2[];
 extern const u8 gText_Var1sTrainerCard[];
