@@ -1062,7 +1062,7 @@ gText_LegendaryFlewAway::
 	.string "The {STR_VAR_1} flew away!$"
 
 gText_PlaceHolder:
-	.string "...$"
+	.string "…$"
 
 	.include "data/text/pc_transfer.inc"
 	.include "data/text/questionnaire.inc"

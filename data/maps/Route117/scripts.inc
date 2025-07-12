@@ -54,17 +54,6 @@ Route117_EventScript_Woman::
 	msgbox Route117_Text_ArentTheseFlowersPretty, MSGBOX_NPC
 	end
 
-Route117_EventScript_DokuBoss::
-	trainerbattle_single TRAINER_DAN_DOKU_BOSS_01, Route117_Text_Placeholder, Route117_Text_Placeholder, Route117_EventScript_DokuBossDefeat
-	msgbox Route117_Text_Placeholder, MSGBOX_NPC
-	release
-	end
-	
-Route117_EventScript_DokuBossDefeat::
-	setvar VAR_LEVEL_CAP 40
-	release
-	end
-
 Route117_EventScript_Girl::
 	msgbox Route117_Text_DayCarePokemonHadNewMove, MSGBOX_NPC
 	end

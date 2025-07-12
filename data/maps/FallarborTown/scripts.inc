@@ -51,6 +51,50 @@ FallarborTown_EventScript_MoveTutorSign::
 	msgbox FallarborTown_Text_MoveTutorSign, MSGBOX_SIGN
 	end
 
+FallarborTown_EventScript_Eri::
+	goto_if_eq VAR_PATH, 2, FallarborTown_EventScript_Reverse
+	setvar VAR_TEMP_F, 60
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	lock
+	faceplayer
+	trainerbattle_single TRAINER_DAN_KAKUTOU_BOSS_01, FallarborTown_Text_EriIntro, FallarborTown_Text_EriDefeat, FallarborTown_EventScript_EriDefeated
+	msgbox FallarborTown_Text_EriPostBattle, MSGBOX_AUTOCLOSE
+	release
+	end
+
+FallarborTown_EventScript_Reverse::
+	setvar VAR_TEMP_F, 22
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	lock
+	faceplayer
+	trainerbattle_single SCRAMBLED_ERI_REVERSE, FallarborTown_Text_EriIntro, FallarborTown_Text_EriDefeat, FallarborTown_EventScript_ReverseDefeated
+	msgbox FallarborTown_Text_EriPostBattle, MSGBOX_AUTOCLOSE
+	release
+	end
+
+FallarborTown_EventScript_EriDefeated::
+	setvar VAR_LEVEL_CAP 63
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	return
+
+FallarborTown_EventScript_ReverseDefeated::
+	setvar VAR_LEVEL_CAP 24
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	return
+
+FallarborTown_Text_EriIntro:
+	.string "This isn't the goal. It's only a place\n"
+	.string "on the way to the POKéMON LEAGUE.$"
+
+FallarborTown_Text_EriDefeat:
+	.string "That's the way!$"
+
+FallarborTown_Text_EriPostBattle:
+	.string "You'll do fine, for sure!\n"
+	.string "Your POKéMON are all eager to go!$"
+
 FallarborTown_Text_ShadyCharactersCozmosHome:
 	.string "Something's happening,\n"
 	.string "and I don't like it!\p"

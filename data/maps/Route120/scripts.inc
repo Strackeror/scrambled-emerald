@@ -1,6 +1,7 @@
 .set LOCALID_BRIDGE_KECLEON, 30
 .set LOCALID_STEVEN, 31
 .set LOCALID_BRIDGE_KECLEON_SHADOW, 36  @ They use a second object which is identical to Kecleon but has a reflection palette tag for the bridge shadow
+.set LOCALID_BOMBIRDIER, 42
 
 Route120_MapScripts::
 	map_script MAP_SCRIPT_ON_RESUME, Route120_OnResume
@@ -328,12 +329,6 @@ Route120_EventScript_Jenna::
 	msgbox Route120_Text_JennaPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-Route120_EventScript_Jeffrey::
-	trainerbattle_single TRAINER_OGERPON, Route120_Text_JeffreyIntro, Route120_Text_JeffreyDefeat
-	msgbox Route120_Text_JeffreyPostBattle, MSGBOX_DEFAULT
-	release
-	end
-
 Route120_EventScript_Jennifer::
 	trainerbattle_single TRAINER_JENNIFER, Route120_Text_JenniferIntro, Route120_Text_JenniferDefeat
 	msgbox Route120_Text_JenniferPostBattle, MSGBOX_AUTOCLOSE
@@ -374,10 +369,57 @@ Route120_EventScript_Callie::
 	msgbox Route120_Text_CalliePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+Route120_EventScript_TitanBombirdier_Trigger::
+	goto_if_unset FLAG_TITAN_BOMBIRDIER Route120_EventScript_TitanBombirdier
+	release
+	end
+
+Route120_EventScript_TitanBombirdier::
+	goto_if_eq VAR_PATH, 2, Route120_EventScript_TitanBombirdierReverse
+	setvar VAR_TEMP_F, 22
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	lock
+	faceplayer
+	msgbox Route120_Text_Titan, MSGBOX_DEFAULT
+	titanbattle 3
+	waitstate
+	msgbox Route120_Text_Titan, MSGBOX_DEFAULT
+	titanbattle 4
+	waitstate
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_BOMBIRDIER
+	setflag FLAG_TITAN_BOMBIRDIER
+	fadescreen FADE_FROM_BLACK
+	setvar VAR_LEVEL_CAP 24
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
+Route120_EventScript_TitanBombirdierReverse::
+	setvar VAR_TEMP_F, 54
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	lock
+	faceplayer
+	msgbox Route120_Text_Titan, MSGBOX_DEFAULT
+	titanbattle 24
+	waitstate
+	msgbox Route120_Text_Titan, MSGBOX_DEFAULT
+	titanbattle 25
+	waitstate
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_BOMBIRDIER
+	setflag FLAG_TITAN_BOMBIRDIER
+	fadescreen FADE_FROM_BLACK
+	setvar VAR_LEVEL_CAP 56
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
 Route120_Text_StevenGreeting:
 	.string "STEVEN: Hm? {PLAYER}{KUN}, hi.\n"
 	.string "It's been a while.$"
-
 
 Route120_Text_StevenIllWaitHere:
 	.string "STEVEN: No?\p"

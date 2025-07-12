@@ -1,3 +1,5 @@
+.equ LOCALID_KLAWF, 6
+
 Route106_MapScripts::
 	.byte 0
 
@@ -41,8 +43,53 @@ Route106_EventScript_Ned::
 	msgbox Route106_Text_NedPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+Route106_EventScript_KlawfTitan::
+	goto_if_eq VAR_PATH, 2, Route106_EventScript_KlawfTitanReverse
+	setvar VAR_TEMP_F, 15
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	lock
+	faceplayer
+	msgbox Route106_Text_Klawf, MSGBOX_DEFAULT
+	titanbattle 1
+	waitstate
+	msgbox Route106_Text_Klawf, MSGBOX_DEFAULT
+	titanbattle 2
+	waitstate
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_KLAWF
+	setflag FLAG_TITAN_KLAWF
+	fadescreen FADE_FROM_BLACK
+	setvar VAR_LEVEL_CAP 18
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
+Route106_EventScript_KlawfTitanReverse::
+	setvar VAR_TEMP_F, 58
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	lock
+	faceplayer
+	msgbox Route106_Text_Klawf, MSGBOX_DEFAULT
+	titanbattle 26
+	waitstate
+	msgbox Route106_Text_Klawf, MSGBOX_DEFAULT
+	titanbattle 27
+	waitstate
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_KLAWF
+	setflag FLAG_TITAN_KLAWF
+	fadescreen FADE_FROM_BLACK
+	setvar VAR_LEVEL_CAP 60
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
 Route106_Text_TrainerTips:
 	.string "TRAINER TIPS\p"
 	.string "Advice on catching POKéMON with a ROD:\n"
 	.string "Press the A Button if you get a bite.$"
 
+Route106_Text_Klawf:
+	.string "...$"

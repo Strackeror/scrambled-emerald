@@ -133,6 +133,33 @@ Route113_EventScript_Wyatt::
 	msgbox Route113_Text_WyattPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+Route113_EventScript_Kieran3::
+	setvar VAR_TEMP_F, 35
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	trainerbattle_single TRAINER_BROTHER_01_03, Route113_Text_Kieran3Intro, Route113_Text_Kieran3Defeat, Route113_EventScript_Kieran3_LevelCap
+	msgbox Route113_Text_Kieran3PostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route113_EventScript_Kieran3_LevelCap:
+	setvar VAR_LEVEL_CAP 36
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
+Route113_Text_Kieran3Intro:
+	.string "JAGGED PASS is hard to walk on.\n"
+	.string "It's a good place for training.$"
+
+Route113_Text_Kieran3Defeat:
+	.string "It was all over while we were still\n"
+	.string "trying to find a good footing…$"
+
+Route113_Text_Kieran3PostBattle:
+	.string "If I had an ACRO BIKE, I'd be able to\n"
+	.string "jump ledges.$"
+
 Route113_Text_AshCanBeFashionedIntoGlass:
 	.string "Wahahaha! Today's technology is a\n"
 	.string "wondrous thing!\p"
