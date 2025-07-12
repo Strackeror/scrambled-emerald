@@ -380,7 +380,7 @@ Route110_EventScript_RivalScene::
 	lockall
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, Route110_EventScript_PlayMayMusic
-	call_if_eq VAR_RESULT, FEMALE, Route110_EventScript_PlayBrendanMusic
+	call_if_eq VAR_RESULT, FEMALE, Route110_EventScript_PlayMayMusic
 	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
 	applymovement LOCALID_RIVAL, Common_Movement_ExclamationMark
@@ -393,7 +393,7 @@ Route110_EventScript_RivalScene::
 	call_if_eq VAR_0x8008, 3, Route110_EventScript_RivalApproachPlayer3
 	checkplayergender
 	goto_if_eq VAR_RESULT, MALE, Route110_EventScript_MayBattle
-	goto_if_eq VAR_RESULT, FEMALE, Route110_EventScript_BrendanBattle
+	goto_if_eq VAR_RESULT, FEMALE, Route110_EventScript_MayBattle
 	releaseall
 	end
 
@@ -406,17 +406,38 @@ Route110_EventScript_PlayBrendanMusic::
 	return
 
 Route110_EventScript_MayBattle::
+	goto_if_eq VAR_PATH, 2, Route110_EventScript_MayBattleReverse
+	setvar VAR_TEMP_F, 26
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Route110_EventScript_SendRivalBack
+	lockall
+	faceplayer
+	playbgm MUS_ENCOUNTER_MAY, TRUE
 	msgbox Route110_Text_MayLetsBattle, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_RIVAL_04_HONO, Route110_Text_MayDefeated
-	goto Route110_EventScript_MayDefeated
+	goto Route110_EventScript_RivalExitFly
 	end
 
+Route110_EventScript_MayBattleReverse::
+	setvar VAR_TEMP_F, 29
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Route110_EventScript_SendRivalBack
+	lockall
+	faceplayer
+	playbgm MUS_ENCOUNTER_MAY, TRUE
+	msgbox Route110_Text_MayLetsBattle, MSGBOX_DEFAULT
+	trainerbattle_no_intro SCRAMBLED_NEMONA_REVERSE_GYM_2, Route110_Text_MayDefeated
+	goto Route110_EventScript_RivalExitFly
+	end
 
-Route110_EventScript_MayDefeated::
-	msgbox Route110_Text_MayTakeThis, MSGBOX_DEFAULT
-	call Route110_EventScript_GiveItemfinder
-	msgbox Route110_Text_MayExplainItemfinder, MSGBOX_DEFAULT
-	goto Route110_EventScript_RivalExit
+Route110_EventScript_SendRivalBack::
+	call_if_eq VAR_0x8008, 1, Route110_EventScript_RivalGoBack1
+	call_if_eq VAR_0x8008, 2, Route110_EventScript_RivalGoBack2
+	call_if_eq VAR_0x8008, 3, Route110_EventScript_RivalGoBack3
+	delay 30
+	release
 	end
 
 Route110_EventScript_BrendanBattle::
@@ -437,8 +458,8 @@ Route110_EventScript_GiveItemfinder::
 	return
 
 Route110_EventScript_RivalExit::
+	msgbox Route110_Text_MayAbridged, MSGBOX_DEFAULT
 	closemessage
-	setvar VAR_LEVEL_CAP 27
 	call_if_eq VAR_0x8008, 1, Route110_EventScript_MoveRival1
 	call_if_eq VAR_0x8008, 2, Route110_EventScript_MoveRival2
 	call_if_eq VAR_0x8008, 3, Route110_EventScript_MoveRival3
@@ -454,8 +475,40 @@ Route110_EventScript_RivalExit::
 	setvar VAR_ROUTE110_STATE, 1
 	savebgm MUS_DUMMY
 	fadedefaultbgm
+	goto_if_eq VAR_PATH, 1, Route110_EventScript_VanillaLevelCap
+	goto_if_eq VAR_PATH, 2, Route110_EventScript_ReverseLevelCap
 	releaseall
 	end
+
+Route110_EventScript_RivalExitFly::
+	msgbox Route110_Text_MayAbridged, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterDown
+	waitmovement 0
+	delay 50
+	setfieldeffectargument 0, 1
+	dofieldeffect FLDEFF_NPCFLY_OUT
+	delay 15
+	removeobject LOCALID_RIVAL
+	waitfieldeffect FLDEFF_NPCFLY_OUT
+	savebgm MUS_DUMMY
+	fadedefaultbgm
+	goto_if_eq VAR_PATH, 1, Route110_EventScript_VanillaLevelCap
+	goto_if_eq VAR_PATH, 2, Route110_EventScript_ReverseLevelCap
+	releaseall
+	end
+
+Route110_EventScript_VanillaLevelCap::
+	setvar VAR_LEVEL_CAP 27
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	return
+
+Route110_EventScript_ReverseLevelCap::
+	setvar VAR_LEVEL_CAP 30
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	return
 
 Route110_EventScript_RivalApproachPlayer1::
 	applymovement LOCALID_RIVAL, Route110_Movement_RivalApproachPlayer1
@@ -469,6 +522,21 @@ Route110_EventScript_RivalApproachPlayer2::
 
 Route110_EventScript_RivalApproachPlayer3::
 	applymovement LOCALID_RIVAL, Route110_Movement_RivalApproachPlayer3
+	waitmovement 0
+	return
+
+Route110_EventScript_RivalGoBack1::
+	applymovement LOCALID_RIVAL, Route110_Movement_RivalGoesBack1
+	waitmovement 0
+	return
+
+Route110_EventScript_RivalGoBack2::
+	applymovement LOCALID_RIVAL, Route110_Movement_RivalGoesBack2
+	waitmovement 0
+	return
+
+Route110_EventScript_RivalGoBack3::
+	applymovement LOCALID_RIVAL, Route110_Movement_RivalGoesBack3
 	waitmovement 0
 	return
 
@@ -498,28 +566,6 @@ Route110_EventScript_MoveRival2::
 Route110_EventScript_MoveRival3::
 	setobjectxyperm LOCALID_RIVAL_ON_BIKE, 35, 55
 	return
-	
-Route110_EventScript_TitanBombirdier_Trigger::
-	goto_if_unset FLAG_TITAN_BOMBIRDIER Route110_EventScript_TitanBombirdier
-	release
-	end
-
-Route110_EventScript_TitanBombirdier::
-	lock
-	faceplayer
-	msgbox GraniteCave_1F_Text_Klawf, MSGBOX_DEFAULT
-	titanbattle 3
-	waitstate
-	msgbox GraniteCave_1F_Text_Klawf, MSGBOX_DEFAULT
-	titanbattle 4
-	waitstate
-	fadescreen FADE_TO_BLACK
-	removeobject 35
-	setflag FLAG_TITAN_BOMBIRDIER
-	fadescreen FADE_FROM_BLACK
-	setvar VAR_LEVEL_CAP 24
-	release
-	end
 
 Route110_Movement_RivalApproachPlayer1:
 	walk_down
@@ -534,6 +580,23 @@ Route110_Movement_RivalApproachPlayer2:
 Route110_Movement_RivalApproachPlayer3:
 	walk_down
 	walk_right
+	walk_in_place_faster_down
+	step_end
+
+Route110_Movement_RivalGoesBack1:
+	walk_right
+	walk_up
+	walk_in_place_faster_down
+	step_end
+
+Route110_Movement_RivalGoesBack2:
+	walk_up
+	walk_in_place_faster_down
+	step_end
+
+Route110_Movement_RivalGoesBack3:
+	walk_left
+	walk_up
 	walk_in_place_faster_down
 	step_end
 
@@ -773,6 +836,12 @@ Route110_Text_MayExplainItemfinder:
 	.string "MAY: That's an ITEMFINDER.\p"
 	.string "Try it out. If there is an item that's\n"
 	.string "not visible, it emits a sound.\p"
+	.string "Okay, {PLAYER}{KUN}, let's meet again!\p"
+	.string "I know it's a little silly coming from\n"
+	.string "me, but I think you should train a lot\l"
+	.string "harder for the next time.$"
+
+Route110_Text_MayAbridged:
 	.string "Okay, {PLAYER}{KUN}, let's meet again!\p"
 	.string "I know it's a little silly coming from\n"
 	.string "me, but I think you should train a lot\l"

@@ -151,13 +151,17 @@ LittlerootTown_EventScript_GoInsideWithMom::
 	delay 10
 	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachPlayerAtTruck
 	waitmovement 0
-	msgbox LittlerootTown_Text_OurNewHomeLetsGoInside, MSGBOX_DEFAULT
 
 	// CHOOSE PATH
 	msgbox LittlerootTown_Text_ChoosePath, MSGBOX_DEFAULT
 	multichoice 20, 8, MULTI_CHOOSE_PATH, TRUE
 	call_if_eq VAR_RESULT, 0, LittlerootTown_EventScript_ScrambledVanillaPath
 	call_if_eq VAR_RESULT, 1, LittlerootTown_EventScript_ScrambledReversePath
+
+	// Announce Level Cap
+	call Common_EventScript_NewLevelCapTextAndFanfare
+
+	msgbox LittlerootTown_Text_OurNewHomeAbridged, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachDoor
 	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_Movement_PlayerApproachDoor
@@ -198,9 +202,21 @@ LittlerootTown_EventScript_GoInsideWithMom::
 		setflag FLAG_HIDE_PETALBURG_CITY_WALLY
 		setflag FLAG_HIDE_PETALBURG_CITY_WALLYS_MOM
 		setvar VAR_PETALBURG_CITY_STATE, 1
-		setvar VAR_PETALBURG_GYM_STATE, 2
+		// setvar VAR_PETALBURG_GYM_STATE, 2
 		setvar VAR_PETALBURG_WOODS_STATE, 1
 
+	// PLOTLESS
+	setvar VAR_SCOTT_PETALBURG_ENCOUNTER, 1
+	setvar VAR_PETALBURG_GYM_STATE, 6
+	call Common_EventScript_ReadyPetalburgGymForBattle
+	setflag FLAG_HIDE_ROUTE_111_ROCK_SMASH_TIP_GUY
+	setflag FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNTS
+	setflag FLAG_HIDE_ROUTE_110_TEAM_AQUA
+	setflag FLAG_HIDE_ROUTE_112_TEAM_MAGMA
+	setvar VAR_METEOR_FALLS_STATE, 1
+	setflag FLAG_HIDE_METEOR_FALLS_1F_1R_COZMO
+	setflag FLAG_HIDE_METEOR_FALLS_TEAM_MAGMA
+	setflag FLAG_HIDE_METEOR_FALLS_TEAM_AQUA
 
 
 	return
@@ -392,9 +408,9 @@ LittlerootTown_Movement_TwinReturnLeft:
 	step_end
 
 LittlerootTown_Movement_PushPlayerBackFromRoute:
-	lock_facing_direction
+	// lock_facing_direction
 	walk_down
-	unlock_facing_direction
+	// unlock_facing_direction
 	step_end
 
 LittlerootTown_EventScript_NeedPokemonTriggerRight::
@@ -986,6 +1002,12 @@ LittlerootTown_Text_OurNewHomeLetsGoInside:
 	.string "And, you get your own room, {PLAYER}!\n"
 	.string "Let's go inside.$"
 
+LittlerootTown_Text_OurNewHomeAbridged:
+	.string "MOM: {PLAYER}, we're here, honey!\n"
+	.string "Let's go inside!\p"
+	.string "{COLOR RED}{SHADOW LIGHT_RED}Nature Mints{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY} and {COLOR RED}{SHADOW LIGHT_RED}Tera Shards{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}\n"
+	.string "can be found in your room PC!$"
+
 LittlerootTown_Text_WaitPlayer:
 	.string "MOM: Wait, {PLAYER}!$"
 
@@ -1049,8 +1071,8 @@ LittlerootTown_Text_CanYouGoSeeWhatsHappening:
 	.string "I can hear their cries!\p"
 	.string "It's dangerous if you don't have\n"
 	.string "your own POKéMON.\p"
-	.string "Go buy some eggs from the clerk\n"
-	.string "here.$"
+	.string "Go buy some eggs from\n"
+	.string "the clerk here.$"
 
 LittlerootTown_Text_YouSavedBirch:
 	.string "You saved PROF. BIRCH!\n"

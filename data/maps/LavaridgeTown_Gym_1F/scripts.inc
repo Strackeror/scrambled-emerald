@@ -1,7 +1,9 @@
+.set LOCALID_FLANNERY, 1
 .set LOCALID_COLE, 2
 .set LOCALID_GERALD, 3
 .set LOCALID_AXLE, 4
 .set LOCALID_DANIELLE, 5
+.set LOCALID_WALLYS_DAD, 7
 
 LavaridgeTown_Gym_1F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, LavaridgeTown_Gym_1F_OnTransition
@@ -49,7 +51,22 @@ LavaridgeTown_Gym_1F_EventScript_EndCheckBuryTrainers::
 	return
 
 LavaridgeTown_Gym_1F_EventScript_Flannery::
+	goto_if_eq VAR_PATH, 2, LavaridgeTown_Gym_1F_EventScript_Reverse
+	setvar VAR_TEMP_F, 36
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	trainerbattle_single TRAINER_FLANNERY_1, LavaridgeTown_Gym_1F_Text_FlanneryIntro, LavaridgeTown_Gym_1F_Text_FlanneryDefeat, LavaridgeTown_Gym_1F_EventScript_FlanneryDefeated, NO_MUSIC
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	goto_if_eq VAR_RESULT, TRUE, LavaridgeTown_Gym_1F_EventScript_FlanneryRematch
+	msgbox LavaridgeTown_Gym_1F_Text_FlanneryPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+LavaridgeTown_Gym_1F_EventScript_Reverse::
+	setvar VAR_TEMP_F, 42
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	trainerbattle_single SCRAMBLED_KOFU_REVERSE, LavaridgeTown_Gym_1F_Text_FlanneryIntro, LavaridgeTown_Gym_1F_Text_FlanneryDefeat, LavaridgeTown_Gym_1F_EventScript_FlanneryDefeated, NO_MUSIC
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, LavaridgeTown_Gym_1F_EventScript_FlanneryRematch
 	msgbox LavaridgeTown_Gym_1F_Text_FlanneryPostBattle, MSGBOX_DEFAULT
@@ -61,17 +78,15 @@ LavaridgeTown_Gym_1F_EventScript_FlanneryDefeated::
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox LavaridgeTown_Gym_1F_Text_ExplainHeatBadgeTakeThis, MSGBOX_DEFAULT
-	giveitem ITEM_POWER_GLOVE
+	// giveitem ITEM_POWER_GLOVE
 	setflag FLAG_WHITEOUT_TO_LAVARIDGE
 	setflag FLAG_DEFEATED_LAVARIDGE_GYM
-	setflag FLAG_BADGE04_GET
-	addvar VAR_PETALBURG_GYM_STATE, 1
-	call_if_eq VAR_PETALBURG_GYM_STATE, 6, Common_EventScript_ReadyPetalburgGymForBattle
+	// addvar VAR_PETALBURG_GYM_STATE, 1
+	// call_if_eq VAR_PETALBURG_GYM_STATE, 6, Common_EventScript_ReadyPetalburgGymForBattle
 	setvar VAR_0x8008, 4
 	call Common_EventScript_SetGymTrainers
 	setflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLY
 	setvar VAR_LAVARIDGE_TOWN_STATE, 1
-	setvar VAR_LEVEL_CAP 38
 	closemessage
 	delay 30
 	playfanfare MUS_REGISTER_MATCH_CALL
@@ -80,8 +95,146 @@ LavaridgeTown_Gym_1F_EventScript_FlanneryDefeated::
 	closemessage
 	delay 30
 	setflag FLAG_ENABLE_FLANNERY_MATCH_CALL
+	goto_if_eq VAR_PATH, 1, LavaridgeTown_Gym_EventScript_VanillaLevelCap
+	goto_if_eq VAR_PATH, 2, LavaridgeTown_Gym_EventScript_ReverseNemona5
 	release
 	end
+
+LavaridgeTown_Gym_EventScript_VanillaLevelCap::
+	setvar VAR_LEVEL_CAP 38
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	setflag FLAG_BADGE04_GET
+	return
+
+LavaridgeTown_Gym_EventScript_ReverseNemona5::
+	setvar VAR_LAVARIDGE_TOWN_STATE 2
+	delay 40
+	playse SE_DOOR
+	delay 10
+	addobject LOCALID_WALLYS_DAD
+	switch VAR_FACING
+	case DIR_NORTH, LavaridgeTown_Gym_EventScript_WallysDadArrivesNorth
+	case DIR_WEST, LavaridgeTown_Gym_EventScript_WallysDadArrivesWest
+	case DIR_EAST, LavaridgeTown_Gym_EventScript_WallysDadArrivesEast
+	end
+
+LavaridgeTown_Gym_EventScript_WallysDadArrivesNorth::
+	setvar VAR_0x8008, 1
+	goto LavaridgeTown_Gym_EventScript_WallysDadArrives
+
+LavaridgeTown_Gym_EventScript_WallysDadArrivesEast::
+	setvar VAR_0x8008, 2
+	goto LavaridgeTown_Gym_EventScript_WallysDadArrives
+
+LavaridgeTown_Gym_EventScript_WallysDadArrivesWest::
+	setvar VAR_0x8008, 3
+	goto LavaridgeTown_Gym_EventScript_WallysDadArrives
+
+LavaridgeTown_Gym_EventScript_WallysDadArrives::
+	applymovement LOCALID_WALLYS_DAD, LavaridgeTown_Gym_Movement_WallysDadEnterGym
+	waitmovement 0
+	playse SE_PIN
+	applymovement LOCALID_WALLYS_DAD, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_WALLYS_DAD, Common_Movement_Delay48
+	waitmovement 0
+	delay 10
+	call_if_eq VAR_0x8008, 1, LavaridgeTown_Gym_EventScript_WallysDadApproachPlayerNorth
+	call_if_eq VAR_0x8008, 2, LavaridgeTown_Gym_EventScript_WallysDadApproachPlayerEast
+	call_if_eq VAR_0x8008, 3, LavaridgeTown_Gym_EventScript_WallysDadApproachPlayerWest
+	msgbox LavaridgeTown_Gym_Text_PleaseComeWithMe, MSGBOX_DEFAULT
+	closemessage
+	delay 20
+	call_if_eq VAR_0x8008, 1, LavaridgeTown_Gym_EventScript_WallysDadFaceNormanNorth
+	call_if_eq VAR_0x8008, 2, LavaridgeTown_Gym_EventScript_WallysDadFaceNormanEast
+	call_if_eq VAR_0x8008, 3, LavaridgeTown_Gym_EventScript_WallysDadFaceNormanWest
+	msgbox LavaridgeTown_Gym_Text_LetMeBorrowPlayer, MSGBOX_DEFAULT
+	applymovement LOCALID_WALLYS_DAD, Common_Movement_WalkInPlaceFasterRight
+	waitmovement 0
+	closemessage
+	special HealPlayerParty
+	clearflag FLAG_HIDE_PETALBURG_GYM_RIVAL_FIGHT
+	trainerbattle_no_intro TRAINER_RIVAL_05_HONO, PostFight_Nemona_LoseText
+	setvar VAR_LEVEL_CAP 43
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	setflag FLAG_BADGE05_GET
+	fadescreen FADE_TO_BLACK
+	setflag FLAG_HIDE_PETALBURG_GYM_RIVAL_FIGHT
+	removeobject LOCALID_WALLYS_DAD
+	fadescreen FADE_FROM_BLACK
+	release
+	end
+
+LavaridgeTown_Gym_EventScript_WallysDadFaceNormanNorth::
+	applymovement LOCALID_WALLYS_DAD, Common_Movement_WalkInPlaceFasterUp
+	waitmovement 0
+	return
+
+LavaridgeTown_Gym_EventScript_WallysDadFaceNormanEast::
+	applymovement LOCALID_WALLYS_DAD, Common_Movement_WalkInPlaceFasterRight
+	waitmovement 0
+	return
+
+LavaridgeTown_Gym_EventScript_WallysDadFaceNormanWest::
+	applymovement LOCALID_WALLYS_DAD, Common_Movement_WalkInPlaceFasterLeft
+	waitmovement 0
+	return
+
+LavaridgeTown_Gym_EventScript_WallysDadApproachPlayerNorth::
+	applymovement LOCALID_WALLYS_DAD, LavaridgeTown_Gym_Movement_WallysDadApproachPlayerNorth
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
+	applymovement LOCALID_WALLYS_DAD, Common_Movement_WalkInPlaceFasterRight
+	waitmovement 0
+	return
+
+LavaridgeTown_Gym_EventScript_WallysDadApproachPlayerEast::
+	applymovement LOCALID_WALLYS_DAD, LavaridgeTown_Gym_Movement_WallysDadApproachPlayerEast
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterDown
+	waitmovement 0
+	return
+
+LavaridgeTown_Gym_EventScript_WallysDadApproachPlayerWest::
+	applymovement LOCALID_WALLYS_DAD, LavaridgeTown_Gym_Movement_WallysDadApproachPlayerWest
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterDown
+	waitmovement 0
+	return
+
+LavaridgeTown_Gym_Movement_WallysDadApproachPlayerNorth:
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+LavaridgeTown_Gym_Movement_WallysDadApproachPlayerEast:
+	walk_right
+	walk_right
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+LavaridgeTown_Gym_Movement_WallysDadApproachPlayerWest:
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+LavaridgeTown_Gym_Movement_WallysDadEnterGym:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	delay_8
+	walk_in_place_faster_right
+	delay_8
+	walk_in_place_faster_left
+	delay_16
+	walk_in_place_faster_up
+	step_end
 
 LavaridgeTown_Gym_1F_EventScript_FlanneryRematch::
 	trainerbattle_rematch_double TRAINER_FLANNERY_1, LavaridgeTown_Gym_1F_Text_FlanneryPreRematch, LavaridgeTown_Gym_1F_Text_FlanneryRematchDefeat, LavaridgeTown_Gym_1F_Text_FlanneryRematchNeedTwoMons
@@ -387,3 +540,13 @@ LavaridgeTown_Gym_1F_Text_FlanneryRematchNeedTwoMons:
 	.string "that can battle?\p"
 	.string "I hate to say this, but when you come\n"
 	.string "see me, bring at least two POKéMON.$"
+
+LavaridgeTown_Gym_Text_PleaseComeWithMe:
+	.string "Ah, there you are, {PLAYER}!\p"
+	.string "Please come with me.\n"
+	.string "I want to have a battle with you.$"
+
+LavaridgeTown_Gym_Text_LetMeBorrowPlayer:
+	.string "KOFU, you don't mind, do you?\p"
+	.string "Let me borrow {PLAYER} for\n"
+	.string "a minute or two.$"
