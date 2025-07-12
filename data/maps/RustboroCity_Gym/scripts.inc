@@ -2,7 +2,22 @@ RustboroCity_Gym_MapScripts::
 	.byte 0
 
 RustboroCity_Gym_EventScript_Roxanne::
+	goto_if_eq VAR_PATH, 2, RustboroCity_Gym_EventScript_Reverse
+	setvar VAR_TEMP_F, 13
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	trainerbattle_single TRAINER_ROXANNE_1, RustboroCity_Gym_Text_RoxanneIntro, RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	goto_if_eq VAR_RESULT, TRUE, RustboroCity_Gym_EventScript_RoxanneRematch
+	msgbox RustboroCity_Gym_Text_RoxannePostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_Gym_EventScript_Reverse::
+	setvar VAR_TEMP_F, 60
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	trainerbattle_single SCRAMBLED_KATY_REVERSE, RustboroCity_Gym_Text_RoxanneIntro, RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, RustboroCity_Gym_EventScript_RoxanneRematch
 	msgbox RustboroCity_Gym_Text_RoxannePostBattle, MSGBOX_DEFAULT
@@ -15,13 +30,13 @@ RustboroCity_Gym_EventScript_RoxanneDefeated::
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox RustboroCity_Gym_Text_StoneBadgeInfoTakeThis, MSGBOX_DEFAULT
 	setflag FLAG_DEFEATED_RUSTBORO_GYM
-	setflag FLAG_BADGE01_GET
+	goto_if_eq VAR_PATH, 1, RustboroCity_Gym_EventScript_VanillaLevelCap
+	goto_if_eq VAR_PATH, 2, RustboroCity_Gym_EventScript_ReverseLevelCap
 	setvar VAR_RUSTBORO_CITY_STATE, 1
-	addvar VAR_PETALBURG_GYM_STATE, 1
+	// addvar VAR_PETALBURG_GYM_STATE, 1
 	setvar VAR_0x8008, 1
 	call Common_EventScript_SetGymTrainers
-	call_if_eq VAR_PETALBURG_GYM_STATE, 6, Common_EventScript_ReadyPetalburgGymForBattle
-	setvar VAR_LEVEL_CAP 15
+	// call_if_eq VAR_PETALBURG_GYM_STATE, 6, Common_EventScript_ReadyPetalburgGymForBattle
 	goto RustboroCity_Gym_EventScript_GiveRockTomb
 	end
 
@@ -59,6 +74,18 @@ RustboroCity_Gym_EventScript_GiveRockTomb::
 		setvar VAR_DEVON_CORP_3F_STATE, 1
 	release
 	end
+
+RustboroCity_Gym_EventScript_VanillaLevelCap::
+	setvar VAR_LEVEL_CAP 15
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	setflag FLAG_BADGE01_GET
+	return
+
+RustboroCity_Gym_EventScript_ReverseLevelCap::
+	setvar VAR_LEVEL_CAP 63
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	setflag FLAG_BADGE08_GET
+	return
 
 RustboroCity_Gym_EventScript_RoxanneRematch::
 	trainerbattle_rematch_double TRAINER_ROXANNE_1, RustboroCity_Gym_Text_RoxannePreRematch, RustboroCity_Gym_Text_RoxanneRematchDefeat, RustboroCity_Gym_Text_RoxanneRematchNeedTwoMons

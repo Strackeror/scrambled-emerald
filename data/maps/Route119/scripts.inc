@@ -614,6 +614,9 @@ Route119_Text_TrainerTipsDecoration:
 	.string "way you want.$"
 
 Route119_EventScript_TitanOkidogi::
+	setvar VAR_TEMP_F, 43
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	lock
 	goto_if_set FLAG_TITAN_OKIDOGI, Route119_EventScript_TitanOkidogi_Defeated
 	faceplayer
@@ -621,6 +624,7 @@ Route119_EventScript_TitanOkidogi::
 	titanbattle 13
 	waitstate
 	setflag FLAG_TITAN_OKIDOGI
+
 Route119_EventScript_TitanOkidogi_Defeated::
 	release
 	applymovement 44, Route119_Movement_TitanDefeated
@@ -629,6 +633,9 @@ Route119_EventScript_TitanOkidogi_Defeated::
 	end
 
 Route119_EventScript_TitanMunkidori::
+	setvar VAR_TEMP_F, 43
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	lock
 	goto_if_set FLAG_TITAN_MUNKIDORI, Route119_EventScript_TitanMunkidori_Defeated
 	faceplayer
@@ -636,6 +643,7 @@ Route119_EventScript_TitanMunkidori::
 	titanbattle 14
 	waitstate
 	setflag FLAG_TITAN_MUNKIDORI
+
 Route119_EventScript_TitanMunkidori_Defeated::
 	release
 	applymovement 45, Route119_Movement_TitanDefeated
@@ -644,6 +652,9 @@ Route119_EventScript_TitanMunkidori_Defeated::
 	end
 
 Route119_EventScript_TitanFezandipiti::
+	setvar VAR_TEMP_F, 43
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	lock
 	goto_if_set FLAG_TITAN_FEZANDIPITI, Route119_EventScript_TitanFezandipiti_Defeated
 	faceplayer
@@ -651,6 +662,7 @@ Route119_EventScript_TitanFezandipiti::
 	titanbattle 15
 	waitstate
 	setflag FLAG_TITAN_FEZANDIPITI
+
 Route119_EventScript_TitanFezandipiti_Defeated::
 	release
 	applymovement 46, Route119_Movement_TitanDefeated
@@ -662,13 +674,17 @@ Route119_EventScript_TryRemoveLoyal3:
 	goto_if_unset FLAG_TITAN_OKIDOGI, Route119_EventScript_End
 	goto_if_unset FLAG_TITAN_MUNKIDORI, Route119_EventScript_End
 	goto_if_unset FLAG_TITAN_FEZANDIPITI, Route119_EventScript_End
-	setvar VAR_LEVEL_CAP 45
 	fadescreen FADE_TO_BLACK
 	removeobject 44
 	removeobject 45
 	removeobject 46
 	setflag FLAG_TITAN_LOYAL_THREE
 	fadescreen FADE_FROM_BLACK
+	setvar VAR_LEVEL_CAP 45
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
 Route119_EventScript_End:
 	release
 	end

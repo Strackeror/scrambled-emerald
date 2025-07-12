@@ -1,4 +1,5 @@
 .set LOCALID_HIDEOUT_GUARD, 5
+.equ LOCALID_ORTHWORM, 7
 
 JaggedPass_MapScripts::
 	map_script MAP_SCRIPT_ON_RESUME, JaggedPass_OnResume
@@ -158,6 +159,10 @@ JaggedPass_EventScript_TitanOrthworm_Trigger::
 	end
 
 JaggedPass_EventScript_TitanOrthworm::
+	goto_if_eq VAR_PATH, 2, JaggedPass_EventScript_TitanOrthwormReverse
+	setvar VAR_TEMP_F, 33
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	lock
 	faceplayer
 	msgbox JaggedPass_Text_Titan, MSGBOX_DEFAULT
@@ -167,10 +172,32 @@ JaggedPass_EventScript_TitanOrthworm::
 	titanbattle 6
 	waitstate
 	fadescreen FADE_TO_BLACK
-	removeobject 8
+	removeobject LOCALID_ORTHWORM
 	setflag FLAG_TITAN_ORTHWORM
 	fadescreen FADE_FROM_BLACK
 	setvar VAR_LEVEL_CAP 35
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
+JaggedPass_EventScript_TitanOrthwormReverse::
+	setvar VAR_TEMP_F, 38
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	lock
+	faceplayer
+	msgbox JaggedPass_Text_Titan, MSGBOX_DEFAULT
+	titanbattle 22
+	waitstate
+	msgbox JaggedPass_Text_Titan, MSGBOX_DEFAULT
+	titanbattle 23
+	waitstate
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_ORTHWORM
+	setflag FLAG_TITAN_ORTHWORM
+	fadescreen FADE_FROM_BLACK
+	setvar VAR_LEVEL_CAP 40
+	call Common_EventScript_NewLevelCapTextAndFanfare
 	release
 	end
 

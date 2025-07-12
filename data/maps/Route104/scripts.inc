@@ -370,14 +370,14 @@ Route104_EventScript_SailToDewfordDadCalls::
 	applymovement LOCALID_BOAT_R104, Route104_Movement_SailToDewfordBeforeDadCalls
 	applymovement OBJ_EVENT_ID_PLAYER, Route104_Movement_SailToDewfordBeforeDadCalls
 	waitmovement 0
-	pokenavcall Route104_Text_DadPokenavCall
-	waitmessage
-	delay 30
-	playfanfare MUS_REGISTER_MATCH_CALL
-	msgbox Route104_Text_RegisteredDadInPokenav, MSGBOX_DEFAULT
-	waitfanfare
-	closemessage
-	delay 30
+	// pokenavcall Route104_Text_DadPokenavCall
+	// waitmessage
+	// delay 30
+	// playfanfare MUS_REGISTER_MATCH_CALL
+	// msgbox Route104_Text_RegisteredDadInPokenav, MSGBOX_DEFAULT
+	// waitfanfare
+	// closemessage
+	// delay 30
 	setflag FLAG_ENABLE_NORMAN_MATCH_CALL
 	applymovement OBJ_EVENT_ID_PLAYER, Route104_Movement_SailToDewfordAfterDadCalls
 	applymovement LOCALID_BOAT_R104, Route104_Movement_SailToDewfordAfterDadCalls, MAP_ROUTE104
@@ -944,7 +944,7 @@ Route104_EventScript_RematchWinston::
 	end
 
 Route104_EventScript_Cindy::
-	trainerbattle_single TRAINER_SISTER_01_01, Route104_Text_CindyIntro, Route104_Text_CindyDefeat,Route104_EventScript_Cindy_Defeated
+	trainerbattle_single TRAINER_SISTER_01_01, Route104_Text_CindyIntro, Route104_Text_CindyDefeat, Route104_EventScript_Cindy_Defeated
 	msgbox Route104_Text_CindyPostBattle, MSGBOX_DEFAULT
 	release
 	end

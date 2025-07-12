@@ -74,10 +74,26 @@ DewfordTown_Gym_EventScript_StopCountingTrainers::
 	return
 
 DewfordTown_Gym_EventScript_Brawly::
+	goto_if_eq VAR_PATH, 2, DewfordTown_Gym_EventScript_Reverse
+	setvar VAR_TEMP_F, 18
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	trainerbattle_single TRAINER_BRAWLY_1, DewfordTown_Gym_Text_BrawlyIntro, DewfordTown_Gym_Text_BrawlyDefeat, DewfordTown_Gym_EventScript_BrawlyDefeated, NO_MUSIC
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, DewfordTown_Gym_EventScript_BrawlyRematch
-	goto_if_unset FLAG_RECEIVED_TM_BULK_UP, DewfordTown_Gym_EventScript_GiveBulkUp2
+	// goto_if_unset FLAG_RECEIVED_TM_BULK_UP, DewfordTown_Gym_EventScript_GiveBulkUp2
+	msgbox DewfordTown_Gym_Text_BrawlyPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+DewfordTown_Gym_EventScript_Reverse::
+	setvar VAR_TEMP_F, 57
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	trainerbattle_single SCRAMBLED_BRASSIUS_REVERSE, DewfordTown_Gym_Text_BrawlyIntro, DewfordTown_Gym_Text_BrawlyDefeat, DewfordTown_Gym_EventScript_BrawlyDefeated, NO_MUSIC
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	goto_if_eq VAR_RESULT, TRUE, DewfordTown_Gym_EventScript_BrawlyRematch
+	// goto_if_unset FLAG_RECEIVED_TM_BULK_UP, DewfordTown_Gym_EventScript_GiveBulkUp2
 	msgbox DewfordTown_Gym_Text_BrawlyPostBattle, MSGBOX_DEFAULT
 	release
 	end
@@ -88,12 +104,10 @@ DewfordTown_Gym_EventScript_BrawlyDefeated::
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox DewfordTown_Gym_Text_KnuckleBadgeInfoTakeThis, MSGBOX_DEFAULT
 	setflag FLAG_DEFEATED_DEWFORD_GYM
-	setflag FLAG_BADGE02_GET
-	addvar VAR_PETALBURG_GYM_STATE, 1
-	call_if_eq VAR_PETALBURG_GYM_STATE, 6, Common_EventScript_ReadyPetalburgGymForBattle
+	// addvar VAR_PETALBURG_GYM_STATE, 1
+	// call_if_eq VAR_PETALBURG_GYM_STATE, 6, Common_EventScript_ReadyPetalburgGymForBattle
 	setvar VAR_0x8008, 2
 	call Common_EventScript_SetGymTrainers
-	setvar VAR_LEVEL_CAP 20
 	closemessage
 	delay 30
 	playfanfare MUS_REGISTER_MATCH_CALL
@@ -103,9 +117,35 @@ DewfordTown_Gym_EventScript_BrawlyDefeated::
 	delay 30
 	setflag FLAG_ENABLE_BRAWLY_MATCH_CALL
 	setvar VAR_ROXANNE_CALL_STEP_COUNTER, 0
-	setflag FLAG_ENABLE_ROXANNE_FIRST_CALL
+	// setflag FLAG_ENABLE_ROXANNE_FIRST_CALL
+	goto_if_eq VAR_PATH, 1, DewfordTown_Gym_EventScript_VanillaLevelCap
+	goto_if_eq VAR_PATH, 2, DewfordTown_Gym_EventScript_ReverseLevelCap
 	release
 	end
+
+DewfordTown_Gym_EventScript_VanillaLevelCap::
+	setvar VAR_LEVEL_CAP 20
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	setflag FLAG_BADGE02_GET
+
+	// PLOTLESS
+	setflag FLAG_DOCK_REJECTED_DEVON_GOODS
+	setflag FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA
+	setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS
+	setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_CAPTAIN_STERN
+	setflag FLAG_HIDE_ROUTE_110_TEAM_AQUA
+	setflag FLAG_DELIVERED_DEVON_GOODS
+	clearflag FLAG_HIDE_ROUTE_116_DEVON_EMPLOYEE
+	setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_CORP_3F_EMPLOYEE
+	setvar VAR_REGISTER_BIRCH_STATE, 1 @ fix for no Birch on Route 110
+	
+	return
+
+DewfordTown_Gym_EventScript_ReverseLevelCap::
+	setvar VAR_LEVEL_CAP 58
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	setflag FLAG_BADGE07_GET
+	return
 
 DewfordTown_Gym_EventScript_GiveBulkUp::
 	giveitem ITEM_TM_BULK_UP

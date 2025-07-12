@@ -431,14 +431,14 @@
       "dest_warp_id": "11"
     },
     {
-      "x": 21,
+      "x": 23,
       "y": 10,
       "elevation": 0,
       "dest_map": "MAP_MOSSDEEP_CITY_GYM",
       "dest_warp_id": "10"
     },
     {
-      "x": 7,
+      "x": 6,
       "y": 30,
       "elevation": 0,
       "dest_map": "MAP_MOSSDEEP_CITY_GYM",
@@ -511,8 +511,8 @@
     },
     {
       "type": "trigger",
-      "x": 21,
-      "y": 6,
+      "x": 23,
+      "y": 4,
       "elevation": 0,
       "var": "VAR_TEMP_1",
       "var_value": "0",

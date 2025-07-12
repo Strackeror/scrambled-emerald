@@ -3,6 +3,8 @@
 .set LOCALID_VIVI, 3
 .set LOCALID_VICKY, 4
 .set LOCALID_ROCK_SMASH_MAN, 46
+.set LOCALID_GREAT_TUSK, 47
+.set LOCALID_IRON_TREADS, 48
 
 @ Note: LOCALID_ROUTE111_PLAYER_FALLING is a local id for this map used elsewhere. It's defined in event_objects.h
 
@@ -572,6 +574,93 @@ Route111_EventScript_Branden::
 Route111_EventScript_TrainerHillSign::
 	msgbox Route111_Text_TrainerHillSign, MSGBOX_SIGN
 	end
+
+Route111_EventScript_TitanGreatTusk::
+	goto_if_eq VAR_PATH, 2, Route111_EventScript_TitanGreatTuskReverse
+	setvar VAR_TEMP_F, 47
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	lock
+	faceplayer
+	msgbox Route111_Text_Titan, MSGBOX_DEFAULT
+	titanbattle 7
+	waitstate
+	msgbox Route111_Text_Titan, MSGBOX_DEFAULT
+	titanbattle 8
+	waitstate
+	release
+	goto Route111_EventScript_TitanDefeated
+
+Route111_EventScript_TitanGreatTuskReverse::
+	setvar VAR_TEMP_F, 24
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	lock
+	faceplayer
+	msgbox Route111_Text_Titan, MSGBOX_DEFAULT
+	titanbattle 18
+	waitstate
+	msgbox Route111_Text_Titan, MSGBOX_DEFAULT
+	titanbattle 19
+	waitstate
+	release
+	goto Route111_EventScript_TitanReverseDefeated
+	
+Route111_EventScript_TitanIronTreads::
+	goto_if_eq VAR_PATH, 2, Route111_EventScript_TitanIronTreadsReverse
+	setvar VAR_TEMP_F, 47
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	lock
+	faceplayer
+	msgbox Route111_Text_Titan, MSGBOX_DEFAULT
+	titanbattle 9
+	waitstate
+	msgbox Route111_Text_Titan, MSGBOX_DEFAULT
+	titanbattle 10
+	waitstate
+	release
+	goto Route111_EventScript_TitanDefeated
+
+Route111_EventScript_TitanIronTreadsReverse::
+	setvar VAR_TEMP_F, 24
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	lock
+	faceplayer
+	msgbox Route111_Text_Titan, MSGBOX_DEFAULT
+	titanbattle 20
+	waitstate
+	msgbox Route111_Text_Titan, MSGBOX_DEFAULT
+	titanbattle 21
+	waitstate
+	release
+	goto Route111_EventScript_TitanReverseDefeated
+
+Route111_EventScript_TitanDefeated::
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_GREAT_TUSK
+	removeobject LOCALID_IRON_TREADS
+	setflag FLAG_TITAN_TUSK_TREADS
+	fadescreen FADE_FROM_BLACK
+	setvar VAR_LEVEL_CAP 50
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
+Route111_EventScript_TitanReverseDefeated::
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_GREAT_TUSK
+	removeobject LOCALID_IRON_TREADS
+	setflag FLAG_TITAN_TUSK_TREADS
+	fadescreen FADE_FROM_BLACK
+	setvar VAR_LEVEL_CAP 27
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
+Route111_Text_Titan::
+	.string "...$"
 
 Route111_Text_BattleOurFamily:
 	.string "Hello! I take it you're a traveler.\p"

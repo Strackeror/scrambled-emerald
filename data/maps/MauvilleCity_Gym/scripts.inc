@@ -74,7 +74,23 @@ MauvilleCity_Gym_EventScript_DeactivatePuzzle::
 	end
 
 MauvilleCity_Gym_EventScript_Wattson::
+	goto_if_eq VAR_PATH, 2, MauvilleCity_Gym_EventScript_Reverse
+	setvar VAR_TEMP_F, 27
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	trainerbattle_single TRAINER_WATTSON_1, MauvilleCity_Gym_Text_WattsonIntro, MauvilleCity_Gym_Text_WattsonDefeat, MauvilleCity_Gym_EventScript_WattsonDefeated, NO_MUSIC
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	goto_if_eq VAR_RESULT, TRUE, MauvilleCity_Gym_EventScript_WattsonRematch
+	goto_if_eq VAR_NEW_MAUVILLE_STATE, 2, MauvilleCity_Gym_EventScript_CompletedNewMauville
+	msgbox MauvilleCity_Gym_Text_WattsonPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+MauvilleCity_Gym_EventScript_Reverse::
+	setvar VAR_TEMP_F, 47
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	trainerbattle_single SCRAMBLED_IONO_REVERSE, MauvilleCity_Gym_Text_WattsonIntro, MauvilleCity_Gym_Text_WattsonDefeat, MauvilleCity_Gym_EventScript_WattsonDefeated, NO_MUSIC
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, MauvilleCity_Gym_EventScript_WattsonRematch
 	goto_if_eq VAR_NEW_MAUVILLE_STATE, 2, MauvilleCity_Gym_EventScript_CompletedNewMauville
@@ -103,18 +119,16 @@ MauvilleCity_Gym_EventScript_WattsonDefeated::
 
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox MauvilleCity_Gym_Text_ExplainDynamoBadgeTakeThis, MSGBOX_DEFAULT
-	giveitem ITEM_PICKAXE, 1
+	// giveitem ITEM_PICKAXE, 1
 	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 3
 	clearflag FLAG_HIDE_VERDANTURF_TOWN_SCOTT
 	setflag FLAG_DEFEATED_MAUVILLE_GYM
-	setflag FLAG_BADGE03_GET
-	addvar VAR_PETALBURG_GYM_STATE, 1
-	call_if_eq VAR_PETALBURG_GYM_STATE, 6, Common_EventScript_ReadyPetalburgGymForBattle
+	// addvar VAR_PETALBURG_GYM_STATE, 1
+	// call_if_eq VAR_PETALBURG_GYM_STATE, 6, Common_EventScript_ReadyPetalburgGymForBattle
 	setvar VAR_0x8008, 3
 	call Common_EventScript_SetGymTrainers
 	special MauvilleGymDeactivatePuzzle
 	special DrawWholeMapView
-	setvar VAR_LEVEL_CAP 30
 	delay 30
 	playfanfare MUS_REGISTER_MATCH_CALL
 	msgbox MauvilleCity_Gym_Text_RegisteredWattson, MSGBOX_DEFAULT
@@ -122,8 +136,22 @@ MauvilleCity_Gym_EventScript_WattsonDefeated::
 	closemessage
 	delay 30
 	setflag FLAG_ENABLE_WATTSON_MATCH_CALL
+	goto_if_eq VAR_PATH, 1, MauvilleCity_Gym_EventScript_VanillaLevelCap
+	goto_if_eq VAR_PATH, 2, MauvilleCity_Gym_EventScript_ReverseLevelCap
 	release
 	end
+
+MauvilleCity_Gym_EventScript_VanillaLevelCap::
+	setvar VAR_LEVEL_CAP 30
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	setflag FLAG_BADGE03_GET
+	return
+
+MauvilleCity_Gym_EventScript_ReverseLevelCap::
+	setvar VAR_LEVEL_CAP 50
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	setflag FLAG_BADGE06_GET
+	return
 
 MauvilleCity_Gym_EventScript_CompletedNewMauville::
 	msgbox MauvilleCity_Gym_Text_WattsonGoForthAndEndeavor, MSGBOX_DEFAULT

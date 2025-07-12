@@ -18,10 +18,26 @@ FortreeCity_Gym_EventScript_InitRotatingGates::
 	end
 
 FortreeCity_Gym_EventScript_Winona::
+	goto_if_eq VAR_PATH, 2, FortreeCity_Gym_EventScript_WinonaReverse
+	setvar VAR_TEMP_F, 45
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	trainerbattle_single TRAINER_WINONA_1, FortreeCity_Gym_Text_WinonaIntro, FortreeCity_Gym_Text_WinonaDefeat, FortreeCity_Gym_EventScript_WinonaDefeated, NO_MUSIC
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, FortreeCity_Gym_EventScript_WinonaRematch
-	goto_if_unset FLAG_RECEIVED_TM_AERIAL_ACE, FortreeCity_Gym_EventScript_GiveAerialAce2
+	// goto_if_unset FLAG_RECEIVED_TM_AERIAL_ACE, FortreeCity_Gym_EventScript_GiveAerialAce2
+	msgbox FortreeCity_Gym_Text_WinonaPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+FortreeCity_Gym_EventScript_WinonaReverse::
+	setvar VAR_TEMP_F, 30
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	trainerbattle_single SCRAMBLED_RYME_REVERSE, FortreeCity_Gym_Text_WinonaIntro, FortreeCity_Gym_Text_WinonaDefeat, FortreeCity_Gym_EventScript_WinonaDefeated, NO_MUSIC
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	goto_if_eq VAR_RESULT, TRUE, FortreeCity_Gym_EventScript_WinonaRematch
+	// goto_if_unset FLAG_RECEIVED_TM_AERIAL_ACE, FortreeCity_Gym_EventScript_GiveAerialAce2
 	msgbox FortreeCity_Gym_Text_WinonaPostBattle, MSGBOX_DEFAULT
 	release
 	end
@@ -31,10 +47,10 @@ FortreeCity_Gym_EventScript_WinonaDefeated::
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox FortreeCity_Gym_Text_ExplainFeatherBadgeTakeThis, MSGBOX_DEFAULT
+	// giveitem ITEM_FLYING_TAXI_TICKET
+	// setflag FLAG_RECEIVED_HM_FLY
 	setflag FLAG_DEFEATED_FORTREE_GYM
-	setflag FLAG_BADGE06_GET
 	setflag FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE
-	setvar VAR_LEVEL_CAP 47
 	setvar VAR_0x8008, 6
 	call Common_EventScript_SetGymTrainers
 	playfanfare MUS_REGISTER_MATCH_CALL
@@ -44,9 +60,39 @@ FortreeCity_Gym_EventScript_WinonaDefeated::
 	delay 30
 	setflag FLAG_ENABLE_WINONA_MATCH_CALL
 	setvar VAR_SCOTT_FORTREE_CALL_STEP_COUNTER, 0
-	setflag FLAG_SCOTT_CALL_FORTREE_GYM
+	// setflag FLAG_SCOTT_CALL_FORTREE_GYM
+	goto_if_eq VAR_PATH, 1, FortreeCity_Gym_EventScript_VanillaLevelCap
+	goto_if_eq VAR_PATH, 2, FortreeCity_Gym_EventScript_ReverseLevelCap
 	release
 	end
+
+FortreeCity_Gym_EventScript_VanillaLevelCap::
+	setvar VAR_LEVEL_CAP 47
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	setflag FLAG_BADGE06_GET
+	return
+
+FortreeCity_Gym_EventScript_ReverseLevelCap::
+	// PLOTLESS
+		setflag FLAG_HIDE_ROUTE_112_TEAM_MAGMA
+		setvar VAR_METEOR_FALLS_STATE, 1
+		setflag FLAG_HIDE_METEOR_FALLS_TEAM_AQUA
+		setflag FLAG_MET_PROF_COZMO
+		setflag FLAG_HIDE_MT_CHIMNEY_TEAM_AQUA
+		setflag FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
+		setflag FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY
+		clearflag FLAG_HIDE_FALLARBOR_HOUSE_PROF_COZMO
+		setflag FLAG_HIDE_METEOR_FALLS_1F_1R_COZMO
+	// PLOTLESS + EARLYSURF
+		setvar VAR_WEATHER_INSTITUTE_STATE, 2
+		setflag FLAG_HIDE_ROUTE_119_TEAM_AQUA
+		clearflag FLAG_HIDE_WEATHER_INSTITUTE_1F_WORKERS
+		setflag FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS
+	setvar VAR_LEVEL_CAP 32
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	setflag FLAG_BADGE03_GET
+	call_if_eq VAR_PETALBURG_GYM_STATE, 6, Common_EventScript_ReadyPetalburgGymForBattle
+	return
 
 FortreeCity_Gym_EventScript_GiveAerialAce2::
 	giveitem ITEM_TM_AERIAL_ACE

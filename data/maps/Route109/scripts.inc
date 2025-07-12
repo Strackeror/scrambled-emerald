@@ -384,16 +384,6 @@ Route109_EventScript_Alice::
 	msgbox Route109_Text_AlicePostBattle, MSGBOX_AUTOCLOSE
 	end
 
-Route109_EventScript_Huey::
-	trainerbattle_single TRAINER_BROTHER_01_02, Route109_Text_HueyIntro, Route109_Text_HueyDefeated, Route109_EventScript_Huey_Defeated
-	msgbox Route109_Text_HueyPostBattle, MSGBOX_AUTOCLOSE
-	end
-
-Route109_EventScript_Huey_Defeated::
-	setvar VAR_LEVEL_CAP 22
-	release
-	end
-
 Route109_EventScript_Edmond::
 	trainerbattle_single TRAINER_EDMOND, Route109_Text_EdmondIntro, Route109_Text_EdmondDefeated
 	msgbox Route109_Text_EdmondPostBattle, MSGBOX_AUTOCLOSE
