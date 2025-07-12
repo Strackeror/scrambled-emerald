@@ -152,6 +152,12 @@ LittlerootTown_EventScript_GoInsideWithMom::
 	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachPlayerAtTruck
 	waitmovement 0
 	msgbox LittlerootTown_Text_OurNewHomeLetsGoInside, MSGBOX_DEFAULT
+
+	// CHOOSE PATH
+	msgbox LittlerootTown_Text_ChoosePath, MSGBOX_DEFAULT
+	multichoice 20, 8, MULTI_CHOOSE_PATH, TRUE
+	call_if_eq VAR_RESULT, 0, LittlerootTown_EventScript_ScrambledVanillaPath
+	call_if_eq VAR_RESULT, 1, LittlerootTown_EventScript_ScrambledReversePath
 	closemessage
 	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachDoor
 	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_Movement_PlayerApproachDoor
@@ -197,6 +203,24 @@ LittlerootTown_EventScript_GoInsideWithMom::
 
 
 
+	return
+
+LittlerootTown_EventScript_ScrambledVanillaPath::
+	setvar VAR_PATH, 1
+	return
+
+LittlerootTown_EventScript_ScrambledReversePath::
+	setvar VAR_PATH, 2
+	// PLOTLESS
+	clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS
+	clearflag FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
+	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA
+	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA
+	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_STEVEN
+	setvar VAR_MOSSDEEP_CITY_STATE, 1
+	setflag FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE
+	setflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_STEVEN
+	setvar VAR_MOSSDEEP_SPACE_CENTER_STATE, 1
 	return
 
 LittlerootTown_Movement_MomExitHouse:
@@ -945,6 +969,10 @@ LittlerootTown_EventScript_GiveRunningShoes::
 	closemessage
 	delay 30
 	return
+
+LittlerootTown_Text_ChoosePath:
+	.string "Choose the path you wish to play.\n"
+	.string "Note: You {COLOR RED}{SHADOW LIGHT_RED}CANNOT{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY} change this later!$"
 
 LittlerootTown_Text_OurNewHomeLetsGoInside:
 	.string "MOM: {PLAYER}, we're here, honey!\p"
