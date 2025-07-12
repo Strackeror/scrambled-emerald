@@ -324,15 +324,15 @@
         },
     },
 #line 150
-    [PARTNER_SISTER_ONITAIZI] =
+    [PARTNER_DONDOGIRI_REVERSE] =
     {
 #line 151
-        .trainerName = _("LEAF"),
+        .trainerName = _("ARVEN"),
 #line 152
-        .trainerPic = TRAINER_BACK_PIC_LEAF,
+        .trainerPic = TRAINER_BACK_PIC_STEVEN,
         .encounterMusic_gender =
 #line 154
-            TRAINER_ENCOUNTER_MUSIC_FEMALE,
+            TRAINER_ENCOUNTER_MUSIC_MALE,
 #line 155
         .doubleBattle = FALSE,
 #line 156
@@ -341,24 +341,244 @@
         .party = (const struct TrainerMon[])
         {
             {
+#line 158
+            .species = SPECIES_GREEDENT,
+            .gender = TRAINER_MON_RANDOM_GENDER,
+#line 158
+            .heldItem = ITEM_SITRUS_BERRY,
+#line 162
+            .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 0, 252),
+#line 161
+            .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+#line 160
+            .ability = ABILITY_RIPEN,
 #line 159
+            .lvl = 15,
+#line 163
+            .nature = NATURE_CAREFUL,
+            .dynamaxLevel = MAX_DYNAMAX_LEVEL,
+            .moves = {
+#line 164
+                MOVE_PROTECT,
+                MOVE_NONE,
+                MOVE_NONE,
+                MOVE_NONE,
+            },
+            },
+        },
+    },
+#line 170
+    [PARTNER_GREAT_TREADS_REVERSE] =
+    {
+#line 171
+        .trainerName = _("ARVEN"),
+#line 172
+        .trainerPic = TRAINER_BACK_PIC_STEVEN,
+        .encounterMusic_gender =
+#line 174
+            TRAINER_ENCOUNTER_MUSIC_MALE,
+#line 175
+        .doubleBattle = FALSE,
+#line 176
+        .aiFlags = AI_FLAG_BASIC_TRAINER | AI_FLAG_ACE_POKEMON,
+        .partySize = 1,
+        .party = (const struct TrainerMon[])
+        {
+            {
+#line 178
+            .species = SPECIES_SCOVILLAIN,
+            .gender = TRAINER_MON_RANDOM_GENDER,
+#line 178
+            .heldItem = ITEM_TOXIC_ORB,
+#line 182
+            .ev = TRAINER_PARTY_EVS(0, 252, 0, 252, 0, 0),
+#line 181
+            .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+#line 180
+            .ability = ABILITY_CHLOROPHYLL,
+#line 179
+            .lvl = 24,
+#line 183
+            .nature = NATURE_ADAMANT,
+            .dynamaxLevel = MAX_DYNAMAX_LEVEL,
+            .moves = {
+#line 184
+                MOVE_THUNDER_FANG,
+                MOVE_NONE,
+                MOVE_NONE,
+                MOVE_NONE,
+            },
+            },
+        },
+    },
+#line 190
+    [PARTNER_ORTHWORM_REVERSE] =
+    {
+#line 191
+        .trainerName = _("ARVEN"),
+#line 192
+        .trainerPic = TRAINER_BACK_PIC_STEVEN,
+        .encounterMusic_gender =
+#line 194
+            TRAINER_ENCOUNTER_MUSIC_MALE,
+#line 195
+        .doubleBattle = FALSE,
+#line 196
+        .aiFlags = AI_FLAG_BASIC_TRAINER | AI_FLAG_ACE_POKEMON,
+        .partySize = 1,
+        .party = (const struct TrainerMon[])
+        {
+            {
+#line 198
+            .species = SPECIES_TOEDSCOOL,
+            .gender = TRAINER_MON_RANDOM_GENDER,
+#line 198
+            .heldItem = ITEM_FOCUS_SASH,
+#line 202
+            .ev = TRAINER_PARTY_EVS(252, 0, 252, 0, 0, 0),
+#line 201
+            .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+#line 200
+            .ability = ABILITY_POISON_HEAL,
+#line 199
+            .lvl = 38,
+#line 203
+            .nature = NATURE_BOLD,
+            .dynamaxLevel = MAX_DYNAMAX_LEVEL,
+            .moves = {
+#line 204
+                MOVE_MUD_SHOT,
+                MOVE_NONE,
+                MOVE_NONE,
+                MOVE_NONE,
+            },
+            },
+        },
+    },
+#line 210
+    [PARTNER_BOMBIRDIER_REVERSE] =
+    {
+#line 211
+        .trainerName = _("ARVEN"),
+#line 212
+        .trainerPic = TRAINER_BACK_PIC_STEVEN,
+        .encounterMusic_gender =
+#line 214
+            TRAINER_ENCOUNTER_MUSIC_MALE,
+#line 215
+        .doubleBattle = FALSE,
+#line 216
+        .aiFlags = AI_FLAG_BASIC_TRAINER | AI_FLAG_ACE_POKEMON,
+        .partySize = 1,
+        .party = (const struct TrainerMon[])
+        {
+            {
+#line 218
+            .species = SPECIES_NACLI,
+            .gender = TRAINER_MON_RANDOM_GENDER,
+#line 218
+            .heldItem = ITEM_FOCUS_SASH,
+#line 222
+            .ev = TRAINER_PARTY_EVS(252, 0, 252, 0, 0, 0),
+#line 221
+            .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+#line 220
+            .ability = ABILITY_WATER_ABSORB,
+#line 219
+            .lvl = 54,
+#line 223
+            .nature = NATURE_IMPISH,
+            .dynamaxLevel = MAX_DYNAMAX_LEVEL,
+            .moves = {
+#line 224
+                MOVE_SWAGGER,
+                MOVE_NONE,
+                MOVE_NONE,
+                MOVE_NONE,
+            },
+            },
+        },
+    },
+#line 230
+    [PARTNER_KLAWF_REVERSE] =
+    {
+#line 231
+        .trainerName = _("ARVEN"),
+#line 232
+        .trainerPic = TRAINER_BACK_PIC_STEVEN,
+        .encounterMusic_gender =
+#line 234
+            TRAINER_ENCOUNTER_MUSIC_MALE,
+#line 235
+        .doubleBattle = FALSE,
+#line 236
+        .aiFlags = AI_FLAG_BASIC_TRAINER | AI_FLAG_ACE_POKEMON,
+        .partySize = 1,
+        .party = (const struct TrainerMon[])
+        {
+            {
+#line 238
+            .species = SPECIES_SHELLDER,
+            .gender = TRAINER_MON_RANDOM_GENDER,
+#line 238
+            .heldItem = ITEM_LEFTOVERS,
+#line 242
+            .ev = TRAINER_PARTY_EVS(252, 0, 252, 0, 0, 0),
+#line 241
+            .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+#line 240
+            .ability = ABILITY_SHELL_ARMOR,
+#line 239
+            .lvl = 58,
+#line 243
+            .nature = NATURE_IMPISH,
+            .dynamaxLevel = MAX_DYNAMAX_LEVEL,
+            .moves = {
+#line 244
+                MOVE_SUBSTITUTE,
+                MOVE_AQUA_RING,
+                MOVE_NONE,
+                MOVE_NONE,
+            },
+            },
+        },
+    },
+#line 250
+    [PARTNER_SISTER_ONITAIZI] =
+    {
+#line 251
+        .trainerName = _("LEAF"),
+#line 252
+        .trainerPic = TRAINER_BACK_PIC_LEAF,
+        .encounterMusic_gender =
+#line 254
+            TRAINER_ENCOUNTER_MUSIC_FEMALE,
+#line 255
+        .doubleBattle = FALSE,
+#line 256
+        .aiFlags = AI_FLAG_BASIC_TRAINER | AI_FLAG_ACE_POKEMON,
+        .partySize = 1,
+        .party = (const struct TrainerMon[])
+        {
+            {
+#line 259
             .species = SPECIES_NINETALES,
             .gender = TRAINER_MON_RANDOM_GENDER,
-#line 159
+#line 259
             .heldItem = ITEM_FOCUS_SASH,
-#line 163
+#line 263
             .ev = TRAINER_PARTY_EVS(252, 0, 0, 252, 0, 0),
-#line 162
+#line 262
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-#line 161
+#line 261
             .ability = ABILITY_MAGIC_GUARD,
-#line 160
+#line 260
             .lvl = 43,
-#line 164
+#line 264
             .nature = NATURE_TIMID,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
             .moves = {
-#line 165
+#line 265
                 MOVE_WISH,
                 MOVE_MISTY_TERRAIN,
                 MOVE_ENDURE,

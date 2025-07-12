@@ -2131,7 +2131,7 @@ void BufferStringBattle(u16 stringID, u32 battler)
                 stringPtr = sText_LegendaryPkmnAppeared;
             else if (gBattleTypeFlags & BATTLE_TYPE_TITAN)
             {
-              static const u8 str[] = _("You encountered a titanic {B_OPPONENT_MON1_NAME}!\p");
+              static const u8 str[] = _("You encountered a Titanic {B_OPPONENT_MON1_NAME}!\p");
               stringPtr = str;
             }
             else if (IsDoubleBattle() && IsValidForBattle(&gEnemyParty[gBattlerPartyIndexes[GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT)]]))
