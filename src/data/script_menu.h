@@ -787,6 +787,14 @@ static const struct MenuAction MultichoiceList_AIFinal[] =
     {textFuture}
 };
 
+static const u8 gText_VanillaPath[] = _("Vanilla");
+static const u8 gText_ReversePath[] = _("Reverse");
+static const struct MenuAction MultichoiceList_ChoosePath[] =
+{
+    {gText_VanillaPath},
+    {gText_ReversePath},
+};
+
 static const struct MenuAction MultichoiceList_Exit[] =
 {
     {gText_Exit},
@@ -916,6 +924,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_TAG_MATCH_TYPE]             = MULTICHOICE(MultichoiceList_TagMatchType),
     [MULTI_BERRY_PLOT]                 = MULTICHOICE(MultichoiceList_BerryPlot),
     [MULTI_AI_FIGHT_CHOICE]            = MULTICHOICE(MultichoiceList_AIFinal),
+    [MULTI_CHOOSE_PATH]                = MULTICHOICE(MultichoiceList_ChoosePath),
 };
 
 const u8 *const gStdStrings[] =
