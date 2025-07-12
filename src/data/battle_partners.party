@@ -147,6 +147,106 @@ Nature: Careful
 - MOVE_FOLLOW_ME
 
 
+=== PARTNER_DONDOGIRI_REVERSE ===
+Name: ARVEN
+Pic: Steven
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Ace Pokemon
+
+SPECIES_GREEDENT @ ITEM_SITRUS_BERRY
+Level: 15
+Ability: ABILITY_RIPEN
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 0 Def / 0 SpA / 252 SpD / 0 Spe
+Nature: Careful
+- MOVE_PROTECT
+- MOVE_NONE
+- MOVE_NONE
+- MOVE_NONE
+
+
+=== PARTNER_GREAT_TREADS_REVERSE ===
+Name: ARVEN
+Pic: Steven
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Ace Pokemon
+
+SPECIES_SCOVILLAIN @ ITEM_TOXIC_ORB
+Level: 24
+Ability: ABILITY_CHLOROPHYLL
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
+Nature: Adamant
+- MOVE_THUNDER_FANG
+- MOVE_NONE
+- MOVE_NONE
+- MOVE_NONE
+
+
+=== PARTNER_ORTHWORM_REVERSE ===
+Name: ARVEN
+Pic: Steven
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Ace Pokemon
+
+SPECIES_TOEDSCOOL @ ITEM_FOCUS_SASH
+Level: 38
+Ability: ABILITY_POISON_HEAL
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 252 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Bold
+- MOVE_MUD_SHOT
+- MOVE_NONE
+- MOVE_NONE
+- MOVE_NONE
+
+
+=== PARTNER_BOMBIRDIER_REVERSE ===
+Name: ARVEN
+Pic: Steven
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Ace Pokemon
+
+SPECIES_NACLI @ ITEM_FOCUS_SASH
+Level: 54
+Ability: ABILITY_WATER_ABSORB
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 252 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Impish
+- MOVE_SWAGGER
+- MOVE_NONE
+- MOVE_NONE
+- MOVE_NONE
+
+
+=== PARTNER_KLAWF_REVERSE ===
+Name: ARVEN
+Pic: Steven
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Ace Pokemon
+
+SPECIES_SHELLDER @ ITEM_LEFTOVERS
+Level: 58
+Ability: ABILITY_SHELL_ARMOR
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 0 Atk / 252 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Impish
+- MOVE_SUBSTITUTE
+- MOVE_AQUA_RING
+- MOVE_NONE
+- MOVE_NONE
+
+
 === PARTNER_SISTER_ONITAIZI ===
 Name: LEAF
 Pic: Leaf
