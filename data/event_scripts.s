@@ -867,6 +867,26 @@ Common_EventScript_PlayerHandedOverTheItem::
 	removeitem VAR_0x8004
 	return
 
+Common_EventScript_CheckIfLevelCapTooLow::
+	// usage:
+	// buffernumberstring STR_VAR_2, <lvCap>
+	// goto_if_lt VAR_LEVEL_CAP, <lvCap>, Common_EventScript_CheckIfLevelCapTooLow
+	
+	lock
+	faceplayer
+	buffernumberstring STR_VAR_1, VAR_LEVEL_CAP
+	// buffernumberstring STR_VAR_2, expected to buffer from outside
+	msgbox Scrambled_Text_LevelCapTooLow, MSGBOX_DEFAULT
+	release
+	end
+
+Common_EventScript_NewLevelCapTextAndFanfare::
+	playfanfare MUS_REGISTER_MATCH_CALL
+	buffernumberstring STR_VAR_1, VAR_LEVEL_CAP
+	msgbox Scrambled_Text_LevelCap, MSGBOX_DEFAULT
+	waitfanfare
+	return
+
 	.include "data/scripts/elite_four.inc"
 	.include "data/scripts/movement.inc"
 	.include "data/scripts/check_furniture.inc"
