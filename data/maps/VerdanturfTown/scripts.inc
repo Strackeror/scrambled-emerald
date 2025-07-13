@@ -63,6 +63,38 @@ VerdanturfTown_EventScript_RusturfTunnelSign::
 	msgbox VerdanturfTown_Text_RusturfTunnelSign, MSGBOX_SIGN
 	end
 
+VerdanturfTown_EventScript_DokuBoss::
+	goto_if_eq VAR_PATH, 2, VerdanturfTown_EventScript_AtticusReverse
+	setvar VAR_TEMP_F, 38
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	trainerbattle_single TRAINER_DAN_DOKU_BOSS_01, VerdanturfTown_Text_Placeholder, VerdanturfTown_Text_Placeholder, VerdanturfTown_EventScript_DokuBossDefeated
+	msgbox VerdanturfTown_Text_Placeholder, MSGBOX_NPC
+	release
+	end
+
+VerdanturfTown_EventScript_AtticusReverse::
+	setvar VAR_TEMP_F, 36
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	trainerbattle_single SCRAMBLED_ATTICUS_REVERSE, VerdanturfTown_Text_Placeholder, VerdanturfTown_Text_Placeholder, VerdanturfTown_EventScript_AtticusDefeated
+	msgbox VerdanturfTown_Text_Placeholder, MSGBOX_NPC
+	release
+	end
+	
+VerdanturfTown_EventScript_DokuBossDefeated::
+	setvar VAR_LEVEL_CAP 40
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	return
+
+VerdanturfTown_EventScript_AtticusDefeated::
+	setvar VAR_LEVEL_CAP 38
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	return
+
+VerdanturfTown_Text_Placeholder:
+	.string "...$"
+
 VerdanturfTown_Text_ManTryingToDigTunnel:
 	.string "My papa told me.\p"
 	.string "He says this tunnel is full of\n"

@@ -210,6 +210,52 @@ void NewGameInitData(void)
     ResetItemFlags();
     VarSet(VAR_LEVEL_CAP, 11);
     gSaveBlock2Ptr->optionsBattleStyle = 1;
+
+    // No more trillion fanfares from Mom! :D
+    AddBagItem(ITEM_CANDY_JAR, 1);
+    AddBagItem(ITEM_POKEMON_BOX_LINK, 1);
+    AddBagItem(ITEM_MUSIC_BOX, 1);
+    AddBagItem(ITEM_TERA_ORB, 1);
+
+    AddBagItem(ITEM_AXE, 1);
+    AddBagItem(ITEM_LANTERN, 1);
+    AddBagItem(ITEM_PICKAXE, 1);
+    AddBagItem(ITEM_POWER_GLOVE, 1);
+    AddBagItem(ITEM_GO_GOGGLES, 1);
+    AddBagItem(ITEM_SURFBOARD, 1);
+    // AddBagItem(ITEM_FLYING_TAXI_TICKET, 1); Flying Taxi Ticket to be given by Carmine in Oldale for story reasons
+    AddBagItem(ITEM_DIVING_SUIT, 1);
+	FlagSet(FLAG_WATERFALL);
+    
+    FlagSet(FLAG_RECEIVED_HM_CUT);
+    FlagSet(FLAG_RECEIVED_HM_FLASH);
+    FlagSet(FLAG_RECEIVED_HM_ROCK_SMASH);
+    FlagSet(FLAG_RECEIVED_BIKE);
+    FlagSet(FLAG_RECEIVED_HM_STRENGTH);
+    FlagSet(FLAG_RECEIVED_HM_SURF);
+    FlagSet(FLAG_RECEIVED_HM_FLY);
+    FlagSet(FLAG_RECEIVED_HM_DIVE);
+    FlagSet(FLAG_RECEIVED_HM_WATERFALL);
+    
+    FlagSet(FLAG_SYS_B_DASH);
+    AddBagItem(ITEM_ACRO_BIKE, 1);
+    AddBagItem(ITEM_MACH_BIKE, 1);
+
+    FlagSet(FLAG_VISITED_OLDALE_TOWN);
+	FlagSet(FLAG_VISITED_PETALBURG_CITY);
+	FlagSet(FLAG_VISITED_RUSTBORO_CITY);
+	FlagSet(FLAG_VISITED_DEWFORD_TOWN);
+	FlagSet(FLAG_VISITED_SLATEPORT_CITY);
+	FlagSet(FLAG_VISITED_MAUVILLE_CITY);
+	FlagSet(FLAG_VISITED_VERDANTURF_TOWN);
+	FlagSet(FLAG_VISITED_LAVARIDGE_TOWN);
+	FlagSet(FLAG_VISITED_FALLARBOR_TOWN);
+	FlagSet(FLAG_VISITED_FORTREE_CITY);
+	FlagSet(FLAG_VISITED_LILYCOVE_CITY);
+	FlagSet(FLAG_VISITED_MOSSDEEP_CITY);
+	FlagSet(FLAG_VISITED_SOOTOPOLIS_CITY);
+	FlagSet(FLAG_VISITED_PACIFIDLOG_TOWN);
+	FlagSet(FLAG_VISITED_EVER_GRANDE_CITY);
 }
 
 static void ResetMiniGamesRecords(void)

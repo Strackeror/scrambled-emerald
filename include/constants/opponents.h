@@ -290,6 +290,7 @@
 #define TRAINER_GYM_GHOST_LEADER_01         270
 #define TRAINER_GYM_ESPER_LEADER_01         271
 #define TRAINER_GYM_KOORI_LEADER_01         272
+
 #define TRAINER_JERRY_1                     273
 #define TRAINER_TED                         274
 #define TRAINER_PAUL                        275
@@ -874,6 +875,25 @@
 #define TRAINER_BRENDAN_PLACEHOLDER         853
 #define TRAINER_MAY_PLACEHOLDER             854
 #define TRAINER_OGERPON                     855
+
+// Reverse Path Trainers - replacing Victory Road Trainers
+#define SCRAMBLED_GRUSHA_REVERSE             80 // Albert
+#define SCRAMBLED_TULIP_REVERSE              96 // Hope
+#define SCRAMBLED_RYME_REVERSE               97 // Shannon
+#define SCRAMBLED_LARRY_REVERSE              81 // Samuel
+#define SCRAMBLED_KOFU_REVERSE               83 // Owen
+#define SCRAMBLED_IONO_REVERSE              100 // Julie
+#define SCRAMBLED_BRASSIUS_REVERSE           38 // Felix
+#define SCRAMBLED_KATY_REVERSE              417 // Dianne
+
+#define SCRAMBLED_NEMONA_REVERSE_GYM_2       99 // Caroline
+#define SCRAMBLED_NEMONA_REVERSE_GYM_7      546 // Halle
+
+#define SCRAMBLED_ERI_REVERSE                98 // Michelle
+#define SCRAMBLED_ORTEGA_REVERSE             82 // Vito
+#define SCRAMBLED_ATTICUS_REVERSE           540 // Mitchell
+#define SCRAMBLED_MELA_REVERSE              325 // Katelynn
+#define SCRAMBLED_GIACOMO_REVERSE            79 // Edgar
 
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 9 additional trainers before trainer flag space overflows
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled

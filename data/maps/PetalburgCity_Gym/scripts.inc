@@ -378,6 +378,10 @@ PetalburgCity_Gym_EventScript_GiveEnigmaBerry::
 	end
 
 PetalburgCity_Gym_EventScript_NormanBattle::
+	goto_if_eq VAR_PATH, 2, PetalburgCity_Gym_EventScript_NormanBattleReverse
+	setvar VAR_TEMP_F, 42
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	msgbox PetalburgCity_Gym_Text_NormanIntro, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_NORMAN_1, PetalburgCity_Gym_Text_NormanDefeat
 	// PLOTLESS
@@ -389,10 +393,9 @@ PetalburgCity_Gym_EventScript_NormanBattle::
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox PetalburgCity_Gym_Text_ExplainBalanceBadgeTakeThis, MSGBOX_DEFAULT
-	giveitem ITEM_SURFBOARD, 1
+	// giveitem ITEM_SURFBOARD, 1
 	setflag FLAG_DEFEATED_PETALBURG_GYM
 	setvar VAR_PETALBURG_GYM_STATE, 7
-	setflag FLAG_BADGE05_GET
 	special ResetHealLocationFromDewford
 	call EventScript_HideMrBriney
 	setflag FLAG_HIDE_MAUVILLE_GYM_WATTSON
@@ -413,6 +416,42 @@ PetalburgCity_Gym_EventScript_NormanBattle::
 	case DIR_NORTH, PetalburgCity_Gym_EventScript_WallysDadArrivesNorth
 	case DIR_WEST, PetalburgCity_Gym_EventScript_WallysDadArrivesWest
 	case DIR_EAST, PetalburgCity_Gym_EventScript_WallysDadArrivesEast
+	end
+
+PetalburgCity_Gym_EventScript_NormanBattleReverse::
+	setvar VAR_TEMP_F, 33
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	msgbox PetalburgCity_Gym_Text_NormanIntro, MSGBOX_DEFAULT
+	trainerbattle_no_intro SCRAMBLED_LARRY_REVERSE, PetalburgCity_Gym_Text_NormanDefeat
+	// PLOTLESS
+		setvar VAR_WEATHER_INSTITUTE_STATE, 2
+		setflag FLAG_HIDE_ROUTE_119_TEAM_AQUA
+		clearflag FLAG_HIDE_WEATHER_INSTITUTE_1F_WORKERS
+		setflag FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS
+	message PetalburgCity_Gym_Text_ReceivedBalanceBadge
+	waitmessage
+	call Common_EventScript_PlayGymBadgeFanfare
+	msgbox PetalburgCity_Gym_Text_ExplainBalanceBadgeTakeThis, MSGBOX_DEFAULT
+	// giveitem ITEM_SURFBOARD, 1
+	setflag FLAG_DEFEATED_PETALBURG_GYM
+	setvar VAR_PETALBURG_GYM_STATE, 7
+	setflag FLAG_BADGE04_GET
+	setvar VAR_LEVEL_CAP 35
+	special ResetHealLocationFromDewford
+	call EventScript_HideMrBriney
+	// setflag FLAG_HIDE_MAUVILLE_GYM_WATTSON
+	// clearflag FLAG_HIDE_MAUVILLE_CITY_WATTSON
+	setvar VAR_0x8008, 5
+	call Common_EventScript_SetGymTrainers
+	clearflag FLAG_HIDE_DEWFORD_HALL_SLUDGE_BOMB_MAN
+	call PetalburgCity_Gym_EventScript_UnlockAllDoors
+	special DrawWholeMapView
+	delay 30
+	msgbox PetalburgCity_Gym_Text_DadHappyAndSad, MSGBOX_DEFAULT
+	closemessage
+	setvar VAR_PETALBURG_CITY_STATE 5
+	release
 	end
 
 PetalburgCity_Gym_EventScript_WallysDadArrivesNorth::
@@ -450,6 +489,7 @@ PetalburgCity_Gym_EventScript_WallysDadArrives::
 	special HealPlayerParty
 	clearflag FLAG_HIDE_PETALBURG_GYM_RIVAL_FIGHT
 	trainerbattle_no_intro TRAINER_RIVAL_05_HONO, PostFight_Nemona_LoseText
+	setflag FLAG_BADGE05_GET
 	setvar VAR_LEVEL_CAP 43
 	setvar VAR_PETALBURG_CITY_STATE 5
 	fadescreen FADE_TO_BLACK
@@ -857,7 +897,7 @@ PetalburgCity_Gym_EventScript_RightOHKORoomDoor::
 
 PetalburgCity_Gym_EventScript_LeftGymLeadersRoomDoor::
 	lockall
-	goto_if_not_defeated TRAINER_JODY, PetalburgCity_Gym_EventScript_DoorLocked
+	// goto_if_not_defeated TRAINER_JODY, PetalburgCity_Gym_EventScript_DoorLocked
 	setvar VAR_0x8008, 1
 	setvar VAR_0x8009, 7
 	msgbox PetalburgCity_Gym_Text_EnterGymLeadersRoom, MSGBOX_YESNO
@@ -867,7 +907,7 @@ PetalburgCity_Gym_EventScript_LeftGymLeadersRoomDoor::
 
 PetalburgCity_Gym_EventScript_RightGymLeadersRoomDoor::
 	lockall
-	goto_if_not_defeated TRAINER_BERKE, PetalburgCity_Gym_EventScript_DoorLocked
+	// goto_if_not_defeated TRAINER_BERKE, PetalburgCity_Gym_EventScript_DoorLocked
 	setvar VAR_0x8008, 7
 	setvar VAR_0x8009, 7
 	msgbox PetalburgCity_Gym_Text_EnterGymLeadersRoom, MSGBOX_YESNO

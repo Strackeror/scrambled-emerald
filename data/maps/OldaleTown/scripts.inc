@@ -1,6 +1,9 @@
 .set LOCALID_MART_EMPLOYEE, 2
 .set LOCALID_FOOTPRINTS_MAN, 3
 .set LOCALID_RIVAL, 4
+.set LOCALID_CARMINE, 5
+.set LOCALID_KIERAN, 6
+.set LOCALID_CARMINE2, 7
 
 OldaleTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, OldaleTown_OnTransition
@@ -12,6 +15,8 @@ OldaleTown_OnTransition:
 	call_if_unset FLAG_ADVENTURE_STARTED, OldaleTown_EventScript_BlockWestEntrance
 	call_if_unset FLAG_RECEIVED_POTION_OLDALE, OldaleTown_EventScript_MoveMartEmployee
 	call_if_set FLAG_ADVENTURE_STARTED, OldaleTown_EventScript_SetOldaleState
+	call_if_ge VAR_LEVEL_CAP, 20, OldaleTown_EventScript_RemoveKieran1
+	call_if_set FLAG_BADGE03_GET, OldaleTown_EventScript_SwapCarmine1ForCarmine2
 	end
 
 @ This script seems pointless because nothing uses VAR_OLDALE_TOWN_STATE
@@ -27,6 +32,16 @@ OldaleTown_EventScript_BlockWestEntrance::
 OldaleTown_EventScript_MoveMartEmployee::
 	setobjectxyperm LOCALID_MART_EMPLOYEE, 13, 14
 	setobjectmovementtype LOCALID_MART_EMPLOYEE, MOVEMENT_TYPE_FACE_DOWN
+	return
+
+OldaleTown_EventScript_RemoveKieran1::
+	setobjectxyperm LOCALID_KIERAN, 26, -1
+	return
+
+OldaleTown_EventScript_SwapCarmine1ForCarmine2::
+	setobjectxyperm LOCALID_CARMINE, 25, -1
+	setobjectxyperm LOCALID_CARMINE2, 10, 10
+	setobjectmovementtype LOCALID_MART_EMPLOYEE, MOVEMENT_TYPE_LOOK_AROUND
 	return
 
 OldaleTown_EventScript_TownSign::
@@ -343,6 +358,80 @@ OldaleTown_Movement_ReturnToOriginalPosition:
 	walk_left
 	step_end
 
+OldaleTown_EventScript_Carmine1::
+	trainerbattle_single TRAINER_SISTER_01_01, OldaleTown_Text_Carmine1Intro, OldaleTown_Text_Carmine1Defeat, OldaleTown_EventScript_Carmine1_Defeated
+	msgbox OldaleTown_Text_Carmine1PostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+OldaleTown_EventScript_Carmine1_Defeated::
+	setvar VAR_LEVEL_CAP 12
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	return
+
+OldaleTown_EventScript_Carmine2::
+	setvar VAR_TEMP_F, 32
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	trainerbattle_single TRAINER_SISTER_01_02, OldaleTown_Text_Carmine2Intro, OldaleTown_Text_Carmine2Defeat, OldaleTown_EventScript_Carmine2_Defeated
+	msgbox OldaleTown_Text_Carmine2PostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+OldaleTown_EventScript_Carmine2_Defeated::
+	setvar VAR_LEVEL_CAP 33
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	return
+
+OldaleTown_EventScript_Kieran1::
+	setvar VAR_TEMP_F, 12
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	trainerbattle_single TRAINER_BROTHER_01_01, OldaleTown_Text_Kieran1Intro, OldaleTown_Text_Kieran1Defeat, OldaleTown_EventScript_Kieran1_Defeated
+	msgbox OldaleTown_Text_Kieran1PostBattle, MSGBOX_AUTOCLOSE
+	release
+	end
+
+OldaleTown_EventScript_Kieran1_Defeated::
+	setvar VAR_LEVEL_CAP 13
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	giveitem ITEM_FLYING_TAXI_TICKET
+	return
+
+OldaleTown_Text_AskIfPlayingKitakami:
+	.string "We must have been fated to meet.\n"
+	.string "Surely you are interested in the\p"
+	.string "lore of the Teal Mask, right?$"
+
+OldaleTown_Text_Carmine1SkippingKitakami:
+	.string "Aww, really?\n"
+	.string "Alright, fine then…"
+
+OldaleTown_Text_Carmine1Intro:
+	.string "We must have been fated to meet.\n"
+	.string "May I ask you for a battle?$"
+
+OldaleTown_Text_Carmine1Defeat:
+	.string "Oh, my!$"
+
+OldaleTown_Text_Carmine1PostBattle:
+	.string "“Hello” is the beginning of “good-bye.”\n"
+	.string "I hope we meet again.$"
+
+OldaleTown_Text_Carmine2Intro:
+	.string "Since I bathed in the hot springs,\n"
+	.string "I've been feeling great!\l"
+	.string "I'm sure I'm going to win!$"
+
+OldaleTown_Text_Carmine2Defeat:
+	.string "Yowch!\n"
+	.string "I'm getting a chill out of the water.$"
+
+OldaleTown_Text_Carmine2PostBattle:
+	.string "I'll have to take another dip in the\n"
+	.string "hot springs. Want to join me?\p"
+	.string "Just joking!$"
+
 OldaleTown_Text_SavingMyProgress:
 	.string "I want to take a rest, so I'm saving my\n"
 	.string "progress.$"
@@ -399,3 +488,16 @@ OldaleTown_Text_TownSign:
 	.string "OLDALE TOWN\n"
 	.string "“Where things start off scarce.”$"
 
+OldaleTown_Text_Kieran1Intro:
+	.string "Why keep it a secret?\n"
+	.string "I'm the WATER POKéMON expert!\p"
+	.string "Huh?\n"
+	.string "You don't know me?$"
+
+OldaleTown_Text_Kieran1Defeat:
+	.string "I thought I wasn't too bad, if I may\n"
+	.string "say so, but I guess not… Bleah…$"
+
+OldaleTown_Text_Kieran1PostBattle:
+	.string "I got too into fishing.\n"
+	.string "I forgot I had to raise my POKéMON…$"

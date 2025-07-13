@@ -14120,9 +14120,9 @@ const struct Item gItemsInfo[] =
         .price = 0,
         .importance = 1,
         .description = COMPOUND_STRING(
-            "This flat board\n"
-            "is shaped for\n"
-            "riding waves."),
+            "This board rides\n"
+            "waves and scales\n"
+            "waterfalls."),
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_FIELD,
         .fieldUseFunc = ItemUseOutOfBattle_Surfboard,
@@ -14164,7 +14164,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_DIVING_SUIT] =
     {
-        .name = _("Diving suit"),
+        .name = _("Diving Suit"),
         .price = 0,
         .importance = 1,
         .description = COMPOUND_STRING(
@@ -14196,7 +14196,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_POWER_GLOVE] =
     {
-        .name = _("Power glove"),
+        .name = _("Power Glove"),
         .price = 0,
         .importance = 1,
         .description = COMPOUND_STRING(

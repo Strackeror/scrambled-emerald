@@ -28,19 +28,6 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_WALLY",
-      "x": 14,
-      "y": 36,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_SEE_ALL_DIRECTIONS",
-      "trainer_sight_or_berry_tree_id": "1",
-      "script": "JaggedPass_EventScript_Ethan",
-      "flag": "0"
-    },
-    {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "x": 23,
       "y": 24,
@@ -108,8 +95,8 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(ORTHWORM)",
       "x": 14,
-      "y": 19,
-      "elevation": 0,
+      "y": 33,
+      "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
       "movement_range_y": 0,
@@ -236,15 +223,6 @@
       "var": "VAR_JAGGED_PASS_STATE",
       "var_value": "1",
       "script": "JaggedPass_EventScript_OpenMagmaHideout"
-    },
-    {
-      "type": "trigger",
-      "x": 13,
-      "y": 19,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "JaggedPass_EventScript_TitanOrthworm_Trigger"
     }
   ],
   "bg_events": [

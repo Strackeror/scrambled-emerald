@@ -95,15 +95,18 @@ VictoryRoad_1F_EventScript_RematchWally::
 	msgbox VictoryRoad_1F_Text_WallyPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-VictoryRoad_1F_EventScript_Edgar::
-	trainerbattle_single TRAINER_BOTAN_01, VictoryRoad_1F_Text_EdgarIntro, VictoryRoad_1F_Text_EdgarDefeat, VictoryRoad_1F_EventScript_Edgar_Defeat
-	msgbox VictoryRoad_1F_Text_EdgarPostBattle, MSGBOX_AUTOCLOSE
+VictoryRoad_1F_EventScript_Penny::
+	setvar VAR_TEMP_F, 65
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	trainerbattle_single TRAINER_BOTAN_01, VictoryRoad_1F_Text_PennyIntro, VictoryRoad_1F_Text_PennyDefeat, VictoryRoad_1F_EventScript_Penny_Defeat
+	msgbox VictoryRoad_1F_Text_PennyPostBattle, MSGBOX_AUTOCLOSE
 	end
 	
-VictoryRoad_1F_EventScript_Edgar_Defeat::
+VictoryRoad_1F_EventScript_Penny_Defeat::
 	setvar VAR_LEVEL_CAP 100
-	release
-	end
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	return
 
 VictoryRoad_1F_EventScript_Albert::
 	trainerbattle_single TRAINER_DAN_KAKUTOU_BOSS_01, VictoryRoad_1F_Text_AlbertIntro, VictoryRoad_1F_Text_AlbertDefeat, VictoryRoad_1F_EventScript_Albert_Defeat
@@ -115,29 +118,25 @@ VictoryRoad_1F_EventScript_Albert_Defeat::
 	release
 	end
 
-VictoryRoad_1F_EventScript_Hope::
-	trainerbattle_single TRAINER_DAN_FAIRY_BOSS_01, VictoryRoad_1F_Text_HopeIntro, VictoryRoad_1F_Text_HopeDefeat, VictoryRoad_1F_EventScript_Hope_Defeat
-	msgbox VictoryRoad_1F_Text_HopePostBattle, MSGBOX_AUTOCLOSE
+VictoryRoad_1F_EventScript_Clavell::
+	setvar VAR_TEMP_F, 63
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	trainerbattle_single TRAINER_CLAVEL_01_HONO, VictoryRoad_1F_Text_ClavellIntro, VictoryRoad_1F_Text_ClavellDefeat, VictoryRoad_1F_EventScript_Clavell_Defeat
+	msgbox VictoryRoad_1F_Text_ClavellPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-VictoryRoad_1F_EventScript_Hope_Defeat::
-	setvar VAR_LEVEL_CAP 58
-	release
-	end
-
-VictoryRoad_1F_EventScript_Quincy::
-	trainerbattle_single TRAINER_CLAVEL_01_HONO, VictoryRoad_1F_Text_QuincyIntro, VictoryRoad_1F_Text_QuincyDefeat, VictoryRoad_1F_EventScript_Quincy_Defeat
-	msgbox VictoryRoad_1F_Text_QuincyPostBattle, MSGBOX_AUTOCLOSE
-	end
-
-VictoryRoad_1F_EventScript_Quincy_Defeat::
+VictoryRoad_1F_EventScript_Clavell_Defeat::
 	setvar VAR_LEVEL_CAP 65
-	release
-	end
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	return
 
-VictoryRoad_1F_EventScript_Katelynn::
-	trainerbattle_single TRAINER_PEPPER_01, VictoryRoad_1F_Text_KatelynnIntro, VictoryRoad_1F_Text_KatelynnDefeat
-	msgbox VictoryRoad_1F_Text_KatelynnPostBattle, MSGBOX_AUTOCLOSE
+VictoryRoad_1F_EventScript_Arven::
+	setvar VAR_TEMP_F, 63
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	trainerbattle_single TRAINER_PEPPER_01, VictoryRoad_1F_Text_ArvenIntro, VictoryRoad_1F_Text_ArvenDefeat
+	msgbox VictoryRoad_1F_Text_ArvenPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 VictoryRoad_1F_Text_WallyNotGoingToLoseAnymore:
@@ -177,14 +176,14 @@ VictoryRoad_1F_Text_WallyPostBattle:
 	.string "I'm going to catch up to you…\p"
 	.string "And challenge the POKéMON LEAGUE!$"
 
-VictoryRoad_1F_Text_EdgarIntro:
+VictoryRoad_1F_Text_PennyIntro:
 	.string "I've made it this far a couple times,\n"
 	.string "but the last stretch is so long…$"
 
-VictoryRoad_1F_Text_EdgarDefeat:
+VictoryRoad_1F_Text_PennyDefeat:
 	.string "My dream ends here again…$"
 
-VictoryRoad_1F_Text_EdgarPostBattle:
+VictoryRoad_1F_Text_PennyPostBattle:
 	.string "You've made it this far. Keep the\n"
 	.string "momentum going and become the\l"
 	.string "CHAMPION! If anyone can, it's you!$"
@@ -202,64 +201,28 @@ VictoryRoad_1F_Text_AlbertPostBattle:
 	.string "That means I lack the qualifications\n"
 	.string "to become the CHAMPION…$"
 
-VictoryRoad_1F_Text_HopeIntro:
-	.string "This seemingly infinite and harsh road\n"
-	.string "lives up to its name of VICTORY.$"
-
-VictoryRoad_1F_Text_HopeDefeat:
-	.string "Your battle style is fantastic…$"
-
-VictoryRoad_1F_Text_HopePostBattle:
-	.string "You seem to have the potential for\n"
-	.string "becoming the CHAMPION.$"
-
-VictoryRoad_1F_Text_QuincyIntro:
+VictoryRoad_1F_Text_ClavellIntro:
 	.string "What is the VICTORY ROAD?\n"
 	.string "I'll tell you if you win!$"
 
-VictoryRoad_1F_Text_QuincyDefeat:
+VictoryRoad_1F_Text_ClavellDefeat:
 	.string "Okay!\n"
 	.string "Well done!$"
 
-VictoryRoad_1F_Text_QuincyPostBattle:
+VictoryRoad_1F_Text_ClavellPostBattle:
 	.string "Getting through here safely--that's\n"
 	.string "the final test for any TRAINER aiming\l"
 	.string "to become the POKéMON CHAMPION.\p"
 	.string "That's why it's called the VICTORY\n"
 	.string "ROAD.$"
 
-VictoryRoad_1F_Text_KatelynnIntro:
+VictoryRoad_1F_Text_ArvenIntro:
 	.string "I have nothing to say to anyone\n"
 	.string "that's come this far. Come on!$"
 
-VictoryRoad_1F_Text_KatelynnDefeat:
+VictoryRoad_1F_Text_ArvenDefeat:
 	.string "This is a disgrace…$"
 
-VictoryRoad_1F_Text_KatelynnPostBattle:
+VictoryRoad_1F_Text_ArvenPostBattle:
 	.string "Humph, go right on ahead.\n"
 	.string "See if I care.$"
-
-VictoryRoad_1F_EventScript_TitanDondozo_Trigger::
-	goto_if_unset FLAG_TITAN_DONDOZO VictoryRoad_1F_EventScript_TitanDondozo
-	release
-	end
-
-VictoryRoad_1F_EventScript_TitanDondozo::
-	lock
-	faceplayer
-	msgbox VictoryRoad_1F_Text_Titan, MSGBOX_DEFAULT
-	titanbattle 11
-	waitstate
-	msgbox VictoryRoad_1F_Text_Titan, MSGBOX_DEFAULT
-	titanbattle 12
-	waitstate
-	fadescreen FADE_TO_BLACK
-	removeobject 8
-	setflag FLAG_TITAN_DONDOZO
-	fadescreen FADE_FROM_BLACK
-	setvar VAR_LEVEL_CAP 60
-	release
-	end
-
-VictoryRoad_1F_Text_Titan::
-	.string "...$"
