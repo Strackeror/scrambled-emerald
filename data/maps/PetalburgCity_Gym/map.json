@@ -175,7 +175,7 @@
     },
     {
       "x": 1,
-      "y": 105,
+      "y": 103,
       "elevation": 3,
       "dest_map": "MAP_PETALBURG_CITY_GYM",
       "dest_warp_id": "3"
@@ -196,7 +196,7 @@
     },
     {
       "x": 7,
-      "y": 105,
+      "y": 103,
       "elevation": 3,
       "dest_map": "MAP_PETALBURG_CITY_GYM",
       "dest_warp_id": "6"
@@ -248,14 +248,14 @@
       "y": 59,
       "elevation": 3,
       "dest_map": "MAP_PETALBURG_CITY_GYM",
-      "dest_warp_id": "9"
+      "dest_warp_id": "2"
     },
     {
       "x": 2,
       "y": 59,
       "elevation": 3,
       "dest_map": "MAP_PETALBURG_CITY_GYM",
-      "dest_warp_id": "9"
+      "dest_warp_id": "2"
     },
     {
       "x": 1,
@@ -283,7 +283,7 @@
       "y": 59,
       "elevation": 3,
       "dest_map": "MAP_PETALBURG_CITY_GYM",
-      "dest_warp_id": "14"
+      "dest_warp_id": "5"
     },
     {
       "x": 1,
@@ -384,15 +384,15 @@
       "dest_warp_id": "23"
     },
     {
-      "x": 7,
-      "y": 14,
+      "x": 1,
+      "y": 105,
       "elevation": 3,
       "dest_map": "MAP_PETALBURG_CITY_GYM",
       "dest_warp_id": "34"
     },
     {
-      "x": 1,
-      "y": 27,
+      "x": 7,
+      "y": 105,
       "elevation": 3,
       "dest_map": "MAP_PETALBURG_CITY_GYM",
       "dest_warp_id": "36"
@@ -433,7 +433,7 @@
     {
       "type": "sign",
       "x": 1,
-      "y": 105,
+      "y": 103,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "PetalburgCity_Gym_EventScript_SpeedRoomDoor"
@@ -441,7 +441,7 @@
     {
       "type": "sign",
       "x": 7,
-      "y": 105,
+      "y": 103,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "PetalburgCity_Gym_EventScript_AccuracyRoomDoor"
@@ -512,16 +512,16 @@
     },
     {
       "type": "sign",
-      "x": 7,
-      "y": 14,
+      "x": 1,
+      "y": 105,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "PetalburgCity_Gym_EventScript_LeftGymLeadersRoomDoor"
     },
     {
       "type": "sign",
-      "x": 1,
-      "y": 27,
+      "x": 7,
+      "y": 105,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "PetalburgCity_Gym_EventScript_RightGymLeadersRoomDoor"

@@ -3005,19 +3005,6 @@ Route120_Text_JennaPostBattle:
 	.string "Fitness training is in my routine.\n"
 	.string "I always run with my POKéMON.$"
 
-Route120_Text_JeffreyIntro:
-	.string "… … … … … …\n"
-	.string "… … … … … …\l"
-	.string "Want to battle?$"
-
-Route120_Text_JeffreyDefeat:
-	.string "Lost it…$"
-
-Route120_Text_JeffreyPostBattle:
-	.string "… … … … … …\n"
-	.string "… … … … … …\l"
-	.string "I'll try harder…$"
-
 Route120_Text_JeffreyRegister:
 	.string "… … … … … …\n"
 	.string "… … … … … …\l"
@@ -4794,3 +4781,10 @@ VSSeeker_Text_TrainersNotReady::
 	.string "The other Trainers don't appear\n"
 	.string "to be ready for battle.\p"
 	.string "Let's wait till later.{PAUSE_UNTIL_PRESS}$"
+
+Scrambled_Text_LevelCap:
+	.string "The LEVEL CAP is now {COLOR RED}{SHADOW LIGHT_RED}{STR_VAR_1}{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}.$"
+
+Scrambled_Text_LevelCapTooLow:
+	.string "Your current LEVEL CAP is {COLOR RED}{SHADOW LIGHT_RED}{STR_VAR_1}{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}…\n"
+	.string "Come back when your LEVEL CAP is {COLOR RED}{SHADOW LIGHT_RED}{STR_VAR_2}{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}.$"

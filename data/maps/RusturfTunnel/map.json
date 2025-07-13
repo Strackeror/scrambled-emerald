@@ -42,8 +42,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 3,
-      "y": 1,
+      "x": -4,
+      "y": -5,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -55,8 +55,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 30,
-      "y": 2,
+      "x": 40,
+      "y": -1,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -120,15 +120,15 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_WALLY",
-      "x": 30,
-      "y": 12,
+      "x": 39,
+      "y": -1,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_SEE_ALL_DIRECTIONS",
-      "trainer_sight_or_berry_tree_id": "1",
-      "script": "RusturfTunnel_EventScript_Brother04",
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RusturfTunnel_EventScript_Kieran5",
       "flag": "0"
     },
     {
@@ -143,6 +143,32 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RusturfTunnel_EventScript_Wanda",
       "flag": "FLAG_HIDE_RUSTURF_TUNNEL_WANDA"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(OGERPON)",
+      "x": 39,
+      "y": 0,
+      "elevation": 5,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RusturfTunnel_EventScript_Ogerpon",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WALLY",
+      "x": 30,
+      "y": 11,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RusturfTunnel_EventScript_Kieran2",
+      "flag": "0"
     }
   ],
   "warp_events": [

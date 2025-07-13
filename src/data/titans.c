@@ -161,6 +161,120 @@ static const struct TrainerMon FEZANDIPITI = {
     }
 };
 
+// Reverse Path Titans
+
+static const struct TrainerMon DONDOZO_REVERSE = {
+    .species = SPECIES_DONDOZO,
+    .lvl = 15,
+    .ability = ABILITY_RIPEN,
+    .heldItem = ITEM_LEFTOVERS,
+    .nature = NATURE_CAREFUL,
+    .iv = MAX_IVS,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 0, 252),
+    .moves = {
+        MOVE_DIVE,
+        MOVE_BITE,
+        MOVE_POISON_FANG,
+        MOVE_TICKLE,
+    }
+};
+
+static const struct TrainerMon TATSUGIRI_REVERSE = {
+    .species = SPECIES_TATSUGIRI,
+    .lvl = 15,
+    .ability = ABILITY_MIMICRY,
+    .heldItem = ITEM_ROCKY_HELMET,
+    .nature = NATURE_BOLD,
+    .iv = MAX_IVS,
+    .ev = TRAINER_PARTY_EVS(252, 0, 252, 0, 0, 0),
+    .moves = {
+        MOVE_BRINE,
+        MOVE_DRAGON_BREATH,
+        MOVE_SLUDGE_BOMB,
+    }
+};
+
+static const struct TrainerMon GREAT_TUSK_REVERSE = {
+    .species = SPECIES_GREAT_TUSK,
+    .lvl = 24,
+    .ability = ABILITY_PRISM_ARMOR,
+    .heldItem = ITEM_CLEAR_AMULET,
+    .nature = NATURE_ADAMANT,
+    .iv = MAX_IVS,
+    .ev = TRAINER_PARTY_EVS(252, 252, 0, 0, 0, 0),
+    .moves = {
+        MOVE_BRICK_BREAK,
+        MOVE_STOMPING_TANTRUM,
+        MOVE_FIRE_FANG,
+        MOVE_CRUSH_CLAW,
+    }
+};
+
+
+static const struct TrainerMon IRON_TREADS_REVERSE = {
+    .species = SPECIES_IRON_TREADS,
+    .lvl = 24,
+    .ability = ABILITY_FILTER,
+    .heldItem = ITEM_CLEAR_AMULET,
+    .nature = NATURE_ADAMANT,
+    .iv = MAX_IVS,
+    .ev = TRAINER_PARTY_EVS(252, 252, 0, 0, 0, 0),
+    .moves = {
+        MOVE_IRON_HEAD,
+        MOVE_STOMPING_TANTRUM,
+        MOVE_THUNDER_FANG,
+        MOVE_CRUSH_CLAW,
+    }
+};
+
+static const struct TrainerMon ORTHWORM_REVERSE = {
+    .species = SPECIES_ORTHWORM,
+    .lvl = 38,
+    .ability = ABILITY_EARTH_EATER,
+    .heldItem = ITEM_MENTAL_HERB,
+    .nature = NATURE_CAREFUL,
+    .iv = MAX_IVS,
+    .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 0, 252),
+    .moves = {
+        MOVE_IRON_TAIL,
+        MOVE_FISSURE,
+        MOVE_STONE_EDGE,
+        MOVE_COIL,
+    }
+};
+
+static const struct TrainerMon BOMBIRDIER_REVERSE = {
+    .species = SPECIES_BOMBIRDIER,
+    .lvl = 54,
+    .ability = ABILITY_TECHNICIAN,
+    .heldItem = ITEM_FOCUS_SASH,
+    .nature = NATURE_ADAMANT,
+    .iv = MAX_IVS,
+    .ev = TRAINER_PARTY_EVS(252, 252, 0, 0, 0, 0),
+    .moves = {
+        MOVE_POWER_TRIP,
+        MOVE_NONE,
+        MOVE_NONE,
+        MOVE_NONE,
+    }
+};
+
+static const struct TrainerMon KLAWF_REVERSE = {
+    .species = SPECIES_KLAWF,
+    .lvl = 58,
+    .ability = ABILITY_TOUGH_CLAWS,
+    .heldItem = ITEM_FOCUS_SASH,
+    .nature = NATURE_ADAMANT,
+    .iv = MAX_IVS,
+    .ev = TRAINER_PARTY_EVS(252, 252, 0, 0, 0, 0),
+    .moves = {
+        MOVE_FURY_CUTTER,
+        MOVE_CRABHAMMER,
+        MOVE_NONE,
+        MOVE_NONE,
+    }
+};
+
 const struct Titan gTitans[]
     = {
           [1] = {
@@ -210,6 +324,7 @@ const struct Titan gTitans[]
           },
           [11] = {
               .titan = DONDOZO,
+              .healthPercent = 150,
               .type = TITAN_TYPE_FLEE_10,
           },
           [12] = {
@@ -235,4 +350,60 @@ const struct Titan gTitans[]
               .partnerId = PARTNER_SISTER_ONITAIZI,
               .type = TITAN_TYPE_BOOST_SPEED,
           },
+        // Reverse Path Titans
+        [16] = {
+            .titan = DONDOZO_REVERSE,
+            .healthPercent = 150,
+            .type = TITAN_TYPE_FLEE_10,
+        },
+        [17] = {
+            .titan = TATSUGIRI_REVERSE,
+            .healthPercent = 225,
+            .partnerId = PARTNER_DONDOGIRI_REVERSE,
+        },
+        [18] = {
+            .titan = GREAT_TUSK_REVERSE,
+            .type = TITAN_TYPE_FLEE_10,
+        },
+        [19] = {
+            .titan = GREAT_TUSK_REVERSE,
+            .healthPercent = 200,
+            .partnerId = PARTNER_GREAT_TREADS_REVERSE,
+        },
+        [20] = {
+            .titan = IRON_TREADS_REVERSE,
+            .type = TITAN_TYPE_FLEE_10,
+        },
+        [21] = {
+            .titan = IRON_TREADS_REVERSE,
+            .healthPercent = 200,
+            .partnerId = PARTNER_GREAT_TREADS_REVERSE,
+        },
+        [22] = {
+            .titan = ORTHWORM_REVERSE,
+            .type = TITAN_TYPE_FLEE_10,
+        },
+        [23] = {
+            .titan = ORTHWORM_REVERSE,
+            .healthPercent = 200,
+            .partnerId = PARTNER_ORTHWORM_REVERSE,
+        },
+        [24] = {
+            .titan = BOMBIRDIER_REVERSE,
+            .type = TITAN_TYPE_FLEE_10,
+        },
+        [25] = {
+            .titan = BOMBIRDIER_REVERSE,
+            .healthPercent = 200,
+            .partnerId = PARTNER_BOMBIRDIER_REVERSE,
+        },
+        [26] = {
+            .titan = KLAWF_REVERSE,
+            .type = TITAN_TYPE_FLEE_10,
+        },
+        [27] = {
+            .titan = KLAWF_REVERSE,
+            .healthPercent = 200,
+            .partnerId = PARTNER_KLAWF_REVERSE,
+        },
       };

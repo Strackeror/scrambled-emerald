@@ -131,6 +131,7 @@ static void PrintNameOnCardFront(void);
 static void PrintIdOnCard(void);
 static void PrintMoneyOnCard(void);
 static void PrintPokedexOnCard(void);
+static void PrintPathAndLevelCapOnCard(void);
 static void PrintProfilePhraseOnCard(void);
 static bool8 PrintAllOnCardBack(void);
 static void PrintNameOnCardBack(void);
@@ -718,6 +719,7 @@ static void SetPlayerCardData(struct TrainerCard *trainerCard, u8 cardType)
     trainerCard->hasPokedex = FlagGet(FLAG_SYS_POKEDEX_GET);
     trainerCard->caughtAllHoenn = HasAllHoennMons();
     trainerCard->caughtMonsCount = GetCaughtMonsCount();
+    trainerCard->levelCap = VAR_LEVEL_CAP;
 
     trainerCard->trainerId = (gSaveBlock2Ptr->playerTrainerId[1] << 8) | gSaveBlock2Ptr->playerTrainerId[0];
 
@@ -932,7 +934,8 @@ static bool8 PrintAllOnCardFront(void)
         PrintMoneyOnCard();
         break;
     case 3:
-        PrintPokedexOnCard();
+        // PrintPokedexOnCard();
+        PrintPathAndLevelCapOnCard();
         break;
     case 4:
         PrintTimeOnCard();
@@ -1090,6 +1093,38 @@ static void PrintPokedexOnCard(void)
             top = 73;
         }
         AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_NORMAL, xOffset, top, sTrainerCardTextColors, TEXT_SKIP_DRAW, gStringVar4);
+    }
+}
+
+static void PrintPathAndLevelCapOnCard(void)
+{
+    s32 xOffset;
+    u8 top;
+    if (!sData->isHoenn)
+        AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_NORMAL, 20, 72, sTrainerCardTextColors, TEXT_SKIP_DRAW, gText_TrainerCardPath);
+    else
+        AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_NORMAL, 16, 73, sTrainerCardTextColors, TEXT_SKIP_DRAW, gText_TrainerCardPath);
+    
+    if (VarGet(VAR_PATH) == 1) {
+        StringCopy(gStringVar4, gText_TrainerCardPathVanilla);
+        if (!sData->isHoenn) {
+            xOffset = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar4, 144);
+            top = 72;
+        } else {
+            xOffset = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar4, 128);
+            top = 73;
+        }
+        AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_NORMAL, xOffset, top, sTrainerCardTextColors, TEXT_SKIP_DRAW, gText_TrainerCardPathVanilla);
+    } else if (VarGet(VAR_PATH) == 2) {
+        StringCopy(gStringVar4, gText_TrainerCardPathReverse);
+        if (!sData->isHoenn) {
+            xOffset = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar4, 144);
+            top = 72;
+        } else {
+            xOffset = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar4, 128);
+            top = 73;
+        }
+        AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_NORMAL, xOffset, top, sTrainerCardTextColors, TEXT_SKIP_DRAW, gText_TrainerCardPathReverse);
     }
 }
 

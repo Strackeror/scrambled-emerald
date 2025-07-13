@@ -208,19 +208,6 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(OGERPON)",
-      "x": 19,
-      "y": 76,
-      "elevation": 5,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_SEE_ALL_DIRECTIONS",
-      "trainer_sight_or_berry_tree_id": "1",
-      "script": "Route120_EventScript_Jeffrey",
-      "flag": "0"
-    },
-    {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "x": 20,
       "y": 55,
@@ -572,7 +559,7 @@
       "flag": "FLAG_ITEM_ROUTE_120_REVIVE"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GREAT_TUSK)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(BOMBIRDIER)",
       "x": 10,
       "y": 15,
       "elevation": 4,
@@ -581,21 +568,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route120_EventScript_TitanGreatTusk",
-      "flag": "FLAG_TITAN_TUSK_TREADS"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(IRON_TREADS)",
-      "x": 10,
-      "y": 16,
-      "elevation": 4,
-      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route120_EventScript_TitanIronTreads",
-      "flag": "FLAG_TITAN_TUSK_TREADS"
+      "script": "Route120_EventScript_TitanBombirdier",
+      "flag": "FLAG_TITAN_BOMBIRDIER"
     }
   ],
   "warp_events": [
@@ -747,6 +721,15 @@
       "y": 75,
       "elevation": 3,
       "weather": "COORD_EVENT_WEATHER_SUNNY_CLOUDS"
+    },
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 16,
+      "elevation": 4,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "Route120_EventScript_TitanBombirdier_Trigger"
     }
   ],
   "bg_events": [

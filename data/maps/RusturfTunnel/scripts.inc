@@ -3,6 +3,9 @@
 .set LOCALID_GRUNT, 6
 .set LOCALID_PEEKO, 7
 .equ LOCALID_WANDA, 10
+.equ LOCALID_KIERAN2, 12
+.equ LOCALID_KIERAN5, 9
+.equ LOCALID_OGERPON, 11
 
 RusturfTunnel_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, RusturfTunnel_OnTransition
@@ -16,11 +19,21 @@ RusturfTunnel_OnFrame:
 
 RusturfTunnel_OnTransition:
 	call_if_eq VAR_RUSTURF_TUNNEL_STATE, 2, RusturfTunnel_EventScript_SetAquaGruntAndPeekoPos
+	call_if_set FLAG_BADGE02_GET, RusturfTunnel_EventScript_SetRusturfTunnelOpen
+	call_if_set FLAG_BADGE06_GET, RusturfTunnel_EventScript_SwapKieransAndAddOgerpon
 	end
 
 RusturfTunnel_EventScript_SetAquaGruntAndPeekoPos::
 	setobjectxyperm LOCALID_PEEKO, 13, 4
 	setobjectxyperm LOCALID_GRUNT, 13, 5
+	return
+
+RusturfTunnel_EventScript_SwapKieransAndAddOgerpon::
+	setobjectxyperm LOCALID_KIERAN2, 39, -1
+	setobjectxyperm LOCALID_KIERAN5, 30, 8
+	setobjectxyperm LOCALID_OGERPON, 29, 3
+	setobjectmovementtype LOCALID_KIERAN5, MOVEMENT_TYPE_LOOK_AROUND
+	setobjectmovementtype LOCALID_OGERPON, MOVEMENT_TYPE_LOOK_AROUND
 	return
 
 RusturfTunnel_EventScript_Wanda::
@@ -419,13 +432,41 @@ RusturfTunnel_Movement_PeekoExit:
 	walk_left
 	step_end
 
-RusturfTunnel_EventScript_Brother04::
-	trainerbattle_single TRAINER_BROTHER_01_04, RusturfTunnel_Text_MikeIntro, RusturfTunnel_Text_MikeDefeat, RusturfTunnel_EventScript_Brother04_Defeat
-	msgbox RusturfTunnel_Text_MikePostBattle, MSGBOX_AUTOCLOSE
+RusturfTunnel_EventScript_Kieran2::
+	setvar VAR_TEMP_F, 20
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	lock
+	faceplayer
+	trainerbattle_single TRAINER_BROTHER_01_02, RusturfTunnel_Text_Kieran2Intro, RusturfTunnel_Text_Kieran2Defeated, RusturfTunnel_EventScript_Kieran2_Defeated
+	msgbox RusturfTunnel_Text_Kieran2PostBattle, MSGBOX_AUTOCLOSE
+	release
 	end
-	
-RusturfTunnel_EventScript_Brother04_Defeat::
-	setvar VAR_LEVEL_CAP 42
+
+RusturfTunnel_EventScript_Kieran2_Defeated::
+	setvar VAR_LEVEL_CAP 22
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	return
+
+RusturfTunnel_EventScript_Kieran5::
+	setvar VAR_TEMP_F, 50
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	lock
+	faceplayer
+	trainerbattle_single TRAINER_BROTHER_01_05, RusturfTunnel_Text_Kieran5Intro, RusturfTunnel_Text_Kieran5Defeat
+	msgbox RusturfTunnel_Text_Kieran5PostBattle, MSGBOX_AUTOCLOSE
+	release
+	end
+
+RusturfTunnel_EventScript_Ogerpon::
+	setvar VAR_TEMP_F, 50
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	lock
+	faceplayer
+	trainerbattle_single TRAINER_OGERPON, RusturfTunnel_Text_OgerponIntro, RusturfTunnel_Text_OgerponDefeat
+	msgbox RusturfTunnel_Text_OgerponPostBattle, MSGBOX_DEFAULT
 	release
 	end
 
@@ -521,18 +562,39 @@ RusturfTunnel_Text_BoyfriendOnOtherSideOfRock:
 	.string "He works his hands raw and rough\n"
 	.string "for the benefit of everyone.$"
 
-RusturfTunnel_Text_MikeIntro:
-	.string "What do you call a wild man up in the\n"
-	.string "mountains? A mountain man, right?\p"
-	.string "So why don't they call a POKéMON in\n"
-	.string "the mountains a mountain POKéMON?$"
+RusturfTunnel_Text_Kieran5Intro:
+	.string "Do you have any moves that can strike\n"
+	.string "a flying POKéMON?$"
 
-RusturfTunnel_Text_MikeDefeat:
-	.string "My POKéMON…\n"
-	.string "Ran out of power…$"
+RusturfTunnel_Text_Kieran5Defeat:
+	.string "You soared above me!$"
 
-RusturfTunnel_Text_MikePostBattle:
-	.string "They halted development here to\n"
-	.string "protect POKéMON, right?\l"
-	.string "There's a feel-good story!$"
+RusturfTunnel_Text_Kieran5PostBattle:
+	.string "The move FLY is convenient,\n"
+	.string "don't you think?\p"
+	.string "While the POKéMON is flying,\n"
+	.string "almost no moves can strike it.$"
 
+RusturfTunnel_Text_Kieran2Intro:
+	.string "I've laid anchor in ports around\n"
+	.string "the world, but SLATEPORT's the best.$"
+
+RusturfTunnel_Text_Kieran2Defeated:
+	.string "You're the best!$"
+
+RusturfTunnel_Text_Kieran2PostBattle:
+	.string "In the best port was the best\n"
+	.string "TRAINER…$"
+
+RusturfTunnel_Text_OgerponIntro:
+	.string "… … … … … …\n"
+	.string "… … … … … …\l"
+	.string "Want to battle?$"
+
+RusturfTunnel_Text_OgerponDefeat:
+	.string "Lost it…$"
+
+RusturfTunnel_Text_OgerponPostBattle:
+	.string "… … … … … …\n"
+	.string "… … … … … …\l"
+	.string "I'll try harder…$"

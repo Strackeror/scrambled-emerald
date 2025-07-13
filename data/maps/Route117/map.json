@@ -39,19 +39,6 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_F",
-      "x": 24,
-      "y": 8,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_DOWN_RIGHT_LEFT_UP",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_SEE_ALL_DIRECTIONS",
-      "trainer_sight_or_berry_tree_id": "1",
-      "script": "Route117_EventScript_DokuBoss",
-      "flag": "0"
-    },
-    {
       "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
       "x": 47,
       "y": 4,

@@ -151,12 +151,17 @@ LittlerootTown_EventScript_GoInsideWithMom::
 	delay 10
 	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachPlayerAtTruck
 	waitmovement 0
-	giveitem ITEM_CANDY_JAR, 1
-	giveitem ITEM_TERA_ORB, 1
-	giveitem ITEM_MUSIC_BOX, 1
-	giveitem ITEM_POKEMON_BOX_LINK, 1
-	setflag FLAG_SYS_B_DASH
-	msgbox LittlerootTown_Text_OurNewHomeLetsGoInside, MSGBOX_DEFAULT
+
+	// CHOOSE PATH
+	msgbox LittlerootTown_Text_ChoosePath, MSGBOX_DEFAULT
+	multichoice 20, 8, MULTI_CHOOSE_PATH, TRUE
+	call_if_eq VAR_RESULT, 0, LittlerootTown_EventScript_ScrambledVanillaPath
+	call_if_eq VAR_RESULT, 1, LittlerootTown_EventScript_ScrambledReversePath
+
+	// Announce Level Cap
+	call Common_EventScript_NewLevelCapTextAndFanfare
+
+	msgbox LittlerootTown_Text_OurNewHomeAbridged, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachDoor
 	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_Movement_PlayerApproachDoor
@@ -197,11 +202,41 @@ LittlerootTown_EventScript_GoInsideWithMom::
 		setflag FLAG_HIDE_PETALBURG_CITY_WALLY
 		setflag FLAG_HIDE_PETALBURG_CITY_WALLYS_MOM
 		setvar VAR_PETALBURG_CITY_STATE, 1
-		setvar VAR_PETALBURG_GYM_STATE, 2
+		// setvar VAR_PETALBURG_GYM_STATE, 2
 		setvar VAR_PETALBURG_WOODS_STATE, 1
 
+	// PLOTLESS
+	setvar VAR_SCOTT_PETALBURG_ENCOUNTER, 1
+	setvar VAR_PETALBURG_GYM_STATE, 6
+	call Common_EventScript_ReadyPetalburgGymForBattle
+	setflag FLAG_HIDE_ROUTE_111_ROCK_SMASH_TIP_GUY
+	setflag FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNTS
+	setflag FLAG_HIDE_ROUTE_110_TEAM_AQUA
+	setflag FLAG_HIDE_ROUTE_112_TEAM_MAGMA
+	setvar VAR_METEOR_FALLS_STATE, 1
+	setflag FLAG_HIDE_METEOR_FALLS_1F_1R_COZMO
+	setflag FLAG_HIDE_METEOR_FALLS_TEAM_MAGMA
+	setflag FLAG_HIDE_METEOR_FALLS_TEAM_AQUA
 
 
+	return
+
+LittlerootTown_EventScript_ScrambledVanillaPath::
+	setvar VAR_PATH, 1
+	return
+
+LittlerootTown_EventScript_ScrambledReversePath::
+	setvar VAR_PATH, 2
+	// PLOTLESS
+	clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS
+	clearflag FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
+	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA
+	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA
+	clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_STEVEN
+	setvar VAR_MOSSDEEP_CITY_STATE, 1
+	setflag FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE
+	setflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_STEVEN
+	setvar VAR_MOSSDEEP_SPACE_CENTER_STATE, 1
 	return
 
 LittlerootTown_Movement_MomExitHouse:
@@ -373,9 +408,9 @@ LittlerootTown_Movement_TwinReturnLeft:
 	step_end
 
 LittlerootTown_Movement_PushPlayerBackFromRoute:
-	lock_facing_direction
+	// lock_facing_direction
 	walk_down
-	unlock_facing_direction
+	// unlock_facing_direction
 	step_end
 
 LittlerootTown_EventScript_NeedPokemonTriggerRight::
@@ -951,6 +986,10 @@ LittlerootTown_EventScript_GiveRunningShoes::
 	delay 30
 	return
 
+LittlerootTown_Text_ChoosePath:
+	.string "Choose the path you wish to play.\n"
+	.string "Note: You {COLOR RED}{SHADOW LIGHT_RED}CANNOT{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY} change this later!$"
+
 LittlerootTown_Text_OurNewHomeLetsGoInside:
 	.string "MOM: {PLAYER}, we're here, honey!\p"
 	.string "It must be tiring riding with our things\n"
@@ -962,6 +1001,12 @@ LittlerootTown_Text_OurNewHomeLetsGoInside:
 	.string "an easy place to live, don't you think?\p"
 	.string "And, you get your own room, {PLAYER}!\n"
 	.string "Let's go inside.$"
+
+LittlerootTown_Text_OurNewHomeAbridged:
+	.string "MOM: {PLAYER}, we're here, honey!\n"
+	.string "Let's go inside!\p"
+	.string "{COLOR RED}{SHADOW LIGHT_RED}Nature Mints{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY} and {COLOR RED}{SHADOW LIGHT_RED}Tera Shards{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}\n"
+	.string "can be found in your room PC!$"
 
 LittlerootTown_Text_WaitPlayer:
 	.string "MOM: Wait, {PLAYER}!$"
@@ -1026,8 +1071,8 @@ LittlerootTown_Text_CanYouGoSeeWhatsHappening:
 	.string "I can hear their cries!\p"
 	.string "It's dangerous if you don't have\n"
 	.string "your own POKéMON.\p"
-	.string "Go buy some eggs from the clerk\n"
-	.string "here.$"
+	.string "Go buy some eggs from\n"
+	.string "the clerk here.$"
 
 LittlerootTown_Text_YouSavedBirch:
 	.string "You saved PROF. BIRCH!\n"

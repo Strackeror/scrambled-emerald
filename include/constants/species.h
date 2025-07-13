@@ -1642,7 +1642,12 @@
 #define SPECIES_STARMOBILE_POISON                       1526
 #define SPECIES_STARMOBILE_FAIRY                        1527
 #define SPECIES_STARMOBILE_FIGHTING                     1528
-#define SPECIES_EGG                                     (1528 + 1)
+// Reverse Path
+#define SPECIES_STARMOBILE_FIGHTING_REVERSE             1529
+#define SPECIES_STARMOBILE_FAIRY_REVERSE                1530
+#define SPECIES_STARMOBILE_FIRE_REVERSE                 1531
+#define SPECIES_STARMOBILE_DARK_REVERSE                 1532
+#define SPECIES_EGG                                     (1532 + 1)
 
 #define NUM_SPECIES SPECIES_EGG
 

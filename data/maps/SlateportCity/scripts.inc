@@ -942,6 +942,50 @@ SlateportCity_EventScript_BerryCrushRankingsSign::
 	releaseall
 	end
 
+SlateportCity_EventScript_Giacomo::
+	goto_if_eq VAR_PATH, 2, SlateportCity_EventScript_GiacomoReverse
+	setvar VAR_TEMP_F, 24
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	lock
+	faceplayer
+	trainerbattle_single TRAINER_DAN_AKU_BOSS_01, SlateportCity_Text_GiacomoIntro, SlateportCity_Text_GiacomoDefeated, SlateportCity_EventScript_Giacomo_Defeated
+	msgbox SlateportCity_Text_GiacomoPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+SlateportCity_EventScript_GiacomoReverse::
+	setvar VAR_TEMP_F, 52
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	lock
+	faceplayer
+	trainerbattle_single SCRAMBLED_GIACOMO_REVERSE, SlateportCity_Text_GiacomoIntro, SlateportCity_Text_GiacomoDefeated, SlateportCity_EventScript_GiacomoReverse_Defeated
+	msgbox SlateportCity_Text_GiacomoPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+SlateportCity_EventScript_Giacomo_Defeated::
+	setvar VAR_LEVEL_CAP 26
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	return
+
+SlateportCity_EventScript_GiacomoReverse_Defeated::
+	setvar VAR_LEVEL_CAP 54
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	return
+
+SlateportCity_Text_GiacomoIntro:
+	.string "Ahahaha! I would go anywhere to show\n"
+	.string "off my delightful POKéMON.$"
+
+SlateportCity_Text_GiacomoDefeated:
+	.string "Oh, dear, this won't do.$"
+
+SlateportCity_Text_GiacomoPostBattle:
+	.string "Rather than battling, perhaps I should\n"
+	.string "show off my POKéMON at the FAN CLUB.$"
+
 SlateportCity_Text_EnergyGuruSellWhatYouNeed:
 	.string "I'm the ENERGY GURU! I'll go for it and\n"
 	.string "sell you what you need!$"

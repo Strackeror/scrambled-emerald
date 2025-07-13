@@ -234,16 +234,27 @@ LilycoveCity_EventScript_Rival::
 	faceplayer
 	checkplayergender
 	goto_if_eq VAR_RESULT, MALE, LilycoveCity_EventScript_May
-	goto_if_eq VAR_RESULT, FEMALE, LilycoveCity_EventScript_Brendan
+	goto_if_eq VAR_RESULT, FEMALE, LilycoveCity_EventScript_May
 	end
 
 LilycoveCity_EventScript_May::
+	goto_if_eq VAR_PATH, 2, LilycoveCity_EventScript_MayReverse
+	setvar VAR_TEMP_F, 52
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	playbgm MUS_ENCOUNTER_MAY, TRUE
-	call_if_set FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_MayAskToBattleAgain
-	call_if_unset FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_MayAskToBattle
-	goto_if_eq VAR_RESULT, NO, LilycoveCity_EventScript_DeclineMayBattle
 	msgbox LilycoveCity_Text_MayWontBeBeaten, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_RIVAL_06_HONO, LilycoveCity_Text_MayDefeat
+	goto LilycoveCity_EventScript_DefeatedMay
+	end
+
+LilycoveCity_EventScript_MayReverse::
+	setvar VAR_TEMP_F, 56
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	playbgm MUS_ENCOUNTER_MAY, TRUE
+	msgbox LilycoveCity_Text_MayWontBeBeaten, MSGBOX_DEFAULT
+	trainerbattle_no_intro SCRAMBLED_NEMONA_REVERSE_GYM_7, LilycoveCity_Text_MayDefeat
 	goto LilycoveCity_EventScript_DefeatedMay
 	end
 
@@ -265,9 +276,6 @@ LilycoveCity_EventScript_DeclineMayBattle::
 
 LilycoveCity_EventScript_Brendan::
 	playbgm MUS_ENCOUNTER_BRENDAN, TRUE
-	call_if_set FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_BrendanAskToBattleAgain
-	call_if_unset FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_BrendanAskToBattle
-	goto_if_eq VAR_RESULT, NO, LilycoveCity_EventScript_DeclineBrendanBattle
 	msgbox LilycoveCity_Text_BrendanWontBeBeaten, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_RIVAL_06_HONO, LilycoveCity_Text_MayDefeat
 	goto LilycoveCity_EventScript_DefeatedBrendan
@@ -388,8 +396,14 @@ LilycoveCity_EventScript_RivalFlyAway::
 	savebgm MUS_DUMMY
 	fadedefaultbgm
 	setflag FLAG_MET_RIVAL_LILYCOVE
+	goto_if_eq VAR_PATH, 2, LilycoveCity_EventScript_RivalReverseLevelCap
 	release
 	end
+
+LilycoveCity_EventScript_RivalReverseLevelCap::
+	setvar VAR_LEVEL_CAP 57
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	return
 
 LilycoveCity_EventScript_SchoolKidM::
 	lock
@@ -407,6 +421,48 @@ LilycoveCity_EventScript_KnowAboutBerryBlender::
 LilycoveCity_EventScript_DontKnowAboutBerryBlender::
 	msgbox LilycoveCity_Text_ExplainBerryBlender, MSGBOX_DEFAULT
 	return
+
+LilycoveCity_EventScript_Ortega::
+	goto_if_eq VAR_PATH, 2, LilycoveCity_EventScript_OrtegaReverse
+	setvar VAR_TEMP_F, 56
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	lock
+	faceplayer
+	trainerbattle_single TRAINER_DAN_FAIRY_BOSS_01, LilycoveCity_Text_OrtegaIntro, LilycoveCity_Text_OrtegaDefeat, LilycoveCity_EventScript_Ortega_Defeated
+	msgbox LilycoveCity_Text_OrtegaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+LilycoveCity_EventScript_OrtegaReverse::
+	setvar VAR_TEMP_F, 27
+	buffernumberstring STR_VAR_2, VAR_TEMP_F
+	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	lock
+	faceplayer
+	trainerbattle_single SCRAMBLED_ORTEGA_REVERSE, LilycoveCity_Text_OrtegaIntro, LilycoveCity_Text_OrtegaDefeat, LilycoveCity_EventScript_Ortega_ReverseDefeated
+	msgbox LilycoveCity_Text_OrtegaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+LilycoveCity_EventScript_Ortega_Defeated::
+	setvar VAR_LEVEL_CAP 58
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	return
+
+LilycoveCity_EventScript_Ortega_ReverseDefeated::
+	setvar VAR_LEVEL_CAP 29
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	return
+
+LilycoveCity_Text_OrtegaIntro:
+	.string "This seemingly infinite and harsh road\n"
+	.string "lives up to its name of VICTORY.$"
+
+LilycoveCity_Text_OrtegaDefeat:
+	.string "Your battle style is fantastic…$"
+
+LilycoveCity_Text_OrtegaPostBattle:
+	.string "You seem to have the potential for\n"
+	.string "becoming the CHAMPION.$"
 
 LilycoveCity_Text_MayShoppingLetsBattle:
 	.string "MAY: Oh, hey?\n"
