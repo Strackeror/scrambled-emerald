@@ -9,7 +9,7 @@
 #line 1 "src/data/battle_partners.party"
 
 #line 1
-    [PARTNER_NONE] =
+    [DIFFICULTY_NORMAL][PARTNER_NONE] =
     {
 #line 3
         .trainerClass = TRAINER_CLASS_PKMN_TRAINER_1,
@@ -24,7 +24,7 @@
         },
     },
 #line 8
-    [PARTNER_STEVEN] =
+    [DIFFICULTY_NORMAL][PARTNER_STEVEN] =
     {
 #line 9
         .trainerName = _("STEVEN"),
@@ -104,7 +104,7 @@
         },
     },
 #line 45
-    [PARTNER_PEPPER_NUSI_01] =
+    [DIFFICULTY_NORMAL][PARTNER_PEPPER_NUSI_01] =
     {
 #line 46
         .trainerName = _("STEVEN"),
@@ -148,7 +148,7 @@
         },
     },
 #line 66
-    [PARTNER_PEPPER_NUSI_02] =
+    [DIFFICULTY_NORMAL][PARTNER_PEPPER_NUSI_02] =
     {
 #line 67
         .trainerName = _("STEVEN"),
@@ -192,7 +192,7 @@
         },
     },
 #line 87
-    [PARTNER_PEPPER_NUSI_03] =
+    [DIFFICULTY_NORMAL][PARTNER_PEPPER_NUSI_03] =
     {
 #line 88
         .trainerName = _("STEVEN"),
@@ -236,7 +236,7 @@
         },
     },
 #line 108
-    [PARTNER_PEPPER_NUSI_04] =
+    [DIFFICULTY_NORMAL][PARTNER_PEPPER_NUSI_04] =
     {
 #line 109
         .trainerName = _("STEVEN"),
@@ -280,7 +280,7 @@
         },
     },
 #line 129
-    [PARTNER_PEPPER_NUSI_05] =
+    [DIFFICULTY_NORMAL][PARTNER_PEPPER_NUSI_05] =
     {
 #line 130
         .trainerName = _("STEVEN"),
@@ -324,7 +324,7 @@
         },
     },
 #line 150
-    [PARTNER_DONDOGIRI_REVERSE] =
+    [DIFFICULTY_NORMAL][PARTNER_DONDOGIRI_REVERSE] =
     {
 #line 151
         .trainerName = _("ARVEN"),
@@ -368,7 +368,7 @@
         },
     },
 #line 170
-    [PARTNER_GREAT_TREADS_REVERSE] =
+    [DIFFICULTY_NORMAL][PARTNER_GREAT_TREADS_REVERSE] =
     {
 #line 171
         .trainerName = _("ARVEN"),
@@ -412,7 +412,7 @@
         },
     },
 #line 190
-    [PARTNER_ORTHWORM_REVERSE] =
+    [DIFFICULTY_NORMAL][PARTNER_ORTHWORM_REVERSE] =
     {
 #line 191
         .trainerName = _("ARVEN"),
@@ -456,7 +456,7 @@
         },
     },
 #line 210
-    [PARTNER_BOMBIRDIER_REVERSE] =
+    [DIFFICULTY_NORMAL][PARTNER_BOMBIRDIER_REVERSE] =
     {
 #line 211
         .trainerName = _("ARVEN"),
@@ -500,7 +500,7 @@
         },
     },
 #line 230
-    [PARTNER_KLAWF_REVERSE] =
+    [DIFFICULTY_NORMAL][PARTNER_KLAWF_REVERSE] =
     {
 #line 231
         .trainerName = _("ARVEN"),
@@ -544,7 +544,7 @@
         },
     },
 #line 250
-    [PARTNER_SISTER_ONITAIZI] =
+    [DIFFICULTY_NORMAL][PARTNER_SISTER_ONITAIZI] =
     {
 #line 251
         .trainerName = _("LEAF"),

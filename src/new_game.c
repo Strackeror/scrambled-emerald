@@ -45,7 +45,9 @@
 #include "berry_powder.h"
 #include "mystery_gift.h"
 #include "union_room_chat.h"
+#include "constants/map_groups.h"
 #include "constants/items.h"
+#include "difficulty.h"
 
 extern const u8 EventScript_ResetAllMapFlags[];
 
@@ -53,6 +55,7 @@ static void ClearFrontierRecord(void);
 static void WarpToTruck(void);
 static void ResetMiniGamesRecords(void);
 static void ResetItemFlags(void);
+static void ResetDexNav(void);
 
 EWRAM_DATA bool8 gDifferentSaveFile = FALSE;
 EWRAM_DATA bool8 gEnableContestDebugging = FALSE;
@@ -206,6 +209,7 @@ void NewGameInitData(void)
     WipeTrainerNameRecords();
     ResetTrainerHillResults();
     ResetContestLinkResults();
+    SetCurrentDifficultyLevel(DIFFICULTY_NORMAL);
     ResetItemFlags();
     VarSet(VAR_LEVEL_CAP, 11);
     gSaveBlock2Ptr->optionsBattleStyle = 1;
@@ -255,6 +259,7 @@ void NewGameInitData(void)
 	FlagSet(FLAG_VISITED_SOOTOPOLIS_CITY);
 	FlagSet(FLAG_VISITED_PACIFIDLOG_TOWN);
 	FlagSet(FLAG_VISITED_EVER_GRANDE_CITY);
+    ResetDexNav();
 }
 
 static void ResetMiniGamesRecords(void)
@@ -270,4 +275,12 @@ static void ResetItemFlags(void)
 #if OW_SHOW_ITEM_DESCRIPTIONS == OW_ITEM_DESCRIPTIONS_FIRST_TIME
     memset(&gSaveBlock3Ptr->itemFlags, 0, sizeof(gSaveBlock3Ptr->itemFlags));
 #endif
+}
+
+static void ResetDexNav(void)
+{
+#if USE_DEXNAV_SEARCH_LEVELS == TRUE
+    memset(gSaveBlock3Ptr->dexNavSearchLevels, 0, sizeof(gSaveBlock3Ptr->dexNavSearchLevels));
+#endif
+    gSaveBlock3Ptr->dexNavChain = 0;
 }

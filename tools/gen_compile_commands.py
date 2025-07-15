@@ -22,6 +22,7 @@ c_flags = [
     '-include global.h',
     '-D__CLANGD__',
     '-D__INTELLISENSE__',
+    '-DTESTING=0'
 ]
 c_commands = [
     {

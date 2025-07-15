@@ -2,8 +2,8 @@
 #define GUARD_CONSTANTS_BATTLE_SCRIPT_COMMANDS_H
 
 // The following correspond to the struct members of BattleScripting by adding their offset
-#define sPAINSPLIT_HP                (gBattleScripting + 0x00) // painSplitHp
-#define sBIDE_DMG                    (gBattleScripting + 0x04) // bideDmg
+#define sUNUSED_0x00                 (gBattleScripting + 0x00) // unused_0x00
+#define sUNUSED_0x04                 (gBattleScripting + 0x04) // unused_0x04
 #define sMULTIHIT_STRING             (gBattleScripting + 0x08) // multihitString
 #define sEXP_CATCH                   (gBattleScripting + 0x0E) // expOnCatch
 #define sUNUSED                      (gBattleScripting + 0x0F) // unused
@@ -153,7 +153,6 @@ enum CmdVarious
     VARIOUS_TRY_THIRD_TYPE,
     VARIOUS_ACUPRESSURE,
     VARIOUS_SET_POWDER,
-    VARIOUS_SPECTRAL_THIEF,
     VARIOUS_GRAVITY_ON_AIRBORNE_MONS,
     VARIOUS_CHECK_IF_GRASSY_TERRAIN_HEALS,
     VARIOUS_JUMP_IF_ROAR_FAILS,
@@ -216,19 +215,17 @@ enum CmdVarious
     VARIOUS_SAVE_BATTLER_ITEM,
     VARIOUS_RESTORE_BATTLER_ITEM,
     VARIOUS_BATTLER_ITEM_TO_LAST_USED_ITEM,
-    VARIOUS_SWAP_SIDE_STATUSES,
-    VARIOUS_SWAP_STATS,
 };
 
 // Cmd_manipulatedamage
-#define DMG_CHANGE_SIGN            0
-#define DMG_RECOIL_FROM_MISS       1
-#define DMG_DOUBLED                2
-#define DMG_1_8_TARGET_HP          3
-#define DMG_FULL_ATTACKER_HP       4
-#define DMG_CURR_ATTACKER_HP       5
-#define DMG_BIG_ROOT               6
-#define DMG_RECOIL_FROM_IMMUNE     7 // Used to calculate recoil for the Gen 4 version of Jump Kick
+#define DMG_CHANGE_SIGN         1
+#define DMG_RECOIL_FROM_MISS    2
+#define DMG_DOUBLED             3
+#define DMG_1_8_TARGET_HP       4
+#define DMG_FULL_ATTACKER_HP    5
+#define DMG_CURR_ATTACKER_HP    6
+#define DMG_BIG_ROOT            7
+#define DMG_RECOIL_FROM_IMMUNE  8  // Used to calculate recoil for the Gen 4 version of Jump Kick
 
 // Cmd_jumpifcantswitch
 #define SWITCH_IGNORE_ESCAPE_PREVENTION   (1 << 7)
@@ -277,6 +274,7 @@ enum MoveEndEffects
     MOVEEND_ITEM_EFFECTS_TARGET,
     MOVEEND_MOVE_EFFECTS2,
     MOVEEND_ITEM_EFFECTS_ALL,
+    MOVEEND_HIT_SWITCH_TARGET,
     MOVEEND_KINGSROCK, // These item effects will occur each strike of a multi-hit move
     MOVEEND_NUM_HITS,
     MOVEEND_SUBSTITUTE,
@@ -303,6 +301,7 @@ enum MoveEndEffects
     MOVEEND_SAME_MOVE_TURNS,
     MOVEEND_SET_EVOLUTION_TRACKER,
     MOVEEND_CLEAR_BITS,
+    MOVEEND_PURSUIT_NEXT_ACTION,
     MOVEEND_COUNT,
 };
 

@@ -3,7 +3,7 @@
 static struct Trainer trainers[] = {
 #endif
 
-    [TRAINER_OGERPON] = {
+    [DIFFICULTY_NORMAL][TRAINER_OGERPON] = {
         .trainerName = _("Ogerpon"),
         .trainerPic = TRAINER_PIC_OGERPON,
         .trainerClass = TRAINER_CLASS_OGERPON,
