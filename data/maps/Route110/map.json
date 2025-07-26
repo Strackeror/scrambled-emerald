@@ -391,7 +391,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "0x0",
+      "script": "Route110_EventScript_RivalScene",
       "flag": "FLAG_HIDE_ROUTE_110_RIVAL"
     },
     {
@@ -522,33 +522,6 @@
       "var": "VAR_CYCLING_CHALLENGE_STATE",
       "var_value": "2",
       "script": "Route110_EventScript_CyclingChallengeEnd"
-    },
-    {
-      "type": "trigger",
-      "x": 33,
-      "y": 56,
-      "elevation": 3,
-      "var": "VAR_ROUTE110_STATE",
-      "var_value": "0",
-      "script": "Route110_EventScript_RivalTrigger1"
-    },
-    {
-      "type": "trigger",
-      "x": 34,
-      "y": 56,
-      "elevation": 3,
-      "var": "VAR_ROUTE110_STATE",
-      "var_value": "0",
-      "script": "Route110_EventScript_RivalTrigger2"
-    },
-    {
-      "type": "trigger",
-      "x": 35,
-      "y": 56,
-      "elevation": 3,
-      "var": "VAR_ROUTE110_STATE",
-      "var_value": "0",
-      "script": "Route110_EventScript_RivalTrigger3"
     }
   ],
   "bg_events": [

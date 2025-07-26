@@ -388,9 +388,9 @@ Route110_EventScript_RivalScene::
 	applymovement LOCALID_RIVAL, Common_Movement_Delay48
 	waitmovement 0
 	delay 30
-	call_if_eq VAR_0x8008, 1, Route110_EventScript_RivalApproachPlayer1
-	call_if_eq VAR_0x8008, 2, Route110_EventScript_RivalApproachPlayer2
-	call_if_eq VAR_0x8008, 3, Route110_EventScript_RivalApproachPlayer3
+	// call_if_eq VAR_0x8008, 1, Route110_EventScript_RivalApproachPlayer1
+	// call_if_eq VAR_0x8008, 2, Route110_EventScript_RivalApproachPlayer2
+	// call_if_eq VAR_0x8008, 3, Route110_EventScript_RivalApproachPlayer3
 	checkplayergender
 	goto_if_eq VAR_RESULT, MALE, Route110_EventScript_MayBattle
 	goto_if_eq VAR_RESULT, FEMALE, Route110_EventScript_MayBattle
@@ -410,7 +410,6 @@ Route110_EventScript_MayBattle::
 	setvar VAR_TEMP_F, 26
 	buffernumberstring STR_VAR_2, VAR_TEMP_F
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
-	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Route110_EventScript_SendRivalBack
 	lockall
 	faceplayer
 	playbgm MUS_ENCOUNTER_MAY, TRUE
@@ -423,21 +422,12 @@ Route110_EventScript_MayBattleReverse::
 	setvar VAR_TEMP_F, 29
 	buffernumberstring STR_VAR_2, VAR_TEMP_F
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
-	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Route110_EventScript_SendRivalBack
 	lockall
 	faceplayer
 	playbgm MUS_ENCOUNTER_MAY, TRUE
 	msgbox Route110_Text_MayLetsBattle, MSGBOX_DEFAULT
 	trainerbattle_no_intro SCRAMBLED_NEMONA_REVERSE_GYM_2, Route110_Text_MayDefeated
 	goto Route110_EventScript_RivalExitFly
-	end
-
-Route110_EventScript_SendRivalBack::
-	call_if_eq VAR_0x8008, 1, Route110_EventScript_RivalGoBack1
-	call_if_eq VAR_0x8008, 2, Route110_EventScript_RivalGoBack2
-	call_if_eq VAR_0x8008, 3, Route110_EventScript_RivalGoBack3
-	delay 30
-	release
 	end
 
 Route110_EventScript_BrendanBattle::
@@ -522,21 +512,6 @@ Route110_EventScript_RivalApproachPlayer2::
 
 Route110_EventScript_RivalApproachPlayer3::
 	applymovement LOCALID_RIVAL, Route110_Movement_RivalApproachPlayer3
-	waitmovement 0
-	return
-
-Route110_EventScript_RivalGoBack1::
-	applymovement LOCALID_RIVAL, Route110_Movement_RivalGoesBack1
-	waitmovement 0
-	return
-
-Route110_EventScript_RivalGoBack2::
-	applymovement LOCALID_RIVAL, Route110_Movement_RivalGoesBack2
-	waitmovement 0
-	return
-
-Route110_EventScript_RivalGoBack3::
-	applymovement LOCALID_RIVAL, Route110_Movement_RivalGoesBack3
 	waitmovement 0
 	return
 
