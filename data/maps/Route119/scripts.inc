@@ -680,6 +680,7 @@ Route119_EventScript_TryRemoveLoyal3:
 	removeobject 46
 	setflag FLAG_TITAN_LOYAL_THREE
 	fadescreen FADE_FROM_BLACK
+	call Common_EventScript_AddMoneyScrambledTitanFights
 	setvar VAR_LEVEL_CAP 45
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	release

@@ -175,6 +175,7 @@ JaggedPass_EventScript_TitanOrthworm::
 	removeobject LOCALID_ORTHWORM
 	setflag FLAG_TITAN_ORTHWORM
 	fadescreen FADE_FROM_BLACK
+	call Common_EventScript_AddMoneyScrambledTitanFights
 	setvar VAR_LEVEL_CAP 35
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	release
@@ -196,6 +197,7 @@ JaggedPass_EventScript_TitanOrthwormReverse::
 	removeobject LOCALID_ORTHWORM
 	setflag FLAG_TITAN_ORTHWORM
 	fadescreen FADE_FROM_BLACK
+	call Common_EventScript_AddMoneyScrambledTitanFights
 	setvar VAR_LEVEL_CAP 40
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	release

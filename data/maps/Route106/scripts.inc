@@ -60,6 +60,7 @@ Route106_EventScript_KlawfTitan::
 	removeobject LOCALID_KLAWF
 	setflag FLAG_TITAN_KLAWF
 	fadescreen FADE_FROM_BLACK
+	call Common_EventScript_AddMoneyScrambledTitanFights
 	setvar VAR_LEVEL_CAP 18
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	release
@@ -81,6 +82,7 @@ Route106_EventScript_KlawfTitanReverse::
 	removeobject LOCALID_KLAWF
 	setflag FLAG_TITAN_KLAWF
 	fadescreen FADE_FROM_BLACK
+	call Common_EventScript_AddMoneyScrambledTitanFights
 	setvar VAR_LEVEL_CAP 60
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	release

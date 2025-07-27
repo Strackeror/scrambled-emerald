@@ -391,6 +391,7 @@ Route120_EventScript_TitanBombirdier::
 	removeobject LOCALID_BOMBIRDIER
 	setflag FLAG_TITAN_BOMBIRDIER
 	fadescreen FADE_FROM_BLACK
+	call Common_EventScript_AddMoneyScrambledTitanFights
 	setvar VAR_LEVEL_CAP 24
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	release
@@ -412,6 +413,7 @@ Route120_EventScript_TitanBombirdierReverse::
 	removeobject LOCALID_BOMBIRDIER
 	setflag FLAG_TITAN_BOMBIRDIER
 	fadescreen FADE_FROM_BLACK
+	call Common_EventScript_AddMoneyScrambledTitanFights
 	setvar VAR_LEVEL_CAP 56
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	release

@@ -1132,6 +1132,29 @@ Common_EventScript_EggShop::
 	release
 	end
 
+Common_EventScript_AddMoneyScrambledTitanFights::
+	setvar VAR_TEMP_E, 1000
+	call_if_le VAR_LEVEL_CAP, 30, Common_EventScript_AddMoneyScrambled2000
+	buffernumberstring STR_VAR_3, VAR_TEMP_E
+	showmoneybox 0, 0
+	msgbox Common_Text_AddMoneyScrambled, MSGBOX_DEFAULT
+	waitmessage
+	addmoneyscrambled 0
+	updatemoneybox
+	playfanfare MUS_RG_OBTAIN_KEY_ITEM
+	waitfanfare
+	waitmessage
+	hidemoneybox
+	closemessage
+	return
+
+Common_EventScript_AddMoneyScrambled2000::
+	setvar VAR_TEMP_E, 2000
+	return
+
+Common_Text_AddMoneyScrambled:
+	.string "You got ¥{STR_VAR_3} for winning!$"
+
 Common_EventScript_EditItemShop::
 	pokemart Common_EventScript_EditItems_ShopList
 	return
