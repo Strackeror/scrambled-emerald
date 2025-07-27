@@ -630,8 +630,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(GREAT_TUSK)",
-      "x": 20,
-      "y": 40,
+      "x": 21,
+      "y": 43,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
@@ -644,7 +644,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(IRON_TREADS)",
       "x": 23,
-      "y": 40,
+      "y": 43,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
