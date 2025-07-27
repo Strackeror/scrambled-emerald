@@ -1298,6 +1298,13 @@
 	.byte \disable
 	.endm
 
+	@ addmoney but for Scrambled's money system (2000 if Level Cap <= 30, otherwise 1000)
+	@ if 'eggRefund' is set to 1, then always returns 1000 (used in Reroll NPC)
+	.macro addmoneyscrambled eggRefund=0
+	.byte SCR_OP_ADDMONEY_SCRAMBLED
+	.byte \eggRefund
+	.endm
+
 	@ Subtracts value from the player's money. If the player has less than 'value' money, their money is set to 0.
 	@ If 'disable' is set to anything but 0 then this command does nothing.
 	.macro removemoney value:req, disable=0

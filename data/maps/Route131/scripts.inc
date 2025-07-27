@@ -74,6 +74,7 @@ Route131_EventScript_TitanDondozo::
 	removeobject LOCALID_DONDOZO
 	setflag FLAG_TITAN_DONDOZO
 	fadescreen FADE_FROM_BLACK
+	call Common_EventScript_AddMoneyScrambledTitanFights
 	setvar VAR_LEVEL_CAP 60
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	release
@@ -95,6 +96,7 @@ Route131_EventScript_TitanDondozoReverse::
 	removeobject LOCALID_DONDOZO
 	setflag FLAG_TITAN_DONDOZO
 	fadescreen FADE_FROM_BLACK
+	call Common_EventScript_AddMoneyScrambledTitanFights
 	setvar VAR_LEVEL_CAP 18
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	release

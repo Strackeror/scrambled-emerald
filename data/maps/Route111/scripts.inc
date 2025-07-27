@@ -661,6 +661,7 @@ Route111_EventScript_TitanDefeated::
 	removeobject LOCALID_IRON_TREADS
 	setflag FLAG_TITAN_TUSK_TREADS
 	fadescreen FADE_FROM_BLACK
+	call Common_EventScript_AddMoneyScrambledTitanFights
 	setvar VAR_LEVEL_CAP 50
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	release
@@ -673,6 +674,7 @@ Route111_EventScript_TitanReverseDefeated::
 	removeobject LOCALID_IRON_TREADS
 	setflag FLAG_TITAN_TUSK_TREADS
 	fadescreen FADE_FROM_BLACK
+	call Common_EventScript_AddMoneyScrambledTitanFights
 	setvar VAR_LEVEL_CAP 27
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	release
