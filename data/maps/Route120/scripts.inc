@@ -479,39 +479,5 @@ Route120_Text_RouteSign121:
 	.string "{RIGHT_ARROW} ROUTE 121\n"
 	.string "{LEFT_ARROW} ROUTE 120$"
 
-
-Route120_EventScript_TitanGreatTusk::
-	lock
-	faceplayer
-	msgbox Route120_Text_Titan, MSGBOX_DEFAULT
-	titanbattle 7
-	waitstate
-	msgbox Route120_Text_Titan, MSGBOX_DEFAULT
-	titanbattle 8
-	waitstate
-	release
-	goto Route120_EventScript_TitanDefeated
-	
-Route120_EventScript_TitanIronTreads::
-	lock
-	faceplayer
-	msgbox Route120_Text_Titan, MSGBOX_DEFAULT
-	titanbattle 9
-	waitstate
-	msgbox Route120_Text_Titan, MSGBOX_DEFAULT
-	titanbattle 10
-	waitstate
-	release
-	goto Route120_EventScript_TitanDefeated
-
-Route120_EventScript_TitanDefeated::
-	fadescreen FADE_TO_BLACK
-	removeobject 43
-	removeobject 44
-	setflag FLAG_TITAN_TUSK_TREADS
-	fadescreen FADE_FROM_BLACK
-	setvar VAR_LEVEL_CAP 50
-	end
-
 Route120_Text_Titan::
 	.string "...$"
