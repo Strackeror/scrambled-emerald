@@ -161,6 +161,10 @@ LittlerootTown_EventScript_GoInsideWithMom::
 	// Announce Level Cap
 	call Common_EventScript_NewLevelCapTextAndFanfare
 
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox LittlerootTown_Text_YouGotEverything, MSGBOX_DEFAULT
+	waitfanfare
+
 	msgbox LittlerootTown_Text_OurNewHomeAbridged, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachDoor
@@ -998,7 +1002,11 @@ LittlerootTown_EventScript_GiveRunningShoes::
 
 LittlerootTown_Text_ChoosePath:
 	.string "Choose the path you wish to play.\n"
-	.string "Note: You {COLOR RED}{SHADOW LIGHT_RED}CANNOT{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY} change this later!$"
+	.string "Note: You {COLOR RED}CANNOT{COLOR DARK_GRAY} change this later!$"
+
+LittlerootTown_Text_YouGotEverything:
+	.string "You received KEY ITEMS to {COLOR RED}Raise your{COLOR DARK_GRAY}\n"
+	.string "{COLOR RED}Pokémon{COLOR DARK_GRAY} and {COLOR RED}Travel around the Region{COLOR DARK_GRAY}!$"
 
 LittlerootTown_Text_OurNewHomeLetsGoInside:
 	.string "MOM: {PLAYER}, we're here, honey!\p"
