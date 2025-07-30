@@ -1022,9 +1022,7 @@ LittlerootTown_Text_OurNewHomeLetsGoInside:
 
 LittlerootTown_Text_OurNewHomeAbridged:
 	.string "MOM: {PLAYER}, we're here, honey!\n"
-	.string "Let's go inside!\p"
-	.string "{COLOR RED}{SHADOW LIGHT_RED}Nature Mints{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY} and {COLOR RED}{SHADOW LIGHT_RED}Tera Shards{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}\n"
-	.string "can be found in your room PC!$"
+	.string "Let's go inside!$"
 
 LittlerootTown_Text_WaitPlayer:
 	.string "MOM: Wait, {PLAYER}!$"
