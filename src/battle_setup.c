@@ -563,7 +563,11 @@ void BattleSetup_StartTitanBattle(u8 titanId)
     FreezeObjectEvents();
     StopPlayerAvatar();
     gMain.savedCallback = CB2_EndScriptedWildBattle;
-    CreateBattleStartTask(GetWildBattleTransition(), 0);
+    if (titanId == 13 || titanId == 14 || titanId == 15) {
+        CreateBattleStartTask(GetWildBattleTransition(), MUS_C_VS_LEGEND_BEAST);
+    } else {
+        CreateBattleStartTask(GetWildBattleTransition(), MUS_VS_REGI);
+    }
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
     IncrementDailyWildBattles();
