@@ -1132,6 +1132,202 @@ Common_EventScript_EggShop::
 	release
 	end
 
+Common_EventScript_Reroll::
+	lock
+	faceplayer
+	getpartysize
+	goto_if_eq VAR_RESULT, 0, Common_EventScript_NoPokemon
+	msgbox Common_Text_HiChooseAPokemon, MSGBOX_DEFAULT
+	special ChoosePartyMon
+	waitstate
+	goto_if_ge VAR_0x8004, PARTY_SIZE, Common_EventScript_NoPokemon
+	goto_if_eq VAR_0x8004, PARTY_NOTHING_CHOSEN, Common_EventScript_NoPokemon
+	special IsSelectedMonEgg
+	goto_if_eq VAR_RESULT, TRUE, Common_EventScript_EggChosen
+	bufferpartymonnick STR_VAR_1, VAR_0x8004
+	msgbox Common_Text_RerollWhatCanIDo, MSGBOX_DEFAULT
+	multichoice 20, 0, MULTI_REROLL_OPTIONS, FALSE
+	switch VAR_RESULT
+	case 0, Common_EventScript_RerollNaturePage1
+	case 1, Common_EventScript_RerollTeraType
+	case 2, Common_EventScript_ToggleShiny
+	case 3, Common_EventScript_ToggleGender
+	case 4, Common_EventScript_ChangePokeballPage1
+	case 5, Common_EventScript_RefundHatch
+	case MULTI_B_PRESSED, Common_Script_PleaseComeAgain
+	waitmessage
+	goto Common_EventScript_RerollLoop
+
+Common_EventScript_RerollLoop::
+	msgbox Common_Text_RerollAnythingElse, MSGBOX_DEFAULT
+	multichoice 20, 0, MULTI_REROLL_OPTIONS, FALSE
+	switch VAR_RESULT
+	case 0, Common_EventScript_RerollNaturePage1
+	case 1, Common_EventScript_RerollTeraType
+	case 2, Common_EventScript_ToggleShiny
+	case 3, Common_EventScript_ToggleGender
+	case 4, Common_EventScript_ChangePokeballPage1
+	case 5, Common_EventScript_RefundHatch
+	case MULTI_B_PRESSED, Common_Script_PleaseComeAgain
+	waitmessage
+	goto Common_EventScript_RerollLoop
+
+Common_Script_PleaseComeAgain::
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+Common_EventScript_RerollNaturePage1::
+	setvar VAR_TEMP_E, 1
+	setvar VAR_RESULT, 0
+	msgbox Common_Text_RerollNature, MSGBOX_DEFAULT
+	multichoicegrid 20, 0, MULTI_REROLL_NATURE_1, 4, TRUE
+	goto_if_eq VAR_RESULT, 15, Common_EventScript_RerollNaturePage2
+	closemessage
+	callnative Script_SetNature
+	playfanfare MUS_LEVEL_UP
+	waitfanfare
+	goto Common_EventScript_RerollLoop
+
+Common_EventScript_RerollNaturePage2::
+	setvar VAR_TEMP_E, 2
+	setvar VAR_RESULT, 0
+	msgbox Common_Text_RerollNature, MSGBOX_DEFAULT
+	multichoicegrid 20, 0, MULTI_REROLL_NATURE_2, 4, TRUE
+	goto_if_eq VAR_RESULT, 11, Common_EventScript_RerollNaturePage1
+	closemessage
+	callnative Script_SetNature
+	playfanfare MUS_LEVEL_UP
+	waitfanfare
+	goto Common_EventScript_RerollLoop
+
+Common_EventScript_RerollTeraType::
+	msgbox Common_Text_RerollTeraType, MSGBOX_DEFAULT
+	multichoicegrid 20, 0, MULTI_REROLL_TERATYPE, 4, TRUE
+	closemessage
+	callnative Script_SetTeraType
+	playfanfare MUS_LEVEL_UP
+	waitfanfare
+	goto Common_EventScript_RerollLoop
+
+Common_EventScript_ToggleShiny::
+	closemessage
+	callnative Script_ToggleShiny
+	playfanfare MUS_LEVEL_UP
+	waitfanfare
+	goto Common_EventScript_RerollLoop
+
+Common_EventScript_ToggleGender::
+	closemessage
+	callnative Script_ToggleGender
+	playfanfare MUS_LEVEL_UP
+	waitfanfare
+	goto Common_EventScript_RerollLoop
+
+Common_EventScript_ChangePokeballPage1::
+	setvar VAR_TEMP_E, 1
+	setvar VAR_RESULT, 0
+	msgbox Common_Text_RerollPokeball, MSGBOX_DEFAULT
+	multichoicegrid 20, 0, MULTI_REROLL_POKEBALL_1, 3, TRUE
+	goto_if_eq VAR_RESULT, 17, Common_EventScript_ChangePokeballPage2
+	closemessage
+	callnative Script_SetPokeball
+	playfanfare MUS_LEVEL_UP
+	waitfanfare
+	goto Common_EventScript_RerollLoop
+
+Common_EventScript_ChangePokeballPage2::
+	setvar VAR_TEMP_E, 2
+	setvar VAR_RESULT, 0
+	msgbox Common_Text_RerollPokeball, MSGBOX_DEFAULT
+	multichoicegrid 20, 0, MULTI_REROLL_POKEBALL_2, 3, TRUE
+	goto_if_eq VAR_RESULT, 11, Common_EventScript_ChangePokeballPage1
+	closemessage
+	callnative Script_SetPokeball
+	playfanfare MUS_LEVEL_UP
+	waitfanfare
+	goto Common_EventScript_RerollLoop
+
+Common_EventScript_RefundHatch::
+	setvar VAR_TEMP_E, 0
+	closemessage
+	callnative Script_GetChosenMonLevel
+	goto_if_ne VAR_TEMP_E, 1, Common_EventScript_RefundHatchNotLv1
+	msgbox Common_Text_RefundAreYouSure, MSGBOX_DEFAULT
+	multichoicedefault 20, 8, MULTI_YESNO, 1, FALSE
+	switch VAR_RESULT
+	case 1, Common_EventScript_RerollLoop
+	case MULTI_B_PRESSED, Common_EventScript_RerollLoop
+	showmoneybox 0, 0
+	callnative Script_RemoveChosenMon
+	msgbox Common_Text_RefundTakeGoodCare, MSGBOX_DEFAULT
+	waitmessage
+	addmoneyscrambled 1
+	updatemoneybox
+	playfanfare MUS_RG_OBTAIN_KEY_ITEM
+	waitfanfare
+	waitmessage
+	hidemoneybox
+	return
+
+Common_EventScript_RefundHatchNotLv1::
+	msgbox Common_Text_RefundNotLevel1, MSGBOX_DEFAULT
+	goto Common_EventScript_RerollLoop
+
+Common_EventScript_EggChosen::
+	msgbox Common_Text_EggChosen, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Common_EventScript_NoPokemon::
+	msgbox Common_Text_NoPokemon, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Common_Text_HiChooseAPokemon:
+	.string "Hi, I can help with Rerolling!\p"
+	.string "Choose a Pokémon to get started!$"
+
+Common_Text_RerollWhatCanIDo:
+	.string "What can I do today\n"
+	.string "for your {STR_VAR_1}?$"
+
+Common_Text_RerollAnythingElse:
+	.string "Anything else I can do\n"
+	.string "for your {STR_VAR_1} today?$"
+
+Common_Text_RerollNature:
+	.string "Choose a Nature.$"
+
+Common_Text_RerollTeraType:
+	.string "Choose a Tera Type.$"
+
+Common_Text_ToggleGender:
+	.string "Choose a Gender.$"
+
+Common_Text_RerollPokeball:
+	.string "Choose a Pokéball.$"
+
+Common_Text_NoPokemon:
+	.string "Hi... You have no Pokémon!\n"
+	.string "Come back when you have at least one.$"
+
+Common_Text_EggChosen:
+	.string "I can't reroll an egg!\n"
+	.string "Please choose a hatched Pokémon.$"
+
+Common_Text_RefundAreYouSure:
+	.string "I can take your Pokémon and\n"
+	.string "refund you. Are you sure?$"
+
+Common_Text_RefundNotLevel1:
+	.string "I cannot accept a Pokémon\n"
+	.string "that is not {LV}1!$"
+
+Common_Text_RefundTakeGoodCare:
+	.string "I'll take good care of your\n"
+	.string "Pokémon! Here's your ¥1000.$"
+
 Common_EventScript_AddMoneyScrambledTitanFights::
 	setvar VAR_TEMP_E, 1000
 	call_if_le VAR_LEVEL_CAP, 30, Common_EventScript_AddMoneyScrambled2000

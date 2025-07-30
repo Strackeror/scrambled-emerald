@@ -125,6 +125,13 @@
 #define MULTI_BERRY_PLOT                   114
 #define MULTI_AI_FIGHT_CHOICE              115
 #define MULTI_CHOOSE_PATH                  116
+// Reroll NPC
+#define MULTI_REROLL_OPTIONS               117
+#define MULTI_REROLL_NATURE_1              118
+#define MULTI_REROLL_NATURE_2              119
+#define MULTI_REROLL_TERATYPE              120
+#define MULTI_REROLL_POKEBALL_1            121
+#define MULTI_REROLL_POKEBALL_2            122
 
 // Lilycove SS Tidal Multichoice Selections
 #define SSTIDAL_SELECTION_SLATEPORT        0
