@@ -3746,7 +3746,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         )
         .levelUpLearnset = sGabite0LevelUpLearnset,
         .teachableLearnset = sGabite0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_DEVASTATING_DRAKE, SPECIES_GARCHOMP, 45}),
+        .evolutions = EVOLUTION({EVO_MOVE_45, MOVE_DEVASTATING_DRAKE, SPECIES_GARCHOMP}),
     },
 
     [SPECIES_GARCHOMP] =
@@ -6156,7 +6156,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
         .levelUpLearnset = sPhione0LevelUpLearnset,
         .teachableLearnset = sPhione0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_SHATTERED_PSYCHE, SPECIES_MANAPHY, 40}),
+        .evolutions = EVOLUTION({EVO_MOVE_40, MOVE_SHATTERED_PSYCHE, SPECIES_MANAPHY}),
     },
 
     [SPECIES_MANAPHY] =
