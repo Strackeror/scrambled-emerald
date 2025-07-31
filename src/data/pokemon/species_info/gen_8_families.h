@@ -2141,7 +2141,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .levelUpLearnset = sRolycoly0LevelUpLearnset,
         .teachableLearnset = sRolycoly0TeachableLearnset,
         .eggMoveLearnset = sRolycolyEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_CONTINENTAL_CRUSH, SPECIES_CARKOL, 25}),
+        .evolutions = EVOLUTION({EVO_MOVE_25, MOVE_CONTINENTAL_CRUSH, SPECIES_CARKOL}),
     },
 
     [SPECIES_CARKOL] =
@@ -2202,7 +2202,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         )
         .levelUpLearnset = sCarkol0LevelUpLearnset,
         .teachableLearnset = sCarkol0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_INFERNO_OVERDRIVE, SPECIES_COALOSSAL, 45}),
+        .evolutions = EVOLUTION({EVO_MOVE_45, MOVE_INFERNO_OVERDRIVE, SPECIES_COALOSSAL}),
     },
 
     [SPECIES_COALOSSAL] =
@@ -2386,7 +2386,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .levelUpLearnset = sApplin0LevelUpLearnset,
         .teachableLearnset = sApplin0TeachableLearnset,
         .eggMoveLearnset = sApplinEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_SAVAGE_SPIN_OUT, SPECIES_DIPPLIN, 25}, {EVO_MOVE, MOVE_DEVASTATING_DRAKE, SPECIES_FLAPPLE, 30}, {EVO_MOVE, MOVE_BLOOM_DOOM, SPECIES_APPLETUN, 30}),
+        .evolutions = EVOLUTION(
+            {EVO_MOVE_25, MOVE_SAVAGE_SPIN_OUT, SPECIES_DIPPLIN},
+            {EVO_MOVE_30, MOVE_DEVASTATING_DRAKE, SPECIES_FLAPPLE},
+            {EVO_MOVE_30, MOVE_BLOOM_DOOM, SPECIES_APPLETUN}
+        ),
     },
 
     [SPECIES_FLAPPLE] =
@@ -2686,7 +2690,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         )
         .levelUpLearnset = sDipplin0LevelUpLearnset,
         .teachableLearnset = sDipplin0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_DEVASTATING_DRAKE, SPECIES_HYDRAPPLE, 45}),
+        .evolutions = EVOLUTION({EVO_MOVE_45, MOVE_DEVASTATING_DRAKE, SPECIES_HYDRAPPLE}),
     },
 
     [SPECIES_HYDRAPPLE] =
@@ -4209,7 +4213,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         )
         .levelUpLearnset = sHattrem0LevelUpLearnset,
         .teachableLearnset = sHattrem0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_TWINKLE_TACKLE, SPECIES_HATTERENE, 40}),
+        .evolutions = EVOLUTION({EVO_MOVE_40, MOVE_TWINKLE_TACKLE, SPECIES_HATTERENE}),
     },
 
     [SPECIES_HATTERENE] =
@@ -4452,7 +4456,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         )
         .levelUpLearnset = sMorgrem0LevelUpLearnset,
         .teachableLearnset = sMorgrem0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_BLACK_HOLE_ECLIPSE, SPECIES_GRIMMSNARL, 40}),
+        .evolutions = EVOLUTION({EVO_MOVE_40, MOVE_BLACK_HOLE_ECLIPSE, SPECIES_GRIMMSNARL}),
     },
 
 
@@ -5977,7 +5981,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .eggMoveLearnset = sDuraludonEggMoveLearnset,
         .formSpeciesIdTable = sDuraludonFormSpeciesIdTable,
         .formChangeTable = sDuraludonFormChangeTable,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_CORKSCREW_CRASH, SPECIES_ARCHALUDON, 40}),
+        .evolutions = EVOLUTION({EVO_MOVE_40, MOVE_CORKSCREW_CRASH, SPECIES_ARCHALUDON}),
     },
 
     [SPECIES_DURALUDON_GMAX] =
@@ -6222,7 +6226,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         )
         .levelUpLearnset = sDrakloak0LevelUpLearnset,
         .teachableLearnset = sDrakloak0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_NEVER_ENDING_NIGHTMARE, SPECIES_DRAGAPULT, 45}),
+        .evolutions = EVOLUTION({EVO_MOVE_45, MOVE_NEVER_ENDING_NIGHTMARE, SPECIES_DRAGAPULT}),
     },
 
     [SPECIES_DRAGAPULT] =
@@ -6740,7 +6744,10 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
         .levelUpLearnset = sKubfu0LevelUpLearnset,
         .teachableLearnset = sKubfu0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_BLACK_HOLE_ECLIPSE, SPECIES_URSHIFU_SINGLE_STRIKE, 35}, {EVO_MOVE, MOVE_HYDRO_VORTEX, SPECIES_URSHIFU_SINGLE_STRIKE_GMAX, 35}),
+        .evolutions = EVOLUTION(
+            {EVO_MOVE_35, MOVE_BLACK_HOLE_ECLIPSE, SPECIES_URSHIFU_SINGLE_STRIKE},
+            {EVO_MOVE_35, MOVE_HYDRO_VORTEX, SPECIES_URSHIFU_SINGLE_STRIKE_GMAX}
+        ),
     },
 
     [SPECIES_URSHIFU_SINGLE_STRIKE] =

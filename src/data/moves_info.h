@@ -19221,7 +19221,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Normal Energy"),
         .description = COMPOUND_STRING("LEARN THIS TO EVOLVE YOUR POKEMON.\nCan be relearnt at any time. For split evos, use the\nDoozDex to know which is which. NO BATTLE EFFECT."),
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_DO_NOTHING,
         .power = 1,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -19235,7 +19235,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Fighting Energy"),
         .description = COMPOUND_STRING("LEARN THIS TO EVOLVE YOUR POKEMON.\nCan be relearnt at any time. For split evos, use the\nDoozDex to know which is which. NO BATTLE EFFECT."),
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_DO_NOTHING,
         .power = 1,
         .type = TYPE_FIGHTING,
         .accuracy = 0,
@@ -19249,7 +19249,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Flying Energy"),
         .description = COMPOUND_STRING("LEARN THIS TO EVOLVE YOUR POKEMON.\nCan be relearnt at any time. For split evos, use the\nDoozDex to know which is which. NO BATTLE EFFECT."),
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_DO_NOTHING,
         .power = 1,
         .type = TYPE_FLYING,
         .accuracy = 0,
@@ -19263,7 +19263,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Poison Energy"),
         .description = COMPOUND_STRING("LEARN THIS TO EVOLVE YOUR POKEMON.\nCan be relearnt at any time. For split evos, use the\nDoozDex to know which is which. NO BATTLE EFFECT."),
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_DO_NOTHING,
         .power = 1,
         .type = TYPE_POISON,
         .accuracy = 0,
@@ -19277,7 +19277,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Ground Energy"),
         .description = COMPOUND_STRING("LEARN THIS TO EVOLVE YOUR POKEMON.\nCan be relearnt at any time. For split evos, use the\nDoozDex to know which is which. NO BATTLE EFFECT."),
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_DO_NOTHING,
         .power = 1,
         .type = TYPE_GROUND,
         .accuracy = 0,
@@ -19292,7 +19292,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Rock Energy"),
         .description = COMPOUND_STRING("LEARN THIS TO EVOLVE YOUR POKEMON.\nCan be relearnt at any time. For split evos, use the\nDoozDex to know which is which. NO BATTLE EFFECT."),
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_DO_NOTHING,
         .power = 1,
         .type = TYPE_ROCK,
         .accuracy = 0,
@@ -19306,7 +19306,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Bug Energy"),
         .description = COMPOUND_STRING("LEARN THIS TO EVOLVE YOUR POKEMON.\nCan be relearnt at any time. For split evos, use the\nDoozDex to know which is which. NO BATTLE EFFECT."),
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_DO_NOTHING,
         .power = 1,
         .type = TYPE_BUG,
         .accuracy = 0,
@@ -19320,7 +19320,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Ghost Energy"),
         .description = COMPOUND_STRING("LEARN THIS TO EVOLVE YOUR POKEMON.\nCan be relearnt at any time. For split evos, use the\nDoozDex to know which is which. NO BATTLE EFFECT."),
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_DO_NOTHING,
         .power = 1,
         .type = TYPE_GHOST,
         .accuracy = 0,
@@ -19334,7 +19334,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Steel Energy"),
         .description = COMPOUND_STRING("LEARN THIS TO EVOLVE YOUR POKEMON.\nCan be relearnt at any time. For split evos, use the\nDoozDex to know which is which. NO BATTLE EFFECT."),
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_DO_NOTHING,
         .power = 1,
         .type = TYPE_STEEL,
         .accuracy = 0,
@@ -19348,7 +19348,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Fire Energy"),
         .description = COMPOUND_STRING("LEARN THIS TO EVOLVE YOUR POKEMON.\nCan be relearnt at any time. For split evos, use the\nDoozDex to know which is which. NO BATTLE EFFECT."),
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_DO_NOTHING,
         .power = 1,
         .type = TYPE_FIRE,
         .accuracy = 0,
@@ -19363,7 +19363,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Water Energy"),
         .description = COMPOUND_STRING("LEARN THIS TO EVOLVE YOUR POKEMON.\nCan be relearnt at any time. For split evos, use the\nDoozDex to know which is which. NO BATTLE EFFECT."),
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_DO_NOTHING,
         .power = 1,
         .type = TYPE_WATER,
         .accuracy = 0,
@@ -19377,7 +19377,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Grass Energy"),
         .description = COMPOUND_STRING("LEARN THIS TO EVOLVE YOUR POKEMON.\nCan be relearnt at any time. For split evos, use the\nDoozDex to know which is which. NO BATTLE EFFECT."),
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_DO_NOTHING,
         .power = 1,
         .type = TYPE_GRASS,
         .accuracy = 0,
@@ -19391,7 +19391,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Electric Energy"),
         .description = COMPOUND_STRING("LEARN THIS TO EVOLVE YOUR POKEMON.\nCan be relearnt at any time. For split evos, use the\nDoozDex to know which is which. NO BATTLE EFFECT."),
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_DO_NOTHING,
         .power = 1,
         .type = TYPE_ELECTRIC,
         .accuracy = 0,
@@ -19405,7 +19405,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Psychic Energy"),
         .description = COMPOUND_STRING("LEARN THIS TO EVOLVE YOUR POKEMON.\nCan be relearnt at any time. For split evos, use the\nDoozDex to know which is which. NO BATTLE EFFECT."),
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_DO_NOTHING,
         .power = 1,
         .type = TYPE_PSYCHIC,
         .accuracy = 0,
@@ -19419,7 +19419,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Ice Energy"),
         .description = COMPOUND_STRING("LEARN THIS TO EVOLVE YOUR POKEMON.\nCan be relearnt at any time. For split evos, use the\nDoozDex to know which is which. NO BATTLE EFFECT."),
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_DO_NOTHING,
         .power = 1,
         .type = TYPE_ICE,
         .accuracy = 0,
@@ -19433,7 +19433,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Draco Energy"),
         .description = COMPOUND_STRING("LEARN THIS TO EVOLVE YOUR POKEMON.\nCan be relearnt at any time. For split evos, use the\nDoozDex to know which is which. NO BATTLE EFFECT."),
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_DO_NOTHING,
         .power = 1,
         .type = TYPE_DRAGON,
         .accuracy = 0,
@@ -19447,7 +19447,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Dark Energy"),
         .description = COMPOUND_STRING("LEARN THIS TO EVOLVE YOUR POKEMON.\nCan be relearnt at any time. For split evos, use the\nDoozDex to know which is which. NO BATTLE EFFECT."),
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_DO_NOTHING,
         .power = 1,
         .type = TYPE_DARK,
         .accuracy = 0,
@@ -19461,7 +19461,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Fairy Energy"),
         .description = COMPOUND_STRING("LEARN THIS TO EVOLVE YOUR POKEMON.\nCan be relearnt at any time. For split evos, use the\nDoozDex to know which is which. NO BATTLE EFFECT."),
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_DO_NOTHING,
         .power = 1,
         .type = TYPE_FAIRY,
         .accuracy = 0,
@@ -19522,8 +19522,8 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Future Energy"),
         .description = COMPOUND_STRING("Learn this to evolve into the Future Paradox version.\nCan be relearnt at any point, you don't have to\nevolve, this is purely optional."),
-        .effect = EFFECT_EXTREME_EVOBOOST,
-        .power = 0,
+        .effect = EFFECT_DO_NOTHING,
+        .power = 1,
         .type = TYPE_ELECTRIC,
         .accuracy = 0,
         .pp = 1,
@@ -19550,8 +19550,8 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Primal Energy"),
         .description = COMPOUND_STRING("Learn this to evolve into an ancient or Paradox form.\nCan be relearnt at any point, you don't have to\nevolve, this is purely optional."),
-        .effect = EFFECT_HIT_SET_REMOVE_TERRAIN,
-        .power = 185,
+        .effect = EFFECT_DO_NOTHING,
+        .power = 1,
         .type = TYPE_FIGHTING,
         .accuracy = 0,
         .pp = 1,

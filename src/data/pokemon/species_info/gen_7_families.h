@@ -264,7 +264,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         )
         .levelUpLearnset = sDartrix0LevelUpLearnset,
         .teachableLearnset = sDartrix0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_NEVER_ENDING_NIGHTMARE, SPECIES_DECIDUEYE, 36}, {EVO_MOVE, MOVE_ALL_OUT_PUMMELING, SPECIES_DECIDUEYE_HISUI, 36}),
+        .evolutions = EVOLUTION(
+            {EVO_MOVE_36, MOVE_NEVER_ENDING_NIGHTMARE, SPECIES_DECIDUEYE},
+            {EVO_MOVE_36, MOVE_ALL_OUT_PUMMELING, SPECIES_DECIDUEYE_HISUI}
+        ),
     },
 
     [SPECIES_DECIDUEYE] =
@@ -1266,7 +1269,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         )
         .levelUpLearnset = sCharjabug0LevelUpLearnset,
         .teachableLearnset = sCharjabug0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_GIGAVOLT_HAVOC, SPECIES_VIKAVOLT, 40}),
+        .evolutions = EVOLUTION({EVO_MOVE_40, MOVE_GIGAVOLT_HAVOC, SPECIES_VIKAVOLT}),
     },
 
     [SPECIES_VIKAVOLT] =
@@ -1451,7 +1454,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .levelUpLearnset = sCrabrawler0LevelUpLearnset,
         .teachableLearnset = sCrabrawler0TeachableLearnset,
         .eggMoveLearnset = sCrabrawlerEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_SUBZERO_SLAMMER, SPECIES_CRABOMINABLE, 35}),
+        .evolutions = EVOLUTION({EVO_MOVE_35, MOVE_SUBZERO_SLAMMER, SPECIES_CRABOMINABLE}),
     },
 
     [SPECIES_CRABOMINABLE] =
@@ -2026,7 +2029,11 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .teachableLearnset = sRockruff0TeachableLearnset,
         .eggMoveLearnset = sRockruffEggMoveLearnset,
         .formSpeciesIdTable = sRockruffFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_BREAKNECK_BLITZ, SPECIES_LYCANROC_MIDDAY, 27}, {EVO_MOVE, MOVE_BLACK_HOLE_ECLIPSE, SPECIES_LYCANROC_MIDNIGHT, 27}, {EVO_MOVE, MOVE_ALL_OUT_PUMMELING, SPECIES_LYCANROC_DUSK, 27}),
+        .evolutions = EVOLUTION(
+            {EVO_MOVE_27, MOVE_BREAKNECK_BLITZ, SPECIES_LYCANROC_MIDDAY},
+            {EVO_MOVE_27, MOVE_BLACK_HOLE_ECLIPSE, SPECIES_LYCANROC_MIDNIGHT},
+            {EVO_MOVE_27, MOVE_ALL_OUT_PUMMELING, SPECIES_LYCANROC_DUSK}
+        ),
     },
 
     [SPECIES_ROCKRUFF_OWN_TEMPO] =
@@ -5236,7 +5243,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         )
         .levelUpLearnset = sHakamoO0LevelUpLearnset,
         .teachableLearnset = sHakamoO0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_DEVASTATING_DRAKE, SPECIES_KOMMO_O, 45}),
+        .evolutions = EVOLUTION({EVO_MOVE_45, MOVE_DEVASTATING_DRAKE, SPECIES_KOMMO_O}),
     },
 
     [SPECIES_KOMMO_O] =
@@ -5681,7 +5688,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
         .levelUpLearnset = sCosmog0LevelUpLearnset,
         .teachableLearnset = sCosmog0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_SHATTERED_PSYCHE, SPECIES_COSMOEM, 30}),
+        .evolutions = EVOLUTION({EVO_MOVE_30, MOVE_SHATTERED_PSYCHE, SPECIES_COSMOEM}),
     },
 
     [SPECIES_COSMOEM] =
@@ -5749,7 +5756,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
         .levelUpLearnset = sCosmoem0LevelUpLearnset,
         .teachableLearnset = sCosmoem0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_CORKSCREW_CRASH, SPECIES_SOLGALEO, 100}, {EVO_MOVE, MOVE_NEVER_ENDING_NIGHTMARE, SPECIES_LUNALA, 100}),
+        .evolutions = EVOLUTION(
+            {EVO_MOVE_100, MOVE_CORKSCREW_CRASH, SPECIES_SOLGALEO},
+            {EVO_MOVE_100, MOVE_NEVER_ENDING_NIGHTMARE, SPECIES_LUNALA}
+        ),
     },
 
     [SPECIES_SOLGALEO] =
