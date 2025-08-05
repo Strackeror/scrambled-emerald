@@ -67,32 +67,19 @@ FortreeCity_Gym_EventScript_WinonaDefeated::
 	end
 
 FortreeCity_Gym_EventScript_VanillaLevelCap::
+	setflag FLAG_BADGE06_GET
 	setvar VAR_LEVEL_CAP 47
 	call Common_EventScript_NewLevelCapTextAndFanfare
-	setflag FLAG_BADGE06_GET
 	return
 
 FortreeCity_Gym_EventScript_ReverseLevelCap::
-	// PLOTLESS
-		setflag FLAG_HIDE_ROUTE_112_TEAM_MAGMA
-		setvar VAR_METEOR_FALLS_STATE, 1
-		setflag FLAG_HIDE_METEOR_FALLS_TEAM_AQUA
-		setflag FLAG_MET_PROF_COZMO
-		setflag FLAG_HIDE_MT_CHIMNEY_TEAM_AQUA
-		setflag FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
-		setflag FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY
-		clearflag FLAG_HIDE_FALLARBOR_HOUSE_PROF_COZMO
-		setflag FLAG_HIDE_METEOR_FALLS_1F_1R_COZMO
-	// PLOTLESS + EARLYSURF
-		setvar VAR_WEATHER_INSTITUTE_STATE, 2
-		setflag FLAG_HIDE_ROUTE_119_TEAM_AQUA
-		clearflag FLAG_HIDE_WEATHER_INSTITUTE_1F_WORKERS
-		setflag FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS
+	call Common_Gym3_EventScript_Plotless
+	setflag FLAG_BADGE03_GET
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, Common_EventScript_SkipKitakami_LevelCap33_End
 	setvar VAR_LEVEL_CAP 32
 	call Common_EventScript_NewLevelCapTextAndFanfare
-	setflag FLAG_BADGE03_GET
-	call_if_eq VAR_PETALBURG_GYM_STATE, 6, Common_EventScript_ReadyPetalburgGymForBattle
-	return
+	release
+	end
 
 FortreeCity_Gym_EventScript_GiveAerialAce2::
 	giveitem ITEM_TM_AERIAL_ACE

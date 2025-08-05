@@ -68,7 +68,7 @@ Route112_EventScript_HonoBoss01::
 	setvar VAR_TEMP_F, 30
 	buffernumberstring STR_VAR_2, VAR_TEMP_F
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
-	trainerbattle_single TRAINER_DAN_HONO_BOSS_01, Route112_Text_BriceIntro, Route112_Text_BriceDefeat, Route112_EventScript_HonoBoss01_Defeat
+	trainerbattle_single TRAINER_DAN_HONO_BOSS_01, Route112_Text_BriceIntro, Route112_Text_BriceDefeat, Route112_EventScript_MelaVanilla_Defeated
 	msgbox Route112_Text_BricePostBattle, MSGBOX_AUTOCLOSE
 	release
 	end
@@ -77,20 +77,23 @@ Route112_EventScript_MelaReverse::
 	setvar VAR_TEMP_F, 45
 	buffernumberstring STR_VAR_2, VAR_TEMP_F
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
-	trainerbattle_single SCRAMBLED_MELA_REVERSE, Route112_Text_BriceIntro, Route112_Text_BriceDefeat, Route112_EventScript_Mela_Defeated
+	trainerbattle_single SCRAMBLED_MELA_REVERSE, Route112_Text_BriceIntro, Route112_Text_BriceDefeat, Route112_EventScript_MelaReverse_Defeated
 	msgbox Route112_Text_BricePostBattle, MSGBOX_AUTOCLOSE
 	release
 	end
 	
-Route112_EventScript_HonoBoss01_Defeat::
+Route112_EventScript_MelaVanilla_Defeated::
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, Common_EventScript_SkipKitakami_LevelCap33_End
 	setvar VAR_LEVEL_CAP 32
 	call Common_EventScript_NewLevelCapTextAndFanfare
-	return
+	release
+	end
 
-Route112_EventScript_Mela_Defeated::
+Route112_EventScript_MelaReverse_Defeated::
 	setvar VAR_LEVEL_CAP 47
 	call Common_EventScript_NewLevelCapTextAndFanfare
-	return
+	release
+	end
 
 Route112_EventScript_Trent::
 	trainerbattle_single TRAINER_TRENT_1, Route112_Text_TrentIntro, Route112_Text_TrentDefeat, Route112_EventScript_RegisterTrent

@@ -662,6 +662,7 @@ Route111_EventScript_TitanDefeated::
 	setflag FLAG_TITAN_TUSK_TREADS
 	fadescreen FADE_FROM_BLACK
 	call Common_EventScript_AddMoneyScrambledTitanFights
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, Common_EventScript_SkipKitakami_LevelCap52_End
 	setvar VAR_LEVEL_CAP 50
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	release

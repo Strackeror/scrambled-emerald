@@ -121,13 +121,8 @@ JaggedPass_EventScript_DianaRematch::
 	end
 
 JaggedPass_EventScript_Ethan::
-	trainerbattle_single TRAINER_BROTHER_01_03, JaggedPass_Text_EthanIntro, JaggedPass_Text_EthanDefeat, JaggedPass_EventScript_Ethan_LevelCap
+	trainerbattle_single TRAINER_BROTHER_01_03, JaggedPass_Text_EthanIntro, JaggedPass_Text_EthanDefeat
 	msgbox JaggedPass_Text_EthanPostBattle, MSGBOX_DEFAULT
-	release
-	end
-
-JaggedPass_EventScript_Ethan_LevelCap:
-	setvar VAR_LEVEL_CAP 36
 	release
 	end
 
@@ -176,6 +171,7 @@ JaggedPass_EventScript_TitanOrthworm::
 	setflag FLAG_TITAN_ORTHWORM
 	fadescreen FADE_FROM_BLACK
 	call Common_EventScript_AddMoneyScrambledTitanFights
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, Common_EventScript_SkipKitakami_LevelCap36_End 
 	setvar VAR_LEVEL_CAP 35
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	release
@@ -198,6 +194,7 @@ JaggedPass_EventScript_TitanOrthwormReverse::
 	setflag FLAG_TITAN_ORTHWORM
 	fadescreen FADE_FROM_BLACK
 	call Common_EventScript_AddMoneyScrambledTitanFights
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, Common_EventScript_SkipKitakami_LevelCap42_End
 	setvar VAR_LEVEL_CAP 40
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	release

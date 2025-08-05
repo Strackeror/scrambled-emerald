@@ -384,30 +384,7 @@ PetalburgCity_Gym_EventScript_NormanBattle::
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	msgbox PetalburgCity_Gym_Text_NormanIntro, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_NORMAN_1, PetalburgCity_Gym_Text_NormanDefeat
-	// PLOTLESS
-		setvar VAR_WEATHER_INSTITUTE_STATE, 2
-		setflag FLAG_HIDE_ROUTE_119_TEAM_AQUA
-		clearflag FLAG_HIDE_WEATHER_INSTITUTE_1F_WORKERS
-		setflag FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS
-	message PetalburgCity_Gym_Text_ReceivedBalanceBadge
-	waitmessage
-	call Common_EventScript_PlayGymBadgeFanfare
-	msgbox PetalburgCity_Gym_Text_ExplainBalanceBadgeTakeThis, MSGBOX_DEFAULT
-	// giveitem ITEM_SURFBOARD, 1
-	setflag FLAG_DEFEATED_PETALBURG_GYM
-	setvar VAR_PETALBURG_GYM_STATE, 7
-	special ResetHealLocationFromDewford
-	call EventScript_HideMrBriney
-	setflag FLAG_HIDE_MAUVILLE_GYM_WATTSON
-	clearflag FLAG_HIDE_MAUVILLE_CITY_WATTSON
-	setvar VAR_0x8008, 5
-	call Common_EventScript_SetGymTrainers
-	clearflag FLAG_HIDE_DEWFORD_HALL_SLUDGE_BOMB_MAN
-	call PetalburgCity_Gym_EventScript_UnlockAllDoors
-	special DrawWholeMapView
-	delay 30
-	msgbox PetalburgCity_Gym_Text_DadHappyAndSad, MSGBOX_DEFAULT
-	closemessage
+	call PetalburgCity_Gym_EventScript_Norman_PostGymFight_Plotless
 	delay 40
 	playse SE_DOOR
 	delay 10
@@ -424,24 +401,30 @@ PetalburgCity_Gym_EventScript_NormanBattleReverse::
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	msgbox PetalburgCity_Gym_Text_NormanIntro, MSGBOX_DEFAULT
 	trainerbattle_no_intro SCRAMBLED_LARRY_REVERSE, PetalburgCity_Gym_Text_NormanDefeat
+	call PetalburgCity_Gym_EventScript_Norman_PostGymFight_Plotless
+	setvar VAR_PETALBURG_CITY_STATE 5
+	setflag FLAG_BADGE04_GET
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, Common_EventScript_SkipKitakami_LevelCap36_End
+	setvar VAR_LEVEL_CAP 35
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
+PetalburgCity_Gym_EventScript_Norman_PostGymFight_Plotless::
 	// PLOTLESS
-		setvar VAR_WEATHER_INSTITUTE_STATE, 2
-		setflag FLAG_HIDE_ROUTE_119_TEAM_AQUA
-		clearflag FLAG_HIDE_WEATHER_INSTITUTE_1F_WORKERS
-		setflag FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS
+	setvar VAR_WEATHER_INSTITUTE_STATE, 2
+	setflag FLAG_HIDE_ROUTE_119_TEAM_AQUA
+	clearflag FLAG_HIDE_WEATHER_INSTITUTE_1F_WORKERS
+	setflag FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS
+
 	message PetalburgCity_Gym_Text_ReceivedBalanceBadge
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox PetalburgCity_Gym_Text_ExplainBalanceBadgeTakeThis, MSGBOX_DEFAULT
-	// giveitem ITEM_SURFBOARD, 1
 	setflag FLAG_DEFEATED_PETALBURG_GYM
 	setvar VAR_PETALBURG_GYM_STATE, 7
-	setflag FLAG_BADGE04_GET
-	setvar VAR_LEVEL_CAP 35
 	special ResetHealLocationFromDewford
 	call EventScript_HideMrBriney
-	// setflag FLAG_HIDE_MAUVILLE_GYM_WATTSON
-	// clearflag FLAG_HIDE_MAUVILLE_CITY_WATTSON
 	setvar VAR_0x8008, 5
 	call Common_EventScript_SetGymTrainers
 	clearflag FLAG_HIDE_DEWFORD_HALL_SLUDGE_BOMB_MAN
@@ -450,9 +433,7 @@ PetalburgCity_Gym_EventScript_NormanBattleReverse::
 	delay 30
 	msgbox PetalburgCity_Gym_Text_DadHappyAndSad, MSGBOX_DEFAULT
 	closemessage
-	setvar VAR_PETALBURG_CITY_STATE 5
-	release
-	end
+	return
 
 PetalburgCity_Gym_EventScript_WallysDadArrivesNorth::
 	setvar VAR_0x8008, 1
@@ -488,14 +469,12 @@ PetalburgCity_Gym_EventScript_WallysDadArrives::
 	closemessage
 	special HealPlayerParty
 	clearflag FLAG_HIDE_PETALBURG_GYM_RIVAL_FIGHT
-	setflag FLAG_BADGE05_GET
-	setvar VAR_LEVEL_CAP 43
-	setvar VAR_PETALBURG_CITY_STATE 5
 	trainerbattle_no_intro TRAINER_RIVAL_05_HONO, gText_PlaceHolder
 	fadescreen FADE_TO_BLACK
 	setflag FLAG_HIDE_PETALBURG_GYM_RIVAL_FIGHT
 	removeobject LOCALID_WALLYS_DAD
 	fadescreen FADE_FROM_BLACK
+	call Common_EventScript_NemonaB2B_Badge_LevelCap_End
 	release
 	end
 

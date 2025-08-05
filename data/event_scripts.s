@@ -867,6 +867,97 @@ Common_EventScript_PlayerHandedOverTheItem::
 	removeitem VAR_0x8004
 	return
 
+Common_Gym2_EventScript_Plotless::
+	// PLOTLESS
+	setflag FLAG_DOCK_REJECTED_DEVON_GOODS
+	setflag FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA
+	setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS
+	setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_CAPTAIN_STERN
+	setflag FLAG_HIDE_ROUTE_110_TEAM_AQUA
+	setflag FLAG_DELIVERED_DEVON_GOODS
+	clearflag FLAG_HIDE_ROUTE_116_DEVON_EMPLOYEE
+	setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_CORP_3F_EMPLOYEE
+	setvar VAR_REGISTER_BIRCH_STATE, 1 @ fix for no Birch on Route 110
+	return
+
+Common_Gym3_EventScript_Plotless::
+	// PLOTLESS
+	setflag FLAG_HIDE_ROUTE_112_TEAM_MAGMA
+	setvar VAR_METEOR_FALLS_STATE, 1
+	setflag FLAG_HIDE_METEOR_FALLS_TEAM_AQUA
+	setflag FLAG_MET_PROF_COZMO
+	setflag FLAG_HIDE_MT_CHIMNEY_TEAM_AQUA
+	setflag FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
+	setflag FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY
+	clearflag FLAG_HIDE_FALLARBOR_HOUSE_PROF_COZMO
+	setflag FLAG_HIDE_METEOR_FALLS_1F_1R_COZMO
+	// PLOTLESS + EARLYSURF
+	setvar VAR_WEATHER_INSTITUTE_STATE, 2
+	setflag FLAG_HIDE_ROUTE_119_TEAM_AQUA
+	clearflag FLAG_HIDE_WEATHER_INSTITUTE_1F_WORKERS
+	setflag FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS
+	call_if_eq VAR_PETALBURG_GYM_STATE, 6, Common_EventScript_ReadyPetalburgGymForBattle
+	return
+
+Common_EventScript_SkipKitakami_LevelCap13_End::
+	setvar VAR_LEVEL_CAP 13
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
+Common_EventScript_SkipKitakami_LevelCap20_End::
+	call Common_Gym2_EventScript_Plotless
+	setflag FLAG_BADGE02_GET
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, Common_EventScript_SkipKitakami_LevelCap22_End
+	setvar VAR_LEVEL_CAP 20
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
+Common_EventScript_SkipKitakami_LevelCap22_End::
+	setvar VAR_LEVEL_CAP 22
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
+Common_EventScript_SkipKitakami_LevelCap33_End::
+	setvar VAR_LEVEL_CAP 33
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
+Common_EventScript_SkipKitakami_LevelCap36_End::
+	setvar VAR_LEVEL_CAP 36
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
+Common_EventScript_SkipKitakami_LevelCap42_End::
+	setvar VAR_LEVEL_CAP 42
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
+Common_EventScript_NemonaB2B_Badge_LevelCap_End::
+	setflag FLAG_BADGE05_GET
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, Common_EventScript_SkipKitakami_LevelCap45_End
+	setvar VAR_LEVEL_CAP 43
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
+Common_EventScript_SkipKitakami_LevelCap45_End::
+	setvar VAR_LEVEL_CAP 45
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
+Common_EventScript_SkipKitakami_LevelCap52_End::
+	setvar VAR_LEVEL_CAP 52
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
 Common_EventScript_CheckIfLevelCapTooLow::
 	// usage:
 	// buffernumberstring STR_VAR_2, <lvCap>
