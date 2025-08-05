@@ -2735,7 +2735,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     [MOVE_FOCUS_ENERGY] =
     {
         .name = COMPOUND_STRING("Focus Energy"),
-        .description = COMPOUND_STRING("The user takes a deep breath and focuses so that its\nfuture attacks have a heightened chance of landing\ncritical hits. +2 crit (50%) rate to be specific."),
+        .description = COMPOUND_STRING("The user takes a deep breath and focuses so that its\nfuture attacks have a heightened chance of landing\ncritical hits. +2 crit (50%) rate."),
         .effect = EFFECT_FOCUS_ENERGY,
         .power = 0,
         .type = TYPE_NORMAL,
@@ -4470,7 +4470,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     [MOVE_SPIKES] =
     {
         .name = COMPOUND_STRING("Spikes"),
-        .description = COMPOUND_STRING("The user lays a trap of spikes at the opposing side.\nThis damages foes that switch in, for 12-25% of their\nHP depending on how many layers are up."),
+        .description = COMPOUND_STRING("The user lays a trap of spikes at the opposing side.\nThis damages foes that switch in, for 12-25% of their\nHP based on the number of layers."),
         .effect = EFFECT_SPIKES,
         .power = 0,
         .type = TYPE_GROUND,
@@ -5334,7 +5334,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     [MOVE_RAPID_SPIN] =
     {
         .name = COMPOUND_STRING("Rapid Spin"),
-        .description = COMPOUND_STRING("The user performs a spin attack that can also eliminate\nthe effects of such moves as Bind, Wrap, and Leech\nSeed. Gives +1 Speed after use. Contact."),
+        .description = COMPOUND_STRING("A spin attack that can also eliminate\nthe effects of such moves as Bind, Wrap, and Leech\nSeed. Gives +1 Speed after use. Contact."),
         .effect = EFFECT_RAPID_SPIN,
         .power = 60,
         .type = TYPE_NORMAL,
