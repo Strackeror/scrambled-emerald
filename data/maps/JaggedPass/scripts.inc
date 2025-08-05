@@ -165,10 +165,10 @@ JaggedPass_EventScript_TitanOrthworm::
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	lock
 	faceplayer
-	msgbox JaggedPass_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 5
 	waitstate
-	msgbox JaggedPass_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 6
 	waitstate
 	fadescreen FADE_TO_BLACK
@@ -187,10 +187,10 @@ JaggedPass_EventScript_TitanOrthwormReverse::
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	lock
 	faceplayer
-	msgbox JaggedPass_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 22
 	waitstate
-	msgbox JaggedPass_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 23
 	waitstate
 	fadescreen FADE_TO_BLACK
@@ -202,9 +202,6 @@ JaggedPass_EventScript_TitanOrthwormReverse::
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	release
 	end
-
-JaggedPass_Text_Titan::
-	.string "...$"
 
 JaggedPass_Text_EricIntro:
 	.string "MT. CHIMNEY's JAGGED PASS…\p"

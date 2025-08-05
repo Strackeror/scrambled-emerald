@@ -620,7 +620,7 @@ Route119_EventScript_TitanOkidogi::
 	lock
 	goto_if_set FLAG_TITAN_OKIDOGI, Route119_EventScript_TitanOkidogi_Defeated
 	faceplayer
-	msgbox Route119_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 13
 	waitstate
 	setflag FLAG_TITAN_OKIDOGI
@@ -639,7 +639,7 @@ Route119_EventScript_TitanMunkidori::
 	lock
 	goto_if_set FLAG_TITAN_MUNKIDORI, Route119_EventScript_TitanMunkidori_Defeated
 	faceplayer
-	msgbox Route119_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 14
 	waitstate
 	setflag FLAG_TITAN_MUNKIDORI
@@ -658,7 +658,7 @@ Route119_EventScript_TitanFezandipiti::
 	lock
 	goto_if_set FLAG_TITAN_FEZANDIPITI, Route119_EventScript_TitanFezandipiti_Defeated
 	faceplayer
-	msgbox Route119_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 15
 	waitstate
 	setflag FLAG_TITAN_FEZANDIPITI
@@ -693,6 +693,3 @@ Route119_EventScript_End:
 Route119_Movement_TitanDefeated:
 	jump_in_place_up
 	step_end
-
-Route119_Text_Titan::
-	.string "...$"
