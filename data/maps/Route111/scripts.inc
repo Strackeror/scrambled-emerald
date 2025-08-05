@@ -596,10 +596,10 @@ Route111_EventScript_TitanGreatTusk::
 	call Route111_EventScript_SunnyWeatherReturn
 	lock
 	faceplayer
-	msgbox Route111_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 7
 	waitstate
-	msgbox Route111_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 8
 	waitstate
 	release
@@ -612,10 +612,10 @@ Route111_EventScript_TitanGreatTuskReverse::
 	call Route111_EventScript_SunnyWeatherReturn
 	lock
 	faceplayer
-	msgbox Route111_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 18
 	waitstate
-	msgbox Route111_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 19
 	waitstate
 	release
@@ -629,10 +629,10 @@ Route111_EventScript_TitanIronTreads::
 	call Route111_EventScript_SunnyWeatherReturn
 	lock
 	faceplayer
-	msgbox Route111_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 9
 	waitstate
-	msgbox Route111_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 10
 	waitstate
 	release
@@ -645,10 +645,10 @@ Route111_EventScript_TitanIronTreadsReverse::
 	call Route111_EventScript_SunnyWeatherReturn
 	lock
 	faceplayer
-	msgbox Route111_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 20
 	waitstate
-	msgbox Route111_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 21
 	waitstate
 	release
@@ -679,9 +679,6 @@ Route111_EventScript_TitanReverseDefeated::
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	release
 	end
-
-Route111_Text_Titan::
-	.string "...$"
 
 Route111_Text_BattleOurFamily:
 	.string "Hello! I take it you're a traveler.\p"

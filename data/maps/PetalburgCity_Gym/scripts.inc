@@ -488,10 +488,10 @@ PetalburgCity_Gym_EventScript_WallysDadArrives::
 	closemessage
 	special HealPlayerParty
 	clearflag FLAG_HIDE_PETALBURG_GYM_RIVAL_FIGHT
-	trainerbattle_no_intro TRAINER_RIVAL_05_HONO, PostFight_Nemona_LoseText
 	setflag FLAG_BADGE05_GET
 	setvar VAR_LEVEL_CAP 43
 	setvar VAR_PETALBURG_CITY_STATE 5
+	trainerbattle_no_intro TRAINER_RIVAL_05_HONO, gText_PlaceHolder
 	fadescreen FADE_TO_BLACK
 	setflag FLAG_HIDE_PETALBURG_GYM_RIVAL_FIGHT
 	removeobject LOCALID_WALLYS_DAD
@@ -1634,8 +1634,3 @@ PetalburgCity_Gym_Text_NormanRematchNeedTwoMons:
 	.string "Sorry, but you'll have to come back\n"
 	.string "with at least two POKéMON.$"
 
-PostFight_Nemona_Text:
-	.string "...$"
-
-PostFight_Nemona_LoseText:
-	.string "...$"

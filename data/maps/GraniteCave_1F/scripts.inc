@@ -36,6 +36,3 @@ GraniteCave_1F_Text_ExplainFlash:
 	.string "of caves.\p"
 	.string "But, to use it, you need the GYM BADGE\n"
 	.string "from DEWFORD's POKéMON GYM.$"
-
-GraniteCave_1F_Text_Klawf:
-	.string "...$"

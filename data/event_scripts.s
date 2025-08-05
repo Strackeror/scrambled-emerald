@@ -1064,9 +1064,9 @@ gText_LegendaryFlewAway::
 gText_PlaceHolder:
 	.string "…$"
 
-	.include "data/text/pc_transfer.inc"
-	.include "data/text/questionnaire.inc"
-	.include "data/text/abnormal_weather.inc"
+.include "data/text/pc_transfer.inc"
+.include "data/text/questionnaire.inc"
+.include "data/text/abnormal_weather.inc"
 
 EventScript_SelectWithoutRegisteredItem::
 	msgbox gText_SelectWithoutRegisteredItem, MSGBOX_SIGN

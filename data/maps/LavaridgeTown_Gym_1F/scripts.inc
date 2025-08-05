@@ -154,10 +154,10 @@ LavaridgeTown_Gym_EventScript_WallysDadArrives::
 	closemessage
 	special HealPlayerParty
 	clearflag FLAG_HIDE_PETALBURG_GYM_RIVAL_FIGHT
-	trainerbattle_no_intro TRAINER_RIVAL_05_HONO, PostFight_Nemona_LoseText
 	setvar VAR_LEVEL_CAP 43
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	setflag FLAG_BADGE05_GET
+	trainerbattle_no_intro TRAINER_RIVAL_05_HONO, gText_PlaceHolder
 	fadescreen FADE_TO_BLACK
 	setflag FLAG_HIDE_PETALBURG_GYM_RIVAL_FIGHT
 	removeobject LOCALID_WALLYS_DAD

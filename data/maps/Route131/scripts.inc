@@ -64,10 +64,10 @@ Route131_EventScript_TitanDondozo::
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	lock
 	faceplayer
-	msgbox Route131_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 11
 	waitstate
-	msgbox Route131_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 12
 	waitstate
 	fadescreen FADE_TO_BLACK
@@ -86,10 +86,10 @@ Route131_EventScript_TitanDondozoReverse::
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	lock
 	faceplayer
-	msgbox Route131_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 16
 	waitstate
-	msgbox Route131_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 17
 	waitstate
 	fadescreen FADE_TO_BLACK
@@ -101,6 +101,3 @@ Route131_EventScript_TitanDondozoReverse::
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	release
 	end
-
-Route131_Text_Titan::
-	.string "...$"

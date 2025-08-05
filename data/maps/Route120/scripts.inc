@@ -381,10 +381,10 @@ Route120_EventScript_TitanBombirdier::
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	lock
 	faceplayer
-	msgbox Route120_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 3
 	waitstate
-	msgbox Route120_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 4
 	waitstate
 	fadescreen FADE_TO_BLACK
@@ -403,10 +403,10 @@ Route120_EventScript_TitanBombirdierReverse::
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	lock
 	faceplayer
-	msgbox Route120_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 24
 	waitstate
-	msgbox Route120_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 25
 	waitstate
 	fadescreen FADE_TO_BLACK
@@ -478,6 +478,3 @@ Route120_Text_RouteSignFortree:
 Route120_Text_RouteSign121:
 	.string "{RIGHT_ARROW} ROUTE 121\n"
 	.string "{LEFT_ARROW} ROUTE 120$"
-
-Route120_Text_Titan::
-	.string "...$"

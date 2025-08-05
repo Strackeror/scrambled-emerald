@@ -50,10 +50,10 @@ Route106_EventScript_KlawfTitan::
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	lock
 	faceplayer
-	msgbox Route106_Text_Klawf, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 1
 	waitstate
-	msgbox Route106_Text_Klawf, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 2
 	waitstate
 	fadescreen FADE_TO_BLACK
@@ -72,10 +72,10 @@ Route106_EventScript_KlawfTitanReverse::
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	lock
 	faceplayer
-	msgbox Route106_Text_Klawf, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 26
 	waitstate
-	msgbox Route106_Text_Klawf, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 27
 	waitstate
 	fadescreen FADE_TO_BLACK
@@ -92,6 +92,3 @@ Route106_Text_TrainerTips:
 	.string "TRAINER TIPS\p"
 	.string "Advice on catching POKéMON with a ROD:\n"
 	.string "Press the A Button if you get a bite.$"
-
-Route106_Text_Klawf:
-	.string "...$"
