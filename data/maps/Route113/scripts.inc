@@ -134,11 +134,19 @@ Route113_EventScript_Wyatt::
 	end
 
 Route113_EventScript_Kieran3::
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, Route113_EventScript_Kieran3_Skipped
 	setvar VAR_TEMP_F, 35
 	buffernumberstring STR_VAR_2, VAR_TEMP_F
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	trainerbattle_single TRAINER_BROTHER_01_03, Route113_Text_Kieran3Intro, Route113_Text_Kieran3Defeat, Route113_EventScript_Kieran3_LevelCap
 	msgbox Route113_Text_Kieran3PostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+Route113_EventScript_Kieran3_Skipped::
+	lock
+	faceplayer
+	msgbox Route113_Text_Kieran3PostBattle, MSGBOX_AUTOCLOSE
 	release
 	end
 

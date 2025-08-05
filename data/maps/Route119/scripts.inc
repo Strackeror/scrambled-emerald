@@ -614,6 +614,7 @@ Route119_Text_TrainerTipsDecoration:
 	.string "way you want.$"
 
 Route119_EventScript_TitanOkidogi::
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, Route119_EventScript_Titan_Skipped
 	setvar VAR_TEMP_F, 43
 	buffernumberstring STR_VAR_2, VAR_TEMP_F
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
@@ -633,6 +634,7 @@ Route119_EventScript_TitanOkidogi_Defeated::
 	end
 
 Route119_EventScript_TitanMunkidori::
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, Route119_EventScript_Titan_Skipped
 	setvar VAR_TEMP_F, 43
 	buffernumberstring STR_VAR_2, VAR_TEMP_F
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
@@ -652,6 +654,7 @@ Route119_EventScript_TitanMunkidori_Defeated::
 	end
 
 Route119_EventScript_TitanFezandipiti::
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, Route119_EventScript_Titan_Skipped
 	setvar VAR_TEMP_F, 43
 	buffernumberstring STR_VAR_2, VAR_TEMP_F
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
@@ -683,6 +686,13 @@ Route119_EventScript_TryRemoveLoyal3:
 	call Common_EventScript_AddMoneyScrambledTitanFights
 	setvar VAR_LEVEL_CAP 45
 	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
+Route119_EventScript_Titan_Skipped::
+	lock
+	faceplayer
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	release
 	end
 

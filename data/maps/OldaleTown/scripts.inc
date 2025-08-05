@@ -359,8 +359,45 @@ OldaleTown_Movement_ReturnToOriginalPosition:
 	step_end
 
 OldaleTown_EventScript_Carmine1::
+	@ Ask if skipping Teal Mask ONLY IF NOT SELECTED
+	goto_if_eq VAR_LEVEL_CAP, 11, OldaleTown_EventScript_Carmine1_SkipKitakamiQuestion
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, OldaleTown_EventScript_Carmine1_Skipped
+	goto OldaleTown_EventScript_Carmine1Battle
+
+OldaleTown_EventScript_Carmine1Battle::
 	trainerbattle_single TRAINER_SISTER_01_01, OldaleTown_Text_Carmine1Intro, OldaleTown_Text_Carmine1Defeat, OldaleTown_EventScript_Carmine1_Defeated
 	msgbox OldaleTown_Text_Carmine1PostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+OldaleTown_EventScript_Carmine1_SkipKitakamiQuestion::
+	lock
+	faceplayer
+	msgbox OldaleTown_Text_CarmineAskSkipKitakami, MSGBOX_DEFAULT
+	multichoice 20, 8, MULTI_YESNO, TRUE
+	goto_if_eq VAR_RESULT, 0, OldaleTown_EventScript_Carmine1Battle
+	goto_if_eq VAR_RESULT, 1, OldaleTown_EventScript_Carmine1_SkipKitakamiAreYouSure
+
+OldaleTown_EventScript_Carmine1_Skipped::
+	lock
+	faceplayer
+	msgbox OldaleTown_Text_Carmine1PostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+OldaleTown_EventScript_Carmine1_SkipKitakamiAreYouSure::
+	lock
+	faceplayer
+	msgbox OldaleTown_Text_CarmineAskAreYouSure, MSGBOX_DEFAULT
+	multichoice 20, 8, MULTI_YESNO, TRUE
+	goto_if_eq VAR_RESULT, 0, OldaleTown_EventScript_Carmine1_SkipKitakamiAww
+	goto_if_eq VAR_RESULT, 1, OldaleTown_EventScript_Carmine1_SkipKitakamiQuestion
+	return
+
+OldaleTown_EventScript_Carmine1_SkipKitakamiAww::
+	msgbox OldaleTown_Text_CarmineSkipKitakamiAww, MSGBOX_DEFAULT
+	setflag FLAG_SKIPPING_TEAL_MASK
+	call OldaleTown_EventScript_Kieran1_Defeated
 	release
 	end
 
@@ -370,10 +407,18 @@ OldaleTown_EventScript_Carmine1_Defeated::
 	return
 
 OldaleTown_EventScript_Carmine2::
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, OldaleTown_EventScript_Carmine2_Skipped
 	setvar VAR_TEMP_F, 32
 	buffernumberstring STR_VAR_2, VAR_TEMP_F
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	trainerbattle_single TRAINER_SISTER_01_02, OldaleTown_Text_Carmine2Intro, OldaleTown_Text_Carmine2Defeat, OldaleTown_EventScript_Carmine2_Defeated
+	msgbox OldaleTown_Text_Carmine2PostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+OldaleTown_EventScript_Carmine2_Skipped::
+	lock
+	faceplayer
 	msgbox OldaleTown_Text_Carmine2PostBattle, MSGBOX_DEFAULT
 	release
 	end
@@ -384,10 +429,18 @@ OldaleTown_EventScript_Carmine2_Defeated::
 	return
 
 OldaleTown_EventScript_Kieran1::
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, OldaleTown_EventScript_Kieran1_Skipped
 	setvar VAR_TEMP_F, 12
 	buffernumberstring STR_VAR_2, VAR_TEMP_F
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	trainerbattle_single TRAINER_BROTHER_01_01, OldaleTown_Text_Kieran1Intro, OldaleTown_Text_Kieran1Defeat, OldaleTown_EventScript_Kieran1_Defeated
+	msgbox OldaleTown_Text_Kieran1PostBattle, MSGBOX_AUTOCLOSE
+	release
+	end
+
+OldaleTown_EventScript_Kieran1_Skipped::
+	lock
+	faceplayer
 	msgbox OldaleTown_Text_Kieran1PostBattle, MSGBOX_AUTOCLOSE
 	release
 	end
@@ -398,14 +451,17 @@ OldaleTown_EventScript_Kieran1_Defeated::
 	giveitem ITEM_FLYING_TAXI_TICKET
 	return
 
-OldaleTown_Text_AskIfPlayingKitakami:
-	.string "We must have been fated to meet.\n"
-	.string "Surely you are interested in the\p"
-	.string "lore of the Teal Mask, right?$"
+OldaleTown_Text_CarmineAskSkipKitakami:
+	.string "Surely you are interested in\n"
+	.string "the lore of the {COLOR RED}Teal Mask{COLOR DARK_GRAY}, right?$"
 
-OldaleTown_Text_Carmine1SkippingKitakami:
+OldaleTown_Text_CarmineAskAreYouSure:
+	.string "Woah! You really want to {COLOR RED}SKIP{COLOR DARK_GRAY} Kitakami?\n"
+	.string "You {COLOR RED}CANNOT{COLOR DARK_GRAY} change this later!$"
+
+OldaleTown_Text_CarmineSkipKitakamiAww:
 	.string "Aww, really?\n"
-	.string "Alright, fine then…"
+	.string "Alright, fine then…$"
 
 OldaleTown_Text_Carmine1Intro:
 	.string "We must have been fated to meet.\n"

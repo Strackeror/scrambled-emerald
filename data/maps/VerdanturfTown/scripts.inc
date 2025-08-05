@@ -83,9 +83,11 @@ VerdanturfTown_EventScript_AtticusReverse::
 	end
 	
 VerdanturfTown_EventScript_DokuBossDefeated::
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, Common_EventScript_SkipKitakami_LevelCap42_End
 	setvar VAR_LEVEL_CAP 40
 	call Common_EventScript_NewLevelCapTextAndFanfare
-	return
+	release
+	end
 
 VerdanturfTown_EventScript_AtticusReverse_Defeated::
 	setvar VAR_LEVEL_CAP 38
