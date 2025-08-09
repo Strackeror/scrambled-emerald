@@ -157,6 +157,7 @@ LittlerootTown_EventScript_GoInsideWithMom::
 	multichoice 20, 8, MULTI_CHOOSE_PATH, TRUE
 	call_if_eq VAR_RESULT, 0, LittlerootTown_EventScript_ScrambledVanillaPath
 	call_if_eq VAR_RESULT, 1, LittlerootTown_EventScript_ScrambledReversePath
+	msgbox LittlerootTown_Text_CheckPath, MSGBOX_DEFAULT
 
 	// Announce Level Cap
 	call Common_EventScript_NewLevelCapTextAndFanfare
@@ -812,6 +813,15 @@ LittlerootTown_EventScript_MomReturnHomeFemale5::
 	waitdooranim
 	return
 
+LittlerootTown_EventScript_NewPlayerHelper::
+	lock
+	faceplayer
+	msgbox LittlerootTown_Text_NewPlayerHelper1, MSGBOX_DEFAULT
+	msgbox LittlerootTown_Text_NewPlayerHelper2, MSGBOX_DEFAULT
+	msgbox LittlerootTown_Text_NewPlayerHelper3, MSGBOX_DEFAULT
+	release
+	end
+
 LittlerootTown_Movement_MomApproachPlayer0:
 	walk_up
 	walk_up
@@ -1003,6 +1013,63 @@ LittlerootTown_EventScript_GiveRunningShoes::
 LittlerootTown_Text_ChoosePath:
 	.string "Choose the path you wish to play.\n"
 	.string "Note: You {COLOR RED}CANNOT{COLOR DARK_GRAY} change this later!$"
+
+LittlerootTown_Text_CheckPath:
+	.string "You can check your chosen path on\n"
+	.string "your Trainer Card!\p"
+	.string "Remember to use the {COLOR RED}DOOZDEX{COLOR DARK_GRAY}\n"
+	.string "for boss teams, locations and level caps!$"
+
+LittlerootTown_Text_NewPlayerHelper1:
+	.string "Hi! Are you confused?\n"
+	.string "I can help!\p"
+
+	.string "You're playing… {COLOR RED}Scrambled Scarlet{COLOR DARK_GRAY}!\n"
+	.string "This isn't your traditional RomHack…\p"
+	.string "{COLOR RED}EVERY{COLOR DARK_GRAY} single POKéMON has been\n"
+	.string "reimagined with thoughtful buffs and\l"
+	.string "changes to make them fun and\l"
+	.string "satisfying to use!\p"
+	.string "You can use your favorites and win\n"
+	.string "with the right preperation!\p"
+
+	.string "You have tons of tools at your disposal\n"
+	.string "like reworked moves, terastalization,\l"
+	.string "3 amazing abilities for every Pokemon,\l"
+	.string "tons of items & more!$"
+
+LittlerootTown_Text_NewPlayerHelper2:
+	.string "It's balanced around {COLOR RED}Teamlocked{COLOR DARK_GRAY}\n"
+	.string "{COLOR RED}Nuzlocke{COLOR DARK_GRAY}, a format where you don't\l"
+	.string "swap out team members unless one dies.\p"
+	.string "It's meant for you to bond with your\n"
+	.string "team and not carelessly sack them!\p"
+
+	.string "{COLOR RED}Teamlocke{COLOR DARK_GRAY} is fun and encouraged,\n"
+	.string "but it's {COLOR RED}TOTALLY optional{COLOR DARK_GRAY}.\l"
+	.string "You can play however you want.\p"
+
+	.string "Encounters are now {COLOR RED}egg-based{COLOR DARK_GRAY} to add\n"
+	.string "surprise and variety to your team.\p"
+	.string "You unlock more eggs, items and TMs\n"
+	.string "as you collect badges.$"
+
+LittlerootTown_Text_NewPlayerHelper3:
+	.string "Please, USE THE {COLOR RED}DOOZDEX{COLOR DARK_GRAY} - it's a tool\n"
+	.string "designed to answer all of your\l"
+	.string "questions about the game.\p"
+	.string "Boss locations, teams, POKéMON changes…\n"
+	.string "Everything can be found there!\p"
+
+	.string "If you need extra help or are stuck,\n"
+	.string "join the Discord server!\l"
+	.string "We have a nice community that is\l"
+	.string "happy to help!\p"
+
+	.string "The Doozcord is also the best way to\n"
+	.string "see Dooz's upcoming projects!\p"
+	.string "Thank you for playing!\n"
+	.string "We appreciate it and hope you enjoy!$"
 
 LittlerootTown_Text_YouGotEverything:
 	.string "You received KEY ITEMS to {COLOR RED}Raise your{COLOR DARK_GRAY}\n"
