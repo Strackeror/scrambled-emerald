@@ -1295,6 +1295,7 @@ Common_EventScript_RerollNaturePage2::
 Common_EventScript_RerollTeraType::
 	msgbox Common_Text_RerollTeraType, MSGBOX_DEFAULT
 	multichoicegrid 20, 0, MULTI_REROLL_TERATYPE, 4, TRUE
+	goto_if_eq VAR_RESULT, 19, Common_EventScript_RerollTeraType
 	closemessage
 	callnative Script_SetTeraType
 	playfanfare MUS_LEVEL_UP
@@ -1391,7 +1392,8 @@ Common_Text_RerollNature:
 	.string "Choose a Nature.$"
 
 Common_Text_RerollTeraType:
-	.string "Choose a Tera Type.$"
+	.string "Choose a Tera Type.\n"
+	.string "STAB Tera Types are {COLOR RED}NOT RECOMMENDED{COLOR DARK_GRAY}!$"
 
 Common_Text_ToggleGender:
 	.string "Choose a Gender.$"
