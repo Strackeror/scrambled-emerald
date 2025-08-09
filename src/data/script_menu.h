@@ -800,7 +800,7 @@ static const u8 gText_RerollTeraType[] = _("Reroll Tera Type");
 static const u8 gText_ToggleShiny[] = _("Toggle Shiny");
 static const u8 gText_ToggleGender[] = _("Reroll Gender");
 static const u8 gText_ChangePokeball[] = _("Change Pokéball");
-static const u8 gText_RefundHatch[] = _("{COLOR RED}Refund (ONLY {LV}1)");
+static const u8 gText_RefundHatch[] = _("{COLOR RED}Refund (ONLY {LV}. 1)");
 static const u8 gText_Random[] = _("{COLOR RED}RANDOM");
 static const struct MenuAction MultichoiceList_RerollOptions[] =
 {

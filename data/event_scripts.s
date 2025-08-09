@@ -1413,7 +1413,7 @@ Common_Text_RefundAreYouSure:
 
 Common_Text_RefundNotLevel1:
 	.string "I cannot accept a Pokémon\n"
-	.string "that is not {LV}1!$"
+	.string "that is not {LV}. 1!$"
 
 Common_Text_RefundTakeGoodCare:
 	.string "I'll take good care of your\n"

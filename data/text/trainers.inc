@@ -4783,8 +4783,8 @@ VSSeeker_Text_TrainersNotReady::
 	.string "Let's wait till later.{PAUSE_UNTIL_PRESS}$"
 
 Scrambled_Text_LevelCap:
-	.string "The LEVEL CAP is now {COLOR RED}{SHADOW LIGHT_RED}{STR_VAR_1}{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}.$"
+	.string "The LEVEL CAP is now {COLOR RED}{STR_VAR_1}{COLOR DARK_GRAY}.$"
 
 Scrambled_Text_LevelCapTooLow:
-	.string "Your current LEVEL CAP is {COLOR RED}{SHADOW LIGHT_RED}{STR_VAR_1}{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}…\n"
-	.string "Come back when your LEVEL CAP is {COLOR RED}{SHADOW LIGHT_RED}{STR_VAR_2}{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}.$"
+	.string "Your current LEVEL CAP is {COLOR RED}{STR_VAR_1}{COLOR DARK_GRAY}…\n"
+	.string "Come back when your LEVEL CAP is {COLOR RED}{STR_VAR_2}{COLOR DARK_GRAY}.$"
