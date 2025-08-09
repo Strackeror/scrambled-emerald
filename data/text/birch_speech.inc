@@ -1,9 +1,12 @@
 gText_Birch_Welcome::
-	.string "Hi! Sorry to keep you waiting!\p"
-	.string "Welcome to the world of POKéMON!\p"
-	.string "My name is BIRCH.\p"
-	.string "But everyone calls me the POKéMON\n"
-	.string "PROFESSOR.\p"
+	.string "Welcome to {COLOR RED}Scrambled Scarlet{COLOR DARK_GRAY}!\p"
+	.string "This isn't your traditional RomHack…\p"
+	.string "{COLOR RED}EVERY{COLOR DARK_GRAY} single POKéMON has been\n"
+	.string "reimagined with thoughtful buffs and\l"
+	.string "changes to make them fun and\l"
+	.string "satisfying to use!\p"
+	.string "You can use your favorites and win\n"
+	.string "with the right preperation!\p"
 	.string "$"
 
 gText_Birch_Pokemon::
@@ -12,24 +15,25 @@ gText_Birch_Pokemon::
 	.string "$"
 
 gText_Birch_MainSpeech::
-	.string "This world is widely inhabited by\n"
-	.string "creatures known as POKéMON.\p"
-	.string "We humans live alongside POKéMON,\n"
-	.string "at times as friendly playmates, and\l"
-	.string "at times as cooperative workmates.\p"
-	.string "And sometimes, we band together\n"
-	.string "and battle others like us.\p"
-	.string "But despite our closeness, we don't\n"
-	.string "know everything about POKéMON.\p"
-	.string "In fact, there are many, many\n"
-	.string "secrets surrounding POKéMON.\p"
-	.string "To unravel POKéMON mysteries,\n"
-	.string "I've been undertaking research.\l"
-	.string "That's what I do.\p"
+	.string "Each Pokémon gets 3 amazing abilities,\n"
+	.string "reworked moves, terastalization,\l"
+	.string "tons of items & more!\p"
+	.string "It's balanced around {COLOR RED}Teamlocked{COLOR DARK_GRAY}\n"
+	.string "{COLOR RED}Nuzlocke{COLOR DARK_GRAY}, a format where you don't\l"
+	.string "swap out team members unless one dies.\p"
+	.string "It's meant for you to bond with your\n"
+	.string "team and not carelessly sack them!\p"
+	.string "{COLOR RED}Teamlocke{COLOR DARK_GRAY} is fun and encouraged,\n"
+	.string "but it's {COLOR RED}TOTALLY optional{COLOR DARK_GRAY}.\p"
+	.string "Please, USE THE {COLOR RED}DOOZDEX{COLOR DARK_GRAY} - it's a tool\n"
+	.string "designed to answer all of your\l"
+	.string "questions about the game.\p"
+	.string "If you need extra help or are stuck,\n"
+	.string "join the Discord server!\p"
 	.string "$"
 
 gText_Birch_AndYouAre::
-	.string "And you are?$"
+	.string "Alright, now let's begin…$"
 
 gText_Birch_BoyOrGirl::
 	.string "Are you a boy?\n"
