@@ -68,8 +68,8 @@ VerdanturfTown_EventScript_DokuBoss::
 	setvar VAR_TEMP_F, 38
 	buffernumberstring STR_VAR_2, VAR_TEMP_F
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
-	trainerbattle_single TRAINER_DAN_DOKU_BOSS_01, VerdanturfTown_Text_Placeholder, VerdanturfTown_Text_Placeholder, VerdanturfTown_EventScript_DokuBossDefeated
-	msgbox VerdanturfTown_Text_Placeholder, MSGBOX_NPC
+	trainerbattle_single TRAINER_DAN_DOKU_BOSS_01, gText_PlaceHolder, gText_PlaceHolder, VerdanturfTown_EventScript_DokuBossDefeated
+	msgbox gText_PlaceHolder, MSGBOX_NPC
 	release
 	end
 
@@ -77,23 +77,22 @@ VerdanturfTown_EventScript_AtticusReverse::
 	setvar VAR_TEMP_F, 36
 	buffernumberstring STR_VAR_2, VAR_TEMP_F
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
-	trainerbattle_single SCRAMBLED_ATTICUS_REVERSE, VerdanturfTown_Text_Placeholder, VerdanturfTown_Text_Placeholder, VerdanturfTown_EventScript_AtticusDefeated
-	msgbox VerdanturfTown_Text_Placeholder, MSGBOX_NPC
+	trainerbattle_single SCRAMBLED_ATTICUS_REVERSE, gText_PlaceHolder, gText_PlaceHolder, VerdanturfTown_EventScript_AtticusReverse_Defeated
+	msgbox gText_PlaceHolder, MSGBOX_NPC
 	release
 	end
 	
 VerdanturfTown_EventScript_DokuBossDefeated::
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, Common_EventScript_SkipKitakami_LevelCap42_End
 	setvar VAR_LEVEL_CAP 40
 	call Common_EventScript_NewLevelCapTextAndFanfare
-	return
+	release
+	end
 
-VerdanturfTown_EventScript_AtticusDefeated::
+VerdanturfTown_EventScript_AtticusReverse_Defeated::
 	setvar VAR_LEVEL_CAP 38
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	return
-
-VerdanturfTown_Text_Placeholder:
-	.string "...$"
 
 VerdanturfTown_Text_ManTryingToDigTunnel:
 	.string "My papa told me.\p"

@@ -867,6 +867,97 @@ Common_EventScript_PlayerHandedOverTheItem::
 	removeitem VAR_0x8004
 	return
 
+Common_Gym2_EventScript_Plotless::
+	// PLOTLESS
+	setflag FLAG_DOCK_REJECTED_DEVON_GOODS
+	setflag FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA
+	setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS
+	setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_CAPTAIN_STERN
+	setflag FLAG_HIDE_ROUTE_110_TEAM_AQUA
+	setflag FLAG_DELIVERED_DEVON_GOODS
+	clearflag FLAG_HIDE_ROUTE_116_DEVON_EMPLOYEE
+	setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_CORP_3F_EMPLOYEE
+	setvar VAR_REGISTER_BIRCH_STATE, 1 @ fix for no Birch on Route 110
+	return
+
+Common_Gym3_EventScript_Plotless::
+	// PLOTLESS
+	setflag FLAG_HIDE_ROUTE_112_TEAM_MAGMA
+	setvar VAR_METEOR_FALLS_STATE, 1
+	setflag FLAG_HIDE_METEOR_FALLS_TEAM_AQUA
+	setflag FLAG_MET_PROF_COZMO
+	setflag FLAG_HIDE_MT_CHIMNEY_TEAM_AQUA
+	setflag FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
+	setflag FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY
+	clearflag FLAG_HIDE_FALLARBOR_HOUSE_PROF_COZMO
+	setflag FLAG_HIDE_METEOR_FALLS_1F_1R_COZMO
+	// PLOTLESS + EARLYSURF
+	setvar VAR_WEATHER_INSTITUTE_STATE, 2
+	setflag FLAG_HIDE_ROUTE_119_TEAM_AQUA
+	clearflag FLAG_HIDE_WEATHER_INSTITUTE_1F_WORKERS
+	setflag FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS
+	call_if_eq VAR_PETALBURG_GYM_STATE, 6, Common_EventScript_ReadyPetalburgGymForBattle
+	return
+
+Common_EventScript_SkipKitakami_LevelCap13_End::
+	setvar VAR_LEVEL_CAP 13
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
+Common_EventScript_SkipKitakami_LevelCap20_End::
+	call Common_Gym2_EventScript_Plotless
+	setflag FLAG_BADGE02_GET
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, Common_EventScript_SkipKitakami_LevelCap22_End
+	setvar VAR_LEVEL_CAP 20
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
+Common_EventScript_SkipKitakami_LevelCap22_End::
+	setvar VAR_LEVEL_CAP 22
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
+Common_EventScript_SkipKitakami_LevelCap33_End::
+	setvar VAR_LEVEL_CAP 33
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
+Common_EventScript_SkipKitakami_LevelCap36_End::
+	setvar VAR_LEVEL_CAP 36
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
+Common_EventScript_SkipKitakami_LevelCap42_End::
+	setvar VAR_LEVEL_CAP 42
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
+Common_EventScript_NemonaB2B_Badge_LevelCap_End::
+	setflag FLAG_BADGE05_GET
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, Common_EventScript_SkipKitakami_LevelCap45_End
+	setvar VAR_LEVEL_CAP 43
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
+Common_EventScript_SkipKitakami_LevelCap45_End::
+	setvar VAR_LEVEL_CAP 45
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
+Common_EventScript_SkipKitakami_LevelCap52_End::
+	setvar VAR_LEVEL_CAP 52
+	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
 Common_EventScript_CheckIfLevelCapTooLow::
 	// usage:
 	// buffernumberstring STR_VAR_2, <lvCap>
@@ -1064,9 +1155,9 @@ gText_LegendaryFlewAway::
 gText_PlaceHolder:
 	.string "…$"
 
-	.include "data/text/pc_transfer.inc"
-	.include "data/text/questionnaire.inc"
-	.include "data/text/abnormal_weather.inc"
+.include "data/text/pc_transfer.inc"
+.include "data/text/questionnaire.inc"
+.include "data/text/abnormal_weather.inc"
 
 EventScript_SelectWithoutRegisteredItem::
 	msgbox gText_SelectWithoutRegisteredItem, MSGBOX_SIGN
@@ -1131,6 +1222,227 @@ Common_EventScript_EggShop::
 	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
+
+Common_EventScript_Reroll::
+	lock
+	faceplayer
+	getpartysize
+	goto_if_eq VAR_RESULT, 0, Common_EventScript_NoPokemon
+	msgbox Common_Text_HiChooseAPokemon, MSGBOX_DEFAULT
+	special ChoosePartyMon
+	waitstate
+	goto_if_ge VAR_0x8004, PARTY_SIZE, Common_EventScript_NoPokemon
+	goto_if_eq VAR_0x8004, PARTY_NOTHING_CHOSEN, Common_EventScript_NoPokemon
+	special IsSelectedMonEgg
+	goto_if_eq VAR_RESULT, TRUE, Common_EventScript_EggChosen
+	bufferpartymonnick STR_VAR_1, VAR_0x8004
+	msgbox Common_Text_RerollWhatCanIDo, MSGBOX_DEFAULT
+	multichoice 20, 0, MULTI_REROLL_OPTIONS, FALSE
+	switch VAR_RESULT
+	case 0, Common_EventScript_RerollNaturePage1
+	case 1, Common_EventScript_RerollTeraType
+	case 2, Common_EventScript_ToggleShiny
+	case 3, Common_EventScript_ToggleGender
+	case 4, Common_EventScript_ChangePokeballPage1
+	case 5, Common_EventScript_RefundHatch
+	case MULTI_B_PRESSED, Common_Script_PleaseComeAgain
+	waitmessage
+	goto Common_EventScript_RerollLoop
+
+Common_EventScript_RerollLoop::
+	msgbox Common_Text_RerollAnythingElse, MSGBOX_DEFAULT
+	multichoice 20, 0, MULTI_REROLL_OPTIONS, FALSE
+	switch VAR_RESULT
+	case 0, Common_EventScript_RerollNaturePage1
+	case 1, Common_EventScript_RerollTeraType
+	case 2, Common_EventScript_ToggleShiny
+	case 3, Common_EventScript_ToggleGender
+	case 4, Common_EventScript_ChangePokeballPage1
+	case 5, Common_EventScript_RefundHatch
+	case MULTI_B_PRESSED, Common_Script_PleaseComeAgain
+	waitmessage
+	goto Common_EventScript_RerollLoop
+
+Common_Script_PleaseComeAgain::
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+Common_EventScript_RerollNaturePage1::
+	setvar VAR_TEMP_E, 1
+	setvar VAR_RESULT, 0
+	msgbox Common_Text_RerollNature, MSGBOX_DEFAULT
+	multichoicegrid 20, 0, MULTI_REROLL_NATURE_1, 4, TRUE
+	goto_if_eq VAR_RESULT, 15, Common_EventScript_RerollNaturePage2
+	closemessage
+	callnative Script_SetNature
+	playfanfare MUS_LEVEL_UP
+	waitfanfare
+	goto Common_EventScript_RerollLoop
+
+Common_EventScript_RerollNaturePage2::
+	setvar VAR_TEMP_E, 2
+	setvar VAR_RESULT, 0
+	msgbox Common_Text_RerollNature, MSGBOX_DEFAULT
+	multichoicegrid 20, 0, MULTI_REROLL_NATURE_2, 4, TRUE
+	goto_if_eq VAR_RESULT, 11, Common_EventScript_RerollNaturePage1
+	closemessage
+	callnative Script_SetNature
+	playfanfare MUS_LEVEL_UP
+	waitfanfare
+	goto Common_EventScript_RerollLoop
+
+Common_EventScript_RerollTeraType::
+	msgbox Common_Text_RerollTeraType, MSGBOX_DEFAULT
+	multichoicegrid 20, 0, MULTI_REROLL_TERATYPE, 4, TRUE
+	goto_if_eq VAR_RESULT, 19, Common_EventScript_RerollTeraType
+	closemessage
+	callnative Script_SetTeraType
+	playfanfare MUS_LEVEL_UP
+	waitfanfare
+	goto Common_EventScript_RerollLoop
+
+Common_EventScript_ToggleShiny::
+	closemessage
+	callnative Script_ToggleShiny
+	playfanfare MUS_LEVEL_UP
+	waitfanfare
+	goto Common_EventScript_RerollLoop
+
+Common_EventScript_ToggleGender::
+	closemessage
+	callnative Script_ToggleGender
+	playfanfare MUS_LEVEL_UP
+	waitfanfare
+	goto Common_EventScript_RerollLoop
+
+Common_EventScript_ChangePokeballPage1::
+	setvar VAR_TEMP_E, 1
+	setvar VAR_RESULT, 0
+	msgbox Common_Text_RerollPokeball, MSGBOX_DEFAULT
+	multichoicegrid 20, 0, MULTI_REROLL_POKEBALL_1, 3, TRUE
+	goto_if_eq VAR_RESULT, 17, Common_EventScript_ChangePokeballPage2
+	closemessage
+	callnative Script_SetPokeball
+	playfanfare MUS_LEVEL_UP
+	waitfanfare
+	goto Common_EventScript_RerollLoop
+
+Common_EventScript_ChangePokeballPage2::
+	setvar VAR_TEMP_E, 2
+	setvar VAR_RESULT, 0
+	msgbox Common_Text_RerollPokeball, MSGBOX_DEFAULT
+	multichoicegrid 20, 0, MULTI_REROLL_POKEBALL_2, 3, TRUE
+	goto_if_eq VAR_RESULT, 11, Common_EventScript_ChangePokeballPage1
+	closemessage
+	callnative Script_SetPokeball
+	playfanfare MUS_LEVEL_UP
+	waitfanfare
+	goto Common_EventScript_RerollLoop
+
+Common_EventScript_RefundHatch::
+	setvar VAR_TEMP_E, 0
+	closemessage
+	callnative Script_GetChosenMonLevel
+	goto_if_ne VAR_TEMP_E, 1, Common_EventScript_RefundHatchNotLv1
+	msgbox Common_Text_RefundAreYouSure, MSGBOX_DEFAULT
+	multichoicedefault 20, 8, MULTI_YESNO, 1, FALSE
+	switch VAR_RESULT
+	case 1, Common_EventScript_RerollLoop
+	case MULTI_B_PRESSED, Common_EventScript_RerollLoop
+	showmoneybox 0, 0
+	callnative Script_RemoveChosenMon
+	msgbox Common_Text_RefundTakeGoodCare, MSGBOX_DEFAULT
+	waitmessage
+	addmoneyscrambled 1
+	updatemoneybox
+	playfanfare MUS_RG_OBTAIN_KEY_ITEM
+	waitfanfare
+	waitmessage
+	hidemoneybox
+	return
+
+Common_EventScript_RefundHatchNotLv1::
+	msgbox Common_Text_RefundNotLevel1, MSGBOX_DEFAULT
+	goto Common_EventScript_RerollLoop
+
+Common_EventScript_EggChosen::
+	msgbox Common_Text_EggChosen, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Common_EventScript_NoPokemon::
+	msgbox Common_Text_NoPokemon, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Common_Text_HiChooseAPokemon:
+	.string "Hi, I can help with Rerolling!\p"
+	.string "Choose a Pokémon to get started!$"
+
+Common_Text_RerollWhatCanIDo:
+	.string "What can I do today\n"
+	.string "for your {STR_VAR_1}?$"
+
+Common_Text_RerollAnythingElse:
+	.string "Anything else I can do\n"
+	.string "for your {STR_VAR_1} today?$"
+
+Common_Text_RerollNature:
+	.string "Choose a Nature.$"
+
+Common_Text_RerollTeraType:
+	.string "Choose a Tera Type.\n"
+	.string "STAB Tera Types are {COLOR RED}NOT RECOMMENDED{COLOR DARK_GRAY}!$"
+
+Common_Text_ToggleGender:
+	.string "Choose a Gender.$"
+
+Common_Text_RerollPokeball:
+	.string "Choose a Pokéball.$"
+
+Common_Text_NoPokemon:
+	.string "Hi... You have no Pokémon!\n"
+	.string "Come back when you have at least one.$"
+
+Common_Text_EggChosen:
+	.string "I can't reroll an egg!\n"
+	.string "Please choose a hatched Pokémon.$"
+
+Common_Text_RefundAreYouSure:
+	.string "I can take your Pokémon and\n"
+	.string "refund you. Are you sure?$"
+
+Common_Text_RefundNotLevel1:
+	.string "I cannot accept a Pokémon\n"
+	.string "that is not {LV}. 1!$"
+
+Common_Text_RefundTakeGoodCare:
+	.string "I'll take good care of your\n"
+	.string "Pokémon! Here's your ¥1000.$"
+
+Common_EventScript_AddMoneyScrambledTitanFights::
+	setvar VAR_TEMP_E, 1000
+	call_if_le VAR_LEVEL_CAP, 30, Common_EventScript_AddMoneyScrambled2000
+	buffernumberstring STR_VAR_3, VAR_TEMP_E
+	showmoneybox 0, 0
+	msgbox Common_Text_AddMoneyScrambled, MSGBOX_DEFAULT
+	waitmessage
+	addmoneyscrambled 0
+	updatemoneybox
+	playfanfare MUS_RG_OBTAIN_KEY_ITEM
+	waitfanfare
+	waitmessage
+	hidemoneybox
+	closemessage
+	return
+
+Common_EventScript_AddMoneyScrambled2000::
+	setvar VAR_TEMP_E, 2000
+	return
+
+Common_Text_AddMoneyScrambled:
+	.string "You got ¥{STR_VAR_3} for winning!$"
 
 Common_EventScript_EditItemShop::
 	pokemart Common_EventScript_EditItems_ShopList

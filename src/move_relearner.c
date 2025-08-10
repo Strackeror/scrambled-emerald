@@ -923,13 +923,60 @@ static void RemoveScrollArrows(void)
     }
 }
 
+const u16 gScrambledEvolutionMoves[] = {
+    MOVE_SAVAGE_SPIN_OUT,
+    MOVE_BLACK_HOLE_ECLIPSE,
+    MOVE_DEVASTATING_DRAKE,
+    MOVE_GIGAVOLT_HAVOC,
+    MOVE_TWINKLE_TACKLE,
+    MOVE_ALL_OUT_PUMMELING,
+    MOVE_INFERNO_OVERDRIVE,
+    MOVE_SUPERSONIC_SKYSTRIKE,
+    MOVE_NEVER_ENDING_NIGHTMARE,
+    MOVE_BLOOM_DOOM,
+    MOVE_TECTONIC_RAGE,
+    MOVE_BREAKNECK_BLITZ,
+    MOVE_SUBZERO_SLAMMER,
+    MOVE_ACID_DOWNPOUR,
+    MOVE_SHATTERED_PSYCHE,
+    MOVE_CONTINENTAL_CRUSH,
+    MOVE_CORKSCREW_CRASH,
+    MOVE_HYDRO_VORTEX,
+    MOVE_GENESIS_SUPERNOVA,
+    MOVE_EXTREME_EVOBOOST,
+    MOVE_NONE, // terminator
+};
+
+
 static void CreateLearnableMovesList(void)
 {
-    s32 i;
+    s32 i, j;
+    u16 move;
     u8 nickname[POKEMON_NAME_LENGTH + 1];
 
     if (sMoveRelearnerMenuSate.tmMoves)
+    {
         sMoveRelearnerStruct->numMenuChoices = GetMoveRelearnerTmMoves(&gPlayerParty[sMoveRelearnerStruct->partyMon], sMoveRelearnerStruct->movesToLearn);
+        // Append Evolution Moves
+        for (i = 0; i < ARRAY_COUNT(gScrambledEvolutionMoves); i++)
+        {
+            move = gScrambledEvolutionMoves[i];
+            if (move == MOVE_NONE || MonKnowsMove(&gPlayerParty[sMoveRelearnerStruct->partyMon], move))
+                continue;
+
+            // Skip duplicates
+            for (j = 0; j < sMoveRelearnerStruct->numMenuChoices; j++)
+            {
+                if (sMoveRelearnerStruct->movesToLearn[j] == move)
+                    break;
+            }
+
+            if (j == sMoveRelearnerStruct->numMenuChoices)
+            {
+                sMoveRelearnerStruct->movesToLearn[sMoveRelearnerStruct->numMenuChoices++] = move;
+            }
+        }
+    }
     else
         sMoveRelearnerStruct->numMenuChoices = GetMoveRelearnerMoves(&gPlayerParty[sMoveRelearnerStruct->partyMon], sMoveRelearnerStruct->movesToLearn);
 

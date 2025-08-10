@@ -271,6 +271,19 @@ enum EvolutionMethods {
     EVO_ITEM_HOLD_DAY,                   // Pokémon levels up, holds specified item at day
     EVO_ITEM_HOLD_NIGHT,                 // Pokémon levels up, holds specified item at night
     EVO_MOVE,                            // Pokémon levels up, knows specified move
+    EVO_MOVE_23,                         // Pokémon levels up at hardcoded level, knows specified move
+    EVO_MOVE_25,                         // Pokémon levels up at hardcoded level, knows specified move
+    EVO_MOVE_26,                         // Pokémon levels up at hardcoded level, knows specified move
+    EVO_MOVE_27,                         // Pokémon levels up at hardcoded level, knows specified move
+    EVO_MOVE_30,                         // Pokémon levels up at hardcoded level, knows specified move
+    EVO_MOVE_32,                         // Pokémon levels up at hardcoded level, knows specified move
+    EVO_MOVE_33,                         // Pokémon levels up at hardcoded level, knows specified move
+    EVO_MOVE_35,                         // Pokémon levels up at hardcoded level, knows specified move
+    EVO_MOVE_36,                         // Pokémon levels up at hardcoded level, knows specified move
+    EVO_MOVE_38,                         // Pokémon levels up at hardcoded level, knows specified move
+    EVO_MOVE_40,                         // Pokémon levels up at hardcoded level, knows specified move
+    EVO_MOVE_45,                         // Pokémon levels up at hardcoded level, knows specified move
+    EVO_MOVE_100,                        // Pokémon levels up at hardcoded level, knows specified move
     EVO_FRIENDSHIP_MOVE_TYPE,            // Pokémon levels up with friendship ≥ 220, knows move with specified type
     EVO_MAPSEC,                          // Pokémon levels up on specified mapsec
     EVO_ITEM_MALE,                       // specified item is used on a male Pokémon

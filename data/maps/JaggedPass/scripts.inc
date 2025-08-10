@@ -121,13 +121,8 @@ JaggedPass_EventScript_DianaRematch::
 	end
 
 JaggedPass_EventScript_Ethan::
-	trainerbattle_single TRAINER_BROTHER_01_03, JaggedPass_Text_EthanIntro, JaggedPass_Text_EthanDefeat, JaggedPass_EventScript_Ethan_LevelCap
+	trainerbattle_single TRAINER_BROTHER_01_03, JaggedPass_Text_EthanIntro, JaggedPass_Text_EthanDefeat
 	msgbox JaggedPass_Text_EthanPostBattle, MSGBOX_DEFAULT
-	release
-	end
-
-JaggedPass_EventScript_Ethan_LevelCap:
-	setvar VAR_LEVEL_CAP 36
 	release
 	end
 
@@ -165,16 +160,18 @@ JaggedPass_EventScript_TitanOrthworm::
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	lock
 	faceplayer
-	msgbox JaggedPass_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 5
 	waitstate
-	msgbox JaggedPass_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 6
 	waitstate
 	fadescreen FADE_TO_BLACK
 	removeobject LOCALID_ORTHWORM
 	setflag FLAG_TITAN_ORTHWORM
 	fadescreen FADE_FROM_BLACK
+	call Common_EventScript_AddMoneyScrambledTitanFights
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, Common_EventScript_SkipKitakami_LevelCap36_End 
 	setvar VAR_LEVEL_CAP 35
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	release
@@ -186,23 +183,22 @@ JaggedPass_EventScript_TitanOrthwormReverse::
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	lock
 	faceplayer
-	msgbox JaggedPass_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 22
 	waitstate
-	msgbox JaggedPass_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 23
 	waitstate
 	fadescreen FADE_TO_BLACK
 	removeobject LOCALID_ORTHWORM
 	setflag FLAG_TITAN_ORTHWORM
 	fadescreen FADE_FROM_BLACK
+	call Common_EventScript_AddMoneyScrambledTitanFights
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, Common_EventScript_SkipKitakami_LevelCap42_End
 	setvar VAR_LEVEL_CAP 40
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	release
 	end
-
-JaggedPass_Text_Titan::
-	.string "...$"
 
 JaggedPass_Text_EricIntro:
 	.string "MT. CHIMNEY's JAGGED PASS…\p"

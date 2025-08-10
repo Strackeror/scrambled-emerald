@@ -4565,6 +4565,58 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 if (MonKnowsMove(mon, evolutions[i].param))
                     targetSpecies = evolutions[i].targetSpecies;
                 break;
+            case EVO_MOVE_23:
+                if (MonKnowsMove(mon, evolutions[i].param) && 23 <= level)
+                    targetSpecies = evolutions[i].targetSpecies;
+                break;
+            case EVO_MOVE_25:
+                if (MonKnowsMove(mon, evolutions[i].param) && 25 <= level)
+                    targetSpecies = evolutions[i].targetSpecies;
+                break;
+            case EVO_MOVE_26:
+                if (MonKnowsMove(mon, evolutions[i].param) && 26 <= level)
+                    targetSpecies = evolutions[i].targetSpecies;
+                break;
+            case EVO_MOVE_27:
+                if (MonKnowsMove(mon, evolutions[i].param) && 27 <= level)
+                    targetSpecies = evolutions[i].targetSpecies;
+                break;
+            case EVO_MOVE_30:
+                if (MonKnowsMove(mon, evolutions[i].param) && 30 <= level)
+                    targetSpecies = evolutions[i].targetSpecies;
+                break;
+            case EVO_MOVE_32:
+                if (MonKnowsMove(mon, evolutions[i].param) && 32 <= level)
+                    targetSpecies = evolutions[i].targetSpecies;
+                break;
+            case EVO_MOVE_33:
+                if (MonKnowsMove(mon, evolutions[i].param) && 33 <= level)
+                    targetSpecies = evolutions[i].targetSpecies;
+                break;
+            case EVO_MOVE_35:
+                if (MonKnowsMove(mon, evolutions[i].param) && 35 <= level)
+                    targetSpecies = evolutions[i].targetSpecies;
+                break;
+            case EVO_MOVE_36:
+                if (MonKnowsMove(mon, evolutions[i].param) && 36 <= level)
+                    targetSpecies = evolutions[i].targetSpecies;
+                break;
+            case EVO_MOVE_38:
+                if (MonKnowsMove(mon, evolutions[i].param) && 38 <= level)
+                    targetSpecies = evolutions[i].targetSpecies;
+                break;
+            case EVO_MOVE_40:
+                if (MonKnowsMove(mon, evolutions[i].param) && 40 <= level)
+                    targetSpecies = evolutions[i].targetSpecies;
+                break;
+            case EVO_MOVE_45:
+                if (MonKnowsMove(mon, evolutions[i].param) && 45 <= level)
+                    targetSpecies = evolutions[i].targetSpecies;
+                break;
+            case EVO_MOVE_100:
+                if (MonKnowsMove(mon, evolutions[i].param) && 100 <= level)
+                    targetSpecies = evolutions[i].targetSpecies;
+                break;
             case EVO_MOVE_TWO_SEGMENT:
                 if (MonKnowsMove(mon, evolutions[i].param) && (personality % 100) != 0)
                     targetSpecies = evolutions[i].targetSpecies;

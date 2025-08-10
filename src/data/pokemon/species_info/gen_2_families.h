@@ -387,7 +387,10 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         )
         .levelUpLearnset = sQuilava0LevelUpLearnset,
         .teachableLearnset = sQuilava0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_INFERNO_OVERDRIVE, SPECIES_TYPHLOSION, 36}, {EVO_MOVE, MOVE_NEVER_ENDING_NIGHTMARE, SPECIES_TYPHLOSION_HISUI, 36}),
+        .evolutions = EVOLUTION(
+            {EVO_MOVE_36, MOVE_INFERNO_OVERDRIVE, SPECIES_TYPHLOSION},
+            {EVO_MOVE_36, MOVE_NEVER_ENDING_NIGHTMARE, SPECIES_TYPHLOSION_HISUI}
+        ),
     },
 
     #define TYPHLOSION_EXP_YIELD 267
@@ -1292,7 +1295,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sChinchou0LevelUpLearnset,
         .teachableLearnset = sChinchou0TeachableLearnset,
         .eggMoveLearnset = sChinchouEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_GIGAVOLT_HAVOC, SPECIES_LANTURN, 30}),
+        .evolutions = EVOLUTION({EVO_MOVE_30, MOVE_GIGAVOLT_HAVOC, SPECIES_LANTURN}),
     },
 
     [SPECIES_LANTURN] =
@@ -1806,7 +1809,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         )
         .levelUpLearnset = sFlaaffy0LevelUpLearnset,
         .teachableLearnset = sFlaaffy0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_GIGAVOLT_HAVOC, SPECIES_AMPHAROS, 35}),
+        .evolutions = EVOLUTION({EVO_MOVE_35, MOVE_GIGAVOLT_HAVOC, SPECIES_AMPHAROS}),
     },
 
 #define AMPHAROS_DEFENSE (P_UPDATED_STATS >= GEN_6 ? 85 : 75)
@@ -2778,7 +2781,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sYanma0LevelUpLearnset,
         .teachableLearnset = sYanma0TeachableLearnset,
         .eggMoveLearnset = sYanmaEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_GENESIS_SUPERNOVA, SPECIES_YANMEGA, 35}),
+        .evolutions = EVOLUTION({EVO_MOVE_35, MOVE_GENESIS_SUPERNOVA, SPECIES_YANMEGA}),
     },
 
     [SPECIES_YANMEGA] =
@@ -3189,7 +3192,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sMurkrow0LevelUpLearnset,
         .teachableLearnset = sMurkrow0TeachableLearnset,
         .eggMoveLearnset = sMurkrowEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_BLACK_HOLE_ECLIPSE, SPECIES_HONCHKROW, 32}),
+        .evolutions = EVOLUTION({EVO_MOVE_32, MOVE_BLACK_HOLE_ECLIPSE, SPECIES_HONCHKROW}),
     },
 
     [SPECIES_HONCHKROW] =
@@ -3316,7 +3319,10 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sMisdreavus0LevelUpLearnset,
         .teachableLearnset = sMisdreavus0TeachableLearnset,
         .eggMoveLearnset = sMisdreavusEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_SHATTERED_PSYCHE, SPECIES_MISMAGIUS, 35}, {EVO_MOVE, MOVE_GENESIS_SUPERNOVA, SPECIES_FLUTTER_MANE, 40}),
+        .evolutions = EVOLUTION(
+            {EVO_MOVE_35, MOVE_SHATTERED_PSYCHE, SPECIES_MISMAGIUS},
+            {EVO_MOVE_40, MOVE_GENESIS_SUPERNOVA, SPECIES_FLUTTER_MANE}
+        ),
     },
 
     [SPECIES_MISMAGIUS] =
@@ -3622,7 +3628,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sGirafarig0LevelUpLearnset,
         .teachableLearnset = sGirafarig0TeachableLearnset,
         .eggMoveLearnset = sGirafarigEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_SHATTERED_PSYCHE, SPECIES_FARIGIRAF, 35}),
+        .evolutions = EVOLUTION({EVO_MOVE_35, MOVE_SHATTERED_PSYCHE, SPECIES_FARIGIRAF}),
     },
 
     [SPECIES_FARIGIRAF] =
@@ -3747,7 +3753,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sPineco0LevelUpLearnset,
         .teachableLearnset = sPineco0TeachableLearnset,
         .eggMoveLearnset = sPinecoEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_CORKSCREW_CRASH, SPECIES_FORRETRESS, 32}),
+        .evolutions = EVOLUTION({EVO_MOVE_32, MOVE_CORKSCREW_CRASH, SPECIES_FORRETRESS}),
     },
 
     [SPECIES_FORRETRESS] =
@@ -3873,7 +3879,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sDunsparce0LevelUpLearnset,
         .teachableLearnset = sDunsparce0TeachableLearnset,
         .eggMoveLearnset = sDunsparceEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_TECTONIC_RAGE, SPECIES_DUDUNSPARCE_THREE_SEGMENT, 35}),
+        .evolutions = EVOLUTION({EVO_MOVE_35, MOVE_TECTONIC_RAGE, SPECIES_DUDUNSPARCE_THREE_SEGMENT}),
     },
 
     [SPECIES_DUDUNSPARCE_TWO_SEGMENT] =
@@ -4073,7 +4079,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sGligar0LevelUpLearnset,
         .teachableLearnset = sGligar0TeachableLearnset,
         .eggMoveLearnset = sGligarEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_BLACK_HOLE_ECLIPSE, SPECIES_GLISCOR, 35}),
+        .evolutions = EVOLUTION({EVO_MOVE_35, MOVE_BLACK_HOLE_ECLIPSE, SPECIES_GLISCOR}),
     },
 
     [SPECIES_GLISCOR] =
@@ -4396,7 +4402,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sQwilfish1LevelUpLearnset,
         .teachableLearnset = sQwilfish1TeachableLearnset,
         .formSpeciesIdTable = sQwilfishFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_ACID_DOWNPOUR, SPECIES_OVERQWIL, 35}),
+        .evolutions = EVOLUTION({EVO_MOVE_35, MOVE_ACID_DOWNPOUR, SPECIES_OVERQWIL}),
     },
 
     [SPECIES_OVERQWIL] =
@@ -4731,7 +4737,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .teachableLearnset = sSneasel0TeachableLearnset,
         .eggMoveLearnset = sSneaselEggMoveLearnset,
         .formSpeciesIdTable = sSneaselFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_BLACK_HOLE_ECLIPSE, SPECIES_WEAVILE, 32}),
+        .evolutions = EVOLUTION({EVO_MOVE_32, MOVE_BLACK_HOLE_ECLIPSE, SPECIES_WEAVILE}),
     },
 
     [SPECIES_WEAVILE] =
@@ -4881,7 +4887,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sSneasel1LevelUpLearnset,
         .teachableLearnset = sSneasel1TeachableLearnset,
         .formSpeciesIdTable = sSneaselFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_ACID_DOWNPOUR, SPECIES_SNEASLER, 32}),
+        .evolutions = EVOLUTION({EVO_MOVE_32, MOVE_ACID_DOWNPOUR, SPECIES_SNEASLER}),
     },
 
     [SPECIES_SNEASLER] =
@@ -5080,7 +5086,10 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         )
         .levelUpLearnset = sUrsaring0LevelUpLearnset,
         .teachableLearnset = sUrsaring0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_TECTONIC_RAGE, SPECIES_URSALUNA, 45}, {EVO_MOVE, MOVE_BLACK_HOLE_ECLIPSE, SPECIES_URSALUNA_BLOODMOON, 45}),
+        .evolutions = EVOLUTION(
+            {EVO_MOVE_45, MOVE_TECTONIC_RAGE, SPECIES_URSALUNA},
+            {EVO_MOVE_45, MOVE_BLACK_HOLE_ECLIPSE, SPECIES_URSALUNA_BLOODMOON}
+        ),
     },
 
     [SPECIES_URSALUNA] =
@@ -5459,7 +5468,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         )
         .levelUpLearnset = sPiloswine0LevelUpLearnset,
         .teachableLearnset = sPiloswine0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_GENESIS_SUPERNOVA, SPECIES_MAMOSWINE, 40}),
+        .evolutions = EVOLUTION({EVO_MOVE_40, MOVE_GENESIS_SUPERNOVA, SPECIES_MAMOSWINE}),
     },
 
     [SPECIES_MAMOSWINE] =
@@ -5923,7 +5932,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sDelibird0LevelUpLearnset,
         .teachableLearnset = sDelibird0TeachableLearnset,
         .eggMoveLearnset = sDelibirdEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_EXTREME_EVOBOOST, SPECIES_IRON_BUNDLE, 40}),
+        .evolutions = EVOLUTION({EVO_MOVE_40, MOVE_EXTREME_EVOBOOST, SPECIES_IRON_BUNDLE}),
     },
 
     [SPECIES_MANTYKE] =
@@ -6441,7 +6450,10 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         )
         .levelUpLearnset = sDonphan0LevelUpLearnset,
         .teachableLearnset = sDonphan0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_GENESIS_SUPERNOVA, SPECIES_GREAT_TUSK, 45}, {EVO_MOVE, MOVE_EXTREME_EVOBOOST, SPECIES_IRON_TREADS, 45}),
+        .evolutions = EVOLUTION(
+            {EVO_MOVE_45, MOVE_GENESIS_SUPERNOVA, SPECIES_GREAT_TUSK},
+            {EVO_MOVE_45, MOVE_EXTREME_EVOBOOST, SPECIES_IRON_TREADS}
+        ),
     },
 
     [SPECIES_STANTLER] =
@@ -6504,7 +6516,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sStantler0LevelUpLearnset,
         .teachableLearnset = sStantler0TeachableLearnset,
         .eggMoveLearnset = sStantlerEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_SHATTERED_PSYCHE, SPECIES_WYRDEER, 35}),
+        .evolutions = EVOLUTION({EVO_MOVE_35, MOVE_SHATTERED_PSYCHE, SPECIES_WYRDEER}),
     },
 
     [SPECIES_WYRDEER] =
@@ -7014,7 +7026,10 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         )
         .levelUpLearnset = sPupitar0LevelUpLearnset,
         .teachableLearnset = sPupitar0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_BLACK_HOLE_ECLIPSE, SPECIES_TYRANITAR, 45}, {EVO_MOVE, MOVE_EXTREME_EVOBOOST, SPECIES_IRON_THORNS, 45}),
+        .evolutions = EVOLUTION(
+            {EVO_MOVE_45, MOVE_BLACK_HOLE_ECLIPSE, SPECIES_TYRANITAR},
+            {EVO_MOVE_45, MOVE_EXTREME_EVOBOOST, SPECIES_IRON_THORNS}
+        ),
     },
 
     [SPECIES_TYRANITAR] =

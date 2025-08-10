@@ -1887,6 +1887,17 @@ bool8 ScrCmd_addmoney(struct ScriptContext *ctx)
     return FALSE;
 }
 
+bool8 ScrCmd_addmoneyscrambled(struct ScriptContext *ctx)
+{
+    u8 eggRefund = ScriptReadByte(ctx);
+
+    u32 money = 1000;
+    if (VarGet(VAR_LEVEL_CAP) <= 30 && !eggRefund)
+        money = 2000;
+    AddMoney(&gSaveBlock1Ptr->money, money);
+    return FALSE;
+}
+
 bool8 ScrCmd_removemoney(struct ScriptContext *ctx)
 {
     u32 amount = ScriptReadWord(ctx);

@@ -260,11 +260,24 @@ Route111_EventScript_SunTrigger::
 	setvar VAR_TEMP_3, 0
 	end
 
+Route111_EventScript_SunnyWeatherReturn::
+	setweather WEATHER_SUNNY
+	doweather
+	delay 30
+	return
+
 Route111_EventScript_SandstormTrigger::
 	setweather WEATHER_SANDSTORM
 	fadenewbgm MUS_DESERT
 	doweather
 	end
+
+Route111_EventScript_SandstormWeatherReturn::
+	setweather WEATHER_SANDSTORM
+	fadenewbgm MUS_DESERT
+	doweather
+	delay 30
+	return
 
 Route111_EventScript_Victor::
 	lock
@@ -580,12 +593,13 @@ Route111_EventScript_TitanGreatTusk::
 	setvar VAR_TEMP_F, 47
 	buffernumberstring STR_VAR_2, VAR_TEMP_F
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	call Route111_EventScript_SunnyWeatherReturn
 	lock
 	faceplayer
-	msgbox Route111_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 7
 	waitstate
-	msgbox Route111_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 8
 	waitstate
 	release
@@ -595,12 +609,13 @@ Route111_EventScript_TitanGreatTuskReverse::
 	setvar VAR_TEMP_F, 24
 	buffernumberstring STR_VAR_2, VAR_TEMP_F
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	call Route111_EventScript_SunnyWeatherReturn
 	lock
 	faceplayer
-	msgbox Route111_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 18
 	waitstate
-	msgbox Route111_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 19
 	waitstate
 	release
@@ -611,12 +626,13 @@ Route111_EventScript_TitanIronTreads::
 	setvar VAR_TEMP_F, 47
 	buffernumberstring STR_VAR_2, VAR_TEMP_F
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	call Route111_EventScript_SunnyWeatherReturn
 	lock
 	faceplayer
-	msgbox Route111_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 9
 	waitstate
-	msgbox Route111_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 10
 	waitstate
 	release
@@ -626,12 +642,13 @@ Route111_EventScript_TitanIronTreadsReverse::
 	setvar VAR_TEMP_F, 24
 	buffernumberstring STR_VAR_2, VAR_TEMP_F
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
+	call Route111_EventScript_SunnyWeatherReturn
 	lock
 	faceplayer
-	msgbox Route111_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 20
 	waitstate
-	msgbox Route111_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 21
 	waitstate
 	release
@@ -639,10 +656,13 @@ Route111_EventScript_TitanIronTreadsReverse::
 
 Route111_EventScript_TitanDefeated::
 	fadescreen FADE_TO_BLACK
+	call Route111_EventScript_SandstormWeatherReturn
 	removeobject LOCALID_GREAT_TUSK
 	removeobject LOCALID_IRON_TREADS
 	setflag FLAG_TITAN_TUSK_TREADS
 	fadescreen FADE_FROM_BLACK
+	call Common_EventScript_AddMoneyScrambledTitanFights
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, Common_EventScript_SkipKitakami_LevelCap52_End
 	setvar VAR_LEVEL_CAP 50
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	release
@@ -650,17 +670,16 @@ Route111_EventScript_TitanDefeated::
 
 Route111_EventScript_TitanReverseDefeated::
 	fadescreen FADE_TO_BLACK
+	call Route111_EventScript_SandstormWeatherReturn
 	removeobject LOCALID_GREAT_TUSK
 	removeobject LOCALID_IRON_TREADS
 	setflag FLAG_TITAN_TUSK_TREADS
 	fadescreen FADE_FROM_BLACK
+	call Common_EventScript_AddMoneyScrambledTitanFights
 	setvar VAR_LEVEL_CAP 27
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	release
 	end
-
-Route111_Text_Titan::
-	.string "...$"
 
 Route111_Text_BattleOurFamily:
 	.string "Hello! I take it you're a traveler.\p"

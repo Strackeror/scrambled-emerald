@@ -1560,7 +1560,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .baseSpeed = 29,
         .baseSpAttack = 60,
         .baseSpDefense = 104,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_SUBZERO_SLAMMER, SPECIES_VIVILLON_TUNDRA, 25}, {EVO_MOVE, MOVE_HYDRO_VORTEX, SPECIES_VIVILLON_MARINE, 25}, {EVO_MOVE, MOVE_CONTINENTAL_CRUSH, SPECIES_VIVILLON_SANDSTORM, 25}, {EVO_MOVE, MOVE_INFERNO_OVERDRIVE, SPECIES_VIVILLON_SUN, 25}),
+        .evolutions = EVOLUTION(
+            {EVO_MOVE_25, MOVE_SUBZERO_SLAMMER, SPECIES_VIVILLON_TUNDRA},
+            {EVO_MOVE_25, MOVE_HYDRO_VORTEX, SPECIES_VIVILLON_MARINE},
+            {EVO_MOVE_25, MOVE_CONTINENTAL_CRUSH, SPECIES_VIVILLON_SANDSTORM},
+            {EVO_MOVE_25, MOVE_INFERNO_OVERDRIVE, SPECIES_VIVILLON_SUN}),
         .abilities = { ABILITY_FUR_COAT, ABILITY_MULTISCALE, ABILITY_ADAPTABILITY },
         .levelUpLearnset = sSpewpa0LevelUpLearnset,
         .teachableLearnset = sSpewpa0TeachableLearnset,
@@ -4779,7 +4783,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         )
         .levelUpLearnset = sCarbink0LevelUpLearnset,
         .teachableLearnset = sCarbink0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_TWINKLE_TACKLE, SPECIES_DIANCIE, 40}),
+        .evolutions = EVOLUTION({EVO_MOVE_40, MOVE_TWINKLE_TACKLE, SPECIES_DIANCIE}),
     },
 
     [SPECIES_GOOMY] =
@@ -4843,7 +4847,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .levelUpLearnset = sGoomy0LevelUpLearnset,
         .teachableLearnset = sGoomy0TeachableLearnset,
         .eggMoveLearnset = sGoomyEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_ACID_DOWNPOUR, SPECIES_SLIGGOO, 25}, {EVO_MOVE, MOVE_CORKSCREW_CRASH, SPECIES_SLIGGOO_HISUI, 25}),
+        .evolutions = EVOLUTION(
+            {EVO_MOVE_25, MOVE_ACID_DOWNPOUR, SPECIES_SLIGGOO},
+            {EVO_MOVE_25, MOVE_CORKSCREW_CRASH, SPECIES_SLIGGOO_HISUI}
+        ),
     },
 
     [SPECIES_SLIGGOO] =
@@ -4907,7 +4914,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .levelUpLearnset = sSliggoo0LevelUpLearnset,
         .teachableLearnset = sSliggoo0TeachableLearnset,
         .formSpeciesIdTable = sSliggooFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_DEVASTATING_DRAKE, SPECIES_GOODRA, 45}),
+        .evolutions = EVOLUTION({EVO_MOVE_45, MOVE_DEVASTATING_DRAKE, SPECIES_GOODRA}),
     },
 
     [SPECIES_GOODRA] =
@@ -5035,7 +5042,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .levelUpLearnset = sSliggoo1LevelUpLearnset,
         .teachableLearnset = sSliggoo1TeachableLearnset,
         .formSpeciesIdTable = sSliggooFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_DEVASTATING_DRAKE, SPECIES_GOODRA_HISUI, 45}),
+        .evolutions = EVOLUTION({EVO_MOVE_45, MOVE_DEVASTATING_DRAKE, SPECIES_GOODRA_HISUI}),
     },
 
     [SPECIES_GOODRA_HISUI] =
@@ -5864,7 +5871,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .levelUpLearnset = sBergmite0LevelUpLearnset,
         .teachableLearnset = sBergmite0TeachableLearnset,
         .eggMoveLearnset = sBergmiteEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_SUBZERO_SLAMMER, SPECIES_AVALUGG, 33}, {EVO_MOVE, MOVE_CONTINENTAL_CRUSH, SPECIES_AVALUGG_HISUI, 33}),
+        .evolutions = EVOLUTION(
+            {EVO_MOVE_33, MOVE_SUBZERO_SLAMMER, SPECIES_AVALUGG},
+            {EVO_MOVE_33, MOVE_CONTINENTAL_CRUSH, SPECIES_AVALUGG_HISUI}
+        ),
     },
 
     [SPECIES_AVALUGG] =

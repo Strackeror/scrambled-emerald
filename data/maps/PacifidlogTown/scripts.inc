@@ -44,11 +44,19 @@ PacifidlogTown_EventScript_TownSign::
 	end
 
 PacifidlogTown_EventScript_Kieran4::
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, PacifidlogTown_EventScript_Kieran4_Skipped
 	setvar VAR_TEMP_F, 40
 	buffernumberstring STR_VAR_2, VAR_TEMP_F
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	trainerbattle_single TRAINER_BROTHER_01_04, PacifidlogTown_Text_Kieran4Intro, PacifidlogTown_Text_Kieran4Defeat, PacifidlogTown_EventScript_Kieran4_Defeated
 	msgbox PacifidlogTown_Text_Kieran4PostBattle, MSGBOX_AUTOCLOSE
+	end
+
+PacifidlogTown_EventScript_Kieran4_Skipped::
+	lock
+	faceplayer
+	msgbox PacifidlogTown_Text_Kieran4PostBattle, MSGBOX_AUTOCLOSE
+	release
 	end
 
 PacifidlogTown_EventScript_Kieran4_Defeated::
@@ -57,11 +65,19 @@ PacifidlogTown_EventScript_Kieran4_Defeated::
 	return
 
 PacifidlogTown_EventScript_Carmine3::
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, PacifidlogTown_EventScript_Carmine3_Skipped
 	setvar VAR_TEMP_F, 50
 	buffernumberstring STR_VAR_2, VAR_TEMP_F
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	trainerbattle_single TRAINER_SISTER_01_03, PacifidlogTown_Text_Carmine3Intro, PacifidlogTown_Text_Carmine3Defeat, PacifidlogTown_EventScript_Carmine3_Defeated
 	msgbox PacifidlogTown_Text_Carmine3PostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+PacifidlogTown_EventScript_Carmine3_Skipped::
+	lock
+	faceplayer
+	msgbox PacifidlogTown_Text_Carmine3PostBattle, MSGBOX_AUTOCLOSE
 	release
 	end
 
