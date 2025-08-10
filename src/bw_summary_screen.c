@@ -554,7 +554,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .tilemapLeft = 20,
         .tilemapTop = 2,
         .width = 10,
-        .height = 3,
+        .height = 4,
         .paletteNum = 6,
         .baseBlock = 245,
     },
