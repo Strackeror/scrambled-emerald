@@ -357,6 +357,15 @@ static u32 ScriptGiveMonParameterized(u8 side, u8 slot, u16 species, u8 level, u
     // tera type
     if (teraType >= NUMBER_OF_MON_TYPES)
         teraType = TYPE_NONE;
+    // Always randomize Tera Type to NOT be STAB
+    u8 type1 = gSpeciesInfo[species].types[0];
+    u8 type2 = gSpeciesInfo[species].types[1];
+    do {
+        teraType = 1 + Random() % 18;
+        if (teraType >= 10) { // #10 = MYSTERY, #20 = STELLAR
+            teraType+=1;
+        }
+    } while (teraType == type1 || teraType == type2);
     SetMonData(&mon, MON_DATA_TERA_TYPE, &teraType);
 
     // EV and IV
@@ -459,9 +468,10 @@ u32 ScriptGiveMon(u16 species, u8 level, u16 item)
     u8 evs[NUM_STATS]        = {0, 0, 0, 0, 0, 0};
     u8 ivs[NUM_STATS]        = {MAX_PER_STAT_IVS + 1, MAX_PER_STAT_IVS + 1, MAX_PER_STAT_IVS + 1,   // We pass "MAX_PER_STAT_IVS + 1" here to ensure that
                                 MAX_PER_STAT_IVS + 1, MAX_PER_STAT_IVS + 1, MAX_PER_STAT_IVS + 1};  // ScriptGiveMonParameterized won't touch the stats' IV.
+    u8 ivs_scrambled[NUM_STATS] = {20, 20, 20, 20, 20, 20};
     u16 moves[MAX_MON_MOVES] = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE};
 
-    return ScriptGiveMonParameterized(0, PARTY_SIZE, species, level, item, ITEM_POKE_BALL, NUM_NATURES, NUM_ABILITY_PERSONALITY, MON_GENDERLESS, evs, ivs, moves, FALSE, FALSE, NUMBER_OF_MON_TYPES);
+    return ScriptGiveMonParameterized(0, PARTY_SIZE, species, level, item, ITEM_POKE_BALL, NUM_NATURES, NUM_ABILITY_PERSONALITY, MON_GENDERLESS, evs, ivs_scrambled, moves, FALSE, FALSE, NUMBER_OF_MON_TYPES);
 }
 
 #define PARSE_FLAG(n, default_) (flags & (1 << (n))) ? VarGet(ScriptReadHalfword(ctx)) : (default_)
@@ -567,6 +577,138 @@ void Script_GetChosenMonOffensiveIVs(void)
     ConvertIntToDecimalStringN(gStringVar2, GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPATK_IV), STR_CONV_MODE_LEFT_ALIGN, 3);
     ConvertIntToDecimalStringN(gStringVar3, GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPEED_IV), STR_CONV_MODE_LEFT_ALIGN, 3);
 }
+
+void Script_SetNature(void) {
+    u8 page = VarGet(VAR_TEMP_E);
+    u16 species = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPECIES, NULL);
+    u32 personality = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_PERSONALITY, NULL);
+    u8 isShiny = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_IS_SHINY, NULL);
+    u8 teraType = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_TERA_TYPE, NULL);
+    u8 pokeball = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_POKEBALL, NULL);
+    u8 level = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_LEVEL, NULL);
+    u8 metLevl = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_MET_LEVEL, NULL);
+    u8 metLocn = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_MET_LOCATION, NULL);
+    u8 metGame = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_MET_GAME, NULL);
+    u8 nickname[POKEMON_NAME_LENGTH * 2];
+    GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_NICKNAME, nickname);
+    u8 gender = GetGenderFromSpeciesAndPersonality(species, personality);
+
+    u8 nature = VarGet(VAR_RESULT);
+    if (nature == 0 && page == 1) { // Random
+        nature = Random() % 25;
+    } else if (page == 1) {
+        nature-=1;
+    } else if (page == 2) {
+        nature+=14;
+    }
+
+    struct Pokemon mon;
+    CreateMonWithGenderNatureLetter(&mon, species, level, 20, gender, nature, 0);
+
+    SetMonData(&mon, MON_DATA_MET_LEVEL, &metLevl);
+    SetMonData(&mon, MON_DATA_MET_LOCATION, &metLocn);
+    SetMonData(&mon, MON_DATA_MET_GAME, &metGame);
+    SetMonData(&mon, MON_DATA_IS_SHINY, &isShiny);
+    SetMonData(&mon, MON_DATA_TERA_TYPE, &teraType);
+    SetMonData(&mon, MON_DATA_POKEBALL, &pokeball);
+    SetMonData(&mon, MON_DATA_NICKNAME, &nickname);
+    CalculateMonStats(&mon);
+
+    CopyMon(&gPlayerParty[gSpecialVar_0x8004], &mon, sizeof(mon)); 
+}
+
+void Script_SetTeraType(void) {
+    u8 tera_type = VarGet(VAR_RESULT);
+    u16 species = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPECIES, NULL);
+    u8 type1 = gSpeciesInfo[species].types[0];
+    u8 type2 = gSpeciesInfo[species].types[1];
+    if (tera_type != 19) {
+        if (tera_type == 0) { // Random
+            do {
+                tera_type = 1 + Random() % 18;
+                if (tera_type >= 10) { // #10 = MYSTERY, #20 = STELLAR
+                    tera_type+=1;
+                }
+            } while (tera_type == type1 || tera_type == type2);
+        } else {
+            if (tera_type >= 10) { // #10 = MYSTERY, #20 = STELLAR
+                tera_type+=1;
+            }
+        }
+        SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_TERA_TYPE, &tera_type);
+    }
+}
+
+void Script_ToggleShiny(void) {
+    u8 isShiny = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_IS_SHINY, NULL);
+    isShiny = !isShiny;
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_IS_SHINY, &isShiny);
+}
+
+void Script_ToggleGender(void) {
+    u16 species = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPECIES, NULL);
+    u32 personality = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_PERSONALITY, NULL);
+    u8 isShiny = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_IS_SHINY, NULL);
+    u8 teraType = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_TERA_TYPE, NULL);
+    u8 pokeball = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_POKEBALL, NULL);
+    u8 level = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_LEVEL, NULL);
+    u8 metLevl = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_MET_LEVEL, NULL);
+    u8 metLocn = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_MET_LOCATION, NULL);
+    u8 metGame = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_MET_GAME, NULL);
+    u8 nickname[POKEMON_NAME_LENGTH * 2];
+    GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_NICKNAME, nickname);
+    u8 nature = GetNatureFromPersonality(personality);
+    u8 gender = GetGenderFromSpeciesAndPersonality(species, personality);
+    u8 genderRatio = gSpeciesInfo[species].genderRatio;
+
+    if (gender == MON_FEMALE && genderRatio != MON_FEMALE && genderRatio != MON_GENDERLESS)
+        gender = MON_MALE;
+    else if (gender == MON_MALE && genderRatio != MON_MALE && genderRatio != MON_GENDERLESS)
+        gender = MON_FEMALE;
+    else if (gender == MON_GENDERLESS && genderRatio == MON_GENDERLESS)
+        gender = MON_GENDERLESS;
+
+    struct Pokemon mon;
+    CreateMonWithGenderNatureLetter(&mon, species, level, 20, gender, nature, 0);
+
+    SetMonData(&mon, MON_DATA_MET_LEVEL, &metLevl);
+    SetMonData(&mon, MON_DATA_MET_LOCATION, &metLocn);
+    SetMonData(&mon, MON_DATA_MET_GAME, &metGame);
+    SetMonData(&mon, MON_DATA_IS_SHINY, &isShiny);
+    SetMonData(&mon, MON_DATA_TERA_TYPE, &teraType);
+    SetMonData(&mon, MON_DATA_POKEBALL, &pokeball);
+    SetMonData(&mon, MON_DATA_NICKNAME, &nickname);
+    CalculateMonStats(&mon);
+
+    CopyMon(&gPlayerParty[gSpecialVar_0x8004], &mon, sizeof(mon));
+}
+
+void Script_SetPokeball(void) {
+    u8 pokeball = VarGet(VAR_RESULT);
+    u8 page = VarGet(VAR_TEMP_E);
+    if (pokeball == 0 && page == 1) { // Random
+        pokeball = 1 + Random() % 27;
+    } else if (page == 2) {
+        pokeball += 17;
+    }
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_POKEBALL, &pokeball);
+}
+
+void Script_GetChosenMonLevel(void) {
+    // assume VAR_0x8004 has the pokemon already
+    u8 level = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_LEVEL, NULL);
+    VarSet(VAR_TEMP_E, level);
+}
+
+void Script_RemoveChosenMon(void) {
+    u8 i;
+    for (i = gSpecialVar_0x8004; i < PARTY_SIZE - 1; i++) {
+        gPlayerParty[i] = gPlayerParty[i + 1];
+    }
+    // Clear the final slot (which is now duplicated)
+    ZeroMonData(&gPlayerParty[PARTY_SIZE - 1]);
+}
+
 
 void Script_GetChosenMonDefensiveIVs(void)
 {

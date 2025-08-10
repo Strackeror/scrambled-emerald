@@ -433,6 +433,7 @@ RusturfTunnel_Movement_PeekoExit:
 	step_end
 
 RusturfTunnel_EventScript_Kieran2::
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, RusturfTunnel_EventScript_Kieran2_Skipped
 	setvar VAR_TEMP_F, 20
 	buffernumberstring STR_VAR_2, VAR_TEMP_F
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
@@ -448,7 +449,15 @@ RusturfTunnel_EventScript_Kieran2_Defeated::
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	return
 
+RusturfTunnel_EventScript_Kieran2_Skipped::
+	lock
+	faceplayer
+	msgbox RusturfTunnel_Text_Kieran2PostBattle, MSGBOX_AUTOCLOSE
+	release
+	end
+
 RusturfTunnel_EventScript_Kieran5::
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, RusturfTunnel_EventScript_Kieran5_Skipped
 	setvar VAR_TEMP_F, 50
 	buffernumberstring STR_VAR_2, VAR_TEMP_F
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
@@ -459,13 +468,28 @@ RusturfTunnel_EventScript_Kieran5::
 	release
 	end
 
+RusturfTunnel_EventScript_Kieran5_Skipped::
+	lock
+	faceplayer
+	msgbox RusturfTunnel_Text_Kieran5PostBattle, MSGBOX_AUTOCLOSE
+	release
+	end
+
 RusturfTunnel_EventScript_Ogerpon::
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, RusturfTunnel_EventScript_Ogerpon_Skipped
 	setvar VAR_TEMP_F, 50
 	buffernumberstring STR_VAR_2, VAR_TEMP_F
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	lock
 	faceplayer
 	trainerbattle_single TRAINER_OGERPON, RusturfTunnel_Text_OgerponIntro, RusturfTunnel_Text_OgerponDefeat
+	msgbox RusturfTunnel_Text_OgerponPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+RusturfTunnel_EventScript_Ogerpon_Skipped::
+	lock
+	faceplayer
 	msgbox RusturfTunnel_Text_OgerponPostBattle, MSGBOX_DEFAULT
 	release
 	end

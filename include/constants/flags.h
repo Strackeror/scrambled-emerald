@@ -659,14 +659,15 @@
 #define FLAG_TITAN_KLAWF        0x264 // Unused Flag
 #define FLAG_TITAN_BOMBIRDIER   0x265 // Unused Flag
 #define FLAG_TITAN_ORTHWORM     0x266 // Unused Flag
-#define FLAG_TITAN_TUSK_TREADS 0x267 // Unused Flag
+#define FLAG_TITAN_TUSK_TREADS  0x267 // Unused Flag
 #define FLAG_TITAN_DONDOZO      0x268 // Unused Flag
 #define FLAG_TITAN_OKIDOGI      0x269 // Unused Flag
 #define FLAG_TITAN_MUNKIDORI    0x26A // Unused Flag
 #define FLAG_TITAN_FEZANDIPITI  0x26B // Unused Flag
 #define FLAG_TITAN_LOYAL_THREE  0x26C // Unused Flag
 
-#define FLAG_UNUSED_0x26D  0x26D // Unused Flag
+#define FLAG_SKIPPING_TEAL_MASK 0x26D // set = skipping, unset = playing
+
 #define FLAG_UNUSED_0x26E  0x26E // Unused Flag
 #define FLAG_UNUSED_0x26F  0x26F // Unused Flag
 #define FLAG_UNUSED_0x270  0x270 // Unused Flag

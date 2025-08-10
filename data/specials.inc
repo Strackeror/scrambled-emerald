@@ -554,3 +554,9 @@ gSpecials::
 	def_special Script_GetChosenMonOffensiveIVs
 	def_special Script_GetChosenMonDefensiveIVs
 	def_special UseBlankMessageToCancelPokemonPic
+
+	def_special Script_ToggleShiny
+	def_special Script_SetNature
+	def_special Script_ToggleGender
+	def_special Script_SetPokeball
+	def_special Script_SetTeraType

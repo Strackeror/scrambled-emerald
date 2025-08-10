@@ -795,6 +795,202 @@ static const struct MenuAction MultichoiceList_ChoosePath[] =
     {gText_ReversePath},
 };
 
+static const u8 gText_RerollNature[] = _("Reroll Nature");
+static const u8 gText_RerollTeraType[] = _("Reroll Tera Type");
+static const u8 gText_ToggleShiny[] = _("Toggle Shiny");
+static const u8 gText_ToggleGender[] = _("Reroll Gender");
+static const u8 gText_ChangePokeball[] = _("Change Pokéball");
+static const u8 gText_RefundHatch[] = _("{COLOR RED}Refund (ONLY {LV}. 1)");
+static const u8 gText_Random[] = _("{COLOR RED}RANDOM");
+static const struct MenuAction MultichoiceList_RerollOptions[] =
+{
+    {gText_RerollNature},
+    {gText_RerollTeraType},
+    {gText_ToggleShiny},
+    {gText_ToggleGender},
+    {gText_ChangePokeball},
+    {gText_RefundHatch},
+};
+
+static const u8 gText_NatureNeutral[] = _("Neutral…");
+static const u8 gText_NatureHardy[] = _("Hardy");
+static const u8 gText_NatureLonely[] = _("Lonely");
+static const u8 gText_NatureBrave[] = _("Brave");
+static const u8 gText_NatureAdamant[] = _("Adamant");
+static const u8 gText_NatureNaughty[] = _("Naughty");
+static const u8 gText_NatureBold[] = _("Bold");
+static const u8 gText_NatureDocile[] = _("Docile");
+static const u8 gText_NatureRelaxed[] = _("Relaxed");
+static const u8 gText_NatureImpish[] = _("Impish");
+static const u8 gText_NatureLax[] = _("Lax");
+static const u8 gText_NatureTimid[] = _("Timid");
+static const u8 gText_NatureHasty[] = _("Hasty");
+static const u8 gText_NatureSerious[] = _("Serious");
+static const u8 gText_NatureJolly[] = _("Jolly");
+static const u8 gText_NatureNaive[] = _("Naive");
+static const u8 gText_NatureModest[] = _("Modest");
+static const u8 gText_NatureMild[] = _("Mild");
+static const u8 gText_NatureQuiet[] = _("Quiet");
+static const u8 gText_NatureBashful[] = _("Bashful");
+static const u8 gText_NatureRash[] = _("Rash");
+static const u8 gText_NatureCalm[] = _("Calm");
+static const u8 gText_NatureGentle[] = _("Gentle");
+static const u8 gText_NatureSassy[] = _("Sassy");
+static const u8 gText_NatureCareful[] = _("Careful");
+static const u8 gText_NatureQuirky[] = _("Quirky");
+static const u8 gText_GoBack[] = _("GO BACK {LEFT_ARROW}");
+static const u8 gText_PrevPage[] = _("PREV {LEFT_ARROW}");
+static const u8 gText_NextPage[] = _("NEXT {RIGHT_ARROW}");
+
+static const struct MenuAction MultichoiceList_RerollNature1[] =
+{
+    {gText_Random},
+    {gText_NatureHardy},
+    {gText_NatureLonely},
+    {gText_NatureBrave},
+    {gText_NatureAdamant},
+    {gText_NatureNaughty},
+    {gText_NatureBold},
+    {gText_NatureDocile},
+    {gText_NatureRelaxed},
+    {gText_NatureImpish},
+    {gText_NatureLax},
+    {gText_NatureTimid},
+    {gText_NatureHasty},
+    {gText_NatureSerious},
+    {gText_NatureJolly},
+    {gText_NextPage},
+};
+
+static const struct MenuAction MultichoiceList_RerollNature2[] =
+{
+    {gText_NatureNaive},
+    {gText_NatureModest},
+    {gText_NatureMild},
+    {gText_NatureQuiet},
+    {gText_NatureBashful},
+    {gText_NatureRash},
+    {gText_NatureCalm},
+    {gText_NatureGentle},
+    {gText_NatureSassy},
+    {gText_NatureCareful},
+    {gText_NatureQuirky},
+    {gText_PrevPage},
+};
+
+static const u8 gText_TypeNormal[] = _("Normal");
+static const u8 gText_TypeFighting[] = _("Fighting");
+static const u8 gText_TypeFlying[] = _("Flying");
+static const u8 gText_TypePoison[] = _("Poison");
+static const u8 gText_TypeGround[] = _("Ground");
+static const u8 gText_TypeRock[] = _("Rock");
+static const u8 gText_TypeBug[] = _("Bug");
+static const u8 gText_TypeGhost[] = _("Ghost");
+static const u8 gText_TypeSteel[] = _("Steel");
+static const u8 gText_TypeFire[] = _("Fire");
+static const u8 gText_TypeWater[] = _("Water");
+static const u8 gText_TypeGrass[] = _("Grass");
+static const u8 gText_TypeElectric[] = _("Electric");
+static const u8 gText_TypePsychic[] = _("Psychic");
+static const u8 gText_TypeIce[] = _("Ice");
+static const u8 gText_TypeDragon[] = _("Dragon");
+static const u8 gText_TypeDark[] = _("Dark");
+static const u8 gText_TypeFairy[] = _("Fairy");
+
+static const struct MenuAction MultichoiceList_RerollTeraType[] =
+{
+    {gText_Random},
+    {gText_TypeNormal},
+    {gText_TypeFighting},
+    {gText_TypeFlying},
+    {gText_TypePoison},
+    {gText_TypeGround},
+    {gText_TypeRock},
+    {gText_TypeBug},
+    {gText_TypeGhost},
+    {gText_TypeSteel},
+    {gText_TypeFire},
+    {gText_TypeWater},
+    {gText_TypeGrass},
+    {gText_TypeElectric},
+    {gText_TypePsychic},
+    {gText_TypeIce},
+    {gText_TypeDragon},
+    {gText_TypeDark},
+    {gText_TypeFairy},
+    {gText_Blank},
+};
+
+static const u8 gText_BallPoke[] = _("Poké");
+static const u8 gText_BallGreat[] = _("Great");
+static const u8 gText_BallUltra[] = _("Ultra");
+static const u8 gText_BallMaster[] = _("Master");
+static const u8 gText_BallPremier[] = _("Premier");
+static const u8 gText_BallHeal[] = _("Heal");
+static const u8 gText_BallNet[] = _("Net");
+static const u8 gText_BallNest[] = _("Nest");
+static const u8 gText_BallDive[] = _("Dive");
+static const u8 gText_BallDusk[] = _("Dusk");
+static const u8 gText_BallTimer[] = _("Timer");
+static const u8 gText_BallQuick[] = _("Quick");
+static const u8 gText_BallRepeat[] = _("Repeat");
+static const u8 gText_BallLuxury[] = _("Luxury");
+static const u8 gText_BallLevel[] = _("Level");
+static const u8 gText_BallLure[] = _("Lure");
+static const u8 gText_BallMoon[] = _("Moon");
+static const u8 gText_BallFriend[] = _("Friend");
+static const u8 gText_BallLove[] = _("Love");
+static const u8 gText_BallFast[] = _("Fast");
+static const u8 gText_BallHeavy[] = _("Heavy");
+static const u8 gText_BallDream[] = _("Dream");
+static const u8 gText_BallSafari[] = _("Safari");
+static const u8 gText_BallSport[] = _("Sport");
+static const u8 gText_BallPark[] = _("Park");
+static const u8 gText_BallBeast[] = _("Beast");
+static const u8 gText_BallCherish[] = _("Cherish");
+
+static const struct MenuAction MultichoiceList_RerollPokeball1[] =
+{
+    // always keep number of options divisibe by the "perRow" attribute of multichoicegrid.
+    // in this case, perRow = 3, and total options here = 18
+    {gText_Random},
+    {gText_BallPoke},
+    {gText_BallGreat},
+    {gText_BallUltra},
+    {gText_BallMaster},
+    {gText_BallPremier},
+    {gText_BallHeal},
+    {gText_BallNet},
+    {gText_BallNest},
+    {gText_BallDive},
+    {gText_BallDusk},
+    {gText_BallTimer},
+    {gText_BallQuick},
+    {gText_BallRepeat},
+    {gText_BallLuxury},
+    {gText_BallLevel},
+    {gText_BallLure},
+    {gText_NextPage},
+};
+
+static const struct MenuAction MultichoiceList_RerollPokeball2[] =
+{
+    // always keep number of options divisibe by the "perRow" attribute of multichoicegrid.
+    // in this case, perRow = 3, and total options here = 12
+    {gText_BallMoon},
+    {gText_BallFriend},
+    {gText_BallLove},
+    {gText_BallFast},
+    {gText_BallHeavy},
+    {gText_BallDream},
+    {gText_BallSafari},
+    {gText_BallSport},
+    {gText_BallPark},
+    {gText_BallBeast},
+    {gText_BallCherish},
+    {gText_PrevPage},
+};
+
 static const struct MenuAction MultichoiceList_Exit[] =
 {
     {gText_Exit},
@@ -925,6 +1121,13 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_BERRY_PLOT]                 = MULTICHOICE(MultichoiceList_BerryPlot),
     [MULTI_AI_FIGHT_CHOICE]            = MULTICHOICE(MultichoiceList_AIFinal),
     [MULTI_CHOOSE_PATH]                = MULTICHOICE(MultichoiceList_ChoosePath),
+    // Reroll NPC
+    [MULTI_REROLL_OPTIONS]             = MULTICHOICE(MultichoiceList_RerollOptions),
+    [MULTI_REROLL_NATURE_1]            = MULTICHOICE(MultichoiceList_RerollNature1),
+    [MULTI_REROLL_NATURE_2]            = MULTICHOICE(MultichoiceList_RerollNature2),
+    [MULTI_REROLL_TERATYPE]            = MULTICHOICE(MultichoiceList_RerollTeraType),
+    [MULTI_REROLL_POKEBALL_1]          = MULTICHOICE(MultichoiceList_RerollPokeball1),
+    [MULTI_REROLL_POKEBALL_2]          = MULTICHOICE(MultichoiceList_RerollPokeball2),
 };
 
 const u8 *const gStdStrings[] =

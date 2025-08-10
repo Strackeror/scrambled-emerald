@@ -157,9 +157,14 @@ LittlerootTown_EventScript_GoInsideWithMom::
 	multichoice 20, 8, MULTI_CHOOSE_PATH, TRUE
 	call_if_eq VAR_RESULT, 0, LittlerootTown_EventScript_ScrambledVanillaPath
 	call_if_eq VAR_RESULT, 1, LittlerootTown_EventScript_ScrambledReversePath
+	msgbox LittlerootTown_Text_CheckPath, MSGBOX_DEFAULT
 
 	// Announce Level Cap
 	call Common_EventScript_NewLevelCapTextAndFanfare
+
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox LittlerootTown_Text_YouGotEverything, MSGBOX_DEFAULT
+	waitfanfare
 
 	msgbox LittlerootTown_Text_OurNewHomeAbridged, MSGBOX_DEFAULT
 	closemessage
@@ -187,6 +192,9 @@ LittlerootTown_EventScript_GoInsideWithMom::
 		setflag FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_1
 		setflag FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_2
 		setvar VAR_LITTLEROOT_TOWN_STATE, 1
+		setflag FLAG_MET_RIVAL_MOM
+		setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 2
+		setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 2
 
 		setflag FLAG_HIDE_PETALBURG_WOODS_DEVON_EMPLOYEE
 		setflag FLAG_HIDE_PETALBURG_WOODS_AQUA_GRUNT
@@ -210,15 +218,22 @@ LittlerootTown_EventScript_GoInsideWithMom::
 	setvar VAR_PETALBURG_GYM_STATE, 6
 	call Common_EventScript_ReadyPetalburgGymForBattle
 	setflag FLAG_HIDE_ROUTE_111_ROCK_SMASH_TIP_GUY
+	setflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_AQUA_GRUNT
+	setflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_SUBMARINE_SHADOW
+	setflag FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_1_BLOCKING_ENTRANCE
+	setflag FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_2_BLOCKING_ENTRANCE
+	setflag FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE
 	setflag FLAG_HIDE_LILYCOVE_CITY_AQUA_GRUNTS
+	setflag FLAG_HIDE_AQUA_HIDEOUT_GRUNTS
+	setflag FLAG_HIDE_AQUA_HIDEOUT_B2F_SUBMARINE_SHADOW
 	setflag FLAG_HIDE_ROUTE_110_TEAM_AQUA
 	setflag FLAG_HIDE_ROUTE_112_TEAM_MAGMA
 	setvar VAR_METEOR_FALLS_STATE, 1
 	setflag FLAG_HIDE_METEOR_FALLS_1F_1R_COZMO
 	setflag FLAG_HIDE_METEOR_FALLS_TEAM_MAGMA
 	setflag FLAG_HIDE_METEOR_FALLS_TEAM_AQUA
-
-
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_BEDROOM
 	return
 
 LittlerootTown_EventScript_ScrambledVanillaPath::
@@ -798,6 +813,15 @@ LittlerootTown_EventScript_MomReturnHomeFemale5::
 	waitdooranim
 	return
 
+LittlerootTown_EventScript_NewPlayerHelper::
+	lock
+	faceplayer
+	msgbox LittlerootTown_Text_NewPlayerHelper1, MSGBOX_DEFAULT
+	msgbox LittlerootTown_Text_NewPlayerHelper2, MSGBOX_DEFAULT
+	msgbox LittlerootTown_Text_NewPlayerHelper3, MSGBOX_DEFAULT
+	release
+	end
+
 LittlerootTown_Movement_MomApproachPlayer0:
 	walk_up
 	walk_up
@@ -988,7 +1012,68 @@ LittlerootTown_EventScript_GiveRunningShoes::
 
 LittlerootTown_Text_ChoosePath:
 	.string "Choose the path you wish to play.\n"
-	.string "Note: You {COLOR RED}{SHADOW LIGHT_RED}CANNOT{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY} change this later!$"
+	.string "Note: You {COLOR RED}CANNOT{COLOR DARK_GRAY} change this later!$"
+
+LittlerootTown_Text_CheckPath:
+	.string "You can check your chosen path on\n"
+	.string "your Trainer Card!\p"
+	.string "Remember to use the {COLOR RED}DOOZDEX{COLOR DARK_GRAY}\n"
+	.string "for boss teams, locations and level caps!$"
+
+LittlerootTown_Text_NewPlayerHelper1:
+	.string "Hi! Are you confused?\n"
+	.string "I can help!\p"
+
+	.string "You're playing… {COLOR RED}Scrambled Scarlet{COLOR DARK_GRAY}!\n"
+	.string "This isn't your traditional RomHack…\p"
+	.string "{COLOR RED}EVERY{COLOR DARK_GRAY} single POKéMON has been\n"
+	.string "reimagined with thoughtful buffs and\l"
+	.string "changes to make them fun and\l"
+	.string "satisfying to use!\p"
+	.string "You can use your favorites and win\n"
+	.string "with the right preperation!\p"
+
+	.string "You have tons of tools at your disposal\n"
+	.string "like reworked moves, terastalization,\l"
+	.string "3 amazing abilities for every Pokemon,\l"
+	.string "tons of items & more!$"
+
+LittlerootTown_Text_NewPlayerHelper2:
+	.string "It's balanced around {COLOR RED}Teamlocked{COLOR DARK_GRAY}\n"
+	.string "{COLOR RED}Nuzlocke{COLOR DARK_GRAY}, a format where you don't\l"
+	.string "swap out team members unless one dies.\p"
+	.string "It's meant for you to bond with your\n"
+	.string "team and not carelessly sack them!\p"
+
+	.string "{COLOR RED}Teamlocke{COLOR DARK_GRAY} is fun and encouraged,\n"
+	.string "but it's {COLOR RED}TOTALLY optional{COLOR DARK_GRAY}.\l"
+	.string "You can play however you want.\p"
+
+	.string "Encounters are now {COLOR RED}egg-based{COLOR DARK_GRAY} to add\n"
+	.string "surprise and variety to your team.\p"
+	.string "You unlock more eggs, items and TMs\n"
+	.string "as you collect badges.$"
+
+LittlerootTown_Text_NewPlayerHelper3:
+	.string "Please, USE THE {COLOR RED}DOOZDEX{COLOR DARK_GRAY} - it's a tool\n"
+	.string "designed to answer all of your\l"
+	.string "questions about the game.\p"
+	.string "Boss locations, teams, POKéMON changes…\n"
+	.string "Everything can be found there!\p"
+
+	.string "If you need extra help or are stuck,\n"
+	.string "join the Discord server!\l"
+	.string "We have a nice community that is\l"
+	.string "happy to help!\p"
+
+	.string "The Doozcord is also the best way to\n"
+	.string "see Dooz's upcoming projects!\p"
+	.string "Thank you for playing!\n"
+	.string "We appreciate it and hope you enjoy!$"
+
+LittlerootTown_Text_YouGotEverything:
+	.string "You received KEY ITEMS to {COLOR RED}Raise your{COLOR DARK_GRAY}\n"
+	.string "{COLOR RED}Pokémon{COLOR DARK_GRAY} and {COLOR RED}Travel around the Region{COLOR DARK_GRAY}!$"
 
 LittlerootTown_Text_OurNewHomeLetsGoInside:
 	.string "MOM: {PLAYER}, we're here, honey!\p"
@@ -1004,9 +1089,7 @@ LittlerootTown_Text_OurNewHomeLetsGoInside:
 
 LittlerootTown_Text_OurNewHomeAbridged:
 	.string "MOM: {PLAYER}, we're here, honey!\n"
-	.string "Let's go inside!\p"
-	.string "{COLOR RED}{SHADOW LIGHT_RED}Nature Mints{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY} and {COLOR RED}{SHADOW LIGHT_RED}Tera Shards{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}\n"
-	.string "can be found in your room PC!$"
+	.string "Let's go inside!$"
 
 LittlerootTown_Text_WaitPlayer:
 	.string "MOM: Wait, {PLAYER}!$"

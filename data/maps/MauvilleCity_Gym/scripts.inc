@@ -101,22 +101,7 @@ MauvilleCity_Gym_EventScript_Reverse::
 MauvilleCity_Gym_EventScript_WattsonDefeated::
 	message MauvilleCity_Gym_Text_ReceivedDynamoBadge
 	waitmessage
-	// PLOTLESS
-		setflag FLAG_HIDE_ROUTE_112_TEAM_MAGMA
-		setvar VAR_METEOR_FALLS_STATE, 1
-		setflag FLAG_HIDE_METEOR_FALLS_TEAM_AQUA
-		setflag FLAG_MET_PROF_COZMO
-		setflag FLAG_HIDE_MT_CHIMNEY_TEAM_AQUA
-		setflag FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
-		setflag FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY
-		clearflag FLAG_HIDE_FALLARBOR_HOUSE_PROF_COZMO
-		setflag FLAG_HIDE_METEOR_FALLS_1F_1R_COZMO
-	// PLOTLESS + EARLYSURF
-		setvar VAR_WEATHER_INSTITUTE_STATE, 2
-		setflag FLAG_HIDE_ROUTE_119_TEAM_AQUA
-		clearflag FLAG_HIDE_WEATHER_INSTITUTE_1F_WORKERS
-		setflag FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS
-
+	call Common_Gym3_EventScript_Plotless
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox MauvilleCity_Gym_Text_ExplainDynamoBadgeTakeThis, MSGBOX_DEFAULT
 	// giveitem ITEM_PICKAXE, 1
@@ -142,15 +127,16 @@ MauvilleCity_Gym_EventScript_WattsonDefeated::
 	end
 
 MauvilleCity_Gym_EventScript_VanillaLevelCap::
+	setflag FLAG_BADGE03_GET
 	setvar VAR_LEVEL_CAP 30
 	call Common_EventScript_NewLevelCapTextAndFanfare
-	setflag FLAG_BADGE03_GET
 	return
 
 MauvilleCity_Gym_EventScript_ReverseLevelCap::
+	setflag FLAG_BADGE06_GET
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, Common_EventScript_SkipKitakami_LevelCap52_End
 	setvar VAR_LEVEL_CAP 50
 	call Common_EventScript_NewLevelCapTextAndFanfare
-	setflag FLAG_BADGE06_GET
 	return
 
 MauvilleCity_Gym_EventScript_CompletedNewMauville::

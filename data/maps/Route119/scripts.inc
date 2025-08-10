@@ -614,13 +614,14 @@ Route119_Text_TrainerTipsDecoration:
 	.string "way you want.$"
 
 Route119_EventScript_TitanOkidogi::
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, Route119_EventScript_Titan_Skipped
 	setvar VAR_TEMP_F, 43
 	buffernumberstring STR_VAR_2, VAR_TEMP_F
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	lock
 	goto_if_set FLAG_TITAN_OKIDOGI, Route119_EventScript_TitanOkidogi_Defeated
 	faceplayer
-	msgbox Route119_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 13
 	waitstate
 	setflag FLAG_TITAN_OKIDOGI
@@ -633,13 +634,14 @@ Route119_EventScript_TitanOkidogi_Defeated::
 	end
 
 Route119_EventScript_TitanMunkidori::
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, Route119_EventScript_Titan_Skipped
 	setvar VAR_TEMP_F, 43
 	buffernumberstring STR_VAR_2, VAR_TEMP_F
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	lock
 	goto_if_set FLAG_TITAN_MUNKIDORI, Route119_EventScript_TitanMunkidori_Defeated
 	faceplayer
-	msgbox Route119_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 14
 	waitstate
 	setflag FLAG_TITAN_MUNKIDORI
@@ -652,13 +654,14 @@ Route119_EventScript_TitanMunkidori_Defeated::
 	end
 
 Route119_EventScript_TitanFezandipiti::
+	goto_if_set FLAG_SKIPPING_TEAL_MASK, Route119_EventScript_Titan_Skipped
 	setvar VAR_TEMP_F, 43
 	buffernumberstring STR_VAR_2, VAR_TEMP_F
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	lock
 	goto_if_set FLAG_TITAN_FEZANDIPITI, Route119_EventScript_TitanFezandipiti_Defeated
 	faceplayer
-	msgbox Route119_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 15
 	waitstate
 	setflag FLAG_TITAN_FEZANDIPITI
@@ -680,8 +683,16 @@ Route119_EventScript_TryRemoveLoyal3:
 	removeobject 46
 	setflag FLAG_TITAN_LOYAL_THREE
 	fadescreen FADE_FROM_BLACK
+	call Common_EventScript_AddMoneyScrambledTitanFights
 	setvar VAR_LEVEL_CAP 45
 	call Common_EventScript_NewLevelCapTextAndFanfare
+	release
+	end
+
+Route119_EventScript_Titan_Skipped::
+	lock
+	faceplayer
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	release
 	end
 
@@ -692,6 +703,3 @@ Route119_EventScript_End:
 Route119_Movement_TitanDefeated:
 	jump_in_place_up
 	step_end
-
-Route119_Text_Titan::
-	.string "...$"

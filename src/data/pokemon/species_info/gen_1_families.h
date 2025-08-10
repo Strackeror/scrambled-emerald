@@ -2528,7 +2528,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .teachableLearnset = sPikachu0TeachableLearnset,
         .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
         .formChangeTable = sPikachuFormChangeTable,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_GIGAVOLT_HAVOC, SPECIES_RAICHU, 35}, {EVO_MOVE, MOVE_SHATTERED_PSYCHE, SPECIES_RAICHU_ALOLA, 35}),
+        .evolutions = EVOLUTION(
+            {EVO_MOVE_35, MOVE_GIGAVOLT_HAVOC, SPECIES_RAICHU},
+            {EVO_MOVE_35, MOVE_SHATTERED_PSYCHE, SPECIES_RAICHU_ALOLA}
+        ),
     },
 
     [SPECIES_PIKACHU_COSPLAY]   =
@@ -4774,7 +4777,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         )
         .levelUpLearnset = sJigglypuff0LevelUpLearnset,
         .teachableLearnset = sJigglypuff0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_TWINKLE_TACKLE, SPECIES_WIGGLYTUFF, 35}, {EVO_MOVE, MOVE_GENESIS_SUPERNOVA, SPECIES_SCREAM_TAIL, 45}),
+        .evolutions = EVOLUTION(
+            {EVO_MOVE_35, MOVE_TWINKLE_TACKLE, SPECIES_WIGGLYTUFF},
+            {EVO_MOVE_45, MOVE_GENESIS_SUPERNOVA, SPECIES_SCREAM_TAIL}
+        ),
     },
 
     [SPECIES_WIGGLYTUFF] =
@@ -5184,7 +5190,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         )
         .levelUpLearnset = sGloom0LevelUpLearnset,
         .teachableLearnset = sGloom0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_ACID_DOWNPOUR, SPECIES_VILEPLUME, 35}, {EVO_MOVE, MOVE_BLOOM_DOOM, SPECIES_BELLOSSOM, 35}),
+        .evolutions = EVOLUTION(
+            {EVO_MOVE_35, MOVE_ACID_DOWNPOUR, SPECIES_VILEPLUME},
+            {EVO_MOVE_35, MOVE_BLOOM_DOOM, SPECIES_BELLOSSOM}
+        ),
     },
 
     [SPECIES_VILEPLUME] =
@@ -5515,7 +5524,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sVenonat0LevelUpLearnset,
         .teachableLearnset = sVenonat0TeachableLearnset,
         .eggMoveLearnset = sVenonatEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_ACID_DOWNPOUR, SPECIES_VENOMOTH, 25}),
+        .evolutions = EVOLUTION({EVO_MOVE_25, MOVE_ACID_DOWNPOUR, SPECIES_VENOMOTH}),
     },
 
     [SPECIES_VENOMOTH] =
@@ -6492,7 +6501,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseHP        = 80,
         .baseAttack    = 105,
         .baseDefense   = 75,
-        .baseSpeed     = 105,
+        .baseSpeed     = 95,
         .baseSpAttack  = 50,
         .baseSpDefense = 75,
         .types = MON_TYPES(TYPE_FIGHTING),
@@ -6994,7 +7003,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         )
         .levelUpLearnset = sPoliwhirl0LevelUpLearnset,
         .teachableLearnset = sPoliwhirl0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_ALL_OUT_PUMMELING, SPECIES_POLIWRATH, 35}, {EVO_MOVE, MOVE_HYDRO_VORTEX, SPECIES_POLITOED, 35}),
+        .evolutions = EVOLUTION(
+            {EVO_MOVE_35, MOVE_ALL_OUT_PUMMELING, SPECIES_POLIWRATH},
+            {EVO_MOVE_35, MOVE_HYDRO_VORTEX, SPECIES_POLITOED}
+        ),
     },
 
     [SPECIES_POLIWRATH] =
@@ -8109,7 +8121,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sGraveler0LevelUpLearnset,
         .teachableLearnset = sGraveler0TeachableLearnset,
         .formSpeciesIdTable = sGravelerFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_CONTINENTAL_CRUSH, SPECIES_GOLEM, 35}),
+        .evolutions = EVOLUTION({EVO_MOVE_35, MOVE_CONTINENTAL_CRUSH, SPECIES_GOLEM}),
     },
 
     [SPECIES_GOLEM] =
@@ -8305,7 +8317,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sGraveler1LevelUpLearnset,
         .teachableLearnset = sGraveler1TeachableLearnset,
         .formSpeciesIdTable = sGravelerFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_GIGAVOLT_HAVOC, SPECIES_GOLEM_ALOLA, 35}),
+        .evolutions = EVOLUTION({EVO_MOVE_35, MOVE_GIGAVOLT_HAVOC, SPECIES_GOLEM_ALOLA}),
     },
 
     [SPECIES_GOLEM_ALOLA] =
@@ -8690,7 +8702,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .teachableLearnset = sSlowpoke0TeachableLearnset,
         .eggMoveLearnset = sSlowpokeEggMoveLearnset,
         .formSpeciesIdTable = sSlowpokeFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_HYDRO_VORTEX, SPECIES_SLOWBRO, 30}, {EVO_MOVE, MOVE_SHATTERED_PSYCHE, SPECIES_SLOWKING, 30}, {EVO_MOVE, MOVE_ACID_DOWNPOUR, SPECIES_SLOWBRO_GALAR, 30}, {EVO_MOVE, MOVE_NEVER_ENDING_NIGHTMARE, SPECIES_SLOWKING_GALAR, 30}),
+        .evolutions = EVOLUTION(
+            {EVO_MOVE_27, MOVE_HYDRO_VORTEX, SPECIES_SLOWBRO},
+            {EVO_MOVE_27, MOVE_SHATTERED_PSYCHE, SPECIES_SLOWKING},
+            {EVO_MOVE_27, MOVE_ACID_DOWNPOUR, SPECIES_SLOWBRO_GALAR},
+            {EVO_MOVE_27, MOVE_NEVER_ENDING_NIGHTMARE, SPECIES_SLOWKING_GALAR}
+        ),
     },
 
     [SPECIES_SLOWBRO] =
@@ -9199,7 +9216,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         )
         .levelUpLearnset = sMagneton0LevelUpLearnset,
         .teachableLearnset = sMagneton0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_GIGAVOLT_HAVOC, SPECIES_MAGNEZONE, 45}, {EVO_MOVE, MOVE_GENESIS_SUPERNOVA, SPECIES_SANDY_SHOCKS, 45}),
+        .evolutions = EVOLUTION(
+            {EVO_MOVE_45, MOVE_GIGAVOLT_HAVOC, SPECIES_MAGNEZONE},
+            {EVO_MOVE_45, MOVE_GENESIS_SUPERNOVA, SPECIES_SANDY_SHOCKS}
+        ),
     },
 
     [SPECIES_MAGNEZONE] =
@@ -10254,7 +10274,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         )
         .levelUpLearnset = sHaunter0LevelUpLearnset,
         .teachableLearnset = sHaunter0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_NEVER_ENDING_NIGHTMARE, SPECIES_GENGAR, 35}),
+        .evolutions = EVOLUTION({EVO_MOVE_35, MOVE_NEVER_ENDING_NIGHTMARE, SPECIES_GENGAR}),
     },
 
 #define GENGAR_ABILITIES {ABILITY_CURSED_BODY, ABILITY_NONE, ABILITY_NONE}
@@ -10692,7 +10712,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sDrowzee0LevelUpLearnset,
         .teachableLearnset = sDrowzee0TeachableLearnset,
         .eggMoveLearnset = sDrowzeeEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_BLACK_HOLE_ECLIPSE, SPECIES_HYPNO, 26}),
+        .evolutions = EVOLUTION({EVO_MOVE_26, MOVE_BLACK_HOLE_ECLIPSE, SPECIES_HYPNO}),
     },
 
     [SPECIES_HYPNO] =
@@ -11272,7 +11292,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sExeggcute0LevelUpLearnset,
         .teachableLearnset = sExeggcute0TeachableLearnset,
         .eggMoveLearnset = sExeggcuteEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_SHATTERED_PSYCHE, SPECIES_EXEGGUTOR, 35}, {EVO_MOVE, MOVE_DEVASTATING_DRAKE, SPECIES_EXEGGUTOR_ALOLA, 35}),
+        .evolutions = EVOLUTION(
+            {EVO_MOVE_35, MOVE_SHATTERED_PSYCHE, SPECIES_EXEGGUTOR},
+            {EVO_MOVE_35, MOVE_DEVASTATING_DRAKE, SPECIES_EXEGGUTOR_ALOLA}
+        ),
     },
 
     #define EXEGGUTOR_EXP_YIELD 186
@@ -11718,7 +11741,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sTyrogue0LevelUpLearnset,
         .teachableLearnset = sTyrogue0TeachableLearnset,
         .eggMoveLearnset = sTyrogueEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_MACH_PUNCH, SPECIES_HITMONCHAN, 23}, {EVO_MOVE, MOVE_LOW_SWEEP, SPECIES_HITMONLEE, 23}, {EVO_MOVE, MOVE_RAPID_SPIN, SPECIES_HITMONTOP, 23}),
+        .evolutions = EVOLUTION(
+            {EVO_MOVE_23, MOVE_LOW_SWEEP, SPECIES_HITMONLEE},
+            {EVO_MOVE_23, MOVE_MACH_PUNCH, SPECIES_HITMONCHAN},
+            {EVO_MOVE_23, MOVE_RAPID_SPIN, SPECIES_HITMONTOP}
+        ),
     },
 
     [SPECIES_HITMONLEE] =
@@ -12095,7 +12122,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sKoffing0LevelUpLearnset,
         .teachableLearnset = sKoffing0TeachableLearnset,
         .eggMoveLearnset = sKoffingEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_ACID_DOWNPOUR, SPECIES_WEEZING, 30}, {EVO_MOVE, MOVE_TWINKLE_TACKLE, SPECIES_WEEZING_GALAR, 30}),
+        .evolutions = EVOLUTION(
+            {EVO_MOVE_30, MOVE_ACID_DOWNPOUR, SPECIES_WEEZING},
+            {EVO_MOVE_30, MOVE_TWINKLE_TACKLE, SPECIES_WEEZING_GALAR}
+        ),
     },
 
     [SPECIES_WEEZING] =
@@ -12301,7 +12331,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sRhyhorn0LevelUpLearnset,
         .teachableLearnset = sRhyhorn0TeachableLearnset,
         .eggMoveLearnset = sRhyhornEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_TECTONIC_RAGE, SPECIES_RHYDON, 35}),
+        .evolutions = EVOLUTION({EVO_MOVE_35, MOVE_TECTONIC_RAGE, SPECIES_RHYDON}),
     },
 
     [SPECIES_RHYDON] =
@@ -12373,7 +12403,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         )
         .levelUpLearnset = sRhydon0LevelUpLearnset,
         .teachableLearnset = sRhydon0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_CONTINENTAL_CRUSH, SPECIES_RHYPERIOR, 45}),
+        .evolutions = EVOLUTION({EVO_MOVE_45, MOVE_CONTINENTAL_CRUSH, SPECIES_RHYPERIOR}),
     },
 
     [SPECIES_RHYPERIOR] =
@@ -12573,7 +12603,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sChansey0LevelUpLearnset,
         .teachableLearnset = sChansey0TeachableLearnset,
         .eggMoveLearnset = sChanseyEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_TWINKLE_TACKLE, SPECIES_BLISSEY, 35}),
+        .evolutions = EVOLUTION({EVO_MOVE_35, MOVE_TWINKLE_TACKLE, SPECIES_BLISSEY}),
     },
 
     [SPECIES_BLISSEY] =
@@ -13017,7 +13047,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         )
         .levelUpLearnset = sSeadra0LevelUpLearnset,
         .teachableLearnset = sSeadra0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_DEVASTATING_DRAKE, SPECIES_KINGDRA, 45}),
+        .evolutions = EVOLUTION({EVO_MOVE_45, MOVE_DEVASTATING_DRAKE, SPECIES_KINGDRA}),
     },
 
     [SPECIES_KINGDRA] =
@@ -13680,7 +13710,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sScyther0LevelUpLearnset,
         .teachableLearnset = sScyther0TeachableLearnset,
         .eggMoveLearnset = sScytherEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_CORKSCREW_CRASH, SPECIES_SCIZOR, 35}, {EVO_MOVE, MOVE_CONTINENTAL_CRUSH, SPECIES_KLEAVOR, 35}),
+        .evolutions = EVOLUTION(
+            {EVO_MOVE_35, MOVE_CORKSCREW_CRASH, SPECIES_SCIZOR},
+            {EVO_MOVE_35, MOVE_CONTINENTAL_CRUSH, SPECIES_KLEAVOR}
+        ),
     },
 
     [SPECIES_SCIZOR] =
@@ -14125,7 +14158,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         )
         .levelUpLearnset = sElectabuzz0LevelUpLearnset,
         .teachableLearnset = sElectabuzz0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_ALL_OUT_PUMMELING, SPECIES_ELECTIVIRE, 40}),
+        .evolutions = EVOLUTION({EVO_MOVE_40, MOVE_ALL_OUT_PUMMELING, SPECIES_ELECTIVIRE}),
     },
 
     [SPECIES_ELECTIVIRE] =
@@ -14316,7 +14349,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         )
         .levelUpLearnset = sMagmar0LevelUpLearnset,
         .teachableLearnset = sMagmar0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_CORKSCREW_CRASH, SPECIES_MAGMORTAR, 40}),
+        .evolutions = EVOLUTION({EVO_MOVE_40, MOVE_CORKSCREW_CRASH, SPECIES_MAGMORTAR}),
     },
 
     [SPECIES_MAGMORTAR] =
@@ -15228,7 +15261,16 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .eggMoveLearnset = sEeveeEggMoveLearnset,
         .formSpeciesIdTable = sEeveeFormSpeciesIdTable,
         .formChangeTable = sEeveeFormChangeTable,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_BLOOM_DOOM, SPECIES_LEAFEON, 25}, {EVO_MOVE, MOVE_SUBZERO_SLAMMER, SPECIES_GLACEON, 25}, {EVO_MOVE, MOVE_GIGAVOLT_HAVOC, SPECIES_JOLTEON, 25}, {EVO_MOVE, MOVE_INFERNO_OVERDRIVE, SPECIES_FLAREON, 25}, {EVO_MOVE, MOVE_HYDRO_VORTEX, SPECIES_VAPOREON, 25}, {EVO_MOVE, MOVE_TWINKLE_TACKLE, SPECIES_SYLVEON, 25}, {EVO_MOVE, MOVE_BLACK_HOLE_ECLIPSE, SPECIES_UMBREON, 25}, {EVO_MOVE, MOVE_SHATTERED_PSYCHE, SPECIES_UMBREON, 25}),
+        .evolutions = EVOLUTION(
+            {EVO_MOVE_25, MOVE_HYDRO_VORTEX, SPECIES_VAPOREON},
+            {EVO_MOVE_25, MOVE_INFERNO_OVERDRIVE, SPECIES_FLAREON},
+            {EVO_MOVE_25, MOVE_GIGAVOLT_HAVOC, SPECIES_JOLTEON},
+            {EVO_MOVE_25, MOVE_SHATTERED_PSYCHE, SPECIES_ESPEON},
+            {EVO_MOVE_25, MOVE_BLACK_HOLE_ECLIPSE, SPECIES_UMBREON},
+            {EVO_MOVE_25, MOVE_BLOOM_DOOM, SPECIES_LEAFEON},
+            {EVO_MOVE_25, MOVE_SUBZERO_SLAMMER, SPECIES_GLACEON},
+            {EVO_MOVE_25, MOVE_TWINKLE_TACKLE, SPECIES_SYLVEON}
+        ),
     },
 
     [SPECIES_EEVEE_GMAX] =
@@ -17122,7 +17164,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         )
         .levelUpLearnset = sDragonair0LevelUpLearnset,
         .teachableLearnset = sDragonair0TeachableLearnset,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_SUPERSONIC_SKYSTRIKE, SPECIES_DRAGONITE, 45}),
+        .evolutions = EVOLUTION({EVO_MOVE_45, MOVE_SUPERSONIC_SKYSTRIKE, SPECIES_DRAGONITE}),
     },
 
     [SPECIES_DRAGONITE] =

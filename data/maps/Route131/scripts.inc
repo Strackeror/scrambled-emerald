@@ -64,16 +64,17 @@ Route131_EventScript_TitanDondozo::
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	lock
 	faceplayer
-	msgbox Route131_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 11
 	waitstate
-	msgbox Route131_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 12
 	waitstate
 	fadescreen FADE_TO_BLACK
 	removeobject LOCALID_DONDOZO
 	setflag FLAG_TITAN_DONDOZO
 	fadescreen FADE_FROM_BLACK
+	call Common_EventScript_AddMoneyScrambledTitanFights
 	setvar VAR_LEVEL_CAP 60
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	release
@@ -85,20 +86,18 @@ Route131_EventScript_TitanDondozoReverse::
 	goto_if_lt VAR_LEVEL_CAP, VAR_TEMP_F, Common_EventScript_CheckIfLevelCapTooLow
 	lock
 	faceplayer
-	msgbox Route131_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 16
 	waitstate
-	msgbox Route131_Text_Titan, MSGBOX_DEFAULT
+	msgbox gText_PlaceHolder, MSGBOX_DEFAULT
 	titanbattle 17
 	waitstate
 	fadescreen FADE_TO_BLACK
 	removeobject LOCALID_DONDOZO
 	setflag FLAG_TITAN_DONDOZO
 	fadescreen FADE_FROM_BLACK
+	call Common_EventScript_AddMoneyScrambledTitanFights
 	setvar VAR_LEVEL_CAP 18
 	call Common_EventScript_NewLevelCapTextAndFanfare
 	release
 	end
-
-Route131_Text_Titan::
-	.string "...$"

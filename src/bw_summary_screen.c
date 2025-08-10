@@ -554,7 +554,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .tilemapLeft = 20,
         .tilemapTop = 2,
         .width = 10,
-        .height = 3,
+        .height = 4,
         .paletteNum = 6,
         .baseBlock = 245,
     },
@@ -3406,10 +3406,10 @@ static void PrintGenderSymbol(struct Pokemon *mon, u16 species)
         switch (GetMonGender(mon))
         {
         case MON_MALE:
-            PrintTextOnWindow(PSS_LABEL_WINDOW_PORTRAIT_NICKNAME_GENDER_LEVEL, gText_MaleSymbol, 70, 1, 0, 3);
+            PrintTextOnWindow(PSS_LABEL_WINDOW_PORTRAIT_NICKNAME_GENDER_LEVEL, gText_MaleSymbol, 60-4, 15, 0, 3);
             break;
         case MON_FEMALE:
-            PrintTextOnWindow(PSS_LABEL_WINDOW_PORTRAIT_NICKNAME_GENDER_LEVEL, gText_FemaleSymbol, 70, 1, 0, 4);
+            PrintTextOnWindow(PSS_LABEL_WINDOW_PORTRAIT_NICKNAME_GENDER_LEVEL, gText_FemaleSymbol, 60-4, 15, 0, 4);
             break;
         }
     }
@@ -3677,7 +3677,7 @@ static void PrintMonAbilityName(void)
 static void PrintMonAbilityDescription(void)
 {
     u16 ability = GetAbilityBySpecies(sMonSummaryScreen->summary.species, sMonSummaryScreen->summary.abilityNum);
-    PrintTextOnWindow_BW_Font(AddWindowFromTemplateList(sPageSkillsTemplate, PSS_DATA_WINDOW_SKILLS_ABILITY), gAbilitiesInfo[ability].description, 4, 15, 0, 0);
+    PrintTextOnWindowWithFont(AddWindowFromTemplateList(sPageSkillsTemplate, PSS_DATA_WINDOW_SKILLS_ABILITY), gAbilitiesInfo[ability].description, 4, 15, 0, 0, FONT_SMALL_NARROW);
 }
 
 static void BufferMonTrainerMemo(void)
@@ -3745,6 +3745,7 @@ static void BufferNatureString(void)
 {
     struct PokemonSummaryScreenData *sumStruct = sMonSummaryScreen;
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(2, gNaturesInfo[sumStruct->summary.nature].name);
+    // DynamicPlaceholderTextUtil_SetPlaceholderPtr(2, gNaturesInfo[sumStruct->summary.mintNature].name);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(5, gText_EmptyString5);
 }
 
@@ -4385,7 +4386,7 @@ static void PrintContestMoveDescription(u8 moveSlot)
     {
         windowId = AddWindowFromTemplateList(sPageMovesTemplate, PSS_DATA_WINDOW_MOVE_DESCRIPTION);
         FormatTextByWidth(desc, 119, FONT_BW_SUMMARY_SCREEN, gContestEffectDescriptionPointers[gMovesInfo[move].contestEffect], GetFontAttribute(FONT_BW_SUMMARY_SCREEN, FONTATTR_LETTER_SPACING));
-        PrintTextOnWindow_BW_Font(windowId, desc, 2, 0, 0, 0);
+        PrintTextOnWindowWithFont(windowId, desc, 2, 0, 0, 0, FONT_SMALL_NARROW);
     }
 }
 
@@ -4405,8 +4406,8 @@ static void PrintMoveDetails(u16 move)
 
             if (BW_SUMMARY_AUTO_FORMAT_MOVE_DESCRIPTIONS)
             {
-                FormatTextByWidth(desc, 119, FONT_SMALL_NARROWER, gMovesInfo[move].description, GetFontAttribute(FONT_SMALL_NARROWER, FONTATTR_LETTER_SPACING));
-                PrintTextOnWindow_Small(windowId, desc, 2, 0, 0, 0);
+                FormatTextByWidth(desc, 119-4, FONT_SMALL_NARROWER, gMovesInfo[move].description, GetFontAttribute(FONT_SMALL_NARROW, FONTATTR_LETTER_SPACING));
+                PrintTextOnWindow_Small(windowId, desc, 2, 0, 1, 0);
             }
             else
             {
